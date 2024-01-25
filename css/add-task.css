@@ -1,0 +1,32 @@
+#add-task {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-left: 328px;
+    padding-top: 206px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(225,229,236,0.25);
+}
+
+#add-task h2 {
+   font-size: 61px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 120%; 
+   margin: 0;
+   padding: 0;
+}
+
+.red {
+    color: rgb(255,129,144);
+}
+
+.main-box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}

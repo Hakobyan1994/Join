@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+body {
+    font-family: 'Inter';
+    margin: 0;
+    height: 100vh;
+}
+
+nav {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 232px;
+    height: 100%;
+    background-color: rgb(42,54,71);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 64px 0px;
+}
+
+.logo {
+    width: 100.034px;
+    height: 121.966px;
+    flex-shrink: 0;
+}
+
+.menubar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.menubar a {
+    text-decoration: none;
+    color: rgb(205,205,205);
+    cursor: pointer;
+    display: flex;
+    height: 46px;
+    padding: 8px 56px;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    flex-shrink: 0;
+}
+
+.menubar a:hover {
+    background-color: rgb(42,61,89);
+    width: 100%;
+    transition: 125ms ease-in-out;
+}
+
+.legalbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+    padding: 124px 0px 0px 52px;
+}
+
+.legalbox a {
+    text-decoration: none;
+    color: rgb(205,205,205);
+    cursor: pointer;
+}
+
+.legalbox a:hover {
+    color: rgb(41,171,226);
+    transition: 125ms ease-in-out;
+}
+
+header {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    padding: 20px 40px 20px 348px;
+    justify-content: space-between;   
+    align-items: center;
+    background-color: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+header p {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px
+}
+
+.help-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.profile-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid rgb(42,54,71);
+    width: 56px;
+    height: 56px;
+    text-decoration: none;
+    color: rgb(41,171,226);
+    flex-shrink: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.profile-icon:hover {
+    background-color: rgb(225,229,236);
+    transition: 125ms ease-in-out;
+}
+
+.blue {
+    background-color: rgb(42,54,71);
+}
+
