@@ -12,30 +12,6 @@ body {
     height: 1024px;
 }
 
-header {
-    display: flex;
-    padding: 20px 40px 20px;
-    justify-content: space-between;
-    align-items: center;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
-    z-index: 1;
-}
-
-header-text {
-    font-size: 24px;
-    padding-left: 70px;
-}
-
-.header-con {
-    color: #000;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-}
-
 .logged-in-user-con {
     display: flex;
     align-items: center;
