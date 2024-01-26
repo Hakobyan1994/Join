@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <script src="/js/includeHTML.js"></script>
+
+    <link rel="stylesheet" href="/css/menubar.css">
+    <script src="/js/script.js"></script>
+
     <link rel="stylesheet" href="/css/contacts.css">
     <script src="/js/contacts.js"></script>
 
@@ -14,9 +19,9 @@
     <script src="/js/addContacts.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <div class="main-content">
-        <div class="menu-con"></div>
+        <div w3-include-html="/assets/templates/menubar.html"></div>
         <div class="content">
             <header>
                 <div class="header-con">
@@ -59,8 +64,8 @@
                                 <div class="contact-set">
                                     <div class="add-contact-content">
                                         <div class="add-contact-user-img">
-                                            <svg class="user-img" width="120" height="120" viewBox="0 0 134 134" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                            <svg class="user-img" width="120" height="120" viewBox="0 0 134 134"
+                                                fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g filter="url(#filter0_d_576_4834)">
                                                     <rect x="7" y="7" width="120" height="120" rx="60" fill="white" />
                                                     <rect x="5.5" y="5.5" width="123" height="123" rx="61.5"
