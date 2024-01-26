@@ -30,3 +30,7 @@
     flex-direction: row;
     align-items: flex-start;
 }
+
+.was-validated .form-control:valid {
+    background-image: none!important;
+}
