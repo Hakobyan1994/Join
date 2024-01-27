@@ -7,33 +7,33 @@ function renderAddTask() {
         <div class="main-box">
             <form>
                 <div class="">
-                    <label for="" class="">Title<p class="red">*</p></label>
+                    <label for="" class="">Title<p class="redstar">*</p></label>
                     <input type="text" class="" id="" placeholder="Enter a title" required>
-                    <div id="" class="d-none">
+                    <div id="" class="red">
                         This field is required
                     </div>
                 </div>
                 <div class="">
                     <label class="">Description</label>
-                    <textarea class="form-control" placeholder="Enter a Description"></textarea>
+                    <textarea class="" placeholder="Enter a Description"></textarea>
                 </div>
-                <label>Assigned to<p class="red">*</p></label>
-                <select class="form-control" aria-label="Default select example">
+                <label>Assigned to</label>
+                <select class="">
                     <option selected>Select contacts to assign</option>
-                    <option value="1">Anton Mayer</option>
-                    <option value="2">Anja Schulz</option>
-                    <option value="3">Sofia Müller</option>
+                    <option value="">Anton Mayer</option>
+                    <option value="">Anja Schulz</option>
+                    <option value="">Sofia Müller</option>
                 </select>
             </form>
             <p class="line"></p>
-            <form class="was-validated">
-                <div class="col-md-3">
-                    <label for="validationServer05" class="form-label">Due date<p class="red">*</p></label>
+            <form>
+                <div class="">
+                    <label for="" class="">Due date<p class="redstar">*</p></label>
                     <div>
-                        <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="dd/mm/yyyy" required>
+                        <input type="text" class="" id="" placeholder="dd/mm/yyyy" required>
                         <img src="/assets/img/icons/calender.svg" alt="Calender">
                     </div>
-                    <div id="validationServer05Feedback" class="invalid-feedback">
+                    <div id="" class="d-none">
                         This field is required
                     </div>
                 </div>
@@ -43,13 +43,13 @@ function renderAddTask() {
                     <button type="button" class="">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
                     <button type="button" class="">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
                 </div>
-                <label>Category<p class="red">*</p></label>
+                <label>Category<p class="redstar">*</p></label>
                 <select class="">
                     <option selected>Select task category</option>
-                    <option value="1">Technical Task</option>
-                    <option value="2">User Story</option>
+                    <option value="">Technical Task</option>
+                    <option value="">User Story</option>
                 </select>
-                <label for="" Subtasks></label>
+                <label for="">Subtasks</label>
                 <input type="text">
             </form>
         </div>    

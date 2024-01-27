@@ -15,6 +15,18 @@
     --darkblue: rgba(42,54,71);
 }
 
+.red {
+    color: rgba(255, 129, 144, 1);
+}
+
+.lightblue {
+    color: rgba(41,171,226, 1);
+}
+
+.darkblue {
+    color: rgba(42, 54, 71, 1);
+}
+
 body {
     font-family: 'Inter';
     margin: 0;
