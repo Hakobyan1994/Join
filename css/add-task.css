@@ -1,5 +1,6 @@
 #add-task {
     height: 100vh;
+    width: 100%;
     position: fixed;
     top: 0;
     right: 0;
@@ -19,6 +20,7 @@
    line-height: 120%; 
    margin: 0;
    padding: 0;
+   padding-bottom: 64px;
 }
 
 .redstar {
@@ -30,9 +32,9 @@
 }
 
 .main-box {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     justify-content: space-between;
 }
 
@@ -44,10 +46,13 @@
     width: 1px;
     height: 424px;
     background-color: var(--line, purple);
+    flex-shrink: 0;
 }
 
 form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
@@ -57,4 +62,59 @@ label {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 8px;
+    margin-top: 32px;
+}
+
+label p {
+    margin: 0;
+}
+
+.inputfield {
+    display: flex;
+    padding: 12px 21px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 10px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    background: rgba(255, 255, 255, 1);
+    width: 440px;
+
+}
+
+.inputfield::placeholder {
+    color: rgba(209, 209, 209, 1);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+textarea {
+    height: 168px;
+}
+
+.prio-btn {
+    width: 440px;
+    gap: 8px;
+}
+
+.prio-btn button {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(209, 209, 209, 1);
+    box-shadow: 0px 0ox 4px 0px rgba(0, 0, 0, 0.10);
+    color: black;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.prio-btn button img {
+    margin-left: 8px;
 }
