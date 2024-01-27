@@ -5,19 +5,19 @@ function renderAddTask() {
     content.innerHTML = /*html*/`
         <h2>Add Task</h2>
         <div class="main-box">
-            <form class="was-validated">
-                <div class="col-md-3">
-                    <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="Enter a title" required>
-                    <label for="validationServer05" class="form-label">Title<p class="red">*</p></label>
-                    <div id="validationServer05Feedback" class="invalid-feedback">
+            <form>
+                <div class="">
+                    <label for="" class="">Title<p class="red">*</p></label>
+                    <input type="text" class="" id="" placeholder="Enter a title" required>
+                    <div id="" class="d-none">
                         This field is required
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
+                <div class="">
+                    <label class="">Description</label>
                     <textarea class="form-control" placeholder="Enter a Description"></textarea>
                 </div>
-                <label>Assigned to</label><p class="red">*</p></p>
+                <label>Assigned to<p class="red">*</p></label>
                 <select class="form-control" aria-label="Default select example">
                     <option selected>Select contacts to assign</option>
                     <option value="1">Anton Mayer</option>
@@ -25,7 +25,7 @@ function renderAddTask() {
                     <option value="3">Sofia Müller</option>
                 </select>
             </form>
-            <p></p>
+            <p class="line"></p>
             <form class="was-validated">
                 <div class="col-md-3">
                     <label for="validationServer05" class="form-label">Due date<p class="red">*</p></label>
@@ -37,12 +37,20 @@ function renderAddTask() {
                         This field is required
                     </div>
                 </div>
-                <p>Prio</p>
-                <input type="text" placeholder="Enter a title">
-                <p>Category<p class="red">*</p></p>
-                <input type="text" placeholder="Enter a title">
-                <p>Subtasks<p class="red">*</p></p>
-                <input type="text" placeholder="Enter a title">
+                <label for="">Prio</label>
+                <div class="" role="group">
+                    <button type="button" class="">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
+                    <button type="button" class="">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+                    <button type="button" class="">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
+                </div>
+                <label>Category<p class="red">*</p></label>
+                <select class="">
+                    <option selected>Select task category</option>
+                    <option value="1">Technical Task</option>
+                    <option value="2">User Story</option>
+                </select>
+                <label for="" Subtasks></label>
+                <input type="text">
             </form>
         </div>    
     `;
