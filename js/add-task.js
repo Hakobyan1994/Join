@@ -7,10 +7,10 @@ function renderAddTask() {
         <div class="main-box">
             <form class="was-validated">
                 <div class="col-md-3">
+                    <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="Enter a title" required>
                     <label for="validationServer05" class="form-label">Title<p class="red">*</p></label>
-                    <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
                     <div id="validationServer05Feedback" class="invalid-feedback">
-                        This field ist required
+                        This field is required
                     </div>
                 </div>
                 <div class="mb-3">
@@ -18,20 +18,23 @@ function renderAddTask() {
                     <textarea class="form-control" placeholder="Enter a Description"></textarea>
                 </div>
                 <label>Assigned to</label><p class="red">*</p></p>
-                <select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
+                <select class="form-control" aria-label="Default select example">
+                    <option selected>Select contacts to assign</option>
+                    <option value="1">Anton Mayer</option>
+                    <option value="2">Anja Schulz</option>
+                    <option value="3">Sofia Müller</option>
+                </select>
             </form>
             <p></p>
             <form class="was-validated">
-                <div class="mb-3">
-                    <label for="validationTextarea" class="form-label">Textarea</label>
-                    <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
-                    <div class="invalid-feedback">
-                        Please enter a message in the textarea.
+                <div class="col-md-3">
+                    <label for="validationServer05" class="form-label">Due date<p class="red">*</p></label>
+                    <div>
+                        <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" placeholder="dd/mm/yyyy" required>
+                        <img src="/assets/img/icons/calender.svg" alt="Calender">
+                    </div>
+                    <div id="validationServer05Feedback" class="invalid-feedback">
+                        This field is required
                     </div>
                 </div>
                 <p>Prio</p>
