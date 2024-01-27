@@ -9,7 +9,10 @@
     --red: rgba(255, 129, 144, 1);
     --main-window: rgba(225,229,236,0.25);
     --line: rgba(209, 209, 209, 1);
-
+    --nav: rgba(42,54,71, 1);
+    --menubar: rgba(205,205,205);
+    --lightblue: rgba(41,171,226, 1);
+    --darkblue: rgba(42,54,71);
 }
 
 body {
