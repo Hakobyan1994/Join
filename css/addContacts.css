@@ -12,7 +12,7 @@
 }
 
 .dialog {
-    width: 1212px;
+    width: 1275px;
     height: 592px;
     background-color: white;
     border: 1px solid lightgray;
@@ -71,13 +71,9 @@
 }
 
 .add-contact-data {
-    flex-direction: column;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
-    margin-bottom: 48px;
-    margin-right: 48px
 }
 
 .add-contact-btns {
@@ -85,17 +81,28 @@
     justify-content: center;
     align-items: center;
     gap: 24px;
+    margin-top: 20px;
+    position: absolute;
+    left: 1186px;
+    top: 790px;
 }
 
 .input-con {
-    display: flex;
     width: 422px;
+    display: flex;
     padding: 13px 21px;
     align-items: center;
     gap: 10px;
     border-radius: 10px;
     border: 1px solid var(--Style, #D1D1D1);
     background: #FFF;
+    margin-right: 48px;
+    color: var(--Style, #D1D1D1);
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
 }
 
 .add-contact-user-img {
@@ -119,6 +126,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
+    cursor: pointer;
 }
 
 .cancel-btn {
@@ -135,6 +143,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    cursor: pointer;
 }
 
 .contact-set {
@@ -145,4 +154,65 @@
 
 .user-img {
     margin-left: 60px;
+}
+
+.blue-underline {
+    width: 94px;
+    height: 3px;
+    stroke-width: 3px;
+    stroke: #29ABE2;
+}
+
+.person-con {
+    margin-left: 83px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.person-img {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    right: 94px;
+    bottom: 3px;
+}
+
+.person-img-bgr {
+    width: 120px;
+    height: 120px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 70px;
+    border: 3px solid var(--white, #FFF);
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.close-img-con {
+    position: relative;
+    top: px;
+    bottom: 90px;
+    left: 347px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.close-img-con img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.input-svg-pos {
+    position: relative;
+    bottom: 39px;
+    left: 422px 
 }
