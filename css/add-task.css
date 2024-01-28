@@ -61,7 +61,19 @@ label p {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
     background: rgba(255, 255, 255, 1);
     width: 440px;
+    cursor: pointer;
+}
 
+.inputfield:focus {
+    border-color: red!important;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
 }
 
 .inputfield::placeholder {
@@ -104,6 +116,19 @@ textarea {
 .prio-btn button img {
     margin-left: 8px;
 }
+
+.prio-urgent:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.prio-medium:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.prio-low:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 
 .form-bottom {
     display: flex;
@@ -177,4 +202,9 @@ textarea {
 .create-task:hover {
     background-color: var(--lightblue);
     border-color: var(--lightblue);
+}
+
+.assigned-to:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    border-color: var(--lightblue)!important;
 }

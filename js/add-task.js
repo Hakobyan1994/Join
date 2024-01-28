@@ -16,7 +16,7 @@ function renderAddTask() {
                         <textarea class="inputfield inputfield-textarea" placeholder="Enter a Description"></textarea>
                     </div>
                     <label>Assigned to</label>
-                    <select class="inputfield" aria-placeholder="">
+                    <select class="inputfield assigned-to" aria-placeholder="">
                         <option value="" disabled selected hidden>Select contacts to assign</option>
                         <option value="">Anton Mayer</option>
                         <option value="">Anja Schulz</option>
@@ -37,9 +37,9 @@ function renderAddTask() {
                     </div>
                     <label for="">Prio</label>
                     <div class="prio-btn" role="group">
-                        <button type="button" class="">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-                        <button type="button" class="">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-                        <button type="button" class="">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
+                        <button type="button" class="prio-urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
+                        <button type="button" class="prio-medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+                        <button type="button" class="prio-low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
                     </div>
                     <label>Category<p class="redstar">*</p></label>
                     <select class="inputfield">
