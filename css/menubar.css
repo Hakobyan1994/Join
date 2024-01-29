@@ -16,6 +16,13 @@ nav {
     padding: 64px 0px;
 }
 
+.menubar-text {
+    font-size: 20px!important;
+    font-style: normal;
+    font-weight: 400!important;
+    line-height: 120%;
+}
+
 .logo {
     width: 100.034px;
     height: 121.966px;

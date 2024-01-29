@@ -1,26 +1,3 @@
-#add-task {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding-left: 328px;
-    padding-top: 206px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--main-window, purple);
-}
-
-#add-task h2 {
-   font-size: 61px;
-   font-style: normal;
-   font-weight: 700;
-   line-height: 120%; 
-   margin: 0;
-   padding: 0;
-}
-
 .redstar {
     color: var(--red);
     font-size: 20px;
@@ -30,10 +7,19 @@
 }
 
 .main-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
 }
 
 .was-validated .form-control:valid {
@@ -44,10 +30,7 @@
     width: 1px;
     height: 424px;
     background-color: var(--line, purple);
-}
-
-form {
-    width: 100%;
+    flex-shrink: 0;
 }
 
 label {
@@ -57,4 +40,171 @@ label {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+label p {
+    margin: 0;
+}
+
+.inputfield {
+    display: flex;
+    padding: 12px 21px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 10px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    background: rgba(255, 255, 255, 1);
+    width: 440px;
+    cursor: pointer;
+}
+
+.inputfield:focus {
+    border-color: red!important;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.inputfield::placeholder {
+    color: rgba(209, 209, 209, 1);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.inputfield-textarea {
+    height: 120px;
+}
+
+textarea {
+    height: 168px;
+}
+
+.prio-btn {
+    width: 100%;
+    gap: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prio-btn button {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(209, 209, 209, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    color: black;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    width: 100%;
+}
+
+.prio-btn button img {
+    margin-left: 8px;
+}
+
+.prio-urgent:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.prio-medium:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.prio-low:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.form-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 64px;
+}
+
+.form-bottom-right {
+    display: flex;
+    gap: 16px;
+    padding-right: 132px;
+}
+
+.form-bottom-left {
+    display: flex;
+    padding-top: 32px;
+}
+
+.form-bottom-left p {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.clear-btn {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    color: var(--font);
+    border-radius: 10px;
+    border: 1px solid var(--darkblue);
+    background-color: rgba(246, 247, 248, 1);
+    gap: 4px;
+    height: calc(24px + 32px);
+}
+
+.clear-btn:hover {
+    border-color: var(--lightblue);
+    color: var(--lightblue);
+}
+
+.clear-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.create-task {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    border: 1px solid var(--darkblue);
+    background-color: var(--darkblue);
+    gap: 4px;
+    height: calc(24px + 32px);
+}
+
+.create-task:hover {
+    background-color: var(--lightblue);
+    border-color: var(--lightblue);
+}
+
+.assigned-to:hover {
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    border-color: var(--lightblue)!important;
 }
