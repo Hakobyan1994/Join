@@ -82,9 +82,6 @@
     align-items: center;
     gap: 24px;
     margin-top: 20px;
-    position: absolute;
-    left: 1186px;
-    top: 790px;
 }
 
 .input-con {
@@ -127,6 +124,7 @@
     font-weight: 700;
     line-height: 120%;
     cursor: pointer;
+    height: 50px;
 }
 
 .cancel-btn {
@@ -144,6 +142,7 @@
     font-weight: 400;
     line-height: 120%;
     cursor: pointer;
+    height: 50px;
 }
 
 .contact-set {
@@ -168,6 +167,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    bottom: 40px;
 }
 
 .person-img {
@@ -194,8 +195,8 @@
 .close-img-con {
     position: relative;
     top: px;
-    bottom: 90px;
-    left: 347px;
+    bottom: 70px;
+    left: 712px;
     width: 32px;
     height: 32px;
     padding: 4px;
@@ -214,5 +215,10 @@
 .input-svg-pos {
     position: relative;
     bottom: 39px;
-    left: 422px 
+    left: 422px
+}
+
+.set-position {
+    position: relative;
+    bottom: 40px;
 }
