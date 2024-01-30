@@ -1,6 +1,18 @@
 let contacts = [];
 
-function addToContacts() {
+async function initAddContact() {
+    loadContacts();
+}
+
+async function loadContacts() {
+    try {
+        contacts = JSON.parse(await getItem('contacts'));
+    } catch (e) {
+        console.info('could not load contacts');
+    }
+}
+
+async function addToContacts() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
     let phone = document.getElementById('phone');
@@ -10,8 +22,11 @@ function addToContacts() {
         "email": email.value,
         "phone": phone.value
     };
-
     contacts.push(contact);
+
+    clearInputs(name, email, phone);
+
+    await setItem('contacts', JSON.stringify(contacts));
 }
 
 function clearInputs(name, email, phone) {
@@ -19,3 +34,4 @@ function clearInputs(name, email, phone) {
     email.value = '';
     phone.value = '';
 }
+
