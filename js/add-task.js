@@ -1,3 +1,6 @@
+let tasks = [];
+
+
 function renderAddTask() {
     let content = document.getElementById('add-task');
     content.innerHTML = '';
@@ -6,58 +9,128 @@ function renderAddTask() {
         <h2>Add Task</h2>
         <div class="main-box">
             <div class="form">
-                <form>
-                    <div class="">
-                        <label for="" class="">Title<p class="redstar">*</p></label>
-                        <input type="text" class="inputfield" id="" placeholder="Enter a title" required>
-                    </div>
-                    <div class="">
-                        <label class="">Description</label>
-                        <textarea class="inputfield inputfield-textarea" placeholder="Enter a Description"></textarea>
-                    </div>
-                    <label>Assigned to</label>
-                    <select class="inputfield assigned-to" aria-placeholder="">
-                        <option value="" disabled selected hidden>Select contacts to assign</option>
-                        <option value="">Anton Mayer</option>
-                        <option value="">Anja Schulz</option>
-                        <option value="">Sofia Müller</option>
-                    </select>
-                </form>
-                <p class="line"></p>
-                <form>
-                    <div class="">
-                        <label for="" class="">Due date<p class="redstar">*</p></label>
-                        <div>
-                            <input type="text" class="inputfield" id="" placeholder="dd/mm/yyyy" required>
-                            <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
-                        </div>
-                        <div id="" class="d-none">
-                            This field is required
-                        </div>
-                    </div>
-                    <label for="">Prio</label>
-                    <div class="prio-btn" role="group">
-                        <button type="button" class="prio-urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-                        <button type="button" class="prio-medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-                        <button type="button" class="prio-low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
-                    </div>
-                    <label>Category<p class="redstar">*</p></label>
-                    <select class="inputfield">
-                        <option selected>Select task category</option>
-                        <option value="">Technical Task</option>
-                        <option value="">User Story</option>
-                    </select>
-                    <label for="">Subtasks</label>
-                    <input type="text" class="inputfield">
-                </form>
+                ${generateHtmlAddTaskForm()}      
             </div>
-            <div class="form-bottom">
-                <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
-                <div class="form-bottom-right">
-                    <button class="clear-btn">Clear<img src="/assets/img/icons/close1.svg" alt="Clear"></button>
-                    <button class="create-task">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
-                </div>
-            </div>
+            ${generateHtmlFormSection()}
         </div>    
     `;
+}
+
+
+function generateHtmlAddTaskForm() {
+    return /*html*/`
+        <form>
+            ${generateHtmlTitle()}
+            ${generateHtmlDescription()}  
+            ${generateHtmlAssigned()}
+        </form>
+        <p class="line"></p>
+        <form>
+            ${generateHtmlDate()}  
+            ${generateHtmlPrio()}
+            ${generateHtmlCategory()}
+            ${generateHtmlSubtasks()}
+        </form>
+    `;
+}
+
+
+function generateHtmlTitle() {
+    return /*html*/`
+        <div class="">
+            <label for="" class="">Title<p class="redstar">*</p></label>
+            <input type="text" class="inputfield" id="title" placeholder="Enter a title" required>
+        </div>
+    `;
+}
+
+function generateHtmlDescription() {
+    return /*html*/`
+        <label class="">Description</label>
+        <textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description"></textarea>  
+    `;
+}
+
+function generateHtmlAssigned() {
+    return /*html*/`
+        <label>Assigned to</label>
+        <select class="inputfield assigned-to" id="assigned">
+            <option value="" disabled selected hidden>Select contacts to assign</option>
+            <option value="1">Anton Mayer</option>
+            <option value="2">Anja Schulz</option>
+            <option value="3">Sofia Müller</option>
+        </select>  
+    `;
+}
+
+function generateHtmlDate() {
+    return /*html*/`
+        <label for="" class="">Due date<p class="redstar">*</p></label>
+        <div>
+            <input type="text" class="inputfield" id="date" placeholder="dd/mm/yyyy" required>
+            <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
+        </div>
+        <div id="" class="d-none">
+            This field is required
+        </div>  
+    `;
+}
+
+function generateHtmlPrio() {
+    return /*html*/`
+        <label for="">Prio</label>
+        <div class="prio-btn" role="group">
+            <button type="button" class="prio-urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
+            <button type="button" class="prio-medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+            <button type="button" class="prio-low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
+        </div>  
+    `;
+}
+
+function generateHtmlCategory() {
+    return /*html*/`
+        <label>Category<p class="redstar">*</p></label>
+        <select class="inputfield">
+            <option selected>Select task category</option>
+            <option value="1">Technical Task</option>
+            <option value="2">User Story</option>
+        </select>  
+    `;
+}
+
+function generateHtmlSubtasks() {
+    return /*html*/`
+        <label for="">Subtasks</label>
+        <input type="text" class="inputfield">  
+    `;
+}
+
+function generateHtmlFormSection() {
+    return /*html*/`
+        <div class="form-bottom">
+            <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
+            <div class="form-bottom-right">
+                <button class="clear-btn">Clear<img src="/assets/img/icons/close1.svg" alt="Clear"></button>
+                <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
+            </div>
+        </div>  
+    `;
+}
+
+function createTask() {
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let newTask = {
+        title: title.value,
+        description: description.value
+    };
+    tasks.push(newTask);
+    console.log(tasks);
+    title.value = '';
+    description.value = '';
+}
+
+
+function saveTasks() {
+    
 }
