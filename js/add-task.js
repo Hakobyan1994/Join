@@ -1,6 +1,5 @@
 let tasks = [];
 
-
 function renderAddTask() {
     let content = document.getElementById('add-task');
     content.innerHTML = '';
@@ -14,6 +13,8 @@ function renderAddTask() {
             ${generateHtmlFormSection()}
         </div>    
     `;
+    currentDate();
+    getPrio();
 }
 
 
@@ -67,7 +68,7 @@ function generateHtmlDate() {
     return /*html*/`
         <label for="" class="">Due date<p class="redstar">*</p></label>
         <div>
-            <input type="text" class="inputfield" id="date" placeholder="dd/mm/yyyy" required>
+            <input type="date" class="inputfield date-icon" id="date" placeholder="dd/mm/yyyy" required>
             <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
         </div>
         <div id="" class="d-none">
@@ -76,13 +77,14 @@ function generateHtmlDate() {
     `;
 }
 
+
 function generateHtmlPrio() {
     return /*html*/`
         <label for="">Prio</label>
-        <div class="prio-btn" role="group">
-            <button type="button" class="prio-urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio-medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-            <button type="button" class="prio-low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
+        <div class="prio-btn" id="prio" role="group">
+            <button type="button" class="prio-urgent" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
+            <button type="button" class="prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+            <button type="button" class="prio-low" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
         </div>  
     `;
 }
@@ -117,19 +119,51 @@ function generateHtmlFormSection() {
     `;
 }
 
-function createTask() {
+function currentDate() {
+    let date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+
+    let today = year + '-' + month + '-' + day;       
+    document.getElementById("date").value = today;
+}
+
+function createTask(prio1) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
+    let assigned = document.getElementById('assigned');
+    let date = document.getElementById('date');
     let newTask = {
         title: title.value,
-        description: description.value
+        description: description.value,
+        assigned: assigned.value,
+        date: date.value,
+        prio: getPrio()
     };
     tasks.push(newTask);
     console.log(tasks);
     title.value = '';
     description.value = '';
+    assigned.value = '';
+    date.value = '';
 }
 
+function getPrio() {
+    let urgent = document.getElementById('urgent');
+    let medium = document.getElementById('medium');
+    let low = document.getElementById('low');
+
+    urgent.addEventListener('click', () => {
+        let prio1 = urgent.value;
+        return prio1;
+    });
+}
+    
 
 function saveTasks() {
     
