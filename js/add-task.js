@@ -120,10 +120,10 @@ function generateHtmlFormSection() {
 }
 
 function currentDate() {
-    let date = new Date();
+    let date = new Date();                              // get the actual date
 
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
+    let day = date.getDate();           
+    let month = date.getMonth() + 1;                    // month starts with 0, thats why +1
     let year = date.getFullYear();
 
     if (month < 10) month = '0' + month;
@@ -133,7 +133,9 @@ function currentDate() {
     document.getElementById("date").value = today;
 }
 
-function createTask(prio1) {
+// this function is saving all inputfields from add-task
+
+function createTask(priority) {     
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let assigned = document.getElementById('assigned');
@@ -143,7 +145,7 @@ function createTask(prio1) {
         description: description.value,
         assigned: assigned.value,
         date: date.value,
-        prio: getPrio()
+        priority: priority
     };
     tasks.push(newTask);
     console.log(tasks);
@@ -151,16 +153,20 @@ function createTask(prio1) {
     description.value = '';
     assigned.value = '';
     date.value = '';
+
+
 }
 
 function getPrio() {
-    let urgent = document.getElementById('urgent');
-    let medium = document.getElementById('medium');
-    let low = document.getElementById('low');
+    let prio = document.getElementById('prio');
+    prio.addEventListener('click', (event) => {
+        let clickPrio = event.target;               // get the element back
 
-    urgent.addEventListener('click', () => {
-        let prio1 = urgent.value;
-        return prio1;
+        if (clickPrio.tagName === 'BUTTON') {       // proofing if is it a button element
+            let priority = clickPrio.value;
+            clickPrio.classList.toggle('red-bg');
+            console.log(priority);        
+        }  
     });
 }
     
