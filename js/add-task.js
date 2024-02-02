@@ -15,6 +15,7 @@ function renderAddTask() {
     `;
     currentDate();
     getPrio();
+    document.getElementById('prio').addEventListener('click', getPrio);
 }
 
 
@@ -157,19 +158,33 @@ function createTask(priority) {
 
 }
 
-function getPrio() {
-    let prio = document.getElementById('prio');
-    prio.addEventListener('click', (event) => {
-        let clickPrio = event.target;               // get the element back
+// function getPrio() {
+//     let prio = document.getElementById('prio');
+//     prio.addEventListener('click', (event) => {
+//         let clickPrio = event.target;               // get the element back
 
-        if (clickPrio.tagName === 'BUTTON') {       // proofing if is it a button element
-            let priority = clickPrio.value;
-            clickPrio.classList.toggle('red-bg');
-            console.log(priority);        
-        }  
+//         if (clickPrio.tagName === 'BUTTON') {       // proofing if is it a button element
+//             let priority = clickPrio.value;
+//             clickPrio.classList.toggle('red-bg');
+//             console.log(priority);        
+//         }  
+//     });
+// }
+
+function getPrio() {
+    let prios = document.getElementById('prio');
+    let prioButtons = prios.querySelectorAll('button');
+
+    prioButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            button.classList.toggle('selected');
+        });
+        
     });
+    getPrio();
 }
-    
+
+
 
 function saveTasks() {
     

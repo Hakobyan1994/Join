@@ -80,7 +80,7 @@ p {
     background-color: var(--main-window, purple);
 }
 
-.red-bg {
+.selected {
     background-color: red!important;
 }
 
