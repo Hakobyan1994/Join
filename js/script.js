@@ -19,5 +19,5 @@ async function getItem(key) {
 function init() {
     includeHTML();
     renderAddTask();
-    initAddContact();
+    // initAddContact();
 }

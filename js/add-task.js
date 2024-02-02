@@ -1,5 +1,6 @@
 let tasks = [];
 
+
 function renderAddTask() {
     let content = document.getElementById('add-task');
     content.innerHTML = '';
@@ -16,6 +17,7 @@ function renderAddTask() {
     currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
+    clearButtonImgChange();
 }
 
 
@@ -46,12 +48,14 @@ function generateHtmlTitle() {
     `;
 }
 
+
 function generateHtmlDescription() {
     return /*html*/`
         <label class="">Description</label>
         <textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description"></textarea>  
     `;
 }
+
 
 function generateHtmlAssigned() {
     return /*html*/`
@@ -64,6 +68,7 @@ function generateHtmlAssigned() {
         </select>  
     `;
 }
+
 
 function generateHtmlDate() {
     return /*html*/`
@@ -83,12 +88,13 @@ function generateHtmlPrio() {
     return /*html*/`
         <label for="">Prio</label>
         <div class="prio-btn" id="prio" role="group">
-            <button type="button" class="prio-urgent" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-            <button type="button" class="prio-low" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
+            <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
+            <button type="button" class="prio prio-medium prio-notselected" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+            <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
         </div>  
     `;
 }
+
 
 function generateHtmlCategory() {
     return /*html*/`
@@ -101,6 +107,7 @@ function generateHtmlCategory() {
     `;
 }
 
+
 function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
@@ -108,17 +115,19 @@ function generateHtmlSubtasks() {
     `;
 }
 
+
 function generateHtmlFormSection() {
     return /*html*/`
         <div class="form-bottom">
             <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
             <div class="form-bottom-right">
-                <button class="clear-btn">Clear<img src="/assets/img/icons/close1.svg" alt="Clear"></button>
+                <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
                 <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
             </div>
         </div>  
     `;
 }
+
 
 function currentDate() {
     let date = new Date();                              // get the actual date
@@ -134,13 +143,14 @@ function currentDate() {
     document.getElementById("date").value = today;
 }
 
-// this function is saving all inputfields from add-task
 
-function createTask(priority) {     
+// this function is saving all inputfields from add-task
+function createTask() {     
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
+    let priority = pushPrio();
     let newTask = {
         title: title.value,
         description: description.value,
@@ -154,8 +164,6 @@ function createTask(priority) {
     description.value = '';
     assigned.value = '';
     date.value = '';
-
-
 }
 
 
@@ -163,54 +171,17 @@ function pushPrio() {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
 
+    let selectedPriority = null;
+
     prioButtons.forEach(function(button) {
-        if (button.classList.contains('selected')) {
-            let priority = button.value;
-            console.log(priority);
+        if (!button.classList.contains('prio-notselected')) {
+            selectedPriority = button.value;
         }
     });
+
+    return selectedPriority;
 }
 
-
-// function getPrio() {
-//     let prios = document.getElementById('prio');
-//     let prioButtons = prios.querySelectorAll('button');
-//     let tasks = [];
-
-//     prioButtons.forEach(function(button) {
-//         button.addEventListener('click', function(e) {
-//             e.stopPropagation();
-
-//             // Toggle 'selected' Klasse nur für den angeklickten Button
-//             button.classList.toggle('selected');
-
-//             // Überprüfe, ob die Klasse 'selected' vorhanden ist
-//             if (button.classList.contains('selected')) {
-//                 // Füge den Wert des Buttons zum Array tasks hinzu
-//                 tasks.push(button.value);
-//                 console.log('Button mit Wert ' + button.value + ' ausgewählt. Aktuelle Tasks:', tasks);
-//             } else {
-//                 // Entferne den Wert des Buttons aus dem Array tasks
-//                 tasks = tasks.filter(task => task !== button.value);
-//                 console.log('Button mit Wert ' + button.value + ' abgewählt. Aktuelle Tasks:', tasks);
-//             }
-//         });
-//     }
-// }
-
-
-// function getPrio() {
-//     let prio = document.getElementById('prio');
-//     prio.addEventListener('click', (event) => {
-//         let clickPrio = event.target;               // get the element back
-
-//         if (clickPrio.tagName === 'BUTTON') {       // proofing if is it a button element
-//             let priority = clickPrio.value;
-//             clickPrio.classList.toggle('red-bg');
-//             console.log(priority);        
-//         }  
-//     });
-// }
 
 function getPrio() {
     let prios = document.getElementById('prio');
@@ -218,16 +189,46 @@ function getPrio() {
 
     prioButtons.forEach(function(button) {
         button.addEventListener('click', function(e) {
-            e.stopPropagation()
-            button.classList.toggle('selected');
+            e.stopPropagation();
+
+            if(!button.classList.contains('prio-notselected')) {
+                button.classList.add('prio-notselected')
+            } else {
+                prioButtons.forEach(function(btn){
+                    btn.classList.remove('prio-notselected');
+                    btn.classList.add('prio-notselected');
+                });
+    
+                button.classList.add('prio-notselected');
+                button.classList.remove('prio-notselected');
+            }
         });
-        
     });
 }
 
 
+function clearButtonImgChange() {
+    let img = document.getElementById('clear-button-img');
+    let clearButton = document.getElementById('clear-button');
+    clearButton.addEventListener('mouseover', function() {
+        img.src = '/assets/img/icons/close-blue.svg';
+    });
+    clearButton.addEventListener('mouseout', function() {
+        img.src = '/assets/img/icons/close.svg';
+    });
+}
 
-function saveTasks() {
-    
+
+function clearFields() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('assigned').value = '';
+    document.getElementById('date').value = '';
+    let prio = document.querySelectorAll('.prio');
+    prio.forEach(function(button) {
+        if(!button.classList.contains('prio-notselected')) {
+            button.classList.add('prio-notselected');
+        }
+    });
 }
 
