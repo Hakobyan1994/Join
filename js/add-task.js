@@ -160,10 +160,7 @@ function createTask() {
     };
     tasks.push(newTask);
     console.log(tasks);
-    title.value = '';
-    description.value = '';
-    assigned.value = '';
-    date.value = '';
+    clearFields();
 }
 
 
