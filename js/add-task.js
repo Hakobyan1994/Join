@@ -158,6 +158,47 @@ function createTask(priority) {
 
 }
 
+
+function pushPrio() {
+    let prios = document.getElementById('prio');
+    let prioButtons = prios.querySelectorAll('button');
+
+    prioButtons.forEach(function(button) {
+        if (button.classList.contains('selected')) {
+            let priority = button.value;
+            console.log(priority);
+        }
+    });
+}
+
+
+// function getPrio() {
+//     let prios = document.getElementById('prio');
+//     let prioButtons = prios.querySelectorAll('button');
+//     let tasks = [];
+
+//     prioButtons.forEach(function(button) {
+//         button.addEventListener('click', function(e) {
+//             e.stopPropagation();
+
+//             // Toggle 'selected' Klasse nur für den angeklickten Button
+//             button.classList.toggle('selected');
+
+//             // Überprüfe, ob die Klasse 'selected' vorhanden ist
+//             if (button.classList.contains('selected')) {
+//                 // Füge den Wert des Buttons zum Array tasks hinzu
+//                 tasks.push(button.value);
+//                 console.log('Button mit Wert ' + button.value + ' ausgewählt. Aktuelle Tasks:', tasks);
+//             } else {
+//                 // Entferne den Wert des Buttons aus dem Array tasks
+//                 tasks = tasks.filter(task => task !== button.value);
+//                 console.log('Button mit Wert ' + button.value + ' abgewählt. Aktuelle Tasks:', tasks);
+//             }
+//         });
+//     }
+// }
+
+
 // function getPrio() {
 //     let prio = document.getElementById('prio');
 //     prio.addEventListener('click', (event) => {
@@ -176,12 +217,12 @@ function getPrio() {
     let prioButtons = prios.querySelectorAll('button');
 
     prioButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation()
             button.classList.toggle('selected');
         });
         
     });
-    getPrio();
 }
 
 
@@ -189,3 +230,4 @@ function getPrio() {
 function saveTasks() {
     
 }
+
