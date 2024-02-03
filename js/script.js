@@ -20,4 +20,5 @@ async function init() {
     await includeHTML();
     renderAddTask();
     // initAddContact();
+    renderContacts();
 }
