@@ -1,6 +1,6 @@
 let contacts = [];
 
-function renderContact() {
+function renderContacts() {
     let allContactsCon = document.getElementById('allContacts');
     allContactsCon.innerHTML = '';
 
