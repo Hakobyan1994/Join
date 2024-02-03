@@ -297,9 +297,88 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .subtasks {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 440px;
+    padding-right: 8px;
+    padding-left: 8px;
+    gap: 4px;
 }
 
 .each-subtask {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.each-subtask:hover {
+    background-color: rgba(238,238,238,1);
+}
+
+.each-subtask-p {
+    display: flex;
+    align-items: center;
+}
+.subtask-p::before {
+    content: "•";
+    color: rgba(0, 0, 0, 1);
+    margin-right: 5px;
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+p.subtask-p {
+    margin: 0;
+}
+
+.separator {
+    width: 1px;
+    height: 18px;
+    background-color: var(--line);
+    text-align: center;
+    flex-shrink: 0;
+    margin: 0 4px;;
+
+}
+
+.subtask-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+}
+
+.subtask-right img {
+    height: 18px;
+    width: 18px;
+}
+
+.subtask-right img {
+    transition: 125ms ease-out;
+}    
+
+.clear-check-icons {
+    position: relative;
+    bottom: 21px;
+    left: 190px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+}
+
+.clear-check-icons img {
+    width: 22px;
+    height: 22px;
+}
+
+.clear-check-line {
+    width: 1px;
+    height: 18px;
+    background-color: var(--line);
 }

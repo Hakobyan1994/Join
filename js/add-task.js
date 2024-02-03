@@ -18,6 +18,7 @@ function renderAddTask() {
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
     clearButtonImgChange();
+    changeSubtaskInput();
 }
 
 
@@ -111,32 +112,33 @@ function generateHtmlCategory() {
 function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
-        <div>
-            <input type="text" class="inputfield"> 
-            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover"> 
+        <div style="height: 64px;">
+            <input type="text" class="inputfield" id="subtask-input"> 
+            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover d-none" id="subtask-change-add-icon">
+            <div class="clear-check-icons">
+                <img src="/assets/img/icons/close.svg" alt="Add Icon" class="clear-check-icons" id="subtask-change-add-icon">
+                <img src="/assets/img/icons/check.svg" alt="Add Icon" class="clear-check-icons" id="subtask-change-add-icon">
+            </div>
         </div>
         <ul id="subtasks" class="subtasks">
-            <li>
-                <div class="each-subtask">
-                    <p>Hallo</p>
-                    <div>
-                        <img src="/assets/img/icons/edit.svg" alt="Edit">
-                        <p></p>
-                        <img src="/assets/img/icons/trash.svg" alt="Edit">
-                    </div>
+            <li class="each-subtask">
+                <div class="each-subtask-p"><p class="subtask-p"><p></p>Hallo</p></div>
+                <div class="subtask-right">
+                    <img src="/assets/img/icons/edit.svg" alt="Edit">
+                    <p class="separator"></p>
+                    <img src="/assets/img/icons/trash.svg" alt="Edit">
                 </div>
             </li>
-            <li>
-                <div>
-                    <p>Hallo</p>
-                    <div>
-                        <img src="/assets/img/icons/edit.svg" alt="Edit">
-                        <p></p>
-                        <img src="/assets/img/icons/trash.svg" alt="Edit">
-                    </div>
+            <li class="each-subtask">
+                <div class="each-subtask-p"><p class="subtask-p"><p></p>Hallo</p></div>
+                <div class="subtask-right">
+                    <img src="/assets/img/icons/edit.svg" alt="Edit">
+                    <p class="separator"></p>
+                    <img src="/assets/img/icons/trash.svg" alt="Edit">
                 </div>
             </li>
     `;
+    
 }
 
 
@@ -229,6 +231,14 @@ function getPrio() {
     });
 }
 
+
+function changeSubtaskInput() {
+    let content = document.getElementById('subtask-input');
+    content.addEventListener('click', function(button) {
+        let icon = document.getElementById('subtask-change-add-icon');
+        icon.src = '/assets/img/icons/check.svg';
+    });
+}
 
 function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
