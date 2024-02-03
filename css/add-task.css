@@ -284,8 +284,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     left: 396px;
     height: 24px;
     width: 24px;
+    cursor: pointer;
 }
 
-.inputfield-icon-hover:hover {
-    
+.inputfield-icon-hover {
+    border-radius: 100%;
+    background-color: rgba(246, 247, 248, 1);
+    padding: 5px  ;
 }

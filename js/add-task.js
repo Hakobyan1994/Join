@@ -74,7 +74,7 @@ function generateHtmlDate() {
     return /*html*/`
         <label for="" class="">Due date<p class="redstar">*</p></label>
         <div>
-            <input type="date" class="inputfield date-icon inputfield-icon-hover" id="date" placeholder="dd/mm/yyyy" required>
+            <input type="date" class="inputfield date-icon" id="date" placeholder="dd/mm/yyyy" required>
             <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
         </div>
         <div id="" class="d-none">
