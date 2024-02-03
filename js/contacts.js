@@ -1,12 +1,6 @@
-let contacts = ['HAllo'];
+let contacts = [];
 
-async function initAddContact() {
-    await init();
-    await loadContacts();
-    renderContacts();
-}
-
-function renderContacts() {
+function renderContact() {
     let allContactsCon = document.getElementById('allContacts');
     allContactsCon.innerHTML = '';
 
@@ -14,7 +8,7 @@ function renderContacts() {
         let addedContact = contacts[i];
         allContactsCon.innerHTML += `
         <div class="all-contacts">
-            ${addedContact.name} - ${addedContact.email} - ${addedContact.phone}
+           HAllo ${addedContact.name} - ${addedContact.email} - ${addedContact.phone}
         </div>`;
     }
 }
@@ -23,9 +17,6 @@ async function addToContacts() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
     let phone = document.getElementById('phone');
-    let userName = name.value;
-    let firstLetter = userName.charAt(0).toUpperCase();
-
 
     if (name.value.trim() === '' || email.value.trim() === '' || phone.value.trim() === '') {
         alert('Please fill in all fields.');
@@ -34,8 +25,7 @@ async function addToContacts() {
     let contact = {
         'name': name.value,
         'email': email.value,
-        'phone': phone.value,
-        'firstLetter': firstLetter
+        'phone': phone.value
     };
     contacts.push(contact);
 

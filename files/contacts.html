@@ -7,27 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.svg">
-
-    <script src="/js/script.js"></script>
-    <script src="/js/includeHTML.js"></script>
-    <script src="/js/add-task.js"></script>
-    <script src="/js/contacts.js"></script>
-    <script src="/js/addContacts.js"></script>
-    <script src="/js/contact-template.js"></script>
-
+    
     <link rel="stylesheet" href="/css/menubar.css">
     <link rel="stylesheet" href="/css/contacts.css">
     <link rel="stylesheet" href="/css/addContacts.css">
+
+    <script src="/js/script.js"></script>
+    <script src="/js/includeHTML.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/add-task.js"></script>
 </head>
 
-<body onload="initAddContact()">
+<body onload="init()">
     <div w3-include-html="/assets/templates/menubar.html"></div>
-    <div class="main-content">
+    <div id="mainContent" class="main-content">
         <div class="content">
             <div class="contacts-main">
-                <div class="contacts">
+                <div id="addContactBtn" class="contacts">
                     <div id="contactList" class="added-contacts">
-                        <div id="addContactBtn" class="add-contact-btn-con">
+                        <div class="add-contact-btn-con">
                             <button class="add-contact-btn" onclick="slideInAddContact()">Add new contact <img
                                     src="/assets/img/icons/person_add.svg" alt="">
                             </button>
@@ -88,7 +86,7 @@
                                                             Cancel <img src="/assets/img/icons/Close.svg" alt="">
                                                         </button>
 
-                                                        <button onclick="renderContacts()" class="create-contact-btn">
+                                                        <button onclick="addToContacts()" class="create-contact-btn">
                                                             Create contact <img src="/assets/img/icons/check.svg"
                                                                 alt="">
                                                         </button>
@@ -105,10 +103,8 @@
 
                 <div class="headline">
                     Contacts
-                    <div class="line">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
-                            <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-                        </svg>
+                    <div class="vertical-line">
+                        <img class="line-contacts" src="/assets/img/icons/Vector 5 (1).svg" alt="">
                     </div>
                     <div class="team-headline">
                         Better with a team

@@ -76,11 +76,17 @@ body {
     line-height: 120%;
 }
 
-.line {
+.line-contacts {
     width: 0px;
     height: 59px;
     stroke-width: 3px;
     stroke: #29ABE2;
+}
+
+.vertical-line {
+    width: 3px;
+    height: 59px;
+    background-color: #29ABE2;;
 }
 
 .team-headline {
