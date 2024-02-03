@@ -74,7 +74,7 @@ function generateHtmlDate() {
     return /*html*/`
         <label for="" class="">Due date<p class="redstar">*</p></label>
         <div>
-            <input type="date" class="inputfield date-icon" id="date" placeholder="dd/mm/yyyy" required>
+            <input type="date" class="inputfield date-icon inputfield-icon-hover" id="date" placeholder="dd/mm/yyyy" required>
             <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
         </div>
         <div id="" class="d-none">
@@ -99,10 +99,10 @@ function generateHtmlPrio() {
 function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
-        <select class="inputfield">
+        <select class="inputfield" id="category">
             <option selected>Select task category</option>
-            <option value="1">Technical Task</option>
-            <option value="2">User Story</option>
+            <option value="technical task">Technical Task</option>
+            <option value="user story">User Story</option>
         </select>  
     `;
 }
@@ -111,7 +111,10 @@ function generateHtmlCategory() {
 function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
-        <input type="text" class="inputfield">  
+        <div>
+            <input type="text" class="inputfield"> 
+            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover"> 
+        </div>
     `;
 }
 
@@ -151,12 +154,14 @@ function createTask() {
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
     let priority = pushPrio();
+    let category = document.getElementById('category');
     let newTask = {
         title: title.value,
         description: description.value,
         assigned: assigned.value,
         date: date.value,
-        priority: priority
+        priority: priority,
+        category: category.value
     };
     tasks.push(newTask);
     console.log(tasks);
