@@ -3,7 +3,7 @@ let tasks = [];
 
 function renderAddTask() {
     let content = document.getElementById('add-task');
-    content.innerHTML = '';
+
 
     content.innerHTML = /*html*/`
         <h2>Add Task</h2>
@@ -115,6 +115,27 @@ function generateHtmlSubtasks() {
             <input type="text" class="inputfield"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover"> 
         </div>
+        <ul id="subtasks" class="subtasks">
+            <li>
+                <div class="each-subtask">
+                    <p>Hallo</p>
+                    <div>
+                        <img src="/assets/img/icons/edit.svg" alt="Edit">
+                        <p></p>
+                        <img src="/assets/img/icons/trash.svg" alt="Edit">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <p>Hallo</p>
+                    <div>
+                        <img src="/assets/img/icons/edit.svg" alt="Edit">
+                        <p></p>
+                        <img src="/assets/img/icons/trash.svg" alt="Edit">
+                    </div>
+                </div>
+            </li>
     `;
 }
 
@@ -233,4 +254,3 @@ function clearFields() {
         }
     });
 }
-
