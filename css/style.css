@@ -11,7 +11,7 @@
     --line: rgba(209, 209, 209, 1);
     --nav: rgba(42,54,71, 1);
     --menubar: rgba(205,205,205);
-    --lightblue: rgba(41,171,226, 1);
+    --lightblue: #29abe2;
     --darkblue: rgba(42,54,71);
 }
 
@@ -79,8 +79,3 @@ p {
     flex-direction: column;
     background-color: var(--main-window, purple);
 }
-
-.selected {
-    background-color: red!important;
-}
-
