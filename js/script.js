@@ -18,7 +18,14 @@ async function getItem(key) {
 
 async function init() {
     await includeHTML();
+}
+
+async function initAddTask() {
+    await includeHTML();
     renderAddTask();
-    // initAddContact();
+}
+
+async function initContacts() {
+    await includeHTML();
     renderContacts();
 }
