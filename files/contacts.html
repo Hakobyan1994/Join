@@ -8,30 +8,32 @@
     <title>Contacts</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.svg">
 
+    <script src="/js/script.js"></script>
     <script src="/js/includeHTML.js"></script>
+    <script src="/js/add-task.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/addContacts.js"></script>
+    <script src="/js/contact-template.js"></script>
 
     <link rel="stylesheet" href="/css/menubar.css">
-    <script src="/js/script.js"></script>
-
     <link rel="stylesheet" href="/css/contacts.css">
-    <script src="/js/contacts.js"></script>
-
     <link rel="stylesheet" href="/css/addContacts.css">
-    <script src="/js/addContacts.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="initAddContact()">
+    <div w3-include-html="/assets/templates/menubar.html"></div>
     <div class="main-content">
-        <div w3-include-html="/assets/templates/menubar.html"></div>
         <div class="content">
             <div class="contacts-main">
                 <div class="contacts">
-                    <div id="contacts" class="added-contacts">
-                        <div class="add-contact-btn-con">
+                    <div id="contactList" class="added-contacts">
+                        <div id="addContactBtn" class="add-contact-btn-con">
                             <button class="add-contact-btn" onclick="slideInAddContact()">Add new contact <img
                                     src="/assets/img/icons/person_add.svg" alt="">
                             </button>
                         </div>
+
+                        <div id="allContacts" class="all-contacts"></div>
 
                         <div id="dialog" class="dialog-bg d-none">
                             <div class="dialog" onclick="dontCloseCard(event)">
@@ -50,7 +52,7 @@
                                 </div>
 
                                 <div class="contact-set">
-                                    <div class="add-contact-content class=" set-position">
+                                    <div class="add-contact-content" class="set-position">
                                         <div>
                                             <div onclick="closeDialog()" class="close-img-con">
                                                 <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
@@ -61,23 +63,22 @@
                                                         alt="">
                                                     <img class="person-img" src="/assets/img/icons/person.svg" alt="">
                                                 </div>
-                                                <form onsubmit="addToContacts(); return false;"
-                                                    class="add-contact-data">
+                                                <form onsubmit="addToContacts();" class="add-contact-data">
                                                     <div>
-                                                        <input id="name" class="input-con" placeholder="Name"
-                                                            type="text" required>
+                                                        <input id="name" name="name" class="input-con"
+                                                            placeholder="Name" type="text" required>
                                                         <img class="input-svg-pos" src="/assets/img/icons/person.svg"
                                                             alt="">
                                                     </div>
                                                     <div>
-                                                        <input id="email" class="input-con" placeholder="Email"
-                                                            type="email" required>
+                                                        <input id="email" name="email" class="input-con"
+                                                            placeholder="Email" type="email" required>
                                                         <img class="input-svg-pos" src="/assets/img/icons/mail.svg"
                                                             alt="">
                                                     </div>
                                                     <div>
-                                                        <input id="phone" class="input-con" placeholder="Phone"
-                                                            type="tel" required>
+                                                        <input id="phone" name="phone" class="input-con"
+                                                            placeholder="Phone" type="tel" required>
                                                         <img class="input-svg-pos" src="/assets/img/icons/call.svg"
                                                             alt="">
                                                     </div>
@@ -87,7 +88,7 @@
                                                             Cancel <img src="/assets/img/icons/Close.svg" alt="">
                                                         </button>
 
-                                                        <button class="create-contact-btn">
+                                                        <button onclick="renderContacts()" class="create-contact-btn">
                                                             Create contact <img src="/assets/img/icons/check.svg"
                                                                 alt="">
                                                         </button>
