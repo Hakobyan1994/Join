@@ -1,24 +1,27 @@
 let contacts = [];
+let contactIdCounter = 0;
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
     contacts.sort((a, b) => a.name.localeCompare(b.name));
+
     let currentLetter = '';
+    let currentSeparator = '';
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
         let firstLetter = contact.name.charAt(0).toUpperCase();
-        contactsContainer.innerHTML += generateContact(contact);
-        sortContactsByLetter(contactsContainer, currentLetter, firstLetter);
-    }
-}
 
-function sortContactsByLetter(contactsContainer, currentLetter, firstLetter) {
-    if (firstLetter !== currentLetter) {
-        currentLetter = firstLetter;
-        contactsContainer.innerHTML += generateLetter(currentLetter);
-        contactsContainer.innerHTML += generateSeparator();
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+            currentSeparator = generateSeparator();
+            contactsContainer.innerHTML += generateLetterCon(currentLetter) + currentSeparator;
+        }
+        contactIdCounter++;
+        const imageId = `contactImage${contactIdCounter}`;
+        contactsContainer.innerHTML += generateContact(contact, imageId);
+        applyRandomColorToImage(document.getElementById(imageId));
     }
 }
 
@@ -27,7 +30,7 @@ async function addToContacts() {
     let email = document.getElementById('email');
     let phone = document.getElementById('phone');
 
-    addContactToStorage(name, email, phone);
+    addContactToArray(name, email, phone);
     clearInputs(name, email, phone);
     closeDialog();
     renderContacts();
@@ -35,7 +38,7 @@ async function addToContacts() {
     await setItem('contacts', JSON.stringify(contacts));
 }
 
-function addContactToStorage(name, email, phone) {
+function addContactToArray(name, email, phone) {
     if (name.value.trim() === '' || email.value.trim() === '' || phone.value.trim() === '') {
         alert('Please fill in all fields.');
     } else {
@@ -60,7 +63,26 @@ async function loadContacts() {
     } catch (e) {
         console.error('Error in loadContacts:', e);
     }
+} 
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
+
+function applyRandomColorToImage(imageElement) {
+    // Wende die zufällige Farbe auf das Bild an
+    const randomColor = getRandomColor();
+    imageElement.style.backgroundColor = randomColor;
+}
+
+// Beispielaufruf
+const imageElement = document.getElementById('yourImageId'); // Ersetze 'yourImageId' durch die tatsächliche ID deines Bildes
+applyRandomColorToImage(imageElement);
 
 function slideInAddContact() {
 

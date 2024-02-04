@@ -1,8 +1,8 @@
-function generateContact(contact) {
+function generateContact(contact, imageId) {
     return /*html*/`
         <div class="contact-con-pos">
             <div class="contact-con">
-                <img class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg" alt="">
+                <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg" alt="">
                 <div>
                     <div class="contact-list-name">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
@@ -11,7 +11,7 @@ function generateContact(contact) {
         </div>`;
 }
 
-function generateLetter(currentLetter) {
+function generateLetterCon(currentLetter) {
     return /*html*/`
         <div class="letter-con">
             ${currentLetter}
