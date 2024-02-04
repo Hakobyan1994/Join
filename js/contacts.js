@@ -6,10 +6,7 @@ function renderContacts() {
 
     for (let i = 0; i < contacts.length; i++) {
         let addedContact = contacts[i];
-        allContactsCon.innerHTML += `
-        <div class="all-contacts">
-           HAllo ${addedContact.name} - ${addedContact.email} - ${addedContact.phone}
-        </div>`;
+        allContactsCon.innerHTML += generateContactList(addedContact);
     }
 }
 
@@ -20,19 +17,19 @@ async function addToContacts() {
 
     if (name.value.trim() === '' || email.value.trim() === '' || phone.value.trim() === '') {
         alert('Please fill in all fields.');
+    } else {
+        let contact = {
+            'name': name.value,
+            'email': email.value,
+            'phone': phone.value
+        };
+        contacts.push(contact);
+
+        clearInputs(name, email, phone);
+        closeDialog();
+        renderContacts();
+        await setItem('contacts', JSON.stringify(contacts));
     }
-
-    let contact = {
-        'name': name.value,
-        'email': email.value,
-        'phone': phone.value
-    };
-    contacts.push(contact);
-
-    clearInputs(name, email, phone);
-
-    await setItem('contacts', JSON.stringify(contacts));
-    renderContacts();
 }
 
 function clearInputs(name, email, phone) {
@@ -50,7 +47,7 @@ async function loadContacts() {
 }
 
 function slideInAddContact() {
-    document.getElementById('dialog').classList.remove('d-none');
+
 }
 
 function closeDialog() {
@@ -59,4 +56,10 @@ function closeDialog() {
 
 function dontCloseCard(event) {
     event.stopPropagation();
+}
+
+function renderDialog() {
+    let dialog = document.getElementById('dialog');
+    dialog.classList.remove('d-none');
+    dialog.innerHTML = generateDialog();
 }

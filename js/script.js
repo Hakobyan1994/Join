@@ -27,5 +27,6 @@ async function initAddTask() {
 
 async function initContacts() {
     await includeHTML();
+    await loadContacts();
     renderContacts();
 }

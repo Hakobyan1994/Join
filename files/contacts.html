@@ -15,17 +15,19 @@
     <script src="/js/script.js"></script>
     <script src="/js/includeHTML.js"></script>
     <script src="/js/contacts.js"></script>
+    <script src="/js/contact-templates.js"></script>
 </head>
 
 <body onload="initContacts()">
     <div w3-include-html="/assets/templates/menubar.html"></div>
+
     <div id="mainContent" class="main-content">
         <div class="content">
             <div class="contacts-main">
                 <div id="addContactBtn" class="contacts">
-                    <div id="contactList" class="added-contacts">
-                        <div class="add-contact-btn-con">
-                            <button class="add-contact-btn" onclick="slideInAddContact()">Add new contact <img
+                    <div class="added-contacts">
+                        <div id="addContactBtn" class="add-contact-btn-con">
+                            <button type="button" class="add-contact-btn" onclick="renderDialog()">Add new contact <img
                                     src="/assets/img/icons/person_add.svg" alt="">
                             </button>
                         </div>
@@ -33,69 +35,6 @@
                         <div id="allContacts" class="all-contacts"></div>
 
                         <div id="dialog" class="dialog-bg d-none">
-                            <div class="dialog" onclick="dontCloseCard(event)">
-                                <div class="add-contact-main">
-                                    <div class="set-position">
-                                        <img src="/assets/img/icons/Capa 2.svg" alt="join-icon">
-                                        <div class="add-contact-headline">
-                                            Add contact
-                                        </div>
-                                        <span class="add-contact-text">
-                                            Tasks are better with a team!
-                                        </span>
-                                        <img class="blue-underline" src="/assets/img/icons/Vector 5.svg"
-                                            alt="blue-underline">
-                                    </div>
-                                </div>
-
-                                <div class="contact-set">
-                                    <div class="add-contact-content" class="set-position">
-                                        <div>
-                                            <div onclick="closeDialog()" class="close-img-con">
-                                                <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
-                                            </div>
-                                            <div class="add-contact-user-img">
-                                                <div class="person-con">
-                                                    <img class="person-img-bgr" src="/assets/img/icons/Group 9.svg"
-                                                        alt="">
-                                                    <img class="person-img" src="/assets/img/icons/person.svg" alt="">
-                                                </div>
-                                                <form onsubmit="addToContacts();" class="add-contact-data">
-                                                    <div>
-                                                        <input id="name" name="name" class="input-con"
-                                                            placeholder="Name" type="text" required>
-                                                        <img class="input-svg-pos" src="/assets/img/icons/person.svg"
-                                                            alt="">
-                                                    </div>
-                                                    <div>
-                                                        <input id="email" name="email" class="input-con"
-                                                            placeholder="Email" type="email" required>
-                                                        <img class="input-svg-pos" src="/assets/img/icons/mail.svg"
-                                                            alt="">
-                                                    </div>
-                                                    <div>
-                                                        <input id="phone" name="phone" class="input-con"
-                                                            placeholder="Phone" type="tel" required>
-                                                        <img class="input-svg-pos" src="/assets/img/icons/call.svg"
-                                                            alt="">
-                                                    </div>
-
-                                                    <div class="add-contact-btns">
-                                                        <button class="cancel-btn" onclick="closeDialog()">
-                                                            Cancel <img src="/assets/img/icons/Close.svg" alt="">
-                                                        </button>
-
-                                                        <button onclick="addToContacts()" class="create-contact-btn">
-                                                            Create contact <img src="/assets/img/icons/check.svg"
-                                                                alt="">
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
