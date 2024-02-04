@@ -21,6 +21,7 @@ function renderAddTask() {
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
     clearSubtask();
+    addSubtask();
 }
 
 
@@ -119,26 +120,11 @@ function generateHtmlSubtasks() {
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
                 <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons" id="subtask-close-icon">
+                <!-- <p class="separator"></p> -->
                 <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon">
             </div>
         </div>
-        <ul id="subtasks" class="subtasks">
-            <li class="each-subtask">
-                <div class="each-subtask-p"><p class="subtask-p"><p></p>Hallo</p></div>
-                <div class="subtask-right">
-                    <img src="/assets/img/icons/edit.svg" alt="Edit">
-                    <p class="separator"></p>
-                    <img src="/assets/img/icons/trash.svg" alt="Edit">
-                </div>
-            </li>
-            <li class="each-subtask">
-                <div class="each-subtask-p"><p class="subtask-p"><p></p>Hallo</p></div>
-                <div class="subtask-right">
-                    <img src="/assets/img/icons/edit.svg" alt="Edit">
-                    <p class="separator"></p>
-                    <img src="/assets/img/icons/trash.svg" alt="Edit">
-                </div>
-            </li>
+        <ul id="subtasks" class="subtasks"></ul>
     `;
     
 }
@@ -189,7 +175,6 @@ function createTask() {
         category: category.value
     };
     tasks.push(newTask);
-    console.log(tasks);
     clearFields();
 }
 
@@ -257,19 +242,34 @@ function setupSubtaskInputFocus() {
     subtask.addEventListener('blur', function() {
         if (subtask.value.trim() !== '') {
             handleFocus();
-            console.log('xx')
         } else {
             handleBlur();
-            console.log('blur');
         }
     });
     subtask.addEventListener('input', handleInput);
 }
 
 
-// function addSubtask() {
-//     let content = document.getElementById('subtask-input');
-// }
+function addSubtask() {
+    let content = document.getElementById('subtask-input');
+    let subtask = document.getElementById('subtasks');
+    let section = document.getElementById('subtask-close-check-icon');
+    let add = section.querySelector('#subtask-check-icon');
+
+    add.addEventListener('click', function() {
+        subtask.innerHTML += /*html*/`
+        <li class="each-subtask">
+            <div class="each-subtask-p"><p class="subtask-p"><p></p>${content.value}</p></div>
+            <div class="subtask-right">
+                <img src="/assets/img/icons/edit.svg" alt="Edit">
+                <p class="separator"></p>
+                <img src="/assets/img/icons/trash.svg" alt="Edit">
+            </div>
+        </li>
+    `;
+    });
+}
+
 
 function clearSubtask() {
     let input = document.getElementById('subtask-input');
