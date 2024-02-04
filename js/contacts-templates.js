@@ -2,7 +2,7 @@ function generateContact(contact, imageId) {
     return /*html*/`
         <div class="contact-con-pos">
             <div class="contact-con">
-                <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg" alt="">
+                <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
                 <div>
                     <div class="contact-list-name">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
