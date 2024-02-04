@@ -27,6 +27,15 @@ async function addToContacts() {
     let email = document.getElementById('email');
     let phone = document.getElementById('phone');
 
+    addContactToStorage(name, email, phone);
+    clearInputs(name, email, phone);
+    closeDialog();
+    renderContacts();
+
+    await setItem('contacts', JSON.stringify(contacts));
+}
+
+function addContactToStorage(name, email, phone) {
     if (name.value.trim() === '' || email.value.trim() === '' || phone.value.trim() === '') {
         alert('Please fill in all fields.');
     } else {
@@ -36,11 +45,6 @@ async function addToContacts() {
             'phone': phone.value
         };
         contacts.push(contact);
-
-        clearInputs(name, email, phone);
-        closeDialog();
-        renderContacts();
-        await setItem('contacts', JSON.stringify(contacts));
     }
 }
 
