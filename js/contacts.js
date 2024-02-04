@@ -79,10 +79,6 @@ function applyRandomColorToImage(imageElement) {
     imageElement.style.backgroundColor = randomColor;
 }
 
-
-const imageElement = document.getElementById('yourImageId'); 
-applyRandomColorToImage(imageElement);
-
 function slideInAddContact() {
 
 }
