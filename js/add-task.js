@@ -19,9 +19,8 @@ function renderAddTask() {
     document.getElementById('prio').addEventListener('click', getPrio);
     clearButtonImgChange();
     setupSubtaskInputFocus();
-    document.addEventListener('DOMContentLoaded', function () {
     setupSubtaskInputFocus();
-});
+    clearSubtask();
 }
 
 
@@ -119,8 +118,8 @@ function generateHtmlSubtasks() {
             <input type="text" class="inputfield" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="/assets/img/icons/close.svg" alt="Add Icon" class="clear-check-icons" id="subtask-change-add-icon">
-                <img src="/assets/img/icons/check.svg" alt="Add Icon" class="clear-check-icons" id="subtask-change-add-icon">
+                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons" id="subtask-close-icon">
+                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon">
             </div>
         </div>
         <ul id="subtasks" class="subtasks">
@@ -265,6 +264,20 @@ function setupSubtaskInputFocus() {
         }
     });
     subtask.addEventListener('input', handleInput);
+}
+
+
+// function addSubtask() {
+//     let content = document.getElementById('subtask-input');
+// }
+
+function clearSubtask() {
+    let input = document.getElementById('subtask-input');
+    let section = document.getElementById('subtask-close-check-icon');
+    let close = section.querySelector('#subtask-close-icon');
+    close.addEventListener('click', function() {
+        input.value = '';
+    });
 }
 
 
