@@ -1,19 +1,27 @@
-function generateContactList(addedContact) {
+function generateContact(contact) {
     return /*html*/`
-    <div class="letter-con">
-        A
-    </div>
-    <div class="contact-line">
-        <img class="contact-line-color" src="/assets/img/icons/Vector 10.svg" alt="">
-    </div>
         <div class="contact-con-pos">
             <div class="contact-con">
                 <img class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg" alt="">
                 <div>
-                    <div class="contact-list-name">${addedContact.name}</div>
-                    <div class="contact-list-email">${addedContact.email}</div>
+                    <div class="contact-list-name">${contact.name}</div>
+                    <div class="contact-list-email">${contact.email}</div>
                 </div>
             </div>
+        </div>`;
+}
+
+function generateLetter(currentLetter) {
+    return /*html*/`
+        <div class="letter-con">
+            ${currentLetter}
+        </div>`;
+}
+
+function generateSeparator() {
+    return /*html*/`
+        <div class="contact-line">
+            <img class="contact-line-color" src="/assets/img/icons/Vector 10.svg" alt="">
         </div>`;
 }
 

@@ -179,7 +179,9 @@ body {
     overflow-wrap: break-word;
 }
 
-.contact-list-phone {}
+.contact-list-phone {
+    
+}
 
 .user-img-contact-list {
     padding-left: 24px;

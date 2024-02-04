@@ -1,12 +1,24 @@
 let contacts = [];
 
 function renderContacts() {
-    let allContactsCon = document.getElementById('allContacts');
-    allContactsCon.innerHTML = '';
+    let contactsContainer = document.getElementById('allContacts');
+    contactsContainer.innerHTML = '';
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
+    let currentLetter = '';
 
     for (let i = 0; i < contacts.length; i++) {
-        let addedContact = contacts[i];
-        allContactsCon.innerHTML += generateContactList(addedContact);
+        let contact = contacts[i];
+        let firstLetter = contact.name.charAt(0).toUpperCase();
+        contactsContainer.innerHTML += generateContact(contact);
+        sortContactsByLetter(contactsContainer, currentLetter, firstLetter);
+    }
+}
+
+function sortContactsByLetter(contactsContainer, currentLetter, firstLetter) {
+    if (firstLetter !== currentLetter) {
+        currentLetter = firstLetter;
+        contactsContainer.innerHTML += generateLetter(currentLetter);
+        contactsContainer.innerHTML += generateSeparator();
     }
 }
 
