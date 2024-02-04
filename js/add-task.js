@@ -18,7 +18,10 @@ function renderAddTask() {
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
     clearButtonImgChange();
-    changeSubtaskInput();
+    setupSubtaskInputFocus();
+    document.addEventListener('DOMContentLoaded', function () {
+    setupSubtaskInputFocus();
+});
 }
 
 
@@ -114,8 +117,8 @@ function generateHtmlSubtasks() {
         <label for="">Subtasks</label>
         <div style="height: 64px;">
             <input type="text" class="inputfield" id="subtask-input"> 
-            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover d-none" id="subtask-change-add-icon">
-            <div class="clear-check-icons">
+            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
+            <div class="clear-check-icons d-none" id="subtask-close-check-icon">
                 <img src="/assets/img/icons/close.svg" alt="Add Icon" class="clear-check-icons" id="subtask-change-add-icon">
                 <img src="/assets/img/icons/check.svg" alt="Add Icon" class="clear-check-icons" id="subtask-change-add-icon">
             </div>
@@ -232,13 +235,61 @@ function getPrio() {
 }
 
 
-function changeSubtaskInput() {
-    let content = document.getElementById('subtask-input');
-    content.addEventListener('click', function(button) {
-        let icon = document.getElementById('subtask-change-add-icon');
-        icon.src = '/assets/img/icons/check.svg';
+function setupSubtaskInputFocus() {
+    let subtask = document.getElementById('subtask-input');
+    let add = document.getElementById('subtask-change-add-icon');
+    let closeCheck = document.getElementById('subtask-close-check-icon');
+    
+    function handleFocus() {
+        add.classList.add('d-none');
+        closeCheck.classList.remove('d-none');
+    }
+    function handleBlur() {
+        add.classList.remove('d-none');
+        closeCheck.classList.add('d-none');
+    }
+    function handleInput() {
+        if (subtask.value.trim() !== '') {
+            handleFocus();
+        }
+    }
+
+    subtask.addEventListener('focus', handleFocus);
+    subtask.addEventListener('blur', function() {
+        if (subtask.value.trim() !== '') {
+            handleFocus();
+            console.log('xx')
+        } else {
+            handleBlur();
+            console.log('blur');
+        }
     });
+    subtask.addEventListener('input', handleInput);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
