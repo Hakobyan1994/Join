@@ -75,13 +75,12 @@ function getRandomColor() {
 }
 
 function applyRandomColorToImage(imageElement) {
-    // Wende die zufällige Farbe auf das Bild an
     const randomColor = getRandomColor();
     imageElement.style.backgroundColor = randomColor;
 }
 
-// Beispielaufruf
-const imageElement = document.getElementById('yourImageId'); // Ersetze 'yourImageId' durch die tatsächliche ID deines Bildes
+
+const imageElement = document.getElementById('yourImageId'); 
 applyRandomColorToImage(imageElement);
 
 function slideInAddContact() {
