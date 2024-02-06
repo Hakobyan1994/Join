@@ -111,3 +111,11 @@ function renderDialog() {
     dialog.classList.remove('d-none');
     dialog.innerHTML = generateDialog();
 }
+
+
+function contactInfoSlider() {
+    let contactInfoSlider = document.getElementById('contactInfoSlider');
+    contactInfoSlider.innerHTML = '';
+
+    contactInfoSlider.innerHTML = `<div class="contact-info-slider"></div>`;
+}
