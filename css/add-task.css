@@ -335,6 +335,13 @@ p.subtask-p {
     margin: 0;
 }
 
+.separator-border {
+    border-right: 1px solid var(--line);
+    border-color: var(--line);
+    padding-right: 10px!important;
+    margin-right: 4px;
+}
+
 .separator {
     width: 1px;
     height: 18px;
@@ -363,8 +370,8 @@ p.subtask-p {
 
 .clear-check-icons {
     position: relative;
-    bottom: 21px;
-    left: 190px;
+    bottom: 20px;
+    left: 184px;
     height: 30px;
     width: 30px;
     cursor: pointer;
@@ -373,7 +380,7 @@ p.subtask-p {
 }
 
 .clear-check-icons img {
-    width: 22px;
+    width: 32px;
     height: 22px;
 }
 

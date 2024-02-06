@@ -1,5 +1,5 @@
 let tasks = [];
-
+let subtasks = [];
 
 function renderAddTask() {
     let content = document.getElementById('add-task');
@@ -14,6 +14,10 @@ function renderAddTask() {
             ${generateHtmlFormSection()}
         </div>    
     `;
+    addEventFunctions();
+}
+
+function addEventFunctions() {
     currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
@@ -119,14 +123,12 @@ function generateHtmlSubtasks() {
             <input type="text" class="inputfield" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons" id="subtask-close-icon">
-                <!-- <p class="separator"></p> -->
-                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon">
+                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon">
+                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()">
             </div>
         </div>
         <ul id="subtasks" class="subtasks"></ul>
     `;
-    
 }
 
 
@@ -252,22 +254,37 @@ function setupSubtaskInputFocus() {
 
 function addSubtask() {
     let content = document.getElementById('subtask-input');
-    let subtask = document.getElementById('subtasks');
-    let section = document.getElementById('subtask-close-check-icon');
-    let add = section.querySelector('#subtask-check-icon');
+    let list = document.getElementById('subtasks');
+    let subtask = content.value;
+    list.innerHTML = '';
 
-    add.addEventListener('click', function() {
-        subtask.innerHTML += /*html*/`
+    if (subtask.trim() === '') {
+        console.log('Subtask Feld darf nicht leer sein')
+        return;
+    }
+
+    subtasks.push(subtask);   
+
+    for (let i = 0; i < subtasks.length; i++) {
+        const text = subtasks[i];
+        list.innerHTML += /*html*/`
         <li class="each-subtask">
-            <div class="each-subtask-p"><p class="subtask-p"><p></p>${content.value}</p></div>
+            <div class="each-subtask-p"><p class="subtask-p" id="subtask${i}"><p></p>${text}</p></div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit">
+                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
                 <img src="/assets/img/icons/trash.svg" alt="Edit">
             </div>
         </li>
-    `;
-    });
+    `;        
+    }
+
+    content.value = '';
+}
+
+
+function editSubtask(i) {
+        
 }
 
 
