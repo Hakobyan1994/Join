@@ -282,23 +282,22 @@ function addSubtask() {
     content.value = '';
 }
 
+{/* <input class="each-subtask-p" id="subtask${i}" value="${text}"></input> */}
+
 
 function editSubtask(i) {
-    let subtask = document.getElementById(`subtask${i}`);
-    let list = document.getElementById(`each-subtask${i}`);
-    let text = subtask.innerText || subtask.textContent;
-    let ul = document.getElementById('subtasks');
+    let subtaskInput = document.getElementById(`subtask${i}`);
+    let listItem = document.getElementById(`each-subtask${i}`);
+    let inputValue = subtaskInput.innerText || subtaskInput.textContent;
 
-    list.classList.add('d-none');
-    ul.innerHTML = /*html*/`
-        <li class="each-subtask subtask-edit" id="each-subtask${i}">
-            <input class="each-subtask-p" id="subtask${i}" value="${text}">
-            <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
-                <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit">
-            </div>
-        </li>        
+    // Nur die bearbeitete Position aktualisieren
+    listItem.innerHTML = /*html*/`
+        <input class="each-subtask-p" id="subtask${i}" value="${inputValue}">
+        <div class="subtask-right">
+            <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+            <p class="separator"></p>
+            <img src="/assets/img/icons/trash.svg" alt="Edit">
+        </div>
     `;
 }
 
