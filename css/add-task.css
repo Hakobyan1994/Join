@@ -389,3 +389,7 @@ p.subtask-p {
     height: 18px;
     background-color: var(--line);
 }
+
+.subtask-edit {
+    padding-left: 0;
+}
