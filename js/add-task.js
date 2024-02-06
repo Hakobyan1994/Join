@@ -268,8 +268,8 @@ function addSubtask() {
     for (let i = 0; i < subtasks.length; i++) {
         const text = subtasks[i];
         list.innerHTML += /*html*/`
-        <li class="each-subtask">
-            <div class="each-subtask-p"><p class="subtask-p" id="subtask${i}"><p></p>${text}</p></div>
+        <li class="each-subtask" id="each-subtask${i}">
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
                 <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
@@ -284,7 +284,22 @@ function addSubtask() {
 
 
 function editSubtask(i) {
-        
+    let subtask = document.getElementById(`subtask${i}`);
+    let list = document.getElementById(`each-subtask${i}`);
+    let text = subtask.innerText || subtask.textContent;
+    let ul = document.getElementById('subtasks');
+
+    list.classList.add('d-none');
+    ul.innerHTML = /*html*/`
+        <li class="each-subtask subtask-edit" id="each-subtask${i}">
+            <input class="each-subtask-p" id="subtask${i}" value="${text}">
+            <div class="subtask-right">
+                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <p class="separator"></p>
+                <img src="/assets/img/icons/trash.svg" alt="Edit">
+            </div>
+        </li>        
+    `;
 }
 
 

@@ -64,19 +64,29 @@ body {
 }
 
 .headline {
-    display: inline-flex;
-    justify-content: flex-end;
-    align-items: center;
+    padding-left: 60px;
+    position: fixed;
+    top: 200px;
     gap: 30px;
-    position: absolute;
-    left: 743px;
-    top: 206px;
     color: #000;
     font-family: Inter;
     font-size: 61px;
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info-con {
+    background-color: tomato;
+    width: 100%;
+    padding-top: 350px;
+}
+
+.contact-info-slider {
+    height: 100%;
+    background-color: #29ABE2;
 }
 
 .line-contacts {
@@ -104,7 +114,7 @@ body {
 
 .add-contact-btn-con {
     width: 100%;
-    height: 197px;
+    height: 141px;
     display: flex;
     justify-content: center;
     position: static;
@@ -124,7 +134,7 @@ body {
     border: 1px solid #2A3647;
     background: #2A3647;
     position: relative;
-    top: 165px;
+    top: 130px;
     cursor: pointer;
     color: var(--white, #FFF);
     font-family: Inter;
@@ -148,11 +158,11 @@ body {
 }
 
 .contact-con-pos {
-        width: 352px;
-        padding: 15px 24px;
-        display: flex;
-        align-items: center;
-        gap: 35px;
+    width: 352px;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
 }
 
 .contact-con {
@@ -184,9 +194,7 @@ body {
     overflow-wrap: break-word;
 }
 
-.contact-list-phone {
-    
-}
+.contact-list-phone {}
 
 .user-img-contact-list {
     border-radius: 100px;
@@ -212,4 +220,4 @@ body {
 
 .random-fill {
     fill: #FF7A00;
-  }
+}

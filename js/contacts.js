@@ -21,7 +21,7 @@ function renderContacts() {
         contactIdCounter++;
         const imageId = `contactImage${contactIdCounter}`;
         contactsContainer.innerHTML += generateContact(contact, imageId);
-        applyRandomColorToImage(document.getElementById(imageId));
+        addInitialsToContactImage(contact, imageId);
     }
 }
 
@@ -63,19 +63,34 @@ async function loadContacts() {
     } catch (e) {
         console.error('Error in loadContacts:', e);
     }
-} 
+}
 
-function getRandomColor() {
+function addInitialsToContactImage(contact, imageId) {
+    const nameParts = contact.name.trim().split(' ');
+    let initials = '';
+
+    for (let i = 0; i < nameParts.length; i++) {
+        initials += nameParts[i].charAt(0).toUpperCase();
+    }
+
+    const imageElement = document.getElementById(imageId);
+    imageElement.alt = initials;
+    imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
+    applyRandomColorToImage(imageElement, initials);
+}
+
+function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+        const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
+        color += letters[charIndex];
     }
     return color;
 }
 
-function applyRandomColorToImage(imageElement) {
-    const randomColor = getRandomColor();
+function applyRandomColorToImage(imageElement, seed) {
+    const randomColor = getRandomColor(seed);
     imageElement.style.backgroundColor = randomColor;
 }
 
@@ -95,4 +110,12 @@ function renderDialog() {
     let dialog = document.getElementById('dialog');
     dialog.classList.remove('d-none');
     dialog.innerHTML = generateDialog();
+}
+
+
+function contactInfoSlider() {
+    let contactInfoSlider = document.getElementById('contactInfoSlider');
+    contactInfoSlider.innerHTML = '';
+
+    contactInfoSlider.innerHTML = `<div class="contact-info-slider"></div>`;
 }
