@@ -282,21 +282,19 @@ function addSubtask() {
     content.value = '';
 }
 
-{/* <input class="each-subtask-p" id="subtask${i}" value="${text}"></input> */}
-
 
 function editSubtask(i) {
-    let subtaskInput = document.getElementById(`subtask${i}`);
+    let subtaskInput = document.getElementById(`subtasks`);
     let listItem = document.getElementById(`each-subtask${i}`);
     let inputValue = subtaskInput.innerText || subtaskInput.textContent;
 
-    // Nur die bearbeitete Position aktualisieren
+    listItem.classList.add('editable-each');
     listItem.innerHTML = /*html*/`
-        <input class="each-subtask-p" id="subtask${i}" value="${inputValue}">
-        <div class="subtask-right">
-            <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+        <input class="each-subtask-p editable" id="subtask${i}" value="${inputValue}">
+        <div class="subtask-right editable-img">
+            <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="editSubtask(${i})">
             <p class="separator"></p>
-            <img src="/assets/img/icons/trash.svg" alt="Edit">
+            <img src="/assets/img/icons/check.svg" alt="Edit">
         </div>
     `;
 }
