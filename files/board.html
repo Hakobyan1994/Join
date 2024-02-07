@@ -109,8 +109,8 @@
         .adding_div {
             width: 1208px;
             display: flex;
-            justify-content: space-between;
-
+            gap: 76px;
+            
         }
 
         .todo_div {
@@ -149,7 +149,27 @@
         .adding_Button:hover {
             border: 2px solid #29ABE2;
             color: #29ABE2;
-        }
+        }  
+
+
+           .card_mainContainer{
+            width: 1208px;
+            position: absolute;
+             top: 336px;
+             left: 232px;
+             padding:16px 64px;
+             display: flex;
+             justify-content: space-between;
+          
+           } 
+
+            
+           .card_Div{
+            width: 246px;
+            height: 688px;
+            border: 1px solid red;
+           }
+
     </style>
 </head>
 
@@ -187,19 +207,26 @@
             </div>
             <div class="feedback_div">
                 <h2>Await Feedback</h2> <button class="adding_Button">+</button>
+              </div>
 
 
-            </div>
+           
             <div class="Done_div">
                 <h2>Done</h2>
             </div>
-
+     
         </div>
 
 
 
     </div>
+        <div class="card_mainContainer">
+           <div  class="card_Div"></div>
+           <div  class="card_Div"></div>
+           <div  class="card_Div"></div>  
+           <div  class="card_Div"></div>
 
+        </div>
 
 
 
