@@ -79,14 +79,12 @@ body {
 }
 
 .contact-info-con {
-    background-color: tomato;
     width: 100%;
     padding-top: 350px;
 }
 
 .contact-info-slider {
     height: 100%;
-    background-color: #29ABE2;
 }
 
 .line-contacts {
@@ -100,7 +98,6 @@ body {
     width: 3px;
     height: 59px;
     background-color: #29ABE2;
-    ;
 }
 
 .team-headline {

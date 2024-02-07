@@ -117,5 +117,10 @@ function contactInfoSlider() {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     contactInfoSlider.innerHTML = '';
 
-    contactInfoSlider.innerHTML = `<div class="contact-info-slider"></div>`;
+    contactInfoSlider.innerHTML = generateContactInfoSlider();
+}
+
+function openContactSlider() {
+    let contactSlider = document.getElementById('contactSlider');
+    contactSlider.classList.toggle('d-none');
 }

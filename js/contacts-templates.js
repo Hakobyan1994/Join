@@ -1,6 +1,6 @@
 function generateContact(contact, imageId) {
     return /*html*/`
-        <div class="contact-con-pos">
+        <div onclick="openContactSlider()" class="contact-con-pos">
             <div class="contact-con">
                 <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
                 <div>
@@ -94,4 +94,35 @@ function generateDialog() {
             </div>
         </div>
     </div>`;
+}
+
+function generateContactInfoSlider() {
+    return /*html*/`
+        <div id="contactSlider" class="contact-info-slider d-none">
+            <div class="slider-main-content">
+                <div class="slider-content-top">
+                    <img id="contactInfoImg" class="slider-contact-img" src="/assets/img/icons/Ellipse 5.svg" alt="">
+                    <div class="contact-name">
+                        <div class="name">Joel Baig</div>
+                        <div class="edit-delete-btn-con">
+                            <div class="edit-delete"><img src="/assets/img/icons/edit.svg" alt=""> Edit</div>
+                            <div class="edit-delete"><img src="/assets/img/icons/delete.svg" alt=""> Delete</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-content-mid">
+                    Contact Information
+                </div>
+                <div class="slider-content-bottom">
+                    <div class="email-phone-con-main">
+                        <div class="email-phone-con-top">Email</div>
+                        <div class="email-con-bottom">joelb@web.de</div>
+                    </div>
+                    <div class="email-phone-con-main">
+                        <div class="email-phone-con-top">Phone</div>
+                        <div class="phone-con-bottom">+49 327462983</div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 }
