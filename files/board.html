@@ -66,12 +66,13 @@
             line-height: 24px;
             cursor: pointer;
             position: relative;
-        } 
-          input:hover{
-            background-image: url(/assets/img/icons/Frame\ 122.png); 
-             
-          }
-        
+        }
+
+        input:hover {
+            background-image: url(/assets/img/icons/Frame\ 122.png);
+
+        }
+
 
         .add-task {
             display: flex;
@@ -110,7 +111,7 @@
             width: 1208px;
             display: flex;
             gap: 76px;
-            
+
         }
 
         .todo_div {
@@ -149,27 +150,122 @@
         .adding_Button:hover {
             border: 2px solid #29ABE2;
             color: #29ABE2;
-        }  
+        }
 
 
-           .card_mainContainer{
+        .card_mainContainer {
             width: 1208px;
             position: absolute;
-             top: 336px;
-             left: 232px;
-             padding:16px 64px;
-             display: flex;
-             justify-content: space-between;
-          
-           } 
+            top: 336px;
+            left: 232px;
+            padding: 16px 64px;
+            display: flex;
+            justify-content: space-between;
 
-            
-           .card_Div{
+        }
+
+
+        .card_Div {
             width: 246px;
             height: 688px;
-            border: 1px solid red;
-           }
+            /* border: 1px solid red; */
+        }
 
+        .Card_NotasksTodo {
+            width: 246px;
+            height: 48px;
+            border: 1px solid #A8A8A8;
+            background-color: #E7E7E7;
+            border-radius: 10px;
+            box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #A8A8A8;
+            font-size: 16px;
+            font-weight: 400;
+
+        }
+
+
+        /* .progress_Div{
+            width: 252px;
+            height: 263px;
+            border-radius: 24px;
+            padding: 16px;
+            background-color: #FFFFFF;
+
+          } */
+
+        .progress_card {
+            box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+            background-color: #FFFFFF;
+            border-radius: 24px;
+            padding: 16px;
+        }
+
+        .progress_infocard {
+            width: 220px;
+            height: 231px;
+        }
+
+        .user_Story_button {
+            width: 113px;
+            height: 27px;
+            border: none;
+            border-radius: 8px;
+            padding: 4px 16px;
+            background-color: #0038FF;
+            color: #FFFFFF;
+            text-align: center;
+            cursor: auto;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19px;
+            margin-bottom: 24px;
+        }
+
+        .cooking_title_div {
+            width: 220px;
+            height: 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+
+        }
+
+        .cooking_title_div h1 {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 19px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            color:   #2A3647;
+            cursor: pointer;
+        }  
+
+         .recipe_span{
+            cursor: pointer;
+            font-size: 16px;
+             font-weight: 400;
+             line-height: 19px;
+             color: #A8A8A8;
+         } 
+
+          .progress_image_Div{
+            width: 220px;
+            height: 16px;
+            margin-bottom: 24px;
+          } 
+
+          .Members_Div{
+            width: 220px;
+            height: 32px;
+            display: flex;
+            justify-content: space-between;
+          }
     </style>
 </head>
 
@@ -207,26 +303,49 @@
             </div>
             <div class="feedback_div">
                 <h2>Await Feedback</h2> <button class="adding_Button">+</button>
-              </div>
+            </div>
 
 
-           
+
             <div class="Done_div">
                 <h2>Done</h2>
             </div>
-     
+
         </div>
 
 
 
     </div>
-        <div class="card_mainContainer">
-           <div  class="card_Div"></div>
-           <div  class="card_Div"></div>
-           <div  class="card_Div"></div>  
-           <div  class="card_Div"></div>
+    <div class="card_mainContainer">
+        <div class="card_Div">
+            <div class="Card_NotasksTodo">No Tasks To do</div>
+        </div>
+
+        <div class="card_Div">
+            <div class="progress_card">
+                <div class="progress_infocard">
+                    <button class="user_Story_button">User Story</button>
+                    <div class="cooking_title_div">
+                        <h1>Kochwelt Page & Recipe Recommender</h1>
+                        <span class="recipe_span">Build start  page with recipe recommendation...</span>
+                    </div>
+                    <div class="progress_image_Div">
+                        <img src="/assets/img/icons/Progress.png" alt="">
+                    </div>
+                     <div class="Members_Div">
+                        <img src="/assets/img/icons/Frame 217.png" alt="">
+                        <img src="/assets/img/icons/Priority symbols.png" alt="">
+                     </div>
+                </div>
+            </div>
+
 
         </div>
+
+        <div class="card_Div"></div>
+        <div class="card_Div"></div>
+
+    </div>
 
 
 
