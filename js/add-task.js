@@ -24,7 +24,6 @@ function addEventFunctions() {
     clearButtonImgChange();
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
-    clearSubtask();
     addSubtask();
 }
 
@@ -284,7 +283,7 @@ function addSubtask() {
 
 
 function editSubtask(i) {
-    let subtaskInput = document.getElementById(`subtasks`);
+    let subtaskInput = document.getElementById(`subtask${i}`);
     let listItem = document.getElementById(`each-subtask${i}`);
     let inputValue = subtaskInput.innerText || subtaskInput.textContent;
 
@@ -292,21 +291,58 @@ function editSubtask(i) {
     listItem.innerHTML = /*html*/`
         <input class="each-subtask-p editable" id="subtask${i}" value="${inputValue}">
         <div class="subtask-right editable-img">
-            <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="editSubtask(${i})">
+            <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             <p class="separator"></p>
-            <img src="/assets/img/icons/check.svg" alt="Edit">
+            <img src="/assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
         </div>
     `;
 }
 
 
-function clearSubtask() {
-    let input = document.getElementById('subtask-input');
-    let section = document.getElementById('subtask-close-check-icon');
-    let close = section.querySelector('#subtask-close-icon');
-    close.addEventListener('click', function() {
-        input.value = '';
-    });
+function deleteSubtask(i) {
+    let position = i;
+    subtasks.splice(position, 1);
+
+    let list = document.getElementById('subtasks');
+    list.innerHTML = '';    
+
+    for (let i = 0; i < subtasks.length; i++) {
+        const text = subtasks[i];
+        list.innerHTML += /*html*/`
+        <li class="each-subtask" id="each-subtask${i}">
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
+            <div class="subtask-right">
+                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <p class="separator"></p>
+                <img src="/assets/img/icons/trash.svg" alt="Edit">
+            </div>
+        </li>
+    `;        
+    }
+}
+
+function pushEditedSubtask(i) {
+    let text = document.getElementById(`subtask${0}`).value;
+    let position = i;
+    deleteSubtask(i);
+    subtasks.push(text);
+
+    let list = document.getElementById('subtasks');
+    list.innerHTML = '';    
+
+    for (let i = 0; i < subtasks.length; i++) {
+        const text = subtasks[i];
+        list.innerHTML += /*html*/`
+        <li class="each-subtask" id="each-subtask${i}">
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
+            <div class="subtask-right">
+                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <p class="separator"></p>
+                <img src="/assets/img/icons/trash.svg" alt="Edit">
+            </div>
+        </li>
+    `;        
+    }
 }
 
 
