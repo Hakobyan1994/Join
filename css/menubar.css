@@ -51,12 +51,14 @@ nav {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
-    flex-shrink: 0;
+    flex-shrink: 0; 
+    
 }
 
 .menubar a:hover {
     background-color: rgb(42,61,89);
-    width: 100%;
+    width: 52%;
+     
     transition: 125ms ease-in-out;
 }
 
