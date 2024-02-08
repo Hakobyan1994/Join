@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="stylesheet" href="/css/menubar.css">
+    <link rel="stylesheet" href="/css/board.css">
     <script src="/js/script.js"></script>
     <script src="/js/includeHTML.js"></script>
+    <script src="/js/board.js"></script>
     <style>
         body {
             background-color: #F6F7F8;
@@ -330,14 +332,14 @@
     <div w3-include-html="/assets/templates/menubar.html"></div>
 
 
-
+    <div class="popup-add-task"></div>
     <div class="main_div">
         <div class="info_Div">
             <h1>Board</h1>
             <form>
                 <div class="input_button_Div">
                     <input type="text" placeholder="Find Task">
-                    <button class="add-task">
+                    <button class="add-task" onclick="openPopupAddTask()">
                         <img src="/assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>
