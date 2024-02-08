@@ -7,13 +7,19 @@ function openPopupAddTask() {
         <div onclick="closePopupAddTask(); return false" class="close-img-con">
             <img class="close-img close-popup" src="/assets/img/icons/Close.svg" alt="">
         </div>
-        <h2>Add Task</h2>
-        <div class="main-box">
-            <div class="form">
-                ${generateHtmlAddTaskForm()}      
-            </div>
-            ${generateHtmlFormSection()}
-        </div>  
+        <div class="popup-box">
+            <h2>Add Task</h2>
+            <div>
+                <div class="main-box main-box-popup">
+                    <div class="form">
+                        ${generateHtmlAddTaskForm()}      
+                    </div>
+                    <div>
+                        ${generateHtmlFormSection()}
+                    </div>
+                </div>  
+            </div> 
+        </div> 
     `;
 }
 

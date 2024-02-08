@@ -1,9 +1,27 @@
 .popup-add-task {
+    display: flex!important;
+    flex-direction: column;
+    justify-content: center;
 
+}
+
+.popup-box {
+    padding: 48px;
 }
 
 .close-popup {
     position: relative;
     top: 100px;
     left: 496px;
+}
+
+.main-box-popup {
+}
+
+.form {
+    justify-content: space-around!important;
+}
+
+h2 {
+    margin-top: 80px!important;
 }

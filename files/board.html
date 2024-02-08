@@ -7,8 +7,8 @@
     <title>Board</title>
     <link rel="stylesheet" href="/css/menubar.css">
     <link rel="stylesheet" href="/css/board.css">
-    <!-- <link rel="stylesheet" href="/css/add-task.css"> -->
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="stylesheet" href="/css/add-task.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/addContacts.css">
     <script src="/js/script.js"></script>
     <script src="/js/includeHTML.js"></script>
@@ -57,7 +57,7 @@
 
         }
 
-        input {
+        .input-searchfield {
             background-image: url(/assets/img/icons/Frame\ 122.png);
             background-size: 48px 32px;
             background-repeat: no-repeat;
@@ -74,13 +74,13 @@
             position: relative;
         }
 
-        input:hover {
+        .input-searchfield:hover {
             background-image: url(/assets/img/icons/Frame\ 122.png);
 
         }
 
 
-        .add-task {
+        .add-task-btn {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -98,12 +98,12 @@
             cursor: pointer;
         }
 
-        .add-task:hover {
+        .add-task-btn:hover {
             background-color: #29ABE2;
             border: 1px solid #29ABE2;
         }
 
-        h2 {
+        h3 {
             margin-block-start: 0;
             margin-block-end: 0;
             font-size: 20px;
@@ -446,6 +446,7 @@
              }
             
     </style>
+    
 </head>
 
 <body onload="includeHTML()">
@@ -462,8 +463,8 @@
             <h1>Board</h1>
             <form>
                 <div class="input_button_Div">
-                    <input type="text" placeholder="Find Task">
-                    <button class="add-task" onclick="openPopupAddTask(); return false">
+                    <input class="input-searchfield" type="text" placeholder="Find Task">
+                    <button class="add-task-btn" onclick="openPopupAddTask(); return false">
                         <img src="/assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>
@@ -477,21 +478,21 @@
 
         <div class="adding_div">
             <div class="todo_div">
-                <h2>To do</h2> <button class="adding_Button">+</button>
+                <h3>To do</h3> <button class="adding_Button">+</button>
 
             </div>
             <div class="progress_Div">
-                <h2>In progress</h2> <button class="adding_Button">+</button>
+                <h3>In progress</h3> <button class="adding_Button">+</button>
 
             </div>
             <div class="feedback_div">
-                <h2>Await Feedback</h2> <button class="adding_Button">+</button>
+                <h3>Await Feedback</h3> <button class="adding_Button">+</button>
             </div>
 
 
 
             <div class="Done_div">
-                <h2>Done</h2>
+                <h3>Done</h3>
             </div>
 
         </div>
