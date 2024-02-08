@@ -25,6 +25,7 @@ function addEventFunctions() {
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
     addSubtask();
+    enterOnSubtask();
 }
 
 
@@ -160,23 +161,30 @@ function currentDate() {
 
 
 // this function is saving all inputfields from add-task
-function createTask() {     
-    let title = document.getElementById('title');
-    let description = document.getElementById('description');
-    let assigned = document.getElementById('assigned');
-    let date = document.getElementById('date');
-    let priority = pushPrio();
-    let category = document.getElementById('category');
-    let newTask = {
-        title: title.value,
-        description: description.value,
-        assigned: assigned.value,
-        date: date.value,
-        priority: priority,
-        category: category.value
-    };
-    tasks.push(newTask);
-    clearFields();
+function createTask() {
+    
+    if (title.value && date.value && category.value) {
+        let title = document.getElementById('title');
+        let description = document.getElementById('description');
+        let assigned = document.getElementById('assigned');
+        let date = document.getElementById('date');
+        let priority = pushPrio();
+        let category = document.getElementById('category');
+        let newTask = {
+            title: title.value,
+            description: description.value,
+            assigned: assigned.value,
+            date: date.value,
+            priority: priority,
+            category: category.value,
+            subtask: subtasks
+        };
+        tasks.push(newTask);
+        clearFields();
+    } else {
+        console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
+    }
+
 }
 
 
@@ -250,6 +258,17 @@ function setupSubtaskInputFocus() {
     subtask.addEventListener('input', handleInput);
 }
 
+function enterOnSubtask() {
+    let input = document.getElementById('subtask-input');
+
+    input.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('subtask-check-icon').click();
+        }
+    })
+}
+
 
 function addSubtask() {
     let content = document.getElementById('subtask-input');
@@ -258,7 +277,8 @@ function addSubtask() {
     list.innerHTML = '';
 
     if (subtask.trim() === '') {
-        console.log('Subtask Feld darf nicht leer sein')
+        console.log('Subtask Feld darf nicht leer sein');
+        updateSubtasklist();
         return;
     }
 
@@ -272,7 +292,7 @@ function addSubtask() {
             <div class="subtask-right">
                 <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit">
+                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
@@ -314,7 +334,7 @@ function deleteSubtask(i) {
             <div class="subtask-right">
                 <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit">
+                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
@@ -322,51 +342,35 @@ function deleteSubtask(i) {
 }
 
 function pushEditedSubtask(i) {
-    let text = document.getElementById(`subtask${0}`).value;
+    let inputField = document.getElementById(`subtask${i}`);
+    let newText = inputField.value;
     let position = i;
-    deleteSubtask(i);
-    subtasks.push(text);
 
-    let list = document.getElementById('subtasks');
-    list.innerHTML = '';    
-
-    for (let i = 0; i < subtasks.length; i++) {
-        const text = subtasks[i];
-        list.innerHTML += /*html*/`
-        <li class="each-subtask" id="each-subtask${i}">
-            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
-            <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
-                <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit">
-            </div>
-        </li>
-    `;        
-    }
+        if (newText.trim() !== '') {
+            subtasks.splice(position, 1, newText);
+            updateSubtasklist();
+        } else {
+            console.log('Das Feld ist leer')
+        };
 }
 
+function updateSubtasklist() {
+    let list = document.getElementById('subtasks');
+    list.innerHTML = '';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for (let k = 0; k < subtasks.length; k++) {
+        const text = subtasks[k];
+        list.innerHTML += /*html*/`
+        <li class="each-subtask" id="each-subtask${k}">
+            <div class="each-subtask-p" id="subtask${k}"><p class="subtask-p"></p>${text}</div>
+            <div class="subtask-right">
+                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
+                <p class="separator"></p>
+                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
+            </div>
+        </li>`;
+    }
+}
 
 
 function clearButtonImgChange() {
@@ -386,6 +390,8 @@ function clearFields() {
     document.getElementById('description').value = '';
     document.getElementById('assigned').value = '';
     document.getElementById('date').value = '';
+    subtasks = [];
+    updateSubtasklist();
     let prio = document.querySelectorAll('.prio');
     prio.forEach(function(button) {
         if(!button.classList.contains('prio-notselected')) {
