@@ -180,10 +180,19 @@ function createTask() {
         };
         tasks.push(newTask);
         clearFields();
+        saveTasks(newTask);
     } else {
         console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
     }
+    return tasks;
+}
 
+function saveTasks(newTask) {
+    localStorage.setItem('tasks', JSON.stringify(newTask));
+}
+
+function loadTasks(newTask) {
+    
 }
 
 
@@ -376,7 +385,7 @@ function loadContactsInAddTask() {
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
         optionValue.innerHTML += /*html*/`
-            <option value="${i}">${name}</option>
+            <option value="${name}">${name}</option>
         `;    
     }
 }
