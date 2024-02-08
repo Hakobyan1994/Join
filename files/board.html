@@ -7,9 +7,13 @@
     <title>Board</title>
     <link rel="stylesheet" href="/css/menubar.css">
     <link rel="stylesheet" href="/css/board.css">
+    <!-- <link rel="stylesheet" href="/css/add-task.css"> -->
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="stylesheet" href="/css/addContacts.css">
     <script src="/js/script.js"></script>
     <script src="/js/includeHTML.js"></script>
     <script src="/js/board.js"></script>
+    <script src="/js/add-task.js"></script>
     <style>
         body {
             background-color: #F6F7F8;
@@ -447,15 +451,19 @@
 <body onload="includeHTML()">
     <div w3-include-html="/assets/templates/menubar.html"></div>
 
+    <div class="dialog-bg d-none" id="popup-add-task">
+        <div class="set-dialog-pos">
+            <div class="dialog popup-add-task" id="popup-add-task-content"></div>
+        </div>
+    </div>
 
-    <div class="popup-add-task"></div>
     <div class="main_div">
         <div class="info_Div">
             <h1>Board</h1>
             <form>
                 <div class="input_button_Div">
                     <input type="text" placeholder="Find Task">
-                    <button class="add-task" onclick="openPopupAddTask()">
+                    <button class="add-task" onclick="openPopupAddTask(); return false">
                         <img src="/assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>

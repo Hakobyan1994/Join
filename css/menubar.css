@@ -134,3 +134,8 @@ header p {
     background-color: rgb(225,229,236);
     transition: 125ms ease-in-out;
 }
+
+
+.d-none {
+    display: none;
+}
