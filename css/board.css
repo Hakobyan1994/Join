@@ -1,3 +1,9 @@
 .popup-add-task {
 
 }
+
+.close-popup {
+    position: relative;
+    top: 100px;
+    left: 496px;
+}
