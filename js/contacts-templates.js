@@ -60,7 +60,7 @@ function generateDialog() {
                             <form onsubmit="addToContacts()" class="add-contact-data">
                                 <div>
                                     <input id="name" name="name" class="input-con"
-                                        placeholder="Name" type="text" required>
+                                        placeholder="Name" type="text" maxlength="16" required>
                                     <img class="input-svg-pos" src="/assets/img/icons/person.svg"
                                         alt="">
                                 </div>
@@ -115,11 +115,11 @@ function generateContactInfoSlider() {
                 </div>
                 <div class="slider-content-bottom">
                     <div class="email-phone-con-main">
-                        <div class="email-phone-con-top">Email</div>
+                        <div class="email-phone-con-top"><b>Email</b></div>
                         <div class="email-con-bottom">joelb@web.de</div>
                     </div>
                     <div class="email-phone-con-main">
-                        <div class="email-phone-con-top">Phone</div>
+                        <div class="email-phone-con-top"><b>Phone</b></div>
                         <div class="phone-con-bottom">+49 327462983</div>
                     </div>
                 </div>
