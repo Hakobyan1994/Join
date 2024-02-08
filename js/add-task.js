@@ -17,7 +17,7 @@ function renderAddTask() {
     addEventFunctions();
 }
 
-function addEventFunctions() {
+async function addEventFunctions() {
     currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
@@ -26,6 +26,8 @@ function addEventFunctions() {
     setupSubtaskInputFocus();
     addSubtask();
     enterOnSubtask();
+    await loadContacts();
+    loadContactsInAddTask();
 }
 
 
@@ -70,9 +72,6 @@ function generateHtmlAssigned() {
         <label>Assigned to</label>
         <select class="inputfield assigned-to" id="assigned">
             <option value="" disabled selected hidden>Select contacts to assign</option>
-            <option value="1">Anton Mayer</option>
-            <option value="2">Anja Schulz</option>
-            <option value="3">Sofia Müller</option>
         </select>  
     `;
 }
@@ -372,6 +371,15 @@ function updateSubtasklist() {
     }
 }
 
+function loadContactsInAddTask() {
+    let optionValue = document.getElementById('assigned');
+    for (let i = 0; i < contacts.length; i++) {
+        const name = contacts[i].name;
+        optionValue.innerHTML += /*html*/`
+            <option value="${i}">${name}</option>
+        `;    
+    }
+}
 
 function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
