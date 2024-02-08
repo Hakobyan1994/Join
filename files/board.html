@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="stylesheet" href="/css/menubar.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <!-- <link rel="stylesheet" href="/css/add-task.css"> -->
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="stylesheet" href="/css/addContacts.css">
     <script src="/js/script.js"></script>
     <script src="/js/includeHTML.js"></script>
+    <script src="/js/board.js"></script>
+    <script src="/js/add-task.js"></script>
     <style>
         body {
             background-color: #F6F7F8;
@@ -243,37 +249,213 @@
             line-height: 19px;
             margin-block-start: 0;
             margin-block-end: 0;
-            color:   #2A3647;
+            color: #2A3647;
             cursor: pointer;
-        }  
+        }
 
-         .recipe_span{
+        .recipe_span {
             cursor: pointer;
             font-size: 16px;
-             font-weight: 400;
-             line-height: 19px;
-             color: #A8A8A8;
-         } 
+            font-weight: 400;
+            line-height: 19px;
+            color: #A8A8A8;
+        }
 
-          .progress_image_Div{
+        .progress_image_Div {
             width: 220px;
             height: 16px;
             margin-bottom: 24px;
-          } 
+        }
 
-          .Members_Div{
+        .Members_Div {
             width: 220px;
             height: 32px;
             display: flex;
             justify-content: space-between;
-          }
+        }
+
+        .main_Feedback_div {
+            box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+            background-color: #FFFFFF;
+            border-radius: 24px;
+            padding: 16px;
+            cursor: pointer;
+            margin-bottom: 16px;
+           
+        }
+
+        .main_Feedback_Infodiv {
+            width: 220px;
+            height: 183px;
+        }
+
+
+        .tecnical_TaskButton {
+            width: 144px;
+            height: 27px;
+            border-radius: 8px;
+            padding: 4px 16px;
+            background-color: #1FD7C1;
+            border: none;
+            cursor: pointer;
+            color: #FFFFFF;
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .feedback_TitleDiv {
+            width: 220px;
+            height: 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .feedback_TitleDiv h1 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2A3647;
+            line-height: 19px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+
+        }
+
+        .feedback_TitleDiv span {
+            font-size: 16px;
+            font-weight: 400;
+            color: #A8A8A8;
+            line-height: 19px;
+        }  
+
+         
+         .main_Feedback_secondDiv{
+            box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+            background-color: #FFFFFF;
+            border-radius: 24px;
+            padding: 16px;
+            cursor: pointer;
+           
+         } 
+
+           .main_Feedback_secondInfoDiv{
+            width: 220px;
+            height: 164px;
+           }
+
+           .Feedback_secondInfoDivbutton{
+            width: 113px;
+            height: 27px;
+            border: none;
+            border-radius: 8px;
+            padding: 4px 16px;
+            background-color: #0038FF;
+            color: #FFFFFF;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19px;
+            margin-bottom: 24px;
+           } 
+
+            .dailyRecipeDiv{
+            width: 220px;
+            height: 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            } 
+             
+            .dailyRecipeDiv h1{
+                font-size: 16px;
+            font-weight: 700;
+            color: #2A3647;
+            line-height: 19px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            }  
+
+             .dailyRecipeDiv span{
+                font-size: 16px;
+            font-weight: 400;
+            color: #A8A8A8;
+            line-height: 19px;
+             } 
+
+
+             .main_donediv{
+                box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+            background-color: #FFFFFF;
+            border-radius: 24px;
+            padding: 16px;
+            cursor: pointer;
+             } 
+
+             .doneInfo_Div{
+                width: 220px;
+                height: 212px;
+             } 
+
+             .technical_Donebutton{
+            width: 144px;
+            height: 27px;
+            border-radius: 8px;
+            padding: 4px 16px;
+            background-color: #1FD7C1;
+            border: none;
+            cursor: pointer;
+            color: #FFFFFF;
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 400;
+            margin-bottom: 24px;
+             }  
+
+             .done_titleInfo{
+                
+                
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 24px;
+             } 
+
+             .done_titleInfo h1{
+                font-size: 16px;
+            font-weight: 700;
+            color: #2A3647;
+            line-height: 19px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+             } 
+              
+             .done_titleInfo span{
+                font-size: 16px;
+            font-weight: 400;
+            color: #A8A8A8;
+            line-height: 19px;
+             } 
+
+
+             .progres_img{
+                margin-bottom: 24px;
+             }
+            
     </style>
 </head>
 
 <body onload="includeHTML()">
     <div w3-include-html="/assets/templates/menubar.html"></div>
 
-
+    <div class="dialog-bg d-none" id="popup-add-task">
+        <div class="set-dialog-pos">
+            <div class="dialog popup-add-task" id="popup-add-task-content"></div>
+        </div>
+    </div>
 
     <div class="main_div">
         <div class="info_Div">
@@ -281,7 +463,7 @@
             <form>
                 <div class="input_button_Div">
                     <input type="text" placeholder="Find Task">
-                    <button class="add-task">
+                    <button class="add-task" onclick="openPopupAddTask(); return false">
                         <img src="/assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>
@@ -328,23 +510,74 @@
                     <button class="user_Story_button">User Story</button>
                     <div class="cooking_title_div">
                         <h1>Kochwelt Page & Recipe Recommender</h1>
-                        <span class="recipe_span">Build start  page with recipe recommendation...</span>
+                        <span class="recipe_span">Build start page with recipe recommendation...</span>
                     </div>
                     <div class="progress_image_Div">
                         <img src="/assets/img/icons/Progress.png" alt="">
                     </div>
-                     <div class="Members_Div">
+                    <div class="Members_Div">
                         <img src="/assets/img/icons/Frame 217.png" alt="">
                         <img src="/assets/img/icons/Priority symbols.png" alt="">
-                     </div>
+                    </div>
                 </div>
             </div>
 
 
         </div>
 
-        <div class="card_Div"></div>
-        <div class="card_Div"></div>
+        <div class="card_Div">
+            <div class="main_Feedback_div">
+                <div class="main_Feedback_Infodiv">
+                    <button class="tecnical_TaskButton">Technical Task</button>
+                    <div class="feedback_TitleDiv">
+                        <h1>HTML Base Template <br> Creation</h1>
+                        <span class="">Create reusable HTML base templates...</span>
+                    </div>
+                    <div class="Members_Div">
+                        <img src="/assets/img/icons/Frame 217.png" alt="">
+                        <img src="/assets/img/icons/Priority symbols (2).png" alt="">
+                    </div>
+                </div>
+
+
+            </div>
+
+              <div class="main_Feedback_secondDiv">
+               <div class="main_Feedback_secondInfoDiv"> 
+                <button class="Feedback_secondInfoDivbutton">User Story</button>
+                 <div class="dailyRecipeDiv">
+                    <h1>Daile Kochwelt Recipe</h1>
+                    <span>Implement daily recipe and portin calculator...</span>
+                 </div>
+                 <div class="Members_Div">
+                    <img src="/assets/img/icons/Frame 217 (2).png" alt="">
+                    <img src="/assets/img/icons/Priority symbols.png" alt="">
+                 </div>
+               </div>
+              </div>  
+
+               
+        </div>
+        <div class="card_Div">
+            <div class="main_donediv">
+                <div class="doneInfo_Div">
+                    <button class="technical_Donebutton">Technical Task</button>
+                    <div class="done_titleInfo">
+                        <h1>CSS Architecture Planning</h1>
+                         <span>Define CSS naming convetions and structure... </span>
+                          
+                    </div>  
+                     <div class="progres_img"> <img src="/assets/img/icons/Progress (1).png" alt="">  </div>
+                      <div class="Members_Div">
+                        <img src="/assets/img/icons/Frame 217 (3).png" alt="">
+                         <img src="/assets/img/icons/Priority symbols (3).png" alt="">
+                      </div> 
+                    
+                      
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
