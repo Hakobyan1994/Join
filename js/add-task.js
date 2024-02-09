@@ -409,17 +409,19 @@ function createTask() {
         };
         tasks.push(newTask);
         clearFields();
-        saveTasks(newTask);
+        saveTasks(tasks);
     } else {
         console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
     }
     return tasks;
 }
 
-function saveTasks(newTask) {
-    localStorage.setItem('tasks', JSON.stringify(newTask));
+function saveTasks(tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-function loadTasks(newTask) {
-    
+function loadTasks() {
+    let task = localStorage.getItem('tasks');
+    let object = JSON.parse(task);
+    console.log(object);
 }
