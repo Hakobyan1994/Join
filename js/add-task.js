@@ -390,16 +390,17 @@ function clearFields() {
 }
 
 
-// this function is saving all inputfields from add-task
 async function createTask() {
-    
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let assigned = document.getElementById('assigned');
+    let date = document.getElementById('date');
+    let priority = pushPrio();
+    let category = document.getElementById('category');
+
     if (title.value && date.value && category.value) {
-        let title = document.getElementById('title');
-        let description = document.getElementById('description');
-        let assigned = document.getElementById('assigned');
-        let date = document.getElementById('date');
-        let priority = pushPrio();
-        let category = document.getElementById('category');
+        await loadTasks();
+
         let newTask = {
             title: title.value,
             description: description.value,
@@ -409,31 +410,33 @@ async function createTask() {
             category: category.value,
             subtask: subtasks
         };
-        await loadTasks();
+
         clearFields();
-        saveTasks(newTask);
+        tasks.push(newTask);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
         let popup = document.getElementById('popup-add-task');
         if (popup) {
             popup.classList.add('d-none');
             loadToDo();
         } else {
-            console.log('popup wurde nicht gefunden');
+            console.log('Popup wurde nicht gefunden');
         }
     } else {
-        console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
+        console.log('Notwendige Felder wurden nicht ausgefüllt');
     }
+
     return tasks;
 }
 
 function saveTasks(newTask) {
     loadTasks();
     tasks.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(newTask));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function loadTasks() {
     let taskLocal = localStorage.getItem('tasks');
-    let object = JSON.parse(taskLocal);
-    tasks.push(object);
+    tasks = taskLocal ? JSON.parse(taskLocal) : [];
 }
 
