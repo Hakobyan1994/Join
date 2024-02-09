@@ -53,7 +53,7 @@ body {
     left: 328px;
     width: 560px;
     height: 562px;
-    border: 1px solid red;
+  
 }
 
 .To_Done_mainDiv {
@@ -343,7 +343,18 @@ body {
         justify-content: center;
         align-items: center;
         
-     }   
+     }     
+
+
+      .board_Div:hover{
+        background-color: #2A3647;
+        .boardNumber{
+            color: #ffffff;
+        }
+          .board_title{
+            color: #ffffff;
+          }
+      }
 
 
         .board_info{
@@ -385,7 +396,18 @@ body {
         align-items: center;
           
         
-      } 
+      }   
+
+
+      .progress_Div:hover{
+        background-color: #2A3647;
+        .progress_number{
+            color: #ffffff;
+        }
+        .progress_Info{
+            color: #ffffff;
+        }
+      }
             
 
        .progress_Infobox{
@@ -425,7 +447,16 @@ body {
         align-items: center;
        
       }  
-
+     
+       .feedback_div:hover{
+        background-color:#2A3647;
+        .feedback_number{
+            color: #ffffff;
+        } 
+        .feedback_title{
+            color: #ffffff;
+        }
+       }
        
        .feedback_info{
          display: flex;
@@ -459,7 +490,6 @@ body {
     position: absolute;
     top: 587px;
     left: 968px;
-    border: 1px saddlebrown solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -470,7 +500,7 @@ body {
 
 
 
-.profil_name h1 {
+.greeting {
     font-size: 47px;
     font-weight: 500;
     font-family: inter;
