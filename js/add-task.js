@@ -122,7 +122,7 @@ function generateHtmlSubtasks() {
             <input type="text" class="inputfield" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon">
+                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
                 <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()">
             </div>
         </div>
@@ -144,6 +144,17 @@ function generateHtmlFormSection() {
 }
 
 
+function loadContactsInAddTask() {
+    let optionValue = document.getElementById('assigned');
+    for (let i = 0; i < contacts.length; i++) {
+        const name = contacts[i].name;
+        optionValue.innerHTML += /*html*/`
+            <option value="${name}">${name}</option>
+        `;    
+    }
+}
+
+
 function currentDate() {
     let date = new Date();                              // get the actual date
 
@@ -156,43 +167,6 @@ function currentDate() {
 
     let today = year + '-' + month + '-' + day;       
     document.getElementById("date").value = today;
-}
-
-
-// this function is saving all inputfields from add-task
-function createTask() {
-    
-    if (title.value && date.value && category.value) {
-        let title = document.getElementById('title');
-        let description = document.getElementById('description');
-        let assigned = document.getElementById('assigned');
-        let date = document.getElementById('date');
-        let priority = pushPrio();
-        let category = document.getElementById('category');
-        let newTask = {
-            title: title.value,
-            description: description.value,
-            assigned: assigned.value,
-            date: date.value,
-            priority: priority,
-            category: category.value,
-            subtask: subtasks
-        };
-        tasks.push(newTask);
-        clearFields();
-        saveTasks(newTask);
-    } else {
-        console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
-    }
-    return tasks;
-}
-
-function saveTasks(newTask) {
-    localStorage.setItem('tasks', JSON.stringify(newTask));
-}
-
-function loadTasks(newTask) {
-    
 }
 
 
@@ -380,15 +354,11 @@ function updateSubtasklist() {
     }
 }
 
-function loadContactsInAddTask() {
-    let optionValue = document.getElementById('assigned');
-    for (let i = 0; i < contacts.length; i++) {
-        const name = contacts[i].name;
-        optionValue.innerHTML += /*html*/`
-            <option value="${name}">${name}</option>
-        `;    
-    }
+function clearSubtaskInputField() {
+    let input = document.getElementById('subtask-input');
+    input.value = '';
 }
+
 
 function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
@@ -415,4 +385,41 @@ function clearFields() {
             button.classList.add('prio-notselected');
         }
     });
+}
+
+
+// this function is saving all inputfields from add-task
+function createTask() {
+    
+    if (title.value && date.value && category.value) {
+        let title = document.getElementById('title');
+        let description = document.getElementById('description');
+        let assigned = document.getElementById('assigned');
+        let date = document.getElementById('date');
+        let priority = pushPrio();
+        let category = document.getElementById('category');
+        let newTask = {
+            title: title.value,
+            description: description.value,
+            assigned: assigned.value,
+            date: date.value,
+            priority: priority,
+            category: category.value,
+            subtask: subtasks
+        };
+        tasks.push(newTask);
+        clearFields();
+        saveTasks(newTask);
+    } else {
+        console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
+    }
+    return tasks;
+}
+
+function saveTasks(newTask) {
+    localStorage.setItem('tasks', JSON.stringify(newTask));
+}
+
+function loadTasks(newTask) {
+    
 }
