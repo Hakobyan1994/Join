@@ -1,6 +1,7 @@
 let tasks = [];
 let subtasks = [];
 
+
 function renderAddTask() {
     let content = document.getElementById('add-task');
 
@@ -409,7 +410,15 @@ function createTask() {
         };
         tasks.push(newTask);
         clearFields();
-        saveTasks(tasks);
+        saveTasks(newTask);
+        loadTasks();
+        let popup = document.getElementById('popup-add-task');
+        if (popup) {
+            popup.classList.add('d-none');
+            loadToDo();
+        } else {
+            console.log('popup wurde nicht gefunden');
+        }
     } else {
         console.log('Es wurden nicht die notwendigen Felder ausgefüllt');
     }
@@ -424,4 +433,7 @@ function loadTasks() {
     let task = localStorage.getItem('tasks');
     let object = JSON.parse(task);
     console.log(object);
+
+    tasks.push(object);
 }
+

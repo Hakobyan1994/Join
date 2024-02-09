@@ -450,7 +450,7 @@
     
 </head>
 
-<body onload="includeHTML()">
+<body onload="initBoard()">
     <div w3-include-html="/assets/templates/menubar.html"></div>
 
     <div class="board-popup-bg d-none" id="popup-add-task">
@@ -501,7 +501,7 @@
 
     </div>
     <div class="card_mainContainer">
-        <div class="card_Div">
+        <div class="card_Div" id="new-to-do">
             <div class="Card_NotasksTodo">No Tasks To do</div>
         </div>
 
