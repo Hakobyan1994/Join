@@ -335,30 +335,122 @@ body {
      .board_Div{
         width: 168px;
         height: 168px;
-        background-color: #29ABE2;
+        background-color: #ffffff;
         border-radius: 30px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
         cursor: pointer;
-     }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+     }   
+
+
+        .board_info{
+            width: 83px;
+            height: 125px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+         .boardNumber{
+            font-family: inter;
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 79px;
+            color: #000000;
+         }  
+
+         .board_title{
+            font-family: inter;
+            font-weight: 600;
+            line-height: 24px;
+            font-size: 20px;
+            color: #2A3647;
+            text-align: center;
+         }
+    
    
       .progress_Div{
         width: 168px;
         height: 168px;
-        background-color: #29ABE2;
+        background-color:#ffffff;
         border-radius: 30px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          
+        
       } 
+            
 
+       .progress_Infobox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+       } 
+
+         .progress_number{
+            font-family: inter;
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 79px;
+            color: #000000;
+         }  
+
+           .progress_Info{
+            font-family: inter;
+            font-weight: 600;
+            line-height: 24px;
+            font-size: 20px;
+            color: #2A3647;
+            text-align: center;
+           }
 
       .feedback_div{
         width: 168px;
         height: 168px;
-        background-color: #29ABE2;
+        background-color:#ffffff;
         border-radius: 30px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
         cursor: pointer;
-      }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+      }  
+
+       
+       .feedback_info{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+       }
+
+         .feedback_number{
+            font-family: inter;
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 79px;
+            color: #000000;
+         } 
+
+         .feedback_title{
+            font-family: inter;
+            font-weight: 600;
+            line-height: 24px;
+            font-size: 20px;
+            color: #2A3647;
+            text-align: center;
+         }
+         
 
 
 .profil_name {
