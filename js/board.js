@@ -19,6 +19,7 @@ function openPopupAddTask() {
             </div>  
         </div> 
     `;
+    addEventFunctions();
 }
 
 function closePopupAddTask() {
