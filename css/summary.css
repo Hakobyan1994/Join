@@ -41,8 +41,29 @@ body{
     line-height: 32px;
     color: #2A3647;
     font-family:inter;
-  }  
+  }   
 
+   .profil_name{
+    width: 338px;
+    height: 56px;
+    position:absolute;
+    top: 587px;
+     left: 968px;
+     border: 1px saddlebrown solid;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    
+  }
+
+   .profil_name h1{
+    font-size: 47px;
+    font-weight: 500;
+    font-family:inter;
+    color: #2A3647;
+   } 
+
+   
   .main_checkingDiv{
     position: absolute;
     top: 335px;
