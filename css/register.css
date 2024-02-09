@@ -105,6 +105,7 @@ body {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    cursor: default;
 }
 
 .signup-button {
@@ -187,7 +188,7 @@ body {
 }
 
 .input_email {
-    background-image: url(./image/mail.png);
+    background-image: url(/assets/img/anmeldung\ Image/mail.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
     background-position: calc(100% - 21px) center;
@@ -202,11 +203,12 @@ body {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
+    cursor: pointer;
 }
 
 
 .input_password {
-    background-image: url(./image/lock.png);
+    background-image: url(/assets/img/anmeldung\ Image/lock.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
     background-position: calc(100% - 21px) center;
@@ -221,6 +223,7 @@ body {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
+    cursor: pointer;
 }
 
 .checkbox_input {
@@ -247,6 +250,7 @@ body {
     font-weight: 400;
     line-height: 19.2px;
     color: #000000;
+    cursor: default;
 
 }
 

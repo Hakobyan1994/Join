@@ -20,6 +20,7 @@ nav {
     font-style: normal;
     font-weight: 400!important;
     line-height: 120%;
+    cursor: default;
 }
 
 .logo {
