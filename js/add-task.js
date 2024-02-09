@@ -19,6 +19,7 @@ function renderAddTask() {
 }
 
 async function addEventFunctions() {
+    await loadTasks();
     currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
@@ -390,7 +391,7 @@ function clearFields() {
 
 
 // this function is saving all inputfields from add-task
-function createTask() {
+async function createTask() {
     
     if (title.value && date.value && category.value) {
         let title = document.getElementById('title');
@@ -408,10 +409,9 @@ function createTask() {
             category: category.value,
             subtask: subtasks
         };
-        tasks.push(newTask);
+        await loadTasks();
         clearFields();
         saveTasks(newTask);
-        loadTasks();
         let popup = document.getElementById('popup-add-task');
         if (popup) {
             popup.classList.add('d-none');
@@ -425,15 +425,15 @@ function createTask() {
     return tasks;
 }
 
-function saveTasks(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+function saveTasks(newTask) {
+    loadTasks();
+    tasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(newTask));
 }
 
 function loadTasks() {
-    let task = localStorage.getItem('tasks');
-    let object = JSON.parse(task);
-    console.log(object);
-
+    let taskLocal = localStorage.getItem('tasks');
+    let object = JSON.parse(taskLocal);
     tasks.push(object);
 }
 
