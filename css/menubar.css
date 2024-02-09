@@ -114,7 +114,16 @@ header p {
 .help-icon {
     width: 32px;
     height: 32px;
-}
+    
+   
+}  
+
+  .help-icon:hover{
+    display: block;
+    width:40px;
+    height: 40px;
+    
+  }
 
 .profile-icon {
     display: flex;
