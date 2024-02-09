@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+
+
+body{
+    background-color:  #F6F7F8;;
+}
+
+.info_titleDiv{
+    height: 73px;
+    position: absolute;
+    top: 206px;
+    left: 328px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+} 
+
+ .info_titleDiv h1{
+    font-size: 61px;
+     font-weight: 700;
+     color: #000000;
+     line-height: 73px;
+     font-family:inter;
+ } 
+
+ .vector{
+    border: 3px solid #29ABE2;
+    height: 59px;
+      
+    
+ } 
+
+  .info_titleDiv span{
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #2A3647;
+    font-family:inter;
+  }  
+
+  .main_checkingDiv{
+    position: absolute;
+    top: 335px;
+    left: 328px;
+    width: 560px;
+    height: 562px;
+    border: 1px solid red;
+
+  }
