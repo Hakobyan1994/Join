@@ -29,15 +29,24 @@ body {
 }
 
 .backLogin_pictureBox {
-
     display: flex;
     width: 32px;
     height: 32px;
     justify-content: center;
     align-items: center;
     position: absolute;
-   
-}
+    cursor: pointer;
+}   
+
+
+ .backLogin_picture:hover{
+    background-color: #c4c4c4;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+ }
+
+  
 
 .backLogin_picture {
     width: 32px;
@@ -52,7 +61,7 @@ body {
     align-items: center;
     gap: 16px;
     margin-bottom: 32px;
-
+    cursor: default;
 }
 
 h1 {
@@ -104,7 +113,7 @@ h1 {
 }
 
 .name_input {
-    background-image: url(./image/person.png);
+    background-image: url(/assets/img/anmeldung\ Image/person.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
     background-position: calc(100% - 21px) center;
@@ -121,6 +130,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 
@@ -133,7 +143,7 @@ h1 {
 }
 
 .email_input {
-    background-image: url(./image/mail.png);
+    background-image: url(/assets/img/anmeldung\ Image/mail.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
     background-position: calc(100% - 21px) center;
@@ -150,6 +160,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .password_inputBox {
@@ -161,7 +172,7 @@ h1 {
 }
 
 .password_input {
-    background-image: url(./image/lock.png);
+    background-image: url(/assets/img/anmeldung\ Image/lock.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
     background-position: calc(100% - 21px) center;
@@ -178,6 +189,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 
@@ -190,7 +202,7 @@ h1 {
 
 
 .confirmpassword {
-    background-image: url(./image/lock.png);
+    background-image: url(/assets/img/anmeldung\ Image/lock.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
     background-position: calc(100% - 21px) center;
@@ -207,6 +219,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .input_checkox {
@@ -225,6 +238,7 @@ h1 {
     font-weight: 400;
     line-height: 19.2px;
     color: #A8A8A8;
+    cursor: default;
 
 }
 
