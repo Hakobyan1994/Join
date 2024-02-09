@@ -110,8 +110,8 @@ function generateHtmlCategory() {
         <label>Category<p class="redstar">*</p></label>
         <select class="inputfield" id="category">
             <option selected>Select task category</option>
-            <option value="technical task">Technical Task</option>
-            <option value="user story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+            <option value="User Story">User Story</option>
         </select>  
     `;
 }

@@ -57,7 +57,7 @@ nav {
 
 .menubar a:hover {
     background-color: rgb(42,61,89);
-    width: 52%;
+    width: 100%;
      
     transition: 125ms ease-in-out;
 }
