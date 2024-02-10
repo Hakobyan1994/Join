@@ -112,15 +112,10 @@ function renderDialog() {
     dialog.innerHTML = generateDialog();
 }
 
-
 function contactInfoSlider() {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     contactInfoSlider.innerHTML = '';
-
-    contactInfoSlider.innerHTML = generateContactInfoSlider();
-}
-
-function openContactSlider() {
-    let contactSlider = document.getElementById('contactSlider');
-    contactSlider.classList.toggle('d-none');
+    contactInfoSlider.classList.add('show');
+    let contact = contacts[i];
+    contactInfoSlider.innerHTML = generateContactInfoSlider(contact);
 }
