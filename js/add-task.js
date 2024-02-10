@@ -33,7 +33,7 @@ async function addEventFunctions() {
     inputfieldFocus();
     inputfieldFocusDate();
     dueDatePattern();
-    
+    inputfieldFocusCategory();
 }
 
 
@@ -114,11 +114,15 @@ function generateHtmlPrio() {
 function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
-        <select class="inputfield select-category" id="category">
-            <option disabled selected hidden>Select task category</option>
-            <option value="Technical Task">Technical Task</option>
-            <option value="User Story">User Story</option>
-        </select>  
+        <div class="category-div">
+            <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
+                <option value="" disabled selected hidden>Select task category</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+            </select>
+            <div class="required-text d-none" id="required-category">This field is required</div> 
+        </div>
+ 
     `;
 }
 
@@ -127,7 +131,7 @@ function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
         <div style="height: 64px;">
-            <input type="text" class="inputfield" id="subtask-input"> 
+            <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
                 <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
@@ -511,10 +515,10 @@ function inputfieldFocus() {
         title.classList.add('inputfield-focus-white');
         required.classList.add('d-none');
     }
-    title.addEventListener('blur', function() {
-    title.classList.remove('inputfield-focus-red');
-    required.classList.add('d-none');
-    });
+    // title.addEventListener('blur', function() {
+    // title.classList.remove('inputfield-focus-red');
+    // required.classList.add('d-none');
+    // });
 }
 
 function inputfieldFocusDate() {
@@ -538,11 +542,38 @@ function inputfieldFocusDate() {
         date.classList.remove('inputfield-focus-blue');
         date.classList.add('inputfield-focus-white');
         required.classList.add('d-none');
-        console.log('krass')
     }
-    date.addEventListener('blur', function() {
-    date.classList.remove('inputfield-focus-red');
-    required.classList.add('d-none');
-    });
+    // date.addEventListener('blur', function() {
+    // date.classList.remove('inputfield-focus-red');
+    // required.classList.add('d-none');
+    // });
+}
+
+
+function inputfieldFocusCategory() {
+    let category = document.getElementById('category');
+    let required = document.getElementById('required-category');
+
+    if (document.activeElement === category) {
+        if (category.value.trim() === '') {
+            category.classList.add('inputfield-focus-red');
+            required.classList.remove('d-none');
+            category.classList.remove('inputfield-focus-blue');
+            category.classList.remove('inputfield-focus-white');
+        } else {
+            required.classList.add('d-none');
+            category.classList.add('inputfield-focus-blue');
+            category.classList.remove('inputfield-focus-red');
+            category.classList.remove('inputfield-focus-white');
+        }
+    } else {
+        required.classList.add('d-none');
+        category.classList.add('inputfield-focus-white');
+        category.classList.remove('inputfield-focus-red');
+        category.classList.remove('inputfield-focus-blue');
+    }
+    // category.addEventListener('blur', function() {
+    //     required.classList.add('d-none');
+    //     });
 }
 
