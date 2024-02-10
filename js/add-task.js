@@ -104,7 +104,7 @@ function generateHtmlPrio() {
         <label for="">Prio</label>
         <div class="prio-btn" id="prio" role="group">
             <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio prio-medium prio-notselected" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+            <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
             <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
         </div>  
     `;
@@ -213,6 +213,10 @@ function pushPrio() {
         }
     });
 
+    if (selectedPriority === null) {
+        selectedPriority = 'medium';
+    }
+
     return selectedPriority;
 }
 
@@ -290,7 +294,6 @@ function addSubtask() {
     list.innerHTML = '';
 
     if (subtask.trim() === '') {
-        console.log('Subtask Feld darf nicht leer sein');
         updateSubtasklist();
         return;
     }
@@ -411,16 +414,21 @@ function clearFields() {
     subtasks = [];
     updateSubtasklist();
     let prio = document.querySelectorAll('.prio');
+    let medium = document.getElementById('medium');
     prio.forEach(function(button) {
         if(!button.classList.contains('prio-notselected')) {
             button.classList.add('prio-notselected');
-        }
+            medium.classList.remove('prio-notselected');
+        } 
     });
 }
 
 
 async function createTask() {
     let title = document.getElementById('title');
+    let requiredTitle = document.getElementById('required-title');
+    let requiredDate = document.getElementById('required-date');
+    let requiredCategory = document.getElementById('required-category');
     let description = document.getElementById('description');
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
@@ -452,7 +460,13 @@ async function createTask() {
             console.log('Popup wurde nicht gefunden');
         }
     } else {
-        console.log('Notwendige Felder wurden nicht ausgefüllt');
+        alert('Notwendige Felder wurden nicht ausgefüllt');
+        // requiredTitle.classList.remove('d-none');
+        // requiredDate.classList.remove('d-none');
+        // requiredCategory.classList.remove('d-none');
+        // date.classList.add('inputfield-focus-red');
+        // title.classList.add('inputfield-focus-red');
+        // category.classList.add('inputfield-focus-red');
     }
 
     return tasks;
@@ -515,10 +529,10 @@ function inputfieldFocus() {
         title.classList.add('inputfield-focus-white');
         required.classList.add('d-none');
     }
-    // title.addEventListener('blur', function() {
-    // title.classList.remove('inputfield-focus-red');
-    // required.classList.add('d-none');
-    // });
+    title.addEventListener('blur', function() {
+        title.classList.remove('inputfield-focus-red');
+        required.classList.add('d-none');
+    });
 }
 
 function inputfieldFocusDate() {
@@ -543,10 +557,10 @@ function inputfieldFocusDate() {
         date.classList.add('inputfield-focus-white');
         required.classList.add('d-none');
     }
-    // date.addEventListener('blur', function() {
-    // date.classList.remove('inputfield-focus-red');
-    // required.classList.add('d-none');
-    // });
+    date.addEventListener('blur', function() {
+        date.classList.remove('inputfield-focus-red');
+        required.classList.add('d-none');
+    });
 }
 
 
@@ -572,8 +586,9 @@ function inputfieldFocusCategory() {
         category.classList.remove('inputfield-focus-red');
         category.classList.remove('inputfield-focus-blue');
     }
-    // category.addEventListener('blur', function() {
-    //     required.classList.add('d-none');
-    //     });
+    category.addEventListener('blur', function() {
+        category.classList.remove('inputfield-focus-red');
+        required.classList.add('d-none');
+    });
 }
 
