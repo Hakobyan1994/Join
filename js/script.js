@@ -30,7 +30,6 @@ async function initContacts() {
     await includeHTML();
     await loadContacts();
     renderContacts();
-    contactInfoSlider();
 }
 
 async function initBoard() {

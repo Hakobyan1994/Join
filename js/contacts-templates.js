@@ -1,6 +1,6 @@
-function generateContact(contact, imageId) {
+function generateContact(i, contact, imageId) {
     return /*html*/`
-        <div onclick="contactInfoSlider()" class="contact-con-pos">
+        <div onclick="contactInfoSlider(${i})" class="contact-con-pos">
             <div class="contact-con">
                 <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
                 <div>
@@ -96,14 +96,14 @@ function generateDialog() {
     </div>`;
 }
 
-function generateContactInfoSlider(contact) {
+function generateContactInfoSlider(contactName, contactEmail, contactPhone) {
     return /*html*/`
         <div id="contactSlider" class="contact-info-slider">
             <div class="slider-main-content">
                 <div class="slider-content-top">
                     <img id="contactInfoImg" class="slider-contact-img" src="/assets/img/icons/Ellipse 5.svg" alt="">
                     <div class="contact-name">
-                        <div class="name">${contact.name}</div>
+                        <div class="name">${contactName}</div>
                         <div class="edit-delete-btn-con">
                             <div class="edit-delete"><img src="/assets/img/icons/edit.svg" alt=""> Edit</div>
                             <div class="edit-delete"><img src="/assets/img/icons/delete.svg" alt=""> Delete</div>
@@ -116,11 +116,11 @@ function generateContactInfoSlider(contact) {
                 <div class="slider-content-bottom">
                     <div class="email-phone-con-main">
                         <div class="email-phone-con-top"><b>Email</b></div>
-                        <div class="email-con-bottom">${contact.email}</div>
+                        <div class="email-con-bottom">${contactEmail}</div>
                     </div>
                     <div class="email-phone-con-main">
                         <div class="email-phone-con-top"><b>Phone</b></div>
-                        <div class="phone-con-bottom">${contact.phone}</div>
+                        <div class="phone-con-bottom">${contactPhone}</div>
                     </div>
                 </div>
             </div>

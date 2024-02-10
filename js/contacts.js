@@ -20,7 +20,7 @@ function renderContacts() {
         }
         contactIdCounter++;
         const imageId = `contactImage${contactIdCounter}`;
-        contactsContainer.innerHTML += generateContact(contact, imageId);
+        contactsContainer.innerHTML += generateContact(i, contact, imageId);
         addInitialsToContactImage(contact, imageId);
     }
 }
@@ -112,10 +112,14 @@ function renderDialog() {
     dialog.innerHTML = generateDialog();
 }
 
-function contactInfoSlider() {
+function contactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     contactInfoSlider.innerHTML = '';
     contactInfoSlider.classList.add('show');
+
     let contact = contacts[i];
-    contactInfoSlider.innerHTML = generateContactInfoSlider(contact);
+    let contactName = contact.name;
+    let contactEmail = contact.email;
+    let contactPhone = contact.phone;
+    contactInfoSlider.innerHTML = generateContactInfoSlider(contactName, contactEmail, contactPhone);
 }

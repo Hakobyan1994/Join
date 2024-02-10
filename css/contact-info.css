@@ -1,15 +1,18 @@
 .contact-info-slider {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0; /* Startposition außerhalb des Bildschirms */
     bottom: 0;
-    left: auto;
-    transition: right 0.5s ease-in-out;
+    width: 500px; /* Breite des Sliders */
+    transition: right 1.0s ease-in-out; /* Übergangseigenschaft nur für right */
 }
 
 .contact-info-slider.show {
-    right: 50%;
-    transform: translateX(50%);
+    position: relative;
+    top: -400px;
+    left: 0;
+    right: 0;
+    transform: translateY(15%); /* Slider wird vertikal zentriert */
 }
 
 .slider-main-content {
@@ -17,10 +20,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 21px;
-    position: relative;
-    top: 350px;
-    left: 215px;
+    padding: 20px; /* Innenabstand für den Inhalt */
 }
+
 
 .slider-content-top {
     display: flex;
