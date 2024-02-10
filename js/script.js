@@ -23,10 +23,19 @@ async function init() {
 async function initAddTask() {
     await includeHTML();
     renderAddTask();
+    loadContacts();
 }
 
 async function initContacts() {
     await includeHTML();
     await loadContacts();
     renderContacts();
+    contactInfoSlider();
+}
+
+async function initBoard() {
+    await includeHTML();
+    await loadTasks();
+    loadToDo();
+
 }

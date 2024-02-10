@@ -20,6 +20,7 @@ nav {
     font-style: normal;
     font-weight: 400!important;
     line-height: 120%;
+    cursor: default;
 }
 
 .logo {
@@ -57,7 +58,7 @@ nav {
 
 .menubar a:hover {
     background-color: rgb(42,61,89);
-    width: 52%;
+    width: 100%;
      
     transition: 125ms ease-in-out;
 }
@@ -113,7 +114,16 @@ header p {
 .help-icon {
     width: 32px;
     height: 32px;
-}
+    
+   
+}  
+
+  .help-icon:hover{
+    display: block;
+    width:40px;
+    height: 40px;
+    
+  }
 
 .profile-icon {
     display: flex;

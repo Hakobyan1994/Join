@@ -33,7 +33,7 @@ function validLogin(e) {
   
 
   if (status === 'ok') {
-      window.location.href = "main.html";
+      window.location.href = "/files/summary.html";
   } else if (status === 'Error Password' || status === 'Email not found') {
       checkBox.checked = false;
       document.getElementById('email').style.border = `1px solid red`;
@@ -47,27 +47,3 @@ function validLogin(e) {
      
 
 
-//         const foundUser = dataUser.find((user) => {
-//             if  (user.email.includes(email)){
-//                 user.email.includes(email) && user.password.includes(password) ? status = 'ok' :
-//                 user.email.includes(email) && !user.password.includes(password) ? status = 'erorPasword' :  status = 'no'      
-//             }else if(!user.email.includes(email) && !user.password.includes(password))
-//             {    status = 'no'  }
-//         })
-//         if (status === 'es') {
-//             console.log(user);
-//         }else if (status === 'erorPasword') {
-//             e.target[0].style.border = `1px solid gren`
-//             // document.getElementById('email_login').innerHTML='Error'
-          
-//             e.target[1].style.border=`1px solid red `
-//             document.getElementById('password_login').innerHTML='Error'
-//         }  else if(status === 'no'){
-            
-//         }
-
-//     }else{
-        
-//     }
-    
-// }

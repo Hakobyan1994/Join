@@ -44,6 +44,12 @@ function validForm({ name, email, password, confirmPassword }, e) {
     
 } 
 
+let backPicture=document.querySelector('.backLogin_picture')  
+backPicture.onclick=backToRegister;
+
+function backToRegister(){
+    window.location.href='login.html'
+}
 
 
 

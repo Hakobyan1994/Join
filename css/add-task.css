@@ -61,7 +61,7 @@ label p {
     border: 1px solid rgba(209, 209, 209, 1);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
     background: rgba(255, 255, 255, 1);
-    width: 440px;
+    width: 440px !important;
     cursor: pointer;
 }
 
@@ -242,6 +242,10 @@ textarea {
     border-color: var(--lightblue);
 }
 
+.assigned-to {
+    width: 440px!important;
+}
+
 .assigned-to:hover {
     box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
     border-color: var(--lightblue)!important;
@@ -378,7 +382,7 @@ p.subtask-p {
 }
 
 .clear-check-icons img {
-    width: 32px;
+    width: 22px;
     height: 22px;
 }
 
