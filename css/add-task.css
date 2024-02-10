@@ -55,6 +55,10 @@ label p {
     height: 102px;
 }
 
+.dueDate-div {
+    height: 77px;
+}
+
 .required-text {
     width: 119px;
     height: 12px;
@@ -63,6 +67,11 @@ label p {
     line-height: 14.4px;
     color: rgba(255, 129, 144, 1);
     margin-top: 6px;
+}
+
+.required-text-date {
+    margin-top: -17px;
+    height: 0!important;
 }
 
 .inputfield {
@@ -88,7 +97,7 @@ label p {
 }
 
 .inputfield-focus-white {
-    border: 1px solid rgba(209, 209, 209, 1);
+    border: 1px solid rgba(209, 209, 209, 1)!important;
 }
 
 input:focus {
@@ -277,17 +286,19 @@ textarea {
     outline: none;
 }
 
+input:focus-visible {
+    outline: none;
+}
+
+select:focus-visible {
+    outline: none;
+}
+
 .date-icon {
-    z-index: 4;
-    background-image: url(/assets/img/icons/calender.svg);
-    background-size: 24px 24px;
-    background-position: 395px 50%;
-    background-repeat: no-repeat;
-    color: rgba(0, 0, 0, 1);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+    position:relative;
+    left: 403px;
+    bottom: 37px;
+    cursor: pointer;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -322,6 +333,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 100%;
     background-color: rgba(246, 247, 248, 1);
     padding: 5px  ;
+}
+
+.select-category {
+    
 }
 
 .subtasks {

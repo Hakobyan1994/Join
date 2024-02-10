@@ -31,6 +31,9 @@ async function addEventFunctions() {
     await loadContacts();
     loadContactsInAddTask();
     inputfieldFocus();
+    inputfieldFocusDate();
+    dueDatePattern();
+    
 }
 
 
@@ -83,14 +86,15 @@ function generateHtmlAssigned() {
 
 function generateHtmlDate() {
     return /*html*/`
-        <label for="" class="">Due date<p class="redstar">*</p></label>
-        <div>
-            <input type="date" class="inputfield date-icon" id="date" placeholder="dd/mm/yyyy" required>
-            <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
+        <label for="date">Due date<p class="redstar">*</p></label>
+        <div class="dueDate-div">
+            <div>
+                <input type="text" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
+                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
+            </div>
+            <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
-        <div id="" class="d-none">
-            This field is required
-        </div>  
+        
     `;
 }
 
@@ -110,8 +114,8 @@ function generateHtmlPrio() {
 function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
-        <select class="inputfield" id="category">
-            <option selected>Select task category</option>
+        <select class="inputfield select-category" id="category">
+            <option disabled selected hidden>Select task category</option>
             <option value="Technical Task">Technical Task</option>
             <option value="User Story">User Story</option>
         </select>  
@@ -160,6 +164,7 @@ function loadContactsInAddTask() {
 
 
 function currentDate() {
+    let border = document.getElementById('date');
     let date = new Date();                              // get the actual date
 
     let day = date.getDate();           
@@ -169,9 +174,27 @@ function currentDate() {
     if (month < 10) month = '0' + month;
     if (day < 10) day = '0' + day;
 
-    let today = year + '-' + month + '-' + day;       
+    let today = `${day}/${month}/${year}`;
     document.getElementById("date").value = today;
+    border.classList.remove('inputfield-focus-white');
+    border.classList.add('inputfield-focus-blue');
 }
+
+
+function dueDatePattern() {
+    let dateInput = document.getElementById('date');
+
+    dateInput.addEventListener('input', function () {
+        let isValid = /^\d{2}\/\d{2}\/\d{4}$/.test(dateInput.value);
+
+        if (!isValid) {
+            dateInput.setCustomValidity('Ungültiges Datumsformat. Verwende das Format dd/mm/yyyy.');
+        } else {
+            dateInput.setCustomValidity('');
+        }
+    });
+} 
+   
 
 
 function pushPrio() {
@@ -488,8 +511,38 @@ function inputfieldFocus() {
         title.classList.add('inputfield-focus-white');
         required.classList.add('d-none');
     }
-    // title.addEventListener('blur', function() {
-    //     title.classList.remove('inputfield-focus-red');
-    // });
+    title.addEventListener('blur', function() {
+    title.classList.remove('inputfield-focus-red');
+    required.classList.add('d-none');
+    });
+}
+
+function inputfieldFocusDate() {
+    let date = document.getElementById('date');
+    let required = document.getElementById('required-date');
+
+    if (document.activeElement === date) {
+        if (date.value.trim() === '') {
+            date.classList.add('inputfield-focus-red');
+            required.classList.remove('d-none');
+            date.classList.remove('inputfield-focus-blue');
+            date.classList.remove('inputfield-focus-white');
+        } else {
+            date.classList.add('inputfield-focus-blue');
+            required.classList.add('d-none');
+            date.classList.remove('inputfield-focus-red');
+            date.classList.remove('inputfield-focus-white');
+        }
+    } else {
+        date.classList.remove('inputfield-focus-red');
+        date.classList.remove('inputfield-focus-blue');
+        date.classList.add('inputfield-focus-white');
+        required.classList.add('d-none');
+        console.log('krass')
+    }
+    date.addEventListener('blur', function() {
+    date.classList.remove('inputfield-focus-red');
+    required.classList.add('d-none');
+    });
 }
 
