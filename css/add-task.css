@@ -51,6 +51,20 @@ label p {
     margin: 0;
 }
 
+.title-div {
+    height: 102px;
+}
+
+.required-text {
+    width: 119px;
+    height: 12px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.4px;
+    color: rgba(255, 129, 144, 1);
+    margin-top: 6px;
+}
+
 .inputfield {
     display: flex;
     padding: 12px 21px;
@@ -65,8 +79,16 @@ label p {
     cursor: pointer;
 }
 
-.inputfield:focus {
-    border-color: red!important;
+.inputfield-focus-red {
+    border: 1px solid rgba(255, 129, 144, 1)!important;
+}
+
+.inputfield-focus-blue {
+    border: 1px solid var(--lightblue)!important;
+}
+
+.inputfield-focus-white {
+    border: 1px solid rgba(209, 209, 209, 1);
 }
 
 input:focus {
@@ -75,6 +97,7 @@ input:focus {
 
 textarea:focus {
     outline: none;
+    border-color: var(--lightblue);
 }
 
 .inputfield::placeholder {
@@ -246,9 +269,12 @@ textarea {
     width: 440px!important;
 }
 
-.assigned-to:hover {
-    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+.assigned-to:focus {
     border-color: var(--lightblue)!important;
+}
+
+.assigned-to:focus-visible {
+    outline: none;
 }
 
 .date-icon {

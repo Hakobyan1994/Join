@@ -30,6 +30,7 @@ async function addEventFunctions() {
     enterOnSubtask();
     await loadContacts();
     loadContactsInAddTask();
+    inputfieldFocus();
 }
 
 
@@ -53,9 +54,10 @@ function generateHtmlAddTaskForm() {
 
 function generateHtmlTitle() {
     return /*html*/`
-        <div class="">
+        <div class="title-div">
             <label for="" class="">Title<p class="redstar">*</p></label>
-            <input type="text" class="inputfield" id="title" placeholder="Enter a title" required>
+            <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus()" oninput="inputfieldFocus()" required>
+            <div class="required-text d-none" id="required-title">This field is required</div>
         </div>
     `;
 }
@@ -438,5 +440,56 @@ function saveTasks(newTask) {
 function loadTasks() {
     let taskLocal = localStorage.getItem('tasks');
     tasks = taskLocal ? JSON.parse(taskLocal) : [];
+}
+
+// function inputfieldFocus(color) {
+//     let title = document.getElementById('title');
+//     if(color === 'red' || title.value.trim() === '') {
+//         title.classList.remove('inputfield-focus-blue');
+//         title.classList.add('inputfield-focus-red');
+//     } else if (color === 'blue') {
+//         title.classList.remove('inputfield-focus-red');
+//         title.classList.add('inputfield-focus-blue');
+//     }
+
+// }
+
+// function inputfieldFocus() {
+//     let title = document.getElementById('title');
+
+//     title.addEventListener('focus', function() {
+//         if (title.value.trim() === '') {
+//             title.classList.add('inputfield-focus-red');
+//         } else {
+//             title.classList.add('inputfield-focus-blue');
+//         }
+//     })
+// }
+
+function inputfieldFocus() {
+    let title = document.getElementById('title');
+    let required = document.getElementById('required-title');
+
+    if (document.activeElement === title) {
+        if (title.value.trim() === '') {
+            title.classList.add('inputfield-focus-red');
+            required.classList.remove('d-none');
+            title.classList.remove('inputfield-focus-blue');
+            title.classList.remove('inputfield-focus-white');
+        } else {
+            title.classList.add('inputfield-focus-blue');
+            required.classList.add('d-none');
+            title.classList.remove('inputfield-focus-red');
+            title.classList.remove('inputfield-focus-white');
+        }
+    } else {
+        title.classList.remove('inputfield-focus-red');
+        title.classList.remove('inputfield-focus-blue');
+        title.classList.add('inputfield-focus-white');
+        required.classList.add('d-none');
+    }
+    // title.addEventListener('blur', function() {
+    //     title.classList.remove('inputfield-focus-red');
+    // });
 }
 
