@@ -47,10 +47,14 @@ function loadToDo() {
                     <span class="recipe_span">${task.description}</span>
                 </div>
             <div class="progress_image_Div">
-                <img src="/assets/img/icons/Progress.png" alt="">
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: 25%"></div>
+                </div>
+                <div>1/2 Subtasks</div>
             </div>
+                
             <div class="Members_Div">
-                <img src="/assets/img/icons/Frame 217.png" alt="">
+                <div>Assigned To Symbols</div>
                 <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
             </div>
     `;
