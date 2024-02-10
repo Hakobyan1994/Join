@@ -32,11 +32,19 @@ function onsubmitFor(e) {
     
 
 function validForm({ name, email, password, confirmPassword }, e) {
-    if (password.includes(confirmPassword )) {
-        dataUser.push({ name, email, password, id: new Date().getTime() })
-        addtoLocal(dataUser, 'datareg')
-        check.value='yes';
-        window.location.href = 'login.html'
+   console.log(password.includes(confirmPassword));
+    if (password.includes(confirmPassword)) {
+        let user = dataUser.find((el)=> el.email === email)
+        if (user) {
+            alert('Die Email ist schon angemeldet')
+        }else{
+            dataUser.push({ name, email, password, id: new Date().getTime() })
+            addtoLocal(dataUser, 'datareg')
+            alert('Die Anmeldung ist Erfogreich')
+            check.value='yes';
+            window.location.href = 'login.html'
+        }
+      
     } else {
         e.target[3].style.border = '4px solid red';
         document.getElementById('erroMesagePas').innerHTML = 'Error';
@@ -52,4 +60,9 @@ function backToRegister(){
 }
 
 
+// function reload(params) {
+//     console.log('reload');
+//     location.reload()
+// }
+// reload()
 
