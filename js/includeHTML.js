@@ -1,3 +1,16 @@
+     function checks(){
+        let profilInfo=document.querySelector('.clickInfoDiv')
+        if(profilInfo.style.display==='block'){
+           profilInfo.style.display='none'
+        }else{
+          profilInfo.style.display='block'
+        }
+     }
+     checks();
+      
+      
+
+
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
@@ -23,5 +36,8 @@ function includeHTML() {
         /* Exit the function: */
         return;
       }
-    }
-  }
+    }      
+  }  
+
+ 
+   

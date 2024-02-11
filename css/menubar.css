@@ -16,9 +16,9 @@ nav {
 }
 
 .menubar-text {
-    font-size: 20px!important;
+    font-size: 20px !important;
     font-style: normal;
-    font-weight: 400!important;
+    font-weight: 400 !important;
     line-height: 120%;
     cursor: default;
 }
@@ -52,14 +52,14 @@ nav {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
-    flex-shrink: 0; 
-    
+    flex-shrink: 0;
+
 }
 
 .menubar a:hover {
-    background-color: rgb(42,61,89);
+    background-color: rgb(42, 61, 89);
     width: 100%;
-     
+
     transition: 125ms ease-in-out;
 }
 
@@ -75,7 +75,7 @@ nav {
 
 .legalbox a {
     text-decoration: none;
-    color: rgb(205,205,205);
+    color: rgb(205, 205, 205);
     cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ header {
     left: 0;
     display: flex;
     padding: 20px 40px 20px 348px;
-    justify-content: space-between;   
+    justify-content: space-between;
     align-items: center;
     background-color: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
@@ -114,34 +114,34 @@ header p {
 .help-icon {
     width: 32px;
     height: 32px;
-    
-   
-}  
 
-  .help-icon:hover{
+
+}
+
+.help-icon:hover {
     display: block;
-    width:40px;
+    width: 40px;
     height: 40px;
-    
-  }
+
+}
 
 .profile-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    border: 3px solid var(--darkblue, rgb(42,61,89));
+    border: 3px solid var(--darkblue, rgb(42, 61, 89));
     width: 56px;
     height: 56px;
     text-decoration: none;
-    color: rgb(41,171,226);
+    color: rgb(41, 171, 226);
     flex-shrink: 0;
     font-size: 20px;
     font-weight: 600;
 }
 
 .profile-icon:hover {
-    background-color: rgb(225,229,236);
+    background-color: rgb(225, 229, 236);
     transition: 125ms ease-in-out;
 }
 
@@ -149,3 +149,63 @@ header p {
 .d-none {
     display: none;
 }
+
+
+
+
+
+.clickInfoDiv {
+
+    display: block;
+    width: 150px;
+    height: 158px;
+    background-color: #2A3647;
+    position: absolute;
+    top: 100px;
+    right: 25px;
+    padding: 10px;
+    border-radius: 20px 0px 20px 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
+} 
+
+
+.clickInfoDiv ul {
+    padding-inline-start: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  
+    
+}   
+     
+
+.clickInfoDiv ul li {
+    display: flex;
+    text-decoration-line: none;
+    list-style: none;
+    padding:8px 16px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #CDCDCD;
+}   
+.clickInfoDiv ul li a{
+    color: #CDCDCD ;
+    text-decoration: none;
+    cursor: pointer;
+}
+   
+   /* .clickInfoDiv ul li a:hover{
+    background-color: #2f4057;
+   }  */
+
+   .clickInfoDiv ul li:hover{
+     width: 119px; 
+     background-color: #2f4057;
+   }
+
+   

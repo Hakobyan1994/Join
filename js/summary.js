@@ -3,7 +3,7 @@ let locRes = JSON.parse(localStorage.getItem('activUser'))
 
 if (locRes) {
     user = locRes 
-    console.log(user.name);
+    console.log(user);
 } 
  
  let profilName=document.querySelector('.greetingName')
@@ -19,5 +19,4 @@ function dateUpdate() {
 
   montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
 }
-
 dateUpdate();
