@@ -159,6 +159,7 @@ body {
     display: flex;
     align-items: center;
     gap: 35px;
+    cursor: pointer;
 }
 
 .contact-con {
@@ -199,6 +200,7 @@ body {
 }
 
 .letter-con {
+    width: 352px;
     display: flex;
     flex-direction: column;
     justify-content: center;

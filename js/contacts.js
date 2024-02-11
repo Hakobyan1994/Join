@@ -5,7 +5,7 @@ let initials;
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
 
@@ -30,8 +30,6 @@ function renderContacts() {
         addInitialsToContactImage(contact, imageId);
     }
 }
-
-//     contacts.sort((a, b) => a.name.localeCompare(b.name));
 
 async function addToContacts() {
     let nameInput = document.getElementById('name');
@@ -87,7 +85,7 @@ async function saveContact(i) {
     contact.email = contactEmail;
     contact.phone = contactPhone;
 
-    await setItem('contacts', JSON.stringify(contacts)); 
+    await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
     document.getElementById('editMask').innerHTML = '';
     closeDialog();
@@ -171,6 +169,7 @@ async function deleteContact(i) {
     contacts.splice(i, 1);
     document.getElementById('contactSlider').innerHTML = '';
     closeDialog();
+    await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
 }
 
