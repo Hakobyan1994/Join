@@ -40,7 +40,7 @@ async function loadToDo() {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         todo.innerHTML += /*html*/`
-            <div class="progress_card">
+            <div class="progress_card" id="new-to-do-section-${i}">
                 <div class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -90,3 +90,24 @@ function returnValueOfSubtask() {
 }
 
 // ${value}/${total}
+
+
+function searchTasks() {
+    let input = document.getElementById('input-search-task');
+    let filter = input.value.toUpperCase();
+
+    for (let i = 0; i < tasks.length; i++) {
+        let todo = document.getElementById(`new-to-do-section-${i}`);
+        let array = tasks[i];
+        let description = array.description;
+        let title = array.title;
+        let name = title.toUpperCase();
+        let subname = description.toUpperCase();
+        if (name.indexOf(filter) > -1 || subname.indexOf(filter) > -1) {
+            todo.style.display = '';
+        } else {
+            todo.style.display = 'none';
+        }
+    }
+
+}
