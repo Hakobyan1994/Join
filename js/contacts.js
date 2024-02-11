@@ -6,7 +6,6 @@ function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
 
-    // Überprüfe, ob contacts nicht leer ist und jeder Kontakt einen Namen hat, bevor du versuchst zu sortieren
     if (contacts.length > 0 && contacts.every(contact => contact.name)) {
         contacts.sort((a, b) => a.name.localeCompare(b.name));
     }
@@ -188,24 +187,17 @@ async function showEditMask(i) {
     dialog.classList.remove('d-none');
     dialog.innerHTML = generateEditMask(i);
     loadContactInfo(i);
-    displayContactImage(i); // Aufruf einer neuen Funktion zur Anzeige des Kontaktbildes
+    displayContactImage(i);
 }
 
 function displayContactImage(i) {
     let contact = contacts[i];
-    let contactImage = document.getElementById('contactImageEdit'); // Holen Sie sich das Bild-Element
+    let contactImage = document.getElementById('contactImageEdit'); 
     if (contactImage) {
-        // Verwenden Sie das generierte Bild, um das Bild für die Initialen zu ersetzen
         contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=fff`;
-
-        // Setzen Sie die Höhe und Breite des Bildes auf die gewünschten Werte
-        contactImage.style.width = '100px'; // Beispielbreite
-        contactImage.style.height = '100px'; // Beispielhöhe
-
-        // Setzen Sie die Hintergrundfarbe des Bildes auf transparent
+        contactImage.style.width = '100px'; 
+        contactImage.style.height = '100px';
         contactImage.style.backgroundColor = 'transparent';
-
-        // Setzen Sie den Alt-Text auf die Initialen des Kontakts
         contactImage.alt = contact.initials;
     }
 }
