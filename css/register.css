@@ -59,7 +59,7 @@ body {
     animation: animDiv 3s;
     animation-delay: 0.2s;
 }
-
+  
 @keyframes animDiv {
     from{
         top: 0;
