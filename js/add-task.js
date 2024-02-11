@@ -473,13 +473,27 @@ async function createTask() {
     return tasks;
 }
 
-function saveTasks(newTask) {
-    loadTasks();
+async function saveTasks(newTask) {
     tasks.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    setItem('tasks', tasks)
+        .then(response => {
+            console.log('Array erfolgreich auf dem Server gespeichert:', response);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        })
+        .catch(error => console.error('Fehler beim Speichern des Arrays auf dem Server:', error));
 }
 
-function loadTasks() {
+
+async function loadTasks() {
+    getItem('tasks')
+        .then(array => {
+            console.log('Abgerufenes Array vom Server:', array);
+            tasks = array || [];
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        })
+        .catch(error => console.error('Fehler beim Abrufen des Arrays vom Server:', error));
+
     let taskLocal = localStorage.getItem('tasks');
     tasks = taskLocal ? JSON.parse(taskLocal) : [];
 }
@@ -595,8 +609,14 @@ function inputfieldFocusCategory() {
 
 function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');
-    popup.classList.remove('d-none');
-    setTimeout(() => {
-        window.location.href = "/files/board.html";
-    }, "1000");
+
+    if (popup) {
+        popup.classList.remove('d-none');
+        setTimeout(() => {
+            window.location.href = "/files/board.html";
+        }, "1000");
+    } else {
+        console.log('Popup wurde nicht gefunden');
+    }
+    
 }
