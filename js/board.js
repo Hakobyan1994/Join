@@ -32,7 +32,7 @@ function renderAddTaskForPopup() {
     
 }
 
-function loadToDo() {
+async function loadToDo() {
     let window = document.getElementById('new-to-do');
     window.innerHTML = '';
 

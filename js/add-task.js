@@ -5,7 +5,6 @@ let subtasks = [];
 function renderAddTask() {
     let content = document.getElementById('add-task');
 
-
     content.innerHTML = /*html*/`
         <h2>Add Task</h2>
         <div class="main-box">
@@ -19,7 +18,7 @@ function renderAddTask() {
 }
 
 async function addEventFunctions() {
-    await loadTasks();
+    await loadContacts();
     currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
@@ -28,11 +27,10 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     addSubtask();
     enterOnSubtask();
-    await loadContacts();
     loadContactsInAddTask();
+    dueDatePattern();
     inputfieldFocus();
     inputfieldFocusDate();
-    dueDatePattern();
     inputfieldFocusCategory();
 }
 
@@ -447,10 +445,10 @@ async function createTask() {
             subtask: subtasks
         };
 
+        tasks.push(newTask);
         clearFields();
-        saveTasks(newTask)
-        openToBoard();
-
+        await openToBoard();
+       
         let popup = document.getElementById('popup-add-task');
         if (popup) {
             popup.classList.add('d-none');
@@ -460,40 +458,15 @@ async function createTask() {
         }
     } else {
         alert('Notwendige Felder wurden nicht ausgefüllt');
-        // requiredTitle.classList.remove('d-none');
-        // requiredDate.classList.remove('d-none');
-        // requiredCategory.classList.remove('d-none');
-        // date.classList.add('inputfield-focus-red');
-        // title.classList.add('inputfield-focus-red');
-        // category.classList.add('inputfield-focus-red');
+        requiredTitle.classList.remove('d-none');
+        requiredDate.classList.remove('d-none');
+        requiredCategory.classList.remove('d-none');
+        date.classList.add('inputfield-focus-red');
+        title.classList.add('inputfield-focus-red');
+        category.classList.add('inputfield-focus-red');
     }
 
     return tasks;
-}
-
-async function saveTasks(newTask) {
-    tasks.push(newTask);
-
-    setItem('tasks', tasks)
-        .then(response => {
-            console.log('Array erfolgreich auf dem Server gespeichert:', response);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        })
-        .catch(error => console.error('Fehler beim Speichern des Arrays auf dem Server:', error));
-}
-
-
-async function loadTasks() {
-    getItem('tasks')
-        .then(array => {
-            console.log('Abgerufenes Array vom Server:', array);
-            tasks = array || [];
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        })
-        .catch(error => console.error('Fehler beim Abrufen des Arrays vom Server:', error));
-
-    let taskLocal = localStorage.getItem('tasks');
-    tasks = taskLocal ? JSON.parse(taskLocal) : [];
 }
 
 
