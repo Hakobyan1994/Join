@@ -19,6 +19,7 @@ function renderAddTask() {
 
 async function addEventFunctions() {
     await loadContacts();
+    await loadTasks();
     currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
@@ -435,6 +436,12 @@ async function createTask() {
 
     if (title.value && date.value && category.value) {
 
+        tasks = JSON.parse(await getItem('testaufgaben')) || [];
+
+        if (!tasks) {
+            tasks = [];
+        }
+
         let newTask = {
             title: title.value,
             description: description.value,
@@ -446,8 +453,9 @@ async function createTask() {
         };
 
         tasks.push(newTask);
+
+        await setItem('testaufgaben', JSON.stringify(tasks));
         clearFields();
-        await openToBoard();
        
         let popup = document.getElementById('popup-add-task');
         if (popup) {
@@ -466,7 +474,10 @@ async function createTask() {
         category.classList.add('inputfield-focus-red');
     }
 
+
+    await openToBoard();
     return tasks;
+    
 }
 
 
@@ -568,3 +579,13 @@ function openToBoard() {
     }
     
 }
+
+
+async function loadTasks() {
+    try {
+        tasks = JSON.parse(await getItem('testaufgaben')) || [];
+    } catch (e) {
+        console.error('Error in loadTasks:', e);
+    }
+}
+

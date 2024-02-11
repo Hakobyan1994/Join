@@ -32,31 +32,33 @@ function renderAddTaskForPopup() {
     
 }
 
+
 async function loadToDo() {
-    let window = document.getElementById('new-to-do');
-    window.innerHTML = '';
+    let todo = document.getElementById('new-to-do');
+    todo.innerHTML = '';
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
-        window.innerHTML += /*html*/`
+        todo.innerHTML += /*html*/`
             <div class="progress_card">
                 <div class="progress_infocard">
-                    <button class="tecnical_TaskButton" id="category-bg-change-${i}">${task.category}</button>
+                    <button class="tecnical_TaskButton" id="category-bg-change-${i}">asdas${task.category}</button>
                     <div class="cooking_title_div">
-                    <h1>${task.title}</h1>
-                    <span class="recipe_span">${task.description}</span>
+                        <h1>${task.title}</h1>
+                        <span class="recipe_span">${task.description}</span>
+                    </div>
                 </div>
-            <div class="progress_image_Div">
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: 25%"></div>
+                <div class="progress_image_Div">
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: 25%"></div>
+                    </div>
+                    <div>1/2 Subtasks</div>
                 </div>
-                <div>1/2 Subtasks</div>
+                <div class="Members_Div">
+                    <div>Assigned To Symbols</div>
+                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                </div>
             </div>
-                
-            <div class="Members_Div">
-                <div>Assigned To Symbols</div>
-                <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-            </div>
-    `;
+        `;
     }
 }
