@@ -1,14 +1,15 @@
 const signUp = document.getElementById('signUp');
 const check = document.getElementById('checkbox');
-check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no' ;
+const trasparenterDiv = document.querySelector('.trasparenter_div');
+check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
 
 let dataUser = []
 let dataLocal = JSON.parse(localStorage.getItem('datareg'))
-if(dataLocal){
+if (dataLocal) {
     dataUser = dataLocal
 }
- 
+
 
 function addtoLocal(arr, key) {
     console.log('addLoc');
@@ -24,45 +25,47 @@ function onsubmitFor(e) {
     let confirmPassword = e.target[3].value
     let checkBox = e.target[4].value
     // let btn = e.target[5]
-    if (name && email && password && confirmPassword && checkBox==='yes') {
+    if (name && email && password && confirmPassword && checkBox === 'yes') {
         validForm({ name, email, password, confirmPassword }, e)
-       
+
     }
-} 
-    
+}
+
+
+
 
 function validForm({ name, email, password, confirmPassword }, e) {
-   console.log(password.includes(confirmPassword));
+    console.log(password.includes(confirmPassword));
     if (password.includes(confirmPassword)) {
-        let user = dataUser.find((el)=> el.email === email)
+        let user = dataUser.find((el) => el.email === email)
         if (user) {
             alert('Die Email ist schon angemeldet')
-        }else{
+        } else {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
-            alert('Die Anmeldung ist Erfogreich')
-            check.value='yes';
+
+            check.value = 'yes';
+            trasparenterDiv.style.display = 'flex';
             window.location.href = 'login.html'
         }
-      
+
     } else {
         e.target[3].style.border = '4px solid red';
         document.getElementById('erroMesagePas').innerHTML = 'Error';
     }
-    
-} 
 
-let backPicture=document.querySelector('.backLogin_picture')  
-backPicture.onclick=backToRegister;
+}
 
-function backToRegister(){
-    window.location.href='login.html'
+let backPicture = document.querySelector('.backLogin_picture')
+backPicture.onclick = backToRegister;
+
+function backToRegister() {
+    window.location.href = 'login.html'
 }
 
 
-// function reload(params) {
-//     console.log('reload');
-//     location.reload()
-// }
-// reload()
+
+
+
+
 
