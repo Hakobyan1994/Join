@@ -42,7 +42,7 @@ async function loadToDo() {
         todo.innerHTML += /*html*/`
             <div class="progress_card">
                 <div class="progress_infocard">
-                    <button class="tecnical_TaskButton" id="category-bg-change-${i}">${task.category}</button>
+                    <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
                         <h1>${task.title}</h1>
                         <span class="recipe_span">${task.description}</span>
@@ -50,9 +50,9 @@ async function loadToDo() {
                 </div>
                 <div class="progress_image_Div">
                     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width: 25%"></div>
+                        <div class="progress-bar" style="width: 100%"></div>
                     </div>
-                    <div>1/2 Subtasks</div>
+                    <div> /${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
                     <div>Assigned To Symbols</div>
@@ -60,5 +60,33 @@ async function loadToDo() {
                 </div>
             </div>
         `;
+        changeCategoryButton(i);
+        // calculateSubtask(value, total);
     }
 }
+
+function changeCategoryButton(i) {
+    let categoryBtn = document.getElementById(`category-bg-change-${i}`);
+
+    if (categoryBtn.textContent === 'Technical Task') {
+        categoryBtn.classList.add('tecnical_TaskButton');
+    } else {
+        categoryBtn.classList.add('user_Story_button');
+    }
+}
+
+function totalSubtask(i) {
+        let task = tasks[i];
+        let total = task.subtask.length;
+        console.log(total);
+        return total;
+}
+
+function calculateSubtask(value, total) {
+}
+
+function returnValueOfSubtask() {
+
+}
+
+// ${value}/${total}
