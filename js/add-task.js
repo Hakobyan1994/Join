@@ -476,7 +476,6 @@ async function createTask() {
         category.classList.add('inputfield-focus-red');
     }
 
-
     await openToBoard();
     return tasks;
     
