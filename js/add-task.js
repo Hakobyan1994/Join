@@ -451,6 +451,7 @@ async function createTask() {
         clearFields();
         tasks.push(newTask);
         localStorage.setItem('tasks', JSON.stringify(tasks));
+        openToBoard();
 
         let popup = document.getElementById('popup-add-task');
         if (popup) {
@@ -592,3 +593,10 @@ function inputfieldFocusCategory() {
     });
 }
 
+function openToBoard() {
+    let popup = document.getElementById('popup-a-to-b');
+    popup.classList.remove('d-none');
+    setTimeout(() => {
+        window.location.href = "/files/board.html";
+    }, "1000");
+}
