@@ -20,6 +20,7 @@ function openPopupAddTask() {
         </div> 
     `;
     addEventFunctions();
+    cancelButton();
 }
 
 function closePopupAddTask() {
@@ -34,13 +35,13 @@ function renderAddTaskForPopup() {
 
 
 async function loadToDo() {
-    let todo = document.getElementById('new-to-do');
+    let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         todo.innerHTML += /*html*/`
-            <div class="progress_card" id="new-to-do-section-${i}">
+            <div class="progress_card" id="board-to-do-section-${i}">
                 <div class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -91,13 +92,16 @@ function returnValueOfSubtask() {
 
 // ${value}/${total}
 
-
 function searchTasks() {
+    searchTaskToDo();
+}
+
+function searchTaskToDo() {
     let input = document.getElementById('input-search-task');
     let filter = input.value.toUpperCase();
 
     for (let i = 0; i < tasks.length; i++) {
-        let todo = document.getElementById(`new-to-do-section-${i}`);
+        let todo = document.getElementById(`board-to-do-section-${i}`);
         let array = tasks[i];
         let description = array.description;
         let title = array.title;
@@ -110,4 +114,12 @@ function searchTasks() {
         }
     }
 
+}
+
+function cancelButton() {
+    let button = document.getElementById('clear-button');
+    button.innerHTML = '';
+    button.innerHTML = /*html*/`
+        Cancel<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img">
+    `;
 }

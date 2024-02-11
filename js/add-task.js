@@ -458,8 +458,10 @@ async function createTask() {
         clearFields();
        
         let popup = document.getElementById('popup-add-task');
+        let popupAdd = document.getElementById('popup-boardAddTask');
         if (popup) {
             popup.classList.add('d-none');
+            popupAdd.classList.remove('d-none');
             await openToBoard();
         } else {
             console.log('Popup wurde nicht gefunden');

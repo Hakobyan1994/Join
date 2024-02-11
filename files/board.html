@@ -459,6 +459,22 @@
              .progres_img{
                 margin-bottom: 24px;
              }
+
+            .popup-boardAddTask {
+            z-index: 999;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+            .popup-boardAddTask img {
+            width: 326px;
+            height: 74px;
+            }
             
     </style>
     
@@ -466,6 +482,10 @@
 
 <body onload="initBoard()">
     <div w3-include-html="/assets/templates/menubar.html"></div>
+
+    <div class="popup-boardAddTask d-none" id="popup-boardAddTask">
+        <img src="/assets/img/task-to-board.svg" alt="">
+    </div>
 
     <div class="board-popup-bg d-none" id="popup-add-task">
             <div class="board-popup" id="popup-add-task-content"></div>
@@ -492,15 +512,15 @@
 
         <div class="adding_div">
             <div class="todo_div">
-                <h3>To do</h3> <button class="adding_Button">+</button>
+                <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
 
             </div>
             <div class="progress_Div">
-                <h3>In progress</h3> <button class="adding_Button">+</button>
+                <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
 
             </div>
             <div class="feedback_div">
-                <h3>Await Feedback</h3> <button class="adding_Button">+</button>
+                <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
             </div>
 
 
@@ -515,10 +535,10 @@
 
     </div>
     <div class="card_mainContainer">
-        <div class="card_Div" id="new-to-do"></div>
+        <div class="card_Div" id="board-to-do"></div>
 
-        <div class="card_Div">
-            <div class="progress_card">
+        <div class="card_Div" id="board-in-progress">
+            <div class="progress_card" id="board-in-progress-section">
                 <div class="progress_infocard">
                     <button class="user_Story_button">User Story</button>
                     <div class="cooking_title_div">
@@ -538,8 +558,8 @@
 
         </div>
 
-        <div class="card_Div">
-            <div class="main_Feedback_div">
+        <div class="card_Div" id="board-await-feedback">
+            <div class="main_Feedback_div" id="board-await-feedback-section">
                 <div class="main_Feedback_Infodiv">
                     <button class="tecnical_TaskButton">Technical Task</button>
                     <div class="feedback_TitleDiv">
@@ -571,8 +591,8 @@
 
                
         </div>
-        <div class="card_Div">
-            <div class="main_donediv">
+        <div class="card_Div" id="board-done">
+            <div class="main_donediv" id="board-done-section">
                 <div class="doneInfo_Div">
                     <button class="technical_Donebutton">Technical Task</button>
                     <div class="done_titleInfo">
