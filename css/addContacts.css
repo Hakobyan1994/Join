@@ -178,8 +178,9 @@
     width: 64px;
     height: 64px;
     position: relative;
-    right: 94px;
+    right: 65px;
     bottom: 3px;
+    border-radius: 100px;
 }
 
 .person-img-bgr {
@@ -197,9 +198,9 @@
 
 .close-img-con {
     position: relative;
-    top: px;
+    top: -50px;
     bottom: 70px;
-    left: 712px;
+    left: 680px;
     width: 32px;
     height: 32px;
     padding: 4px;
@@ -213,6 +214,11 @@
     width: 24px;
     height: 24px;
     flex-shrink: 0;
+}
+
+.close-img-con img:hover {
+    background-color: lightgrey;
+    border-radius: 10px;
 }
 
 .input-svg-pos {

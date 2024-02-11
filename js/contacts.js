@@ -5,7 +5,12 @@ let initials;
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-    contacts.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Überprüfe, ob contacts nicht leer ist und jeder Kontakt einen Namen hat, bevor du versuchst zu sortieren
+    if (contacts.length > 0 && contacts.every(contact => contact.name)) {
+        contacts.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
 
@@ -40,12 +45,14 @@ async function addToContacts() {
     let email = emailInput.value.trim();
     let phone = phoneInput.value.trim();
 
-    let initials = formatInitials(name);
+    let formattedName = splitNameAndCapitalize(name);
 
-    if (name === '' || email === '' || phone === '') {
+    let initials = formatInitials(formattedName);
+
+    if (formattedName === '' || email === '' || phone === '') {
         alert('Please fill in all fields.');
     } else {
-        addContactToArray(name, email, phone, initials);
+        addContactToArray(formattedName, email, phone, initials);
         clearInputs(nameInput, emailInput, phoneInput);
         closeDialog();
         await setItem('contacts', JSON.stringify(contacts));
@@ -54,9 +61,23 @@ async function addToContacts() {
     }
 }
 
+function splitNameAndCapitalize(inputName) {
+    const nameParts = inputName.trim().split(' ');
+    const formattedNameParts = [];
+
+    for (let i = 0; i < nameParts.length; i++) {
+        const part = nameParts[i];
+        const formattedPart = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+        formattedNameParts.push(formattedPart);
+    }
+
+    return formattedNameParts.join(' ');
+}
+
 function formatInitials(inputName) {
     let nameParts = inputName.trim().split(' ');
     let initials = '';
+
     for (let i = 0; i < nameParts.length; i++) {
         initials += nameParts[i].charAt(0).toUpperCase();
     }
@@ -65,12 +86,16 @@ function formatInitials(inputName) {
 }
 
 function addContactToArray(name, email, phone, initials) {
+    let randomColor = getRandomColor(initials);
+    let contactImg = generateContactImage(initials, randomColor);
     let contact = {
         'id': contactIdCounter++,
         'name': name,
         'email': email,
         'phone': phone,
-        'initials': initials
+        'initials': initials,
+        'contactImg': contactImg,
+        'color': randomColor
     };
     contacts.push(contact);
 }
@@ -125,9 +150,15 @@ function addInitialsToContactImage(contact, imageId) {
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-        const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
-        color += letters[charIndex];
+    if (seed && seed.length > 0) {
+        for (let i = 0; i < 6; i++) {
+            const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
+            color += letters[charIndex];
+        }
+    } else {
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
     }
     return color;
 }
@@ -157,6 +188,26 @@ async function showEditMask(i) {
     dialog.classList.remove('d-none');
     dialog.innerHTML = generateEditMask(i);
     loadContactInfo(i);
+    displayContactImage(i); // Aufruf einer neuen Funktion zur Anzeige des Kontaktbildes
+}
+
+function displayContactImage(i) {
+    let contact = contacts[i];
+    let contactImage = document.getElementById('contactImageEdit'); // Holen Sie sich das Bild-Element
+    if (contactImage) {
+        // Verwenden Sie das generierte Bild, um das Bild für die Initialen zu ersetzen
+        contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=fff`;
+
+        // Setzen Sie die Höhe und Breite des Bildes auf die gewünschten Werte
+        contactImage.style.width = '100px'; // Beispielbreite
+        contactImage.style.height = '100px'; // Beispielhöhe
+
+        // Setzen Sie die Hintergrundfarbe des Bildes auf transparent
+        contactImage.style.backgroundColor = 'transparent';
+
+        // Setzen Sie den Alt-Text auf die Initialen des Kontakts
+        contactImage.alt = contact.initials;
+    }
 }
 
 function loadContactInfo(i) {
@@ -191,4 +242,3 @@ function contactInfoSlider(i) {
         applyRandomColorToImage(imageElement, contact.initials);
     }
 }
-
