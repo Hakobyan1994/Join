@@ -22,8 +22,10 @@ async function init() {
 
 async function initAddTask() {
     await includeHTML();
+    await loadTasks();
+    await loadContacts();
     renderAddTask();
-    loadContacts();
+    
 }
 
 async function initContacts() {
@@ -35,6 +37,6 @@ async function initContacts() {
 async function initBoard() {
     await includeHTML();
     await loadTasks();
-    loadToDo();
-
+    await loadToDo();
 }
+

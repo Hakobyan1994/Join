@@ -51,6 +51,33 @@ label p {
     margin: 0;
 }
 
+.title-div {
+    height: 102px;
+}
+
+.dueDate-div {
+    height: 77px;
+}
+
+.category-div {
+    height: 58px;
+}
+
+.required-text {
+    width: 119px;
+    height: 12px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.4px;
+    color: rgba(255, 129, 144, 1);
+    margin-top: 6px;
+}
+
+.required-text-date {
+    margin-top: -17px;
+    height: 0!important;
+}
+
 .inputfield {
     display: flex;
     padding: 12px 21px;
@@ -65,8 +92,16 @@ label p {
     cursor: pointer;
 }
 
-.inputfield:focus {
-    border-color: red!important;
+.inputfield-focus-red {
+    border: 1px solid rgba(255, 129, 144, 1)!important;
+}
+
+.inputfield-focus-blue {
+    border: 1px solid var(--lightblue)!important;
+}
+
+.inputfield-focus-white {
+    border: 1px solid rgba(209, 209, 209, 1);
 }
 
 input:focus {
@@ -75,6 +110,11 @@ input:focus {
 
 textarea:focus {
     outline: none;
+    border-color: var(--lightblue);
+}
+
+.subtask-input:focus {
+    border-color: var(--lightblue);
 }
 
 .inputfield::placeholder {
@@ -246,22 +286,31 @@ textarea {
     width: 440px!important;
 }
 
-.assigned-to:hover {
-    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+.assigned-to:focus {
     border-color: var(--lightblue)!important;
 }
 
+.assigned-to:focus-visible {
+    outline: none;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+select:focus-visible {
+    outline: none;
+}
+
+button:focus-visible {
+    outline: none;
+}
+
 .date-icon {
-    z-index: 4;
-    background-image: url(/assets/img/icons/calender.svg);
-    background-size: 24px 24px;
-    background-position: 395px 50%;
-    background-repeat: no-repeat;
-    color: rgba(0, 0, 0, 1);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+    position:relative;
+    left: 403px;
+    bottom: 37px;
+    cursor: pointer;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -297,6 +346,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: rgba(246, 247, 248, 1);
     padding: 5px  ;
 }
+
+/* .select-category {
+    position: relative;
+    bottom: 38px;
+    left: 404px;
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.select-category:hover {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    background-color: rgba(246, 247, 248, 1);
+    padding: 5px;
+    cursor: pointer;
+} */
 
 .subtasks {
     display: flex;
@@ -417,4 +485,20 @@ p.subtask-p {
 
 .editable-each:hover {
     background-color: white!important;
+}
+
+.popup-a-to-b {
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-a-to-b img {
+    width: 326px;
+    height: 74px;
 }

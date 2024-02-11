@@ -5,7 +5,6 @@ let subtasks = [];
 function renderAddTask() {
     let content = document.getElementById('add-task');
 
-
     content.innerHTML = /*html*/`
         <h2>Add Task</h2>
         <div class="main-box">
@@ -19,6 +18,7 @@ function renderAddTask() {
 }
 
 async function addEventFunctions() {
+    await loadContacts();
     await loadTasks();
     currentDate();
     getPrio();
@@ -28,8 +28,11 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     addSubtask();
     enterOnSubtask();
-    await loadContacts();
     loadContactsInAddTask();
+    dueDatePattern();
+    inputfieldFocus();
+    inputfieldFocusDate();
+    inputfieldFocusCategory();
 }
 
 
@@ -53,9 +56,10 @@ function generateHtmlAddTaskForm() {
 
 function generateHtmlTitle() {
     return /*html*/`
-        <div class="">
+        <div class="title-div">
             <label for="" class="">Title<p class="redstar">*</p></label>
-            <input type="text" class="inputfield" id="title" placeholder="Enter a title" required>
+            <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus()" oninput="inputfieldFocus()" required>
+            <div class="required-text d-none" id="required-title">This field is required</div>
         </div>
     `;
 }
@@ -81,14 +85,15 @@ function generateHtmlAssigned() {
 
 function generateHtmlDate() {
     return /*html*/`
-        <label for="" class="">Due date<p class="redstar">*</p></label>
-        <div>
-            <input type="date" class="inputfield date-icon" id="date" placeholder="dd/mm/yyyy" required>
-            <!-- <img src="/assets/img/icons/calender.svg" alt="Calender"> ///// Calender Icon is missing --> 
+        <label for="date">Due date<p class="redstar">*</p></label>
+        <div class="dueDate-div">
+            <div>
+                <input type="text" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
+                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
+            </div>
+            <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
-        <div id="" class="d-none">
-            This field is required
-        </div>  
+        
     `;
 }
 
@@ -98,7 +103,7 @@ function generateHtmlPrio() {
         <label for="">Prio</label>
         <div class="prio-btn" id="prio" role="group">
             <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio prio-medium prio-notselected" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+            <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
             <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
         </div>  
     `;
@@ -108,11 +113,15 @@ function generateHtmlPrio() {
 function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
-        <select class="inputfield" id="category">
-            <option selected>Select task category</option>
-            <option value="Technical Task">Technical Task</option>
-            <option value="User Story">User Story</option>
-        </select>  
+        <div class="category-div">
+            <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
+                <option value="" disabled selected hidden>Select task category</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+            </select>
+            <div class="required-text d-none" id="required-category">This field is required</div> 
+        </div>
+ 
     `;
 }
 
@@ -121,7 +130,7 @@ function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
         <div style="height: 64px;">
-            <input type="text" class="inputfield" id="subtask-input"> 
+            <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
                 <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
@@ -158,6 +167,7 @@ function loadContactsInAddTask() {
 
 
 function currentDate() {
+    let border = document.getElementById('date');
     let date = new Date();                              // get the actual date
 
     let day = date.getDate();           
@@ -167,9 +177,27 @@ function currentDate() {
     if (month < 10) month = '0' + month;
     if (day < 10) day = '0' + day;
 
-    let today = year + '-' + month + '-' + day;       
+    let today = `${day}/${month}/${year}`;
     document.getElementById("date").value = today;
+    border.classList.remove('inputfield-focus-white');
+    border.classList.add('inputfield-focus-blue');
 }
+
+
+function dueDatePattern() {
+    let dateInput = document.getElementById('date');
+
+    dateInput.addEventListener('input', function () {
+        let isValid = /^\d{2}\/\d{2}\/\d{4}$/.test(dateInput.value);
+
+        if (!isValid) {
+            dateInput.setCustomValidity('Ungültiges Datumsformat. Verwende das Format dd/mm/yyyy.');
+        } else {
+            dateInput.setCustomValidity('');
+        }
+    });
+} 
+   
 
 
 function pushPrio() {
@@ -183,6 +211,10 @@ function pushPrio() {
             selectedPriority = button.value;
         }
     });
+
+    if (selectedPriority === null) {
+        selectedPriority = 'medium';
+    }
 
     return selectedPriority;
 }
@@ -261,7 +293,6 @@ function addSubtask() {
     list.innerHTML = '';
 
     if (subtask.trim() === '') {
-        console.log('Subtask Feld darf nicht leer sein');
         updateSubtasklist();
         return;
     }
@@ -382,16 +413,21 @@ function clearFields() {
     subtasks = [];
     updateSubtasklist();
     let prio = document.querySelectorAll('.prio');
+    let medium = document.getElementById('medium');
     prio.forEach(function(button) {
         if(!button.classList.contains('prio-notselected')) {
             button.classList.add('prio-notselected');
-        }
+            medium.classList.remove('prio-notselected');
+        } 
     });
 }
 
 
 async function createTask() {
     let title = document.getElementById('title');
+    let requiredTitle = document.getElementById('required-title');
+    let requiredDate = document.getElementById('required-date');
+    let requiredCategory = document.getElementById('required-category');
     let description = document.getElementById('description');
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
@@ -399,7 +435,12 @@ async function createTask() {
     let category = document.getElementById('category');
 
     if (title.value && date.value && category.value) {
-        await loadTasks();
+        
+        let existingTasks = JSON.parse(await getItem('testaufgaben')) || [];
+
+        if (!Array.isArray(existingTasks)) {
+            existingTasks = [];
+        }
 
         let newTask = {
             title: title.value,
@@ -411,32 +452,141 @@ async function createTask() {
             subtask: subtasks
         };
 
-        clearFields();
-        tasks.push(newTask);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        existingTasks.push(newTask);
 
+        await setItem('testaufgaben', JSON.stringify(existingTasks));
+        clearFields();
+       
         let popup = document.getElementById('popup-add-task');
         if (popup) {
             popup.classList.add('d-none');
-            loadToDo();
+            await openToBoard();
         } else {
             console.log('Popup wurde nicht gefunden');
         }
     } else {
-        console.log('Notwendige Felder wurden nicht ausgefüllt');
+        alert('Notwendige Felder wurden nicht ausgefüllt');
+        requiredTitle.classList.remove('d-none');
+        requiredDate.classList.remove('d-none');
+        requiredCategory.classList.remove('d-none');
+        date.classList.add('inputfield-focus-red');
+        title.classList.add('inputfield-focus-red');
+        category.classList.add('inputfield-focus-red');
     }
 
+
+    await openToBoard();
     return tasks;
+    
 }
 
-function saveTasks(newTask) {
-    loadTasks();
-    tasks.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+function inputfieldFocus() {
+    let title = document.getElementById('title');
+    let required = document.getElementById('required-title');
+
+    if (document.activeElement === title) {
+        if (title.value.trim() === '') {
+            title.classList.add('inputfield-focus-red');
+            required.classList.remove('d-none');
+            title.classList.remove('inputfield-focus-blue');
+            title.classList.remove('inputfield-focus-white');
+        } else {
+            title.classList.add('inputfield-focus-blue');
+            required.classList.add('d-none');
+            title.classList.remove('inputfield-focus-red');
+            title.classList.remove('inputfield-focus-white');
+        }
+    } else {
+        title.classList.remove('inputfield-focus-red');
+        title.classList.remove('inputfield-focus-blue');
+        title.classList.add('inputfield-focus-white');
+        required.classList.add('d-none');
+    }
+    title.addEventListener('blur', function() {
+        title.classList.remove('inputfield-focus-red');
+        required.classList.add('d-none');
+    });
 }
 
-function loadTasks() {
-    let taskLocal = localStorage.getItem('tasks');
-    tasks = taskLocal ? JSON.parse(taskLocal) : [];
+function inputfieldFocusDate() {
+    let date = document.getElementById('date');
+    let required = document.getElementById('required-date');
+
+    if (document.activeElement === date) {
+        if (date.value.trim() === '') {
+            date.classList.add('inputfield-focus-red');
+            required.classList.remove('d-none');
+            date.classList.remove('inputfield-focus-blue');
+            date.classList.remove('inputfield-focus-white');
+        } else {
+            date.classList.add('inputfield-focus-blue');
+            required.classList.add('d-none');
+            date.classList.remove('inputfield-focus-red');
+            date.classList.remove('inputfield-focus-white');
+        }
+    } else {
+        date.classList.remove('inputfield-focus-red');
+        date.classList.remove('inputfield-focus-blue');
+        date.classList.add('inputfield-focus-white');
+        required.classList.add('d-none');
+    }
+    date.addEventListener('blur', function() {
+        date.classList.remove('inputfield-focus-red');
+        required.classList.add('d-none');
+    });
+}
+
+
+function inputfieldFocusCategory() {
+    let category = document.getElementById('category');
+    let required = document.getElementById('required-category');
+
+    if (document.activeElement === category) {
+        if (category.value.trim() === '') {
+            category.classList.add('inputfield-focus-red');
+            required.classList.remove('d-none');
+            category.classList.remove('inputfield-focus-blue');
+            category.classList.remove('inputfield-focus-white');
+        } else {
+            required.classList.add('d-none');
+            category.classList.add('inputfield-focus-blue');
+            category.classList.remove('inputfield-focus-red');
+            category.classList.remove('inputfield-focus-white');
+        }
+    } else {
+        required.classList.add('d-none');
+        category.classList.add('inputfield-focus-white');
+        category.classList.remove('inputfield-focus-red');
+        category.classList.remove('inputfield-focus-blue');
+    }
+    category.addEventListener('blur', function() {
+        category.classList.remove('inputfield-focus-red');
+        required.classList.add('d-none');
+    });
+}
+
+function openToBoard() {
+    let popup = document.getElementById('popup-a-to-b');
+
+    if (popup) {
+        popup.classList.remove('d-none');
+        setTimeout(() => {
+            window.location.href = "/files/board.html";
+        }, "1000");
+    } else {
+        console.log('Popup wurde nicht gefunden');
+        window.location.href = "/files/board.html";
+    }
+    
+}
+
+
+async function loadTasks() {
+    try {
+        tasks = JSON.parse(await getItem('testaufgaben')) || [];
+    } catch (e) {
+        console.error('Error in loadTasks:', e);
+    }
 }
 

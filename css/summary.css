@@ -521,3 +521,7 @@ body {
     line-height: 76.8px;
     cursor: default;
 }
+
+a {
+    text-decoration: none;
+}

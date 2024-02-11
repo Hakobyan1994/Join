@@ -32,31 +32,82 @@ function renderAddTaskForPopup() {
     
 }
 
-function loadToDo() {
-    let window = document.getElementById('new-to-do');
-    window.innerHTML = '';
+
+async function loadToDo() {
+    let todo = document.getElementById('new-to-do');
+    todo.innerHTML = '';
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
-        window.innerHTML += /*html*/`
-            <div class="progress_card">
+        todo.innerHTML += /*html*/`
+            <div class="progress_card" id="new-to-do-section-${i}">
                 <div class="progress_infocard">
-                    <button class="tecnical_TaskButton" id="category-bg-change-${i}">${task.category}</button>
+                    <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
-                    <h1>${task.title}</h1>
-                    <span class="recipe_span">${task.description}</span>
+                        <h1>${task.title}</h1>
+                        <span class="recipe_span">${task.description}</span>
+                    </div>
                 </div>
-            <div class="progress_image_Div">
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: 25%"></div>
+                <div class="progress_image_Div">
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                    <div> /${totalSubtask(i)} Subtasks</div>     
                 </div>
-                <div>1/2 Subtasks</div>
+                <div class="Members_Div">
+                    <div>Assigned To Symbols</div>
+                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                </div>
             </div>
-                
-            <div class="Members_Div">
-                <div>Assigned To Symbols</div>
-                <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-            </div>
-    `;
+        `;
+        changeCategoryButton(i);
+        // calculateSubtask(value, total);
     }
+}
+
+function changeCategoryButton(i) {
+    let categoryBtn = document.getElementById(`category-bg-change-${i}`);
+
+    if (categoryBtn.textContent === 'Technical Task') {
+        categoryBtn.classList.add('tecnical_TaskButton');
+    } else {
+        categoryBtn.classList.add('user_Story_button');
+    }
+}
+
+function totalSubtask(i) {
+        let task = tasks[i];
+        let total = task.subtask.length;
+        console.log(total);
+        return total;
+}
+
+function calculateSubtask(value, total) {
+}
+
+function returnValueOfSubtask() {
+
+}
+
+// ${value}/${total}
+
+
+function searchTasks() {
+    let input = document.getElementById('input-search-task');
+    let filter = input.value.toUpperCase();
+
+    for (let i = 0; i < tasks.length; i++) {
+        let todo = document.getElementById(`new-to-do-section-${i}`);
+        let array = tasks[i];
+        let description = array.description;
+        let title = array.title;
+        let name = title.toUpperCase();
+        let subname = description.toUpperCase();
+        if (name.indexOf(filter) > -1 || subname.indexOf(filter) > -1) {
+            todo.style.display = '';
+        } else {
+            todo.style.display = 'none';
+        }
+    }
+
 }
