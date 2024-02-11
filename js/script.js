@@ -39,3 +39,4 @@ async function initBoard() {
     await loadTasks();
     await loadToDo();
 }
+

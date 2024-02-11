@@ -42,7 +42,7 @@ async function loadToDo() {
         todo.innerHTML += /*html*/`
             <div class="progress_card">
                 <div class="progress_infocard">
-                    <button class="tecnical_TaskButton" id="category-bg-change-${i}">asdas${task.category}</button>
+                    <button class="tecnical_TaskButton" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
                         <h1>${task.title}</h1>
                         <span class="recipe_span">${task.description}</span>
