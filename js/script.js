@@ -22,10 +22,8 @@ async function init() {
 
 async function initAddTask() {
     await includeHTML();
-    await loadTasks();
-    await loadContacts();
     renderAddTask();
-    
+    loadContacts();
 }
 
 async function initContacts() {
@@ -37,6 +35,23 @@ async function initContacts() {
 async function initBoard() {
     await includeHTML();
     await loadTasks();
-    await loadToDo();
+    loadToDo();
+
 }
 
+
+
+async function deleteItem(key) {
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+
+    return fetch(url, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(res => {
+            if (res.success) {
+                console.log(`Key "${key}" erfolgreich gelöscht.`);
+            } else {
+                throw `Fehler beim Löschen des Keys "${key}".`;
+            }
+        })
+        .catch(error => console.error(`Fehler beim Löschen des Keys "${key}":`, error));
+}

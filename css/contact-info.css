@@ -1,18 +1,18 @@
 .contact-info-slider {
     position: fixed;
     top: 0;
-    right: 0; /* Startposition außerhalb des Bildschirms */
+    right: 0;
     bottom: 0;
-    width: 500px; /* Breite des Sliders */
-    transition: right 1.0s ease-in-out; /* Übergangseigenschaft nur für right */
+    width: 500px; 
+    transition: right 1.0s ease-in-out; 
 }
 
 .contact-info-slider.show {
     position: relative;
-    top: -400px;
+    top: -330px;
     left: 0;
     right: 0;
-    transform: translateY(15%); /* Slider wird vertikal zentriert */
+    transform: translateY(15%);
 }
 
 .slider-main-content {
@@ -20,7 +20,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 21px;
-    padding: 20px; /* Innenabstand für den Inhalt */
+    padding: 20px;
+    position: relative;
+    top: 160px;
 }
 
 
@@ -42,7 +44,6 @@
 
 .contact-name {
     display: flex;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -53,12 +54,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: 120%;
+    padding-bottom: 10px;
 }
 
 .edit-delete-btn-con {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     gap: 16px;
 }
 
@@ -72,7 +72,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-
+    cursor: pointer;
 }
 
 .edit-delete img {

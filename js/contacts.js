@@ -1,17 +1,23 @@
 let contacts = [];
 let contactIdCounter = 0;
+let initials;
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-    contacts.sort((a, b) => a.name.localeCompare(b.name));
+
+    let addBtn = document.getElementById('addBtn');
+    addBtn.innerHTML = generateAddBtn();
 
     let currentLetter = '';
     let currentSeparator = '';
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
-        let firstLetter = contact.name.charAt(0).toUpperCase();
+        let firstLetter = '';
+        if (contact.name && contact.name.length > 0) {
+            firstLetter = contact.name.charAt(0).toUpperCase();
+        }
 
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
@@ -25,30 +31,67 @@ function renderContacts() {
     }
 }
 
+//     contacts.sort((a, b) => a.name.localeCompare(b.name));
+
 async function addToContacts() {
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let phone = document.getElementById('phone');
+    let nameInput = document.getElementById('name');
+    let emailInput = document.getElementById('email');
+    let phoneInput = document.getElementById('phone');
 
-    addContactToArray(name, email, phone);
-    clearInputs(name, email, phone);
-    closeDialog();
-    renderContacts();
+    let name = nameInput.value.trim();
+    let email = emailInput.value.trim();
+    let phone = phoneInput.value.trim();
 
-    await setItem('contacts', JSON.stringify(contacts));
-}
+    let initials = formatInitials(name);
 
-function addContactToArray(name, email, phone) {
-    if (name.value.trim() === '' || email.value.trim() === '' || phone.value.trim() === '') {
+    if (name === '' || email === '' || phone === '') {
         alert('Please fill in all fields.');
     } else {
-        let contact = {
-            'name': name.value,
-            'email': email.value,
-            'phone': phone.value
-        };
-        contacts.push(contact);
+        addContactToArray(name, email, phone, initials);
+        clearInputs(nameInput, emailInput, phoneInput);
+        closeDialog();
+        await setItem('contacts', JSON.stringify(contacts));
+        await loadContacts();
+        renderContacts();
     }
+}
+
+function formatInitials(inputName) {
+    let nameParts = inputName.trim().split(' ');
+    let initials = '';
+    for (let i = 0; i < nameParts.length; i++) {
+        initials += nameParts[i].charAt(0).toUpperCase();
+    }
+
+    return initials;
+}
+
+function addContactToArray(name, email, phone, initials) {
+    let contact = {
+        'id': contactIdCounter++,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'initials': initials
+    };
+    contacts.push(contact);
+}
+
+async function saveContact(i) {
+    let contact = contacts[i];
+    let contactName = document.getElementById('nameEdit').value;
+    let contactEmail = document.getElementById('emailEdit').value;
+    let contactPhone = document.getElementById('phoneEdit').value;
+
+    contact.name = contactName;
+    contact.email = contactEmail;
+    contact.phone = contactPhone;
+
+    await setItem('contacts', JSON.stringify(contacts)); 
+    renderContacts();
+    document.getElementById('editMask').innerHTML = '';
+    closeDialog();
+    contactInfoSlider(i);
 }
 
 function clearInputs(name, email, phone) {
@@ -66,17 +109,19 @@ async function loadContacts() {
 }
 
 function addInitialsToContactImage(contact, imageId) {
-    const nameParts = contact.name.trim().split(' ');
-    let initials = '';
+    if (contact && contact.name) {
+        const nameParts = contact.name.trim().split(' ');
+        initials = '';
 
-    for (let i = 0; i < nameParts.length; i++) {
-        initials += nameParts[i].charAt(0).toUpperCase();
+        for (let i = 0; i < nameParts.length; i++) {
+            initials += nameParts[i].charAt(0).toUpperCase();
+        }
+
+        const imageElement = document.getElementById(imageId);
+        imageElement.alt = initials;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
+        applyRandomColorToImage(imageElement, initials);
     }
-
-    const imageElement = document.getElementById(imageId);
-    imageElement.alt = initials;
-    imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
-    applyRandomColorToImage(imageElement, initials);
 }
 
 function getRandomColor(seed) {
@@ -94,12 +139,9 @@ function applyRandomColorToImage(imageElement, seed) {
     imageElement.style.backgroundColor = randomColor;
 }
 
-function slideInAddContact() {
-
-}
-
 function closeDialog() {
     document.getElementById('dialog').classList.add('d-none');
+    document.getElementById('editMask').classList.add('d-none');
 }
 
 function dontCloseCard(event) {
@@ -112,6 +154,26 @@ function renderDialog() {
     dialog.innerHTML = generateDialog();
 }
 
+async function showEditMask(i) {
+    let dialog = document.getElementById('editMask');
+    dialog.classList.remove('d-none');
+    dialog.innerHTML = generateEditMask(i);
+    loadContactInfo(i);
+}
+
+function loadContactInfo(i) {
+    document.getElementById('nameEdit').value = contacts[i].name;
+    document.getElementById('emailEdit').value = contacts[i].email;
+    document.getElementById('phoneEdit').value = contacts[i].phone;
+}
+
+async function deleteContact(i) {
+    contacts.splice(i, 1);
+    document.getElementById('contactSlider').innerHTML = '';
+    closeDialog();
+    renderContacts();
+}
+
 function contactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     contactInfoSlider.innerHTML = '';
@@ -121,5 +183,13 @@ function contactInfoSlider(i) {
     let contactName = contact.name;
     let contactEmail = contact.email;
     let contactPhone = contact.phone;
-    contactInfoSlider.innerHTML = generateContactInfoSlider(contactName, contactEmail, contactPhone);
+    let imageId = `contactImageSlider`;
+    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId);
+    addInitialsToContactImage(contact, imageId);
+
+    let imageElement = document.getElementById(imageId);
+    if (imageElement) {
+        applyRandomColorToImage(imageElement, contact.initials);
+    }
 }
+
