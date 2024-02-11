@@ -107,7 +107,7 @@ function generateDialog() {
                             <div class="person-con">
                                 <img class="person-img-bgr" src="/assets/img/icons/Group 9.svg"
                                     alt="">
-                                <img class="person-img" src="/assets/img/icons/person.svg" alt="">
+                                <img class="person-img-add-contacts" src="/assets/img/icons/person.svg" alt="">
                             </div>
 
                             <form onsubmit="addToContacts()" class="add-contact-data">
