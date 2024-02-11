@@ -436,7 +436,6 @@ async function createTask() {
     let category = document.getElementById('category');
 
     if (title.value && date.value && category.value) {
-        await loadTasks();
 
         let newTask = {
             title: title.value,
@@ -449,8 +448,7 @@ async function createTask() {
         };
 
         clearFields();
-        tasks.push(newTask);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        saveTasks(newTask)
         openToBoard();
 
         let popup = document.getElementById('popup-add-task');
@@ -498,29 +496,6 @@ async function loadTasks() {
     tasks = taskLocal ? JSON.parse(taskLocal) : [];
 }
 
-// function inputfieldFocus(color) {
-//     let title = document.getElementById('title');
-//     if(color === 'red' || title.value.trim() === '') {
-//         title.classList.remove('inputfield-focus-blue');
-//         title.classList.add('inputfield-focus-red');
-//     } else if (color === 'blue') {
-//         title.classList.remove('inputfield-focus-red');
-//         title.classList.add('inputfield-focus-blue');
-//     }
-
-// }
-
-// function inputfieldFocus() {
-//     let title = document.getElementById('title');
-
-//     title.addEventListener('focus', function() {
-//         if (title.value.trim() === '') {
-//             title.classList.add('inputfield-focus-red');
-//         } else {
-//             title.classList.add('inputfield-focus-blue');
-//         }
-//     })
-// }
 
 function inputfieldFocus() {
     let title = document.getElementById('title');

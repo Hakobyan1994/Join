@@ -38,3 +38,20 @@ async function initBoard() {
     loadToDo();
 
 }
+
+
+
+async function deleteItem(key) {
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+
+    return fetch(url, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(res => {
+            if (res.success) {
+                console.log(`Key "${key}" erfolgreich gelöscht.`);
+            } else {
+                throw `Fehler beim Löschen des Keys "${key}".`;
+            }
+        })
+        .catch(error => console.error(`Fehler beim Löschen des Keys "${key}":`, error));
+}
