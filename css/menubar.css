@@ -80,7 +80,7 @@ nav {
 }
 
 .legalbox a:hover {
-    color: var(--lightblue, purple);
+    color: var(--lightblue);
     transition: 125ms ease-in-out;
 }
 
@@ -112,6 +112,7 @@ header p {
 }
 
 .help-icon {
+    display: block;
     width: 32px;
     height: 32px;
 
@@ -120,9 +121,7 @@ header p {
 
 .help-icon:hover {
     display: block;
-    width: 40px;
-    height: 40px;
-
+    transform: scale(1.25);
 }
 
 .profile-icon {

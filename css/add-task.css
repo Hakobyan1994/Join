@@ -95,6 +95,7 @@ label p {
     background: rgba(255, 255, 255, 1);
     width: 440px !important;
     cursor: pointer;
+    color: rgba(0, 0, 0, 1);
 }
 
 .inputfield-focus-red {
@@ -290,7 +291,45 @@ textarea {
 }
 
 .assigned-to {
+    position: relative;
+    z-index: 4;
     width: 440px!important;
+}
+
+.assigned-list {
+    z-index: 3;
+    position: relative;
+    bottom: 32px;
+    background-color: white;
+    padding: 4px 12px;
+}
+
+.assigned-contact-list {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.a-c-l-12mg {
+    margin-bottom: 12px;
+}
+
+.dropdown-icon {
+    z-index: 4;
+    position: relative;
+    bottom: 36px;
+    left: 400px;
+    cursor: pointer;
+    height: 24px;
+    padding: 8px;
+}
+
+.dropdown-icon:hover {
+    border-radius: 100%;
+    background-color: rgba(246, 247, 248, 1);
+    padding: 8px;
+}
+
+.assigned-to::placeholder {
+    color: rgba(0, 0, 0, 1);
 }
 
 .assigned-to:focus {
