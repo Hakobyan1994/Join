@@ -6,13 +6,15 @@ function renderAddTask() {
     let content = document.getElementById('add-task');
 
     content.innerHTML = /*html*/`
-        <h2>Add Task</h2>
-        <div class="main-box">
-            <div class="form">
-                ${generateHtmlAddTaskForm()}      
-            </div>
-            ${generateHtmlFormSection()}
-        </div>    
+            <h2>Add Task</h2>
+            <div class="main-box">
+                <div class="form">
+                    ${generateHtmlAddTaskForm()}      
+                </div>
+            </div>    
+            <div style="width: 100%;">    
+                ${generateHtmlFormSection()}
+            </div>  
     `;
     addEventFunctions();
 }
