@@ -24,6 +24,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .d-none {
     display: none;
 }
@@ -130,6 +131,10 @@
     height: 50px;
 }
 
+.create-contact-btn:hover {
+    background-color: #2AACE2;
+}
+
 .cancel-btn {
     display: flex;
     padding: 16px;
@@ -146,6 +151,15 @@
     line-height: 120%;
     cursor: pointer;
     height: 50px;
+}
+
+.cancel-btn:hover {
+    color: #2AACE2;
+    border-color: #2AACE2;
+}
+
+.cancel-btn-img:hover {
+   color: #2AACE2;
 }
 
 .contact-set {
@@ -243,4 +257,32 @@
 
 .check-svg {
     color: white;
+}
+
+.slide-in {
+    animation: slideInFromRight 0.5s forwards;
+}
+
+.slide-out {
+    animation: slideOutToLeft 0.5s forwards;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
 }

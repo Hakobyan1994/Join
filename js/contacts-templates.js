@@ -132,7 +132,7 @@ function generateDialog() {
 
                                 <div class="add-contact-btns">
                                     <button type="button" class="cancel-btn" onclick="closeDialog()">
-                                        Cancel <img src="/assets/img/icons/Close.svg" alt="">
+                                        Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
