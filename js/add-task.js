@@ -79,7 +79,7 @@ function generateHtmlAssigned() {
         <label>Assigned to</label>
         <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onfocus="activeAssignedTo()" onblur="deactiveAssignedTo()">
         <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
-        <div class="assigned-list" id="assigned-list"><div class="assigned-contact-list" id="assigned-contact-list"></div></div>
+        <div class="assigned-list d-none" id="assigned-list"></div>
         <!-- <option value="" disabled selected hidden>Select contacts to assign</option> -->
     `;
 }
@@ -168,16 +168,30 @@ function deactiveAssignedTo() {
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
-    // let contactlist = document.getElementById('assigned-contact-list');
-    // contactlist.classList.toggle('a-c-l-12mg');
     list.classList.toggle('d-none');
     list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
+        const img = contacts[i].initials;
         list.innerHTML += /*html*/`
-            <div>${name}</div>
+            <div class="assigned-contact-list" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+                <div>
+                    <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                    <div>${name}</div>
+                </div>
+                <input type="checkbox" id="checkbox-contact-${i}">
+            </div>
         `;    
     }
+}
+
+function selectAssignedContacts(i) {
+    let contact = document.getElementById(`assigned-contacts-${i}`);
+    let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    contact.classList.toggle('select-contact-blue');
+    contact.classList.toggle('white');
+    checkbox.checked = !checkbox.checked;
+
 
 }
 
