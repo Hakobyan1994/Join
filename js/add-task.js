@@ -123,9 +123,9 @@ function generateHtmlCategory() {
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
             </select> -->
-            <input class="inputfield category" placeholder="Select task category" id="category" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()"required>
-            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()">
-            <div class="category-list" id="category-list"></div>
+            <input class="inputfield category" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()"required readonly>
+            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()">
+            <div class="category-list d-none" id="category-list"></div>
             <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
         </div>
  
@@ -205,6 +205,54 @@ function renderAssignedList() {
     }
 
 }
+
+function renderCategoryList() {
+    let list = document.getElementById('category-list');
+    list.classList.toggle('d-none');
+    list.innerHTML = /*html*/`
+        <div class="category-list-div" value="Technical Task"  id="technical" onclick="selectCategory('technical')">Technical Task</div>  
+        <div class="category-list-div" value="User Story" id="story" onclick="selectCategory('story')">User Story</div>  
+    `;
+}
+
+function selectCategory(category) {
+    let technical = document.getElementById('technical');
+    let story = document.getElementById('story');
+
+    if (category === 'technical') {
+        technical.classList.toggle('grey');
+        technical.classList.toggle('white-bg');
+        story.classList.remove('grey');
+        story.classList.remove('white-bg');
+    }
+
+    else if (category === 'story') {
+        story.classList.toggle('grey');
+        story.classList.toggle('white-bg');
+        technical.classList.remove('grey');
+        technical.classList.remove('white-bg');
+    }
+    pushCategorytoInput(category);
+    inputfieldFocusCategory();
+}
+
+
+function pushCategorytoInput(category) {
+    let categoryInput = document.getElementById('category');
+    let approvedElements = document.querySelectorAll('.grey');
+    let list = document.getElementById('category-list');
+
+    if (approvedElements.length > 0) {
+        categoryInput.value = approvedElements[0].textContent;
+        list.classList.add('d-none');
+    } else {
+        categoryInput.value = '';
+        inputfieldFocusCategory();
+    }
+
+}
+
+
 
 function selectAssignedContacts(i) {
     let contact = document.getElementById(`assigned-contacts-${i}`);
@@ -324,11 +372,6 @@ function getPrio() {
             }
         });
     });
-}
-
-function renderCategoryList() {
-    let list = document.getElementById('category-list');
-    list.classList.toggle('d-none');
 }
 
 
@@ -498,6 +541,9 @@ function clearFields() {
     document.getElementById('description').value = '';
     document.getElementById('assigned').value = '';
     document.getElementById('date').value = '';
+    document.getElementById('category').value = '';
+
+    document.getElementById('assigned-list').classList.add('d-none');
     users = [];
     iniimg = [];
     subtasks = [];

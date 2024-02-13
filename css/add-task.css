@@ -73,6 +73,10 @@ label p {
     width: 440px!important;
 }
 
+.category::placeholder {
+    color: rgba(0, 0, 0, 1)!important;
+}
+
 .category-list {
     z-index: 3;
     position: relative;
@@ -84,12 +88,32 @@ label p {
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.10);
     cursor: pointer;
     color: rgba(0, 0, 0, 1);
-    overflow-y: scroll;
-    height: 100px;
+    height: max-content;
     width: 440px;
-    scrollbar-width: thin;
-    display: flex;
-    flex-direction: column;
+    padding-top: 6px;
+}
+
+.white-bg {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.grey {
+    background-color: rgba(238,238,238,1);
+}
+
+.category-list-div {
+    padding: 12px;
+    border-radius: 10px;
+    padding-right: 16px;
+}
+
+.category-list-div:hover {
+    background-color: rgba(238,238,238,1);
+}
+
+
+.select-category-bg {
+    background-color: rgba(238,238,238,1);
 }
 
 .required-text {
@@ -335,12 +359,13 @@ textarea {
     scrollbar-width: thin;
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
 
 .assigned-button {
     z-index: 2;
-    position: fixed;
-    bottom: 176px;
+    position: relative;
+    bottom: 20px;
     padding-left: 8px;
     padding-right: 8px;
     width: 440px;
