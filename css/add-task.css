@@ -306,9 +306,19 @@ textarea {
     color: rgba(0, 0, 0, 1);
     overflow-y: scroll;
     height: 112px;
+    width: 440px;
     scrollbar-width: thin;
     display: flex;
     flex-direction: column;
+}
+
+.assigned-button {
+    z-index: 2;
+    position: fixed;
+    bottom: 176px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 440px;
 }
 
 .assigned-contact-list-icon {

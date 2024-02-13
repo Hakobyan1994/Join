@@ -1,5 +1,7 @@
 let tasks = [];
 let subtasks = [];
+let users = [];
+let iniimg = [];
 
 
 function renderAddTask() {
@@ -77,10 +79,10 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onfocus="activeAssignedTo()" onblur="deactiveAssignedTo()">
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()">
         <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
-        <!-- <option value="" disabled selected hidden>Select contacts to assign</option> -->
+        <div class="assigned-button" id="assigned-button"></div>
     `;
 }
 
@@ -156,45 +158,94 @@ function generateHtmlFormSection() {
     `;
 }
 
-function activeAssignedTo() {
-    let input = document.getElementById('assigned');
-    input.placeholder = '';
-}
+// function activeAssignedTo() {
+//     let input = document.getElementById('assigned');
+//     let list = document.getElementById('assigned-list');
+//     let filter = input.value.toUpperCase();
+//     input.placeholder = '';
+//     list.classList.remove('d-none');
+// }
 
-function deactiveAssignedTo() {
-    let input = document.getElementById('assigned');
-    input.placeholder = 'Select contacts to assign';
-}
+// function deactiveAssignedTo() {
+//     let input = document.getElementById('assigned');
+//     input.placeholder = 'Select contacts to assign';
+//     let list = document.getElementById('assigned-list');
+//     list.classList.add('d-none');
+
+// }
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
+    let input = document.getElementById('assigned');
+        if (list.classList.contains('d-none')) {
+            input.placeholder = 'Searchfield + Checkbox on progress';
+        } else {
+            input.placeholder = 'Select contacts to assign';
+        }
     list.classList.toggle('d-none');
     list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
         const img = contacts[i].initials;
+
+        const userIndex = users.indexOf(name);
+        const isSelected = userIndex !== -1;
         list.innerHTML += /*html*/`
-            <div class="assigned-contact-list" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+            <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
                 <div>
                     <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <input type="checkbox" id="checkbox-contact-${i}">
+                <input type="checkbox" class="d-none" id="checkbox-contact-${i}">
             </div>
         `;    
     }
+
 }
 
 function selectAssignedContacts(i) {
     let contact = document.getElementById(`assigned-contacts-${i}`);
-    let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
     contact.classList.toggle('white');
-    checkbox.checked = !checkbox.checked;
-
-
+    // checkbox.checked = !checkbox.checked;
+    pushUser(i);
 }
 
+function pushUser(i) {
+    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    let contact = document.getElementById(`assigned-contacts-${i}`);
+    let approved = contact.classList.contains('select-contact-blue');
+    let user = contacts[i].name;
+    let img = contacts[i].initials;
+    if (approved) {
+        let index = users.indexOf(user);
+        if (index === -1) {
+            users.push(user);
+            iniimg.push(img);
+        }
+    } else {
+        let index = users.indexOf(user);
+        if (index !== -1) {
+            users.splice(index, 1);
+            iniimg.splice(index, 1);
+        }
+    }
+
+    generateAssignedButton();
+}
+
+function generateAssignedButton() {
+    let div = document.getElementById('assigned-button');
+    div.innerHTML = '';
+    for (let p = 0; p < users.length; p++) {
+        const letters = iniimg[p];
+        div.innerHTML += /*html*/`
+            <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
+        `;
+        
+    }
+}
 
 function currentDate() {
     let border = document.getElementById('date');
@@ -440,6 +491,8 @@ function clearFields() {
     document.getElementById('description').value = '';
     document.getElementById('assigned').value = '';
     document.getElementById('date').value = '';
+    users = [];
+    iniimg = [];
     subtasks = [];
     updateSubtasklist();
     let prio = document.querySelectorAll('.prio');
@@ -450,6 +503,7 @@ function clearFields() {
             medium.classList.remove('prio-notselected');
         } 
     });
+    generateAssignedButton();
 }
 
 
@@ -475,7 +529,7 @@ async function createTask() {
         let newTask = {
             title: title.value,
             description: description.value,
-            assigned: assigned.value,
+            assigned: users,
             date: date.value,
             priority: priority,
             category: category.value,
