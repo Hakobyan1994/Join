@@ -156,7 +156,7 @@ header p {
 
 .clickInfoDiv {
 
-    display: block;
+    display: none;
     width: 150px;
     height: 158px;
     background-color: #2A3647;

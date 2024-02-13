@@ -1,3 +1,10 @@
+  let progress=[{}];
+
+  
+  let awaitFeedback=[];
+  let done=[];
+   
+
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
@@ -34,15 +41,17 @@ function renderAddTaskForPopup() {
 }
 
 
+ 
+  
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
-
     for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
+        let task = tasks[i];
+        console.log(task);
         todo.innerHTML += /*html*/`
-            <div class="progress_card" id="board-to-do-section-${i}">
-                <div class="progress_infocard">
+           <div draggable="true" ondragstart="dragStart(event)" ondrop="allowDrop(event)" class="progress_card" id="board-to-do-section${i}">
+                <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
                         <h1>${task.title}</h1>
@@ -63,8 +72,65 @@ async function loadToDo() {
         `;
         changeCategoryButton(i);
         // calculateSubtask(value, total);
-    }
+      
+       
+    }  
+}  
+
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
 }
+
+function dragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+    ev.target.appendChild(draggedElement);
+  
+}
+  
+     
+
+ 
+
+  
+    
+// function allowDrop(ev) {
+        
+//     ev.preventDefault(); 
+//     // console.log(ev);
+// }  
+   
+//    function dragStart(ev) {
+//        ev.dataTransfer.setData("text", ev.target.className);
+//     }   
+    
+    
+
+
+// function drop(ev) {
+//     ev.preventDefault();
+//     var data = ev.dataTransfer.getData("text");
+//     // Hier verwenden wir getElementsByClassName und das erste Element der Sammlung
+//     var targetElement = document.getElementsByClassName(data)[0];
+
+//     ev.target.appendChild(targetElement);
+   
+// }
+  
+  
+
+
+   
+
+  
+    
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
@@ -90,7 +156,7 @@ function returnValueOfSubtask() {
 
 }
 
-// ${value}/${total}
+
 
 function searchTasks() {
     searchTaskToDo();
@@ -114,7 +180,13 @@ function searchTaskToDo() {
         }
     }
 
-}
+}  
+
+
+
+   
+   
+   
 
 function cancelButton() {
     let button = document.getElementById('clear-button');
