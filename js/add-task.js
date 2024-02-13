@@ -30,7 +30,6 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     addSubtask();
     enterOnSubtask();
-    loadContactsInAddTask();
     dueDatePattern();
     inputfieldFocus();
     inputfieldFocusDate();
@@ -78,9 +77,10 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <select class="inputfield assigned-to" id="assigned">
-            <option value="" disabled selected hidden>Select contacts to assign</option>
-        </select>  
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onfocus="activeAssignedTo()" onblur="deactiveAssignedTo()">
+        <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
+        <div class="assigned-list d-none" id="assigned-list"></div>
+        <!-- <option value="" disabled selected hidden>Select contacts to assign</option> -->
     `;
 }
 
@@ -156,15 +156,43 @@ function generateHtmlFormSection() {
     `;
 }
 
+function activeAssignedTo() {
+    let input = document.getElementById('assigned');
+    input.placeholder = '';
+}
 
-function loadContactsInAddTask() {
-    let optionValue = document.getElementById('assigned');
+function deactiveAssignedTo() {
+    let input = document.getElementById('assigned');
+    input.placeholder = 'Select contacts to assign';
+}
+
+function renderAssignedList() {
+    let list = document.getElementById('assigned-list');
+    list.classList.toggle('d-none');
+    list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
-        optionValue.innerHTML += /*html*/`
-            <option value="${name}">${name}</option>
+        const img = contacts[i].initials;
+        list.innerHTML += /*html*/`
+            <div class="assigned-contact-list" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+                <div>
+                    <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                    <div>${name}</div>
+                </div>
+                <input type="checkbox" id="checkbox-contact-${i}">
+            </div>
         `;    
     }
+}
+
+function selectAssignedContacts(i) {
+    let contact = document.getElementById(`assigned-contacts-${i}`);
+    let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    contact.classList.toggle('select-contact-blue');
+    contact.classList.toggle('white');
+    checkbox.checked = !checkbox.checked;
+
+
 }
 
 
