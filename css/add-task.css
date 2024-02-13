@@ -67,6 +67,31 @@ label p {
     height: 58px;
 }
 
+.category {
+    position: relative;
+    z-index: 4;
+    width: 440px!important;
+}
+
+.category-list {
+    z-index: 3;
+    position: relative;
+    bottom: 32px;
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid rgba(209, 209, 209, 0.2);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    color: rgba(0, 0, 0, 1);
+    overflow-y: scroll;
+    height: 100px;
+    width: 440px;
+    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+}
+
 .required-text {
     width: 119px;
     height: 12px;
@@ -78,7 +103,7 @@ label p {
 }
 
 .required-text-date {
-    margin-top: -17px;
+    margin-top: 4px;
     height: 0!important;
 }
 
@@ -415,7 +440,7 @@ button:focus-visible {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
+    opacity: 1;
     cursor: pointer;
 }
 

@@ -92,8 +92,8 @@ function generateHtmlDate() {
         <label for="date">Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input type="text" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
-                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
+                <input type="date" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
+                <!-- <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()"> -->
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
@@ -118,12 +118,15 @@ function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
         <div class="category-div">
-            <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
+            <!-- <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
                 <option value="" disabled selected hidden>Select task category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
-            </select>
-            <div class="required-text d-none" id="required-category">This field is required</div> 
+            </select> -->
+            <input class="inputfield category" placeholder="Select task category" id="category" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()"required>
+            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()">
+            <div class="category-list" id="category-list"></div>
+            <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
         </div>
  
     `;
@@ -261,7 +264,6 @@ function currentDate() {
     let today = `${day}/${month}/${year}`;
     document.getElementById("date").value = today;
     border.classList.remove('inputfield-focus-white');
-    border.classList.add('inputfield-focus-blue');
 }
 
 
@@ -322,6 +324,11 @@ function getPrio() {
             }
         });
     });
+}
+
+function renderCategoryList() {
+    let list = document.getElementById('category-list');
+    list.classList.toggle('d-none');
 }
 
 
@@ -543,6 +550,7 @@ async function createTask() {
        
         let popup = document.getElementById('popup-add-task');
         let popupAdd = document.getElementById('popup-boardAddTask');
+         await openToBoard();
         if (popup) {
             popup.classList.add('d-none');
             popupAdd.classList.remove('d-none');
@@ -560,7 +568,6 @@ async function createTask() {
         category.classList.add('inputfield-focus-red');
     }
 
-    await openToBoard();
     return tasks;
     
 }
