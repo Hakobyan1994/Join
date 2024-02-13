@@ -1,9 +1,3 @@
-  let progress=[{}];
-
-  
-  let awaitFeedback=[];
-  let done=[];
-   
 
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
@@ -48,9 +42,8 @@ async function loadToDo() {
     todo.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
-        console.log(task);
         todo.innerHTML += /*html*/`
-           <div draggable="true" ondragstart="dragStart(event)" ondrop="allowDrop(event)" class="progress_card" id="board-to-do-section${i}">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" class="progress_card" id="board-to-do-section${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -75,9 +68,9 @@ async function loadToDo() {
       
        
     }  
+     
 }  
-
-
+   
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -85,52 +78,26 @@ function allowDrop(ev) {
 
 function dragStart(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-}
+    ev.target.style.transform = "rotate(13deg)";
+}  
+
+ 
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     var draggedElement = document.getElementById(data);
-    ev.target.appendChild(draggedElement);
-  
+    // ev.target.appendChild(draggedElement);
+    draggedElement.style.transform = "rotate(0deg)";
+    if (!ev.target.contains(draggedElement)) {
+        ev.target.appendChild(draggedElement);
+    }
 }
   
      
 
  
-
   
-    
-// function allowDrop(ev) {
-        
-//     ev.preventDefault(); 
-//     // console.log(ev);
-// }  
-   
-//    function dragStart(ev) {
-//        ev.dataTransfer.setData("text", ev.target.className);
-//     }   
-    
-    
-
-
-// function drop(ev) {
-//     ev.preventDefault();
-//     var data = ev.dataTransfer.getData("text");
-//     // Hier verwenden wir getElementsByClassName und das erste Element der Sammlung
-//     var targetElement = document.getElementsByClassName(data)[0];
-
-//     ev.target.appendChild(targetElement);
-   
-// }
-  
-  
-
-
-   
-
-  
-    
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);

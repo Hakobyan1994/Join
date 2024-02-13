@@ -229,6 +229,7 @@
             padding: 16px;
             cursor: pointer;
             margin-bottom: 16px;
+            transition: transform 0.3s
         }
 
         .progress_infocard {
@@ -489,7 +490,13 @@
             width: 326px;
             height: 74px;
             }
-            
+              
+
+
+            .rotate {
+      transform: rotate(45deg);
+    }
+              
     </style>
     
 </head>
@@ -550,10 +557,10 @@
     </div>
     <div class="card_mainContainer">
         <div    class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)">
-
+            
         </div>
 
-        <div class="card_Div2"  id="board-in-progress"   ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div  class="card_Div2"  id="board-in-progress"   ondrop="drop(event)" ondragover="allowDrop(event)">
             <div class="progress_card" id="board-in-progress-section">
                 <div class="progress_infocard">
                     <button class="user_Story_button">User Story</button>
