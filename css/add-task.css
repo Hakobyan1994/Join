@@ -562,7 +562,7 @@ p.subtask-p {
 .separator-border {
     border-right: 1px solid var(--line);
     border-color: var(--line);
-    padding-right: 10px!important;
+    /* padding-right: 10px!important; */
     margin-right: 4px;
 }
 
@@ -592,7 +592,7 @@ p.subtask-p {
 .clear-check-icons {
     position: relative;
     bottom: 20px;
-    left: 184px;
+    left: 191px;
     height: 30px;
     width: 30px;
     cursor: pointer;

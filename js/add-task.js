@@ -141,7 +141,7 @@ function generateHtmlSubtasks() {
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
                 <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
-                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()">
+                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
             </div>
         </div>
         <ul id="subtasks" class="subtasks"></ul>
@@ -531,7 +531,7 @@ function clearButtonImgChange() {
         img.src = '/assets/img/icons/close-blue.svg';
     });
     clearButton.addEventListener('mouseout', function() {
-        img.src = '/assets/img/icons/close.svg';
+        img.src = '/assets/img/icons/close1.svg';
     });
 }
 
@@ -566,7 +566,6 @@ async function createTask() {
     let requiredDate = document.getElementById('required-date');
     let requiredCategory = document.getElementById('required-category');
     let description = document.getElementById('description');
-    let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
     let priority = pushPrio();
     let category = document.getElementById('category');
@@ -583,6 +582,7 @@ async function createTask() {
             title: title.value,
             description: description.value,
             assigned: users,
+            letter: iniimg,
             date: date.value,
             priority: priority,
             category: category.value,

@@ -43,7 +43,7 @@ async function loadToDo() {
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
         todo.innerHTML += /*html*/`
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" class="progress_card" id="board-to-do-section${i}">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupTask()" class="progress_card" id="board-to-do-section-${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -53,23 +53,39 @@ async function loadToDo() {
                 </div>
                 <div class="progress_image_Div">
                     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width: 100%"></div>
+                        <div class="progress-bar" style="width: 70%"></div>
                     </div>
                     <div> /${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
-                    <div>Assigned To Symbols</div>
+                    <div id="user-board-${i}"></div>
                     <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div>
         `;
         changeCategoryButton(i);
+        await createUserButtons(task, i);
         // calculateSubtask(value, total);
       
        
     }  
      
-}  
+} 
+
+function createUserButtons(task, i) {
+    let iconmember = document.getElementById(`user-board-${i}`);
+    let letters = task.letter;
+    for (let k = 0; k < letters.length; k++) {
+        const letter = letters[k];
+        iconmember.innerHTML += /*html*/`
+        <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
+    `;
+    }
+}
+
+function openPopupTask() {
+
+}
    
 
 function allowDrop(ev) {
