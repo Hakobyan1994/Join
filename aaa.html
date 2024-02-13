@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,5 +99,44 @@ function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 } 
 </script>
+</body>
+</html> -->  
+
+
+   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schräges DIV</title>
+  <style>
+    .schrages-div {
+      background-color: #ccc;
+      width: 100px;
+      height: 100px;
+      transition: transform 0.3s; /* Optional: Fügt eine sanfte Animation hinzu */
+    }
+
+    .rotate {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <div id="meinDiv" class="schrages-div"></div>
+
+  <script>
+    // JavaScript, um die Klasse bei Klick hinzuzufügen und zu entfernen
+    const meinDiv = document.getElementById('meinDiv');
+
+    meinDiv.addEventListener('mousedown', function() {
+      meinDiv.classList.add('rotate');
+    });
+
+    meinDiv.addEventListener('mouseup', function() {
+      meinDiv.classList.remove('rotate');
+    });
+  </script>
 </body>
 </html>
