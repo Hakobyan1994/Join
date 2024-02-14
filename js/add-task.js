@@ -33,9 +33,7 @@ async function addEventFunctions() {
     addSubtask();
     enterOnSubtask();
     dueDatePattern();
-    inputfieldFocus();
-    inputfieldFocusDate();
-    inputfieldFocusCategory();
+    inputfieldFocus(field);
 }
 
 
@@ -61,7 +59,7 @@ function generateHtmlTitle() {
     return /*html*/`
         <div class="title-div">
             <label for="" class="">Title<p class="redstar">*</p></label>
-            <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus()" oninput="inputfieldFocus()" required>
+            <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus('title')" oninput="inputfieldFocus('title')" required>
             <div class="required-text d-none" id="required-title">This field is required</div>
         </div>
     `;
@@ -92,7 +90,7 @@ function generateHtmlDate() {
         <label for="date">Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input type="date" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
+                <input type="date" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
                 <!-- <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()"> -->
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
@@ -123,8 +121,8 @@ function generateHtmlCategory() {
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
             </select> -->
-            <input class="inputfield category" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()"required readonly>
-            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()">
+            <input class="inputfield category" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')"required readonly>
+            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')">
             <div class="category-list d-none" id="category-list"></div>
             <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
         </div>
@@ -233,7 +231,7 @@ function selectCategory(category) {
         technical.classList.remove('white-bg');
     }
     pushCategorytoInput(category);
-    inputfieldFocusCategory();
+    inputfieldField();
 }
 
 
@@ -247,7 +245,7 @@ function pushCategorytoInput(category) {
         list.classList.add('d-none');
     } else {
         categoryInput.value = '';
-        inputfieldFocusCategory();
+        inputfieldFocus('category');
     }
 
 }
@@ -619,34 +617,35 @@ async function createTask() {
 }
 
 
-function inputfieldFocus() {
-    let title = document.getElementById('title');
-    let required = document.getElementById('required-title');
+function inputfieldFocus(field) {
+    let input = document.getElementById(field);
+    let required = document.getElementById(`required-${field}`);
 
-    if (document.activeElement === title) {
-        if (title.value.trim() === '') {
-            title.classList.add('inputfield-focus-red');
+    if (document.activeElement === input) {
+        if (input.value.trim() === '') {
+            input.classList.add('inputfield-focus-red');
             required.classList.remove('d-none');
-            title.classList.remove('inputfield-focus-blue');
-            title.classList.remove('inputfield-focus-white');
+            input.classList.remove('inputfield-focus-blue');
+            input.classList.remove('inputfield-focus-white');
         } else {
-            title.classList.add('inputfield-focus-blue');
+            input.classList.add('inputfield-focus-blue');
             required.classList.add('d-none');
-            title.classList.remove('inputfield-focus-red');
-            title.classList.remove('inputfield-focus-white');
+            input.classList.remove('inputfield-focus-red');
+            input.classList.remove('inputfield-focus-white');
         }
     } else {
-        title.classList.remove('inputfield-focus-red');
-        title.classList.remove('inputfield-focus-blue');
-        title.classList.add('inputfield-focus-white');
+        input.classList.remove('inputfield-focus-red');
+        input.classList.remove('inputfield-focus-blue');
+        input.classList.add('inputfield-focus-white');
         required.classList.add('d-none');
     }
-    title.addEventListener('blur', function() {
-        title.classList.remove('inputfield-focus-red');
+    input.addEventListener('blur', function() {
+        input.classList.remove('inputfield-focus-red');
         required.classList.add('d-none');
     });
 }
 
+/*
 function inputfieldFocusDate() {
     let date = document.getElementById('date');
     let required = document.getElementById('required-date');
@@ -674,9 +673,9 @@ function inputfieldFocusDate() {
         required.classList.add('d-none');
     });
 }
+*/
 
-
-function inputfieldFocusCategory() {
+/* function inputfieldFocusCategory() {
     let category = document.getElementById('category');
     let required = document.getElementById('required-category');
 
@@ -703,6 +702,7 @@ function inputfieldFocusCategory() {
         required.classList.add('d-none');
     });
 }
+*/
 
 function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');
