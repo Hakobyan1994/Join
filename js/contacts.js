@@ -57,7 +57,6 @@ async function addToContacts() {
         addContactToArray(formattedName, email, phone, initials);
         clearInputs(nameInput, emailInput, phoneInput);
         closeDialog();
-        addedContactSuccesfully();
         await setItem('contacts', JSON.stringify(contacts));
         await loadContacts();
         renderContacts();

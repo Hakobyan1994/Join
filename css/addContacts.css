@@ -175,6 +175,7 @@
     line-height: 120%;
     cursor: pointer;
     height: 50px;
+    background-color: white;
 }
 
 .cancel-btn:hover {

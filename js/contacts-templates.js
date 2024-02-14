@@ -136,7 +136,7 @@ function generateDialog() {
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
-                                        Create contact <img src="/assets/img/icons/check.svg"
+                                        Create contact <img src="/assets/img/icons/check1.svg"
                                             alt="">
                                     </button>
                                 </div>
