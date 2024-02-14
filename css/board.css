@@ -81,3 +81,52 @@
 .board-user-icon {
     margin-inline-end: -16px;
 }
+
+.user-popup-btn {
+    width: 160px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 16px;
+    background-color: #0038FF;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    margin-bottom: 24px;
+}
+
+.tecnical-popup-btn {
+    width: 203px;
+    height: 36px;
+    border-radius: 8px;
+    padding: 4px 24px;
+    background-color: rgb(31, 215, 193);
+    border: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+.popup-title {
+    width: 445px;
+    height: 219px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 73.2px;
+    color: rgba(0, 0, 0, 1);
+}
+
+
+.popup-text div {
+    width: 445px;
+    height: max-content;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+}
+

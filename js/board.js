@@ -43,7 +43,7 @@ async function loadToDo() {
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
         todo.innerHTML += /*html*/`
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${task, i})" class="progress_card" id="board-to-do-section-${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -83,12 +83,39 @@ function createUserButtons(task, i) {
 }
 
 
-function openPopupAddTaskDiv(i) {
+function openPopupAddTaskDiv(task, i) {
+    let taskValue = task;
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.classList.remove('d-none');
     content.innerHTML = '<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(); return false">';
+    content.innerHTML += /*html*/`
+        <div class="popup-text">
+            <div class="user-popup-btn" id="category-bg-change-${i}">User Story</div>
+            <h2 class="popup-title">Kochwelt Page</h2>
+            <div class="">Build start page with recipe recommendation.</div>
+            <div>
+                <div class="">Due date:</div>
+                <div class="">10/05/2023</div>
+            </div>
+            <div>
+                <div class="">Priority:</div>
+                <div class="">
+                    <div>Medium</div>
+                    <img src="/assets/img/icons/prio-urgent.svg" alt="Prio">
+                </div>
+            </div>
+            <div>
+                <div class="">Assigned To:</div>
+                <div>Members</div>
+            </div>
+            <div>
+                <div class="">Subtasks</div>
+                <div>Subtasks</div>
+            </div>
 
+        </div>
+    `;
 }
 
 
