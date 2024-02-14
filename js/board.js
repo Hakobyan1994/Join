@@ -24,10 +24,12 @@ function openPopupAddTask() {
     cancelButton();
 }
 
+
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     popup.classList.add('d-none');
 }
+
 
 function renderAddTaskForPopup() {
     e.preventDefault();
@@ -35,15 +37,13 @@ function renderAddTaskForPopup() {
 }
 
 
- 
-  
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
         todo.innerHTML += /*html*/`
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupTask()" class="progress_card" id="board-to-do-section-${i}">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -66,11 +66,10 @@ async function loadToDo() {
         changeCategoryButton(i);
         await createUserButtons(task, i);
         // calculateSubtask(value, total);
-      
-       
     }  
      
 } 
+
 
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
@@ -83,8 +82,19 @@ function createUserButtons(task, i) {
     }
 }
 
-function openPopupTask() {
 
+function openPopupAddTaskDiv(i) {
+    let div = document.getElementById('popup-add-task-div');
+    let content = document.getElementById('popup-add-task-content-div');
+    div.classList.remove('d-none');
+    content.innerHTML = '<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(); return false">';
+
+}
+
+
+function closePopupAddTaskDiv(i) {
+    let div = document.getElementById('popup-add-task-div');
+    div.classList.add('d-none');
 }
    
 
@@ -92,11 +102,11 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+
 function dragStart(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.style.transform = "rotate(13deg)";
-}  
-
+}
  
 
 function drop(ev) {
@@ -110,10 +120,6 @@ function drop(ev) {
     }
 }
   
-     
-
- 
-  
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
@@ -125,6 +131,7 @@ function changeCategoryButton(i) {
     }
 }
 
+
 function totalSubtask(i) {
         let task = tasks[i];
         let total = task.subtask.length;
@@ -132,13 +139,14 @@ function totalSubtask(i) {
         return total;
 }
 
+
 function calculateSubtask(value, total) {
 }
+
 
 function returnValueOfSubtask() {
 
 }
-
 
 
 function searchTasks() {
@@ -165,11 +173,6 @@ function searchTaskToDo() {
 
 }  
 
-
-
-   
-   
-   
 
 function cancelButton() {
     let button = document.getElementById('clear-button');
