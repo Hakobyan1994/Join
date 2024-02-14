@@ -177,7 +177,7 @@ function dontCloseCard(event) {
 
 function renderDialog() {
     let dialog = document.getElementById('dialog');
-
+    
     if (dialogVisible) {
         dialog.classList.remove('slide-in');
         dialogVisible = false;
@@ -297,6 +297,8 @@ function showAddContactSlider() {
 
 function hideAddContactSlider() {
     document.getElementById('dialogBg').classList.add('hide-dialog-bg');
+    document.getElementById('dialogBg').classList.add('d-none');
+    document.getElementById('dialogBg').classList.remove('dialog-bg');
     document.getElementById('contactInfoSlider').classList.remove('show');
     document.getElementById('dialogBg').classList.add('d-none');
 
