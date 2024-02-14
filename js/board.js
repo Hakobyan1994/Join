@@ -1,3 +1,4 @@
+
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
@@ -34,15 +35,16 @@ function renderAddTaskForPopup() {
 }
 
 
+ 
+  
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
-
     for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
+        let task = tasks[i];
         todo.innerHTML += /*html*/`
-            <div class="progress_card" id="board-to-do-section-${i}">
-                <div class="progress_infocard">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupTask()" class="progress_card" id="board-to-do-section-${i}">
+                <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
                         <h1>${task.title}</h1>
@@ -51,20 +53,67 @@ async function loadToDo() {
                 </div>
                 <div class="progress_image_Div">
                     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width: 100%"></div>
+                        <div class="progress-bar" style="width: 70%"></div>
                     </div>
                     <div> /${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
-                    <div>Assigned To Symbols</div>
+                    <div id="user-board-${i}"></div>
                     <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div>
         `;
         changeCategoryButton(i);
+        await createUserButtons(task, i);
         // calculateSubtask(value, total);
+      
+       
+    }  
+     
+} 
+
+function createUserButtons(task, i) {
+    let iconmember = document.getElementById(`user-board-${i}`);
+    let letters = task.letter;
+    for (let k = 0; k < letters.length; k++) {
+        const letter = letters[k];
+        iconmember.innerHTML += /*html*/`
+        <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
+    `;
     }
 }
+
+function openPopupTask() {
+
+}
+   
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function dragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.target.style.transform = "rotate(13deg)";
+}  
+
+ 
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+    // ev.target.appendChild(draggedElement);
+    draggedElement.style.transform = "rotate(0deg)";
+    if (!ev.target.contains(draggedElement)) {
+        ev.target.appendChild(draggedElement);
+    }
+}
+  
+     
+
+ 
+  
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
@@ -90,7 +139,7 @@ function returnValueOfSubtask() {
 
 }
 
-// ${value}/${total}
+
 
 function searchTasks() {
     searchTaskToDo();
@@ -114,7 +163,13 @@ function searchTaskToDo() {
         }
     }
 
-}
+}  
+
+
+
+   
+   
+   
 
 function cancelButton() {
     let button = document.getElementById('clear-button');

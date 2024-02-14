@@ -1,12 +1,12 @@
-     function checks(){
-        let profilInfo=document.querySelector('.clickInfoDiv')
-        if(profilInfo.style.display==='block'){
-           profilInfo.style.display='none'
-        }else{
-          profilInfo.style.display='block'
-        }
-     }
-     checks();
+function checks(){
+  let profilInfo=document.querySelector('.clickInfoDiv')
+  if(profilInfo.style.display==='block'){
+     profilInfo.style.display='none'
+  }else{
+    profilInfo.style.display='block'
+  }
+}
+
       
       
 

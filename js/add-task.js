@@ -1,5 +1,7 @@
 let tasks = [];
 let subtasks = [];
+let users = [];
+let iniimg = [];
 
 
 function renderAddTask() {
@@ -30,7 +32,6 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     addSubtask();
     enterOnSubtask();
-    loadContactsInAddTask();
     dueDatePattern();
     inputfieldFocus();
     inputfieldFocusDate();
@@ -78,9 +79,10 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <select class="inputfield assigned-to" id="assigned">
-            <option value="" disabled selected hidden>Select contacts to assign</option>
-        </select>  
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()">
+        <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
+        <div class="assigned-list d-none" id="assigned-list"></div>
+        <div class="assigned-button" id="assigned-button"></div>
     `;
 }
 
@@ -90,8 +92,8 @@ function generateHtmlDate() {
         <label for="date">Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input type="text" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
-                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
+                <input type="date" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocusDate()" oninput="inputfieldFocusDate()" required>
+                <!-- <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()"> -->
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
@@ -116,12 +118,15 @@ function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
         <div class="category-div">
-            <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
+            <!-- <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
                 <option value="" disabled selected hidden>Select task category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
-            </select>
-            <div class="required-text d-none" id="required-category">This field is required</div> 
+            </select> -->
+            <input class="inputfield category" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()"required readonly>
+            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocusCategory()" oninput="inputfieldFocusCategory()">
+            <div class="category-list d-none" id="category-list"></div>
+            <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
         </div>
  
     `;
@@ -136,7 +141,7 @@ function generateHtmlSubtasks() {
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
                 <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
-                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()">
+                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
             </div>
         </div>
         <ul id="subtasks" class="subtasks"></ul>
@@ -156,17 +161,142 @@ function generateHtmlFormSection() {
     `;
 }
 
+// function activeAssignedTo() {
+//     let input = document.getElementById('assigned');
+//     let list = document.getElementById('assigned-list');
+//     let filter = input.value.toUpperCase();
+//     input.placeholder = '';
+//     list.classList.remove('d-none');
+// }
 
-function loadContactsInAddTask() {
-    let optionValue = document.getElementById('assigned');
+// function deactiveAssignedTo() {
+//     let input = document.getElementById('assigned');
+//     input.placeholder = 'Select contacts to assign';
+//     let list = document.getElementById('assigned-list');
+//     list.classList.add('d-none');
+
+// }
+
+function renderAssignedList() {
+    let list = document.getElementById('assigned-list');
+    let input = document.getElementById('assigned');
+        if (list.classList.contains('d-none')) {
+            input.placeholder = 'Searchfield + Checkbox on progress';
+        } else {
+            input.placeholder = 'Select contacts to assign';
+        }
+    list.classList.toggle('d-none');
+    list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
-        optionValue.innerHTML += /*html*/`
-            <option value="${name}">${name}</option>
+        const img = contacts[i].initials;
+
+        const userIndex = users.indexOf(name);
+        const isSelected = userIndex !== -1;
+        list.innerHTML += /*html*/`
+            <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+                <div>
+                    <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                    <div>${name}</div>
+                </div>
+                <input type="checkbox" class="d-none" id="checkbox-contact-${i}">
+            </div>
         `;    
     }
+
 }
 
+function renderCategoryList() {
+    let list = document.getElementById('category-list');
+    list.classList.toggle('d-none');
+    list.innerHTML = /*html*/`
+        <div class="category-list-div" value="Technical Task"  id="technical" onclick="selectCategory('technical')">Technical Task</div>  
+        <div class="category-list-div" value="User Story" id="story" onclick="selectCategory('story')">User Story</div>  
+    `;
+}
+
+function selectCategory(category) {
+    let technical = document.getElementById('technical');
+    let story = document.getElementById('story');
+
+    if (category === 'technical') {
+        technical.classList.toggle('grey');
+        technical.classList.toggle('white-bg');
+        story.classList.remove('grey');
+        story.classList.remove('white-bg');
+    }
+
+    else if (category === 'story') {
+        story.classList.toggle('grey');
+        story.classList.toggle('white-bg');
+        technical.classList.remove('grey');
+        technical.classList.remove('white-bg');
+    }
+    pushCategorytoInput(category);
+    inputfieldFocusCategory();
+}
+
+
+function pushCategorytoInput(category) {
+    let categoryInput = document.getElementById('category');
+    let approvedElements = document.querySelectorAll('.grey');
+    let list = document.getElementById('category-list');
+
+    if (approvedElements.length > 0) {
+        categoryInput.value = approvedElements[0].textContent;
+        list.classList.add('d-none');
+    } else {
+        categoryInput.value = '';
+        inputfieldFocusCategory();
+    }
+
+}
+
+
+
+function selectAssignedContacts(i) {
+    let contact = document.getElementById(`assigned-contacts-${i}`);
+    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    contact.classList.toggle('select-contact-blue');
+    contact.classList.toggle('white');
+    // checkbox.checked = !checkbox.checked;
+    pushUser(i);
+}
+
+function pushUser(i) {
+    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    let contact = document.getElementById(`assigned-contacts-${i}`);
+    let approved = contact.classList.contains('select-contact-blue');
+    let user = contacts[i].name;
+    let img = contacts[i].initials;
+    if (approved) {
+        let index = users.indexOf(user);
+        if (index === -1) {
+            users.push(user);
+            iniimg.push(img);
+        }
+    } else {
+        let index = users.indexOf(user);
+        if (index !== -1) {
+            users.splice(index, 1);
+            iniimg.splice(index, 1);
+        }
+    }
+
+    generateAssignedButton();
+}
+
+function generateAssignedButton() {
+    let div = document.getElementById('assigned-button');
+    div.innerHTML = '';
+    for (let p = 0; p < users.length; p++) {
+        const letters = iniimg[p];
+        div.innerHTML += /*html*/`
+            <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
+        `;
+        
+    }
+}
 
 function currentDate() {
     let border = document.getElementById('date');
@@ -182,7 +312,6 @@ function currentDate() {
     let today = `${day}/${month}/${year}`;
     document.getElementById("date").value = today;
     border.classList.remove('inputfield-focus-white');
-    border.classList.add('inputfield-focus-blue');
 }
 
 
@@ -402,7 +531,7 @@ function clearButtonImgChange() {
         img.src = '/assets/img/icons/close-blue.svg';
     });
     clearButton.addEventListener('mouseout', function() {
-        img.src = '/assets/img/icons/close.svg';
+        img.src = '/assets/img/icons/close1.svg';
     });
 }
 
@@ -412,6 +541,11 @@ function clearFields() {
     document.getElementById('description').value = '';
     document.getElementById('assigned').value = '';
     document.getElementById('date').value = '';
+    document.getElementById('category').value = '';
+
+    document.getElementById('assigned-list').classList.add('d-none');
+    users = [];
+    iniimg = [];
     subtasks = [];
     updateSubtasklist();
     let prio = document.querySelectorAll('.prio');
@@ -422,6 +556,7 @@ function clearFields() {
             medium.classList.remove('prio-notselected');
         } 
     });
+    generateAssignedButton();
 }
 
 
@@ -431,7 +566,6 @@ async function createTask() {
     let requiredDate = document.getElementById('required-date');
     let requiredCategory = document.getElementById('required-category');
     let description = document.getElementById('description');
-    let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
     let priority = pushPrio();
     let category = document.getElementById('category');
@@ -447,7 +581,8 @@ async function createTask() {
         let newTask = {
             title: title.value,
             description: description.value,
-            assigned: assigned.value,
+            assigned: users,
+            letter: iniimg,
             date: date.value,
             priority: priority,
             category: category.value,
@@ -461,6 +596,7 @@ async function createTask() {
        
         let popup = document.getElementById('popup-add-task');
         let popupAdd = document.getElementById('popup-boardAddTask');
+         await openToBoard();
         if (popup) {
             popup.classList.add('d-none');
             popupAdd.classList.remove('d-none');
@@ -478,7 +614,6 @@ async function createTask() {
         category.classList.add('inputfield-focus-red');
     }
 
-    await openToBoard();
     return tasks;
     
 }
