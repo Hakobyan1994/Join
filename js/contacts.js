@@ -180,9 +180,7 @@ function renderDialog() {
     if (dialogVisible) {
         dialog.classList.remove('slide-in');
         dialogVisible = false;
-        // Hinzufügen der slide-out-Klasse, um nach rechts raus zu sliden
         dialog.classList.add('slide-out');
-        // Nach dem Ende der Animation die d-none-Klasse hinzufügen, um das Fenster auszublenden
         dialog.addEventListener('animationend', function() {
             dialog.classList.add('d-none');
         }, { once: true });
@@ -200,9 +198,7 @@ async function showEditMask(i) {
     if (editMaskVisible) {
         editMask.classList.remove('slide-in');
         editMaskVisible = false;
-        // Hinzufügen der slide-out-Klasse, um nach rechts raus zu sliden
         editMask.classList.add('slide-out');
-        // Nach dem Ende der Animation die d-none-Klasse hinzufügen, um das Fenster auszublenden
         editMask.addEventListener('animationend', function() {
             editMask.classList.add('d-none');
         }, { once: true });

@@ -13,6 +13,11 @@
     flex-direction: column;
 }
 
+.title-add-task {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .form {
     display: flex;
     flex-direction: row;
@@ -208,16 +213,18 @@ textarea {
 .form-bottom {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
-    padding-bottom: 64px;
+    padding-top: 16px;
+    padding-bottom: 32px;
+    gap: 488px;
     
 }
 
 .form-bottom-right {
     display: flex;
     gap: 16px;
-    margin-right: 136px;
+    margin-right: 44px;
 }
 
 .form-bottom-left {
