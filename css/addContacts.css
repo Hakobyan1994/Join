@@ -1,5 +1,4 @@
 .dialog-bg {
-    background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
     position: fixed;
     top: 0;
@@ -8,6 +7,29 @@
     bottom: 0;
     display: flex;
     justify-content: center;
+    animation: darkenBackground 1s forwards;
+}
+
+.hide-dialog-bg {
+    animation: lightenBackground 1s forwards; 
+}
+
+@keyframes darkenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0); 
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes lightenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0); 
+    }
 }
 
 .dialog {
@@ -201,7 +223,7 @@
     width: 64px;
     height: 64px;
     position: relative;
-    right: 93px;
+    right: 94px;
     bottom: 3px;
     border-radius: 100px;
 }
@@ -264,7 +286,7 @@
 }
 
 .slide-out {
-    animation: slideOutToLeft 0.5s forwards;
+    animation: slideOutToRight 0.5s forwards;
 }
 
 @keyframes slideInFromRight {
@@ -277,12 +299,11 @@
     }
 }
 
-@keyframes slideOutToLeft {
+@keyframes slideOutToRight {
     from {
         transform: translateX(0);
     }
-
     to {
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
 }

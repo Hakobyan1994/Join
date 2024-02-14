@@ -3,7 +3,7 @@ let contactIdCounter = 0;
 let initials;
 let contactInfoSliderVisible = false;
 let dialogVisible = false;
-let editMaskVisible = false;
+let editMaskVisible = false
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
@@ -181,7 +181,7 @@ function renderDialog() {
         dialog.classList.remove('slide-in');
         dialogVisible = false;
         dialog.classList.add('slide-out');
-        dialog.addEventListener('animationend', function() {
+        dialog.addEventListener('animationend', function () {
             dialog.classList.add('d-none');
         }, { once: true });
     } else {
@@ -190,6 +190,8 @@ function renderDialog() {
         dialogVisible = true;
         dialog.innerHTML = generateDialog();
     }
+    addedContactInfo();
+    showAddContactSlider();
 }
 
 async function showEditMask(i) {
@@ -199,7 +201,7 @@ async function showEditMask(i) {
         editMask.classList.remove('slide-in');
         editMaskVisible = false;
         editMask.classList.add('slide-out');
-        editMask.addEventListener('animationend', function() {
+        editMask.addEventListener('animationend', function () {
             editMask.classList.add('d-none');
         }, { once: true });
     } else {
@@ -210,6 +212,7 @@ async function showEditMask(i) {
         loadContactInfo(i);
         displayContactImage(i);
     }
+    showAddContactSlider();
 }
 
 function closeDialog() {
@@ -220,7 +223,7 @@ function closeDialog() {
         dialog.classList.remove('slide-in');
         dialogVisible = false;
         dialog.classList.add('slide-out');
-        dialog.addEventListener('animationend', function() {
+        dialog.addEventListener('animationend', function () {
             dialog.classList.add('d-none');
         }, { once: true });
     }
@@ -228,18 +231,21 @@ function closeDialog() {
         editMask.classList.remove('slide-in');
         editMaskVisible = false;
         editMask.classList.add('slide-out');
-        editMask.addEventListener('animationend', function() {
+        editMask.addEventListener('animationend', function () {
             editMask.classList.add('d-none');
         }, { once: true });
     }
+    hideAddContactSlider();
+    dialogVisible = false;
+    editMaskVisible = false;
 }
 
 function displayContactImage(i) {
     let contact = contacts[i];
-    let contactImage = document.getElementById('contactImageEdit'); 
+    let contactImage = document.getElementById('contactImageEdit');
     if (contactImage) {
         contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=fff`;
-        contactImage.style.width = '100px'; 
+        contactImage.style.width = '100px';
         contactImage.style.height = '100px';
         contactImage.style.backgroundColor = 'transparent';
         contactImage.alt = contact.initials;
@@ -263,27 +269,42 @@ async function deleteContact(i) {
 function contactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
 
-    if (contactInfoSliderVisible) {
-        contactInfoSlider.classList.remove('slide-in');
-        contactInfoSlider.classList.add('d-none');
-        contactInfoSliderVisible = false;
-    } else { 
-        contactInfoSlider.innerHTML = '';
-        contactInfoSlider.classList.remove('d-none');
-        contactInfoSlider.classList.add('slide-in');
-        contactInfoSliderVisible = true;
+    contactInfoSlider.innerHTML = '';
+    contactInfoSlider.classList.remove('d-none');
+    contactInfoSlider.classList.add('slide-in');
+    contactInfoSliderVisible = true;
 
-        let contact = contacts[i];
-        let contactName = contact.name;
-        let contactEmail = contact.email;
-        let contactPhone = contact.phone;
-        let imageId = `contactImageSlider`;
-        contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId);
-        addInitialsToContactImage(contact, imageId);
+    let contact = contacts[i];
+    let contactName = contact.name;
+    let contactEmail = contact.email;
+    let contactPhone = contact.phone;
+    let imageId = `contactImageSlider`;
+    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId);
+    addInitialsToContactImage(contact, imageId);
 
-        let imageElement = document.getElementById(imageId);
-        if (imageElement) {
-            applyRandomColorToImage(imageElement, contact.initials);
-        }
+    let imageElement = document.getElementById(imageId);
+    if (imageElement) {
+        applyRandomColorToImage(imageElement, contact.initials);
     }
+
+    contactInfoSlider.dataset.contactId = i;
+}
+
+function showAddContactSlider() {
+    document.getElementById('dialogBg').classList.remove('d-none');
+    document.getElementById('contactInfoSlider').classList.add('show');
+}
+
+function hideAddContactSlider() {
+    document.getElementById('dialogBg').classList.add('hide-dialog-bg');
+    document.getElementById('contactInfoSlider').classList.remove('show');
+    document.getElementById('dialogBg').classList.add('d-none');
+}
+
+function addedContactInfo() {
+    let success = document.getElementById('successCon');
+    success.innerHTML = `
+        <button type="button" class="add-contact-btn">
+            Contact successfully created
+        </button>`;
 }
