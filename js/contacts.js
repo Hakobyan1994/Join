@@ -57,6 +57,7 @@ async function addToContacts() {
         addContactToArray(formattedName, email, phone, initials);
         clearInputs(nameInput, emailInput, phoneInput);
         closeDialog();
+        addedContactSuccesfully();
         await setItem('contacts', JSON.stringify(contacts));
         await loadContacts();
         renderContacts();
@@ -190,7 +191,6 @@ function renderDialog() {
         dialogVisible = true;
         dialog.innerHTML = generateDialog();
     }
-    addedContactInfo();
     showAddContactSlider();
 }
 
@@ -299,12 +299,27 @@ function hideAddContactSlider() {
     document.getElementById('dialogBg').classList.add('hide-dialog-bg');
     document.getElementById('contactInfoSlider').classList.remove('show');
     document.getElementById('dialogBg').classList.add('d-none');
+
 }
 
-function addedContactInfo() {
+function addedContactSuccessfully() {
     let success = document.getElementById('successCon');
     success.innerHTML = `
-        <button type="button" class="add-contact-btn">
+        <button class="success-pos">
             Contact successfully created
         </button>`;
+
+    success.classList.remove('d-none');
+    success.classList.remove('slide-out-success');
+    success.classList.add('slide-in-success');
+
+    setTimeout(() => {
+        success.classList.remove('slide-in-success');
+        success.classList.add('slide-out-success');
+
+        setTimeout(() => {
+            success.classList.add('d-none');
+        }, 500);
+    }, 2000);
 }
+

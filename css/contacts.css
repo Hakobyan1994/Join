@@ -223,3 +223,23 @@ body {
 .random-fill {
     fill: #FF7A00;
 }
+
+.success-pos {
+    z-index: 10000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: blue;
+    transition: transform 1s ease-in-out;
+    transform: translateX(100%);
+}
+
+.slide-in-success {
+    transform: translateX(0);
+}
+
+.slide-out-success {
+    transform: translateX(100%);
+}
+
