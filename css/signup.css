@@ -8,6 +8,7 @@ body {
     height: 1024px;
     background-color: #F6F7F8;
     margin-left: 77px;
+   
 }
 
 .image_box {
@@ -41,17 +42,17 @@ body {
     align-items: center;
     position: absolute;
     cursor: pointer;
-}   
+}
 
 
- .backLogin_picture:hover{
+.backLogin_picture:hover {
     background-color: #c4c4c4;
     width: 32px;
     height: 32px;
     border-radius: 32px;
- }
+}
 
-  
+
 
 .backLogin_picture {
     width: 32px;
@@ -80,6 +81,7 @@ h1 {
     line-height: 120%;
     margin-block-start: 0;
     margin-block-end: 0;
+    font-family: 'Inter';
 }
 
 .line {
@@ -136,6 +138,13 @@ h1 {
     align-items: center;
     flex-shrink: 0;
     cursor: pointer;
+    font-family: 'Inter';
+}
+
+
+
+.name_input:focus {
+    outline: 2px solid #29ABE2;
 }
 
 
@@ -166,7 +175,14 @@ h1 {
     align-items: center;
     flex-shrink: 0;
     cursor: pointer;
+    font-family: 'Inter';
 }
+
+.email_input:focus {
+    outline: 2px solid #29ABE2;
+}
+
+
 
 .password_inputBox {
     display: flex;
@@ -177,10 +193,10 @@ h1 {
 }
 
 .password_input {
-    background-image: url(/assets/img/anmeldung\ Image/lock.png);
+    /* background-image: url(/assets/img/anmeldung\ Image/lock.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
-    background-position: calc(100% - 21px) center;
+    background-position: calc(100% - 21px) center; */
     line-height: 24px;
     font-weight: 400;
     font-size: 20px;
@@ -195,6 +211,18 @@ h1 {
     align-items: center;
     flex-shrink: 0;
     cursor: pointer;
+    font-family: 'Inter';
+}  
+
+.passwordBlock{
+    margin-left: 379px;
+    margin-top: -43px;
+    cursor: pointer;
+}
+
+
+.password_input:focus {
+    outline: 2px solid #29ABE2;
 }
 
 
@@ -202,15 +230,15 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-     margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 
 .confirmpassword {
-    background-image: url(/assets/img/anmeldung\ Image/lock.png);
+    /* background-image: url(/assets/img/anmeldung\ Image/lock.png);
     background-size: 21px 21px;
     background-repeat: no-repeat;
-    background-position: calc(100% - 21px) center;
+    background-position: calc(100% - 21px) center; */
     line-height: 24px;
     font-weight: 400;
     font-size: 20px;
@@ -225,6 +253,18 @@ h1 {
     align-items: center;
     flex-shrink: 0;
     cursor: pointer;
+}
+
+.confirmBlock {
+    margin-left: 379px;
+    margin-top: -35px;
+    cursor: pointer;
+}
+
+
+
+.confirmpassword:focus {
+    outline: 2px solid #29ABE2;
 }
 
 .input_checkox {
@@ -248,7 +288,7 @@ h1 {
 }
 
 .Privacy_policy {
-    font-family: Inter;
+    font-family: 'Inter';
     color: #29ABE2;
     font-weight: 400;
     text-decoration: none;
@@ -256,83 +296,124 @@ h1 {
     display: inline-flex;
     align-items: flex-start;
     gap: 10px;
+
 }
 
 
 
 .input_check {
-    background-color: transparent; /* Transparenten Hintergrund setzen */
+    background-color: transparent;
+    /* Transparenten Hintergrund setzen */
     width: 16px;
     height: 16px;
     color: #2A3647;
+    cursor: pointer;
     /* Weitere Stileigenschaften nach Bedarf hinzufügen */
-} 
+}
+
+.input_check:after {
+    background-color: #29ABE2;
+}
 
 
-.sign_upBox{
+
+.sign_upBox {
     display: flex;
     justify-content: center;
-}  
+}
 
-.signup_button{
-      
+.signup_button {
+
     background-color: #2A3647;
     color: #FFFFFF;
-       border-radius: 8px;
-       padding: 15px 24px;
-       font-family: Inter;
-       font-size: 21px;
-       font-weight: 700;
-       line-height:25.2px;
-       border: none;
-     
-}  
-.signup_button:hover{
+    border-radius: 8px;
+    padding: 15px 24px;
+    font-family: Inter;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.2px;
+    border: none;
+    font-family: 'Inter';
+
+}
+
+.signup_button:hover {
     background-color: #29ABE2;
     cursor: pointer;
 }
-    
 
-  .footer{
+
+.footer {
     display: flex;
     justify-content: center;
     gap: 8px;
-  } 
-    
-    .aLink{
-       font-family: Inter;
-        font-size: 16px;
-        text-decoration: none;
-        color: #A8A8A8;
-        font-weight:400
-       
-    } 
+}
+
+.aLink {
+    font-family: Inter;
+    font-size: 16px;
+    text-decoration: none;
+    color: #A8A8A8;
+    font-weight: 400
+}
+
+/* .aLink:hover {
+    color: #29ABE2;
       
-    .aLink:hover{
-        color: #29ABE2;
-          
-        
-    } 
 
-    .trasparenter_div {
-        display: none;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 1;
-        z-index: 1;
-    }
-    
-     
+} */
 
-    
-    
-    /* @keyframes trasparenter_div{
+
+.aPrivacy {
+    font-family: Inter;
+    font-size: 16px;
+    text-decoration: none;
+    color: #A8A8A8;
+    font-weight: 400
+}
+
+
+.aPrivacy:hover {
+    color: #29ABE2;
+    font-size: 18px;
+    font-family: 'Inter';
+}
+
+
+.aLegal {
+    font-family: Inter;
+    font-size: 16px;
+    text-decoration: none;
+    color: #A8A8A8;
+    font-weight: 400
+}
+
+.aLegal:hover {
+
+    color: #29ABE2;
+    font-size: 18px;
+    font-family: 'Inter';
+}
+
+.trasparenter_div {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    z-index: 1;
+}
+
+
+
+
+
+/* @keyframes trasparenter_div{
         from{
             position: fixed;
             width: 100%;
@@ -344,7 +425,7 @@ h1 {
         }
     }  */
 
-  .Sign_UpspeedInfo{
+.Sign_UpspeedInfo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -352,15 +433,15 @@ h1 {
     width: 312px;
     height: 74px;
     font-family: 'Inter';
-     font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
-      background-color: #2A3647;
-      text-align: center;
-       border-radius: 20px;
-       color:#FFFFFF ; 
-  }  
-     
-  /* .active{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    background-color: #2A3647;
+    text-align: center;
+    border-radius: 20px;
+    color: #FFFFFF;
+}
+
+/* .active{
     display: flex;
   } */

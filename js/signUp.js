@@ -32,8 +32,6 @@ function onsubmitFor(e) {
 }
 
 
-
-
 function validForm({ name, email, password, confirmPassword }, e) {
     console.log(password.includes(confirmPassword));
     if (password.includes(confirmPassword)) {
@@ -63,9 +61,63 @@ function backToRegister() {
     window.location.href = 'login.html'
 }
 
+      
+document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordImage=document.getElementById('passwordBlock')
+    passwordInput.addEventListener('input', function () {
+       if(passwordInput.value.trim()!=='') {
+              passwordImage.src='/assets/img/anmeldung Image/blockPassword.svg'
+               passwordImage.onclick=function(){
+                 if(passwordInput.type==='password'){
+                    passwordInput.type='text'
+                    passwordImage.src='/assets/img/anmeldung Image/passwordLock.svg'
+                 }else{
+                    passwordInput.type='password'
+                    passwordImage.src='/assets/img/anmeldung Image/blockPassword.svg'
+                 }
+               }
+               }else{
+                passwordInput.value.trim()===''
+                passwordImage.src='/assets/img/anmeldung Image/lock.png'
+               }
+            });
+        });  
+      
+        
+        document.addEventListener('DOMContentLoaded',function(){
+         const confirmInput=document.getElementById('confirmInput');
+         const confirmImage=document.getElementById('confirmBlock')   
+         confirmInput.addEventListener('input',function(){
+           if(confirmInput.value.trim()!==''){
+            confirmImage.src= '/assets/img/anmeldung Image/blockPassword.svg'
+            confirmImage.onclick=function () {
+                if (confirmInput.type==='password') {
+                    confirmInput.type='text'
+                    confirmImage.src='/assets/img/anmeldung Image/passwordLock.svg'
+                }else{
+                    confirmInput.type='password'
+                    confirmImage.src='/assets/img/anmeldung Image/blockPassword.svg'
+                }
+            }
+           }
+           else{
+            confirmInput.value.trim()===''
+            confirmImage.src= '/assets/img/anmeldung Image/lock.png'
+           }
+        })
+    }) 
 
 
+         
+        
+   
+   
+   
+   
+  
+       
 
-
-
-
+       
+   
+      
