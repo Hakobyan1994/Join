@@ -46,7 +46,7 @@ async function loadToDo() {
         let task = tasks[i];
        
         todo.innerHTML += /*html*/`
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${task, i})" class="progress_card" id="board-to-do-section-${i}">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv('${task}', ${i})" class="progress_card" id="board-to-do-section-${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -90,14 +90,13 @@ function createUserButtons(task, i) {
 
 
 function openPopupAddTaskDiv(task, i) {
-    let taskValue = task;
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.classList.remove('d-none');
     content.innerHTML = '<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(); return false">';
     content.innerHTML += /*html*/`
         <div class="popup-text">
-            <div class="user-popup-btn" id="category-bg-change-${i}">User Story</div>
+            <div class="user-popup-btn" id="category-bg-change-${i}">${task.title}</div>
             <h2 class="popup-title">Kochwelt Page</h2>
             <div class="overflow">Build start page with recipe recommendation.</div>
             <div class="popup-div-assign-date-title">
