@@ -169,20 +169,36 @@
 
 .popup-subtask {
     display: flex;
+    flex-direction: column;
     margin-left: 16px;
     margin-top: 16px;
     gap: 16px;
 }
 
+.each-subtask-section{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
 .popup-assigned {
     display: flex;
+    flex-direction: column;
     margin-left: 16px;
     margin-top: 16px;
     gap: 16px;
 }
 
 .popup-assigned-div {
-    margin-top: -84px;
+    margin-top: -54px;
+}
+
+.each-user-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
 }
 
 .popup-date {
@@ -221,3 +237,4 @@
     justify-content: space-between;
     margin-top: 16px;
 }
+

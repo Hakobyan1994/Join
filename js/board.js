@@ -56,7 +56,7 @@ async function loadToDo() {
                 </div>
                 <div class="progress_image_Div">
                     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar" stygitle="width: 70%"></div>
                     </div>
                     
                     <div> /${totalSubtask(i)} Subtasks</div>     
@@ -89,42 +89,39 @@ function createUserButtons(task, i) {
 }
 
 
-function openPopupAddTaskDiv(task, i) {
+function openPopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.classList.remove('d-none');
+    let task = tasks[i];
     content.innerHTML = '<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(); return false">';
     content.innerHTML += /*html*/`
         <div class="popup-text">
-            <div class="user-popup-btn" id="category-bg-change-${i}">${task.title}</div>
-            <h2 class="popup-title">Kochwelt Page</h2>
-            <div class="overflow">Build start page with recipe recommendation.</div>
+            <div class="user-popup-btn" id="category-bg-change-${i}">${task.category}</div>
+            <h2 class="popup-title">${task.title}</h2>
+            <div class="overflow">${task.description}</div>
             <div class="popup-div-assign-date-title">
                 <div>
                     <div class="popup-date">Due Date:</div>
                     <div>Priority:</div>
                 </div>
                 <div class="popup-div-assign-date-title-content">
-                    <div class="popup-date">10/05/2023</div>
+                    <div class="popup-date">${task.date}</div>
                     <div class="popup-prio-section">
                         <div>Medium</div>
-                        <img src="/assets/img/icons/prio-urgent.svg" alt="Prio" class="popup-prio-icon">
+                        <img src="/assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
             </div>
             <div>
                 <div class="popup-assigned-div">Assigned To:</div>
-                <div class="popup-assigned">
-                    <img src="https://ui-avatars.com/api/?name=PM&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
-                    <div>Piri M.</div>
+                <div class="popup-assigned" id="popup-user-${i}">
                 </div>
 
             </div>
             <div>
                 <div class="">Subtasks</div>
-                <div class="popup-subtask">
-                    <img src="/assets/img/icons/selected.svg" alt="Select Icon">
-                    <div>Subtasks</div>
+                <div class="popup-subtask" id="popup-subtasks-${i}">
                 </div>
             </div>
             <div class="popup-task-footer">
@@ -141,6 +138,39 @@ function openPopupAddTaskDiv(task, i) {
 
         </div>
     `;
+    createUserToAssigned(i);
+    createSubtasksToAssigned(i);
+}
+
+
+function createUserToAssigned(i) {
+    let div = document.getElementById(`popup-user-${i}`);
+    let task = tasks[i];
+    for (let k = 0; k < task.letter.length; k++) {
+        let letters = task.letter[k];
+        let user = task.assigned[k];
+        div.innerHTML += /*html*/`
+            <div class="each-user-section">
+                <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                <div>${user}</div>  
+            </div>
+
+        `;   
+    }
+}
+
+function createSubtasksToAssigned(i) {
+    let div = document.getElementById(`popup-subtasks-${i}`);
+    let task = tasks[i];
+    for (let k = 0; k < task.subtask.length; k++) {
+        let subtasks = task.subtask[k];
+        div.innerHTML += /*html*/`
+            <div class="each-subtask-section">
+                <img src="/assets/img/icons/none-selected.svg" alt="Select Icon">
+                <div>${subtasks}</div>
+            </div>
+        `;
+    }   
 }
 
 

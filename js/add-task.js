@@ -33,7 +33,7 @@ async function addEventFunctions() {
     addSubtask();
     enterOnSubtask();
     dueDatePattern();
-    inputfieldFocus(field);
+    inputfieldFocus();
 }
 
 
@@ -231,7 +231,7 @@ function selectCategory(category) {
         technical.classList.remove('white-bg');
     }
     pushCategorytoInput(category);
-    inputfieldField();
+    inputfieldFocus('category');
 }
 
 
