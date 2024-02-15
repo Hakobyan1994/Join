@@ -43,7 +43,7 @@
 .close-a-board {
     position: relative;
     top: 4px;
-    left: 436px;
+    left: 413px;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -85,6 +85,9 @@
 }
 
 .user-popup-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 160px!important;
     height: 36px;
     border: none;
@@ -178,19 +181,33 @@
     gap: 16px;
 }
 
+.popup-assigned-div {
+    margin-top: -84px;
+}
+
+.popup-date {
+    margin-bottom: 32px;
+}
+
 .popup-prio {
     display: flex;
 }
 
 .popup-prio-section {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
 }
 
-.popup-div-assign-date {
+.popup-div-assign-date-title {
     display: flex;
-    flex-direction: column;
-    padding-right: 200px;
+    flex-direction: row;
+    gap: 32px;
+}
 
+.popup-div-assign-date-title-content {
+    margin-bottom: 32px;
 }
 
 .popup-date {

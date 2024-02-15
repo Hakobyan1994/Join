@@ -94,13 +94,13 @@ function openPopupAddTaskDiv(task, i) {
             <div class="user-popup-btn" id="category-bg-change-${i}">User Story</div>
             <h2 class="popup-title">Kochwelt Page</h2>
             <div class="overflow">Build start page with recipe recommendation.</div>
-            <div class="popup-div-assign-date">
-                <div class="popup-date">
-                    <div class="">Due date:</div>
-                    <div class="">10/05/2023</div>
-                </div>
-                <div class="popup-prio">
+            <div class="popup-div-assign-date-title">
+                <div>
+                    <div class="popup-date">Due Date:</div>
                     <div>Priority:</div>
+                </div>
+                <div class="popup-div-assign-date-title-content">
+                    <div class="popup-date">10/05/2023</div>
                     <div class="popup-prio-section">
                         <div>Medium</div>
                         <img src="/assets/img/icons/prio-urgent.svg" alt="Prio" class="popup-prio-icon">
@@ -108,7 +108,7 @@ function openPopupAddTaskDiv(task, i) {
                 </div>
             </div>
             <div>
-                <div class="">Assigned To:</div>
+                <div class="popup-assigned-div">Assigned To:</div>
                 <div class="popup-assigned">
                     <img src="https://ui-avatars.com/api/?name=PM&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>Piri M.</div>
