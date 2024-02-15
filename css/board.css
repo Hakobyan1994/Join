@@ -99,6 +99,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 120%;
+    margin-bottom: 16px;
 }
 
 .tecnical-popup-btn {
@@ -117,13 +118,16 @@
 
 .popup-title {
     width: 445px;
-    height: max-content;
+    max-height: 143px;
     font-family: 'Inter';
     font-weight: 700!important;
     font-size: 61px;
     line-height: 73.2px;
     color: rgba(0, 0, 0, 1);
     padding: 0;
+    margin-bottom: 16px;
+    overflow-y: scroll;
+    scrollbar-width: none;
     margin-bottom: 16px;
 }
 
@@ -147,7 +151,9 @@
 }
 
 .overflow {
-    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    margin-bottom: 16px;
 }
 
 .popup-task-footer {
@@ -172,7 +178,12 @@
     flex-direction: column;
     margin-left: 16px;
     margin-top: 16px;
+    margin-bottom: 16px;
     gap: 16px;
+    overflow-y: scroll;
+    height: 121px;
+    scrollbar-width: thin;
+
 }
 
 .each-subtask-section{
@@ -191,7 +202,8 @@
 }
 
 .popup-assigned-div {
-    margin-top: -54px;
+    margin-top: -28px;
+    color: rgba(0, 0, 0, 1);
 }
 
 .each-user-section {

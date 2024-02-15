@@ -167,6 +167,10 @@ textarea:focus {
     border-color: var(--lightblue);
 }
 
+.subtask-input {
+    padding-right: 58px;
+}
+
 .subtask-input:focus {
     border-color: var(--lightblue);
 }

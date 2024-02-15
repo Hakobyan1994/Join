@@ -121,7 +121,7 @@ function generateHtmlCategory() {
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
             </select> -->
-            <input class="inputfield category" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')"required readonly>
+            <input class="inputfield category" value="" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')"required readonly>
             <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')">
             <div class="category-list d-none" id="category-list"></div>
             <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
