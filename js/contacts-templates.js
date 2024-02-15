@@ -84,7 +84,7 @@ function generateDialog() {
             <div class="dialog" onclick="dontCloseCard(event)">
             <div class="add-contact-main">
                 <div class="set-position">
-                    <img src="/assets/img/icons/Capa 2.svg" alt="join-icon">
+                    <img class="join-img" src="/assets/img/icons/Capa 2.svg" alt="join-icon">
                     <div class="add-contact-headline">
                         Add contact
                     </div>
@@ -155,7 +155,7 @@ function generateEditMask(i) {
             <div class="dialog" onclick="dontCloseCard(event)">
                 <div class="add-contact-main">
                     <div class="set-position">
-                        <img src="/assets/img/icons/Capa 2.svg" alt="join-icon">
+                        <img class="join-img" src="/assets/img/icons/Capa 2.svg" alt="join-icon">
                         <div class="add-contact-headline">
                             Edit contact
                         </div>
@@ -163,10 +163,10 @@ function generateEditMask(i) {
                     </div>
                 </div>
 
-                <div class="contact-set">
+                <div class="contact-set-edit">
                     <div class="add-contact-content set-position">
                         <div>
-                            <div onclick="closeDialog()" class="close-img-con">
+                            <div onclick="closeDialog()" class="close-img-con-edit">
                                 <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
                             </div>
 
@@ -191,7 +191,7 @@ function generateEditMask(i) {
 
                                     <div class="add-contact-btns">
                                         <button type="button" class="cancel-btn" onclick="deleteContact(${i})">Delete</button>
-                                        <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg" src="/assets/img/icons/check.svg" alt=""></button>
+                                        <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg1" src="/assets/img/icons/check.svg" alt=""></button>
                                     </div>
                                 </form>
                             </div>
