@@ -148,4 +148,59 @@
 }
 
 .popup-task-footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.popup-task-footer-section {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    gap: 8px;
+    padding: 4px;
+}
+
+.popup-subtask {
+    display: flex;
+    margin-left: 16px;
+    margin-top: 16px;
+    gap: 16px;
+}
+
+.popup-assigned {
+    display: flex;
+    margin-left: 16px;
+    margin-top: 16px;
+    gap: 16px;
+}
+
+.popup-prio {
+    display: flex;
+}
+
+.popup-prio-section {
+    display: flex;
+}
+
+.popup-div-assign-date {
+    display: flex;
+    flex-direction: column;
+    padding-right: 200px;
+
+}
+
+.popup-date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-prio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 16px;
 }

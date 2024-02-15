@@ -94,20 +94,22 @@ function openPopupAddTaskDiv(task, i) {
             <div class="user-popup-btn" id="category-bg-change-${i}">User Story</div>
             <h2 class="popup-title">Kochwelt Page</h2>
             <div class="overflow">Build start page with recipe recommendation.</div>
-            <div>
-                <div class="">Due date:</div>
-                <div class="">10/05/2023</div>
-            </div>
-            <div>
-                <div class="">Priority:</div>
-                <div class="">
-                    <div>Medium</div>
-                    <img src="/assets/img/icons/prio-urgent.svg" alt="Prio" class="popup-prio-icon">
+            <div class="popup-div-assign-date">
+                <div class="popup-date">
+                    <div class="">Due date:</div>
+                    <div class="">10/05/2023</div>
+                </div>
+                <div class="popup-prio">
+                    <div>Priority:</div>
+                    <div class="popup-prio-section">
+                        <div>Medium</div>
+                        <img src="/assets/img/icons/prio-urgent.svg" alt="Prio" class="popup-prio-icon">
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="">Assigned To:</div>
-                <div>
+                <div class="popup-assigned">
                     <img src="https://ui-avatars.com/api/?name=PM&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>Piri M.</div>
                 </div>
@@ -115,18 +117,18 @@ function openPopupAddTaskDiv(task, i) {
             </div>
             <div>
                 <div class="">Subtasks</div>
-                <div>
+                <div class="popup-subtask">
                     <img src="/assets/img/icons/selected.svg" alt="Select Icon">
-                    <div></div>
+                    <div>Subtasks</div>
                 </div>
             </div>
-            <div>
-                <div>
+            <div class="popup-task-footer">
+                <div class="popup-task-footer-section">
                     <img src="/assets/img/icons/trash.svg" alt="Trash Icon">
                     <div>Delete</div>
                 </div>
                 <p class="separator"></p>
-                <div>
+                <div class="popup-task-footer-section">
                     <img src="/assets/img/icons/edit.svg" alt="Edit Icon">
                     <div>Edit</div>
                 </div> 
