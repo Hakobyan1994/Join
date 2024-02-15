@@ -186,11 +186,18 @@
 
 }
 
-.each-subtask-section{
+.each-subtask-section {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 8px;
+}
+
+.each-subtask-section img {
+    cursor: pointer;
+    padding: 2px;
+    width: 22px;
+    height: 22px;
 }
 
 .popup-assigned {

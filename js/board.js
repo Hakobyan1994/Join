@@ -59,7 +59,7 @@ async function loadToDo() {
                         <div class="progress-bar" stygitle="width: 70%"></div>
                     </div>
                     
-                    <div> /${totalSubtask(i)} Subtasks</div>     
+                    <div> / ${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
@@ -140,6 +140,7 @@ function openPopupAddTaskDiv(i) {
     `;
     createUserToAssigned(i);
     createSubtasksToAssigned(i);
+    calculateSubtask(i);
 }
 
 
@@ -166,13 +167,26 @@ function createSubtasksToAssigned(i) {
         let subtasks = task.subtask[k];
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
-                <img src="/assets/img/icons/none-selected.svg" alt="Select Icon">
+                <img src="/assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask(${k})">
                 <div>${subtasks}</div>
             </div>
         `;
     }   
 }
 
+
+function checkOffSubtask(i) {
+    let div = document.getElementById(`select-subtask-board-${i}`);
+
+    if (div.src.includes('none-selected.svg')) {
+        div.src = '/assets/img/icons/selected.svg';
+        div.alt = 'Selected';
+    } else {
+        div.src = '/assets/img/icons/none-selected.svg';
+        div.alt = 'Not Choosen';
+    }
+    calculateSubtask(i);
+}
 
 function closePopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
@@ -231,7 +245,20 @@ function totalSubtask(i) {
 }
 
 
-function calculateSubtask(value, total) {
+function calculateSubtask(i) {
+    let div = document.getElementById(`popup-subtasks-${i}`);
+    let totalSelected = 0;
+
+    for (let k = 0; k < tasks[i].subtask.length; k++) {
+        let eachSubtask = document.getElementById(`select-subtask-board-${k}`)
+
+        if (eachSubtask.src.includes('selected')) {
+            totalSelected++;
+            console.log('Gesamtanzahl ausgewählter Unteraufgaben:', totalSelected);
+        }
+    }
+    
+
 }
 
 
