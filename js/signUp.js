@@ -37,19 +37,20 @@ function validForm({ name, email, password, confirmPassword }, e) {
     if (password.includes(confirmPassword)) {
         let user = dataUser.find((el) => el.email === email)
         if (user) {
-            alert('Die Email ist schon angemeldet')
+            document.getElementById('emailError').innerText='The email is already registered'
         } else {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
-
             check.value = 'yes';
             trasparenterDiv.style.display = 'flex';
-            window.location.href = 'login.html'
-        }
-
+            setTimeout(function(){
+                trasparenterDiv.style.display = 'none';
+                },5000)
+                window.location.href = 'login.html'
+            } 
     } else {
         e.target[3].style.border = '4px solid red';
-        document.getElementById('erroMesagePas').innerHTML = 'Error';
+        document.getElementById('errorPassword').innerHTML = 'The password is not corect';
     }
 
 }

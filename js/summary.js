@@ -20,3 +20,6 @@ function dateUpdate() {
   montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
 }
 dateUpdate();
+
+
+  
