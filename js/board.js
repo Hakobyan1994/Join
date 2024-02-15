@@ -2,7 +2,7 @@
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
-    
+
     popup.classList.remove('d-none');
     content.innerHTML = /*html*/`
         <img class="close-popup" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
@@ -31,17 +31,18 @@ function closePopupAddTask() {
 
 function renderAddTaskForPopup() {
     e.preventDefault();
-    
+
 }
 
 
- 
-  
+
+
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
+       
         todo.innerHTML += /*html*/`
            <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" class="progress_card" id="board-to-do-section${i}">
                 <div  class="progress_infocard">
@@ -52,9 +53,10 @@ async function loadToDo() {
                     </div>
                 </div>
                 <div class="progress_image_Div">
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width: 100%"></div>
+                    <div  class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div id="progress-${i}" class="progress-bar" style="width:0%"></div>
                     </div>
+                    
                     <div> /${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
@@ -65,23 +67,29 @@ async function loadToDo() {
         `;
         changeCategoryButton(i);
         // calculateSubtask(value, total);
-      
-       
-    }  
-     
-}  
+
+
+    }
+
+}
+
+  
    
+
 
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 function dragStart(ev) {
+     console.log(ev);
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.style.transform = "rotate(13deg)";
-}  
+    // let progress=document.getElementById('progress')
+    // progress.style.width= "50%";
+}
 
- 
+
 
 function drop(ev) {
     ev.preventDefault();
@@ -89,15 +97,16 @@ function drop(ev) {
     var draggedElement = document.getElementById(data);
     // ev.target.appendChild(draggedElement);
     draggedElement.style.transform = "rotate(0deg)";
+    
     if (!ev.target.contains(draggedElement)) {
         ev.target.appendChild(draggedElement);
     }
 }
-  
-     
 
- 
-  
+
+
+
+
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
@@ -110,10 +119,10 @@ function changeCategoryButton(i) {
 }
 
 function totalSubtask(i) {
-        let task = tasks[i];
-        let total = task.subtask.length;
-        console.log(total);
-        return total;
+    let task = tasks[i];
+    let total = task.subtask.length;
+    console.log(total);
+    return total;
 }
 
 function calculateSubtask(value, total) {
@@ -141,19 +150,19 @@ function searchTaskToDo() {
         let name = title.toUpperCase();
         let subname = description.toUpperCase();
         if (name.indexOf(filter) > -1 || subname.indexOf(filter) > -1) {
-            todo.style.display = '';
+            todo.style.display = 'block';
         } else {
             todo.style.display = 'none';
         }
     }
 
-}  
+}
 
 
 
-   
-   
-   
+
+
+
 
 function cancelButton() {
     let button = document.getElementById('clear-button');

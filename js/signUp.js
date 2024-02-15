@@ -63,9 +63,37 @@ function backToRegister() {
     window.location.href = 'login.html'
 }
 
+      
+document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordImage=document.getElementById('passwordBlock')
+    passwordInput.addEventListener('input', function () {
+       if(passwordInput.value.trim()!=='') {
+              passwordImage.src='/assets/img/anmeldung Image/blockPassword.svg'
+               passwordImage.onclick=function(){
+                 if(passwordInput.type==='password'){
+                    passwordInput.type='text'
+                    passwordImage.src='/assets/img/anmeldung Image/passwordLock.svg'
+                 }else{
+                    passwordInput.type='password'
+                    passwordImage.src='/assets/img/anmeldung Image/blockPassword.svg'
+                 }
+               }
+               }else{
+                passwordInput.value.trim()===''
+                passwordImage.src='/assets/img/anmeldung Image/lock.png'
+               }
+            });
+        });  
+              
+       
+   
+   
+   
+   
+  
+       
 
-
-
-
-
-
+       
+   
+      
