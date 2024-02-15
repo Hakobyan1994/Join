@@ -32,8 +32,6 @@ function onsubmitFor(e) {
 }
 
 
-
-
 function validForm({ name, email, password, confirmPassword }, e) {
     console.log(password.includes(confirmPassword));
     if (password.includes(confirmPassword)) {
@@ -85,8 +83,34 @@ document.addEventListener('DOMContentLoaded', function () {
                }
             });
         });  
-              
-       
+      
+        
+        document.addEventListener('DOMContentLoaded',function(){
+         const confirmInput=document.getElementById('confirmInput');
+         const confirmImage=document.getElementById('confirmBlock')   
+         confirmInput.addEventListener('input',function(){
+           if(confirmInput.value.trim()!==''){
+            confirmImage.src= '/assets/img/anmeldung Image/blockPassword.svg'
+            confirmImage.onclick=function () {
+                if (confirmInput.type==='password') {
+                    confirmInput.type='text'
+                    confirmImage.src='/assets/img/anmeldung Image/passwordLock.svg'
+                }else{
+                    confirmInput.type='password'
+                    confirmImage.src='/assets/img/anmeldung Image/blockPassword.svg'
+                }
+            }
+           }
+           else{
+            confirmInput.value.trim()===''
+            confirmImage.src= '/assets/img/anmeldung Image/lock.png'
+           }
+        })
+    }) 
+
+
+         
+        
    
    
    
