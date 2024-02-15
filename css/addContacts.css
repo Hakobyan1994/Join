@@ -130,6 +130,11 @@
     line-height: 120%;
 }
 
+.input-con:focus {
+   border-color: #2AACE2 !important;
+   outline: none;
+}
+
 .add-contact-user-img {
     display: flex;
     align-items: center;
@@ -157,6 +162,7 @@
 
 .create-contact-btn:hover {
     background-color: #2AACE2;
+    border: none;
 }
 
 .cancel-btn {
@@ -184,6 +190,10 @@
 }
 
 .cancel-btn-img:hover {
+    color: #2AACE2;
+}
+
+.cancel-btn-img img:hover {
     color: #2AACE2;
 }
 

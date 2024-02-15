@@ -12,7 +12,7 @@ function generateContact(i, contact, imageId) {
             <div class="contact-con">
                 <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
                 <div>
-                    <div class="contact-list-name">${contact.name}</div>
+                    <div class="contact-list-name" tabindex="0">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
                 </div>
             </div>
@@ -191,7 +191,7 @@ function generateEditMask(i) {
 
                                     <div class="add-contact-btns">
                                         <button type="button" class="cancel-btn" onclick="deleteContact(${i})">Delete</button>
-                                        <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg1" src="/assets/img/icons/check.svg" alt=""></button>
+                                        <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg" src="/assets/img/icons/check1.svg" alt=""></button>
                                     </div>
                                 </form>
                             </div>

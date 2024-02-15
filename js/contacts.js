@@ -1,19 +1,10 @@
+
 let contacts = [];
 let contactIdCounter = 0;
 let initials;
 let contactInfoSliderVisible = false;
 let dialogVisible = false;
-let editMaskVisible = false;
-let contactColors = ['#FF5733', '#FFD700', '#FF33FF', '#FFC300', '#00BFFF',
-    '#FF6347', '#6A5ACD', '#32CD32', '#FF4500', '#8A2BE2',
-    '#1E90FF', '#FF69B4', '#FF8C00', '#9400D3', '#DC143C',
-    '#FF1493', '#00FF7F', '#4682B4', '#BA55D3', '#D2691E',
-    '#FFD700', '#32CD32', '#00CED1', '#20B2AA', '#FF8C00',
-    '#7CFC00', '#6495ED', '#48D1CC', '#7B68EE', '#9932CC',
-    '#FF00FF', '#8B4513', '#87CEEB', '#F08080', '#20B2AA',
-    '#FA8072', '#9370DB', '#4169E1', '#87CEFA', '#778899',
-    '#6495ED', '#40E0D0', '#00FF00', '#9370DB', '#800080',
-    '#8B0000', '#4B0082', '#FF00FF', '#00FA9A', '#4169E1'];
+let editMaskVisible = false
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
@@ -154,23 +145,25 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=#ffffff`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
         applyRandomColorToImage(imageElement, initials);
     }
 }
 
 function getRandomColor(seed) {
-    const colors = contactColors;
-    let index = 0;
+    const letters = '0123456789ABCDEF';
+    let color = '#';
     if (seed && seed.length > 0) {
-        for (let i = 0; i < seed.length; i++) {
-            index += seed.charCodeAt(i);
+        for (let i = 0; i < 6; i++) {
+            const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
+            color += letters[charIndex];
         }
-        index = index % colors.length;
     } else {
-        index = Math.floor(Math.random() * colors.length);
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
     }
-    return colors[index];
+    return color;
 }
 
 function applyRandomColorToImage(imageElement, seed) {
@@ -184,7 +177,7 @@ function dontCloseCard(event) {
 
 function renderDialog() {
     let dialog = document.getElementById('dialog');
-
+    
     if (dialogVisible) {
         dialog.classList.remove('slide-in');
         dialogVisible = false;

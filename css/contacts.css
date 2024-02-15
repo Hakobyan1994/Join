@@ -143,6 +143,7 @@ body {
 
 .add-contact-btn:hover {
     background-color: #2AACE2;
+    border: none;
 }
 
 .all-contacts {
@@ -175,6 +176,11 @@ body {
     background: var(--white, #FFF);
     padding-top: 3px;
     padding-bottom: 3px;
+    width: 100%;
+}
+
+.contact-con:focus-within {
+    background-color: #2A3647;
 }
 
 .contact-list-name {
@@ -185,6 +191,14 @@ body {
     font-weight: 400;
     line-height: 120%;
     margin-right: auto;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+.contact-list-name:focus-within {
+    color: white;
 }
 
 .contact-list-email {
@@ -193,6 +207,10 @@ body {
     color: #007cee;
     inline-size: auto;
     overflow-wrap: break-word;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
 }
 
 .user-img-contact-list {
@@ -240,4 +258,3 @@ body {
 .slide-out-success {
     transform: translateX(100%);
 }
-
