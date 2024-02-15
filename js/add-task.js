@@ -540,6 +540,7 @@ function clearFields() {
     document.getElementById('assigned').value = '';
     document.getElementById('date').value = '';
     document.getElementById('category').value = '';
+    document.getElementById('subtask-input').value = '';
 
     document.getElementById('assigned-list').classList.add('d-none');
     users = [];
