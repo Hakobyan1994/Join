@@ -67,6 +67,55 @@ label p {
     height: 58px;
 }
 
+.category {
+    position: relative;
+    z-index: 4;
+    width: 440px!important;
+}
+
+.category::placeholder {
+    color: rgba(0, 0, 0, 1)!important;
+}
+
+.category-list {
+    z-index: 3;
+    position: relative;
+    bottom: 32px;
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid rgba(209, 209, 209, 0.2);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    color: rgba(0, 0, 0, 1);
+    height: max-content;
+    width: 440px;
+    padding-top: 6px;
+}
+
+.white-bg {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.grey {
+    background-color: rgba(238,238,238,1);
+}
+
+.category-list-div {
+    padding: 12px;
+    border-radius: 10px;
+    padding-right: 16px;
+}
+
+.category-list-div:hover {
+    background-color: rgba(238,238,238,1);
+}
+
+
+.select-category-bg {
+    background-color: rgba(238,238,238,1);
+}
+
 .required-text {
     width: 119px;
     height: 12px;
@@ -78,7 +127,7 @@ label p {
 }
 
 .required-text-date {
-    margin-top: -17px;
+    margin-top: 4px;
     height: 0!important;
 }
 
@@ -310,12 +359,13 @@ textarea {
     scrollbar-width: thin;
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
 
 .assigned-button {
     z-index: 2;
-    position: fixed;
-    bottom: 176px;
+    position: relative;
+    bottom: 20px;
     padding-left: 8px;
     padding-right: 8px;
     width: 440px;
@@ -415,7 +465,7 @@ button:focus-visible {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
+    opacity: 1;
     cursor: pointer;
 }
 
@@ -512,7 +562,7 @@ p.subtask-p {
 .separator-border {
     border-right: 1px solid var(--line);
     border-color: var(--line);
-    padding-right: 10px!important;
+    /* padding-right: 10px!important; */
     margin-right: 4px;
 }
 
@@ -542,7 +592,7 @@ p.subtask-p {
 .clear-check-icons {
     position: relative;
     bottom: 20px;
-    left: 184px;
+    left: 191px;
     height: 30px;
     width: 30px;
     cursor: pointer;

@@ -1,5 +1,4 @@
 .dialog-bg {
-    background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
     position: fixed;
     top: 0;
@@ -8,6 +7,31 @@
     bottom: 0;
     display: flex;
     justify-content: center;
+    animation: darkenBackground 1s forwards;
+}
+
+.hide-dialog-bg {
+    animation: lightenBackground 1s forwards;
+}
+
+@keyframes darkenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes lightenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0);
+    }
 }
 
 .dialog {
@@ -24,6 +48,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .d-none {
     display: none;
 }
@@ -105,6 +130,11 @@
     line-height: 120%;
 }
 
+.input-con:focus {
+   border-color: #2AACE2 !important;
+   outline: none;
+}
+
 .add-contact-user-img {
     display: flex;
     align-items: center;
@@ -130,6 +160,11 @@
     height: 50px;
 }
 
+.create-contact-btn:hover {
+    background-color: #2AACE2;
+    border: none;
+}
+
 .cancel-btn {
     display: flex;
     padding: 16px;
@@ -146,12 +181,34 @@
     line-height: 120%;
     cursor: pointer;
     height: 50px;
+    background-color: white;
+}
+
+.cancel-btn:hover {
+    color: #2AACE2;
+    border-color: #2AACE2;
+}
+
+.cancel-btn-img:hover {
+    color: #2AACE2;
+}
+
+.cancel-btn-img img:hover {
+    color: #2AACE2;
 }
 
 .contact-set {
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.contact-set-edit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 50px;
 }
 
 .user-img {
@@ -181,13 +238,17 @@
     right: 65px;
     bottom: 3px;
     border-radius: 100px;
+    border: 3px solid var(--white, #FFF);
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.05);
+    text-align: center;
 }
 
 .person-img-add-contacts {
     width: 64px;
     height: 64px;
     position: relative;
-    right: 93px;
+    right: 94px;
     bottom: 3px;
     border-radius: 100px;
 }
@@ -202,17 +263,16 @@
     border-radius: 70px;
     border: 3px solid var(--white, #FFF);
     background: #FFF;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.05);
 }
 
 .close-img-con {
     position: relative;
-    top: -50px;
+    top: -70px;
     bottom: 70px;
-    left: 680px;
+    left: 710px;
     width: 32px;
     height: 32px;
-    padding: 4px;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
@@ -220,14 +280,44 @@
 }
 
 .close-img-con img {
-    width: 24px;
-    height: 24px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
+    padding: 5px;
 }
 
 .close-img-con img:hover {
     background-color: lightgrey;
-    border-radius: 10px;
+    border-radius: 100%;
+}
+
+.close-img-con-edit img {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    padding: 5px;
+}
+
+.close-img-con-edit {
+    position: relative;
+    top: -70px;
+    bottom: 70px;
+    left: 630px;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.close-img-con-edit img:hover {
+    background-color: lightgrey;
+    border-radius: 100%;
+}
+
+.join-img {
+    margin-bottom: 30px;
 }
 
 .input-svg-pos {
@@ -243,4 +333,60 @@
 
 .check-svg {
     color: white;
+}
+
+.slide-in {
+    animation: slideInFromRight 0.5s forwards;
+}
+
+.slide-out {
+    animation: slideOutToRight 0.5s forwards;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.slide-in-success {
+    animation: slideInFromRightSuccess 0.5s forwards;
+}
+
+.slide-out-success {
+    animation: slideOutToRightSuccess 0.5s forwards;
+}
+
+@keyframes slideInFromRightSuccess {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightSuccess {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
 }
