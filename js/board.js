@@ -1,3 +1,4 @@
+let selectedSubtasksCount = 0;
 
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
@@ -59,7 +60,7 @@ async function loadToDo() {
                         <div class="progress-bar" stygitle="width: 70%"></div>
                     </div>
                     
-                    <div> / ${totalSubtask(i)} Subtasks</div>     
+                    <div> ${updateSelectedSubtasksCount()} / ${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
@@ -89,7 +90,7 @@ function createUserButtons(task, i) {
 }
 
 
-function openPopupAddTaskDiv(i) {
+async function openPopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.classList.remove('d-none');
@@ -140,7 +141,7 @@ function openPopupAddTaskDiv(i) {
     `;
     createUserToAssigned(i);
     createSubtasksToAssigned(i);
-    calculateSubtask(i);
+    // await calculateSubtask(i);
 }
 
 
@@ -175,17 +176,19 @@ function createSubtasksToAssigned(i) {
 }
 
 
-function checkOffSubtask(i) {
+async function checkOffSubtask(i) {
     let div = document.getElementById(`select-subtask-board-${i}`);
 
     if (div.src.includes('none-selected.svg')) {
         div.src = '/assets/img/icons/selected.svg';
         div.alt = 'Selected';
+        selectedSubtasksCount++;
     } else {
         div.src = '/assets/img/icons/none-selected.svg';
         div.alt = 'Not Choosen';
+        selectedSubtasksCount--;
     }
-    calculateSubtask(i);
+    updateSelectedSubtasksCount();
 }
 
 function closePopupAddTaskDiv(i) {
@@ -245,20 +248,25 @@ function totalSubtask(i) {
 }
 
 
-function calculateSubtask(i) {
-    let div = document.getElementById(`popup-subtasks-${i}`);
-    let totalSelected = 0;
+// function calculateSubtask(i) {
+//     let div = document.getElementById(`popup-subtasks-${i}`);
+//     let totalSelected = 0;
 
-    for (let k = 0; k < tasks[i].subtask.length; k++) {
-        let eachSubtask = document.getElementById(`select-subtask-board-${k}`)
+//     for (let k = 0; k < tasks[i].subtask.length; k++) {
+//         let eachSubtask = document.getElementById(`select-subtask-board-${k}`)
 
-        if (eachSubtask.src.includes('selected')) {
-            totalSelected++;
-            console.log('Gesamtanzahl ausgewählter Unteraufgaben:', totalSelected);
-        }
-    }
+//         if (eachSubtask.src.includes('selected')) {
+//             totalSelected++;
+//             console.log('Gesamtanzahl ausgewählter Unteraufgaben:', totalSelected);
+//         }
+//     }
     
 
+// }
+
+function updateSelectedSubtasksCount() {
+    console.log('Anzahl', selectedSubtasksCount);
+    return selectedSubtasksCount;
 }
 
 
