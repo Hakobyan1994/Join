@@ -375,7 +375,6 @@ h1 {
 
 .aPrivacy:hover {
     color: #29ABE2;
-    font-size: 18px;
     font-family: 'Inter';
 }
 
@@ -389,9 +388,7 @@ h1 {
 }
 
 .aLegal:hover {
-
     color: #29ABE2;
-    font-size: 18px;
     font-family: 'Inter';
 }
 

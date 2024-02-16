@@ -81,6 +81,8 @@ body {
 
 .toDo_mainDiv:hover {
     background-color: #2A3647;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 
     .image_Todo {
         background-color: #ffffff;
@@ -155,6 +157,8 @@ body {
 
 .done_main:hover {
     background-color: #2A3647;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 
     .image_box {
         background-color: #ffffff;
@@ -224,7 +228,8 @@ body {
     margin-bottom: 28px
 }  
   .mainTime_UrgentDiv:hover{
-    
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
     background-color: #2A3647;
     .urgent_Number{
         color: #ffffff;
@@ -348,6 +353,8 @@ body {
 
       .board_Div:hover{
         background-color: #2A3647;
+        transform: scale(1.1);
+    transition: transform 0.3s ease;
         .boardNumber{
             color: #ffffff;
         }
@@ -399,8 +406,10 @@ body {
       }   
 
 
-      .progress_Div:hover{
+      .progress_Div:hover{ 
         background-color: #2A3647;
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
         .progress_number{
             color: #ffffff;
         }
@@ -450,6 +459,8 @@ body {
      
        .feedback_div:hover{
         background-color:#2A3647;
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
         .feedback_number{
             color: #ffffff;
         } 
