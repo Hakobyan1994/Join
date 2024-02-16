@@ -1,7 +1,3 @@
-let selectedSubtasksCount = 0;
-let progressArray=[];
-let selectedSubtasks = [];
-
 async function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
@@ -177,7 +173,6 @@ function createUserToAssigned(i) {
 function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
     let task = tasks[i];
-    let k = null; 
     for (let k = 0; k < task.subtask.length; k++) {
         let subtasks = task.subtask[k];
         div.innerHTML += /*html*/`
@@ -190,6 +185,11 @@ function createSubtasksToAddTaskPopup(i) {
         `;
         
     }
+    checkSelectedSubtasks(i);
+}
+
+function checkSelectedSubtasks(i) {
+
 }
 
 
@@ -202,13 +202,11 @@ async function checkOffSubtask(i, k) {
         img.src = '/assets/img/icons/selected.svg';
         img.alt = 'Selected';
         subtask.setAttribute('value', 'selected');
-        selectedSubtasksCount++;
         pushSelectedSubtask(i, k);
     } else {
         img.src = '/assets/img/icons/none-selected.svg';
         img.alt = 'Not Selected';
         subtask.setAttribute('value', 'not-selected');
-        selectedSubtasksCount--;
         pushSelectedSubtask(i, k);
     }
     updateSelectedSubtasksCount();
@@ -216,34 +214,25 @@ async function checkOffSubtask(i, k) {
 
 
 async function pushSelectedSubtask(i, k) {
-    await loadSubtasks();
-    let subtask = document.getElementById(`each-subtasks-${k}`);
+    await loadTasks();
 
-    if (subtask) {
+    let subtask = document.getElementById(`each-subtasks-${k}`);
+    let task = tasks[i];
+
+    if (subtask && task) {
         let value = subtask.getAttribute('value');
-        let selectedSubtasks = JSON.parse(await getItem('selectedSubtasks')) || [];
+
+        if (!Array.isArray(task.checkoffs)) {
+            task.checkoffs = [];
+        }
 
         if (value === 'selected') {
-            let subtasks = {
-                task: i,
-                checkoff: subtask.textContent
-            };
-            selectedSubtasks.push(subtasks);
-            await setItem('selectedSubtasks', JSON.stringify(selectedSubtasks));
+            let checkoffData = subtask.textContent;
+            task.checkoffs.push(checkoffData);
+            await setItem('testaufgaben', JSON.stringify(tasks));
         }
     }
 }
-
-
-async function loadSubtasks() {
-    try {
-        selectedSubtasks = JSON.parse(await getItem('selectedSubtasks')) || [];
-    } catch (e) {
-        console.error('Error in selectedSubtasks:', e);
-    }
-}
-
-
 
 
 function closePopupAddTaskDiv(i) {
