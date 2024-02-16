@@ -44,15 +44,16 @@ function renderAddTaskForPopup() {
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
-    if (!tasks || tasks.length===0) {
+    console.log(tasks);
+    if(!tasks || tasks.length===0) {
         console.log(tasks.length);
-       let NoTodotask=document.getElementById('NoToDo')
-       NoTodotask.textContent='aaaaaa'
-       NoTodotask.style.display='flex'
-       todo.appendChild(NoTodotask)
+       let noTodotask=document.getElementById('NoToDo')
+       noTodotask.style.display='flex'
+       todo.appendChild(noTodotask)
        return;
-        
     } 
+        
+   
       
     for (let i = 0; i < tasks.length; i++) {
         let task= tasks[i];
