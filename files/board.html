@@ -196,6 +196,7 @@
           }
 
         .Card_NotasksTodo {
+            display: none;
             width: 246px;
             height: 48px;
             border: 1px solid #A8A8A8;
@@ -562,7 +563,7 @@
     </div>
     <div class="card_mainContainer">
         <div    class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)">            
-            <div class="Card_NotasksTodo">No Tasks To do</div>
+            <div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>
         </div>
 
         <div  class="card_Div2"  id="board-in-progress"   ondrop="drop(event)" ondragover="allowDrop(event)">

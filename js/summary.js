@@ -1,4 +1,10 @@
 
+
+let logGuest=JSON.parse(localStorage.getItem('guestuser'))
+
+ 
+
+   
 let locRes = JSON.parse(localStorage.getItem('activUser'))
 
 if (locRes) {
