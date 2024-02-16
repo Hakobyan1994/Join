@@ -2,7 +2,7 @@ let selectedSubtasksCount = 0;
 let progressArray=[];
 let selectedSubtasks = [];
 
-function openPopupAddTask() {
+async function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
 
@@ -89,10 +89,6 @@ async function loadToDo() {
 
 }  
   
-
-
-      
-
 
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
@@ -212,23 +208,41 @@ async function checkOffSubtask(i, k) {
         img.alt = 'Not Selected';
         subtask.setAttribute('value', 'not-selected');
         selectedSubtasksCount--;
+        pushSelectedSubtask(i, k);
     }
-    // updateSelectedSubtasksCount();
+    updateSelectedSubtasksCount();
 }
 
 
-function pushSelectedSubtask(i, k) {
+async function pushSelectedSubtask(i, k) {
+    await loadSubtasks();
     let subtask = document.getElementById(`each-subtasks-${k}`);
 
-    if(subtask) {
+    if (subtask) {
         let value = subtask.getAttribute('value');
+        let selectedSubtasks = JSON.parse(await getItem('selectedSubtasks')) || [];
 
-        if(value === 'selected') {
-            let response = subtask.textContent;
-            console.log('Subtask:', response, 'tasks:', i);
+        if (value === 'selected') {
+            let subtasks = {
+                task: i,
+                checkoff: subtask.textContent
+            };
+            selectedSubtasks.push(subtasks);
+            await setItem('selectedSubtasks', JSON.stringify(selectedSubtasks));
         }
     }
 }
+
+
+async function loadSubtasks() {
+    try {
+        selectedSubtasks = JSON.parse(await getItem('selectedSubtasks')) || [];
+    } catch (e) {
+        console.error('Error in selectedSubtasks:', e);
+    }
+}
+
+
 
 
 function closePopupAddTaskDiv(i) {
@@ -301,8 +315,8 @@ function totalSubtask(i) {
 // }
 
 function updateSelectedSubtasksCount() {
-    console.log('Anzahl', selectedSubtasksCount);
-    return selectedSubtasksCount;
+    let selectedSubtasks = JSON.parse(localStorage.getItem('selectedSubtasks')) || [];
+    return selectedSubtasks.filter(subtask => subtask.task === i).length;
 }
 
 
