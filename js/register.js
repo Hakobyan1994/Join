@@ -64,18 +64,8 @@ document.addEventListener('DOMContentLoaded',function(){
   })    
 })   
   
-let guestuser=[]
- 
 
 
-   
-
-     
- 
-    
-
-function guesButton(){
-    window.location.href='/files/summary.html'
-    guestUsers(guestuser,'guest');
-}
-   
+function activUser(arr){
+    localStorage.setItem( JSON.stringify(arr));
+ }

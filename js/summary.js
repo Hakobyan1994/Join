@@ -1,25 +1,21 @@
 
-
-let logGuest=JSON.parse(localStorage.getItem('guestuser'))
-
- 
-
-   
-let locRes = JSON.parse(localStorage.getItem('activUser'))
-
+let locRes = JSON.parse(localStorage.getItem('activeUser'));
+let user={};
 if (locRes) {
-    user = locRes 
-    console.log(user);
-} 
- 
- let profilName=document.querySelector('.greetingName')
- profilName.innerText=user.name
+  user = locRes;
+  console.log(user);
+}
 
- const currentDate = new Date();
+// Profilname aktualisieren
+let profilName = document.querySelector('.greetingName');
+profilName.innerText = user.name;
+
+const currentDate = new Date();
+
 
 function dateUpdate() {
   let montUndDay = document.getElementById('datum');
-  
+
   // Monatsnamen extrahieren
   const monthName = currentDate.toLocaleString('default', { month: 'long' });
 
@@ -28,4 +24,12 @@ function dateUpdate() {
 dateUpdate();
 
 
-  
+
+
+
+
+
+
+
+
+
