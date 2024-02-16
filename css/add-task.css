@@ -538,6 +538,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 10px;
     padding: 4px 8px;
     cursor: pointer;
+    width: 416px;
 }
 
 .each-subtask:hover {
@@ -547,6 +548,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .each-subtask-p {
     display: flex;
     align-items: center;
+    overflow-wrap: anywhere;
 }
 
 .subtask-p::before {

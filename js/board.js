@@ -69,7 +69,7 @@ async function loadToDo() {
                         <div class="progress-bar" stygitle="width: 70%"></div>
                     </div>
                     
-                    <div> ${updateSelectedSubtasksCount()} / ${totalSubtask(i)} Subtasks</div>     
+                    <div> ${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
@@ -79,11 +79,7 @@ async function loadToDo() {
         `;
         changeCategoryButton(i);
         await createUserButtons(task, i);
-        // calculateSubtask(value, total);
-
-
     }
-
 }  
   
 
@@ -150,7 +146,7 @@ async function openPopupAddTaskDiv(i) {
     `;
     createUserToAssigned(i);
     createSubtasksToAddTaskPopup(i);
-    // await calculateSubtask(i);
+    checkSelectedSubtasks(i);
 }
 
 
@@ -189,7 +185,22 @@ function createSubtasksToAddTaskPopup(i) {
 }
 
 function checkSelectedSubtasks(i) {
+    let task = tasks[i];
 
+    for (let k = 0; k < task.subtask.length; k++) {
+        let img = document.getElementById(`select-subtask-board-${k}`);
+        let subtask = document.getElementById(`each-subtasks-${k}`);
+
+        if (task.checkoffs.includes(k.toString())) {
+            img.src = '/assets/img/icons/selected.svg';
+            img.alt = 'Selected';
+            subtask.setAttribute('value', 'selected');
+        } else {
+            img.src = '/assets/img/icons/none-selected.svg';
+            img.alt = 'Not Selected';
+            subtask.setAttribute('value', 'not-selected');
+        }
+    }
 }
 
 
@@ -209,7 +220,9 @@ async function checkOffSubtask(i, k) {
         subtask.setAttribute('value', 'not-selected');
         pushSelectedSubtask(i, k);
     }
-    updateSelectedSubtasksCount();
+    await loadTasks();
+    pushSelectedSubtask(i, k);
+    updateSelectedSubtasksCount(i);
 }
 
 
@@ -227,9 +240,16 @@ async function pushSelectedSubtask(i, k) {
         }
 
         if (value === 'selected') {
-            let checkoffData = subtask.textContent;
-            task.checkoffs.push(checkoffData);
-            await setItem('testaufgaben', JSON.stringify(tasks));
+            if (!task.checkoffs.includes(k)) {
+                task.checkoffs.push(k);
+                await setItem('testaufgaben', JSON.stringify(tasks));
+            }
+        } else {
+            let index = task.checkoffs.indexOf(k);
+            if (index !== -1) {
+                task.checkoffs.splice(index, 1);
+                await setItem('testaufgaben', JSON.stringify(tasks));
+            }
         }
     }
 }
@@ -283,30 +303,13 @@ function changeCategoryButton(i) {
 function totalSubtask(i) {
     let task = tasks[i];
     let total = task.subtask.length;
-    // console.log(total);
     return total;
 }
 
 
-// function calculateSubtask(i) {
-//     let div = document.getElementById(`popup-subtasks-${i}`);
-//     let totalSelected = 0;
-
-//     for (let k = 0; k < tasks[i].subtask.length; k++) {
-//         let eachSubtask = document.getElementById(`select-subtask-board-${k}`)
-
-//         if (eachSubtask.src.includes('selected')) {
-//             totalSelected++;
-//             console.log('Gesamtanzahl ausgewählter Unteraufgaben:', totalSelected);
-//         }
-//     }
-    
-
-// }
-
-function updateSelectedSubtasksCount() {
-    let selectedSubtasks = JSON.parse(localStorage.getItem('selectedSubtasks')) || [];
-    return selectedSubtasks.filter(subtask => subtask.task === i).length;
+function updateSelectedSubtasksCount(i) {
+    let selectedSubtasks = tasks[i].checkoffs.length;
+    return selectedSubtasks;
 }
 
 
