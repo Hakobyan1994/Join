@@ -109,7 +109,7 @@ async function openPopupAddTaskDiv(i) {
                 <div class="popup-div-assign-date-title-content">
                     <div class="popup-date">${task.date}</div>
                     <div class="popup-prio-section">
-                        <div>Medium</div>
+                        <div>${task.priority.charAt(0).toUpperCase}</div>
                         <img src="/assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
@@ -168,8 +168,10 @@ function createSubtasksToAssigned(i) {
         let subtasks = task.subtask[k];
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
-                <img src="/assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask(${k})">
-                <div>${subtasks}</div>
+                <div>
+                    <img src="/assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask(${k})">
+                    <div id="each-subtasks-${k}" value="not-selected">${subtasks}</div>   
+                </div>
             </div>
         `;
     }   
@@ -177,15 +179,21 @@ function createSubtasksToAssigned(i) {
 
 
 async function checkOffSubtask(i) {
-    let div = document.getElementById(`select-subtask-board-${i}`);
+    let img = document.getElementById(`select-subtask-board-${i}`);
+    let subtask = document.getElementById(`each-subtasks-${i}`)
+    let value = subtask.getAttribute('value');
 
-    if (div.src.includes('none-selected.svg')) {
-        div.src = '/assets/img/icons/selected.svg';
-        div.alt = 'Selected';
+    
+
+    if (img.src.includes('none-selected.svg')) {
+        img.src = '/assets/img/icons/selected.svg';
+        img.alt = 'Selected';
+        subtask.setAttribute('value', 'selected');
         selectedSubtasksCount++;
     } else {
-        div.src = '/assets/img/icons/none-selected.svg';
-        div.alt = 'Not Choosen';
+        img.src = '/assets/img/icons/none-selected.svg';
+        img.alt = 'Not Selected';
+        subtask.setAttribute('value', 'not-selected');
         selectedSubtasksCount--;
     }
     updateSelectedSubtasksCount();
