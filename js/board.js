@@ -1,5 +1,6 @@
 let selectedSubtasksCount = 0;
-let progressArray=[]
+let progressArray=[];
+let selectedSubtasks = [];
 
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
@@ -222,17 +223,12 @@ function pushSelectedSubtask(i, k) {
 
     if(subtask) {
         let value = subtask.getAttribute('value');
-        let taskArray = tasks[i];
-        let subtaskArray = taskArray.subtask[k];
-        let selectedTask = subtaskArray.selected;
-        selectedTask = [];
 
         if(value === 'selected') {
             let response = subtask.textContent;
-            selectedTask.push(response);
-            console.log('Subtask:', response);
+            console.log('Subtask:', response, 'tasks:', i);
         }
-    }   
+    }
 }
 
 
