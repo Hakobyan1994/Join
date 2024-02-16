@@ -1,4 +1,5 @@
 let selectedSubtasksCount = 0;
+let progressArray=[]
 
 function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
@@ -43,9 +44,19 @@ function renderAddTaskForPopup() {
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
+    if (!tasks || tasks.length===0) {
+        console.log(tasks.length);
+       let NoTodotask=document.getElementById('NoToDo')
+       NoTodotask.textContent='aaaaaa'
+       NoTodotask.style.display='flex'
+       todo.appendChild(NoTodotask)
+       return;
+        
+    } 
+      
     for (let i = 0; i < tasks.length; i++) {
-        let task = tasks[i];
-       
+        let task= tasks[i];
+        
         todo.innerHTML += /*html*/`
            <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}">
                 <div  class="progress_infocard">
@@ -66,7 +77,7 @@ async function loadToDo() {
                     <div id="user-board-${i}"></div>
                     <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
-            </div>
+            </div> 
         `;
         changeCategoryButton(i);
         await createUserButtons(task, i);
@@ -75,7 +86,11 @@ async function loadToDo() {
 
     }
 
-}
+}  
+  
+
+
+      
 
 
 function createUserButtons(task, i) {
@@ -211,7 +226,7 @@ function allowDrop(ev) {
 
 
 function dragStart(ev) {
-     console.log(ev);
+     
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.style.transform = "rotate(13deg)";
     // let progress=document.getElementById('progress')
@@ -251,7 +266,7 @@ function changeCategoryButton(i) {
 function totalSubtask(i) {
     let task = tasks[i];
     let total = task.subtask.length;
-    console.log(total);
+    // console.log(total);
     return total;
 }
 

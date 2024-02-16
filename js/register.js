@@ -10,6 +10,8 @@ let checkBox = document.getElementById('checkBox')
 checkBox.checked
 
 
+  
+
 function validLogin(e) {
     e.preventDefault();
     let email = e.target[0].value;
@@ -38,10 +40,7 @@ function validLogin(e) {
 }
 
 
-function activUser(user) {
-    localStorage.setItem('activUser', JSON.stringify(user))
-     
-}
+
    
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -63,9 +62,20 @@ document.addEventListener('DOMContentLoaded',function(){
     inputImage.src='/assets/img/anmeldung Image/lock.png'
    }
   })    
-})
+})   
+  
+let guestuser=[]
+ 
 
 
+   
 
+     
+ 
+    
 
-
+function guesButton(){
+    window.location.href='/files/summary.html'
+    guestUsers(guestuser,'guest');
+}
+   
