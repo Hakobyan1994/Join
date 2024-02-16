@@ -109,7 +109,7 @@ async function openPopupAddTaskDiv(i) {
                 <div class="popup-div-assign-date-title-content">
                     <div class="popup-date">${task.date}</div>
                     <div class="popup-prio-section">
-                        <div>${task.priority.charAt(0).toUpperCase}</div>
+                        <div>${task.priority.toUpperCase()}</div>
                         <img src="/assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
@@ -140,7 +140,7 @@ async function openPopupAddTaskDiv(i) {
         </div>
     `;
     createUserToAssigned(i);
-    createSubtasksToAssigned(i);
+    createSubtasksToAddTaskPopup(i);
     // await calculateSubtask(i);
 }
 
@@ -161,28 +161,28 @@ function createUserToAssigned(i) {
     }
 }
 
-function createSubtasksToAssigned(i) {
+function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
     let task = tasks[i];
+    let k = null; 
     for (let k = 0; k < task.subtask.length; k++) {
         let subtasks = task.subtask[k];
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
                 <div>
-                    <img src="/assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask(${k})">
+                    <img src="/assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask('${i}','${k}')">
                     <div id="each-subtasks-${k}" value="not-selected">${subtasks}</div>   
                 </div>
             </div>
         `;
-    }   
+        
+    }
 }
 
 
-async function checkOffSubtask(i) {
-    let img = document.getElementById(`select-subtask-board-${i}`);
-    let subtask = document.getElementById(`each-subtasks-${i}`)
-    let value = subtask.getAttribute('value');
-
+async function checkOffSubtask(i, k) {
+    let img = document.getElementById(`select-subtask-board-${k}`);
+    let subtask = document.getElementById(`each-subtasks-${k}`);
     
 
     if (img.src.includes('none-selected.svg')) {
@@ -190,14 +190,35 @@ async function checkOffSubtask(i) {
         img.alt = 'Selected';
         subtask.setAttribute('value', 'selected');
         selectedSubtasksCount++;
+        pushSelectedSubtask(i, k);
     } else {
         img.src = '/assets/img/icons/none-selected.svg';
         img.alt = 'Not Selected';
         subtask.setAttribute('value', 'not-selected');
         selectedSubtasksCount--;
     }
-    updateSelectedSubtasksCount();
+    // updateSelectedSubtasksCount();
 }
+
+
+function pushSelectedSubtask(i, k) {
+    let subtask = document.getElementById(`each-subtasks-${k}`);
+
+    if(subtask) {
+        let value = subtask.getAttribute('value');
+        let taskArray = tasks[i];
+        let subtaskArray = taskArray.subtask[k];
+        let selectedTask = subtaskArray.selected;
+        selectedTask = [];
+
+        if(value === 'selected') {
+            let response = subtask.textContent;
+            selectedTask.push(response);
+            console.log('Subtask:', response);
+        }
+    }   
+}
+
 
 function closePopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
@@ -231,10 +252,6 @@ function drop(ev) {
         ev.target.appendChild(draggedElement);
     }
 }
-
-
-
-
 
 
 function changeCategoryButton(i) {
@@ -306,11 +323,6 @@ function searchTaskToDo() {
     }
 
 }
-
-
-
-
-
 
 
 function cancelButton() {
