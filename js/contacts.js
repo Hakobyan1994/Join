@@ -173,21 +173,21 @@ function dontCloseCard(event) {
     event.stopPropagation();
 }
 
-function renderDialog() {
+function showAddContactOverlay() {
     let dialog = document.getElementById('dialog');
     dialog.classList.remove('slide-out');
     dialog.classList.remove('d-none');
     dialog.classList.add('slide-in');
-    dialog.innerHTML = generateDialog();
+    dialog.innerHTML = generateAddContactOverlay();
     showAddContactSlider();
 }
 
-async function showEditMask(i) {
+function showEditContactOverlay(i) {
     let editMask = document.getElementById('editMask');
     editMask.classList.remove('slide-out');
     editMask.classList.remove('d-none');
     editMask.classList.add('slide-in');
-    editMask.innerHTML = generateEditMask(i);
+    editMask.innerHTML = generateEditMaskOverlay(i);
     showAddContactSlider();
     loadContactInfo(i);
     displayContactImage(i);

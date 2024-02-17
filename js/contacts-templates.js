@@ -1,6 +1,6 @@
 function generateAddBtn() {
     return /*html*/`
-        <button type="button" class="add-contact-btn" onclick="renderDialog()">
+        <button type="button" class="add-contact-btn" onclick="showAddContactOverlay()">
             Add new contact 
             <img src="/assets/img/icons/person_add.svg" alt="">
         </button>`;
@@ -28,7 +28,7 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
                     <div class="contact-name">
                         <div class="name">${contactName}</div>
                         <div class="edit-delete-btn-con">
-                            <div onclick="showEditMask(${i})" class="edit-delete">
+                            <div onclick="showEditContactOverlay(${i})" class="edit-delete">
                                 <img src="/assets/img/icons/edit.svg" alt="">
                                     Edit
                             </div>
@@ -78,7 +78,7 @@ function generateSeparator() {
         </div>`;
 }
 
-function generateDialog() {
+function generateAddContactOverlay() {
     return /*html*/`
         <div class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
@@ -149,7 +149,7 @@ function generateDialog() {
     </div>`;
 }
 
-function generateEditMask(i) {
+function generateEditMaskOverlay(i) {
     return /*html*/`
         <div id="editMask" class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
