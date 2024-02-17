@@ -99,7 +99,7 @@ function generateDialog() {
             <div class="contact-set">
                 <div class="add-contact-content" class="set-position">
                     <div>
-                        <div onclick="closeDialog()" class="close-img-con">
+                        <div onclick="closeAddContactSlider()" class="close-img-con">
                             <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
                         </div>
 
@@ -131,7 +131,7 @@ function generateDialog() {
                                 </div>
 
                                 <div class="add-contact-btns">
-                                    <button type="button" class="cancel-btn" onclick="closeDialog()">
+                                    <button type="button" class="cancel-btn" onclick="closeAddContactSlider()">
                                         Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="">
                                     </button>
 
@@ -166,7 +166,7 @@ function generateEditMask(i) {
                 <div class="contact-set-edit">
                     <div class="add-contact-content set-position">
                         <div>
-                            <div onclick="closeDialog()" class="close-img-con-edit">
+                            <div onclick="closeEditContactSlider()" class="close-img-con-edit">
                                 <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
                             </div>
 
