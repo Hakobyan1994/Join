@@ -21,11 +21,11 @@ async function init() {
     await loadContacts();
 }
 
-// async function initAddTask() {
-//     await includeHTML();
-//     renderAddTask();
-//     loadContacts();
-// }
+async function initAddTask() {
+    await includeHTML();
+    renderAddTask();
+    loadContacts();
+}
 
 async function initContacts() {
     await includeHTML();
@@ -55,8 +55,8 @@ function forwardToPage(page) {
 
     if (clickedButton) {
         clickedButton.classList.add('selected-color');
-        if (page = 'add-task') {
-            renderAddTask();
-        }
+        // if (page = 'add-task') {
+        //     renderAddTask();
+        // }
     }
 }

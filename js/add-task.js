@@ -10,7 +10,7 @@ function renderAddTask() {
     content.innerHTML = /*html*/`
             <h2>Add Task</h2>
             <div class="main-box">
-                <div class="form">
+                <div class="form-addtask">
                     ${generateHtmlAddTaskForm()}      
                 </div>
                 <div class="form-bottom">    
@@ -135,7 +135,7 @@ function generateHtmlCategory() {
 function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
-        <div style="height: 64px;">
+        <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">

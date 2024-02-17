@@ -30,8 +30,8 @@ body {
     font-family: 'Inter', sans-serif;
     color: var(--font);
     margin: 0;
-    height: 1024px;
-    width: 1440px;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
     background-color: rgba(246, 247, 248, 1);
 }
@@ -44,7 +44,7 @@ h2 {
     line-height: 120%; 
     margin: 0;
     padding: 0;
-    padding-bottom: 32px;
+    padding-bottom: 16px;
 }
 
 h3 {
@@ -93,7 +93,8 @@ input::placeholder {
 }
 
 .main-window {
-    width: calc(100% - 328px);
+    width: 100%;
+    height: calc(100% - 206px);
     margin-top: 206px;
     margin-left: 328px;
     display: flex;
