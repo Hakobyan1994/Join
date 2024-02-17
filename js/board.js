@@ -66,6 +66,7 @@ function notData() {
 async function loadToDo() {
     await loadTasks();
     let todo = document.getElementById('board-to-do');
+    todo.innerHTML = '';
     todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
     // console.log(tasks.length);
    
@@ -122,7 +123,9 @@ async function openPopupAddTaskDiv(i) {
     content.classList.remove('slide-out');
     content.classList.add('slide-in');
     let task = tasks[i];
-    content.innerHTML = `<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">`;
+    content.innerHTML = /*html*/`
+        <img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
+        `;
     content.innerHTML += /*html*/`
         <div class="popup-text">
             <div class="user-popup-btn" id="category-bg-change-${i}">${task.category}</div>
@@ -152,8 +155,8 @@ async function openPopupAddTaskDiv(i) {
                 <div class="popup-subtask" id="popup-subtasks-${i}">
                 </div>
             </div>
-            <div class="popup-task-footer" onclick="deleteTask(${i})">
-                <div class="popup-task-footer-section">
+            <div class="popup-task-footer">
+                <div class="popup-task-footer-section" onclick="deleteTask(${i})">
                     <img src="/assets/img/icons/trash.svg" alt="Trash Icon">
                     <div>Delete</div>
                 </div>
@@ -420,5 +423,22 @@ async function deleteTask(i) {
 }
 
 function editTask(i) {
+    let popup = document.getElementById('popup-add-task-div');
+    let div = document.getElementById(`popup-add-task-edit`);
+    let content = document.getElementById(`popup-add-task-content-edit`);
+    popup.classList.add('d-none');
+    div.classList.remove('d-none');
+    content.innerHTML = /*html*/`
+        <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(); return false">
+        `;
+}
+
+
+function closePopupEdit() {
+    let div = document.getElementById(`popup-add-task-edit`);
+    div.classList.add('d-none');
+
+    changeCategoryButton(i);
+    loadToDo();
 
 }

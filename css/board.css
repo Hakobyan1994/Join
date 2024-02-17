@@ -44,12 +44,18 @@
 }
 
 .close-a-board {
+    z-index: 999;
     position: relative;
     right: -434px;
     bottom: 384px;
     width: 24px;
     height: 24px;
     cursor: pointer;
+}
+
+.edit-close-icon {
+    left: -11px!important;
+    bottom: 384px!important;
 }
 
 .popup-box {
