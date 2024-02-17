@@ -104,6 +104,8 @@ async function openPopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.classList.remove('d-none');
+    content.classList.remove('slide-out');
+    content.classList.add('slide-in');
     let task = tasks[i];
     content.innerHTML = `<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">`;
     content.innerHTML += /*html*/`
@@ -262,9 +264,12 @@ async function pushSelectedSubtask(i, k) {
 
 
 function closePopupAddTaskDiv(i) {
+    let content = document.getElementById('popup-add-task-content-div');
     let div = document.getElementById('popup-add-task-div');
     let amount = document.getElementById(`amount-subtasks-${i}`);
     div.classList.add('d-none');
+    content.classList.remove('slide-in');
+    content.classList.add('slide-out');
     amount.innerHTML = /*html*/`
         ${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks
     `;

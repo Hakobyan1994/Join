@@ -3,7 +3,6 @@
     src: url(/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
-/* If one color is not defined, then insert color purple */
 :root {
     --font: rgba(42, 54, 71, 1);
     --red: rgba(255, 129, 144, 1);
@@ -28,16 +27,18 @@
 }
 
 body {
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     color: var(--font);
     margin: 0;
-    height: 100vh;
+    height: 1024px;
+    overflow: hidden;
+    background-color: rgba(246, 247, 248, 1);
 }
 
 h2 {
    font-size: 61px;
    font-style: normal;
-   font-weight: 700!important;
+   font-weight: 700;
    line-height: 120%; 
    margin: 0;
    padding: 0;
@@ -45,39 +46,37 @@ h2 {
 }
 
 h3 {
-    font-size: 27px!important;
+    font-size: 27px;
     font-style: normal;
-    font-weight: 700!important;
+    font-weight: 700;
     line-height: 120%;
 }
 
 h4 {
-    font-size: 20px!important;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 700!important;
+    font-weight: 700;
     line-height: 120%;
 }
 
 p {
-    font-size: 16px!important;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400!important;
+    font-weight: 400;
     line-height: 120%;
 }
 
 .main-window {
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding-left: 328px;
-    padding-top: 206px;
+    width: 100%;
+    margin-top: 206px;
+    margin-left: 328px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: var(--main-window, purple);
     overflow: scroll;
     scrollbar-width: none;
+}
+
+.d-none {
+    display: none;
 }

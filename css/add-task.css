@@ -8,6 +8,7 @@
 
 .main-box {
     width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -28,19 +29,19 @@
 }
 
 .was-validated .form-control:valid {
-    background-image: none!important;
+    background-image: none;
 }
 
 .line {
     width: 1px;
     height: 424px;
-    background-color: var(--line, purple);
+    background-color: var(--line);
     flex-shrink: 0;
 }
 
 label {
-    display: flex!important;
-    color: var(--font, purple);
+    display: flex;
+    color: var(--font);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -70,7 +71,7 @@ label p {
 .category {
     position: relative;
     z-index: 4;
-    width: 440px!important;
+    width: 440px;
 }
 
 .category::placeholder {
@@ -89,8 +90,7 @@ label p {
     cursor: pointer;
     color: rgba(0, 0, 0, 1);
     height: max-content;
-    width: 440px;
-    padding-top: 6px;
+    width: 481px;
 }
 
 .white-bg {
@@ -128,30 +128,30 @@ label p {
 
 .required-text-date {
     margin-top: 4px;
-    height: 0!important;
+    height: 0;
 }
 
 .inputfield {
     display: flex;
-    padding: 12px 21px;
     align-items: center;
+    padding: 12px 21px;
     gap: 10px;
     align-self: stretch;
     border-radius: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
     background: rgba(255, 255, 255, 1);
-    width: 440px !important;
+    width: 440px;
     cursor: pointer;
     color: rgba(0, 0, 0, 1);
 }
 
 .inputfield-focus-red {
-    border: 1px solid rgba(255, 129, 144, 1)!important;
+    border: 1px solid rgba(255, 129, 144, 1);
 }
 
 .inputfield-focus-blue {
-    border: 1px solid var(--lightblue)!important;
+    border: 1px solid var(--lightblue);
 }
 
 .inputfield-focus-white {
@@ -168,7 +168,6 @@ textarea:focus {
 }
 
 .subtask-input {
-    padding-right: 58px;
 }
 
 .subtask-input:focus {
@@ -177,10 +176,12 @@ textarea:focus {
 
 .inputfield::placeholder {
     color: rgba(209, 209, 209, 1);
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    justify-items: center;
 }
 
 .inputfield-textarea {
@@ -203,7 +204,7 @@ textarea {
     border-radius: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
     font-size: 20px;
     font-style: normal;
     line-height: 120%;
@@ -214,9 +215,15 @@ textarea {
     margin-left: 8px;
 }
 
+
+.prio-urgent .prio-medium .prio-low {
+    color: white;
+}
+
+
 .prio-urgent {
     background-color: rgba(255,61,0,1);
-    font-weight: 600!important;
+    font-weight: 600;
 }
 
 .prio-urgent img {
@@ -254,22 +261,22 @@ textarea {
 }
 
 .prio-notselected {
-    color: rgba(0, 0, 0, 1)!important;
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(255, 255, 255, 1);
-    font-weight: 400!important;
+    font-weight: 400;
 }
 
 .prio-notselected img {
-    filter: none!important;
+    filter: none;
 }
 
 .form-bottom {
-    width: 100%;
+    position: fixed;
+    bottom: 64px;
+    width: calc(100% - 328px);
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-bottom: 16px;
-    gap: 488px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .form-bottom-right {
@@ -280,6 +287,7 @@ textarea {
 
 .form-bottom-left {
     display: flex;
+    align-items: center;
     padding-top: 32px;
 }
 
@@ -343,7 +351,7 @@ textarea {
 .assigned-to {
     position: relative;
     z-index: 4;
-    width: 440px!important;
+    width: 440px;
 }
 
 .assigned-list {
@@ -359,7 +367,7 @@ textarea {
     color: rgba(0, 0, 0, 1);
     overflow-y: scroll;
     height: 112px;
-    width: 440px;
+    width: 481px;
     scrollbar-width: thin;
     display: flex;
     flex-direction: column;
@@ -424,11 +432,10 @@ input[type="checkbox" i] {
 .dropdown-icon {
     z-index: 4;
     position: relative;
-    bottom: 36px;
-    left: 400px;
+    bottom: 32px;
+    left: 445px;
     cursor: pointer;
-    height: 24px;
-    padding: 8px;
+    height: 8px;
 }
 
 .dropdown-icon:hover {
@@ -442,7 +449,7 @@ input[type="checkbox" i] {
 }
 
 .assigned-to:focus {
-    border-color: var(--lightblue)!important;
+    border-color: var(--lightblue);
 }
 
 .assigned-to:focus-visible {
@@ -469,6 +476,7 @@ button:focus-visible {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
+    font-size: 16px;
     opacity: 1;
     cursor: pointer;
 }
@@ -488,10 +496,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .add-icon {
     position: relative;
-    bottom: 39px;
-    left: 396px;
-    height: 24px;
-    width: 24px;
+    bottom: 32px;
+    left: 451px;
+    height: 12px;
+    width: 12px;
     cursor: pointer;
     padding: 5px;
 }
@@ -568,7 +576,6 @@ p.subtask-p {
 .separator-border {
     border-right: 1px solid var(--line);
     border-color: var(--line);
-    /* padding-right: 10px!important; */
     margin-right: 4px;
 }
 
@@ -597,18 +604,13 @@ p.subtask-p {
 
 .clear-check-icons {
     position: relative;
-    bottom: 20px;
-    left: 191px;
-    height: 30px;
-    width: 30px;
+    bottom: 18px;
+    left: 214px;
+    height: 12px;
+    width: 12px;
     cursor: pointer;
     padding: 5px;
     display: flex;
-}
-
-.clear-check-icons img {
-    width: 22px;
-    height: 22px;
 }
 
 .clear-check-line {
@@ -634,14 +636,14 @@ p.subtask-p {
 .editable-each {
     background-color: white;
     width: 100%;
-    padding-left: 0!important;
-    margin-left: 0!important;
-    border-radius: 0!important;
+    padding-left: 0;
+    margin-left: 0;
+    border-radius: 0;
     border-bottom: 1px solid var(--lightblue);
 }
 
 .editable-each:hover {
-    background-color: white!important;
+    background-color: white;
 }
 
 .popup-a-to-b {
