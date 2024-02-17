@@ -1,6 +1,6 @@
 function generateAddBtn() {
     return /*html*/`
-        <button type="button" class="add-contact-btn" onclick="renderDialog()">
+        <button type="button" class="add-contact-btn" onclick="showAddContactOverlay()">
             Add new contact 
             <img src="/assets/img/icons/person_add.svg" alt="">
         </button>`;
@@ -28,7 +28,7 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
                     <div class="contact-name">
                         <div class="name">${contactName}</div>
                         <div class="edit-delete-btn-con">
-                            <div onclick="showEditMask(${i})" class="edit-delete">
+                            <div onclick="showEditContactOverlay(${i})" class="edit-delete">
                                 <img src="/assets/img/icons/edit.svg" alt="">
                                     Edit
                             </div>
@@ -78,7 +78,7 @@ function generateSeparator() {
         </div>`;
 }
 
-function generateDialog() {
+function generateAddContactOverlay() {
     return /*html*/`
         <div class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
@@ -99,7 +99,7 @@ function generateDialog() {
             <div class="contact-set">
                 <div class="add-contact-content" class="set-position">
                     <div>
-                        <div onclick="closeDialog()" class="close-img-con">
+                        <div onclick="closeAddContactSlider()" class="close-img-con">
                             <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
                         </div>
 
@@ -131,7 +131,7 @@ function generateDialog() {
                                 </div>
 
                                 <div class="add-contact-btns">
-                                    <button type="button" class="cancel-btn" onclick="closeDialog()">
+                                    <button type="button" class="cancel-btn" onclick="closeAddContactSlider()">
                                         Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="">
                                     </button>
 
@@ -149,7 +149,7 @@ function generateDialog() {
     </div>`;
 }
 
-function generateEditMask(i) {
+function generateEditMaskOverlay(i) {
     return /*html*/`
         <div id="editMask" class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
@@ -166,7 +166,7 @@ function generateEditMask(i) {
                 <div class="contact-set-edit">
                     <div class="add-contact-content set-position">
                         <div>
-                            <div onclick="closeDialog()" class="close-img-con-edit">
+                            <div onclick="closeEditContactSlider()" class="close-img-con-edit">
                                 <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
                             </div>
 

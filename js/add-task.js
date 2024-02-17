@@ -10,13 +10,14 @@ function renderAddTask() {
     content.innerHTML = /*html*/`
             <h2>Add Task</h2>
             <div class="main-box">
-                <div class="form">
+                <div class="form-addtask">
                     ${generateHtmlAddTaskForm()}      
                 </div>
+                <div class="form-bottom">    
+                    ${generateHtmlFormSection()}
+                </div>  
             </div>    
-            <div style="width: 100%;">    
-                ${generateHtmlFormSection()}
-            </div>  
+
     `;
     addEventFunctions();
 }
@@ -44,7 +45,7 @@ function generateHtmlAddTaskForm() {
             ${generateHtmlDescription()}  
             ${generateHtmlAssigned()}
         </form>
-        <p class="line"></p>
+        <p class="addtask-line"></p>
         <form>
             ${generateHtmlDate()}  
             ${generateHtmlPrio()}
@@ -134,7 +135,7 @@ function generateHtmlCategory() {
 function generateHtmlSubtasks() {
     return /*html*/`
         <label for="">Subtasks</label>
-        <div style="height: 64px;">
+        <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
@@ -149,13 +150,11 @@ function generateHtmlSubtasks() {
 
 function generateHtmlFormSection() {
     return /*html*/`
-        <div class="form-bottom">
-            <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
-            <div class="form-bottom-right">
-                <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
-                <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
-            </div>
-        </div>  
+        <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
+        <div class="form-bottom-right">
+            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
+            <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
+        </div> 
     `;
 }
 
@@ -599,8 +598,6 @@ async function createTask() {
         await openToBoard();
         if (popup) {
             await openInBoard();
-            popup.classList.add('d-none');
-            popupAdd.classList.remove('d-none');
             await updateProgressBar(i);
         } else {
             console.log('Popup wurde nicht gefunden');
@@ -729,7 +726,7 @@ function openInBoard() {
         popup.classList.remove('d-none');
         setTimeout(() => {
             window.location.href = "/files/board.html";
-        }, "1000");
+        }, "8000");
     } else {
         console.log('Popup wurde nicht gefunden');
         window.location.href = "/files/board.html";

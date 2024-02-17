@@ -34,7 +34,7 @@
 .close-popup {
     position: relative;
     top: 64px;
-    left: 1044px;
+    left: 1035px;
     width: 22px;
     height: 22px;
     cursor: pointer;
@@ -268,3 +268,24 @@
     height: 14px;
 }
 
+.h2-addtask-board {
+    margin-top: 14px;
+}
+
+.popup-addtask-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1061px;
+    gap: 32px;
+}
+
+.popup-addtask-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 1007px;
+    gap: 32px;
+    height: 512px;
+    margin-top: 32px;
+}

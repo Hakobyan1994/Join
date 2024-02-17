@@ -53,13 +53,24 @@ nav {
     font-weight: 400;
     line-height: 120%;
     flex-shrink: 0;
+    width: 51%;
 
 }
 
 .menubar a:hover {
     background-color: rgb(42, 61, 89);
-    width: 100%;
-    transition: 125ms ease-in-out;
+    width: 51%;
+    transition: 10ms;
+}
+
+.selected-color {
+    background-color: rgb(9,25,49);
+}
+
+.selected-color:hover {
+    background-color: rgb(9,25,49)!important;
+    width: 51%;
+    transition: 10ms;
 }
 
 .legalbox {

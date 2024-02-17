@@ -3,16 +3,11 @@ let contacts = [];
 let contactIdCounter = 0;
 let initials;
 let contactInfoSliderVisible = false;
-let dialogVisible = false;
-let editMaskVisible = false
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-
-    if (contacts.length > 0 && contacts.every(contact => contact.name)) {
-        contacts.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
@@ -32,8 +27,7 @@ function renderContacts() {
             currentSeparator = generateSeparator();
             contactsContainer.innerHTML += generateLetterCon(currentLetter) + currentSeparator;
         }
-        contactIdCounter++;
-        const imageId = `contactImage${contactIdCounter}`;
+        const imageId = `contactImage${i}`;
         contactsContainer.innerHTML += generateContact(i, contact, imageId);
         addInitialsToContactImage(contact, imageId);
     }
@@ -49,19 +43,62 @@ async function addToContacts() {
     let phone = phoneInput.value.trim();
 
     let formattedName = splitNameAndCapitalize(name);
-
     let initials = formatInitials(formattedName);
+
+    if (!/^[a-zA-Z\s]*$/.test(name)) {
+        alert('Name should contain only letters.');
+        return;
+    }
+
+    if (!email.includes('@')) {
+        alert('Invalid email address.');
+        return;
+    }
+
+    if (!/^\d+$/.test(phone)) {
+        alert('Phone number should contain only numbers.');
+        return;
+    }
 
     if (formattedName === '' || email === '' || phone === '') {
         alert('Please fill in all fields.');
+    } else if (checkExistingEmail(email)) {
+        alert('A contact with this email already exists.');
     } else {
         addContactToArray(formattedName, email, phone, initials);
         clearInputs(nameInput, emailInput, phoneInput);
-        closeDialog();
+        closeAddContactSlider();
         await setItem('contacts', JSON.stringify(contacts));
         await loadContacts();
         renderContacts();
+        addedContactSuccessfully();
     }
+}
+
+
+function checkExistingEmail(email) {
+    return contacts.some(contact => contact.email === email);
+}
+
+function addedContactSuccessfully() {
+    let success = document.getElementById('successCon');
+    success.innerHTML = `
+        <button class="success-pos">
+            Contact successfully created
+        </button>`;
+
+    success.classList.remove('d-none');
+    success.classList.remove('slide-out-success');
+    success.classList.add('slide-in-success');
+
+    setTimeout(() => {
+        success.classList.remove('slide-in-success');
+        success.classList.add('slide-out-success');
+
+        setTimeout(() => {
+            success.classList.add('d-none');
+        }, 500);
+    }, 2000);
 }
 
 function splitNameAndCapitalize(inputName) {
@@ -115,8 +152,8 @@ async function saveContact(i) {
 
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
-    document.getElementById('editMask').innerHTML = '';
-    closeDialog();
+
+    closeEditContactSlider();
     contactInfoSlider(i);
 }
 
@@ -175,69 +212,62 @@ function dontCloseCard(event) {
     event.stopPropagation();
 }
 
-function renderDialog() {
+function showAddContactOverlay() {
     let dialog = document.getElementById('dialog');
-    
-    if (dialogVisible) {
-        dialog.classList.remove('slide-in');
-        dialogVisible = false;
-        dialog.classList.add('slide-out');
-        dialog.addEventListener('animationend', function () {
-            dialog.classList.add('d-none');
-        }, { once: true });
-    } else {
-        dialog.classList.remove('d-none');
-        dialog.classList.add('slide-in');
-        dialogVisible = true;
-        dialog.innerHTML = generateDialog();
-    }
+    dialog.classList.remove('slide-out');
+    dialog.classList.remove('d-none');
+    dialog.classList.add('slide-in');
+    dialog.innerHTML = generateAddContactOverlay();
     showAddContactSlider();
 }
 
-async function showEditMask(i) {
+function showEditContactOverlay(i) {
     let editMask = document.getElementById('editMask');
-
-    if (editMaskVisible) {
-        editMask.classList.remove('slide-in');
-        editMaskVisible = false;
-        editMask.classList.add('slide-out');
-        editMask.addEventListener('animationend', function () {
-            editMask.classList.add('d-none');
-        }, { once: true });
-    } else {
-        editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in');
-        editMaskVisible = true;
-        editMask.innerHTML = generateEditMask(i);
-        loadContactInfo(i);
-        displayContactImage(i);
-    }
+    editMask.classList.remove('slide-out');
+    editMask.classList.remove('d-none');
+    editMask.classList.add('slide-in');
+    editMask.innerHTML = generateEditMaskOverlay(i);
     showAddContactSlider();
+    loadContactInfo(i);
+    displayContactImage(i);
 }
 
-function closeDialog() {
+function closeAddContactSlider() {
     let dialog = document.getElementById('dialog');
-    let editMask = document.getElementById('editMask');
+    dialog.classList.remove('slide-in');
+    dialog.classList.add('slide-out');
 
-    if (dialogVisible) {
-        dialog.classList.remove('slide-in');
-        dialogVisible = false;
-        dialog.classList.add('slide-out');
-        dialog.addEventListener('animationend', function () {
-            dialog.classList.add('d-none');
-        }, { once: true });
-    }
-    if (editMaskVisible) {
-        editMask.classList.remove('slide-in');
-        editMaskVisible = false;
-        editMask.classList.add('slide-out');
-        editMask.addEventListener('animationend', function () {
-            editMask.classList.add('d-none');
-        }, { once: true });
-    }
-    hideAddContactSlider();
-    dialogVisible = false;
-    editMaskVisible = false;
+    setTimeout(() => {
+        dialog.classList.add('d-none');
+        hideAddContactSlider();
+    }, 200);
+
+}
+
+function closeEditContactSlider() {
+    let editMask = document.getElementById('editMask');
+    editMask.classList.remove('slide-in');
+    editMask.classList.add('slide-out');
+
+    setTimeout(() => {
+        editMask.classList.add('d-none');
+        hideAddContactSlider();
+    }, 200);
+}
+
+function showAddContactSlider() {
+    document.getElementById('dialogBg').classList.remove('hide-dialog-bg');
+    document.getElementById('dialogBg').classList.remove('d-none');
+    document.getElementById('dialogBg').classList.add('dialog-bg');
+    document.getElementById('contactInfoSlider').classList.add('show');
+}
+
+function hideAddContactSlider() {
+    document.getElementById('dialogBg').classList.add('hide-dialog-bg');
+    document.getElementById('dialogBg').classList.add('d-none');
+    document.getElementById('dialogBg').classList.remove('dialog-bg');
+    document.getElementById('dialogBg').classList.add('d-none');
+    document.getElementById('contactInfoSlider').classList.remove('show');
 }
 
 function displayContactImage(i) {
@@ -261,7 +291,7 @@ function loadContactInfo(i) {
 async function deleteContact(i) {
     contacts.splice(i, 1);
     document.getElementById('contactSlider').innerHTML = '';
-    closeDialog();
+    closeEditContactSlider();
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
 }
@@ -286,41 +316,5 @@ function contactInfoSlider(i) {
     if (imageElement) {
         applyRandomColorToImage(imageElement, contact.initials);
     }
-
     contactInfoSlider.dataset.contactId = i;
-}
-
-function showAddContactSlider() {
-    document.getElementById('dialogBg').classList.remove('d-none');
-    document.getElementById('contactInfoSlider').classList.add('show');
-}
-
-function hideAddContactSlider() {
-    document.getElementById('dialogBg').classList.add('hide-dialog-bg');
-    document.getElementById('dialogBg').classList.add('d-none');
-    document.getElementById('dialogBg').classList.remove('dialog-bg');
-    document.getElementById('contactInfoSlider').classList.remove('show');
-    document.getElementById('dialogBg').classList.add('d-none');
-
-}
-
-function addedContactSuccessfully() {
-    let success = document.getElementById('successCon');
-    success.innerHTML = `
-        <button class="success-pos">
-            Contact successfully created
-        </button>`;
-
-    success.classList.remove('d-none');
-    success.classList.remove('slide-out-success');
-    success.classList.add('slide-in-success');
-
-    setTimeout(() => {
-        success.classList.remove('slide-in-success');
-        success.classList.add('slide-out-success');
-
-        setTimeout(() => {
-            success.classList.add('d-none');
-        }, 500);
-    }, 2000);
 }

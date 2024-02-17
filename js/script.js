@@ -18,6 +18,7 @@ async function getItem(key) {
 
 async function init() {
     await includeHTML();
+    await loadContacts();
 }
 
 async function initAddTask() {
@@ -36,22 +37,26 @@ async function initBoard() {
     await includeHTML();
     await loadTasks();
     loadToDo();
-    // await loadSubtasks();
 }
 
+function forwardToPage(page) {
+    let allButtons = document.querySelectorAll('.menubar a');
+    let clickedButton = document.getElementById(`${page}-page`);
+    
+    console.log('allButtons:', allButtons);
+    console.log('clickedButton:', clickedButton);
 
+    allButtons.forEach(button => {
 
-async function deleteItem(key) {
-    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+        if (button.classList.contains('selected-color')) {
+            button.classList.remove('selected-color');
+        }
+    });
 
-    return fetch(url, { method: 'DELETE' })
-        .then(res => res.json())
-        .then(res => {
-            if (res.success) {
-                console.log(`Key "${key}" erfolgreich gelöscht.`);
-            } else {
-                throw `Fehler beim Löschen des Keys "${key}".`;
-            }
-        })
-        .catch(error => console.error(`Fehler beim Löschen des Keys "${key}":`, error));
+    if (clickedButton) {
+        clickedButton.classList.add('selected-color');
+        // if (page = 'add-task') {
+        //     renderAddTask();
+        // }
+    }
 }

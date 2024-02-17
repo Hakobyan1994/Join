@@ -15,13 +15,13 @@ async function openPopupAddTask() {
     content.innerHTML = /*html*/`
         <img class="close-popup" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
-            <h2>Add Task</h2>
+            <h2 class="h2-addtask-board">Add Task</h2>
             <div>
                 <div class="main-box">
-                    <div class="form">
+                    <div class="form popup-addtask-main">
                         ${generateHtmlAddTaskForm()}      
                     </div>
-                    <div>
+                    <div class="popup-addtask-form">
                         ${generateHtmlFormSection()}
                     </div>
                 </div>  

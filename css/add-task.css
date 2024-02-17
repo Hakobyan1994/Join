@@ -7,8 +7,7 @@
 }
 
 .main-box {
-    width: 100%;
-    height: fit-content;
+    width: calc(100% - 310px);
     display: flex;
     flex-direction: column;
 }
@@ -18,21 +17,19 @@
     justify-content: space-evenly;
 }
 
-.form {
+.form-addtask {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
-    height: 100%;
-    gap: 48px;
+    margin-right: 62px;
 }
 
 .was-validated .form-control:valid {
     background-image: none;
 }
 
-.line {
+.addtask-line {
     width: 1px;
     height: 424px;
     background-color: var(--line);
@@ -49,7 +46,7 @@ label {
     padding: 0;
     margin: 0;
     margin-bottom: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 label p {
@@ -57,11 +54,11 @@ label p {
 }
 
 .title-div {
-    height: 102px;
+    height: 95px;
 }
 
 .dueDate-div {
-    height: 77px;
+    height: 70px;
 }
 
 .category-div {
@@ -127,8 +124,7 @@ label p {
 }
 
 .required-text-date {
-    margin-top: 4px;
-    height: 0;
+    margin-top: 6px;
 }
 
 .inputfield {
@@ -167,9 +163,6 @@ textarea:focus {
     border-color: var(--lightblue);
 }
 
-.subtask-input {
-}
-
 .subtask-input:focus {
     border-color: var(--lightblue);
 }
@@ -181,11 +174,14 @@ textarea:focus {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    display: flex;
     justify-items: center;
+    align-items: center;
 }
 
 .inputfield-textarea {
     height: 120px;
+    margin-bottom: 16px;
 }
 
 textarea {
@@ -197,6 +193,7 @@ textarea {
     gap: 8px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 16px;
 }
 
 .prio-btn button {
@@ -217,12 +214,13 @@ textarea {
 
 
 .prio-urgent .prio-medium .prio-low {
-    color: white;
+    color: white!important;
 }
 
 
 .prio-urgent {
     background-color: rgba(255,61,0,1);
+    color: white!important;
     font-weight: 600;
 }
 
@@ -232,6 +230,7 @@ textarea {
 
 .prio-medium {
     background-color: rgba(255,168,0,1);
+    color: white!important;
     font-weight: 600;
 }
 
@@ -241,6 +240,7 @@ textarea {
 
 .prio-low {
     background-color: rgba(122,226,41,1);
+    color: white!important;
     font-weight: 600;
 }
 
@@ -261,7 +261,7 @@ textarea {
 }
 
 .prio-notselected {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1)!important;
     background-color: rgba(255, 255, 255, 1);
     font-weight: 400;
 }
@@ -271,8 +271,9 @@ textarea {
 }
 
 .form-bottom {
-    position: fixed;
-    bottom: 64px;
+    position: absolute;
+    bottom: 32px;
+    left: 328px;
     width: calc(100% - 328px);
     display: flex;
     justify-content: space-between;
@@ -435,7 +436,7 @@ input[type="checkbox" i] {
     bottom: 32px;
     left: 445px;
     cursor: pointer;
-    height: 8px;
+    padding: 8px;
 }
 
 .dropdown-icon:hover {
@@ -532,11 +533,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .subtasks {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 440px;
+    height: 104px;
+    width: 462px;
     padding-right: 8px;
     padding-left: 8px;
-    gap: 8px;
+    margin-top: 0;
+    gap: 4px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
 }
 
 .each-subtask {
@@ -546,7 +551,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 10px;
     padding: 4px 8px;
     cursor: pointer;
-    width: 416px;
+    width: 444px;
 }
 
 .each-subtask:hover {
@@ -592,19 +597,19 @@ p.subtask-p {
 .subtask-right {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     height: 100%;
 }
 
 .subtask-right img {
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
     transition: 125ms ease-out;
 } 
 
 .clear-check-icons {
     position: relative;
-    bottom: 18px;
+    bottom: 19px;
     left: 214px;
     height: 12px;
     width: 12px;
@@ -649,6 +654,7 @@ p.subtask-p {
 .popup-a-to-b {
     z-index: 999;
     position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     background-color: transparent;
