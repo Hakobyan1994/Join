@@ -7,10 +7,7 @@ let contactInfoSliderVisible = false;
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-
-    if (contacts.length > 0 && contacts.every(contact => contact.name)) {
-        contacts.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
@@ -30,8 +27,7 @@ function renderContacts() {
             currentSeparator = generateSeparator();
             contactsContainer.innerHTML += generateLetterCon(currentLetter) + currentSeparator;
         }
-        contactIdCounter++;
-        const imageId = `contactImage${contactIdCounter}`;
+        const imageId = `contactImage${i}`;
         contactsContainer.innerHTML += generateContact(i, contact, imageId);
         addInitialsToContactImage(contact, imageId);
     }
@@ -47,11 +43,27 @@ async function addToContacts() {
     let phone = phoneInput.value.trim();
 
     let formattedName = splitNameAndCapitalize(name);
-
     let initials = formatInitials(formattedName);
+
+    if (!/^[a-zA-Z\s]*$/.test(name)) {
+        alert('Name should contain only letters.');
+        return;
+    }
+
+    if (!email.includes('@')) {
+        alert('Invalid email address.');
+        return;
+    }
+
+    if (!/^\d+$/.test(phone)) {
+        alert('Phone number should contain only numbers.');
+        return;
+    }
 
     if (formattedName === '' || email === '' || phone === '') {
         alert('Please fill in all fields.');
+    } else if (checkExistingEmail(email)) {
+        alert('A contact with this email already exists.');
     } else {
         addContactToArray(formattedName, email, phone, initials);
         clearInputs(nameInput, emailInput, phoneInput);
@@ -59,7 +71,34 @@ async function addToContacts() {
         await setItem('contacts', JSON.stringify(contacts));
         await loadContacts();
         renderContacts();
+        addedContactSuccessfully();
     }
+}
+
+
+function checkExistingEmail(email) {
+    return contacts.some(contact => contact.email === email);
+}
+
+function addedContactSuccessfully() {
+    let success = document.getElementById('successCon');
+    success.innerHTML = `
+        <button class="success-pos">
+            Contact successfully created
+        </button>`;
+
+    success.classList.remove('d-none');
+    success.classList.remove('slide-out-success');
+    success.classList.add('slide-in-success');
+
+    setTimeout(() => {
+        success.classList.remove('slide-in-success');
+        success.classList.add('slide-out-success');
+
+        setTimeout(() => {
+            success.classList.add('d-none');
+        }, 500);
+    }, 2000);
 }
 
 function splitNameAndCapitalize(inputName) {
@@ -278,25 +317,4 @@ function contactInfoSlider(i) {
         applyRandomColorToImage(imageElement, contact.initials);
     }
     contactInfoSlider.dataset.contactId = i;
-}
-
-function addedContactSuccessfully() {
-    let success = document.getElementById('successCon');
-    success.innerHTML = `
-        <button class="success-pos">
-            Contact successfully created
-        </button>`;
-
-    success.classList.remove('d-none');
-    success.classList.remove('slide-out-success');
-    success.classList.add('slide-in-success');
-
-    setTimeout(() => {
-        success.classList.remove('slide-in-success');
-        success.classList.add('slide-out-success');
-
-        setTimeout(() => {
-            success.classList.add('d-none');
-        }, 500);
-    }, 2000);
 }
