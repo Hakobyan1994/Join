@@ -1,3 +1,10 @@
+ let progressArray=[];
+ let feedbackArray=[];
+ let doneArray=[];
+ let dataTask = [];
+
+
+
 async function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
@@ -41,19 +48,24 @@ function renderAddTaskForPopup() {
 
 }
 
-
-async function loadToDo() {
-    let todo = document.getElementById('board-to-do');
-    todo.innerHTML = '';
+function notData(params) {
     console.log(tasks);
-    if(!tasks || tasks.length===0) {
+    if(tasks.length===0) {
         console.log(tasks.length);
        let noTodotask=document.getElementById('NoToDo')
        noTodotask.style.display='flex'
        todo.appendChild(noTodotask)
        return;
     } 
-        
+}
+
+
+
+async function loadToDo() {
+    let todo = document.getElementById('board-to-do');
+    todo.innerHTML = '';
+    // console.log(tasks.length);
+    test()
    
       
     for (let i = 0; i < tasks.length; i++) {
@@ -297,7 +309,12 @@ function allowDrop(ev) {
 
 
 function dragStart(ev) {
-     
+    let txt = ev.srcElement.id
+   let id = txt[txt.length-1]
+   tasks.splice(id, 1)
+   console.log(id, 66);
+   notData()
+   dataTask.splice(id, 1)
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.style.transform = "rotate(13deg)";
     // let progress=document.getElementById('progress')
