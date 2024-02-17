@@ -621,6 +621,7 @@ function inputfieldFocus(field) {
     let input = document.getElementById(field);
     let required = document.getElementById(`required-${field}`);
 
+    if (input) {
     if (document.activeElement === input) {
         if (input.value.trim() === '') {
             input.classList.add('inputfield-focus-red');
@@ -643,6 +644,7 @@ function inputfieldFocus(field) {
         input.classList.remove('inputfield-focus-red');
         required.classList.add('d-none');
     });
+    }
 }
 
 /*

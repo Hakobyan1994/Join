@@ -135,7 +135,7 @@ async function openPopupAddTaskDiv(i) {
                 <div class="popup-div-assign-date-title-content">
                     <div class="popup-date">${task.date}</div>
                     <div class="popup-prio-section">
-                        <div>${task.priority.toUpperCase()}</div>
+                        <div>${task.priority.charAt(0).toUpperCase() + task.priority.slice(1).toLowerCase()}</div>
                         <img src="/assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
@@ -294,8 +294,15 @@ function closePopupAddTaskDiv(i) {
 function calculatePercentageForProgressBar(i) {
     let total = totalSubtask(i);
     let subtotal = updateSelectedSubtasksCount(i);
-    let percentage = (subtotal * 100) / total;
-    return percentage;
+
+    if(total === 0) {
+        let percentage = 0;
+        return percentage;
+    } else {
+        let percentage = (subtotal * 100) / total;
+        return percentage;
+    }
+
 }
 
 

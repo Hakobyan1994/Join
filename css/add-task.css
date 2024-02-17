@@ -18,6 +18,7 @@
 }
 
 .form-addtask {
+    width: 1114px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -271,10 +272,10 @@ textarea {
 }
 
 .form-bottom {
+    width: 1150px;
     position: absolute;
     bottom: 32px;
     left: 328px;
-    width: calc(100% - 328px);
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -42,10 +42,6 @@ async function initBoard() {
 function forwardToPage(page) {
     let allButtons = document.querySelectorAll('.menubar a');
     let clickedButton = document.getElementById(`${page}-page`);
-    
-    console.log('allButtons:', allButtons);
-    console.log('clickedButton:', clickedButton);
-
     allButtons.forEach(button => {
 
         if (button.classList.contains('selected-color')) {
