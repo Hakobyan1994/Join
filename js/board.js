@@ -48,22 +48,24 @@ function renderAddTaskForPopup() {
 
 }
 
-function notData(params) {
+function notData() {
+    let todo = document.getElementById('board-to-do');
     console.log(tasks);
     if(tasks.length===0) {
         console.log(tasks.length);
-       let noTodotask=document.getElementById('NoToDo')
-       noTodotask.style.display='flex'
-       todo.appendChild(noTodotask)
-       return;
+       let noTodotask=document.getElementById('NoToDo');
+       noTodotask.classList.remove('d-none');
+       noTodotask.style.display='flex';
+       todo.appendChild(noTodotask);
     } 
+    return;
 }
 
 
 
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
-    todo.innerHTML = '';
+    todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
     // console.log(tasks.length);
    
       
@@ -95,6 +97,7 @@ async function loadToDo() {
         changeCategoryButton(i);
         await createUserButtons(task, i);
         await updateProgressBar(i);
+        notData();
     }
 }  
   
