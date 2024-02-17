@@ -3,6 +3,8 @@ async function openPopupAddTask() {
     let content = document.getElementById('popup-add-task-content');
 
     popup.classList.remove('d-none');
+    content.classList.remove('slide-out');
+    content.classList.add('slide-in');
     content.innerHTML = /*html*/`
         <img class="close-popup" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
@@ -26,7 +28,11 @@ async function openPopupAddTask() {
 
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
+    let content = document.getElementById('popup-add-task-content');
     popup.classList.add('d-none');
+    content.classList.remove('slide-in');
+    content.classList.add('slide-out');
+
 }
 
 
@@ -34,8 +40,6 @@ function renderAddTaskForPopup() {
     e.preventDefault();
 
 }
-
-
 
 
 async function loadToDo() {
@@ -66,10 +70,10 @@ async function loadToDo() {
                 </div>
                 <div class="progress_image_Div">
                     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" stygitle="width: 70%"></div>
+                        <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
                     </div>
                     
-                    <div> ${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
+                    <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
@@ -79,6 +83,7 @@ async function loadToDo() {
         `;
         changeCategoryButton(i);
         await createUserButtons(task, i);
+        await updateProgressBar(i);
     }
 }  
   
@@ -100,7 +105,7 @@ async function openPopupAddTaskDiv(i) {
     let content = document.getElementById('popup-add-task-content-div');
     div.classList.remove('d-none');
     let task = tasks[i];
-    content.innerHTML = '<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(); return false">';
+    content.innerHTML = `<img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">`;
     content.innerHTML += /*html*/`
         <div class="popup-text">
             <div class="user-popup-btn" id="category-bg-change-${i}">${task.category}</div>
@@ -209,6 +214,7 @@ async function checkOffSubtask(i, k) {
     let subtask = document.getElementById(`each-subtasks-${k}`);
     
 
+
     if (img.src.includes('none-selected.svg')) {
         img.src = '/assets/img/icons/selected.svg';
         img.alt = 'Selected';
@@ -257,7 +263,26 @@ async function pushSelectedSubtask(i, k) {
 
 function closePopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
+    let amount = document.getElementById(`amount-subtasks-${i}`);
     div.classList.add('d-none');
+    amount.innerHTML = /*html*/`
+        ${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks
+    `;
+    calculatePercentageForProgressBar(i);
+    updateProgressBar(i);
+}
+
+function calculatePercentageForProgressBar(i) {
+    let total = totalSubtask(i);
+    let subtotal = updateSelectedSubtasksCount(i);
+    let percentage = (subtotal * 100) / total;
+    return percentage;
+}
+
+
+function updateProgressBar(i) {
+    let div = document.getElementById(`progress-bar-${i}`);
+    div.style.width = calculatePercentageForProgressBar(i) + '%';
 }
     
 

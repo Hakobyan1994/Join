@@ -585,7 +585,8 @@ async function createTask() {
             date: date.value,
             priority: priority,
             category: category.value,
-            subtask: subtasks
+            subtask: subtasks,
+            checkoffs: []
         };
 
         existingTasks.push(newTask);
@@ -595,11 +596,12 @@ async function createTask() {
        
         let popup = document.getElementById('popup-add-task');
         let popupAdd = document.getElementById('popup-boardAddTask');
-         await openToBoard();
+        await openToBoard();
         if (popup) {
+            await openInBoard();
             popup.classList.add('d-none');
             popupAdd.classList.remove('d-none');
-            await openToBoard();
+            await updateProgressBar(i);
         } else {
             console.log('Popup wurde nicht gefunden');
         }
@@ -719,6 +721,24 @@ function openToBoard() {
     }
     
 }
+
+function openInBoard() {
+    let popup = document.getElementById('popup-a-to-b-board');
+
+    if (popup) {
+        popup.classList.remove('d-none');
+        setTimeout(() => {
+            window.location.href = "/files/board.html";
+        }, "1000");
+    } else {
+        console.log('Popup wurde nicht gefunden');
+        window.location.href = "/files/board.html";
+    }
+}
+
+
+
+
 
 
 async function loadTasks() {
