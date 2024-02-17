@@ -64,6 +64,7 @@ function notData() {
 
 
 async function loadToDo() {
+    await loadTasks();
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
     // console.log(tasks.length);
@@ -151,13 +152,13 @@ async function openPopupAddTaskDiv(i) {
                 <div class="popup-subtask" id="popup-subtasks-${i}">
                 </div>
             </div>
-            <div class="popup-task-footer">
+            <div class="popup-task-footer" onclick="deleteTask(${i})">
                 <div class="popup-task-footer-section">
                     <img src="/assets/img/icons/trash.svg" alt="Trash Icon">
                     <div>Delete</div>
                 </div>
                 <p class="separator"></p>
-                <div class="popup-task-footer-section">
+                <div class="popup-task-footer-section" onclick="editTask(${i})">
                     <img src="/assets/img/icons/edit.svg" alt="Edit Icon">
                     <div>Edit</div>
                 </div> 
@@ -405,4 +406,19 @@ function cancelButton() {
     button.innerHTML = /*html*/`
         Cancel<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img">
     `;
+}
+
+
+async function deleteTask(i) {
+    let task = tasks[i];
+    await loadTasks();
+    tasks.splice(task, i);
+
+    await setItem('testaufgaben', JSON.stringify(task));
+    closePopupAddTaskDiv(i);
+    loadToDo();
+}
+
+function editTask(i) {
+
 }
