@@ -598,8 +598,6 @@ async function createTask() {
         await openToBoard();
         if (popup) {
             await openInBoard();
-            popup.classList.add('d-none');
-            popupAdd.classList.remove('d-none');
             await updateProgressBar(i);
         } else {
             console.log('Popup wurde nicht gefunden');
@@ -728,7 +726,7 @@ function openInBoard() {
         popup.classList.remove('d-none');
         setTimeout(() => {
             window.location.href = "/files/board.html";
-        }, "1000");
+        }, "8000");
     } else {
         console.log('Popup wurde nicht gefunden');
         window.location.href = "/files/board.html";

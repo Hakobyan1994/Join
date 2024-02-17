@@ -103,7 +103,3 @@ input::placeholder {
     overflow: scroll;
     scrollbar-width: none;
 }
-
-.d-none {
-    display: none;
-}
