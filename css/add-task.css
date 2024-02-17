@@ -21,18 +21,18 @@
 .form {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
     width: 100%;
     height: 100%;
-    gap: 48px;
+    margin-right: 16px;
 }
 
 .was-validated .form-control:valid {
     background-image: none;
 }
 
-.line {
+.addtask-line {
     width: 1px;
     height: 424px;
     background-color: var(--line);
@@ -167,9 +167,6 @@ textarea:focus {
     border-color: var(--lightblue);
 }
 
-.subtask-input {
-}
-
 .subtask-input:focus {
     border-color: var(--lightblue);
 }
@@ -181,7 +178,9 @@ textarea:focus {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    display: flex;
     justify-items: center;
+    align-items: center;
 }
 
 .inputfield-textarea {
@@ -217,12 +216,13 @@ textarea {
 
 
 .prio-urgent .prio-medium .prio-low {
-    color: white;
+    color: white!important;
 }
 
 
 .prio-urgent {
     background-color: rgba(255,61,0,1);
+    color: white!important;
     font-weight: 600;
 }
 
@@ -232,6 +232,7 @@ textarea {
 
 .prio-medium {
     background-color: rgba(255,168,0,1);
+    color: white!important;
     font-weight: 600;
 }
 
@@ -241,6 +242,7 @@ textarea {
 
 .prio-low {
     background-color: rgba(122,226,41,1);
+    color: white!important;
     font-weight: 600;
 }
 
@@ -261,7 +263,7 @@ textarea {
 }
 
 .prio-notselected {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1)!important;
     background-color: rgba(255, 255, 255, 1);
     font-weight: 400;
 }
@@ -271,9 +273,9 @@ textarea {
 }
 
 .form-bottom {
-    position: fixed;
-    bottom: 64px;
-    width: calc(100% - 328px);
+    margin-bottom: 16px;
+    width: 100%;
+    margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -435,7 +437,7 @@ input[type="checkbox" i] {
     bottom: 32px;
     left: 445px;
     cursor: pointer;
-    height: 8px;
+    padding: 8px;
 }
 
 .dropdown-icon:hover {

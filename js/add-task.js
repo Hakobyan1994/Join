@@ -13,10 +13,11 @@ function renderAddTask() {
                 <div class="form">
                     ${generateHtmlAddTaskForm()}      
                 </div>
+                <div class="form-bottom">    
+                    ${generateHtmlFormSection()}
+                </div>  
             </div>    
-            <div style="width: 100%;">    
-                ${generateHtmlFormSection()}
-            </div>  
+
     `;
     addEventFunctions();
 }
@@ -44,7 +45,7 @@ function generateHtmlAddTaskForm() {
             ${generateHtmlDescription()}  
             ${generateHtmlAssigned()}
         </form>
-        <p class="line"></p>
+        <p class="addtask-line"></p>
         <form>
             ${generateHtmlDate()}  
             ${generateHtmlPrio()}
@@ -149,13 +150,11 @@ function generateHtmlSubtasks() {
 
 function generateHtmlFormSection() {
     return /*html*/`
-        <div class="form-bottom">
-            <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
-            <div class="form-bottom-right">
-                <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
-                <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
-            </div>
-        </div>  
+        <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
+        <div class="form-bottom-right">
+            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
+            <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
+        </div> 
     `;
 }
 

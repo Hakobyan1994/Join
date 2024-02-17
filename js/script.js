@@ -55,7 +55,7 @@ function forwardToPage(page) {
 
     if (clickedButton) {
         clickedButton.classList.add('selected-color');
-        if (page === 'add-task') {
+        if (page = 'add-task') {
             renderAddTask();
         }
     }
