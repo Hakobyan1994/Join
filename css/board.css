@@ -54,7 +54,7 @@
 }
 
 .edit-close-icon {
-    left: -11px!important;
+    left: 200px!important;
     bottom: 384px!important;
 }
 
@@ -298,4 +298,33 @@
     gap: 32px;
     height: 512px;
     margin-top: 32px;
+}
+
+.popup-edit {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-div {
+    height: 70%;
+    position: absolute;
+    top: 0;
+    bottom: 32px;
+    margin-top: 120px;
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+}
+
+.edit-div input textarea div {
+    width: 300px!important;
+}
+
+.ok-btn-edit {
+    position: absolute;
+    bottom: 78px;
+    right: 431px;
+    cursor: pointer;
 }

@@ -351,7 +351,7 @@ function drop(ev) {
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
-
+    
     if (categoryBtn.textContent === 'Technical Task') {
         categoryBtn.classList.add('tecnical_TaskButton');
     } else {
@@ -362,14 +362,20 @@ function changeCategoryButton(i) {
 
 function totalSubtask(i) {
     let task = tasks[i];
-    let total = task.subtask.length;
-    return total;
+    if (task && task.subtask && Array.isArray(task.subtask)) {
+        return task.subtask.length;
+    } else {
+        return 0;
+    }
 }
 
-
 function updateSelectedSubtasksCount(i) {
-    let selectedSubtasks = tasks[i].checkoffs.length;
-    return selectedSubtasks;
+    let task = tasks[i];
+    if (task && task.checkoffs) {
+        return task.checkoffs.length;
+    } else {
+        return 0;
+    }
 }
 
 
@@ -413,13 +419,12 @@ function cancelButton() {
 
 
 async function deleteTask(i) {
-    let task = tasks[i];
     await loadTasks();
-    tasks.splice(task, i);
+    tasks.splice(i, 1);
 
-    await setItem('testaufgaben', JSON.stringify(task));
+    await setItem('testaufgaben', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
-    loadToDo();
+    await loadToDo();
 }
 
 function editTask(i) {
@@ -431,14 +436,29 @@ function editTask(i) {
     content.innerHTML = /*html*/`
         <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(); return false">
         `;
+    content.innerHTML += generateEditableAddtask(i);
+    
+}
+
+function generateEditableAddtask(i) {
+    return /*html*/`
+            <div class="edit-div">
+                ${generateHtmlTitle()}  
+                ${generateHtmlDescription()}  
+                ${generateHtmlDate()}  
+                ${generateHtmlPrio()}
+                ${generateHtmlAssigned()}
+                ${generateHtmlSubtasks()}
+            </div>
+            <button class="ok-btn-edit">OK</button>
+    `; 
 }
 
 
-function closePopupEdit() {
+function closePopupEdit(i) {
     let div = document.getElementById(`popup-add-task-edit`);
     div.classList.add('d-none');
 
     changeCategoryButton(i);
     loadToDo();
-
 }
