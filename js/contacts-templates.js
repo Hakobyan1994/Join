@@ -18,7 +18,8 @@ function generateContact(i, contact, imageId) {
                 </div>
             </div>
         </div>
-    </div>`;
+    </div>
+    <div class="scroll-con"></div>`;
 }
 
 function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {

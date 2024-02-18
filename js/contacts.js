@@ -82,23 +82,15 @@ function checkExistingEmail(email) {
 
 function addedContactSuccessfully() {
     let success = document.getElementById('successCon');
+    success.innerHTML = '';
     success.innerHTML = `
-        <button class="success-pos">
+        <button class="success-btn">
             Contact successfully created
         </button>`;
 
+    success.classList.remove('slide-out-success-btn');
     success.classList.remove('d-none');
-    success.classList.remove('slide-out-success');
-    success.classList.add('slide-in-success');
-
-    setTimeout(() => {
-        success.classList.remove('slide-in-success');
-        success.classList.add('slide-out-success');
-
-        setTimeout(() => {
-            success.classList.add('d-none');
-        }, 500);
-    }, 2000);
+    success.classList.add('slide-in-success-btn');
 }
 
 function splitNameAndCapitalize(inputName) {
