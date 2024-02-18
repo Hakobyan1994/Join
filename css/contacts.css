@@ -111,11 +111,13 @@ body {
 
 .add-contact-btn-con {
     width: 100%;
-    height: 141px;
+    height: 70px;
     display: flex;
     justify-content: center;
-    position: static;
+    position: relative;
+    top: 120px;
     z-index: 1;
+    background-color: white;
 }
 
 .add-contact-btn {
@@ -130,8 +132,6 @@ body {
     border-radius: 10px;
     border: 1px solid #2A3647;
     background: #2A3647;
-    position: relative;
-    top: 130px;
     cursor: pointer;
     color: var(--white, #FFF);
     font-family: Inter;
@@ -154,11 +154,12 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    position: relative;
+    top: 80px;
 }
 
 .contact-con-pos {
     width: 352px;
-    padding: 5px 24px;
     display: flex;
     align-items: center;
     gap: 35px;
@@ -171,7 +172,6 @@ body {
     align-items: center;
     gap: 45px;
     border-radius: 10px;
-    background: var(--white, #FFF);
     padding-top: 3px;
     padding-bottom: 3px;
     width: 100%;
@@ -197,7 +197,6 @@ body {
 
 .contact-list-name:focus-within {
     color: white;
-    background-color: #2A3647;
 }
 
 .contact-list-email {
@@ -216,6 +215,11 @@ body {
     border-radius: 100px;
     margin-left: 20px;
     width: 50px;
+}
+
+.user-img-contact-list:focus-within {
+    background-color: #2A3647;
+    color: white;
 }
 
 .letter-con {
@@ -257,3 +261,12 @@ body {
 .slide-out-success {
     transform: translateX(100%);
 }
+
+.contact-focus-effect {
+    width: 100%;
+}
+
+.contact-focus-effect:focus {
+    background-color: #2A3647;
+}
+

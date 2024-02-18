@@ -8,15 +8,17 @@ function generateAddBtn() {
 
 function generateContact(i, contact, imageId) {
     return /*html*/`
+    <div class="focus-main">
         <div onclick="contactInfoSlider(${i})" class="contact-con-pos">
             <div class="contact-con">
                 <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
-                <div>
+                <div class="contact-focus-effect">
                     <div class="contact-list-name" tabindex="0">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
                 </div>
             </div>
-        </div>`;
+        </div>
+    </div>`;
 }
 
 function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
