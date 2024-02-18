@@ -2,6 +2,7 @@
  let feedbackArray=[];
  let doneArray=[];
  let dataTask = [];
+ let existingTasks = [];
 
 
 
@@ -452,7 +453,7 @@ function editTask(i) {
     subtaskLabel.classList.add('subtasks-label');
 }
 
-function generateEditableAddtask() {
+function generateEditableAddtask(i) {
     return /*html*/`
             <div class="edit-div">
                 <div class="edit-addtask">
@@ -463,14 +464,14 @@ function generateEditableAddtask() {
                     ${generateHtmlAssigned()}
                     ${generateHtmlSubtasks()}
                 </div>
-                <button class="ok-btn-edit create-task">OK <img src="/assets/img/icons/check1.svg" alt="Check Icon"></button>
+                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="/assets/img/icons/check1.svg" alt="Check Icon"></button>
             </div>       
 
     `; 
 }
 
 async function pushValueToEdit(i) {
-    let existingTasks = JSON.parse(await getItem('testaufgaben'));
+    existingTasks = JSON.parse(await getItem('testaufgaben'));
     let array = existingTasks[i];
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -483,15 +484,23 @@ async function pushValueToEdit(i) {
     getPriority(priority);
     let subtasksArray = array.subtask;
     console.log('push', subtasksArray);
-    getSubtasks(subtasksArray);
+    subtasks.push(subtasksArray);
+
+    subtasks = [];
+    for (let j = 0; j < subtasksArray.length; j++) {
+        subtasks.push(subtasksArray[j]);
+    }
+
+    getSubtasks();
+    existingTasks.splice(i, 1);
 }
 
 
-function getSubtasks(subtasksArray) {
+function getSubtasks() {
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
-    for (let i = 0; i < subtasksArray.length; i++) {
-        const text = subtasksArray[i];
+    for (let i = 0; i < subtasks.length; i++) {
+        const text = subtasks[i];
         list.innerHTML += /*html*/`
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
@@ -503,6 +512,55 @@ function getSubtasks(subtasksArray) {
         </li>
     `;        
     }
+}
+
+async function saveEditedTask(i) {
+    let category = tasks[i].category
+    let title = document.getElementById('title');
+    let requiredTitle = document.getElementById('required-title');
+    let requiredDate = document.getElementById('required-date');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
+    let priority = pushPrio();
+
+    if (title.value && date.value) {
+
+        let newTask = {
+            title: title.value,
+            description: description.value,
+            assigned: users,
+            letter: iniimg,
+            date: date.value,
+            priority: priority,
+            category: category,
+            subtask: subtasks,
+            checkoffs: []
+        };
+
+        existingTasks.push(newTask);
+
+        await setItem('testaufgaben', JSON.stringify(existingTasks));
+       
+        let popup = document.getElementById('popup-add-task');
+        let popupAdd = document.getElementById('popup-boardAddTask');
+        await openToBoard();
+        if (popup) {
+            await openInBoard();
+            await updateProgressBar(i);
+        } else {
+            console.log('Popup wurde nicht gefunden');
+        }
+    } else {
+        alert('Notwendige Felder wurden nicht ausgefüllt');
+        requiredTitle.classList.remove('d-none');
+        requiredDate.classList.remove('d-none');
+        requiredCategory.classList.remove('d-none');
+        date.classList.add('inputfield-focus-red');
+        title.classList.add('inputfield-focus-red');
+        category.classList.add('inputfield-focus-red');
+    }
+
+    return tasks;
 }
 
 
