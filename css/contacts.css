@@ -242,7 +242,7 @@ body {
     fill: #FF7A00;
 }
 
-.success-con {
+#successCon {
     position: absolute;
     top: 1000px;
     left: 750px;
@@ -262,20 +262,17 @@ body {
     border: 1px solid #2A3647;
     background: #2A3647;
     cursor: pointer;
-    color: var(--white, #FFF);
+    color: white;
     font-family: Inter;
     font-size: 21px;
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
-    position: absolute;
-    top: 1000px;
-    left: 750px;
 }
 
 @keyframes slideInFromRightSuccess {
     from {
-        transform: translateX(100%);
+        transform: translateX(550%);
     }
 
     to {
@@ -289,7 +286,7 @@ body {
     }
 
     to {
-        transform: translateX(100%);
+        transform: translateX(550%);
     }
 }
 
@@ -300,7 +297,6 @@ body {
 .slide-out-success-btn {
     animation: slideOutToRightSuccess 0.5s forwards;
 }
-
 
 .contact-focus-effect {
     width: 100%;

@@ -75,22 +75,24 @@ async function addToContacts() {
     }
 }
 
-
 function checkExistingEmail(email) {
     return contacts.some(contact => contact.email === email);
 }
 
 function addedContactSuccessfully() {
     let success = document.getElementById('successCon');
-    success.innerHTML = '';
     success.innerHTML = `
         <button class="success-btn">
             Contact successfully created
         </button>`;
 
     success.classList.remove('slide-out-success-btn');
-    success.classList.remove('d-none');
     success.classList.add('slide-in-success-btn');
+
+    setTimeout(() => {
+        success.classList.remove('slide-in-success-btn');
+        success.classList.add('slide-out-success-btn');
+    }, 1500);
 }
 
 function splitNameAndCapitalize(inputName) {
