@@ -1,9 +1,8 @@
- let progressArray=[];
- let feedbackArray=[];
- let doneArray=[];
+ let progressArray= [];
+ let feedbackArray= [];
+ let doneArray= [];
  let dataTask = [];
  let existingTasks = [];
-
 
 
 async function openPopupAddTask() {
@@ -43,28 +42,12 @@ function closePopupAddTask() {
     popup.classList.add('d-none');
     content.classList.remove('slide-in');
     content.classList.add('slide-out');
-
 }
 
 
 function renderAddTaskForPopup() {
     e.preventDefault();
-
 }
-
-function notData() {
-    let todo = document.getElementById('board-to-do');
-    console.log(tasks);
-    if(tasks.length===0) {
-        console.log(tasks.length);
-       let noTodotask=document.getElementById('NoToDo');
-       noTodotask.classList.remove('d-none');
-       noTodotask.style.display='flex';
-       todo.appendChild(noTodotask);
-    } 
-    return;
-}
-
 
 
 async function loadToDo() {
@@ -195,6 +178,7 @@ function createUserToAssigned(i) {
     }
 }
 
+
 function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
     let task = tasks[i];
@@ -212,6 +196,7 @@ function createSubtasksToAddTaskPopup(i) {
     }
     checkSelectedSubtasks(i);
 }
+
 
 function checkSelectedSubtasks(i) {
     let task = tasks[i];
@@ -299,6 +284,7 @@ function closePopupAddTaskDiv(i) {
     updateProgressBar(i);
 }
 
+
 function calculatePercentageForProgressBar(i) {
     let total = totalSubtask(i);
     let subtotal = updateSelectedSubtasksCount(i);
@@ -310,46 +296,12 @@ function calculatePercentageForProgressBar(i) {
         let percentage = (subtotal * 100) / total;
         return percentage;
     }
-
 }
 
 
 function updateProgressBar(i) {
     let div = document.getElementById(`progress-bar-${i}`);
     div.style.width = calculatePercentageForProgressBar(i) + '%';
-}
-    
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-
-function dragStart(ev) {
-    let txt = ev.srcElement.id
-   let id = txt[txt.length-1]
-   tasks.splice(id, 1)
-   console.log(id, 66);
-   notData()
-   dataTask.splice(id, 1)
-    ev.dataTransfer.setData("text", ev.target.id);
-    ev.target.style.transform = "rotate(13deg)";
-    // let progress=document.getElementById('progress')
-    // progress.style.width= "50%";
-}
-
-
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    var draggedElement = document.getElementById(data);
-    // ev.target.appendChild(draggedElement);
-    draggedElement.style.transform = "rotate(0deg)";
-    
-    if (!ev.target.contains(draggedElement)) {
-        ev.target.appendChild(draggedElement);
-    }
 }
 
 
@@ -373,6 +325,7 @@ function totalSubtask(i) {
     }
 }
 
+
 function updateSelectedSubtasksCount(i) {
     let task = tasks[i];
     if (task && task.checkoffs) {
@@ -383,14 +336,10 @@ function updateSelectedSubtasksCount(i) {
 }
 
 
-function returnValueOfSubtask() {
-
-}
-
-
 function searchTasks() {
     searchTaskToDo();
 }
+
 
 function searchTaskToDo() {
     let input = document.getElementById('input-search-task');
@@ -409,7 +358,6 @@ function searchTaskToDo() {
             todo.style.display = 'none';
         }
     }
-
 }
 
 
@@ -430,6 +378,7 @@ async function deleteTask(i) {
     closePopupAddTaskDiv(i);
     await loadToDo();
 }
+
 
 function editTask(i) {
     let popup = document.getElementById('popup-add-task-div');
@@ -453,6 +402,7 @@ function editTask(i) {
     subtaskLabel.classList.add('subtasks-label');
 }
 
+
 function generateEditableAddtask(i) {
     return /*html*/`
             <div class="edit-div">
@@ -469,6 +419,7 @@ function generateEditableAddtask(i) {
 
     `; 
 }
+
 
 async function pushValueToEdit(i) {
     existingTasks = JSON.parse(await getItem('testaufgaben'));
@@ -513,6 +464,7 @@ function getSubtasks() {
     `;        
     }
 }
+
 
 async function saveEditedTask(i) {
     let category = tasks[i].category
@@ -583,4 +535,50 @@ function closePopupEdit(i) {
 
     changeCategoryButton(i);
     loadToDo();
+}
+
+
+function notData() {
+    let todo = document.getElementById('board-to-do');
+    console.log(tasks);
+    if(tasks.length===0) {
+        console.log(tasks.length);
+       let noTodotask=document.getElementById('NoToDo');
+       noTodotask.classList.remove('d-none');
+       noTodotask.style.display='flex';
+       todo.appendChild(noTodotask);
+    } 
+    return;
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+
+function dragStart(ev) {
+    let txt = ev.srcElement.id;
+    let id = txt[txt.length-1];
+    tasks.splice(id, 1);
+    console.log(id, 66);
+    notData();
+    dataTask.splice(id, 1)
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.target.style.transform = "rotate(13deg)";
+    // let progress=document.getElementById('progress')
+    // progress.style.width= "50%";
+}
+
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+    // ev.target.appendChild(draggedElement);
+    draggedElement.style.transform = "rotate(0deg)";
+    
+    if (!ev.target.contains(draggedElement)) {
+        ev.target.appendChild(draggedElement);
+    }
 }
