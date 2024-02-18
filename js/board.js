@@ -441,6 +441,7 @@ function editTask(i) {
         `;
     content.innerHTML += generateEditableAddtask(i);
     addEventFunctions();
+    pushValueToEdit(i);
 
     let subtaskList = document.getElementById('subtasks');
     let assignedButton = document.getElementById('assigned-button');
@@ -451,27 +452,70 @@ function editTask(i) {
     subtaskLabel.classList.add('subtasks-label');
 }
 
-function generateEditableAddtask(i) {
+function generateEditableAddtask() {
     return /*html*/`
             <div class="edit-div">
-                ${generateHtmlTitle()}  
-                ${generateHtmlDescription()}  
-                ${generateHtmlDate()}  
-                ${generateHtmlPrio()}
-                ${generateHtmlAssigned()}
-                ${generateHtmlSubtasks()}
-            </div>
-            <button class="ok-btn-edit create-task">OK <img src="/assets/img/icons/check1.svg" alt="Check Icon"></button>
-    ${pushValueToEdit(i)}
+                <div class="edit-addtask">
+                    ${generateHtmlTitle()}  
+                    ${generateHtmlDescription()}  
+                    ${generateHtmlDate()}  
+                    ${generateHtmlPrio()}
+                    ${generateHtmlAssigned()}
+                    ${generateHtmlSubtasks()}
+                </div>
+                <button class="ok-btn-edit create-task">OK <img src="/assets/img/icons/check1.svg" alt="Check Icon"></button>
+            </div>       
+
     `; 
 }
 
-function pushValueToEdit(i) {
-    
-    let task = tasks[i].title;
+async function pushValueToEdit(i) {
+    let existingTasks = JSON.parse(await getItem('testaufgaben'));
+    let array = existingTasks[i];
     let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
+    // category, assigned Array 
+    title.value = array.title;
+    description.value = array.description;
+    date.value = array.date;
+    let priority = array.priority;
+    getPriority(priority);
+    let subtasksArray = array.subtask;
+    console.log('push', subtasksArray);
+    getSubtasks(subtasksArray);
+}
 
 
+function getSubtasks(subtasksArray) {
+    let list = document.getElementById('subtasks');
+    list.innerHTML = '';
+    for (let i = 0; i < subtasksArray.length; i++) {
+        const text = subtasksArray[i];
+        list.innerHTML += /*html*/`
+        <li class="each-subtask" id="each-subtask${i}">
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
+            <div class="subtask-right">
+                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <p class="separator"></p>
+                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            </div>
+        </li>
+    `;        
+    }
+}
+
+
+function getPriority(priority) {
+    let prios = document.getElementById('prio');
+    let prioButtons = prios.querySelectorAll('button');
+
+    prioButtons.forEach(function(button) {
+        button.classList.add('prio-notselected');
+        if(button.value === priority) {
+            button.classList.remove('prio-notselected');
+        }
+    });
 }
 
 

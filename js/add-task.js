@@ -20,6 +20,7 @@ function renderAddTask() {
 
     `;
     addEventFunctions();
+    addSubtask();
 }
 
 async function addEventFunctions() {
@@ -31,7 +32,6 @@ async function addEventFunctions() {
     clearButtonImgChange();
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
-    addSubtask();
     enterOnSubtask();
     dueDatePattern();
     inputfieldFocus();
@@ -91,8 +91,8 @@ function generateHtmlDate() {
         <label for="date">Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input type="date" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
-                <!-- <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()"> -->
+                <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
+                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
@@ -297,10 +297,10 @@ function generateAssignedButton() {
 
 function currentDate() {
     let border = document.getElementById('date');
-    let date = new Date();                              // get the actual date
+    let date = new Date();                              
 
     let day = date.getDate();           
-    let month = date.getMonth() + 1;                    // month starts with 0, thats why +1
+    let month = date.getMonth() + 1;                   
     let year = date.getFullYear();
 
     if (month < 10) month = '0' + month;
@@ -316,16 +316,19 @@ function dueDatePattern() {
     let dateInput = document.getElementById('date');
 
     dateInput.addEventListener('input', function () {
-        let isValid = /^\d{2}\/\d{2}\/\d{4}$/.test(dateInput.value);
+        let isValid = /^\d{2}\/\m{2}\/\y{4}$/.test(dateInput.value);
 
         if (!isValid) {
             dateInput.setCustomValidity('Ungültiges Datumsformat. Verwende das Format dd/mm/yyyy.');
         } else {
             dateInput.setCustomValidity('');
+
+            let parts = dateInput.value.split('/');
+            let formattedDate = `${parts[1]}/${parts[0]}/${parts[2]}`;
+            dateInput.value = formattedDate;
         }
     });
 } 
-   
 
 
 function pushPrio() {
