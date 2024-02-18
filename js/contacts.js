@@ -81,11 +81,7 @@ function checkExistingEmail(email) {
 
 function addedContactSuccessfully() {
     let success = document.getElementById('successCon');
-    success.innerHTML = `
-        <button class="success-btn">
-            Contact successfully created
-        </button>`;
-
+    success.innerHTML = generateSuccessBtnSlider();
     success.classList.remove('slide-out-success-btn');
     success.classList.add('slide-in-success-btn');
 

@@ -22,6 +22,13 @@ function generateContact(i, contact, imageId) {
     <div class="scroll-con"></div>`;
 }
 
+function generateSuccessBtnSlider() {
+    return /*html*/`
+        <button class="success-btn">
+            Contact successfully created
+        </button>`;
+}
+
 function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
     return /*html*/`
         <div id="contactSlider" class="contact-info-slider">
@@ -135,7 +142,7 @@ function generateAddContactOverlay() {
 
                                 <div class="add-contact-btns">
                                     <button type="button" class="cancel-btn" onclick="closeAddContactSlider()">
-                                        Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="">
+                                        Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="" style="fill: var(--Version-2-main-color, #2A3647);">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
