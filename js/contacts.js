@@ -18,22 +18,27 @@ function renderContacts() {
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
         let firstLetter = '';
-        if (contact.name && contact.name.length > 0) {
-            firstLetter = contact.name.charAt(0).toUpperCase();
-        }
-
-        if (firstLetter !== currentLetter) {
-            currentLetter = firstLetter;
-            currentSeparator = generateSeparator();
-            contactsContainer.innerHTML += generateLetterCon(currentLetter) + currentSeparator;
-        }
-        const imageId = `contactImage${i}`;
-        contactsContainer.innerHTML += generateContact(i, contact, imageId);
-        addInitialsToContactImage(contact, imageId);
+        renderContactImgInitials(currentLetter, currentSeparator, contact, firstLetter, i, contactsContainer);
     }
 }
 
-async function addToContacts() {
+function renderContactImgInitials(currentLetter, currentSeparator, contact, firstLetter, i, contactsContainer) {
+    if (contact.name && contact.name.length > 0) {
+        firstLetter = contact.name.charAt(0).toUpperCase();
+    }
+
+    if (firstLetter !== currentLetter) {
+        currentLetter = firstLetter;
+        currentSeparator = generateSeparator();
+        contactsContainer.innerHTML += generateLetterCon(currentLetter) + currentSeparator;
+    }
+    const imageId = `contactImage${i}`;
+    contactsContainer.innerHTML += generateContact(i, contact, imageId);
+    addInitialsToContactImage(contact, imageId);
+}
+
+
+function addToContacts() {
     let nameInput = document.getElementById('name');
     let emailInput = document.getElementById('email');
     let phoneInput = document.getElementById('phone');
@@ -42,37 +47,56 @@ async function addToContacts() {
     let email = emailInput.value.trim();
     let phone = phoneInput.value.trim();
 
+    checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
+}
+
+function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
+    if (!validateInputs(name, email, phone)) {
+        return;
+    }
+
     let formattedName = splitNameAndCapitalize(name);
     let initials = formatInitials(formattedName);
 
+    if (checkExistingEmail(email)) {
+        alert('A contact with this email already exists.');
+        return;
+    }
+    addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
+}
+
+function validateInputs(name, email, phone) {
     if (!/^[a-zA-Z\s]*$/.test(name)) {
         alert('Name should contain only letters.');
-        return;
+        return false;
     }
 
     if (!email.includes('@')) {
         alert('Invalid email address.');
-        return;
+        return false;
     }
 
     if (!/^\d+$/.test(phone)) {
         alert('Phone number should contain only numbers.');
-        return;
+        return false;
     }
 
-    if (formattedName === '' || email === '' || phone === '') {
+    if (name === '' || email === '' || phone === '') {
         alert('Please fill in all fields.');
-    } else if (checkExistingEmail(email)) {
-        alert('A contact with this email already exists.');
-    } else {
-        addContactToArray(formattedName, email, phone, initials);
-        clearInputs(nameInput, emailInput, phoneInput);
-        closeAddContactSlider();
-        await setItem('contacts', JSON.stringify(contacts));
-        await loadContacts();
-        renderContacts();
-        addedContactSuccessfully();
+        return false;
     }
+
+    return true;
+}
+
+async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials) {
+    addContactToArray(formattedName, email, phone, initials);
+    clearInputs(nameInput, emailInput, phoneInput);
+    closeAddContactSlider();
+    await setItem('contacts', JSON.stringify(contacts));
+    await loadContacts();
+    renderContacts();
+    addedContactSuccessfully();
 }
 
 function checkExistingEmail(email) {
@@ -130,7 +154,7 @@ function addContactToArray(name, email, phone, initials) {
     contacts.push(contact);
 }
 
-async function saveContact(i) {
+function saveContact(i) {
     let contact = contacts[i];
     let contactName = document.getElementById('nameEdit').value;
     let contactEmail = document.getElementById('emailEdit').value;
@@ -140,6 +164,10 @@ async function saveContact(i) {
     contact.email = contactEmail;
     contact.phone = contactPhone;
 
+    saveContactHelp(i, contacts)
+}
+
+async function saveContactHelp(i, contacts) {
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
 
@@ -286,25 +314,31 @@ async function deleteContact(i) {
     renderContacts();
 }
 
-function contactInfoSlider(i) {
+function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
-
     contactInfoSlider.innerHTML = '';
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');
     contactInfoSliderVisible = true;
 
+    renderContactInfo(i, contactInfoSlider);
+}
+
+function renderContactInfo(i, contactInfoSlider) {
     let contact = contacts[i];
     let contactName = contact.name;
     let contactEmail = contact.email;
     let contactPhone = contact.phone;
     let imageId = `contactImageSlider`;
+    let imageElement = document.getElementById(imageId);
     contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId);
     addInitialsToContactImage(contact, imageId);
+    addRandomColorToImg(imageElement, contact);
+    contactInfoSlider.dataset.contactId = i;
+}
 
-    let imageElement = document.getElementById(imageId);
+function addRandomColorToImg(imageElement, contact) {
     if (imageElement) {
         applyRandomColorToImage(imageElement, contact.initials);
     }
-    contactInfoSlider.dataset.contactId = i;
 }

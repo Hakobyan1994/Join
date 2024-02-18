@@ -232,7 +232,7 @@
 }
 
 .cancel-btn img:hover {
-    filter: brightness(1.5); /* Ändern Sie die Helligkeit des Bildes beim Hover-Effekt */
+    filter: brightness(1.5);
 }
 
 .contact-set {
