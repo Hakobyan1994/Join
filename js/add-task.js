@@ -134,7 +134,7 @@ function generateHtmlCategory() {
 
 function generateHtmlSubtasks() {
     return /*html*/`
-        <label for="">Subtasks</label>
+        <label class="" id="subtasks-label">Subtasks</label>
         <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
@@ -524,12 +524,15 @@ function clearSubtaskInputField() {
 function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
     let clearButton = document.getElementById('clear-button');
-    clearButton.addEventListener('mouseover', function() {
-        img.src = '/assets/img/icons/close-blue.svg';
-    });
-    clearButton.addEventListener('mouseout', function() {
-        img.src = '/assets/img/icons/close1.svg';
-    });
+    if (clearButton) {
+        clearButton.addEventListener('mouseover', function() {
+            img.src = '/assets/img/icons/close-blue.svg';
+        });
+        clearButton.addEventListener('mouseout', function() {
+            img.src = '/assets/img/icons/close1.svg';
+        });
+    }
+
 }
 
 

@@ -378,8 +378,8 @@ textarea {
 
 .assigned-button {
     z-index: 2;
-    position: relative;
-    bottom: 20px;
+    position: fixed;
+    bottom: 188px;
     padding-left: 8px;
     padding-right: 8px;
     width: 440px;
@@ -399,7 +399,7 @@ textarea {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 12px;
+    padding: 15px;
     border-radius: 10px;
     margin-bottom: 2px;
     padding-right: 16px;

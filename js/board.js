@@ -28,6 +28,9 @@ async function openPopupAddTask() {
             </div>  
         </div> 
     `;
+
+    let assignedButton = document.getElementById('assigned-button');
+    assignedButton.classList.add('assigned-button-b-pos');
     addEventFunctions();
     cancelButton();
 }
@@ -437,7 +440,15 @@ function editTask(i) {
         <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(); return false">
         `;
     content.innerHTML += generateEditableAddtask(i);
-    
+    addEventFunctions();
+
+    let subtaskList = document.getElementById('subtasks');
+    let assignedButton = document.getElementById('assigned-button');
+    let subtaskLabel = document.getElementById('subtasks-label');
+
+    subtaskList.classList.add('no-scrollbar');
+    assignedButton.classList.add('position-assigned-btn');
+    subtaskLabel.classList.add('subtasks-label');
 }
 
 function generateEditableAddtask(i) {
@@ -450,8 +461,17 @@ function generateEditableAddtask(i) {
                 ${generateHtmlAssigned()}
                 ${generateHtmlSubtasks()}
             </div>
-            <button class="ok-btn-edit">OK</button>
+            <button class="ok-btn-edit create-task">OK <img src="/assets/img/icons/check1.svg" alt="Check Icon"></button>
+    ${pushValueToEdit(i)}
     `; 
+}
+
+function pushValueToEdit(i) {
+    
+    let task = tasks[i].title;
+    let title = document.getElementById('title');
+
+
 }
 
 
