@@ -86,6 +86,7 @@ async function loadToDo() {
         await createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
+        await loadSelectedPage();
     }
 }  
   

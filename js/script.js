@@ -1,3 +1,5 @@
+let selectPage = [];
+
 const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
@@ -24,12 +26,13 @@ async function init() {
 
 async function initSummary() {
     await includeHTML();
-
+    dateUpdate();
+    timer();
 }
 
 async function initAddTask() {
     await includeHTML();
-    renderAddTask();
+    await renderAddTask();
     loadContacts();
 }
 
@@ -58,18 +61,24 @@ function forwardToPage(page) {
 
     if (clickedButton) {
         clickedButton.classList.add('selected-color');
+        selectPage = clickedButton;
         localStorage.setItem('selectedPage', page);
-    //     if (page === 'add-task') {
-    //     renderAddTask();
-    //   }
     }
+    
 }
 
-/* function loadSelectedPage() {
-    const selectedPage = localStorage.getItem('selectedPage');
-    if (selectedPage) {
-        forwardToPage(selectedPage);
+
+function loadSelectedPage() {
+    let page = localStorage.getItem('selectedPage');
+    let id = page + '-page';
+    console.log(id);
+    let div = document.getElementById(`${id}`);
+    if(div) {
+        div.classList.add('selected-color');
+    } else {
+        // console.log('nicht gefunden');
+        // if (div.classList.contains('selected-color')) {
+        //     div.classList.remove('selected-color');
+        // }
     }
 }
-
-window.addEventListener('load', loadSelectedPage); */

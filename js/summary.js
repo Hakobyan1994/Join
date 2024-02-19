@@ -21,7 +21,12 @@ function dateUpdate() {
 
   montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
 }
-dateUpdate();
+
+function timer() {
+  setTimeout(() => {
+    loadSelectedPage();
+}, "100");
+}
 
 
 

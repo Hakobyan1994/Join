@@ -20,6 +20,7 @@ function renderContacts() {
         let firstLetter = '';
         renderContactImgInitials(currentLetter, currentSeparator, contact, firstLetter, i, contactsContainer);
     }
+    loadSelectedPage();
 }
 
 function renderContactImgInitials(currentLetter, currentSeparator, contact, firstLetter, i, contactsContainer) {

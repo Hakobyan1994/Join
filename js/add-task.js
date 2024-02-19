@@ -35,6 +35,7 @@ async function addEventFunctions() {
     enterOnSubtask();
     dueDatePattern();
     inputfieldFocus();
+    loadSelectedPage();
 }
 
 
