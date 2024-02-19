@@ -61,7 +61,7 @@ async function loadToDo() {
         let task= tasks[i];
         
         todo.innerHTML += /*html*/`
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}">
+           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -434,7 +434,7 @@ async function pushValueToEdit(i) {
     let priority = array.priority;
     getPriority(priority);
     let subtasksArray = array.subtask;
-    console.log('push', subtasksArray);
+    // console.log('push', subtasksArray);
     subtasks.push(subtasksArray);
 
     subtasks = [];
@@ -540,9 +540,9 @@ function closePopupEdit(i) {
 
 function notData() {
     let todo = document.getElementById('board-to-do');
-    console.log(tasks);
+    // console.log(tasks);
     if(tasks.length === 0) {
-        console.log(tasks.length);
+        // console.log(tasks.length);
        let noTodotask=document.getElementById('NoToDo');
        noTodotask.classList.remove('d-none');
        noTodotask.style.display='flex';
@@ -560,8 +560,8 @@ function allowDrop(ev) {
 function dragStart(ev) {
     let txt = ev.srcElement.id;
     let id = txt[txt.length-1];
-    tasks.splice(id, 1);
-    console.log(id, 66);
+    // tasks.splice(id, 1);
+    // console.log(id, 66);
     notData();
     dataTask.splice(id, 1)
     ev.dataTransfer.setData("text", ev.target.id);
@@ -574,11 +574,61 @@ function dragStart(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
+    // console.log(data);
     var draggedElement = document.getElementById(data);
     // ev.target.appendChild(draggedElement);
     draggedElement.style.transform = "rotate(0deg)";
     
     if (!ev.target.contains(draggedElement)) {
-        ev.target.appendChild(draggedElement);
+        let category = ev.target.appendChild(draggedElement);
+        console.log('Kategorie', category);
     }
+    saveDroppedElement(draggedElement);
+}
+
+async function saveDroppedElement(element) {
+    let pos = element.getAttribute('arraypos');
+    console.log(pos);
+    todoArray = JSON.parse(await getItem('testaufgaben')) || [];
+    console.log(todoArray);
+    if (!Array.isArray(todoArray)) {
+        todoArray = [];
+    }
+    console.log('Anfang', todoArray);
+
+    
+    let array = todoArray[pos];
+    console.log('array', array);
+
+    let dropTargetId = element.parentElement.id;
+
+    if (dropTargetId === 'board-in-progress') {
+        console.log('Element wurde in board-in-progress abgelegt');
+        progressArray.push(array);
+        console.log('Progress', progressArray);
+        todoArray.splice(pos, 1);
+        console.log('tasks', todoArray);
+    }
+    if (dropTargetId === 'board-await-feedback') {
+        console.log('Element wurde in board-await-feedback abgelegt');
+        feedbackArray.push(array);
+        console.log('Feedback', feedbackArray);
+        todoArray.splice(pos, 1);
+        console.log('tasks', todoArray);
+    }
+    if (dropTargetId === 'board-done') {
+        console.log('Element wurde in board-done abgelegt');
+        doneArray.push(array);
+        console.log('Done', doneArray);
+        todoArray.splice(pos, 1);
+        console.log('tasks', todoArray);
+    }
+    if (dropTargetId === 'board-to-do') {
+        console.log('Element wurde in board-to-do abgelegt');
+        todoArray.push(array);
+        console.log('Todo', todoArray);
+        todoArray.splice(pos, 1);
+        console.log('tasks', todoArray);
+    }
+
 }

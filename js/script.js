@@ -71,7 +71,6 @@ function forwardToPage(page) {
 function loadSelectedPage() {
     let page = localStorage.getItem('selectedPage');
     let id = page + '-page';
-    console.log(id);
     let div = document.getElementById(`${id}`);
     if(div) {
         div.classList.add('selected-color');
