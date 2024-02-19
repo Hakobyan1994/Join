@@ -78,7 +78,7 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()">
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" readonly>
         <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
@@ -176,12 +176,13 @@ function generateHtmlFormSection() {
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
-    let input = document.getElementById('assigned');
-        if (list.classList.contains('d-none')) {
-            input.placeholder = 'Searchfield + Checkbox on progress';
-        } else {
-            input.placeholder = 'Select contacts to assign';
-        }
+    /* let input = document.getElementById('assigned');
+        // if (list.classList.contains('d-none')) {
+        //     input.placeholder = 'Searchfield + Checkbox on progress';
+        // } else {
+        //     input.placeholder = 'Select contacts to assign';
+        // }
+    */
     list.classList.toggle('d-none');
     list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -196,7 +197,8 @@ function renderAssignedList() {
                     <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <input type="checkbox" class="d-none" id="checkbox-contact-${i}">
+                <!-- <img src="/assets/img/icons/none-selected.svg" alt="" id="checkbox-contact-${i}"> -->
+                <!-- <input type="checkbox" class="d-none" id="checkbox-contact-${i}"> -->
             </div>
         `;    
     }
@@ -250,15 +252,15 @@ function pushCategorytoInput(category) {
 }
 
 
-
 function selectAssignedContacts(i) {
     let contact = document.getElementById(`assigned-contacts-${i}`);
-    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
     contact.classList.toggle('white');
     // checkbox.checked = !checkbox.checked;
     pushUser(i);
 }
+
 
 function pushUser(i) {
     // let checkbox = document.getElementById(`checkbox-contact-${i}`);
@@ -609,7 +611,7 @@ async function createTask() {
             console.log('Popup wurde nicht gefunden');
         }
     } else {
-        alert('Notwendige Felder wurden nicht ausgefüllt');
+        alert('Please fill up the required fields!');
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
         requiredCategory.classList.remove('d-none');

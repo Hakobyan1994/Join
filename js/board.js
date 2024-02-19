@@ -5,8 +5,6 @@
  let dataTask = [];
  let existingTasks = [];
 
- let droppedTasks = [];
-
 
 async function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
@@ -54,12 +52,10 @@ function renderAddTaskForPopup() {
 
 
 async function loadToDo() {
-    await loadTasks();
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
+    await loadTasks();
     todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
-    // console.log(tasks.length);
-   
       
     for (let i = 0; i < tasks.length; i++) {
         let task= tasks[i];
