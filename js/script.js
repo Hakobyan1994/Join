@@ -21,6 +21,11 @@ async function init() {
     await loadContacts();
 }
 
+async function initSummary() {
+    await includeHTML();
+
+}
+
 async function initAddTask() {
     await includeHTML();
     renderAddTask();
@@ -46,13 +51,24 @@ function forwardToPage(page) {
 
         if (button.classList.contains('selected-color')) {
             button.classList.remove('selected-color');
+        
         }
     });
 
     if (clickedButton) {
         clickedButton.classList.add('selected-color');
-        // if (page = 'add-task') {
-        //     renderAddTask();
-        // }
+        localStorage.setItem('selectedPage', page);
+        if (page === 'add-task') {
+        renderAddTask();
+      }
     }
 }
+
+function loadSelectedPage() {
+    const selectedPage = localStorage.getItem('selectedPage');
+    if (selectedPage) {
+        forwardToPage(selectedPage);
+    }
+}
+
+window.addEventListener('load', loadSelectedPage);

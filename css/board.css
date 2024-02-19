@@ -47,7 +47,7 @@
     z-index: 999;
     position: relative;
     right: -434px;
-    bottom: 384px;
+    bottom: 440px;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -55,7 +55,6 @@
 
 .edit-close-icon {
     right: -200px!important;
-    bottom: 384px!important;
 }
 
 .popup-box {
