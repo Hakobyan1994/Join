@@ -1,8 +1,11 @@
- let progressArray= [];
- let feedbackArray= [];
- let doneArray= [];
+ let todoArray = [];
+ let progressArray = [];
+ let feedbackArray = [];
+ let doneArray = [];
  let dataTask = [];
  let existingTasks = [];
+
+ let droppedTasks = [];
 
 
 async function openPopupAddTask() {
@@ -541,7 +544,7 @@ function closePopupEdit(i) {
 function notData() {
     let todo = document.getElementById('board-to-do');
     console.log(tasks);
-    if(tasks.length===0) {
+    if(tasks.length === 0) {
         console.log(tasks.length);
        let noTodotask=document.getElementById('NoToDo');
        noTodotask.classList.remove('d-none');
