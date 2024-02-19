@@ -59,17 +59,17 @@ function forwardToPage(page) {
     if (clickedButton) {
         clickedButton.classList.add('selected-color');
         localStorage.setItem('selectedPage', page);
-        if (page === 'add-task') {
-        renderAddTask();
-      }
+    //     if (page === 'add-task') {
+    //     renderAddTask();
+    //   }
     }
 }
 
-function loadSelectedPage() {
+/* function loadSelectedPage() {
     const selectedPage = localStorage.getItem('selectedPage');
     if (selectedPage) {
         forwardToPage(selectedPage);
     }
 }
 
-window.addEventListener('load', loadSelectedPage);
+window.addEventListener('load', loadSelectedPage); */
