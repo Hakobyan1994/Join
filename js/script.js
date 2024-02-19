@@ -19,6 +19,7 @@ async function getItem(key) {
 async function init() {
     await includeHTML();
     await loadContacts();
+    renderBackArrow();
 }
 
 async function initSummary() {
