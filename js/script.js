@@ -20,6 +20,7 @@ async function init() {
     await includeHTML();
     await loadContacts();
     renderBackArrow();
+    hideUserImgHeader();
 }
 
 async function initAddTask() {

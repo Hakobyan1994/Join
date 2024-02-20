@@ -2,11 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+    width: 80%;
 }
 
 h3 {
     margin-bottom: 24px!important;
+    margin-top: 24px!important;
+    margin: 0;
 }
 
 .main-window {
@@ -26,5 +28,36 @@ ol li {
 
 li {
     padding-left: 35px;
+}
 
+.back-arrow-btn {
+    height: 37px;
+    width: 37px;
+    position: absolute;
+    top: 230px;
+    right: 100px;
+    border-radius: 100%;
+}
+
+.back-arrow-btn:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+span {
+    color: #43B5E5;
+}
+
+h4 {
+    margin: 0;
+}
+
+p {
+    margin-bottom: 24px !important;
+    margin: 0;
+}
+
+.d-none {
+    display: none;
 }
