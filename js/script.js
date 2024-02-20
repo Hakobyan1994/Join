@@ -44,8 +44,12 @@ async function initContacts() {
 
 async function initBoard() {
     await includeHTML();
+    // await generateProgressCards();
+    // await generateFeedbackCards();
+    // await generateDoneCards();
     await loadTasks();
     loadToDo();
+
 }
 
 function forwardToPage(page) {
@@ -64,11 +68,10 @@ function forwardToPage(page) {
         selectPage = clickedButton;
         localStorage.setItem('selectedPage', page);
     }
-    
 }
 
 
-function loadSelectedPage() {
+async function loadSelectedPage() {
     let page = localStorage.getItem('selectedPage');
     let id = page + '-page';
     let div = document.getElementById(`${id}`);
@@ -81,3 +84,8 @@ function loadSelectedPage() {
         // }
     }
 }
+
+
+function deleteLocalStorage() {
+    localStorage.removeItem('selectedPage');
+}    
