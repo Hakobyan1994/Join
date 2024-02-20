@@ -156,6 +156,8 @@ body {
     gap: 16px;
     position: relative;
     top: 70px;
+    margin-bottom: 70px;
+    overflow-x: hidden;
 }
 
 .contact-con-pos {

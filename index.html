@@ -2,36 +2,79 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - Kanban Project Management Tool</title>
-    <link rel="shortcut icon" href="/assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="/css/add-task.css">
-    <link rel="stylesheet" href="/css/menubar.css">
-    <link rel="stylesheet" href="/css/addContacts.css">
-    <link rel="stylesheet" href="/css/board.css">
-    <link rel="stylesheet" href="/css/contact-info.css">
-    <link rel="stylesheet" href="/css/contacts.css">
-    <link rel="stylesheet" href="/css/help.css">
-    <link rel="stylesheet" href="/css/legal-notice.css">
-    <link rel="stylesheet" href="/css/privacy-policy.css">
-    <link rel="stylesheet" href="/css/summary.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js"></script>
-    <script src="/js/includeHTML.js"></script>
-    <script src="/js/add-task.js"></script>
-    <script src="/js/contacts.js"></script>
-    <script src="/js/board.js"></script>
-    <script src="/js/contacts-templates.js"></script>
-    <script src="/js/summary.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log-in</title>
+  <link rel="stylesheet" href="/css/register.css">
+  <script src="/js/register.js"></script>
+  <script src="/js/script.js"></script>
 </head>
 
-<body onload="init()">
-    <div w3-include-html="assets/templates/menubar.html"></div>
-    <!-- <div id="add-task" class="main-window"></div>
-    <div class="popup-a-to-b d-none" id="popup-a-to-b">
-        <img src="/assets/img/task-to-board.svg" alt="">
-    </div> -->
+<body>
+  <div class="contaner">
+    <div class="nav-bar">
+
+      <div>
+        <div class="anim_div"></div>
+        <img class="join_image animation" id="logo-login" src="/assets/img/anmeldung Image/join.png" alt="login image">
+      </div>
+
+      <div class="signup-div">
+        <p class="join-info">Not a Join user?</p><a class="signup-button" href="/files/signup.html">Sign up</a>
+      </div>
+
+    </div>
+
+    <div class="parent_loginDiv">
+      <div class="loginDiv">
+        <div class="flexb_block">
+          <div class="block_title">
+            <h1 class="title">Log in</h1>
+            <div class="min_line"></div>
+          </div>
+
+                     
+          <div class="form_block">
+            <form id="form_log">
+              <div class="main-login">
+                <div class="password_login">
+                  <div class="block_name">
+                    <input id="email" class="input_email" type="email" placeholder="Email" required>
+                    <p id="email_login"></p>
+                  </div>
+                  <div class="block_pass">
+                    <input id="password" class="input_password" type="password" placeholder="Password">
+                  </div>
+                  <img id="imageInput" class="passwordImage" src="/assets/img/anmeldung Image/lock.png" alt="">
+                    <!-- <p id="password_login"></p> -->
+                </div>
+                <div class="block_Remember">
+                  <input id="checkBox" type="checkbox" class="checkbox_input">
+                  <span class="span_remember">Remember me</span>
+                </div>
+              </div>
+              <div class="block_btn">
+                <button class="button_login" type="submit">Login</button>
+                <button onclick="guesButton()" class="second_button_login" type="submit">Guest Log in</button>
+              </div>
+
+
+            </form>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="Privacy_div"> <a class="aLink" href="">Privacy Policy</a></div>
+      <div class="legal_notice"> <a class="aLink" href="">Legal notice</a></div>
+    </div>
+
+  </div>
+
+
 </body>
 
 </html>

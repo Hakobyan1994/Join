@@ -91,3 +91,7 @@ async function loadSelectedPage() {
 function deleteLocalStorage() {
     localStorage.removeItem('selectedPage');
 }    
+
+function goBack() {
+    window.history.back();
+}
