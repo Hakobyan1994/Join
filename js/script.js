@@ -28,6 +28,7 @@ async function initSummary() {
     await includeHTML();
     dateUpdate();
     timer();
+    // getValue();
 }
 
 async function initAddTask() {
