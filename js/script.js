@@ -1,3 +1,5 @@
+let selectPage = [];
+
 const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
@@ -23,9 +25,16 @@ async function init() {
     hideUserImgHeader();
 }
 
+async function initSummary() {
+    await includeHTML();
+    dateUpdate();
+    timer();
+    // getValue();
+}
+
 async function initAddTask() {
     await includeHTML();
-    renderAddTask();
+    await renderAddTask();
     loadContacts();
 }
 
@@ -37,8 +46,12 @@ async function initContacts() {
 
 async function initBoard() {
     await includeHTML();
+    // await generateProgressCards();
+    // await generateFeedbackCards();
+    // await generateDoneCards();
     await loadTasks();
     loadToDo();
+
 }
 
 function forwardToPage(page) {
@@ -48,13 +61,33 @@ function forwardToPage(page) {
 
         if (button.classList.contains('selected-color')) {
             button.classList.remove('selected-color');
+        
         }
     });
 
     if (clickedButton) {
         clickedButton.classList.add('selected-color');
-        // if (page = 'add-task') {
-        //     renderAddTask();
+        selectPage = clickedButton;
+        localStorage.setItem('selectedPage', page);
+    }
+}
+
+
+async function loadSelectedPage() {
+    let page = localStorage.getItem('selectedPage');
+    let id = page + '-page';
+    let div = document.getElementById(`${id}`);
+    if(div) {
+        div.classList.add('selected-color');
+    } else {
+        // console.log('nicht gefunden');
+        // if (div.classList.contains('selected-color')) {
+        //     div.classList.remove('selected-color');
         // }
     }
 }
+
+
+function deleteLocalStorage() {
+    localStorage.removeItem('selectedPage');
+}    

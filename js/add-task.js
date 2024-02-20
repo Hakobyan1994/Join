@@ -35,6 +35,7 @@ async function addEventFunctions() {
     enterOnSubtask();
     dueDatePattern();
     inputfieldFocus();
+    loadSelectedPage();
 }
 
 
@@ -655,64 +656,6 @@ function inputfieldFocus(field) {
     }
 }
 
-/*
-function inputfieldFocusDate() {
-    let date = document.getElementById('date');
-    let required = document.getElementById('required-date');
-
-    if (document.activeElement === date) {
-        if (date.value.trim() === '') {
-            date.classList.add('inputfield-focus-red');
-            required.classList.remove('d-none');
-            date.classList.remove('inputfield-focus-blue');
-            date.classList.remove('inputfield-focus-white');
-        } else {
-            date.classList.add('inputfield-focus-blue');
-            required.classList.add('d-none');
-            date.classList.remove('inputfield-focus-red');
-            date.classList.remove('inputfield-focus-white');
-        }
-    } else {
-        date.classList.remove('inputfield-focus-red');
-        date.classList.remove('inputfield-focus-blue');
-        date.classList.add('inputfield-focus-white');
-        required.classList.add('d-none');
-    }
-    date.addEventListener('blur', function() {
-        date.classList.remove('inputfield-focus-red');
-        required.classList.add('d-none');
-    });
-}
-*/
-
-/* function inputfieldFocusCategory() {
-    let category = document.getElementById('category');
-    let required = document.getElementById('required-category');
-
-    if (document.activeElement === category) {
-        if (category.value.trim() === '') {
-            category.classList.add('inputfield-focus-red');
-            required.classList.remove('d-none');
-            category.classList.remove('inputfield-focus-blue');
-            category.classList.remove('inputfield-focus-white');
-        } else {
-            required.classList.add('d-none');
-            category.classList.add('inputfield-focus-blue');
-            category.classList.remove('inputfield-focus-red');
-            category.classList.remove('inputfield-focus-white');
-        }
-    } else {
-        required.classList.add('d-none');
-        category.classList.add('inputfield-focus-white');
-        category.classList.remove('inputfield-focus-red');
-        category.classList.remove('inputfield-focus-blue');
-    }
-    category.addEventListener('blur', function() {
-        category.classList.remove('inputfield-focus-red');
-        required.classList.add('d-none');
-    });
-}
-*/
 
 function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');

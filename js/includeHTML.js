@@ -1,7 +1,3 @@
-
-
-
-
 function checks(){
   let profilInfo=document.querySelector('.clickInfoDiv')
   if(profilInfo.style.display==='block'){
