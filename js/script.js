@@ -46,9 +46,6 @@ async function initContacts() {
 
 async function initBoard() {
     await includeHTML();
-    // await generateProgressCards();
-    // await generateFeedbackCards();
-    // await generateDoneCards();
     await loadTasks();
     loadToDo();
 

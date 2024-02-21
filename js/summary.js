@@ -33,40 +33,37 @@ function timer() {
 }, "100");
 }
 
-async function getValue() {
-  tasks = JSON.parse(await getItem('testaufgaben')) || [];
 
+
+async function getValue() {
+  tasks = JSON.parse(await getItem('tasks')) || [];
         if (!Array.isArray(tasks)) {
           tasks = [];
-        }
+        } 
 
-  let todo = document.getElementById('value-todoarray');
-  let done = document.getElementById('value-donearray');
   let urgent = document.getElementById('value-urgent');
   let total = document.getElementById('value-total');
-  let progress = document.getElementById('value-progressarray');
-  let feedback = document.getElementById('value-feedbackarray');
 
 
 
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
-    if(tasks[i].status === 'board-to-do') {
+    if(state === 'board-to-do') {
       valueTodo++;
-      todo.innerHTML = valueTodo;
+      document.getElementById('value-todoarray').innerHTML = valueTodo;
     }
-    if(tasks[i].status === 'board-in-progress') {
+    if(state === 'board-in-progress') {
       valueProgress++;
-      progress.innerHTML = valueProgress;
+      document.getElementById('value-progressarray').innerHTML = valueProgress;
     }
-    if(tasks[i].status === 'board-await-feedback') {
+    if(state === 'board-await-feedback') {
       valueFeedback++;
-      feedback.innerHTML = valueFeedback;
+      document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
 
     }
-    if(tasks[i].status === 'board-done') {
+    if(state === 'board-done') {
       valueDone++;
-      done.innerHTML = valueDone;
+      document.getElementById('value-donearray').innerHTML = valueDone;
     }
 
       

@@ -579,7 +579,7 @@ async function createTask() {
 
     if (title.value && date.value && category.value) {
         
-        let existingTasks = JSON.parse(await getItem('testaufgaben')) || [];
+        let existingTasks = JSON.parse(await getItem('tasks')) || [];
 
         if (!Array.isArray(existingTasks)) {
             existingTasks = [];
@@ -600,7 +600,7 @@ async function createTask() {
 
         existingTasks.push(newTask);
 
-        await setItem('testaufgaben', JSON.stringify(existingTasks));
+        await setItem('tasks', JSON.stringify(existingTasks));
         clearFields();
        
         let popup = document.getElementById('popup-add-task');
@@ -690,7 +690,7 @@ function openInBoard() {
 
 async function loadTasks() {
     try {
-        tasks = JSON.parse(await getItem('testaufgaben')) || [];
+        tasks = JSON.parse(await getItem('tasks')) || [];
     } catch (e) {
         console.error('Error in loadTasks:', e);
     }
