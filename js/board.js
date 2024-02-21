@@ -75,6 +75,8 @@ async function loadToDo() {
         }
         if(tasks[i].status === 'board-done') {
             done.innerHTML += generateBoardCardDone(task, i);
+        } else {
+            console.log('Done ist missing');
         }
 
         
@@ -194,12 +196,15 @@ function generateBoardCardDone(task, i) {
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
     let letters = task.letter;
-    for (let k = 0; k < letters.length; k++) {
-        const letter = letters[k];
-        iconmember.innerHTML += /*html*/`
-        <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
-    `;
+    if(iconmember) {
+        for (let k = 0; k < letters.length; k++) {
+            const letter = letters[k];
+            iconmember.innerHTML += /*html*/`
+            <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
+        `;
+        }
     }
+
 }
 
 
