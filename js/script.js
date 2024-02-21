@@ -29,7 +29,7 @@ async function initSummary() {
     await includeHTML();
     dateUpdate();
     timer();
-    // getValue();
+    getValue();
 }
 
 async function initAddTask() {
@@ -91,3 +91,7 @@ async function loadSelectedPage() {
 function deleteLocalStorage() {
     localStorage.removeItem('selectedPage');
 }    
+
+function goBack() {
+    window.history.back();
+}

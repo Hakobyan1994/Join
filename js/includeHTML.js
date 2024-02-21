@@ -1,3 +1,24 @@
+
+
+// let users = {};
+// const datauser = JSON.parse(localStorage.getItem('activeUser'));
+// if (datauser) {
+//     users = datauser;
+//     const profileName = document.querySelector('.profileName');
+//     let txt = users.name;
+//     let name = txt.split(' ');
+//     console.log(name);
+//     if (name.length >= 2) {
+//         profileName.innerText = `${name[0][0]} ${name[1][0]}`;
+//     } else if (name.length === 1) {
+//         profileName.innerText = `${name[0][0]}`;
+//     } else {
+//         alert('Error');
+//     }
+// }
+
+  
+
 function checks(){
   let profilInfo=document.querySelector('.clickInfoDiv')
   if(profilInfo.style.display==='block'){

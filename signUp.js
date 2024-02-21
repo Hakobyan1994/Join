@@ -46,7 +46,7 @@ function validForm({ name, email, password, confirmPassword }, e) {
             setTimeout(function(){
                 trasparenterDiv.style.display = 'none';
                 },5000)
-                window.location.href = 'login.html'
+                window.location.href = 'index.html'  //fehler
             } 
     } else {
         e.target[3].style.border = '4px solid red';
@@ -59,8 +59,8 @@ let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
 
 function backToRegister() {
-    window.location.href = 'login.html'
-}
+    window.location.href = 'index.html';
+}  
 
       
 document.addEventListener('DOMContentLoaded', function () {
