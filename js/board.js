@@ -581,13 +581,25 @@ function drop(ev) {
     
     if (!ev.target.contains(draggedElement)) {
         let category = ev.target.appendChild(draggedElement);
+
     }
+    console.log(draggedElement);
     saveDroppedElement(draggedElement);
 }
 
 
 async function saveDroppedElement(element) {
     let pos = element.getAttribute('arraypos');
+    let dropTargetId = element.parentElement.id;
+    let state = tasks[pos].status;
+    
+    console.log(dropTargetId);
+    console.log(state);
+    
+
+
+
+/*
     await loadArray(todoArray, progressArray, feedbackArray, doneArray);
     if (!Array.isArray(todoArray, progressArray, feedbackArray, doneArray)) {
         todoArray = [];
@@ -618,9 +630,10 @@ async function saveDroppedElement(element) {
     }
 
     await saveNewArrays(todoArray, progressArray, feedbackArray, doneArray);
+    */
 }
 
-
+/*
 async function loadArray(todoArray, progressArray, feedbackArray, doneArray) {
     try {
         todoArray = JSON.parse(await getItem('todo')) || [];
@@ -652,8 +665,8 @@ async function generateProgressCards() {
 
     for (let i = 0; i < progressArray.length; i++) {
         let task= progressArray[i];
-        boardDiv.innerHTML += /*html*/`
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
+        boardDiv.innerHTML += `
+           <div draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
@@ -682,6 +695,7 @@ async function generateProgressCards() {
     }
 }
 
+
 async function generateFeedbackCards() {
     let boardDiv = document.getElementById('board-await-feedback');
     boardDiv.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
@@ -693,7 +707,7 @@ async function generateFeedbackCards() {
 
     for (let i = 0; i < feedbackArray.length; i++) {
         let task= feedbackArray[i];
-        boardDiv.innerHTML += /*html*/`
+        boardDiv.innerHTML += `
            <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
@@ -735,7 +749,7 @@ async function generateDoneCards() {
 
     for (let i = 0; i < doneArray.length; i++) {
         let task= doneArray[i];
-        boardDiv.innerHTML += /*html*/`
+        boardDiv.innerHTML += `
            <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
                 <div  class="progress_infocard">
                     <button class="" id="category-bg-change-${i}">${task.category}</button>
@@ -765,3 +779,4 @@ async function generateDoneCards() {
     }
 }
 
+*/
