@@ -54,8 +54,8 @@ function renderAddTaskForPopup() {
 async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
-    await loadTasks();
-    todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
+    // console.log(tasks.length);
+     
       
     for (let i = 0; i < tasks.length; i++) {
         let task= tasks[i];
