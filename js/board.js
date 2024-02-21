@@ -65,7 +65,7 @@ async function loadToDo() {
     let todo = document.getElementById('board-to-do');
     todo.innerHTML = '';
     // console.log(tasks.length);
-   
+     
       
     for (let i = 0; i < tasks.length; i++) {
         let task= tasks[i];
