@@ -60,7 +60,7 @@ function generateHtmlAddTaskForm() {
 function generateHtmlTitle() {
     return /*html*/`
         <div class="title-div">
-            <label for="" class="">Title<p class="redstar">*</p></label>
+            <label>Title<p class="redstar">*</p></label>
             <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus('title')" oninput="inputfieldFocus('title')" required>
             <div class="required-text d-none" id="required-title">This field is required</div>
         </div>
@@ -70,7 +70,7 @@ function generateHtmlTitle() {
 
 function generateHtmlDescription() {
     return /*html*/`
-        <label class="">Description</label>
+        <label>Description</label>
         <textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description"></textarea>  
     `;
 }
@@ -89,7 +89,7 @@ function generateHtmlAssigned() {
 
 function generateHtmlDate() {
     return /*html*/`
-        <label for="date">Due date<p class="redstar">*</p></label>
+        <label>Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
                 <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
@@ -104,7 +104,7 @@ function generateHtmlDate() {
 
 function generateHtmlPrio() {
     return /*html*/`
-        <label for="">Prio</label>
+        <label>Prio</label>
         <div class="prio-btn" id="prio" role="group">
             <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
             <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
@@ -135,7 +135,7 @@ function generateHtmlCategory() {
 
 function generateHtmlSubtasks() {
     return /*html*/`
-        <label class="" id="subtasks-label">Subtasks</label>
+        <label id="subtasks-label">Subtasks</label>
         <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
@@ -686,13 +686,3 @@ function openInBoard() {
         window.location.href = "/files/board.html";
     }
 }
-
-
-async function loadTasks() {
-    try {
-        tasks = JSON.parse(await getItem('tasks')) || [];
-    } catch (e) {
-        console.error('Error in loadTasks:', e);
-    }
-}
-

@@ -48,12 +48,7 @@ function renderAddTaskForPopup() {
 
 
 async function loadToDo() {
-    tasks = JSON.parse(await getItem('tasks')) || [];
-
-    if (!Array.isArray(tasks)) {
-        tasks = [];
-    }
-
+    loadTasks();
     let todo = document.getElementById('board-to-do');
     let progress = document.getElementById('board-in-progress');
     let feedback = document.getElementById('board-await-feedback');
@@ -68,6 +63,8 @@ async function loadToDo() {
         let task= tasks[i];
         if(tasks[i].status === 'board-to-do') {
             todo.innerHTML += generateBoardCardTodo(task, i);
+        } else if (todo.textContent === ''){
+            todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
         }
         if(tasks[i].status === 'board-in-progress') {
             progress.innerHTML += generateBoardCardProgress(task, i);
@@ -77,13 +74,13 @@ async function loadToDo() {
         }
         if(tasks[i].status === 'board-done') {
             done.innerHTML += generateBoardCardDone(task, i);
-        } else {
-            console.log('Done ist missing');
+        } else if(done.textContent === '') {
+            done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
         }
 
         
         changeCategoryButton(i);
-        await createUserButtons(task, i);
+        createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
         await loadSelectedPage();
@@ -389,6 +386,7 @@ function closePopupAddTaskDiv(i) {
     `;
     calculatePercentageForProgressBar(i);
     updateProgressBar(i);
+    changeCategoryButton(i);
 }
 
 
@@ -415,7 +413,7 @@ async function updateProgressBar(i) {
 
 
 
-async function changeCategoryButton(i) {
+function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
     
     if(categoryBtn) {
@@ -499,7 +497,7 @@ function editTask(i) {
     popup.classList.add('d-none');
     div.classList.remove('d-none');
     content.innerHTML = /*html*/`
-        <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(); return false">
+        <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
         `;
     content.innerHTML += generateEditableAddtask(i);
     addEventFunctions();
@@ -534,8 +532,8 @@ function generateEditableAddtask(i) {
 
 
 async function pushValueToEdit(i) {
-    existingTasks = JSON.parse(await getItem('tasks'));
-    let array = existingTasks[i];
+    await loadTasks();
+    let array = tasks[i];
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
@@ -555,7 +553,7 @@ async function pushValueToEdit(i) {
     }
 
     getSubtasks();
-    existingTasks.splice(i, 1);
+    tasks.splice(i, 1);
 }
 
 
@@ -598,8 +596,8 @@ async function saveEditedTask(i) {
             priority: priority,
             category: category,
             subtask: subtasks,
-            checkoffs: [],
-            status: [],
+            checkoffs: tasks[i].checkoffs,
+            status: tasks[i].status,
         };
 
         existingTasks.push(newTask);
@@ -624,8 +622,9 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-
+    loadToDo();
     return tasks;
+    
 }
 
 
@@ -642,12 +641,9 @@ function getPriority(priority) {
 }
 
 
-function closePopupEdit(i) {
+async function closePopupEdit(i) {
     let div = document.getElementById(`popup-add-task-edit`);
     div.classList.add('d-none');
-
-    changeCategoryButton(i);
-    loadToDo();
 }
 
 
@@ -712,4 +708,5 @@ async function saveDroppedElement(element) {
 
 
     await setItem('tasks', JSON.stringify(tasks)); 
+    loadToDo();
 }

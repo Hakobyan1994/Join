@@ -92,3 +92,15 @@ function deleteLocalStorage() {
 function goBack() {
     window.history.back();
 }
+
+async function loadTasks() {
+    try {
+        tasks = JSON.parse(await getItem('tasks')) || [];
+        if (!Array.isArray(tasks)) {
+            tasks = [];
+        }
+    } catch (e) {
+        console.error('Error in loadTasks:', e);
+    }
+}
+
