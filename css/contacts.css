@@ -111,11 +111,13 @@ body {
 
 .add-contact-btn-con {
     width: 100%;
-    height: 141px;
+    height: 70px;
     display: flex;
     justify-content: center;
-    position: static;
+    position: relative;
+    top: 120px;
     z-index: 1;
+    background-color: white;
 }
 
 .add-contact-btn {
@@ -130,8 +132,6 @@ body {
     border-radius: 10px;
     border: 1px solid #2A3647;
     background: #2A3647;
-    position: relative;
-    top: 130px;
     cursor: pointer;
     color: var(--white, #FFF);
     font-family: Inter;
@@ -154,11 +154,14 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    position: relative;
+    top: 70px;
+    margin-bottom: 70px;
+    overflow-x: hidden;
 }
 
 .contact-con-pos {
     width: 352px;
-    padding: 5px 24px;
     display: flex;
     align-items: center;
     gap: 35px;
@@ -171,9 +174,6 @@ body {
     align-items: center;
     gap: 45px;
     border-radius: 10px;
-    background: var(--white, #FFF);
-    padding-top: 3px;
-    padding-bottom: 3px;
     width: 100%;
 }
 
@@ -197,7 +197,6 @@ body {
 
 .contact-list-name:focus-within {
     color: white;
-    background-color: #2A3647;
 }
 
 .contact-list-email {
@@ -214,8 +213,14 @@ body {
 
 .user-img-contact-list {
     border-radius: 100px;
-    margin-left: 20px;
+    margin-left: 17px;
     width: 50px;
+    border: 3px solid white;
+}
+
+.user-img-contact-list:focus-within {
+    background-color: #2A3647;
+    color: white;
 }
 
 .letter-con {
@@ -239,21 +244,73 @@ body {
     fill: #FF7A00;
 }
 
-.success-pos {
-    z-index: 10000;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: blue;
-    transition: transform 1s ease-in-out;
-    transform: translateX(100%);
+#successCon {
+    position: absolute;
+    top: 1000px;
+    left: 750px;
 }
 
-.slide-in-success {
-    transform: translateX(0);
+.success-btn {
+    z-index: 9999;
+    display: flex;
+    height: 50px;
+    width: 352px;
+    padding: 6px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid #2A3647;
+    background: #2A3647;
+    cursor: pointer;
+    color: white;
+    font-family: Inter;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
 }
 
-.slide-out-success {
-    transform: translateX(100%);
+@keyframes slideInFromRightSuccess {
+    from {
+        transform: translateX(550%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }
+
+@keyframes slideOutToRightSuccess {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(550%);
+    }
+}
+
+.slide-in-success-btn {
+    animation: slideInFromRightSuccess 0.5s forwards;
+}
+
+.slide-out-success-btn {
+    animation: slideOutToRightSuccess 0.5s forwards;
+}
+
+.contact-focus-effect {
+    width: 100%;
+}
+
+.contact-focus-effect:focus {
+    background-color: #2A3647;
+}
+
+.focus-main {
+    margin-top: 5px;
+}
+
+
+

@@ -18,6 +18,7 @@
 }
 
 .form-addtask {
+    width: 1114px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -124,7 +125,7 @@ label p {
 }
 
 .required-text-date {
-    margin-top: 6px;
+    margin-top: -16px;
 }
 
 .inputfield {
@@ -271,10 +272,10 @@ textarea {
 }
 
 .form-bottom {
+    width: 1150px;
     position: absolute;
     bottom: 32px;
     left: 328px;
-    width: calc(100% - 328px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -378,7 +379,7 @@ textarea {
 .assigned-button {
     z-index: 2;
     position: relative;
-    bottom: 20px;
+    bottom: 19px;
     padding-left: 8px;
     padding-right: 8px;
     width: 440px;
@@ -398,7 +399,7 @@ textarea {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 12px;
+    padding: 15px;
     border-radius: 10px;
     margin-bottom: 2px;
     padding-right: 16px;
@@ -471,8 +472,8 @@ button:focus-visible {
 
 .date-icon {
     position:relative;
-    left: 403px;
-    bottom: 37px;
+    left: 444px;
+    bottom: 34px;
     cursor: pointer;
 }
 

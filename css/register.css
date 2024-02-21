@@ -90,8 +90,6 @@ body {
     position: absolute;
     top: 80px;
     left: 70px;
-    animation: animImg 3s;
-    animation-delay: 0.2s;
 }
 
 @keyframes animImg {
@@ -374,5 +372,9 @@ body {
     color: #29ABE2;
 }
 
+.animation {
+    animation: animImg 3s;
+    animation-delay: 0.2s;
+}
 
 /* .............. login end ............................. */

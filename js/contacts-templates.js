@@ -8,15 +8,25 @@ function generateAddBtn() {
 
 function generateContact(i, contact, imageId) {
     return /*html*/`
-        <div onclick="contactInfoSlider(${i})" class="contact-con-pos">
+    <div class="focus-main">
+        <div onclick="showContactInfoSlider(${i})" class="contact-con-pos">
             <div class="contact-con">
                 <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
-                <div>
+                <div class="contact-focus-effect">
                     <div class="contact-list-name" tabindex="0">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
                 </div>
             </div>
-        </div>`;
+        </div>
+    </div>
+    <div class="scroll-con"></div>`;
+}
+
+function generateSuccessBtnSlider() {
+    return /*html*/`
+        <button class="success-btn">
+            Contact successfully created
+        </button>`;
 }
 
 function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
@@ -132,7 +142,7 @@ function generateAddContactOverlay() {
 
                                 <div class="add-contact-btns">
                                     <button type="button" class="cancel-btn" onclick="closeAddContactSlider()">
-                                        Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="">
+                                        Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="" style="fill: var(--Version-2-main-color, #2A3647);">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">

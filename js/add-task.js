@@ -20,6 +20,7 @@ function renderAddTask() {
 
     `;
     addEventFunctions();
+    addSubtask();
 }
 
 async function addEventFunctions() {
@@ -31,10 +32,10 @@ async function addEventFunctions() {
     clearButtonImgChange();
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
-    addSubtask();
     enterOnSubtask();
     dueDatePattern();
     inputfieldFocus();
+    loadSelectedPage();
 }
 
 
@@ -78,7 +79,7 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()">
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" readonly>
         <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
@@ -91,8 +92,8 @@ function generateHtmlDate() {
         <label for="date">Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input type="date" class="inputfield" id="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
-                <!-- <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()"> -->
+                <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
+                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
@@ -134,7 +135,7 @@ function generateHtmlCategory() {
 
 function generateHtmlSubtasks() {
     return /*html*/`
-        <label for="">Subtasks</label>
+        <label class="" id="subtasks-label">Subtasks</label>
         <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
@@ -176,12 +177,13 @@ function generateHtmlFormSection() {
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
-    let input = document.getElementById('assigned');
-        if (list.classList.contains('d-none')) {
-            input.placeholder = 'Searchfield + Checkbox on progress';
-        } else {
-            input.placeholder = 'Select contacts to assign';
-        }
+    /* let input = document.getElementById('assigned');
+        // if (list.classList.contains('d-none')) {
+        //     input.placeholder = 'Searchfield + Checkbox on progress';
+        // } else {
+        //     input.placeholder = 'Select contacts to assign';
+        // }
+    */
     list.classList.toggle('d-none');
     list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -196,7 +198,8 @@ function renderAssignedList() {
                     <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <input type="checkbox" class="d-none" id="checkbox-contact-${i}">
+                <!-- <img src="/assets/img/icons/none-selected.svg" alt="" id="checkbox-contact-${i}"> -->
+                <!-- <input type="checkbox" class="d-none" id="checkbox-contact-${i}"> -->
             </div>
         `;    
     }
@@ -250,15 +253,15 @@ function pushCategorytoInput(category) {
 }
 
 
-
 function selectAssignedContacts(i) {
     let contact = document.getElementById(`assigned-contacts-${i}`);
-    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
+    let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
     contact.classList.toggle('white');
     // checkbox.checked = !checkbox.checked;
     pushUser(i);
 }
+
 
 function pushUser(i) {
     // let checkbox = document.getElementById(`checkbox-contact-${i}`);
@@ -297,10 +300,10 @@ function generateAssignedButton() {
 
 function currentDate() {
     let border = document.getElementById('date');
-    let date = new Date();                              // get the actual date
+    let date = new Date();                              
 
     let day = date.getDate();           
-    let month = date.getMonth() + 1;                    // month starts with 0, thats why +1
+    let month = date.getMonth() + 1;                   
     let year = date.getFullYear();
 
     if (month < 10) month = '0' + month;
@@ -316,16 +319,19 @@ function dueDatePattern() {
     let dateInput = document.getElementById('date');
 
     dateInput.addEventListener('input', function () {
-        let isValid = /^\d{2}\/\d{2}\/\d{4}$/.test(dateInput.value);
+        let isValid = /^\d{2}\/\m{2}\/\y{4}$/.test(dateInput.value);
 
         if (!isValid) {
             dateInput.setCustomValidity('Ungültiges Datumsformat. Verwende das Format dd/mm/yyyy.');
         } else {
             dateInput.setCustomValidity('');
+
+            let parts = dateInput.value.split('/');
+            let formattedDate = `${parts[1]}/${parts[0]}/${parts[2]}`;
+            dateInput.value = formattedDate;
         }
     });
 } 
-   
 
 
 function pushPrio() {
@@ -524,12 +530,15 @@ function clearSubtaskInputField() {
 function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
     let clearButton = document.getElementById('clear-button');
-    clearButton.addEventListener('mouseover', function() {
-        img.src = '/assets/img/icons/close-blue.svg';
-    });
-    clearButton.addEventListener('mouseout', function() {
-        img.src = '/assets/img/icons/close1.svg';
-    });
+    if (clearButton) {
+        clearButton.addEventListener('mouseover', function() {
+            img.src = '/assets/img/icons/close-blue.svg';
+        });
+        clearButton.addEventListener('mouseout', function() {
+            img.src = '/assets/img/icons/close1.svg';
+        });
+    }
+
 }
 
 
@@ -603,7 +612,7 @@ async function createTask() {
             console.log('Popup wurde nicht gefunden');
         }
     } else {
-        alert('Notwendige Felder wurden nicht ausgefüllt');
+        alert('Please fill up the required fields!');
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
         requiredCategory.classList.remove('d-none');
@@ -621,6 +630,7 @@ function inputfieldFocus(field) {
     let input = document.getElementById(field);
     let required = document.getElementById(`required-${field}`);
 
+    if (input) {
     if (document.activeElement === input) {
         if (input.value.trim() === '') {
             input.classList.add('inputfield-focus-red');
@@ -643,66 +653,9 @@ function inputfieldFocus(field) {
         input.classList.remove('inputfield-focus-red');
         required.classList.add('d-none');
     });
-}
-
-/*
-function inputfieldFocusDate() {
-    let date = document.getElementById('date');
-    let required = document.getElementById('required-date');
-
-    if (document.activeElement === date) {
-        if (date.value.trim() === '') {
-            date.classList.add('inputfield-focus-red');
-            required.classList.remove('d-none');
-            date.classList.remove('inputfield-focus-blue');
-            date.classList.remove('inputfield-focus-white');
-        } else {
-            date.classList.add('inputfield-focus-blue');
-            required.classList.add('d-none');
-            date.classList.remove('inputfield-focus-red');
-            date.classList.remove('inputfield-focus-white');
-        }
-    } else {
-        date.classList.remove('inputfield-focus-red');
-        date.classList.remove('inputfield-focus-blue');
-        date.classList.add('inputfield-focus-white');
-        required.classList.add('d-none');
     }
-    date.addEventListener('blur', function() {
-        date.classList.remove('inputfield-focus-red');
-        required.classList.add('d-none');
-    });
 }
-*/
 
-/* function inputfieldFocusCategory() {
-    let category = document.getElementById('category');
-    let required = document.getElementById('required-category');
-
-    if (document.activeElement === category) {
-        if (category.value.trim() === '') {
-            category.classList.add('inputfield-focus-red');
-            required.classList.remove('d-none');
-            category.classList.remove('inputfield-focus-blue');
-            category.classList.remove('inputfield-focus-white');
-        } else {
-            required.classList.add('d-none');
-            category.classList.add('inputfield-focus-blue');
-            category.classList.remove('inputfield-focus-red');
-            category.classList.remove('inputfield-focus-white');
-        }
-    } else {
-        required.classList.add('d-none');
-        category.classList.add('inputfield-focus-white');
-        category.classList.remove('inputfield-focus-red');
-        category.classList.remove('inputfield-focus-blue');
-    }
-    category.addEventListener('blur', function() {
-        category.classList.remove('inputfield-focus-red');
-        required.classList.add('d-none');
-    });
-}
-*/
 
 function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');
