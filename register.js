@@ -67,5 +67,5 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 function activUser(arr){
-    localStorage.setItem( JSON.stringify(arr));
+    localStorage.setItem('activeUser',JSON.stringify(arr));
  }
