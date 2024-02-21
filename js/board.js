@@ -52,6 +52,12 @@ function renderAddTaskForPopup() {
 
 
 async function loadToDo() {
+    tasks = JSON.parse(await getItem('testaufgaben')) || [];
+
+    if (!Array.isArray(tasks)) {
+        tasks = [];
+    }
+
     let todo = document.getElementById('board-to-do');
     let progress = document.getElementById('board-in-progress');
     let feedback = document.getElementById('board-await-feedback');
@@ -596,7 +602,8 @@ async function saveEditedTask(i) {
             priority: priority,
             category: category,
             subtask: subtasks,
-            checkoffs: []
+            checkoffs: [],
+            status: [],
         };
 
         existingTasks.push(newTask);

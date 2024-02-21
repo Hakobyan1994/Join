@@ -595,7 +595,7 @@ async function createTask() {
             category: category.value,
             subtask: subtasks,
             checkoffs: [],
-            status: 'todo'
+            status: 'board-to-do'
         };
 
         existingTasks.push(newTask);
@@ -686,10 +686,6 @@ function openInBoard() {
         window.location.href = "/files/board.html";
     }
 }
-
-
-
-
 
 
 async function loadTasks() {
