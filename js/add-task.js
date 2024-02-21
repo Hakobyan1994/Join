@@ -594,7 +594,8 @@ async function createTask() {
             priority: priority,
             category: category.value,
             subtask: subtasks,
-            checkoffs: []
+            checkoffs: [],
+            status: 'todo'
         };
 
         existingTasks.push(newTask);
