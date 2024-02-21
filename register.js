@@ -1,3 +1,5 @@
+
+
 let dataUser = []
 let dataLocal = JSON.parse(localStorage.getItem('datareg'))
 if (dataLocal) {
@@ -9,8 +11,7 @@ form_log.onsubmit = validLogin;
 let checkBox = document.getElementById('checkBox')
 checkBox.checked
 
-
-  
+    
 
 function validLogin(e) {
     e.preventDefault();
@@ -59,13 +60,50 @@ document.addEventListener('DOMContentLoaded',function(){
        }
     }
    }else{
-    inputImage.src='/assets/img/anmeldung Image/lock.png'
+     inputImage.src='/assets/img/anmeldung Image/lock.png'
    }
   })    
 })   
   
+    
 
+
+// window.addEventListener('load', () => {
+//     if (document.querySelector('#animationDiv') !== null) {
+//       window.sessionStorage.setItem('animationDiv', 'displayed');
+//     }
+//   })
+    
+//   if (window.sessionStorage.getItem('animationDiv')) {
+//     document.querySelector('#heading').classList.remove('anim_div')
+//   }
+   
+
+window.addEventListener('load', () => {
+  if (document.querySelector('#animationDiv') !== null) {
+      window.sessionStorage.setItem('animationDiv', 'displayed');
+  }
+});
+
+const animationDiv = document.querySelector('#animationDiv');
+const joinImage = document.querySelector('.join_image');
+
+if (window.sessionStorage.getItem('animationDiv')) {
+  animationDiv.classList.add('paused');
+  joinImage.classList.add('paused'); // Füge die Klasse 'paused' hinzu, um die Animation zu pausieren
+}
+
+animationDiv.addEventListener('animationend', function () {
+  animationDiv.classList.add('paused');
+  joinImage.classList.add('paused'); // Füge die Klasse 'paused' hinzu, um die Animation zu pausieren
+  window.sessionStorage.setItem('animationDiv', 'displayed');
+});
+   
+ 
 
 function activUser(arr){
     localStorage.setItem('activeUser',JSON.stringify(arr));
- }
+ }  
+
+
+   

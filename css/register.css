@@ -59,16 +59,16 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    /* right: 0;
-    bottom: 0; */
     opacity: 0;
     background-color: #FFFFFF;
     animation: animDiv 3s;
+     
     animation-delay: 0.2s;
+    animation-iteration-count: 1;
 }
   
 @keyframes animDiv {
-    from{
+    from{ 
         top: 0;
         left: 0;
         right: 0;
@@ -79,32 +79,41 @@ body {
         opacity: 0;
         top: 0;
         left: 0;
-        /* right: 0;
-        bottom: 0; */
     }
-}
+}   
+
 
 .join_image {
     width: 100px;
-    /* height: 121.97px; */
     position: absolute;
     top: 80px;
     left: 70px;
-}
+}  
+
 
 @keyframes animImg {
-    from{
-        top: 50%;
-        left: 50%;
+    from{  
+        top: 40%;
+        left: 40%;
         width: 274px;
     }
     to{
         width: 100px;
         top: 80px;
         left: 70px;
-        animation-play-state: paused;
+      animation-play-state: paused;
     }
-}
+}  
+
+/* .join_image.paused {
+    animation-play-state: paused;
+} */
+
+/* .anim_div.paused {
+    animation-play-state: paused;
+} */
+
+
 
 .join-info {
     font-weight: 400;

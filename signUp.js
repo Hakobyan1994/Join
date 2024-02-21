@@ -28,6 +28,9 @@ function onsubmitFor(e) {
     if (name && email && password && confirmPassword && checkBox === 'yes') {
         validForm({ name, email, password, confirmPassword }, e)
 
+    }else{
+      alert('Please accpect Privacy policy')
+
     }
 }
 
@@ -41,12 +44,9 @@ function validForm({ name, email, password, confirmPassword }, e) {
         } else {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
-            check.value = 'yes';
-            trasparenterDiv.style.display = 'flex';
-            setTimeout(function(){
-                trasparenterDiv.style.display = 'none';
-                },5000)
-                window.location.href = 'index.html'  //fehler
+           
+           
+                window.location.href = 'index.html'  
             } 
     } else {
         e.target[3].style.border = '4px solid red';
@@ -111,7 +111,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
          
-        
+         // trasparenterDiv.style.display = 'flex';
+            // // setTimeout(function(){
+            // //     trasparenterDiv.style.display = 'none';
+            // //     },5000)
    
    
    
