@@ -33,6 +33,7 @@ async function initSummary() {
 }
 
 async function initAddTask() {
+  
     await includeHTML();
     await renderAddTask();
     loadContacts();
