@@ -207,6 +207,7 @@ textarea {
     font-style: normal;
     line-height: 120%;
     width: 100%;
+    cursor: pointer;
 }
 
 .prio-btn button img {
@@ -315,6 +316,7 @@ textarea {
     background-color: rgba(246, 247, 248, 1);
     gap: 4px;
     height: calc(24px + 32px);
+    cursor: pointer;
 }
 
 .clear-btn:hover {
@@ -322,10 +324,10 @@ textarea {
     color: var(--lightblue);
 }
 
-
 .clear-btn img {
+    padding: 4px;
     width: 24px;
-    height: 24px;
+    height: 24xpx;
 }
 
 .create-task {
@@ -343,6 +345,7 @@ textarea {
     background-color: var(--darkblue);
     gap: 4px;
     height: calc(24px + 32px);
+    cursor: pointer;
 }
 
 .create-task:hover {

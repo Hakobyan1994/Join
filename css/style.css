@@ -4,7 +4,7 @@
 }
 
 :root {
-    --font: rgba(42, 54, 71, 1);
+    --font: #2a3647;
     --red: rgba(255, 129, 144, 1);
     --main-window: rgba(225,229,236,0.25);
     --line: rgba(209, 209, 209, 1);

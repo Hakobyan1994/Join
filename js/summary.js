@@ -76,7 +76,6 @@ async function getValue() {
       valueUrgent++;
       document.getElementById('value-urgent').innerHTML = valueUrgent;
     } else {
-      document.getElementById('value-urgent').innerHTML = valueUrgent;
     }
     
   }

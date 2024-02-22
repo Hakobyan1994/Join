@@ -153,7 +153,7 @@ function generateHtmlFormSection() {
     return /*html*/`
         <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
         <div class="form-bottom-right">
-            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
+            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
             <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
         </div> 
     `;
@@ -532,10 +532,10 @@ function clearButtonImgChange() {
     let clearButton = document.getElementById('clear-button');
     if (clearButton) {
         clearButton.addEventListener('mouseover', function() {
-            img.src = '/assets/img/icons/close-blue.svg';
+            img.src = '/assets/img/icons/close-blue1.svg';
         });
         clearButton.addEventListener('mouseout', function() {
-            img.src = '/assets/img/icons/close1.svg';
+            img.src = '/assets/img/icons/close-black1.svg';
         });
     }
 

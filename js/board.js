@@ -593,6 +593,7 @@ function getSubtasks() {
 
 
 async function saveEditedTask(i) {
+    loadTasks();
     let category = tasks[i].category
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
@@ -615,7 +616,7 @@ async function saveEditedTask(i) {
             category: category,
             subtask: subtasks,
             checkoffs: tasks[i].checkoffs,
-            status: tasks[i].status,
+            status: tasks[i].status
         };
 
         tasks.push(newTask);
