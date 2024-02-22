@@ -93,13 +93,13 @@ async function loadToDo() {
     }
 
     if (!hasProgress) {
-        progress.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+        progress.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing in progress</div>';
     }
     if (!hasFeedback) {
-        feedback.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+        feedback.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Feedback to give</div>';
     }
     if (!hasDone) {
-        done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+        done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
 }
 
