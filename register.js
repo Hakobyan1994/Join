@@ -1,3 +1,10 @@
+let userGuests=[
+    {
+       name:'',
+       greeting:'Good Morning'
+    },
+]
+   console.log(userGuests[0].greeting);
 
 let div =  document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
@@ -98,5 +105,13 @@ function activUser(arr){
     localStorage.setItem('activeUser',JSON.stringify(arr));
  }  
 
+ function guesButton(){ 
+    localStorage.removeItem('activeUser');
+    forGuestUser('guestsUser',userGuests);
+    window.location.href='/files/summary.html'
+ }
+      
 
-   
+     function forGuestUser(key,arr){
+        localStorage.setItem(key,JSON.stringify(arr))
+     }
