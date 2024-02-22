@@ -306,7 +306,8 @@ body {
     height: 57px;
     display: flex;
     flex-direction: column;
-     gap:13px;
+    justify-content: center;
+    gap:13px;
 
  } 
 

@@ -57,35 +57,51 @@ async function loadToDo() {
     progress.innerHTML = '';
     feedback.innerHTML = '';
     done.innerHTML = '';
-   
-      
+
+    let hasToDo = false; 
+    let hasProgress = false;
+    let hasFeedback = false;
+    let hasDone = false;
+
     for (let i = 0; i < tasks.length; i++) {
-        let task= tasks[i];
-        if(tasks[i].status === 'board-to-do') {
+        let task = tasks[i];
+        if (task.status === 'board-to-do') {
             todo.innerHTML += generateBoardCardTodo(task, i);
-        } else if (todo.textContent === ''){
-            todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+            hasToDo = true;
         }
-        if(tasks[i].status === 'board-in-progress') {
+        if (task.status === 'board-in-progress') {
             progress.innerHTML += generateBoardCardProgress(task, i);
+            hasProgress = true;
         }
-        if(tasks[i].status === 'board-await-feedback') {
+        if (task.status === 'board-await-feedback') {
             feedback.innerHTML += generateBoardCardFeedback(task, i);
+            hasFeedback = true;
         }
-        if(tasks[i].status === 'board-done') {
+        if (task.status === 'board-done') {
             done.innerHTML += generateBoardCardDone(task, i);
-        } else if(done.textContent === '') {
-            done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+            hasDone = true;
         }
 
-        
         changeCategoryButton(i);
         createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
         await loadSelectedPage();
     }
-}  
+    if (!hasToDo) {
+        todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+    }
+
+    if (!hasProgress) {
+        progress.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+    }
+    if (!hasFeedback) {
+        feedback.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+    }
+    if (!hasDone) {
+        done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+    }
+}
 
 
 function generateBoardCardTodo(task, i) {
