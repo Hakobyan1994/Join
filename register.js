@@ -1,4 +1,25 @@
 
+let div =  document.getElementById('animationDiv')
+let img = document.getElementById('logo-login')
+let stop = JSON.parse(localStorage.getItem('stop'))
+if (stop) {
+    div.classList.remove('addAnimDiv')
+    img.classList.remove('animation')
+
+    div.classList.add('anim_div')
+    div.classList.remove('startParDiv')
+    img.classList.remove('startParImg')
+    img.classList.add('join_image')
+}
+
+setTimeout(()=> {
+    div.classList.remove('startParDiv')
+    div.classList.add('anim_div')
+    img.classList.remove('startParImg')
+    img.classList.add('join_image')
+
+}, 2000)
+
 
 let dataUser = []
 let dataLocal = JSON.parse(localStorage.getItem('datareg'))
@@ -65,41 +86,13 @@ document.addEventListener('DOMContentLoaded',function(){
   })    
 })   
   
-    
+       
 
 
-// window.addEventListener('load', () => {
-//     if (document.querySelector('#animationDiv') !== null) {
-//       window.sessionStorage.setItem('animationDiv', 'displayed');
-//     }
-//   })
-    
-//   if (window.sessionStorage.getItem('animationDiv')) {
-//     document.querySelector('#heading').classList.remove('anim_div')
-//   }
-   
+setTimeout(()=> {
+    localStorage.setItem('stop', JSON.stringify('stop'))
+},3000)
 
-window.addEventListener('load', () => {
-  if (document.querySelector('#animationDiv') !== null) {
-      window.sessionStorage.setItem('animationDiv', 'displayed');
-  }
-});
-
-const animationDiv = document.querySelector('#animationDiv');
-const joinImage = document.querySelector('.join_image');
-
-if (window.sessionStorage.getItem('animationDiv')) {
-  animationDiv.classList.add('paused');
-  joinImage.classList.add('paused'); // Füge die Klasse 'paused' hinzu, um die Animation zu pausieren
-}
-
-animationDiv.addEventListener('animationend', function () {
-  animationDiv.classList.add('paused');
-  joinImage.classList.add('paused'); // Füge die Klasse 'paused' hinzu, um die Animation zu pausieren
-  window.sessionStorage.setItem('animationDiv', 'displayed');
-});
-   
- 
 
 function activUser(arr){
     localStorage.setItem('activeUser',JSON.stringify(arr));

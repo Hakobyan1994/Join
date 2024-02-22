@@ -1,10 +1,10 @@
 
 
 // let users = {};
-// const datauser = JSON.parse(localStorage.getItem('activeUser'));
+
+const datauser = JSON.parse(localStorage.getItem('activeUser'));
 // if (datauser) {
 //     users = datauser;
-//     const profileName = document.querySelector('.profileName');
 //     let txt = users.name;
 //     let name = txt.split(' ');
 //     console.log(name);
@@ -17,15 +17,18 @@
 //     }
 // }
 
-  
+ 
+
+
 
 function checks(){
   let profilInfo=document.querySelector('.clickInfoDiv')
   if(profilInfo.style.display==='block'){
-     profilInfo.style.display='none'
+    profilInfo.style.display='none'
   }else{
     profilInfo.style.display='block'
   }
+  
 }   
 
 function includeHTML() {
