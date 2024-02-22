@@ -1,11 +1,15 @@
-
-
-// let users = {};
-
 const datauser = JSON.parse(localStorage.getItem('activeUser'));
+
+    
+
+
+   
+
+
+
 // if (datauser) {
-//     users = datauser;
-//     let txt = users.name;
+//     guestsUser = datauser;
+//     let txt = guestsUser.name;
 //     let name = txt.split(' ');
 //     console.log(name);
 //     if (name.length >= 2) {
@@ -16,9 +20,9 @@ const datauser = JSON.parse(localStorage.getItem('activeUser'));
 //         alert('Error');
 //     }
 // }
-
  
 
+ 
 
 
 function checks(){
@@ -29,7 +33,7 @@ function checks(){
     profilInfo.style.display='block'
   }
   
-}   
+}       
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -60,7 +64,6 @@ function includeHTML() {
 }  
  
    
-
 
 
 
