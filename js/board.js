@@ -125,7 +125,7 @@ function generateBoardCardTodo(task, i) {
             <div id="user-board-${i}"></div>
             <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
         </div>
-    </div>         
+    </div>      
     `;
 }
 
@@ -724,5 +724,5 @@ async function saveDroppedElement(element) {
 
 
     await setItem('tasks', JSON.stringify(tasks)); 
-    loadToDo();
+    await loadToDo();
 }

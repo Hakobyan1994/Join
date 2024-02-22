@@ -10,6 +10,8 @@ let valueTodo = 0;
 let valueProgress = 0;
 let valueFeedback = 0;
 let valueDone = 0;
+let valueTotal = 0;
+let valueUrgent = 0;
 
 // Profilname aktualisieren
 let profilName = document.querySelector('.greetingName');
@@ -19,7 +21,7 @@ const currentDate = new Date();
 
 
 function dateUpdate() {
-  let montUndDay = document.getElementById('datum');
+  let montUndDay = document.getElementById('date');
 
   // Monatsnamen extrahieren
   const monthName = currentDate.toLocaleString('default', { month: 'long' });
@@ -41,13 +43,10 @@ async function getValue() {
           tasks = [];
         } 
 
-  let urgent = document.getElementById('value-urgent');
-  let total = document.getElementById('value-total');
-
-
-
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
+    const priotity = tasks[i].priority;
+    document.getElementById('value-total').innerHTML = tasks.length;
     if(state === 'board-to-do') {
       valueTodo++;
       document.getElementById('value-todoarray').innerHTML = valueTodo;
@@ -65,15 +64,13 @@ async function getValue() {
       valueDone++;
       document.getElementById('value-donearray').innerHTML = valueDone;
     }
-
-      
+    if(priotity === 'urgent') {
+      valueUrgent++;
+      document.getElementById('value-urgent').innerHTML = valueUrgent;
+    }   
+    
+    let date = document.getElementById('date');
   }
-
-
-  // let valueTotal = tasks.length;
-  // total.innerHTML = `${valueTotal}`;
-  // let valueDone = doneArray.length;
-  // done.innerHTML = `${valueDone}`;
 }
 
 

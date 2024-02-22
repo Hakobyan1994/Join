@@ -137,6 +137,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     margin-bottom: 16px;
+    padding-bottom: 16px;
     overflow-wrap: break-word;
 }
 
@@ -162,6 +163,8 @@
     overflow-y: auto;
     scrollbar-width: thin;
     margin-bottom: 16px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
 .popup-task-footer {
