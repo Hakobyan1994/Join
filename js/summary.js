@@ -1,10 +1,23 @@
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
-let user={};
 if (locRes) {
-  user = locRes;
-  console.log(user);
+  localStorage.removeItem('guestsUser');
+  console.log(locRes);
+  let profilName = document.querySelector('.greetingName');
+  profilName.innerText = locRes.name
+}  
+
+
+let guestsUsing=JSON.parse(localStorage.getItem('guestsUser'))
+if (guestsUsing) {
+    let  profilName=document.querySelector('.greetingName')
+    profilName.innerText=guestsUsing[0].name
+    let greetingForUser=document.querySelector('.greeting')
+    greetingForUser.innerText=guestsUsing[0].greeting
+    document.getElementById('profil_name').classList.remove('profil_name')
+    document.getElementById('profil_name').classList.add('guestsGreeting')
 }
+
 
 let valueTodo = 0;
 let valueProgress = 0;
@@ -14,9 +27,8 @@ let valueTotal = 0;
 let valueUrgent = 0;
 let arrayUrgent = [];
 
-// Profilname aktualisieren
-let profilName = document.querySelector('.greetingName');
-profilName.innerText = user.name;
+
+
 
 const currentDate = new Date();
 
