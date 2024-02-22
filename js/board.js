@@ -603,6 +603,8 @@ async function saveEditedTask(i) {
 
     if (title.value && date.value) {
 
+        tasks.splice(i, 1);
+
         let newTask = {
             title: title.value,
             description: description.value,
@@ -616,9 +618,9 @@ async function saveEditedTask(i) {
             status: tasks[i].status,
         };
 
-        existingTasks.push(newTask);
+        tasks.push(newTask);
 
-        await setItem('tasks', JSON.stringify(existingTasks));
+        await setItem('tasks', JSON.stringify(tasks));
        
         let popup = document.getElementById('popup-add-task');
         let popupAdd = document.getElementById('popup-boardAddTask');
@@ -638,7 +640,7 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-    loadToDo();
+    // loadToDo();
     return tasks;
     
 }
