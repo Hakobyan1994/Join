@@ -579,10 +579,10 @@ async function createTask() {
 
     if (title.value && date.value && category.value) {
         
-        let existingTasks = JSON.parse(await getItem('tasks')) || [];
+        tasks = JSON.parse(await getItem('tasks')) || [];
 
         if (!Array.isArray(existingTasks)) {
-            existingTasks = [];
+            tasks = [];
         }
 
         let newTask = {
@@ -598,19 +598,19 @@ async function createTask() {
             status: 'board-to-do'
         };
 
-        existingTasks.push(newTask);
+        tasks.push(newTask);
 
-        await setItem('tasks', JSON.stringify(existingTasks));
+        await setItem('tasks', JSON.stringify(tasks));
         clearFields();
        
         let popup = document.getElementById('popup-add-task');
-        let popupAdd = document.getElementById('popup-boardAddTask');
-        await openToBoard();
-        if (popup) {
-            await openInBoard();
-            await updateProgressBar(i);
+        
+        if (popup !== null) {
+            openInBoard();
+            await updateProgressBar();
         } else {
-            console.log('Popup wurde nicht gefunden');
+            console.log('Popup wurde nicht gefunden / CREATE TASK');
+            openToBoard();
         }
     } else {
         alert('Please fill up the required fields!');
@@ -621,9 +621,7 @@ async function createTask() {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-
     return tasks;
-    
 }
 
 
@@ -661,28 +659,29 @@ function inputfieldFocus(field) {
 function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');
 
-    if (popup) {
-        popup.classList.remove('d-none');
+    if (popup !== null) {
+        
         setTimeout(() => {
             window.location.href = "/files/board.html";
-        }, "1000");
+        }, "1500");
+        popup.classList.remove('d-none');
     } else {
-        console.log('Popup wurde nicht gefunden');
+        console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
         window.location.href = "/files/board.html";
     }
-    
 }
 
 function openInBoard() {
     let popup = document.getElementById('popup-a-to-b-board');
 
-    if (popup) {
-        popup.classList.remove('d-none');
+    if (popup !== null) {
+
         setTimeout(() => {
             window.location.href = "/files/board.html";
-        }, "8000");
+        }, "1500");
+        popup.classList.remove('d-none');
     } else {
-        console.log('Popup wurde nicht gefunden');
+        console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
         window.location.href = "/files/board.html";
     }
 }

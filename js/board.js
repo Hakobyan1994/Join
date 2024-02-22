@@ -625,11 +625,11 @@ async function saveEditedTask(i) {
         let popup = document.getElementById('popup-add-task');
         let popupAdd = document.getElementById('popup-boardAddTask');
         await openToBoard();
-        if (popup) {
+        if (popup !== null) {
             await openInBoard();
             await updateProgressBar(i);
         } else {
-            console.log('Popup wurde nicht gefunden');
+            console.log('Popup wurde nicht gefunden / SAVE EDIT');
         }
     } else {
         alert('Notwendige Felder wurden nicht ausgefüllt');
