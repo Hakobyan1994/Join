@@ -60,7 +60,7 @@ function generateHtmlAddTaskForm() {
 function generateHtmlTitle() {
     return /*html*/`
         <div class="title-div">
-            <label for="" class="">Title<p class="redstar">*</p></label>
+            <label>Title<p class="redstar">*</p></label>
             <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus('title')" oninput="inputfieldFocus('title')" required>
             <div class="required-text d-none" id="required-title">This field is required</div>
         </div>
@@ -70,7 +70,7 @@ function generateHtmlTitle() {
 
 function generateHtmlDescription() {
     return /*html*/`
-        <label class="">Description</label>
+        <label>Description</label>
         <textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description"></textarea>  
     `;
 }
@@ -89,7 +89,7 @@ function generateHtmlAssigned() {
 
 function generateHtmlDate() {
     return /*html*/`
-        <label for="date">Due date<p class="redstar">*</p></label>
+        <label>Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
                 <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
@@ -104,7 +104,7 @@ function generateHtmlDate() {
 
 function generateHtmlPrio() {
     return /*html*/`
-        <label for="">Prio</label>
+        <label>Prio</label>
         <div class="prio-btn" id="prio" role="group">
             <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
             <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
@@ -135,7 +135,7 @@ function generateHtmlCategory() {
 
 function generateHtmlSubtasks() {
     return /*html*/`
-        <label class="" id="subtasks-label">Subtasks</label>
+        <label id="subtasks-label">Subtasks</label>
         <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
@@ -579,10 +579,10 @@ async function createTask() {
 
     if (title.value && date.value && category.value) {
         
-        let existingTasks = JSON.parse(await getItem('testaufgaben')) || [];
+        tasks = JSON.parse(await getItem('tasks')) || [];
 
         if (!Array.isArray(existingTasks)) {
-            existingTasks = [];
+            tasks = [];
         }
 
         let newTask = {
@@ -595,22 +595,22 @@ async function createTask() {
             category: category.value,
             subtask: subtasks,
             checkoffs: [],
-            status: 'todo'
+            status: 'board-to-do'
         };
 
-        existingTasks.push(newTask);
+        tasks.push(newTask);
 
-        await setItem('testaufgaben', JSON.stringify(existingTasks));
+        await setItem('tasks', JSON.stringify(tasks));
         clearFields();
        
         let popup = document.getElementById('popup-add-task');
-        let popupAdd = document.getElementById('popup-boardAddTask');
-        await openToBoard();
-        if (popup) {
-            await openInBoard();
-            await updateProgressBar(i);
+        
+        if (popup !== null) {
+            openInBoard();
+            await updateProgressBar();
         } else {
-            console.log('Popup wurde nicht gefunden');
+            console.log('Popup wurde nicht gefunden / CREATE TASK');
+            openToBoard();
         }
     } else {
         alert('Please fill up the required fields!');
@@ -621,9 +621,7 @@ async function createTask() {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-
     return tasks;
-    
 }
 
 
@@ -661,42 +659,29 @@ function inputfieldFocus(field) {
 function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');
 
-    if (popup) {
-        popup.classList.remove('d-none');
+    if (popup !== null) {
+        
         setTimeout(() => {
             window.location.href = "/files/board.html";
-        }, "1000");
+        }, "1500");
+        popup.classList.remove('d-none');
     } else {
-        console.log('Popup wurde nicht gefunden');
+        console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
         window.location.href = "/files/board.html";
     }
-    
 }
 
 function openInBoard() {
     let popup = document.getElementById('popup-a-to-b-board');
 
-    if (popup) {
-        popup.classList.remove('d-none');
+    if (popup !== null) {
+
         setTimeout(() => {
             window.location.href = "/files/board.html";
-        }, "8000");
+        }, "1500");
+        popup.classList.remove('d-none');
     } else {
-        console.log('Popup wurde nicht gefunden');
+        console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
         window.location.href = "/files/board.html";
     }
 }
-
-
-
-
-
-
-async function loadTasks() {
-    try {
-        tasks = JSON.parse(await getItem('testaufgaben')) || [];
-    } catch (e) {
-        console.error('Error in loadTasks:', e);
-    }
-}
-

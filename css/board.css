@@ -46,8 +46,8 @@
 .close-a-board {
     z-index: 999;
     position: relative;
-    right: -434px;
-    bottom: 382px;
+    top: -533px;
+    right: -440px;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -137,6 +137,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     margin-bottom: 16px;
+    padding-bottom: 16px;
     overflow-wrap: break-word;
 }
 
@@ -162,6 +163,8 @@
     overflow-y: auto;
     scrollbar-width: thin;
     margin-bottom: 16px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
 .popup-task-footer {
@@ -302,6 +305,9 @@
 .popup-edit {
     display: flex;
     justify-content: center;
+    position: absolute;
+    top: 14px;
+    bottom: 0;
 }
 
 .edit-div {

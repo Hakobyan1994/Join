@@ -33,6 +33,7 @@ async function initSummary() {
 }
 
 async function initAddTask() {
+  
     await includeHTML();
     await renderAddTask();
     loadContacts();
@@ -46,9 +47,6 @@ async function initContacts() {
 
 async function initBoard() {
     await includeHTML();
-    // await generateProgressCards();
-    // await generateFeedbackCards();
-    // await generateDoneCards();
     await loadTasks();
     loadToDo();
 
@@ -95,3 +93,15 @@ function deleteLocalStorage() {
 function goBack() {
     window.history.back();
 }
+
+async function loadTasks() {
+    try {
+        tasks = JSON.parse(await getItem('tasks')) || [];
+        if (!Array.isArray(tasks)) {
+            tasks = [];
+        }
+    } catch (e) {
+        console.error('Error in loadTasks:', e);
+    }
+}
+

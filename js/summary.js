@@ -1,25 +1,40 @@
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
-let user={};
 if (locRes) {
-  user = locRes;
-  console.log(user);
+  localStorage.removeItem('guestsUser');
+  console.log(locRes);
+  let profilName = document.querySelector('.greetingName');
+  profilName.innerText = locRes.name
+}  
+
+
+let guestsUsing=JSON.parse(localStorage.getItem('guestsUser'))
+if (guestsUsing) {
+    let  profilName=document.querySelector('.greetingName')
+    profilName.innerText=guestsUsing[0].name
+    let greetingForUser=document.querySelector('.greeting')
+    greetingForUser.innerText=guestsUsing[0].greeting
+    document.getElementById('profil_name').classList.remove('profil_name')
+    document.getElementById('profil_name').classList.add('guestsGreeting')
 }
+
 
 let valueTodo = 0;
 let valueProgress = 0;
 let valueFeedback = 0;
 let valueDone = 0;
+let valueTotal = 0;
+let valueUrgent = 0;
+let arrayUrgent = [];
 
-// Profilname aktualisieren
-let profilName = document.querySelector('.greetingName');
-profilName.innerText = user.name;
+
+
 
 const currentDate = new Date();
 
 
 function dateUpdate() {
-  let montUndDay = document.getElementById('datum');
+  let montUndDay = document.getElementById('date');
 
   // Monatsnamen extrahieren
   const monthName = currentDate.toLocaleString('default', { month: 'long' });
@@ -27,58 +42,88 @@ function dateUpdate() {
   montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
 }
 
-function timer() {
-  setTimeout(() => {
-    loadSelectedPage();
-}, "100");
+  function timer() {
+    setTimeout(() => {
+      loadSelectedPage();
+  }, "100");
 }
 
-async function getValue() {
-  tasks = JSON.parse(await getItem('testaufgaben')) || [];
 
+
+async function getValue() {
+  tasks = JSON.parse(await getItem('tasks')) || [];
         if (!Array.isArray(tasks)) {
           tasks = [];
-        }
-
-  let todo = document.getElementById('value-todoarray');
-  let done = document.getElementById('value-donearray');
-  let urgent = document.getElementById('value-urgent');
-  let total = document.getElementById('value-total');
-  let progress = document.getElementById('value-progressarray');
-  let feedback = document.getElementById('value-feedbackarray');
-
-
+        } 
 
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
-    if(tasks[i].status === 'board-to-do') {
+    const priotity = tasks[i].priority;
+    document.getElementById('value-total').innerHTML = tasks.length;
+    if(state === 'board-to-do') {
       valueTodo++;
-      todo.innerHTML = valueTodo;
+      document.getElementById('value-todoarray').innerHTML = valueTodo;
+    } else {
+      document.getElementById('value-todoarray').innerHTML = valueTodo;
     }
-    if(tasks[i].status === 'board-in-progress') {
+    if(state === 'board-in-progress') {
       valueProgress++;
-      progress.innerHTML = valueProgress;
+      document.getElementById('value-progressarray').innerHTML = valueProgress;
+    } else {
+      document.getElementById('value-progressarray').innerHTML = valueProgress;
     }
-    if(tasks[i].status === 'board-await-feedback') {
+    if(state === 'board-await-feedback') {
       valueFeedback++;
-      feedback.innerHTML = valueFeedback;
-
+      document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
+    } else {
+      document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
     }
-    if(tasks[i].status === 'board-done') {
+    if(state === 'board-done') {
       valueDone++;
-      done.innerHTML = valueDone;
+      document.getElementById('value-donearray').innerHTML = valueDone;
+    } else {
+      document.getElementById('value-donearray').innerHTML = valueDone;
     }
-
-      
+    if(priotity === 'urgent') {
+      valueUrgent++;
+      document.getElementById('value-urgent').innerHTML = valueUrgent;
+    } else {
+      document.getElementById('value-urgent').innerHTML = valueUrgent;
+    }
+    
   }
-
-
-  // let valueTotal = tasks.length;
-  // total.innerHTML = `${valueTotal}`;
-  // let valueDone = doneArray.length;
-  // done.innerHTML = `${valueDone}`;
+  getUrgentDate();
 }
 
+function getUrgentDate() {
+  let dateDiv = document.getElementById('date');
+
+  for (let j = 0; j < tasks.length; j++) {
+    const array = tasks[j].priority;
+    const date = tasks[j].date;
+    console.log(array);
+    console.log(date);
+    if(array === 'urgent') {
+      arrayUrgent.push(tasks[j]);
+      console.log(arrayUrgent);
+    } else {
+      console.log('not found a urgent pos');
+    }
+  }
+  validateUpcomingDeadline();
+}
+
+function validateUpcomingDeadline() {
+  let dateDiv = document.getElementById('date');
+
+  if(arrayUrgent.length === 0) {
+    console.log('not found');
+  } else if(arrayUrgent.length > -1) {
+    dateDiv.innerHTML = arrayUrgent[0].date;
+  } else {
+    dateDiv.innerHTML = '-';
+  }
+}
 
 
 

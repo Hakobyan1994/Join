@@ -1,3 +1,33 @@
+let userGuests=[
+    {
+       name:'',
+       greeting:'Good Morning'
+    },
+]
+   console.log(userGuests[0].greeting);
+
+let div =  document.getElementById('animationDiv')
+let img = document.getElementById('logo-login')
+let stop = JSON.parse(localStorage.getItem('stop'))
+if (stop) {
+    div.classList.remove('addAnimDiv')
+    img.classList.remove('animation')
+
+    div.classList.add('anim_div')
+    div.classList.remove('startParDiv')
+    img.classList.remove('startParImg')
+    img.classList.add('join_image')
+}
+
+setTimeout(()=> {
+    div.classList.remove('startParDiv')
+    div.classList.add('anim_div')
+    img.classList.remove('startParImg')
+    img.classList.add('join_image')
+
+}, 2000)
+
+
 let dataUser = []
 let dataLocal = JSON.parse(localStorage.getItem('datareg'))
 if (dataLocal) {
@@ -9,8 +39,7 @@ form_log.onsubmit = validLogin;
 let checkBox = document.getElementById('checkBox')
 checkBox.checked
 
-
-  
+    
 
 function validLogin(e) {
     e.preventDefault();
@@ -59,13 +88,30 @@ document.addEventListener('DOMContentLoaded',function(){
        }
     }
    }else{
-    inputImage.src='/assets/img/anmeldung Image/lock.png'
+     inputImage.src='/assets/img/anmeldung Image/lock.png'
    }
   })    
 })   
   
+       
+
+
+setTimeout(()=> {
+    localStorage.setItem('stop', JSON.stringify('stop'))
+},3000)
 
 
 function activUser(arr){
     localStorage.setItem('activeUser',JSON.stringify(arr));
+ }  
+
+ function guesButton(){ 
+    localStorage.removeItem('activeUser');
+    forGuestUser('guestsUser',userGuests);
+    window.location.href='/files/summary.html'
  }
+      
+
+     function forGuestUser(key,arr){
+        localStorage.setItem(key,JSON.stringify(arr))
+     }

@@ -1,7 +1,3 @@
- let todoArray = [];
- let progressArray = [];
- let feedbackArray = [];
- let doneArray = [];
  let dataTask = [];
  let existingTasks = [];
 
@@ -52,6 +48,7 @@ function renderAddTaskForPopup() {
 
 
 async function loadToDo() {
+    loadTasks();
     let todo = document.getElementById('board-to-do');
     let progress = document.getElementById('board-in-progress');
     let feedback = document.getElementById('board-await-feedback');
@@ -60,33 +57,51 @@ async function loadToDo() {
     progress.innerHTML = '';
     feedback.innerHTML = '';
     done.innerHTML = '';
-   
-      
+
+    let hasToDo = false; 
+    let hasProgress = false;
+    let hasFeedback = false;
+    let hasDone = false;
+
     for (let i = 0; i < tasks.length; i++) {
-        let task= tasks[i];
-        if(tasks[i].status === 'board-to-do') {
+        let task = tasks[i];
+        if (task.status === 'board-to-do') {
             todo.innerHTML += generateBoardCardTodo(task, i);
+            hasToDo = true;
         }
-        if(tasks[i].status === 'board-in-progress') {
+        if (task.status === 'board-in-progress') {
             progress.innerHTML += generateBoardCardProgress(task, i);
+            hasProgress = true;
         }
-        if(tasks[i].status === 'board-await-feedback') {
+        if (task.status === 'board-await-feedback') {
             feedback.innerHTML += generateBoardCardFeedback(task, i);
+            hasFeedback = true;
         }
-        if(tasks[i].status === 'board-done') {
+        if (task.status === 'board-done') {
             done.innerHTML += generateBoardCardDone(task, i);
-        } else {
-            console.log('Done ist missing');
+            hasDone = true;
         }
 
-        
         changeCategoryButton(i);
-        await createUserButtons(task, i);
+        createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
         await loadSelectedPage();
     }
-}  
+    if (!hasToDo) {
+        todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+    }
+
+    if (!hasProgress) {
+        progress.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing in progress</div>';
+    }
+    if (!hasFeedback) {
+        feedback.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Feedback to give</div>';
+    }
+    if (!hasDone) {
+        done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
+    }
+}
 
 
 function generateBoardCardTodo(task, i) {
@@ -110,7 +125,7 @@ function generateBoardCardTodo(task, i) {
             <div id="user-board-${i}"></div>
             <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
         </div>
-    </div>         
+    </div>      
     `;
 }
 
@@ -362,13 +377,13 @@ async function pushSelectedSubtask(i, k) {
         if (value === 'selected') {
             if (!task.checkoffs.includes(k)) {
                 task.checkoffs.push(k);
-                await setItem('testaufgaben', JSON.stringify(tasks));
+                await setItem('tasks', JSON.stringify(tasks));
             }
         } else {
             let index = task.checkoffs.indexOf(k);
             if (index !== -1) {
                 task.checkoffs.splice(index, 1);
-                await setItem('testaufgaben', JSON.stringify(tasks));
+                await setItem('tasks', JSON.stringify(tasks));
             }
         }
     }
@@ -387,6 +402,7 @@ function closePopupAddTaskDiv(i) {
     `;
     calculatePercentageForProgressBar(i);
     updateProgressBar(i);
+    changeCategoryButton(i);
 }
 
 
@@ -413,7 +429,7 @@ async function updateProgressBar(i) {
 
 
 
-async function changeCategoryButton(i) {
+function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
     
     if(categoryBtn) {
@@ -484,7 +500,7 @@ async function deleteTask(i) {
     await loadTasks();
     tasks.splice(i, 1);
 
-    await setItem('testaufgaben', JSON.stringify(tasks));
+    await setItem('tasks', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
     await loadToDo();
 }
@@ -497,7 +513,7 @@ function editTask(i) {
     popup.classList.add('d-none');
     div.classList.remove('d-none');
     content.innerHTML = /*html*/`
-        <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(); return false">
+        <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
         `;
     content.innerHTML += generateEditableAddtask(i);
     addEventFunctions();
@@ -532,8 +548,8 @@ function generateEditableAddtask(i) {
 
 
 async function pushValueToEdit(i) {
-    existingTasks = JSON.parse(await getItem('testaufgaben'));
-    let array = existingTasks[i];
+    await loadTasks();
+    let array = tasks[i];
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
@@ -553,7 +569,7 @@ async function pushValueToEdit(i) {
     }
 
     getSubtasks();
-    existingTasks.splice(i, 1);
+    tasks.splice(i, 1);
 }
 
 
@@ -587,6 +603,8 @@ async function saveEditedTask(i) {
 
     if (title.value && date.value) {
 
+        tasks.splice(i, 1);
+
         let newTask = {
             title: title.value,
             description: description.value,
@@ -596,21 +614,22 @@ async function saveEditedTask(i) {
             priority: priority,
             category: category,
             subtask: subtasks,
-            checkoffs: []
+            checkoffs: tasks[i].checkoffs,
+            status: tasks[i].status,
         };
 
-        existingTasks.push(newTask);
+        tasks.push(newTask);
 
-        await setItem('testaufgaben', JSON.stringify(existingTasks));
+        await setItem('tasks', JSON.stringify(tasks));
        
         let popup = document.getElementById('popup-add-task');
         let popupAdd = document.getElementById('popup-boardAddTask');
         await openToBoard();
-        if (popup) {
+        if (popup !== null) {
             await openInBoard();
             await updateProgressBar(i);
         } else {
-            console.log('Popup wurde nicht gefunden');
+            console.log('Popup wurde nicht gefunden / SAVE EDIT');
         }
     } else {
         alert('Notwendige Felder wurden nicht ausgefüllt');
@@ -621,8 +640,9 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-
+    // loadToDo();
     return tasks;
+    
 }
 
 
@@ -639,12 +659,9 @@ function getPriority(priority) {
 }
 
 
-function closePopupEdit(i) {
+async function closePopupEdit(i) {
     let div = document.getElementById(`popup-add-task-edit`);
     div.classList.add('d-none');
-
-    changeCategoryButton(i);
-    loadToDo();
 }
 
 
@@ -708,188 +725,6 @@ async function saveDroppedElement(element) {
     console.log(tasks[arraypos].status);
 
 
-    await setItem('testaufgaben', JSON.stringify(tasks)); 
-
-
-
-/*
-    await loadArray(todoArray, progressArray, feedbackArray, doneArray);
-    if (!Array.isArray(todoArray, progressArray, feedbackArray, doneArray)) {
-        todoArray = [];
-        progressArray = [];
-        feedbackArray = [];
-        doneArray = [];
-    }
-
-    let array = todoArray[pos];
-
-    let dropTargetId = element.parentElement.id;
-
-    if (dropTargetId === 'board-in-progress') {
-        progressArray.push(array);
-        todoArray.splice(pos, 1);
-    }
-    if (dropTargetId === 'board-await-feedback') {
-        feedbackArray.push(array);
-        todoArray.splice(pos, 1);
-    }
-    if (dropTargetId === 'board-done') {
-        doneArray.push(array);
-        todoArray.splice(pos, 1);
-    }
-    if (dropTargetId === 'board-to-do') {
-        todoArray.push(array);
-        todoArray.splice(pos, 1);
-    }
-
-    await saveNewArrays(todoArray, progressArray, feedbackArray, doneArray);
-    */
+    await setItem('tasks', JSON.stringify(tasks)); 
+    await loadToDo();
 }
-
-/*
-async function loadArray(todoArray, progressArray, feedbackArray, doneArray) {
-    try {
-        todoArray = JSON.parse(await getItem('todo')) || [];
-        progressArray = JSON.parse(await getItem('progress')) || [];
-        feedbackArray = JSON.parse(await getItem('feedback')) || [];
-        doneArray = JSON.parse(await getItem('done')) || [];
-    } catch (e) {
-        console.error('Error in loadarrays:', e);
-    }
-}
-
-
-async function saveNewArrays(todoArray, progressArray, feedbackArray, doneArray) {
-    await setItem('todo', JSON.stringify(todoArray)); 
-    await setItem('progress', JSON.stringify(progressArray));    
-    await setItem('feedback', JSON.stringify(feedbackArray));    
-    await setItem('done', JSON.stringify(doneArray));  
-}
-
-
-async function generateProgressCards() {
-    let boardDiv = document.getElementById('board-in-progress');
-    boardDiv.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
-    progressArray = JSON.parse(await getItem('progress')) || [];
-
-    if (!Array.isArray(progressArray)) {
-        progressArray = [];
-    }
-
-    for (let i = 0; i < progressArray.length; i++) {
-        let task= progressArray[i];
-        boardDiv.innerHTML += `
-           <div draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-                <div  class="progress_infocard">
-                    <button class="" id="category-bg-change-${i}">${task.category}</button>
-                    <div class="cooking_title_div">
-                        <h1>${task.title}</h1>
-                        <span class="recipe_span">${task.description}</span>
-                    </div>
-                </div>
-                <div class="progress_image_Div">
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-                    </div>
-                    
-                    <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-                </div>
-                <div class="Members_Div">
-                    <div id="user-board-${i}"></div>
-                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-                </div>
-            </div> 
-        `;
-    await changeCategoryButton(i);
-    await createUserButtons(task, i);
-    await updateProgressBar(i);
-    notData();
-    await loadSelectedPage();
-    }
-}
-
-
-async function generateFeedbackCards() {
-    let boardDiv = document.getElementById('board-await-feedback');
-    boardDiv.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
-    feedbackArray = JSON.parse(await getItem('feedback')) || [];
-
-    if (!Array.isArray(feedbackArray)) {
-        feedbackArray = [];
-    }
-
-    for (let i = 0; i < feedbackArray.length; i++) {
-        let task= feedbackArray[i];
-        boardDiv.innerHTML += `
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-                <div  class="progress_infocard">
-                    <button class="" id="category-bg-change-${i}">${task.category}</button>
-                    <div class="cooking_title_div">
-                        <h1>${task.title}</h1>
-                        <span class="recipe_span">${task.description}</span>
-                    </div>
-                </div>
-                <div class="progress_image_Div">
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-                    </div>
-                    
-                    <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-                </div>
-                <div class="Members_Div">
-                    <div id="user-board-${i}"></div>
-                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-                </div>
-            </div> 
-        `;
-    await changeCategoryButton(i);
-    await createUserButtons(task, i);
-    await updateProgressBar(i);
-    notData();
-    await loadSelectedPage();
-    }
-}
-
-
-async function generateDoneCards() {
-    let boardDiv = document.getElementById('board-done');
-    boardDiv.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo d-none">No Tasks To do</div>';
-    doneArray = JSON.parse(await getItem('done')) || [];
-
-    if (!Array.isArray(doneArray)) {
-        doneArray = [];
-    }
-
-    for (let i = 0; i < doneArray.length; i++) {
-        let task= doneArray[i];
-        boardDiv.innerHTML += `
-           <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-                <div  class="progress_infocard">
-                    <button class="" id="category-bg-change-${i}">${task.category}</button>
-                    <div class="cooking_title_div">
-                        <h1>${task.title}</h1>
-                        <span class="recipe_span">${task.description}</span>
-                    </div>
-                </div>
-                <div class="progress_image_Div">
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-                    </div>
-                    
-                    <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-                </div>
-                <div class="Members_Div">
-                    <div id="user-board-${i}"></div>
-                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-                </div>
-            </div> 
-        `;
-    await changeCategoryButton(i);
-    await createUserButtons(task, i);
-    await updateProgressBar(i);
-    notData();
-    await loadSelectedPage();
-    }
-}
-
-*/

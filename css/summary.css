@@ -306,7 +306,8 @@ body {
     height: 57px;
     display: flex;
     flex-direction: column;
-     gap:13px;
+    justify-content: center;
+    gap:13px;
 
  } 
 
@@ -535,4 +536,17 @@ body {
 
 a {
     text-decoration: none;
-}
+}  
+
+   
+ .guestsGreeting{
+    height: 56px;
+    position: absolute;
+    top: 585px;
+    left: 968px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+ }

@@ -1,11 +1,15 @@
+const datauser = JSON.parse(localStorage.getItem('activeUser'));
+
+    
 
 
-// let users = {};
-// const datauser = JSON.parse(localStorage.getItem('activeUser'));
+   
+
+
+
 // if (datauser) {
-//     users = datauser;
-//     const profileName = document.querySelector('.profileName');
-//     let txt = users.name;
+//     guestsUser = datauser;
+//     let txt = guestsUser.name;
 //     let name = txt.split(' ');
 //     console.log(name);
 //     if (name.length >= 2) {
@@ -16,17 +20,20 @@
 //         alert('Error');
 //     }
 // }
+ 
 
-  
+ 
+
 
 function checks(){
   let profilInfo=document.querySelector('.clickInfoDiv')
   if(profilInfo.style.display==='block'){
-     profilInfo.style.display='none'
+    profilInfo.style.display='none'
   }else{
     profilInfo.style.display='block'
   }
-}   
+  
+}       
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -57,7 +64,6 @@ function includeHTML() {
 }  
  
    
-
 
 
 
