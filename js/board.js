@@ -81,7 +81,6 @@ async function loadToDo() {
             done.innerHTML += generateBoardCardDone(task, i);
             hasDone = true;
         }
-
         changeCategoryButton(i);
         createUserButtons(task, i);
         await updateProgressBar(i);
@@ -101,6 +100,7 @@ async function loadToDo() {
     if (!hasDone) {
         done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
+
 }
 
 
@@ -431,14 +431,11 @@ async function updateProgressBar(i) {
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
-    
-    if(categoryBtn) {
         if (categoryBtn.textContent === 'Technical Task') {
             categoryBtn.classList.add('tecnical_TaskButton');
-        } else {
+        } else if (categoryBtn.textContent === 'User Story') {
             categoryBtn.classList.add('user_Story_button');
         }
-    }
 }
 
 
@@ -604,8 +601,6 @@ async function saveEditedTask(i) {
 
     if (title.value && date.value) {
 
-        tasks.splice(i, 1);
-
         let newTask = {
             title: title.value,
             description: description.value,
@@ -620,14 +615,14 @@ async function saveEditedTask(i) {
         };
 
         tasks.push(newTask);
+        tasks.splice(i, 1);
 
         await setItem('tasks', JSON.stringify(tasks));
        
         let popup = document.getElementById('popup-add-task');
-        let popupAdd = document.getElementById('popup-boardAddTask');
-        await openToBoard();
+        document.getElementById('popup-add-task-edit').classList.add('d-none');
+
         if (popup !== null) {
-            await openInBoard();
             await updateProgressBar(i);
         } else {
             console.log('Popup wurde nicht gefunden / SAVE EDIT');
@@ -641,8 +636,9 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-    // loadToDo();
+    loadToDo();
     return tasks;
+
     
 }
 
