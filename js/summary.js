@@ -24,7 +24,7 @@ let arrayUrgent = [
   }
 ];
 
-
+/*
 const currentDate = new Date();
 
 
@@ -42,7 +42,7 @@ function dateUpdate() {
       loadSelectedPage();
   }, "100");
 }
-
+*/
 
 async function getValue() {
   await loadTasks();
@@ -129,11 +129,9 @@ function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('date');
 
   if(arrayUrgent.length === 0) {
-    console.log('not found');
+    dateDiv.innerHTML = '-';
   } else if(arrayUrgent.length > -1) {
     dateDiv.innerHTML = defineUpcomingDeadline();
-  } else {
-    dateDiv.innerHTML = '-';
   }
 }
 
