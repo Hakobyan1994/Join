@@ -25,7 +25,12 @@ let valueFeedback = 0;
 let valueDone = 0;
 let valueTotal = 0;
 let valueUrgent = 0;
-let arrayUrgent = [];
+let arrayUrgent = [
+  {
+    priority: [],
+    date: []
+  }
+];
 
 
 
@@ -88,6 +93,7 @@ async function getValue() {
       valueUrgent++;
       document.getElementById('value-urgent').innerHTML = valueUrgent;
     } else {
+      document.getElementById('value-urgent').innerHTML = valueUrgent;
     }
     
   }
@@ -95,16 +101,13 @@ async function getValue() {
 }
 
 function getUrgentDate() {
-  let dateDiv = document.getElementById('date');
+  arrayUrgent = [];
 
   for (let j = 0; j < tasks.length; j++) {
     const array = tasks[j].priority;
     const date = tasks[j].date;
-    console.log(array);
-    console.log(date);
     if(array === 'urgent') {
-      arrayUrgent.push(tasks[j]);
-      console.log(arrayUrgent);
+      arrayUrgent.push(date);
     } else {
       console.log('not found a urgent pos');
     }
@@ -118,13 +121,34 @@ function validateUpcomingDeadline() {
   if(arrayUrgent.length === 0) {
     console.log('not found');
   } else if(arrayUrgent.length > -1) {
-    dateDiv.innerHTML = arrayUrgent[0].date;
+    dateDiv.innerHTML = defineUpcomingDeadline();
   } else {
     dateDiv.innerHTML = '-';
   }
 }
 
 
+function defineUpcomingDeadline() {
+  let dateArray = arrayUrgent.map(urgentString => {
+    let [day, month, year] = urgentString.split('/').map(Number);
+
+    if (isNaN(day) || isNaN(month) || isNaN(year) ||
+        day < 1 || day > 31 || month < 1 || month > 12) {
+      throw new Error('invalid date');
+    }
+    return new Date(year, month - 1, day);
+  });
+
+  let earliestDate = new Date(Math.min(...dateArray));
+
+  let formattedDate = earliestDate.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
+  return formattedDate;
+}
 
 
 
