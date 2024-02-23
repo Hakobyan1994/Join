@@ -388,6 +388,14 @@ textarea {
     width: 440px;
 }
 
+.checkbox-selected {
+    filter: brightness(10);
+}
+
+.checkbox-none-selected {
+    filter: brightness(1.5);
+}
+
 .assigned-contact-list-icon {
     height: 32px;
     width: 32px;

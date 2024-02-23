@@ -182,12 +182,12 @@ function renderAssignedList() {
                     <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <!-- <img src="/assets/img/icons/none-selected.svg" alt="" id="checkbox-contact-${i}"> -->
-                <!-- <input type="checkbox" class="d-none" id="checkbox-contact-${i}"> -->
+                <img src="${isSelected ? '/assets/img/icons/selected1.svg' : '/assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
             </div>
         `;    
     }
     hideAssignedButton();
+    
 }
 
 
@@ -200,7 +200,7 @@ function searchAssignedList() {
         let array = contacts[i].name;
         let name = array.toUpperCase();
         if(name.indexOf(filter) > -1) {
-            list.style.display = 'block';
+            list.style.display = 'flex';
         } else {
             list.style.display = 'none';
         }
@@ -274,13 +274,21 @@ function selectAssignedContacts(i) {
     let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
     contact.classList.toggle('white');
-    // checkbox.checked = !checkbox.checked;
+    if(contact.classList.contains('select-contact-blue')) {
+        checkbox.src = '/assets/img/icons/selected1.svg';
+        checkbox.classList.remove('checkbox-none-selected');
+        checkbox.classList.add('checkbox-selected');
+        
+    } else {
+        checkbox.src = '/assets/img/icons/none-selected1.svg';
+        checkbox.classList.add('checkbox-none-selected');
+        checkbox.classList.remove('checkbox-selected');
+    }
     pushUser(i);
 }
 
 
 function pushUser(i) {
-    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
     let contact = document.getElementById(`assigned-contacts-${i}`);
     let approved = contact.classList.contains('select-contact-blue');
     let user = contacts[i].name;

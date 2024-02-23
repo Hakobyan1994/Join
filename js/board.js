@@ -1,6 +1,5 @@
  let dataTask = [];
- let existingTasks = [];
-
+ 
 
 async function openPopupAddTask() {
     let popup = document.getElementById('popup-add-task');
