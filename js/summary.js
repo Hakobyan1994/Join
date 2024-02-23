@@ -17,22 +17,12 @@ if (guestsUsing) {
     document.getElementById('profil_name').classList.remove('profil_name')
     document.getElementById('profil_name').classList.add('guestsGreeting')
 }
-
-
-let valueTodo = 0;
-let valueProgress = 0;
-let valueFeedback = 0;
-let valueDone = 0;
-let valueTotal = 0;
-let valueUrgent = 0;
 let arrayUrgent = [
   {
     priority: [],
     date: []
   }
 ];
-
-
 
 
 const currentDate = new Date();
@@ -54,45 +44,44 @@ function dateUpdate() {
 }
 
 
-
 async function getValue() {
-  loadTasks();
+  await loadTasks();
+
+  let valueTodo = 0;
+  let valueProgress = 0;
+  let valueFeedback = 0;
+  let valueDone = 0;
+  let valueUrgent = 0;
 
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
     const priotity = tasks[i].priority;
+
     document.getElementById('value-total').innerHTML = tasks.length;
-    if(state === 'board-to-do') {
+
+    if (state === 'board-to-do') {
       valueTodo++;
-      document.getElementById('value-todoarray').innerHTML = valueTodo;
-    } else {
-      document.getElementById('value-todoarray').innerHTML = valueTodo;
     }
-    if(state === 'board-in-progress') {
+    if (state === 'board-in-progress') {
       valueProgress++;
-      document.getElementById('value-progressarray').innerHTML = valueProgress;
-    } else {
-      document.getElementById('value-progressarray').innerHTML = valueProgress;
     }
-    if(state === 'board-await-feedback') {
+    if (state === 'board-await-feedback') {
       valueFeedback++;
-      document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
-    } else {
-      document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
     }
-    if(state === 'board-done') {
+    if (state === 'board-done') {
       valueDone++;
-      document.getElementById('value-donearray').innerHTML = valueDone;
-    } else {
-      document.getElementById('value-donearray').innerHTML = valueDone;
     }
-    if(priotity === 'urgent') {
+    if (priotity === 'urgent') {
       valueUrgent++;
-      document.getElementById('value-urgent').innerHTML = valueUrgent;
-    } else {
-      document.getElementById('value-urgent').innerHTML = valueUrgent;
-    }     
+    }
   }
+
+  document.getElementById('value-todoarray').innerHTML = valueTodo;
+  document.getElementById('value-progressarray').innerHTML = valueProgress;
+  document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
+  document.getElementById('value-donearray').innerHTML = valueDone;
+  document.getElementById('value-urgent').innerHTML = valueUrgent;
+
   getUrgentDate();
 }
 
