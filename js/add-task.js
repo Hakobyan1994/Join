@@ -605,7 +605,7 @@ async function createTask() {
         
         tasks = JSON.parse(await getItem('tasks')) || [];
 
-        if (!Array.isArray(existingTasks)) {
+        if (!Array.isArray(tasks)) {
             tasks = [];
         }
 
