@@ -30,6 +30,7 @@ async function openPopupAddTask() {
     assignedButton.classList.add('assigned-button-b-pos');
     addEventFunctions();
     cancelButton();
+
 }
 
 
@@ -432,9 +433,9 @@ async function updateProgressBar(i) {
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
         if (categoryBtn.textContent === 'Technical Task') {
-            categoryBtn.classList.add('tecnical_TaskButton');
+            categoryBtn.classList.add('technical-button');
         } else if (categoryBtn.textContent === 'User Story') {
-            categoryBtn.classList.add('user_Story_button');
+            categoryBtn.classList.add('user-story-button');
         }
 }
 
@@ -488,7 +489,7 @@ function cancelButton() {
     let button = document.getElementById('clear-button');
     button.innerHTML = '';
     button.innerHTML = /*html*/`
-        Cancel<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img">
+        Cancel<img src="/assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
     `;
 }
 

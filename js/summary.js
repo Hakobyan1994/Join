@@ -109,12 +109,10 @@ function deleteOldUrgent() {
   });
   let earliestDate = new Date(Math.min(...dateArray));
   console.log(earliestDate);
-  if(earliestDate <= new Date()) {
-    arrayUrgent.splice(1);
-    console.log('löaüü');
-    console.log(arrayUrgent);
+  if(earliestDate < new Date()) {
+    arrayUrgent.splice(earliestDate);
   } else {
-    console.log('es gibt keine alten daten');
+    console.log('all tasks have no expired upcoming deadline ');
   }
 
 }

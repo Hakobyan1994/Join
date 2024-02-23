@@ -354,3 +354,37 @@
 .subtasks-label {
     margin-top: 0;
 }
+
+.user-story-button {
+    width: 113px;
+    height: 27px;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 16px;
+    background-color: #0038FF;
+    color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    margin-bottom: 24px;
+}
+
+.technical-button {
+    width: 144px;
+    height: 27px;
+    border-radius: 8px;
+    padding: 4px 16px;
+    background-color: #1FD7C1;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
