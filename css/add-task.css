@@ -371,7 +371,7 @@ textarea {
     cursor: pointer;
     color: rgba(0, 0, 0, 1);
     overflow-y: scroll;
-    height: 112px;
+    max-height: 112px;
     width: 481px;
     scrollbar-width: thin;
     display: flex;

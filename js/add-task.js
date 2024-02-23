@@ -79,7 +79,7 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" readonly>
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" onkeyup="searchAssignedList()">
         <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
@@ -159,31 +159,15 @@ function generateHtmlFormSection() {
     `;
 }
 
-// function activeAssignedTo() {
-//     let input = document.getElementById('assigned');
-//     let list = document.getElementById('assigned-list');
-//     let filter = input.value.toUpperCase();
-//     input.placeholder = '';
-//     list.classList.remove('d-none');
-// }
-
-// function deactiveAssignedTo() {
-//     let input = document.getElementById('assigned');
-//     input.placeholder = 'Select contacts to assign';
-//     let list = document.getElementById('assigned-list');
-//     list.classList.add('d-none');
-
-// }
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
-    /* let input = document.getElementById('assigned');
-        // if (list.classList.contains('d-none')) {
-        //     input.placeholder = 'Searchfield + Checkbox on progress';
-        // } else {
-        //     input.placeholder = 'Select contacts to assign';
-        // }
-    */
+    let input = document.getElementById('assigned');
+         if (list.classList.contains('d-none')) {
+             input.placeholder = '';
+         } else {
+             input.placeholder = 'Select contacts to assign';
+         }
     list.classList.toggle('d-none');
     list.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -203,8 +187,37 @@ function renderAssignedList() {
             </div>
         `;    
     }
-
+    hideAssignedButton();
 }
+
+
+function searchAssignedList() {
+    let input = document.getElementById('assigned');
+    let filter = input.value.toUpperCase();
+
+    for (let i = 0; i < contacts.length; i++) {
+        let list = document.getElementById(`assigned-contacts-${i}`);
+        let array = contacts[i].name;
+        let name = array.toUpperCase();
+        if(name.indexOf(filter) > -1) {
+            list.style.display = 'block';
+        } else {
+            list.style.display = 'none';
+        }
+    }
+}
+
+function hideAssignedButton() {
+    let buttons = document.getElementById('assigned-button');
+    let list = document.getElementById('assigned-button');
+    if(!list.classList.contains('d-none')) {
+        buttons.classList.add('d-none');
+    } else {
+        buttons.classList.remove('d-none');
+    }
+}
+
+
 
 function renderCategoryList() {
     let list = document.getElementById('category-list');
@@ -218,12 +231,14 @@ function renderCategoryList() {
 function selectCategory(category) {
     let technical = document.getElementById('technical');
     let story = document.getElementById('story');
+    let input = document.getElementById('category');
 
     if (category === 'technical') {
         technical.classList.toggle('grey');
         technical.classList.toggle('white-bg');
         story.classList.remove('grey');
         story.classList.remove('white-bg');
+        input.focus();
     }
 
     else if (category === 'story') {
@@ -231,6 +246,7 @@ function selectCategory(category) {
         story.classList.toggle('white-bg');
         technical.classList.remove('grey');
         technical.classList.remove('white-bg');
+        input.focus();
     }
     pushCategorytoInput(category);
     inputfieldFocus('category');

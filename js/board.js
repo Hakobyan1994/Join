@@ -101,7 +101,11 @@ async function loadToDo() {
     if (!hasDone) {
         done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
+}
 
+
+function reloadPage() {
+    location.reload(true);
 }
 
 
@@ -632,15 +636,12 @@ async function saveEditedTask(i) {
         alert('Notwendige Felder wurden nicht ausgefüllt');
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
-        requiredCategory.classList.remove('d-none');
         date.classList.add('inputfield-focus-red');
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-    loadToDo();
-    return tasks;
-
-    
+    loadToDo();  
+    reloadPage(); 
 }
 
 
