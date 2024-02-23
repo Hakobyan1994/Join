@@ -29,7 +29,7 @@ async function initSummary() {
     await includeHTML();
     dateUpdate();
     timer();
-    getValue();
+    await getValue();
 }
 
 async function initAddTask() {

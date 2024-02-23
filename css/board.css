@@ -46,7 +46,7 @@
 .close-a-board {
     z-index: 999;
     position: relative;
-    top: -533px;
+    top: -384px;
     right: -440px;
     width: 24px;
     height: 24px;
@@ -54,7 +54,7 @@
 }
 
 .edit-close-icon {
-    right: -200px!important;
+    right: -204px!important;
 }
 
 .popup-box {

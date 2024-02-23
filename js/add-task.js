@@ -26,7 +26,7 @@ function renderAddTask() {
 async function addEventFunctions() {
     await loadContacts();
     await loadTasks();
-    currentDate();
+    currentDateTask();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
     clearButtonImgChange();
@@ -93,7 +93,7 @@ function generateHtmlDate() {
         <div class="dueDate-div">
             <div>
                 <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
-                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
+                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDateTask()">
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
@@ -298,7 +298,7 @@ function generateAssignedButton() {
     }
 }
 
-function currentDate() {
+function currentDateTask() {
     let border = document.getElementById('date');
     let date = new Date();                              
 

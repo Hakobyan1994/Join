@@ -56,10 +56,7 @@ function dateUpdate() {
 
 
 async function getValue() {
-  tasks = JSON.parse(await getItem('tasks')) || [];
-        if (!Array.isArray(tasks)) {
-          tasks = [];
-        } 
+  loadTasks();
 
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
@@ -94,8 +91,7 @@ async function getValue() {
       document.getElementById('value-urgent').innerHTML = valueUrgent;
     } else {
       document.getElementById('value-urgent').innerHTML = valueUrgent;
-    }
-    
+    }     
   }
   getUrgentDate();
 }
@@ -106,13 +102,38 @@ function getUrgentDate() {
   for (let j = 0; j < tasks.length; j++) {
     const array = tasks[j].priority;
     const date = tasks[j].date;
-    if(array === 'urgent') {
+    if(array === 'urgent' ) {
       arrayUrgent.push(date);
     } else {
       console.log('not found a urgent pos');
     }
   }
+  deleteOldUrgent();
   validateUpcomingDeadline();
+  
+}
+
+function deleteOldUrgent() {
+  let dateArray = arrayUrgent.map(urgentString => {
+    let [day, month, year] = urgentString.split('/').map(Number);
+    return new Date(year, month -1, day);
+  });
+  let earliestDate = new Date(Math.min(...dateArray));
+  console.log(earliestDate);
+  if(earliestDate <= new Date()) {
+    arrayUrgent.splice(1);
+    console.log('löaüü');
+    console.log(arrayUrgent);
+  } else {
+    console.log('es gibt keine alten daten');
+  }
+
+}
+
+function actualDate() {
+  let date = new Date();
+  let day = date.getDate();
+  console.log(day);
 }
 
 function validateUpcomingDeadline() {
@@ -131,22 +152,14 @@ function validateUpcomingDeadline() {
 function defineUpcomingDeadline() {
   let dateArray = arrayUrgent.map(urgentString => {
     let [day, month, year] = urgentString.split('/').map(Number);
-
-    if (isNaN(day) || isNaN(month) || isNaN(year) ||
-        day < 1 || day > 31 || month < 1 || month > 12) {
-      throw new Error('invalid date');
-    }
     return new Date(year, month - 1, day);
   });
-
   let earliestDate = new Date(Math.min(...dateArray));
-
   let formattedDate = earliestDate.toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric'
   });
-
   return formattedDate;
 }
 
