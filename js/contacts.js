@@ -56,9 +56,32 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
         applyRandomColorToImage(imageElement, initials);
     }
+}
+
+
+function getRandomColor(seed) {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    if (seed && seed.length > 0) {
+        for (let i = 0; i < 6; i++) {
+            const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
+            color += letters[charIndex];
+        }
+    } else {
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+    }
+    return color;
+}
+
+
+function applyRandomColorToImage(imageElement, seed) {
+    const randomColor = getRandomColor(seed);
+    imageElement.style.backgroundColor = randomColor;
 }
 
 
@@ -180,6 +203,7 @@ function addContactToArray(name, email, phone, initials) {
         'email': email,
         'phone': phone,
         'initials': initials,
+        'initialsColor': 'white',
         'contactImg': contactImg,
         'color': randomColor
     };
@@ -223,29 +247,6 @@ async function loadContacts() {
     } catch (e) {
         console.error('Error in loadContacts:', e);
     }
-}
-
-
-function getRandomColor(seed) {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    if (seed && seed.length > 0) {
-        for (let i = 0; i < 6; i++) {
-            const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
-            color += letters[charIndex];
-        }
-    } else {
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-    }
-    return color;
-}
-
-
-function applyRandomColorToImage(imageElement, seed) {
-    const randomColor = getRandomColor(seed);
-    imageElement.style.backgroundColor = randomColor;
 }
 
 
