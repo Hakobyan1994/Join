@@ -7,156 +7,23 @@ let iniimg = [];
 function renderAddTask() {
     let content = document.getElementById('add-task');
     let boardcard = 'board-to-do';
-    content.innerHTML = /*html*/`
-            <h2>Add Task</h2>
-            <div class="main-box">
-                <div class="form-addtask">
-                    ${generateHtmlAddTaskForm()}      
-                </div>
-                <div class="form-bottom">    
-                    ${generateHtmlFormSection(`${boardcard}`)}
-                </div>  
-            </div>    
-
-    `;
+    content.innerHTML = generateRenderAddTask(boardcard);
     addEventFunctions();
     addSubtask();
 }
 
+
 async function addEventFunctions() {
     await loadContacts();
     await loadTasks();
-    currentDateTask();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
     clearButtonImgChange();
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
     enterOnSubtask();
-    dueDatePattern();
     inputfieldFocus();
     loadSelectedPage();
-}
-
-
-function generateHtmlAddTaskForm() {
-    return /*html*/`
-        <form>
-            ${generateHtmlTitle()}
-            ${generateHtmlDescription()}  
-            ${generateHtmlAssigned()}
-        </form>
-        <p class="addtask-line"></p>
-        <form>
-            ${generateHtmlDate()}  
-            ${generateHtmlPrio()}
-            ${generateHtmlCategory()}
-            ${generateHtmlSubtasks()}
-        </form>
-    `;
-}
-
-
-function generateHtmlTitle() {
-    return /*html*/`
-        <div class="title-div">
-            <label>Title<p class="redstar">*</p></label>
-            <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus('title')" oninput="inputfieldFocus('title')" required>
-            <div class="required-text d-none" id="required-title">This field is required</div>
-        </div>
-    `;
-}
-
-
-function generateHtmlDescription() {
-    return /*html*/`
-        <label>Description</label>
-        <textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description"></textarea>  
-    `;
-}
-
-
-function generateHtmlAssigned() {
-    return /*html*/`
-        <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" onkeyup="searchAssignedList()">
-        <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
-        <div class="assigned-list d-none" id="assigned-list"></div>
-        <div class="assigned-button" id="assigned-button"></div>
-    `;
-}
-
-
-function generateHtmlDate() {
-    return /*html*/`
-        <label>Due date<p class="redstar">*</p></label>
-        <div class="dueDate-div">
-            <div>
-                <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
-                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDateTask()">
-            </div>
-            <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
-        </div>
-        
-    `;
-}
-
-
-function generateHtmlPrio() {
-    return /*html*/`
-        <label>Prio</label>
-        <div class="prio-btn" id="prio" role="group">
-            <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-            <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
-        </div>  
-    `;
-}
-
-
-function generateHtmlCategory() {
-    return /*html*/`
-        <label>Category<p class="redstar">*</p></label>
-        <div class="category-div">
-            <!-- <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
-                <option value="" disabled selected hidden>Select task category</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="User Story">User Story</option>
-            </select> -->
-            <input class="inputfield category" value="" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')"required readonly>
-            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')">
-            <div class="category-list d-none" id="category-list"></div>
-            <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
-        </div>
- 
-    `;
-}
-
-
-function generateHtmlSubtasks() {
-    return /*html*/`
-        <label id="subtasks-label">Subtasks</label>
-        <div style="height: 47px;">
-            <input type="text" class="inputfield subtask-input" id="subtask-input"> 
-            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
-            <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
-                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
-            </div>
-        </div>
-        <ul id="subtasks" class="subtasks"></ul>
-    `;
-}
-
-
-function generateHtmlFormSection(boardcard) {
-    return /*html*/`
-        <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
-        <div class="form-bottom-right">
-            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
-            <button class="create-task" onclick="createTask('${boardcard}')">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
-        </div> 
-    `;
 }
 
 
@@ -170,10 +37,15 @@ function renderAssignedList() {
          }
     list.classList.toggle('d-none');
     list.innerHTML = '';
+    renderContactList(list);
+    hideAssignedButton();
+}
+
+
+function renderContactList(list) {
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
         const img = contacts[i].initials;
-
         const userIndex = users.indexOf(name);
         const isSelected = userIndex !== -1;
         list.innerHTML += /*html*/`
@@ -183,11 +55,8 @@ function renderAssignedList() {
                     <div>${name}</div>
                 </div>
                 <img src="${isSelected ? '/assets/img/icons/selected1.svg' : '/assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
-            </div>
-        `;    
+            </div>`;    
     }
-    hideAssignedButton();
-    
 }
 
 
@@ -306,7 +175,6 @@ function pushUser(i) {
             iniimg.splice(index, 1);
         }
     }
-
     generateAssignedButton();
 }
 
@@ -317,51 +185,16 @@ function generateAssignedButton() {
         const letters = iniimg[p];
         div.innerHTML += /*html*/`
             <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
-        `;
-        
+        `;     
     }
 }
 
-function currentDateTask() {
-    let border = document.getElementById('date');
-    let date = new Date();                              
 
-    let day = date.getDate();           
-    let month = date.getMonth() + 1;                   
-    let year = date.getFullYear();
-
-    if (month < 10) month = '0' + month;
-    if (day < 10) day = '0' + day;
-
-    let today = `${day}/${month}/${year}`;
-    document.getElementById("date").value = today;
-    border.classList.remove('inputfield-focus-white');
-}
-
-
-function dueDatePattern() {
-    let dateInput = document.getElementById('date');
-
-    dateInput.addEventListener('input', function () {
-        let isValid = /^\d{2}\/\m{2}\/\y{4}$/.test(dateInput.value);
-
-        if (!isValid) {
-            dateInput.setCustomValidity('Ungültiges Datumsformat. Verwende das Format dd/mm/yyyy.');
-        } else {
-            dateInput.setCustomValidity('');
-
-            let parts = dateInput.value.split('/');
-            let formattedDate = `${parts[1]}/${parts[0]}/${parts[2]}`;
-            dateInput.value = formattedDate;
-        }
-    });
-} 
 
 
 function pushPrio() {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
-
     let selectedPriority = null;
 
     prioButtons.forEach(function(button) {
@@ -369,11 +202,9 @@ function pushPrio() {
             selectedPriority = button.value;
         }
     });
-
     if (selectedPriority === null) {
         selectedPriority = 'medium';
     }
-
     return selectedPriority;
 }
 
@@ -393,7 +224,6 @@ function getPrio() {
                     btn.classList.remove('prio-notselected');
                     btn.classList.add('prio-notselected');
                 });
-    
                 button.classList.add('prio-notselected');
                 button.classList.remove('prio-notselected');
             }
@@ -470,7 +300,6 @@ function addSubtask() {
         </li>
     `;        
     }
-
     content.value = '';
 }
 
@@ -514,6 +343,7 @@ function deleteSubtask(i) {
     }
 }
 
+
 function pushEditedSubtask(i) {
     let inputField = document.getElementById(`subtask${i}`);
     let newText = inputField.value;
@@ -526,6 +356,7 @@ function pushEditedSubtask(i) {
             console.log('Das Feld ist leer')
         };
 }
+
 
 function updateSubtasklist() {
     let list = document.getElementById('subtasks');
@@ -545,6 +376,7 @@ function updateSubtasklist() {
     }
 }
 
+
 function clearSubtaskInputField() {
     let input = document.getElementById('subtask-input');
     input.value = '';
@@ -562,7 +394,6 @@ function clearButtonImgChange() {
             img.src = '/assets/img/icons/close-black1.svg';
         });
     }
-
 }
 
 
@@ -629,6 +460,7 @@ async function createTask(boardcard) {
     return tasks;
 }
 
+
 function pushToTodoBoard(priority, boardcard) {
     let newTask = {
         title: title.value,
@@ -691,6 +523,7 @@ function openToBoard() {
         window.location.href = "/files/board.html";
     }
 }
+
 
 function openInBoard() {
     let popup = document.getElementById('popup-a-to-b-board');
