@@ -250,6 +250,7 @@ async function openPopupAddTaskDiv(i) {
 
         </div>
     `;
+    changeCategoryButton(i);
     createUserToAssigned(i);
     createSubtasksToAddTaskPopup(i);
     checkSelectedSubtasks(i);
@@ -405,11 +406,16 @@ async function updateProgressBar(i) {
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
+    if(categoryBtn) {
         if (categoryBtn.textContent === 'Technical Task') {
             categoryBtn.classList.add('technical-button');
         } else if (categoryBtn.textContent === 'User Story') {
             categoryBtn.classList.add('user-story-button');
         }
+    } else {
+        console.log('Category was not found');
+    }
+
 }
 
 
@@ -535,9 +541,9 @@ async function pushValueToEdit(i) {
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
     }
-
     getSubtasks();
     tasks.splice(i, 1);
+
 }
 
 

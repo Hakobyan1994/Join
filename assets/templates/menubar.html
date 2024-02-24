@@ -3,13 +3,13 @@
 <body onload="iconName()">
     
 
-<nav>
+<nav id="navbar">
     <img src="/assets/img/logo.svg" alt="Join Logo" class="logo">
     <div class="menubar">
-        <a href="/files/summary.html" id="summary-page" onclick="forwardToPage('summary')"><img src="/assets/img/icons/summary.svg" alt="Summary Icon">Summary</a>
-        <a href="/files/add-task.html" id="add-task-page" onclick="forwardToPage('add-task')"><img src="/assets/img/icons/add-task.svg" alt="Add Task Icon">Add Task</a>
-        <a href="/files/board.html" id="board-page" onclick="forwardToPage('board')"><img src="/assets/img/icons/board.svg" alt="Board Icon">Board</a>
-        <a href="/files/contacts.html" id="contacts-page" onclick="forwardToPage('contacts')"><img src="/assets/img/icons/contacts.svg" alt="Contacts Icon">Contacts</a>
+        <a href="/files/summary.html" id="summary-page" onclick="forwardToPage('summary', event)"><img src="/assets/img/icons/summary.svg" alt="Summary Icon">Summary</a>
+        <a href="/files/add-task.html" id="add-task-page" onclick="forwardToPage('add-task', event)"><img src="/assets/img/icons/add-task.svg" alt="Add Task Icon">Add Task</a>
+        <a href="/files/board.html" id="board-page" onclick="forwardToPage('board', event)"><img src="/assets/img/icons/board.svg" alt="Board Icon">Board</a>
+        <a href="/files/contacts.html" id="contacts-page" onclick="forwardToPage('contacts', event)"><img src="/assets/img/icons/contacts.svg" alt="Contacts Icon">Contacts</a>
     </div>
     <div class="legalbox">
         <a href="/files/privacy-policy.html">Privacy Policy</a>
