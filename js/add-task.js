@@ -432,10 +432,13 @@ async function createTask(boardcard) {
     let priority = pushPrio();
     let category = document.getElementById('category');
 
+    let dateValue = date.value;
+    let formatedDate = formatDate(dateValue);
+
     if (title.value && date.value && category.value) {
         
         loadTasks();
-        pushToTodoBoard(priority, boardcard);
+        pushToTodoBoard(priority, boardcard, description, formatedDate);
         await setItem('tasks', JSON.stringify(tasks));
         clearFields();
        
@@ -461,13 +464,13 @@ async function createTask(boardcard) {
 }
 
 
-function pushToTodoBoard(priority, boardcard) {
+function pushToTodoBoard(priority, boardcard, description, formatedDate) {
     let newTask = {
         title: title.value,
         description: description.value,
         assigned: users,
         letter: iniimg,
-        date: date.value,
+        date: formatedDate,
         priority: priority,
         category: category.value,
         subtask: subtasks,

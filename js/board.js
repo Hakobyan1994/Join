@@ -469,6 +469,7 @@ async function deleteTask(i) {
     await setItem('tasks', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
     await loadToDo();
+    reloadPage();
 }
 
 
@@ -519,10 +520,11 @@ async function pushValueToEdit(i) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
+    let dateValue = deformatDate(array.date);
     // category, assigned Array 
     title.value = array.title;
     description.value = array.description;
-    date.value = array.date;
+    date.value = dateValue;
     let priority = array.priority;
     getPriority(priority);
     let subtasksArray = array.subtask;
@@ -568,6 +570,9 @@ async function saveEditedTask(i) {
     let date = document.getElementById('date');
     let priority = pushPrio();
 
+    let dateValue = date.value;
+    let formatedDate = formatDate(dateValue);
+
     if (title.value && date.value) {
 
         let newTask = {
@@ -575,7 +580,7 @@ async function saveEditedTask(i) {
             description: description.value,
             assigned: users,
             letter: iniimg,
-            date: date.value,
+            date: formatedDate,
             priority: priority,
             category: category,
             subtask: subtasks,
@@ -606,6 +611,38 @@ async function saveEditedTask(i) {
     }
     loadToDo();  
     reloadPage(); 
+}
+
+function formatDate(date) {
+let dateObj = new Date(date);
+
+    if (!isNaN(dateObj)) {
+        let day = dateObj.getDate();
+            day = day < 10 ? "0" + day : day;
+        let month = dateObj.getMonth() + 1;
+            month = month < 10 ? "0" + month : month;
+        let year = dateObj.getFullYear();
+
+        let resultDate = `${day}/${month}/${year}`;
+    
+        return resultDate;
+    }
+}
+
+function deformatDate(date) {
+    let dateObj = new Date(date);
+    if (!isNaN(dateObj)) {
+        let day = dateObj.getDate();
+            day = day < 10 ? "0" + day : day;
+        let month = dateObj.getMonth() + 1;
+            month = month < 10 ? "0" + month : month;
+        let year = dateObj.getFullYear();
+
+        let resultDate = `${year}-${day}-${month}`;
+    
+        return resultDate;
+    }
+
 }
 
 
