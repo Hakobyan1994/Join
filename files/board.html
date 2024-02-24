@@ -500,7 +500,7 @@
             <form>
                 <div class="input_button_Div">
                     <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
-                    <button class="add-task-btn" onclick="openPopupAddTask(); return false">
+                    <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
                         <img src="/assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>
@@ -509,15 +509,15 @@
         </div>
         <div class="adding_div">
             <div class="todo_div">
-                <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
+                <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
 
             </div>
             <div class="progress_Div">
-                <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
+                <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
 
             </div>
             <div class="feedback_div">
-                <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
+                <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
             </div>
 
             <div class="Done_div">

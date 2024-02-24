@@ -14,7 +14,7 @@ function renderAddTask() {
                     ${generateHtmlAddTaskForm()}      
                 </div>
                 <div class="form-bottom">    
-                    ${generateHtmlFormSection()}
+                    ${generateHtmlFormSection(`${boardcard}`)}
                 </div>  
             </div>    
 
@@ -149,12 +149,12 @@ function generateHtmlSubtasks() {
 }
 
 
-function generateHtmlFormSection() {
+function generateHtmlFormSection(boardcard) {
     return /*html*/`
         <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
         <div class="form-bottom-right">
             <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
-            <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
+            <button class="create-task" onclick="createTask('${boardcard}')">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
         </div> 
     `;
 }
@@ -591,7 +591,7 @@ function clearFields() {
 }
 
 
-async function createTask() {
+async function createTask(boardcard) {
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
     let requiredDate = document.getElementById('required-date');
@@ -603,27 +603,8 @@ async function createTask() {
 
     if (title.value && date.value && category.value) {
         
-        tasks = JSON.parse(await getItem('tasks')) || [];
-
-        if (!Array.isArray(tasks)) {
-            tasks = [];
-        }
-
-        let newTask = {
-            title: title.value,
-            description: description.value,
-            assigned: users,
-            letter: iniimg,
-            date: date.value,
-            priority: priority,
-            category: category.value,
-            subtask: subtasks,
-            checkoffs: [],
-            status: 'board-to-do'
-        };
-
-        tasks.push(newTask);
-
+        loadTasks();
+        pushToTodoBoard(priority, boardcard);
         await setItem('tasks', JSON.stringify(tasks));
         clearFields();
        
@@ -646,6 +627,22 @@ async function createTask() {
         category.classList.add('inputfield-focus-red');
     }
     return tasks;
+}
+
+function pushToTodoBoard(priority, boardcard) {
+    let newTask = {
+        title: title.value,
+        description: description.value,
+        assigned: users,
+        letter: iniimg,
+        date: date.value,
+        priority: priority,
+        category: category.value,
+        subtask: subtasks,
+        checkoffs: [],
+        status: boardcard
+    };
+    tasks.push(newTask);
 }
 
 

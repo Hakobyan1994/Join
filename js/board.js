@@ -1,7 +1,7 @@
  let dataTask = [];
- 
 
-async function openPopupAddTask() {
+
+async function openPopupAddTask(boardcard) {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
 
@@ -18,7 +18,7 @@ async function openPopupAddTask() {
                         ${generateHtmlAddTaskForm()}      
                     </div>
                     <div class="popup-addtask-form">
-                        ${generateHtmlFormSection()}
+                        ${generateHtmlFormSection(`${boardcard}`)}
                     </div>
                 </div>  
             </div>  
