@@ -1,4 +1,5 @@
 loadSelectedPage();
+displayGreeting();
 
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
@@ -151,7 +152,28 @@ function defineUpcomingDeadline() {
 }
 
 
+function getGreeting() {
+    const now = new Date();
+    const hour = now.getHours();
+
+    let greeting = "";
+
+    if (hour >= 5 && hour < 12) {
+        greeting = "Good morning,";
+    } else if (hour >= 12 && hour < 18) {
+        greeting = "Good afternoon,";
+    } else {
+        greeting = "Good evening,";
+    }
+
+    return greeting;
+}
 
 
+function displayGreeting() {
+    const greetingContainer = document.getElementById('timeOfDay');
+    const greeting = getGreeting();
+    greetingContainer.textContent = greeting;
+}
 
 
