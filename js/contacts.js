@@ -392,8 +392,8 @@ function onlyNumbers(evt) {
 
 function changeImage(hovered) {
     if (hovered) {
-        document.getElementById('cancelBtnImg').src = '/assets/img/icons/close-blue1.svg';
+        document.getElementById('cancelBtnImg').src = 'assets/img/icons/close-blue1.svg';
     } else {
-        document.getElementById('cancelBtnImg').src = '/assets/img/icons/close-black1.svg';
+        document.getElementById('cancelBtnImg').src = 'assets/img/icons/close-black1.svg';
     }
 }

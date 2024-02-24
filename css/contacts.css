@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Inter';
-    src: url(/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+    src: url(assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 body {
@@ -327,7 +327,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-image: url('/assets/img/icons/scrollbar.svg');
+    background-image: url('assets/img/icons/scrollbar.svg');
     background-size: cover;
     border: none;
 }
