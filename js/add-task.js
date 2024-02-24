@@ -57,7 +57,7 @@ function renderContactList(list) {
                     <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <img src="${isSelected ? '/assets/img/icons/selected1.svg' : '/assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+                <img src="${isSelected ? 'assets/img/icons/selected1.svg' : 'assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
             </div>`;    
     }
 }
@@ -296,9 +296,9 @@ function addSubtask() {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
@@ -316,9 +316,9 @@ function editSubtask(i) {
     listItem.innerHTML = /*html*/`
         <input class="each-subtask-p editable" id="subtask${i}" value="${inputValue}">
         <div class="subtask-right editable-img">
-            <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             <p class="separator"></p>
-            <img src="/assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
+            <img src="assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
         </div>
     `;
 }
@@ -337,9 +337,9 @@ function deleteSubtask(i) {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
@@ -371,9 +371,9 @@ function updateSubtasklist() {
         <li class="each-subtask" id="each-subtask${k}">
             <div class="each-subtask-p" id="subtask${k}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
             </div>
         </li>`;
     }
@@ -391,10 +391,10 @@ function clearButtonImgChange() {
     let clearButton = document.getElementById('clear-button');
     if (clearButton) {
         clearButton.addEventListener('mouseover', function() {
-            img.src = '/assets/img/icons/close-blue1.svg';
+            img.src = 'assets/img/icons/close-blue1.svg';
         });
         clearButton.addEventListener('mouseout', function() {
-            img.src = '/assets/img/icons/close-black1.svg';
+            img.src = 'assets/img/icons/close-black1.svg';
         });
     }
 }
@@ -527,7 +527,7 @@ function openToBoard() {
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
-        window.location.href = "/files/board.html";
+        window.location.href = "files/board.html";
     }
 }
 
@@ -538,11 +538,11 @@ function openInBoard() {
     if (popup !== null) {
 
         setTimeout(() => {
-            window.location.href = "/files/board.html";
+            window.location.href = "files/board.html";
         }, "1500");
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
-        window.location.href = "/files/board.html";
+        window.location.href = "files/board.html";
     }
 }
