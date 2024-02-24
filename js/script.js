@@ -60,7 +60,6 @@ function forwardToPage(page) {
 
         if (button.classList.contains('selected-color')) {
             button.classList.remove('selected-color');
-        
         }
     });
 
@@ -74,15 +73,16 @@ function forwardToPage(page) {
 
 async function loadSelectedPage() {
     let page = localStorage.getItem('selectedPage');
-    let id = page + '-page';
+    let id = page.trim() + '-page';
     let div = document.getElementById(`${id}`);
+    console.log(id);
     if(div) {
         div.classList.add('selected-color');
     } else {
-        // console.log('nicht gefunden');
-        // if (div.classList.contains('selected-color')) {
-        //     div.classList.remove('selected-color');
-        // }
+        console.log('nicht gefunden');
+        if (div && div.classList.contains('selected-color')) {
+            div.classList.remove('selected-color');
+        }
     }
 }
 

@@ -464,11 +464,6 @@ function updateSelectedSubtasksCount(i) {
 
 
 function searchTasks() {
-    searchTaskToDo();
-}
-
-
-function searchTaskToDo() {
     let input = document.getElementById('input-search-task');
     let filter = input.value.toUpperCase();
 

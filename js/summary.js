@@ -1,3 +1,5 @@
+loadSelectedPage();
+
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
 if (locRes) {
