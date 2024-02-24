@@ -1,67 +1,51 @@
-
 <html>
+
 <body onload="iconName()">
-    
 
-<nav id="navbar">
-    <img src="/assets/img/logo.svg" alt="Join Logo" class="logo">
-    <div class="menubar">
-        <a href="/files/summary.html" id="summary-page" onclick="forwardToPage('summary', event)"><img src="/assets/img/icons/summary.svg" alt="Summary Icon">Summary</a>
-        <a href="/files/add-task.html" id="add-task-page" onclick="forwardToPage('add-task', event)"><img src="/assets/img/icons/add-task.svg" alt="Add Task Icon">Add Task</a>
-        <a href="/files/board.html" id="board-page" onclick="forwardToPage('board', event)"><img src="/assets/img/icons/board.svg" alt="Board Icon">Board</a>
-        <a href="/files/contacts.html" id="contacts-page" onclick="forwardToPage('contacts', event)"><img src="/assets/img/icons/contacts.svg" alt="Contacts Icon">Contacts</a>
+
+    <nav>
+        <img src="/assets/img/logo.svg" alt="Join Logo" class="logo">
+        <div class="menubar">
+            <a href="/files/summary.html" id="summary-page" onclick="forwardToPage('summary')"><img
+                    src="/assets/img/icons/summary.svg" alt="Summary Icon">Summary</a>
+            <a href="/files/add-task.html" id="add-task-page" onclick="forwardToPage('add-task')"><img
+                    src="/assets/img/icons/add-task.svg" alt="Add Task Icon">Add Task</a>
+            <a href="/files/board.html" id="board-page" onclick="forwardToPage('board')"><img
+                    src="/assets/img/icons/board.svg" alt="Board Icon">Board</a>
+            <a href="/files/contacts.html" id="contacts-page" onclick="forwardToPage('contacts')"><img
+                    src="/assets/img/icons/contacts.svg" alt="Contacts Icon">Contacts</a>
+        </div>
+        <div class="legalbox">
+            <a href="/files/privacy-policy.html">Privacy Policy</a>
+            <a href="/files/legal-notice.html">Legal notice</a>
+        </div>
+    </nav>
+    <header>
+
+        <div id="kan" class="menubar-text">Kanban Project Management Tool</div>
+        <div class="header-right">
+
+            <a class="helpa" href="/files/help.html"><img src="/assets/img/icons/help.svg" alt="Help Icon"
+                    class="help-icon"></a>
+
+            <a id="shortName" onclick="checks()" href="#" class="profile-icon"></a>
+
+
+        </div>
+
+
+
+    </header>
+    <div class="clickInfoDiv">
+        <ul>
+            <li><a href="/files/legal-notice.html">Legal-notice</a></li>
+            <li><a href="/files/privacy-policy.html">Privacy-policy</a> </li>
+            <li><a href="/index.html">Log out</a></li>
+        </ul>
     </div>
-    <div class="legalbox">
-        <a href="/files/privacy-policy.html">Privacy Policy</a>
-        <a href="/files/legal-notice.html">Legal notice</a>
-    </div>
-</nav>
-<header>
-     
-    <div id="kan" class="menubar-text">Kanban Project Management Tool</div>
-    <div class="header-right">
-        
-        <a class="helpa" href="/files/help.html"><img src="/assets/img/icons/help.svg" alt="Help Icon" class="help-icon"></a>
-         
-        <a  id="shortName" onclick="checks()" href="#" class="profile-icon"></a>
-        
 
-    </div> 
-          
-  
-    
-</header> 
-<div class="clickInfoDiv">
-    <ul>
-        <li><a href="/files/legal-notice.html">Legal-notice</a></li>
-        <li><a href="/files/privacy-policy.html">Privacy-policy</a> </li>
-        <li><a href="/index.html">Log out</a></li>
-    </ul>
-</div> 
+    <script src="/js/includeHTML.js"></script>
 
-   <script src="/js/includeHTML.js"></script>
-    
+</body>
 
-</body>      
-             
 </html>
-      
-    
-
-  
-       
-   
-   
-    
-
-
-
-
- 
- 
-
-    
- 
- 
-
-

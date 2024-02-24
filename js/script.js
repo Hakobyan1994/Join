@@ -22,7 +22,6 @@ async function init() {
     await includeHTML();
     await loadContacts();
     renderBackArrow();
-    hideUserImgHeader();
 }
 
 async function initSummary() {
@@ -89,9 +88,11 @@ function deleteLocalStorage() {
     localStorage.removeItem('selectedPage');
 }    
 
+
 function goBack() {
     window.history.back();
 }
+
 
 async function loadTasks() {
     try {
