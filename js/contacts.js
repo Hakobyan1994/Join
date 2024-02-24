@@ -37,10 +37,10 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
         contactsContainer.innerHTML += generateContact(i, contact, imageId);
         addInitialsToContactImage(contact, imageId);
 
-        return firstLetter; 
+        return firstLetter;
     }
 
-    return lastLetter; 
+    return lastLetter;
 }
 
 
@@ -395,6 +395,6 @@ function changeImage(hovered) {
     if (hovered) {
         document.getElementById('cancelBtnImg').src = '/assets/img/icons/close-blue1.svg';
     } else {
-        document.getElementById('cancelBtnImg').src = '/assets/img/icons/close.svg';
-}
+        document.getElementById('cancelBtnImg').src = '/assets/img/icons/close-black1.svg';
+    }
 }

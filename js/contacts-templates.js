@@ -142,7 +142,7 @@ function generateAddContactOverlay() {
 
                                 <div class="add-contact-btns">
                                     <button onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
-                                        <span class="cancel-txt-fix">Cancel</span><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close.svg" alt="Close">
+                                        <span class="cancel-txt-fix">Cancel</span><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close-black1.svg" alt="Close">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
