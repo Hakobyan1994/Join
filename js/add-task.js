@@ -460,6 +460,7 @@ async function createTask(boardcard) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
+    localStorage.setItem('selectedPage', 'board');
     return tasks;
 }
 
