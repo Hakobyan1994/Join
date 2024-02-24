@@ -462,6 +462,7 @@ function searchTasks() {
 function cancelButton() {
     let button = document.getElementById('clear-button');
     button.innerHTML = '';
+    // document.getElementById('clear-button').onclick = closePopupAddTask();
     button.innerHTML = /*html*/`
         Cancel<img src="/assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
     `;

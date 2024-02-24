@@ -28,13 +28,16 @@ async function addEventFunctions() {
 
 
 function renderAssignedList() {
+    
     let list = document.getElementById('assigned-list');
+    if(list) {
     let input = document.getElementById('assigned');
          if (list.classList.contains('d-none')) {
              input.placeholder = '';
          } else {
              input.placeholder = 'Select contacts to assign';
          }
+    }
     list.classList.toggle('d-none');
     list.innerHTML = '';
     renderContactList(list);
