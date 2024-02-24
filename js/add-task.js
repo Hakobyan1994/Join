@@ -6,7 +6,7 @@ let iniimg = [];
 
 function renderAddTask() {
     let content = document.getElementById('add-task');
-
+    let boardcard = 'board-to-do';
     content.innerHTML = /*html*/`
             <h2>Add Task</h2>
             <div class="main-box">
