@@ -1,36 +1,6 @@
  let dataTask = [];
- let existingTasks = [];
 
 
-async function openPopupAddTask() {
-    let popup = document.getElementById('popup-add-task');
-    let content = document.getElementById('popup-add-task-content');
-
-    popup.classList.remove('d-none');
-    content.classList.remove('slide-out');
-    content.classList.add('slide-in');
-    content.innerHTML = /*html*/`
-        <img class="close-popup" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
-        <div class="popup-box">
-            <h2 class="h2-addtask-board">Add Task</h2>
-            <div>
-                <div class="main-box">
-                    <div class="form popup-addtask-main">
-                        ${generateHtmlAddTaskForm()}      
-                    </div>
-                    <div class="popup-addtask-form">
-                        ${generateHtmlFormSection()}
-                    </div>
-                </div>  
-            </div>  
-        </div> 
-    `;
-
-    let assignedButton = document.getElementById('assigned-button');
-    assignedButton.classList.add('assigned-button-b-pos');
-    addEventFunctions();
-    cancelButton();
-}
 
 
 function closePopupAddTask() {
@@ -81,7 +51,6 @@ async function loadToDo() {
             done.innerHTML += generateBoardCardDone(task, i);
             hasDone = true;
         }
-
         changeCategoryButton(i);
         createUserButtons(task, i);
         await updateProgressBar(i);
@@ -104,6 +73,11 @@ async function loadToDo() {
 }
 
 
+function reloadPage() {
+    location.reload(true);
+}
+
+
 function generateBoardCardTodo(task, i) {
     return /*html*/`
     <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
@@ -123,7 +97,7 @@ function generateBoardCardTodo(task, i) {
         </div>
         <div class="Members_Div">
             <div id="user-board-${i}"></div>
-            <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+            <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
         </div>
     </div>      
     `;
@@ -149,7 +123,7 @@ function generateBoardCardProgress(task, i) {
             </div>
             <div class="Members_Div">
                 <div id="user-board-${i}"></div>
-                <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
             </div>
         </div>   
     `;
@@ -175,7 +149,7 @@ function generateBoardCardFeedback(task, i) {
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
-                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                    <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div>   
     `; 
@@ -201,7 +175,7 @@ function generateBoardCardDone(task, i) {
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
-                    <img src="/assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                    <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div> 
     `;
@@ -231,7 +205,7 @@ async function openPopupAddTaskDiv(i) {
     content.classList.add('slide-in');
     let task = tasks[i];
     content.innerHTML = /*html*/`
-        <img class="close-a-board" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
+        <img class="close-a-board" src="assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
         `;
     content.innerHTML += /*html*/`
         <div class="popup-text">
@@ -247,7 +221,7 @@ async function openPopupAddTaskDiv(i) {
                     <div class="popup-date">${task.date}</div>
                     <div class="popup-prio-section">
                         <div>${task.priority.charAt(0).toUpperCase() + task.priority.slice(1).toLowerCase()}</div>
-                        <img src="/assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
+                        <img src="assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
             </div>
@@ -264,18 +238,19 @@ async function openPopupAddTaskDiv(i) {
             </div>
             <div class="popup-task-footer">
                 <div class="popup-task-footer-section" onclick="deleteTask(${i})">
-                    <img src="/assets/img/icons/trash.svg" alt="Trash Icon">
+                    <img src="assets/img/icons/trash.svg" alt="Trash Icon">
                     <div>Delete</div>
                 </div>
                 <p class="separator"></p>
                 <div class="popup-task-footer-section" onclick="editTask(${i})">
-                    <img src="/assets/img/icons/edit.svg" alt="Edit Icon">
+                    <img src="assets/img/icons/edit.svg" alt="Edit Icon">
                     <div>Edit</div>
                 </div> 
             </div>
 
         </div>
     `;
+    changeCategoryButton(i);
     createUserToAssigned(i);
     createSubtasksToAddTaskPopup(i);
     checkSelectedSubtasks(i);
@@ -307,7 +282,7 @@ function createSubtasksToAddTaskPopup(i) {
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
                 <div>
-                    <img src="/assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask('${i}','${k}')">
+                    <img src="assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask('${i}','${k}')">
                     <div id="each-subtasks-${k}" value="not-selected">${subtasks}</div>   
                 </div>
             </div>
@@ -326,11 +301,11 @@ function checkSelectedSubtasks(i) {
         let subtask = document.getElementById(`each-subtasks-${k}`);
 
         if (task.checkoffs.includes(k.toString())) {
-            img.src = '/assets/img/icons/selected.svg';
+            img.src = 'assets/img/icons/selected.svg';
             img.alt = 'Selected';
             subtask.setAttribute('value', 'selected');
         } else {
-            img.src = '/assets/img/icons/none-selected.svg';
+            img.src = 'assets/img/icons/none-selected.svg';
             img.alt = 'Not Selected';
             subtask.setAttribute('value', 'not-selected');
         }
@@ -345,12 +320,12 @@ async function checkOffSubtask(i, k) {
 
 
     if (img.src.includes('none-selected.svg')) {
-        img.src = '/assets/img/icons/selected.svg';
+        img.src = 'assets/img/icons/selected.svg';
         img.alt = 'Selected';
         subtask.setAttribute('value', 'selected');
         pushSelectedSubtask(i, k);
     } else {
-        img.src = '/assets/img/icons/none-selected.svg';
+        img.src = 'assets/img/icons/none-selected.svg';
         img.alt = 'Not Selected';
         subtask.setAttribute('value', 'not-selected');
         pushSelectedSubtask(i, k);
@@ -431,14 +406,16 @@ async function updateProgressBar(i) {
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
-    
     if(categoryBtn) {
         if (categoryBtn.textContent === 'Technical Task') {
-            categoryBtn.classList.add('tecnical_TaskButton');
-        } else {
-            categoryBtn.classList.add('user_Story_button');
+            categoryBtn.classList.add('technical-button');
+        } else if (categoryBtn.textContent === 'User Story') {
+            categoryBtn.classList.add('user-story-button');
         }
+    } else {
+        console.log('Category was not found');
     }
+
 }
 
 
@@ -463,11 +440,6 @@ function updateSelectedSubtasksCount(i) {
 
 
 function searchTasks() {
-    searchTaskToDo();
-}
-
-
-function searchTaskToDo() {
     let input = document.getElementById('input-search-task');
     let filter = input.value.toUpperCase();
 
@@ -490,8 +462,9 @@ function searchTaskToDo() {
 function cancelButton() {
     let button = document.getElementById('clear-button');
     button.innerHTML = '';
+    // document.getElementById('clear-button').onclick = closePopupAddTask();
     button.innerHTML = /*html*/`
-        Cancel<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img">
+        Cancel<img src="assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
     `;
 }
 
@@ -503,6 +476,7 @@ async function deleteTask(i) {
     await setItem('tasks', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
     await loadToDo();
+    reloadPage();
 }
 
 
@@ -513,7 +487,7 @@ function editTask(i) {
     popup.classList.add('d-none');
     div.classList.remove('d-none');
     content.innerHTML = /*html*/`
-        <img class="close-a-board edit-close-icon" src="/assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
+        <img class="close-a-board edit-close-icon" src="assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
         `;
     content.innerHTML += generateEditableAddtask(i);
     addEventFunctions();
@@ -540,7 +514,7 @@ function generateEditableAddtask(i) {
                     ${generateHtmlAssigned()}
                     ${generateHtmlSubtasks()}
                 </div>
-                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="/assets/img/icons/check1.svg" alt="Check Icon"></button>
+                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="assets/img/icons/check1.svg" alt="Check Icon"></button>
             </div>       
 
     `; 
@@ -553,10 +527,11 @@ async function pushValueToEdit(i) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
+    let dateValue = deformatDate(array.date);
     // category, assigned Array 
     title.value = array.title;
     description.value = array.description;
-    date.value = array.date;
+    date.value = dateValue;
     let priority = array.priority;
     getPriority(priority);
     let subtasksArray = array.subtask;
@@ -567,9 +542,9 @@ async function pushValueToEdit(i) {
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
     }
-
     getSubtasks();
     tasks.splice(i, 1);
+
 }
 
 
@@ -582,9 +557,9 @@ function getSubtasks() {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
@@ -593,6 +568,7 @@ function getSubtasks() {
 
 
 async function saveEditedTask(i) {
+    loadTasks();
     let category = tasks[i].category
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
@@ -601,32 +577,33 @@ async function saveEditedTask(i) {
     let date = document.getElementById('date');
     let priority = pushPrio();
 
-    if (title.value && date.value) {
+    let dateValue = date.value;
+    let formatedDate = formatDate(dateValue);
 
-        tasks.splice(i, 1);
+    if (title.value && date.value) {
 
         let newTask = {
             title: title.value,
             description: description.value,
             assigned: users,
             letter: iniimg,
-            date: date.value,
+            date: formatedDate,
             priority: priority,
             category: category,
             subtask: subtasks,
             checkoffs: tasks[i].checkoffs,
-            status: tasks[i].status,
+            status: tasks[i].status
         };
 
         tasks.push(newTask);
+        tasks.splice(i, 1);
 
         await setItem('tasks', JSON.stringify(tasks));
        
         let popup = document.getElementById('popup-add-task');
-        let popupAdd = document.getElementById('popup-boardAddTask');
-        await openToBoard();
+        document.getElementById('popup-add-task-edit').classList.add('d-none');
+
         if (popup !== null) {
-            await openInBoard();
             await updateProgressBar(i);
         } else {
             console.log('Popup wurde nicht gefunden / SAVE EDIT');
@@ -635,14 +612,44 @@ async function saveEditedTask(i) {
         alert('Notwendige Felder wurden nicht ausgefüllt');
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
-        requiredCategory.classList.remove('d-none');
         date.classList.add('inputfield-focus-red');
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-    // loadToDo();
-    return tasks;
+    loadToDo();  
+    reloadPage(); 
+}
+
+function formatDate(date) {
+let dateObj = new Date(date);
+
+    if (!isNaN(dateObj)) {
+        let day = dateObj.getDate();
+            day = day < 10 ? "0" + day : day;
+        let month = dateObj.getMonth() + 1;
+            month = month < 10 ? "0" + month : month;
+        let year = dateObj.getFullYear();
+
+        let resultDate = `${day}/${month}/${year}`;
     
+        return resultDate;
+    }
+}
+
+function deformatDate(date) {
+    let dateObj = new Date(date);
+    if (!isNaN(dateObj)) {
+        let day = dateObj.getDate();
+            day = day < 10 ? "0" + day : day;
+        let month = dateObj.getMonth() + 1;
+            month = month < 10 ? "0" + month : month;
+        let year = dateObj.getFullYear();
+
+        let resultDate = `${year}-${day}-${month}`;
+    
+        return resultDate;
+    }
+
 }
 
 

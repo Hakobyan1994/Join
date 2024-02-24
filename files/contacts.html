@@ -6,32 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg">
 
-    <link rel="stylesheet" href="/css/menubar.css">
-    <link rel="stylesheet" href="/css/contacts.css">
-    <link rel="stylesheet" href="/css/addContacts.css">
-    <link rel="stylesheet" href="/css/contact-info.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/menubar.css">
+    <link rel="stylesheet" href="css/contacts.css">
+    <link rel="stylesheet" href="css/addContacts.css">
+    <link rel="stylesheet" href="css/contact-info.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <script src="/js/script.js"></script>
-    <script src="/js/includeHTML.js"></script>
-    <script src="/js/contacts.js"></script>
-    <script src="/js/contacts-templates.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/includeHTML.js"></script>
+    <script src="js/contacts.js"></script>
+    <script src="js/contacts-templates.js"></script>
 </head>
 
 <body onload="initContacts()">
-    <div w3-include-html="/assets/templates/menubar.html"></div>
+    <div w3-include-html="assets/templates/menubar.html"></div>
 
     <div id="mainContent" class="main-content">
         <div class="content">
             <div class="contacts-main">
+
                 <div id="addContactBtn" class="contacts">
                     <div class="added-contacts">
 
-                        <div id="addBtn" class="add-contact-btn-con"></div>
+                        <div class="contact-con-btn">
+                            <div id="addBtn" class="add-contact-btn-con"></div>
 
-                        <div id="allContacts" class="all-contacts"></div>
+                            <div id="allContacts" class="all-contacts"></div>
+                        </div>
 
                         <div class="dialog-bg d-none" id="dialogBg"></div>
 
@@ -46,7 +49,7 @@
                     <div class="headline">
                         Contacts
                         <div class="vertical-line">
-                            <img class="line-contacts" src="/assets/img/icons/Vector 5 (1).svg" alt="">
+                            <img class="line-contacts" src="assets/img/icons/Vector 5 (1).svg" alt="">
                         </div>
                         <div class="team-headline">
                             Better with a team

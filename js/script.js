@@ -21,15 +21,15 @@ async function getItem(key) {
 async function init() {
     await includeHTML();
     await loadContacts();
-    renderBackArrow();
-    hideUserImgHeader();
 }
 
 async function initSummary() {
     await includeHTML();
-    dateUpdate();
-    timer();
-    getValue();
+    // dateUpdate();
+    // timer();
+    await getValue();
+    loadTasks();
+    loadSelectedPage();
 }
 
 async function initAddTask() {
@@ -49,39 +49,36 @@ async function initBoard() {
     await includeHTML();
     await loadTasks();
     loadToDo();
-
 }
 
-function forwardToPage(page) {
-    let allButtons = document.querySelectorAll('.menubar a');
-    let clickedButton = document.getElementById(`${page}-page`);
-    allButtons.forEach(button => {
+function initIndex() {
+    localStorage.setItem('selectedPage', 'summary');
+    loadSelectedPage();
+}
 
-        if (button.classList.contains('selected-color')) {
-            button.classList.remove('selected-color');
-        
-        }
-    });
-
-    if (clickedButton) {
-        clickedButton.classList.add('selected-color');
-        selectPage = clickedButton;
-        localStorage.setItem('selectedPage', page);
-    }
+function forwardToPage(pageName, event) {
+    let menus = document.querySelectorAll('.menubar a');
+    menus.forEach(item => item.classList.remove('selected-color'));
+  
+    let active = document.getElementById(`${pageName}-page`);
+    active.classList.add('selected-color');
+    selectPage.push(pageName);
+    localStorage.setItem('selectedPage', pageName);
 }
 
 
 async function loadSelectedPage() {
     let page = localStorage.getItem('selectedPage');
-    let id = page + '-page';
+    let id = page.trim() + '-page';
     let div = document.getElementById(`${id}`);
+    console.log(id);
     if(div) {
         div.classList.add('selected-color');
     } else {
-        // console.log('nicht gefunden');
-        // if (div.classList.contains('selected-color')) {
-        //     div.classList.remove('selected-color');
-        // }
+        console.log('nicht gefunden');
+        if (div && div.classList.contains('selected-color')) {
+            div.classList.remove('selected-color');
+        }
     }
 }
 
@@ -90,9 +87,11 @@ function deleteLocalStorage() {
     localStorage.removeItem('selectedPage');
 }    
 
+
 function goBack() {
     window.history.back();
 }
+
 
 async function loadTasks() {
     try {

@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
-    <link rel="shortcut icon" href="/assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="/css/menubar.css">
-    <link rel="stylesheet" href="/css/board.css">
-    <link rel="stylesheet" href="/css/add-task.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/addContacts.css">
-    <script src="/js/script.js"></script>
-    <script src="/js/includeHTML.js"></script>
-    <script src="/js/add-task.js"></script>
-    <script src="/js/contacts.js"></script>
+    <link rel="shortcut icon" href="assets/img/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/menubar.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/add-task.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/addContacts.css">
+    <script src="js/script.js"></script>
+    <script src="js/includeHTML.js"></script>
+    <script src="js/add-task.js"></script>
+    <script src="js/contacts.js"></script>
+    <script src="js/add-task-templates.js"></script>
+    <script src="js/board-templates.js"></script>
     <style>
         body {
             background-color: #F6F7F8;
@@ -145,7 +147,7 @@
         }
 
         .adding_Button {
-            width: 24px;
+            width: 25px;
             height: 24px;
             border: 2px solid #2A3647;
             border-radius: 8px;
@@ -237,21 +239,7 @@
             height: max-content;
         }
 
-        .user_Story_button {
-            width: 113px;
-            height: 27px;
-            border: none;
-            border-radius: 8px;
-            padding: 4px 16px;
-            background-color: #0038FF;
-            color: #FFFFFF;
-            text-align: center;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 19px;
-            margin-bottom: 24px;
-        }
+
 
         .cooking_title_div {
             width: 220px;
@@ -319,25 +307,6 @@
         .main_Feedback_Infodiv {
             width: 220px;
             height: 183px;
-        }
-
-
-        .tecnical_TaskButton {
-            width: 144px;
-            height: 27px;
-            border-radius: 8px;
-            padding: 4px 16px;
-            background-color: #1FD7C1;
-            border: none;
-            cursor: pointer;
-            color: #FFFFFF;
-            font-size: 16px;
-            line-height: 19px;
-            font-weight: 400;
-            margin-bottom: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .feedback_TitleDiv {
@@ -507,10 +476,10 @@
 </head>
 
 <body onload="initBoard()">
-    <div w3-include-html="/assets/templates/menubar.html"></div>
+    <div w3-include-html="assets/templates/menubar.html"></div>
 
     <div class="popup-a-to-b d-none" id="popup-a-to-b-board">
-        <img src="/assets/img/task-to-board.svg" alt="">
+        <img src="assets/img/task-to-board.svg" alt="">
     </div>
 
     <div class="board-popup-bg d-none" id="popup-add-task">
@@ -533,8 +502,8 @@
             <form>
                 <div class="input_button_Div">
                     <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
-                    <button class="add-task-btn" onclick="openPopupAddTask(); return false">
-                        <img src="/assets/img/icons/addi.png" alt="">
+                    <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
+                        <img src="assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>
                 </div>
@@ -542,15 +511,15 @@
         </div>
         <div class="adding_div">
             <div class="todo_div">
-                <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
+                <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
 
             </div>
             <div class="progress_Div">
-                <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
+                <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
 
             </div>
             <div class="feedback_div">
-                <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask()">+</button>
+                <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
             </div>
 
             <div class="Done_div">
@@ -569,7 +538,7 @@
         <div class="card_Div4" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
 
-    <script src="/js/board.js"></script>
+    <script src="js/board.js"></script>
 </body>
 
 </html>

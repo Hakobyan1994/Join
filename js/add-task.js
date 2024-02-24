@@ -6,190 +6,49 @@ let iniimg = [];
 
 function renderAddTask() {
     let content = document.getElementById('add-task');
-
-    content.innerHTML = /*html*/`
-            <h2>Add Task</h2>
-            <div class="main-box">
-                <div class="form-addtask">
-                    ${generateHtmlAddTaskForm()}      
-                </div>
-                <div class="form-bottom">    
-                    ${generateHtmlFormSection()}
-                </div>  
-            </div>    
-
-    `;
+    let boardcard = 'board-to-do';
+    content.innerHTML = generateRenderAddTask(boardcard);
     addEventFunctions();
     addSubtask();
 }
 
+
 async function addEventFunctions() {
     await loadContacts();
     await loadTasks();
-    currentDate();
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
     clearButtonImgChange();
     setupSubtaskInputFocus();
     setupSubtaskInputFocus();
     enterOnSubtask();
-    dueDatePattern();
     inputfieldFocus();
     loadSelectedPage();
 }
 
 
-function generateHtmlAddTaskForm() {
-    return /*html*/`
-        <form>
-            ${generateHtmlTitle()}
-            ${generateHtmlDescription()}  
-            ${generateHtmlAssigned()}
-        </form>
-        <p class="addtask-line"></p>
-        <form>
-            ${generateHtmlDate()}  
-            ${generateHtmlPrio()}
-            ${generateHtmlCategory()}
-            ${generateHtmlSubtasks()}
-        </form>
-    `;
-}
-
-
-function generateHtmlTitle() {
-    return /*html*/`
-        <div class="title-div">
-            <label>Title<p class="redstar">*</p></label>
-            <input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus('title')" oninput="inputfieldFocus('title')" required>
-            <div class="required-text d-none" id="required-title">This field is required</div>
-        </div>
-    `;
-}
-
-
-function generateHtmlDescription() {
-    return /*html*/`
-        <label>Description</label>
-        <textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description"></textarea>  
-    `;
-}
-
-
-function generateHtmlAssigned() {
-    return /*html*/`
-        <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" readonly>
-        <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
-        <div class="assigned-list d-none" id="assigned-list"></div>
-        <div class="assigned-button" id="assigned-button"></div>
-    `;
-}
-
-
-function generateHtmlDate() {
-    return /*html*/`
-        <label>Due date<p class="redstar">*</p></label>
-        <div class="dueDate-div">
-            <div>
-                <input type="text" class="inputfield" id="date" pattern="\d{2}/\m{2}/\y{4}" placeholder="dd/mm/yyyy" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
-                <img src="/assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDate()">
-            </div>
-            <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
-        </div>
-        
-    `;
-}
-
-
-function generateHtmlPrio() {
-    return /*html*/`
-        <label>Prio</label>
-        <div class="prio-btn" id="prio" role="group">
-            <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="/assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="/assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-            <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="/assets/img/icons/prio-low.svg" alt="Low Prio"></button>
-        </div>  
-    `;
-}
-
-
-function generateHtmlCategory() {
-    return /*html*/`
-        <label>Category<p class="redstar">*</p></label>
-        <div class="category-div">
-            <!-- <select class="inputfield" id="category" onclick="inputfieldFocusCategory()" required>
-                <option value="" disabled selected hidden>Select task category</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="User Story">User Story</option>
-            </select> -->
-            <input class="inputfield category" value="" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')"required readonly>
-            <img src="/assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')">
-            <div class="category-list d-none" id="category-list"></div>
-            <div class="required-text d-none" id="required-category" style="margin-top: -16px;">This field is required</div> 
-        </div>
- 
-    `;
-}
-
-
-function generateHtmlSubtasks() {
-    return /*html*/`
-        <label id="subtasks-label">Subtasks</label>
-        <div style="height: 47px;">
-            <input type="text" class="inputfield subtask-input" id="subtask-input"> 
-            <img src="/assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
-            <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="/assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
-                <img src="/assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
-            </div>
-        </div>
-        <ul id="subtasks" class="subtasks"></ul>
-    `;
-}
-
-
-function generateHtmlFormSection() {
-    return /*html*/`
-        <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
-        <div class="form-bottom-right">
-            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="/assets/img/icons/close1.svg" alt="Clear" id="clear-button-img"></button>
-            <button class="create-task" onclick="createTask()">Create Task<img src="/assets/img/icons/check1.svg" alt="Create Task"></button>
-        </div> 
-    `;
-}
-
-// function activeAssignedTo() {
-//     let input = document.getElementById('assigned');
-//     let list = document.getElementById('assigned-list');
-//     let filter = input.value.toUpperCase();
-//     input.placeholder = '';
-//     list.classList.remove('d-none');
-// }
-
-// function deactiveAssignedTo() {
-//     let input = document.getElementById('assigned');
-//     input.placeholder = 'Select contacts to assign';
-//     let list = document.getElementById('assigned-list');
-//     list.classList.add('d-none');
-
-// }
-
 function renderAssignedList() {
+    
     let list = document.getElementById('assigned-list');
-    /* let input = document.getElementById('assigned');
-        // if (list.classList.contains('d-none')) {
-        //     input.placeholder = 'Searchfield + Checkbox on progress';
-        // } else {
-        //     input.placeholder = 'Select contacts to assign';
-        // }
-    */
+    if(list) {
+    let input = document.getElementById('assigned');
+         if (list.classList.contains('d-none')) {
+             input.placeholder = '';
+         } else {
+             input.placeholder = 'Select contacts to assign';
+         }
+    }
     list.classList.toggle('d-none');
     list.innerHTML = '';
+    renderContactList(list);
+    hideAssignedButton();
+}
+
+
+function renderContactList(list) {
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
         const img = contacts[i].initials;
-
         const userIndex = users.indexOf(name);
         const isSelected = userIndex !== -1;
         list.innerHTML += /*html*/`
@@ -198,13 +57,39 @@ function renderAssignedList() {
                     <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <!-- <img src="/assets/img/icons/none-selected.svg" alt="" id="checkbox-contact-${i}"> -->
-                <!-- <input type="checkbox" class="d-none" id="checkbox-contact-${i}"> -->
-            </div>
-        `;    
+                <img src="${isSelected ? 'assets/img/icons/selected1.svg' : 'assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+            </div>`;    
     }
-
 }
+
+
+function searchAssignedList() {
+    let input = document.getElementById('assigned');
+    let filter = input.value.toUpperCase();
+
+    for (let i = 0; i < contacts.length; i++) {
+        let list = document.getElementById(`assigned-contacts-${i}`);
+        let array = contacts[i].name;
+        let name = array.toUpperCase();
+        if(name.indexOf(filter) > -1) {
+            list.style.display = 'flex';
+        } else {
+            list.style.display = 'none';
+        }
+    }
+}
+
+function hideAssignedButton() {
+    let buttons = document.getElementById('assigned-button');
+    let list = document.getElementById('assigned-button');
+    if(!list.classList.contains('d-none')) {
+        buttons.classList.add('d-none');
+    } else {
+        buttons.classList.remove('d-none');
+    }
+}
+
+
 
 function renderCategoryList() {
     let list = document.getElementById('category-list');
@@ -218,12 +103,14 @@ function renderCategoryList() {
 function selectCategory(category) {
     let technical = document.getElementById('technical');
     let story = document.getElementById('story');
+    let input = document.getElementById('category');
 
     if (category === 'technical') {
         technical.classList.toggle('grey');
         technical.classList.toggle('white-bg');
         story.classList.remove('grey');
         story.classList.remove('white-bg');
+        input.focus();
     }
 
     else if (category === 'story') {
@@ -231,6 +118,7 @@ function selectCategory(category) {
         story.classList.toggle('white-bg');
         technical.classList.remove('grey');
         technical.classList.remove('white-bg');
+        input.focus();
     }
     pushCategorytoInput(category);
     inputfieldFocus('category');
@@ -258,13 +146,21 @@ function selectAssignedContacts(i) {
     let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
     contact.classList.toggle('white');
-    // checkbox.checked = !checkbox.checked;
+    if(contact.classList.contains('select-contact-blue')) {
+        checkbox.src = '/assets/img/icons/selected1.svg';
+        checkbox.classList.remove('checkbox-none-selected');
+        checkbox.classList.add('checkbox-selected');
+        
+    } else {
+        checkbox.src = '/assets/img/icons/none-selected1.svg';
+        checkbox.classList.add('checkbox-none-selected');
+        checkbox.classList.remove('checkbox-selected');
+    }
     pushUser(i);
 }
 
 
 function pushUser(i) {
-    // let checkbox = document.getElementById(`checkbox-contact-${i}`);
     let contact = document.getElementById(`assigned-contacts-${i}`);
     let approved = contact.classList.contains('select-contact-blue');
     let user = contacts[i].name;
@@ -282,7 +178,6 @@ function pushUser(i) {
             iniimg.splice(index, 1);
         }
     }
-
     generateAssignedButton();
 }
 
@@ -293,51 +188,16 @@ function generateAssignedButton() {
         const letters = iniimg[p];
         div.innerHTML += /*html*/`
             <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
-        `;
-        
+        `;     
     }
 }
 
-function currentDate() {
-    let border = document.getElementById('date');
-    let date = new Date();                              
 
-    let day = date.getDate();           
-    let month = date.getMonth() + 1;                   
-    let year = date.getFullYear();
-
-    if (month < 10) month = '0' + month;
-    if (day < 10) day = '0' + day;
-
-    let today = `${day}/${month}/${year}`;
-    document.getElementById("date").value = today;
-    border.classList.remove('inputfield-focus-white');
-}
-
-
-function dueDatePattern() {
-    let dateInput = document.getElementById('date');
-
-    dateInput.addEventListener('input', function () {
-        let isValid = /^\d{2}\/\m{2}\/\y{4}$/.test(dateInput.value);
-
-        if (!isValid) {
-            dateInput.setCustomValidity('Ungültiges Datumsformat. Verwende das Format dd/mm/yyyy.');
-        } else {
-            dateInput.setCustomValidity('');
-
-            let parts = dateInput.value.split('/');
-            let formattedDate = `${parts[1]}/${parts[0]}/${parts[2]}`;
-            dateInput.value = formattedDate;
-        }
-    });
-} 
 
 
 function pushPrio() {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
-
     let selectedPriority = null;
 
     prioButtons.forEach(function(button) {
@@ -345,11 +205,9 @@ function pushPrio() {
             selectedPriority = button.value;
         }
     });
-
     if (selectedPriority === null) {
         selectedPriority = 'medium';
     }
-
     return selectedPriority;
 }
 
@@ -369,7 +227,6 @@ function getPrio() {
                     btn.classList.remove('prio-notselected');
                     btn.classList.add('prio-notselected');
                 });
-    
                 button.classList.add('prio-notselected');
                 button.classList.remove('prio-notselected');
             }
@@ -439,14 +296,13 @@ function addSubtask() {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
     }
-
     content.value = '';
 }
 
@@ -460,9 +316,9 @@ function editSubtask(i) {
     listItem.innerHTML = /*html*/`
         <input class="each-subtask-p editable" id="subtask${i}" value="${inputValue}">
         <div class="subtask-right editable-img">
-            <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             <p class="separator"></p>
-            <img src="/assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
+            <img src="assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
         </div>
     `;
 }
@@ -481,14 +337,15 @@ function deleteSubtask(i) {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
     }
 }
+
 
 function pushEditedSubtask(i) {
     let inputField = document.getElementById(`subtask${i}`);
@@ -503,6 +360,7 @@ function pushEditedSubtask(i) {
         };
 }
 
+
 function updateSubtasklist() {
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
@@ -513,13 +371,14 @@ function updateSubtasklist() {
         <li class="each-subtask" id="each-subtask${k}">
             <div class="each-subtask-p" id="subtask${k}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="/assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
+                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
                 <p class="separator"></p>
-                <img src="/assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
+                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
             </div>
         </li>`;
     }
 }
+
 
 function clearSubtaskInputField() {
     let input = document.getElementById('subtask-input');
@@ -532,13 +391,12 @@ function clearButtonImgChange() {
     let clearButton = document.getElementById('clear-button');
     if (clearButton) {
         clearButton.addEventListener('mouseover', function() {
-            img.src = '/assets/img/icons/close-blue.svg';
+            img.src = 'assets/img/icons/close-blue1.svg';
         });
         clearButton.addEventListener('mouseout', function() {
-            img.src = '/assets/img/icons/close1.svg';
+            img.src = 'assets/img/icons/close-black1.svg';
         });
     }
-
 }
 
 
@@ -567,7 +425,7 @@ function clearFields() {
 }
 
 
-async function createTask() {
+async function createTask(boardcard) {
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
     let requiredDate = document.getElementById('required-date');
@@ -577,29 +435,13 @@ async function createTask() {
     let priority = pushPrio();
     let category = document.getElementById('category');
 
+    let dateValue = date.value;
+    let formatedDate = formatDate(dateValue);
+
     if (title.value && date.value && category.value) {
         
-        tasks = JSON.parse(await getItem('tasks')) || [];
-
-        if (!Array.isArray(existingTasks)) {
-            tasks = [];
-        }
-
-        let newTask = {
-            title: title.value,
-            description: description.value,
-            assigned: users,
-            letter: iniimg,
-            date: date.value,
-            priority: priority,
-            category: category.value,
-            subtask: subtasks,
-            checkoffs: [],
-            status: 'board-to-do'
-        };
-
-        tasks.push(newTask);
-
+        loadTasks();
+        pushToTodoBoard(priority, boardcard, description, formatedDate);
         await setItem('tasks', JSON.stringify(tasks));
         clearFields();
        
@@ -621,7 +463,25 @@ async function createTask() {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
+    localStorage.setItem('selectedPage', 'board');
     return tasks;
+}
+
+
+function pushToTodoBoard(priority, boardcard, description, formatedDate) {
+    let newTask = {
+        title: title.value,
+        description: description.value,
+        assigned: users,
+        letter: iniimg,
+        date: formatedDate,
+        priority: priority,
+        category: category.value,
+        subtask: subtasks,
+        checkoffs: [],
+        status: boardcard
+    };
+    tasks.push(newTask);
 }
 
 
@@ -667,9 +527,10 @@ function openToBoard() {
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
-        window.location.href = "/files/board.html";
+        window.location.href = "files/board.html";
     }
 }
+
 
 function openInBoard() {
     let popup = document.getElementById('popup-a-to-b-board');
@@ -677,11 +538,11 @@ function openInBoard() {
     if (popup !== null) {
 
         setTimeout(() => {
-            window.location.href = "/files/board.html";
+            window.location.href = "files/board.html";
         }, "1500");
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
-        window.location.href = "/files/board.html";
+        window.location.href = "files/board.html";
     }
 }

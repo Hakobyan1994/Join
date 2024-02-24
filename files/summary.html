@@ -5,75 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
-    <script src="/js/includeHTML.js"></script>
-    <script src="/js/script.js"></script>
-    
-    <link rel="stylesheet" href="/css/summary.css">
-    <link rel="stylesheet" href="/css/menubar.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <script src="js/includeHTML.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/add-task.js"></script>
+    <script src="js/add-task-templates.js"></script>
+    <script src="js/board-templates.js"></script>
+
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/menubar.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body onload="initSummary()">
-    <div w3-include-html="/assets/templates/menubar.html"></div>
-     <div class="info_titleDiv">
+    <div w3-include-html="assets/templates/menubar.html"></div>
+    <div class="info_titleDiv">
         <h1>Join 360</h1>
-         <div class="vector"></div>
-          <span>Key Metrics at a Glance</span>
-     </div>
-         
-      
-        
-        <div class="main_checkingDiv">
+        <div class="vector"></div>
+        <span>Key Metrics at a Glance</span>
+    </div>
 
-            <a href="/files/board.html">
+
+
+    <div class="main_checkingDiv">
+
+        <a href="files/board.html">
             <div class="To_Done_mainDiv">
                 <div class="toDo_mainDiv">
-                <div class="image_Todo"><img class="editImage" src="/assets/img/icons/edit.png" alt=""></div>  
-                <div class="toDo_numberDiv">
-                    <span class="toDo_num" id="value-todoarray"></span>
-                    <span class="toDo_title">To do</span>
+                    <div class="image_Todo"><img class="editImage" src="assets/img/icons/edit.png" alt=""></div>
+                    <div class="toDo_numberDiv">
+                        <span class="toDo_num" id="value-todoarray"></span>
+                        <span class="toDo_title">To do</span>
+                    </div>
                 </div>
-                </div>
-          
 
-            
-            <div class="done_main"> 
-                   <div class="image_box"><img class="vector_image" src="/assets/img/icons/Vector.png" alt=""></div> 
-                   <div class="done_numberDiv">
-                      <span class="done_number" id="value-donearray"></span>
-                     <span class="done_title">Done</span>
-                   </div> 
+
+
+                <div class="done_main">
+                    <div class="image_box"><img class="vector_image" src="assets/img/icons/Vector.png" alt=""></div>
+                    <div class="done_numberDiv">
+                        <span class="done_number" id="value-donearray"></span>
+                        <span class="done_title">Done</span>
+                    </div>
+                </div>
             </div>
-        </div>  
-          
-          
-           
-                <div class="mainTime_UrgentDiv">
+
+
+
+            <div class="mainTime_UrgentDiv">
                 <div class="urgent_Box">
-                 <div class="urgentImage_div"><img class="urgentImage" src="/assets/img/icons/urgent.png" alt=""></div>   
-                  <div class="urgentt_div">
-                   <span class="urgent_Number" id="value-urgent"></span>
-                   <span class="urgent_title">Urgent</span>
-                  </div>
-                  
+                    <div class="urgentImage_div"><img class="urgentImage" src="assets/img/icons/urgent.png" alt="">
+                    </div>
+                    <div class="urgentt_div">
+                        <span class="urgent_Number" id="value-urgent"></span>
+                        <span class="urgent_title">Urgent</span>
+                    </div>
+
 
                 </div>
-                    <div class="urgentVector"></div>
-                     <div class="Date_box">
-                        <span id="date" class="Datespan"></span>
-                        <span class="date_title"> Upcoming Deadline</span>
-                     </div>
+                <div class="urgentVector"></div>
+                <div class="Date_box">
+                    <span id="date" class="Datespan"></span>
+                    <span class="date_title"> Upcoming Deadline</span>
                 </div>
-               <div class="tasksmain_Board">
+            </div>
+            <div class="tasksmain_Board">
                 <div class="board_Div">
                     <div class="board_info">
-                    <span class="boardNumber" id="value-total"></span>
-                    <span class="board_title"> Tasks in Board</span>
-                   </div>
+                        <span class="boardNumber" id="value-total"></span>
+                        <span class="board_title"> Tasks in Board</span>
+                    </div>
                 </div>
-                <div  class="progress_Div">
+                <div class="progress_Div">
                     <div class="progress_Infobox">
-                       <span class="progress_number" id="value-progressarray"></span>
+                        <span class="progress_number" id="value-progressarray"></span>
                         <span class="progress_Info">Tasks in Progress</span>
                     </div>
 
@@ -83,22 +87,22 @@
                         <span class="feedback_number" id="value-feedbackarray"></span>
                         <span class="feedback_title">Awaiting Feedback</span>
                     </div>
-               
+
                 </div>
-               </div>
+            </div>
 
-        </div> 
- 
-          
-        <div id="profil_name" class="profil_name">
-             <span class="greeting">Good Morning,</span>
-              <span  class="greetingName"></span>
-           </div>
-
-       <span id="data"></span>
+    </div>
 
 
-           <script src="/js/summary.js"></script>  
+    <div id="profil_name" class="profil_name">
+        <span id="timeOfDay" class="greeting"></span>
+        <span class="greetingName"></span>
+    </div>
+
+    <span id="data"></span>
+
+
+    <script src="js/summary.js"></script>
 </body>
 
 
