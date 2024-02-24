@@ -195,7 +195,7 @@ function generateEditMaskOverlay(i) {
                                         <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
                                     </div>
                                     <div>
-                                        <input id="phoneEdit" name="phone" class="input-con" placeholder="Phone" type="number" pattern="[0-9\s()+-]*" required>
+                                        <input id="phoneEdit" name="phone" class="input-con" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" pattern="[0-9\s()+-]*" required>
                                         <img class="input-svg-pos" src="/assets/img/icons/call.svg" alt="">
                                     </div>
 

@@ -286,7 +286,6 @@ function closeAddContactSlider() {
         dialog.classList.add('d-none');
         hideAddContactSlider();
     }, 200);
-
 }
 
 
