@@ -8,17 +8,17 @@ if (locRes) {
   console.log(locRes);
   let profilName = document.querySelector('.greetingName');
   profilName.innerText = locRes.name
-}  
+}
 
 
-let guestsUsing=JSON.parse(localStorage.getItem('guestsUser'))
+let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 if (guestsUsing) {
-    let  profilName=document.querySelector('.greetingName')
-    profilName.innerText=guestsUsing[0].name
-    let greetingForUser=document.querySelector('.greeting')
-    greetingForUser.innerText=guestsUsing[0].greeting
-    document.getElementById('profil_name').classList.remove('profil_name')
-    document.getElementById('profil_name').classList.add('guestsGreeting')
+  let profilName = document.querySelector('.greetingName')
+  profilName.innerText = guestsUsing[0].name
+  let greetingForUser = document.querySelector('.greeting')
+  greetingForUser.innerText = guestsUsing[0].greeting
+  document.getElementById('profil_name').classList.remove('profil_name')
+  document.getElementById('profil_name').classList.add('guestsGreeting')
 }
 let arrayUrgent = [
   {
@@ -94,7 +94,7 @@ function getUrgentDate() {
   for (let j = 0; j < tasks.length; j++) {
     const array = tasks[j].priority;
     const date = tasks[j].date;
-    if(array === 'urgent' ) {
+    if (array === 'urgent') {
       arrayUrgent.push(date);
     } else {
       console.log('not found a urgent pos');
@@ -102,17 +102,17 @@ function getUrgentDate() {
   }
   deleteOldUrgent();
   validateUpcomingDeadline();
-  
+
 }
 
 function deleteOldUrgent() {
   let dateArray = arrayUrgent.map(urgentString => {
     let [day, month, year] = urgentString.split('/').map(Number);
-    return new Date(year, month -1, day);
+    return new Date(year, month - 1, day);
   });
   let earliestDate = new Date(Math.min(...dateArray));
   console.log(earliestDate);
-  if(earliestDate < new Date()) {
+  if (earliestDate < new Date()) {
     arrayUrgent.splice(earliestDate);
   } else {
     console.log('all tasks have no expired upcoming deadline ');
@@ -129,9 +129,9 @@ function actualDate() {
 function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('date');
 
-  if(arrayUrgent.length === 0) {
+  if (arrayUrgent.length === 0) {
     dateDiv.innerHTML = '-';
-  } else if(arrayUrgent.length > -1) {
+  } else if (arrayUrgent.length > -1) {
     dateDiv.innerHTML = defineUpcomingDeadline();
   }
 }
@@ -153,27 +153,27 @@ function defineUpcomingDeadline() {
 
 
 function getGreeting() {
-    const now = new Date();
-    const hour = now.getHours();
+  const now = new Date();
+  const hour = now.getHours();
 
-    let greeting = "";
+  let greeting = "";
 
-    if (hour >= 5 && hour < 12) {
-        greeting = "Good morning,";
-    } else if (hour >= 12 && hour < 18) {
-        greeting = "Good afternoon,";
-    } else {
-        greeting = "Good evening,";
-    }
+  if (hour >= 5 && hour < 12) {
+    greeting = "Good morning,";
+  } else if (hour >= 12 && hour < 18) {
+    greeting = "Good afternoon,";
+  } else {
+    greeting = "Good evening,";
+  }
 
-    return greeting;
+  return greeting;
 }
 
 
 function displayGreeting() {
-    const greetingContainer = document.getElementById('timeOfDay');
-    const greeting = getGreeting();
-    greetingContainer.textContent = greeting;
+  const greetingContainer = document.getElementById('timeOfDay');
+  const greeting = getGreeting();
+  greetingContainer.textContent = greeting;
 }
 
 

@@ -111,13 +111,14 @@ body {
 
 .add-contact-btn-con {
     width: 100%;
-    height: 70px;
     display: flex;
     justify-content: center;
     position: relative;
-    top: 120px;
+    top: 36px;
     z-index: 1;
     background-color: white;
+    padding-top: 100px;
+    padding-bottom: 30px;
 }
 
 .add-contact-btn {
@@ -154,10 +155,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    position: relative;
-    top: 70px;
-    margin-bottom: 70px;
     overflow-x: hidden;
+    padding-top: 40px;
 }
 
 .contact-con-pos {
@@ -231,7 +230,7 @@ body {
     align-items: flex-start;
     gap: 8px;
     align-self: stretch;
-    padding-left: 92px;
+    padding-left: 81px;
 }
 
 .contact-line {
@@ -312,5 +311,8 @@ body {
     margin-top: 5px;
 }
 
-
-
+.contact-con-btn {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}

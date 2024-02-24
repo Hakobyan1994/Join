@@ -4,6 +4,7 @@ let contactIdCounter = 0;
 let initials;
 let contactInfoSliderVisible = false;
 
+
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
@@ -12,30 +13,52 @@ function renderContacts() {
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
 
-    let currentLetter = '';
-    let currentSeparator = '';
+    let lastLetter = '';
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
-        let firstLetter = '';
-        renderContactImgInitials(currentLetter, currentSeparator, contact, firstLetter, i, contactsContainer);
+        lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
     }
+
     loadSelectedPage();
 }
 
-function renderContactImgInitials(currentLetter, currentSeparator, contact, firstLetter, i, contactsContainer) {
+
+
+function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
     if (contact.name && contact.name.length > 0) {
-        firstLetter = contact.name.charAt(0).toUpperCase();
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+
+        if (firstLetter !== lastLetter) {
+            contactsContainer.innerHTML += generateLetterCon(firstLetter) + generateSeparator();
+        }
+
+        const imageId = `contactImage${i}`;
+        contactsContainer.innerHTML += generateContact(i, contact, imageId);
+        addInitialsToContactImage(contact, imageId);
+
+        return firstLetter; 
     }
 
-    if (firstLetter !== currentLetter) {
-        currentLetter = firstLetter;
-        currentSeparator = generateSeparator();
-        contactsContainer.innerHTML += generateLetterCon(currentLetter) + currentSeparator;
+    return lastLetter; 
+}
+
+
+
+function addInitialsToContactImage(contact, imageId) {
+    if (contact && contact.name) {
+        const nameParts = contact.name.trim().split(' ');
+        initials = '';
+
+        for (let i = 0; i < nameParts.length; i++) {
+            initials += nameParts[i].charAt(0).toUpperCase();
+        }
+
+        const imageElement = document.getElementById(imageId);
+        imageElement.alt = initials;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
+        applyRandomColorToImage(imageElement, initials);
     }
-    const imageId = `contactImage${i}`;
-    contactsContainer.innerHTML += generateContact(i, contact, imageId);
-    addInitialsToContactImage(contact, imageId);
 }
 
 
@@ -51,6 +74,7 @@ function addToContacts() {
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
 
+
 function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     if (!validateInputs(name, email, phone)) {
         return;
@@ -65,6 +89,7 @@ function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     }
     addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
 }
+
 
 function validateInputs(name, email, phone) {
     if (!/^[a-zA-Z\s]*$/.test(name)) {
@@ -90,6 +115,7 @@ function validateInputs(name, email, phone) {
     return true;
 }
 
+
 async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials) {
     addContactToArray(formattedName, email, phone, initials);
     clearInputs(nameInput, emailInput, phoneInput);
@@ -100,9 +126,11 @@ async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, e
     addedContactSuccessfully();
 }
 
+
 function checkExistingEmail(email) {
     return contacts.some(contact => contact.email === email);
 }
+
 
 function addedContactSuccessfully() {
     let success = document.getElementById('successCon');
@@ -115,6 +143,7 @@ function addedContactSuccessfully() {
         success.classList.add('slide-out-success-btn');
     }, 1500);
 }
+
 
 function splitNameAndCapitalize(inputName) {
     const nameParts = inputName.trim().split(' ');
@@ -129,6 +158,7 @@ function splitNameAndCapitalize(inputName) {
     return formattedNameParts.join(' ');
 }
 
+
 function formatInitials(inputName) {
     let nameParts = inputName.trim().split(' ');
     let initials = '';
@@ -139,6 +169,7 @@ function formatInitials(inputName) {
 
     return initials;
 }
+
 
 function addContactToArray(name, email, phone, initials) {
     let randomColor = getRandomColor(initials);
@@ -155,6 +186,7 @@ function addContactToArray(name, email, phone, initials) {
     contacts.push(contact);
 }
 
+
 function saveContact(i) {
     let contact = contacts[i];
     let contactName = document.getElementById('nameEdit').value;
@@ -168,6 +200,7 @@ function saveContact(i) {
     saveContactHelp(i, contacts)
 }
 
+
 async function saveContactHelp(i, contacts) {
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
@@ -176,11 +209,13 @@ async function saveContactHelp(i, contacts) {
     contactInfoSlider(i);
 }
 
+
 function clearInputs(name, email, phone) {
     name.value = '';
     email.value = '';
     phone.value = '';
 }
+
 
 async function loadContacts() {
     try {
@@ -190,21 +225,6 @@ async function loadContacts() {
     }
 }
 
-function addInitialsToContactImage(contact, imageId) {
-    if (contact && contact.name) {
-        const nameParts = contact.name.trim().split(' ');
-        initials = '';
-
-        for (let i = 0; i < nameParts.length; i++) {
-            initials += nameParts[i].charAt(0).toUpperCase();
-        }
-
-        const imageElement = document.getElementById(imageId);
-        imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
-        applyRandomColorToImage(imageElement, initials);
-    }
-}
 
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
@@ -222,14 +242,17 @@ function getRandomColor(seed) {
     return color;
 }
 
+
 function applyRandomColorToImage(imageElement, seed) {
     const randomColor = getRandomColor(seed);
     imageElement.style.backgroundColor = randomColor;
 }
 
+
 function dontCloseCard(event) {
     event.stopPropagation();
 }
+
 
 function showAddContactOverlay() {
     let dialog = document.getElementById('dialog');
@@ -239,6 +262,7 @@ function showAddContactOverlay() {
     dialog.innerHTML = generateAddContactOverlay();
     showAddContactSlider();
 }
+
 
 function showEditContactOverlay(i) {
     let editMask = document.getElementById('editMask');
@@ -250,6 +274,7 @@ function showEditContactOverlay(i) {
     loadContactInfo(i);
     displayContactImage(i);
 }
+
 
 function closeAddContactSlider() {
     let dialog = document.getElementById('dialog');
@@ -263,6 +288,7 @@ function closeAddContactSlider() {
 
 }
 
+
 function closeEditContactSlider() {
     let editMask = document.getElementById('editMask');
     editMask.classList.remove('slide-in');
@@ -274,12 +300,14 @@ function closeEditContactSlider() {
     }, 200);
 }
 
+
 function showAddContactSlider() {
     document.getElementById('dialogBg').classList.remove('hide-dialog-bg');
     document.getElementById('dialogBg').classList.remove('d-none');
     document.getElementById('dialogBg').classList.add('dialog-bg');
     document.getElementById('contactInfoSlider').classList.add('show');
 }
+
 
 function hideAddContactSlider() {
     document.getElementById('dialogBg').classList.add('hide-dialog-bg');
@@ -288,6 +316,7 @@ function hideAddContactSlider() {
     document.getElementById('dialogBg').classList.add('d-none');
     document.getElementById('contactInfoSlider').classList.remove('show');
 }
+
 
 function displayContactImage(i) {
     let contact = contacts[i];
@@ -301,11 +330,13 @@ function displayContactImage(i) {
     }
 }
 
+
 function loadContactInfo(i) {
     document.getElementById('nameEdit').value = contacts[i].name;
     document.getElementById('emailEdit').value = contacts[i].email;
     document.getElementById('phoneEdit').value = contacts[i].phone;
 }
+
 
 async function deleteContact(i) {
     contacts.splice(i, 1);
@@ -314,6 +345,7 @@ async function deleteContact(i) {
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
 }
+
 
 function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
@@ -324,6 +356,7 @@ function showContactInfoSlider(i) {
 
     renderContactInfo(i, contactInfoSlider);
 }
+
 
 function renderContactInfo(i, contactInfoSlider) {
     let contact = contacts[i];
@@ -338,8 +371,29 @@ function renderContactInfo(i, contactInfoSlider) {
     contactInfoSlider.dataset.contactId = i;
 }
 
+
 function addRandomColorToImg(imageElement, contact) {
     if (imageElement) {
         applyRandomColorToImage(imageElement, contact.initials);
     }
+}
+
+
+function onlyNumbers(evt) {
+    let charCode = (evt.which) ? evt.which : event.keyCode;
+
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 8 && charCode !== 37 && charCode !== 39) {
+        return false;
+    }
+
+    return true;
+}
+
+
+function changeImage(hovered) {
+    if (hovered) {
+        document.getElementById('cancelBtnImg').src = '/assets/img/icons/close-blue1.svg';
+    } else {
+        document.getElementById('cancelBtnImg').src = '/assets/img/icons/close.svg';
+}
 }

@@ -62,10 +62,4 @@ function includeHTML() {
     }
   }      
 }  
- 
-   
 
-
-
- 
-   

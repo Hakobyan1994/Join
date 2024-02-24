@@ -117,7 +117,7 @@ function generateAddContactOverlay() {
                             <div class="person-con">
                                 <img class="person-img-bgr" src="/assets/img/icons/Group 9.svg"
                                     alt="">
-                                <img class="person-img-add-contacts" src="/assets/img/icons/person.svg" alt="">
+                                <img class="person-img-add-contacts" src="/assets/img/icons/contact_person_white.svg" alt="">
                             </div>
 
                             <form onsubmit="addToContacts()" class="add-contact-data">
@@ -135,19 +135,19 @@ function generateAddContactOverlay() {
                                 </div>
                                 <div>
                                     <input id="phone" name="phone" class="input-con"
-                                        placeholder="Phone" type="number" pattern="[0-9\s()+-]*" required>
+                                        placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" pattern="[0-9\s()+-]*" required>
                                     <img class="input-svg-pos" src="/assets/img/icons/call.svg"
                                         alt="">
                                 </div>
 
                                 <div class="add-contact-btns">
-                                    <button type="button" class="cancel-btn" onclick="closeAddContactSlider()">
-                                        Cancel <img class="cancel-btn-img" src="/assets/img/icons/Close.svg" alt="" style="fill: var(--Version-2-main-color, #2A3647);">
+                                    <button onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
+                                        <span class="cancel-txt-fix">Cancel</span><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close.svg" alt="Close">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
                                         Create contact <img src="/assets/img/icons/check1.svg"
-                                            alt="">
+                                            alt="crerate contact">
                                     </button>
                                 </div>
                             </form>
