@@ -69,9 +69,6 @@ function validLogin(e) {
 }
 
 
-
-   
-
 document.addEventListener('DOMContentLoaded',function(){
  const passwordInput=document.getElementById('password')
  const inputImage=document.getElementById('imageInput')
@@ -94,8 +91,6 @@ document.addEventListener('DOMContentLoaded',function(){
 })   
   
        
-
-
 setTimeout(()=> {
     localStorage.setItem('stop', JSON.stringify('stop'))
 },3000)
