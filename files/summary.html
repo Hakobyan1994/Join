@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
-    <script src="/js/includeHTML.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/add-task.js"></script>
-    <script src="/js/add-task-templates.js"></script>
-    <script src="/js/board-templates.js"></script>
+    <script src="js/includeHTML.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/add-task.js"></script>
+    <script src="js/add-task-templates.js"></script>
+    <script src="js/board-templates.js"></script>
 
-    <link rel="stylesheet" href="/css/summary.css">
-    <link rel="stylesheet" href="/css/menubar.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/menubar.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body onload="initSummary()">
-    <div w3-include-html="/assets/templates/menubar.html"></div>
+    <div w3-include-html="assets/templates/menubar.html"></div>
     <div class="info_titleDiv">
         <h1>Join 360</h1>
         <div class="vector"></div>
@@ -28,10 +28,10 @@
 
     <div class="main_checkingDiv">
 
-        <a href="/files/board.html">
+        <a href="files/board.html">
             <div class="To_Done_mainDiv">
                 <div class="toDo_mainDiv">
-                    <div class="image_Todo"><img class="editImage" src="/assets/img/icons/edit.png" alt=""></div>
+                    <div class="image_Todo"><img class="editImage" src="assets/img/icons/edit.png" alt=""></div>
                     <div class="toDo_numberDiv">
                         <span class="toDo_num" id="value-todoarray"></span>
                         <span class="toDo_title">To do</span>
@@ -41,7 +41,7 @@
 
 
                 <div class="done_main">
-                    <div class="image_box"><img class="vector_image" src="/assets/img/icons/Vector.png" alt=""></div>
+                    <div class="image_box"><img class="vector_image" src="assets/img/icons/Vector.png" alt=""></div>
                     <div class="done_numberDiv">
                         <span class="done_number" id="value-donearray"></span>
                         <span class="done_title">Done</span>
@@ -53,7 +53,7 @@
 
             <div class="mainTime_UrgentDiv">
                 <div class="urgent_Box">
-                    <div class="urgentImage_div"><img class="urgentImage" src="/assets/img/icons/urgent.png" alt="">
+                    <div class="urgentImage_div"><img class="urgentImage" src="assets/img/icons/urgent.png" alt="">
                     </div>
                     <div class="urgentt_div">
                         <span class="urgent_Number" id="value-urgent"></span>
@@ -102,7 +102,7 @@
     <span id="data"></span>
 
 
-    <script src="/js/summary.js"></script>
+    <script src="js/summary.js"></script>
 </body>
 
 
