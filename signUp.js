@@ -71,19 +71,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordImage = document.getElementById('passwordBlock')
     passwordInput.addEventListener('input', function () {
         if (passwordInput.value.trim() !== '') {
-            passwordImage.src = 'assets/img/anmeldung Image/blockPassword.svg'
+            passwordImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
             passwordImage.onclick = function () {
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text'
-                    passwordImage.src = 'assets/img/anmeldung Image/passwordLock.svg'
+                    passwordImage.src = '../assets/img/anmeldung Image/passwordLock.svg'
                 } else {
                     passwordInput.type = 'password'
-                    passwordImage.src = 'assets/img/anmeldung Image/blockPassword.svg'
+                    passwordImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
                 }
             }
         } else {
             passwordInput.value.trim() === ''
-            passwordImage.src = 'assets/img/anmeldung Image/lock.png'
+            passwordImage.src = '../assets/img/anmeldung Image/lock.png'
         }
     });
 });
@@ -94,20 +94,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const confirmImage = document.getElementById('confirmBlock')
     confirmInput.addEventListener('input', function () {
         if (confirmInput.value.trim() !== '') {
-            confirmImage.src = 'assets/img/anmeldung Image/blockPassword.svg'
+            confirmImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
             confirmImage.onclick = function () {
                 if (confirmInput.type === 'password') {
                     confirmInput.type = 'text'
-                    confirmImage.src = 'assets/img/anmeldung Image/passwordLock.svg'
+                    confirmImage.src = '../assets/img/anmeldung Image/passwordLock.svg'
                 } else {
                     confirmInput.type = 'password'
-                    confirmImage.src = 'assets/img/anmeldung Image/blockPassword.svg'
+                    confirmImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
                 }
             }
         }
         else {
             confirmInput.value.trim() === ''
-            confirmImage.src = 'assets/img/anmeldung Image/lock.png'
+            confirmImage.src = '../assets/img/anmeldung Image/lock.png'
         }
     })
 })

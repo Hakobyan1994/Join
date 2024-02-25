@@ -97,7 +97,7 @@ function generateBoardCardTodo(task, i) {
         </div>
         <div class="Members_Div">
             <div id="user-board-${i}"></div>
-            <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+            <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
         </div>
     </div>      
     `;
@@ -123,7 +123,7 @@ function generateBoardCardProgress(task, i) {
             </div>
             <div class="Members_Div">
                 <div id="user-board-${i}"></div>
-                <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
             </div>
         </div>   
     `;
@@ -149,7 +149,7 @@ function generateBoardCardFeedback(task, i) {
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
-                    <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                    <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div>   
     `; 
@@ -175,7 +175,7 @@ function generateBoardCardDone(task, i) {
                 </div>
                 <div class="Members_Div">
                     <div id="user-board-${i}"></div>
-                    <img src="assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                    <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div> 
     `;
@@ -205,7 +205,7 @@ async function openPopupAddTaskDiv(i) {
     content.classList.add('slide-in');
     let task = tasks[i];
     content.innerHTML = /*html*/`
-        <img class="close-a-board" src="assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
+        <img class="close-a-board" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
         `;
     content.innerHTML += /*html*/`
         <div class="popup-text">
@@ -221,7 +221,7 @@ async function openPopupAddTaskDiv(i) {
                     <div class="popup-date">${task.date}</div>
                     <div class="popup-prio-section">
                         <div>${task.priority.charAt(0).toUpperCase() + task.priority.slice(1).toLowerCase()}</div>
-                        <img src="assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
+                        <img src="../assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
             </div>
@@ -238,12 +238,12 @@ async function openPopupAddTaskDiv(i) {
             </div>
             <div class="popup-task-footer">
                 <div class="popup-task-footer-section" onclick="deleteTask(${i})">
-                    <img src="assets/img/icons/trash.svg" alt="Trash Icon">
+                    <img src="../assets/img/icons/trash.svg" alt="Trash Icon">
                     <div>Delete</div>
                 </div>
                 <p class="separator"></p>
                 <div class="popup-task-footer-section" onclick="editTask(${i})">
-                    <img src="assets/img/icons/edit.svg" alt="Edit Icon">
+                    <img src="../assets/img/icons/edit.svg" alt="Edit Icon">
                     <div>Edit</div>
                 </div> 
             </div>
@@ -282,7 +282,7 @@ function createSubtasksToAddTaskPopup(i) {
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
                 <div>
-                    <img src="assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask('${i}','${k}')">
+                    <img src="../assets/img/icons/none-selected.svg" alt="Select Icon" id="select-subtask-board-${k}" onclick="checkOffSubtask('${i}','${k}')">
                     <div id="each-subtasks-${k}" value="not-selected">${subtasks}</div>   
                 </div>
             </div>
@@ -301,11 +301,11 @@ function checkSelectedSubtasks(i) {
         let subtask = document.getElementById(`each-subtasks-${k}`);
 
         if (task.checkoffs.includes(k.toString())) {
-            img.src = 'assets/img/icons/selected.svg';
+            img.src = '../assets/img/icons/selected.svg';
             img.alt = 'Selected';
             subtask.setAttribute('value', 'selected');
         } else {
-            img.src = 'assets/img/icons/none-selected.svg';
+            img.src = '../assets/img/icons/none-selected.svg';
             img.alt = 'Not Selected';
             subtask.setAttribute('value', 'not-selected');
         }
@@ -320,12 +320,12 @@ async function checkOffSubtask(i, k) {
 
 
     if (img.src.includes('none-selected.svg')) {
-        img.src = 'assets/img/icons/selected.svg';
+        img.src = '../assets/img/icons/selected.svg';
         img.alt = 'Selected';
         subtask.setAttribute('value', 'selected');
         pushSelectedSubtask(i, k);
     } else {
-        img.src = 'assets/img/icons/none-selected.svg';
+        img.src = '../assets/img/icons/none-selected.svg';
         img.alt = 'Not Selected';
         subtask.setAttribute('value', 'not-selected');
         pushSelectedSubtask(i, k);
@@ -464,7 +464,7 @@ function cancelButton() {
     button.innerHTML = '';
     // document.getElementById('clear-button').onclick = closePopupAddTask();
     button.innerHTML = /*html*/`
-        Cancel<img src="assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
+        Cancel<img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
     `;
 }
 
@@ -487,7 +487,7 @@ function editTask(i) {
     popup.classList.add('d-none');
     div.classList.remove('d-none');
     content.innerHTML = /*html*/`
-        <img class="close-a-board edit-close-icon" src="assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
+        <img class="close-a-board edit-close-icon" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
         `;
     content.innerHTML += generateEditableAddtask(i);
     addEventFunctions();
@@ -514,7 +514,7 @@ function generateEditableAddtask(i) {
                     ${generateHtmlAssigned()}
                     ${generateHtmlSubtasks()}
                 </div>
-                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="assets/img/icons/check1.svg" alt="Check Icon"></button>
+                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="../assets/img/icons/check1.svg" alt="Check Icon"></button>
             </div>       
 
     `; 
@@ -557,9 +557,9 @@ function getSubtasks() {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;        
