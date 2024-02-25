@@ -62,6 +62,19 @@ function addInitialsToContactImage(contact, imageId) {
 }
 
 
+function displayContactImage(i) {
+    let contact = contacts[i];
+    let contactImage = document.getElementById('contactImageEdit');
+    if (contactImage) {
+        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        contactImage.style.width = '100px';
+        contactImage.style.height = '100px';
+        contactImage.style.backgroundColor = 'transparent';
+        contactImage.alt = contact.initials;
+    }
+}
+
+
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -315,19 +328,6 @@ function hideAddContactSlider() {
     document.getElementById('dialogBg').classList.remove('dialog-bg');
     document.getElementById('dialogBg').classList.add('d-none');
     document.getElementById('contactInfoSlider').classList.remove('show');
-}
-
-
-function displayContactImage(i) {
-    let contact = contacts[i];
-    let contactImage = document.getElementById('contactImageEdit');
-    if (contactImage) {
-        contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=fff`;
-        contactImage.style.width = '100px';
-        contactImage.style.height = '100px';
-        contactImage.style.backgroundColor = 'transparent';
-        contactImage.alt = contact.initials;
-    }
 }
 
 
