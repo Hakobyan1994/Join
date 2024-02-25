@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
-    <link rel="shortcut icon" href="assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="css/menubar.css">
-    <link rel="stylesheet" href="css/board.css">
-    <link rel="stylesheet" href="css/add-task.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/addContacts.css">
-    <script src="js/script.js"></script>
-    <script src="js/includeHTML.js"></script>
-    <script src="js/add-task.js"></script>
-    <script src="js/contacts.js"></script>
-    <script src="js/add-task-templates.js"></script>
-    <script src="js/board-templates.js"></script>
+    <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/menubar.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/add-task.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/addContacts.css">
+    <script src="../js/script.js"></script>
+    <script src="../js/includeHTML.js"></script>
+    <script src="../js/add-task.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/add-task-templates.js"></script>
+    <script src="../js/board-templates.js"></script>
     <style>
         body {
             background-color: #F6F7F8;
@@ -62,7 +62,7 @@
         }
 
         .input-searchfield {
-            background-image: url(/assets/img/icons/Frame\ 122.png);
+            background-image: url(../assets/img/icons/Frame\ 122.png);
             background-size: 48px 32px;
             background-repeat: no-repeat;
             background-position: calc(100% - 21px) center;
@@ -79,7 +79,7 @@
         }
 
         .input-searchfield:hover {
-            background-image: url(/assets/img/icons/Frame\ 122.png);
+            background-image: url(../assets/img/icons/Frame\ 122.png);
 
         }
 
@@ -476,10 +476,10 @@
 </head>
 
 <body onload="initBoard()">
-    <div w3-include-html="assets/templates/menubar.html"></div>
+    <div w3-include-html="../assets/templates/menubar.html"></div>
 
     <div class="popup-a-to-b d-none" id="popup-a-to-b-board">
-        <img src="assets/img/task-to-board.svg" alt="">
+        <img src="../assets/img/task-to-board.svg" alt="">
     </div>
 
     <div class="board-popup-bg d-none" id="popup-add-task">
@@ -503,7 +503,7 @@
                 <div class="input_button_Div">
                     <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
                     <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
-                        <img src="assets/img/icons/addi.png" alt="">
+                        <img src="../assets/img/icons/addi.png" alt="">
                         Add Task
                     </button>
                 </div>
@@ -538,7 +538,7 @@
         <div class="card_Div4" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
 
-    <script src="js/board.js"></script>
+    <script src="../js/board.js"></script>
 </body>
 
 </html>
