@@ -59,7 +59,6 @@ body {
     background: var(--white, #FFF);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 
