@@ -30,6 +30,7 @@ async function initSummary() {
     await getValue();
     loadTasks();
     loadSelectedPage();
+    initIndex();
 }
 
 async function initAddTask() {
@@ -52,6 +53,7 @@ async function initBoard() {
 }
 
 function initIndex() {
+    deleteLocalStorage();
     localStorage.setItem('selectedPage', 'summary');
     loadSelectedPage();
 }

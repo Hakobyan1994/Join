@@ -108,8 +108,8 @@ function generateHtmlSubtasks() {
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="../assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="../assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
-                <img src="../assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
+                <img src="../assets/img/icons/Close.svg" alt="Close Icon" class="h-10 clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
+                <img src="../assets/img/icons/check.svg" alt="Check Icon" class="h-10 clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
             </div>
         </div>
         <ul id="subtasks" class="subtasks"></ul>
