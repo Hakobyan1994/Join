@@ -6,7 +6,7 @@ async function openPopupAddTask(boardcard) {
     content.classList.remove('slide-out');
     content.classList.add('slide-in');
     content.innerHTML = /*html*/`
-        <img class="close-popup" src="assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
+        <img class="close-popup" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
             <h2 class="h2-addtask-board">Add Task</h2>
             <div>

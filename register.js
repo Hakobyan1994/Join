@@ -59,7 +59,7 @@ function validLogin(e) {
         }
         if (status === 'ok') {
             activUser(foundUser)
-            window.location.href = "files/summary.html";
+            window.location.href = "../files/summary.html";
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('email').style.border = `1px solid red`;
@@ -74,18 +74,18 @@ document.addEventListener('DOMContentLoaded',function(){
  const inputImage=document.getElementById('imageInput')
   passwordInput.addEventListener('input',function(){
    if(passwordInput.value!==''){
-    inputImage.src='assets/img/anmeldung Image/blockPassword.svg'
+    inputImage.src='../assets/img/anmeldung Image/blockPassword.svg'
     inputImage.onclick=function(){
        if(passwordInput.type==='password'){
          passwordInput.type='text'
-         inputImage.src='assets/img/anmeldung Image/passwordLock.svg'
+         inputImage.src='../assets/img/anmeldung Image/passwordLock.svg'
        }else{
           passwordInput.type='password'
-          inputImage.src='assets/img/anmeldung Image/blockPassword.svg'
+          inputImage.src='../assets/img/anmeldung Image/blockPassword.svg'
        }
     }
    }else{
-     inputImage.src='assets/img/anmeldung Image/lock.png'
+     inputImage.src='../assets/img/anmeldung Image/lock.png'
    }
   })    
 })   
@@ -103,7 +103,7 @@ function activUser(arr){
  function guesButton(){ 
     localStorage.removeItem('activeUser');
     forGuestUser('guestsUser',userGuests);
-    window.location.href='files/summary.html'
+    window.location.href='../files/summary.html'
  }
       
 
