@@ -28,15 +28,15 @@ async function addEventFunctions() {
 
 
 function renderAssignedList() {
-    
+
     let list = document.getElementById('assigned-list');
-    if(list) {
-    let input = document.getElementById('assigned');
-         if (list.classList.contains('d-none')) {
-             input.placeholder = '';
-         } else {
-             input.placeholder = 'Select contacts to assign';
-         }
+    if (list) {
+        let input = document.getElementById('assigned');
+        if (list.classList.contains('d-none')) {
+            input.placeholder = '';
+        } else {
+            input.placeholder = 'Select contacts to assign';
+        }
     }
     list.classList.toggle('d-none');
     list.innerHTML = '';
@@ -54,11 +54,11 @@ function renderContactList(list) {
         list.innerHTML += /*html*/`
             <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
                 <div>
-                    <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                    <img src="../https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
                     <div>${name}</div>
                 </div>
-                <img src="${isSelected ? 'assets/img/icons/selected1.svg' : 'assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
-            </div>`;    
+                <img src="${isSelected ? '../assets/img/icons/selected1.svg' : '../assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+            </div>`;
     }
 }
 
@@ -71,7 +71,7 @@ function searchAssignedList() {
         let list = document.getElementById(`assigned-contacts-${i}`);
         let array = contacts[i].name;
         let name = array.toUpperCase();
-        if(name.indexOf(filter) > -1) {
+        if (name.indexOf(filter) > -1) {
             list.style.display = 'flex';
         } else {
             list.style.display = 'none';
@@ -82,7 +82,7 @@ function searchAssignedList() {
 function hideAssignedButton() {
     let buttons = document.getElementById('assigned-button');
     let list = document.getElementById('assigned-button');
-    if(!list.classList.contains('d-none')) {
+    if (!list.classList.contains('d-none')) {
         buttons.classList.add('d-none');
     } else {
         buttons.classList.remove('d-none');
@@ -146,13 +146,13 @@ function selectAssignedContacts(i) {
     let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
     contact.classList.toggle('white');
-    if(contact.classList.contains('select-contact-blue')) {
-        checkbox.src = '/assets/img/icons/selected1.svg';
+    if (contact.classList.contains('select-contact-blue')) {
+        checkbox.src = '../assets/img/icons/selected1.svg';
         checkbox.classList.remove('checkbox-none-selected');
         checkbox.classList.add('checkbox-selected');
-        
+
     } else {
-        checkbox.src = '/assets/img/icons/none-selected1.svg';
+        checkbox.src = '../assets/img/icons/none-selected1.svg';
         checkbox.classList.add('checkbox-none-selected');
         checkbox.classList.remove('checkbox-selected');
     }
@@ -188,7 +188,7 @@ function generateAssignedButton() {
         const letters = iniimg[p];
         div.innerHTML += /*html*/`
             <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
-        `;     
+        `;
     }
 }
 
@@ -200,7 +200,7 @@ function pushPrio() {
     let prioButtons = prios.querySelectorAll('button');
     let selectedPriority = null;
 
-    prioButtons.forEach(function(button) {
+    prioButtons.forEach(function (button) {
         if (!button.classList.contains('prio-notselected')) {
             selectedPriority = button.value;
         }
@@ -216,14 +216,14 @@ function getPrio() {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
 
-    prioButtons.forEach(function(button) {
-        button.addEventListener('click', function(e) {
+    prioButtons.forEach(function (button) {
+        button.addEventListener('click', function (e) {
             e.stopPropagation();
 
-            if(!button.classList.contains('prio-notselected')) {
+            if (!button.classList.contains('prio-notselected')) {
                 button.classList.add('prio-notselected')
             } else {
-                prioButtons.forEach(function(btn){
+                prioButtons.forEach(function (btn) {
                     btn.classList.remove('prio-notselected');
                     btn.classList.add('prio-notselected');
                 });
@@ -239,7 +239,7 @@ function setupSubtaskInputFocus() {
     let subtask = document.getElementById('subtask-input');
     let add = document.getElementById('subtask-change-add-icon');
     let closeCheck = document.getElementById('subtask-close-check-icon');
-    
+
     function handleFocus() {
         add.classList.add('d-none');
         closeCheck.classList.remove('d-none');
@@ -255,7 +255,7 @@ function setupSubtaskInputFocus() {
     }
 
     subtask.addEventListener('focus', handleFocus);
-    subtask.addEventListener('blur', function() {
+    subtask.addEventListener('blur', function () {
         if (subtask.value.trim() !== '') {
             handleFocus();
         } else {
@@ -268,7 +268,7 @@ function setupSubtaskInputFocus() {
 function enterOnSubtask() {
     let input = document.getElementById('subtask-input');
 
-    input.addEventListener('keypress', function(event) {
+    input.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
             document.getElementById('subtask-check-icon').click();
@@ -288,7 +288,7 @@ function addSubtask() {
         return;
     }
 
-    subtasks.push(subtask);   
+    subtasks.push(subtask);
 
     for (let i = 0; i < subtasks.length; i++) {
         const text = subtasks[i];
@@ -296,12 +296,12 @@ function addSubtask() {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
-    `;        
+    `;
     }
     content.value = '';
 }
@@ -316,9 +316,9 @@ function editSubtask(i) {
     listItem.innerHTML = /*html*/`
         <input class="each-subtask-p editable" id="subtask${i}" value="${inputValue}">
         <div class="subtask-right editable-img">
-            <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             <p class="separator"></p>
-            <img src="assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
+            <img src="../assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${i})">
         </div>
     `;
 }
@@ -329,7 +329,7 @@ function deleteSubtask(i) {
     subtasks.splice(position, 1);
 
     let list = document.getElementById('subtasks');
-    list.innerHTML = '';    
+    list.innerHTML = '';
 
     for (let i = 0; i < subtasks.length; i++) {
         const text = subtasks[i];
@@ -337,12 +337,12 @@ function deleteSubtask(i) {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
-    `;        
+    `;
     }
 }
 
@@ -352,12 +352,12 @@ function pushEditedSubtask(i) {
     let newText = inputField.value;
     let position = i;
 
-        if (newText.trim() !== '') {
-            subtasks.splice(position, 1, newText);
-            updateSubtasklist();
-        } else {
-            console.log('Das Feld ist leer')
-        };
+    if (newText.trim() !== '') {
+        subtasks.splice(position, 1, newText);
+        updateSubtasklist();
+    } else {
+        console.log('Das Feld ist leer')
+    };
 }
 
 
@@ -371,9 +371,9 @@ function updateSubtasklist() {
         <li class="each-subtask" id="each-subtask${k}">
             <div class="each-subtask-p" id="subtask${k}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k})">
                 <p class="separator"></p>
-                <img src="assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k})">
             </div>
         </li>`;
     }
@@ -390,11 +390,11 @@ function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
     let clearButton = document.getElementById('clear-button');
     if (clearButton) {
-        clearButton.addEventListener('mouseover', function() {
-            img.src = 'assets/img/icons/close-blue1.svg';
+        clearButton.addEventListener('mouseover', function () {
+            img.src = '../assets/img/icons/close-blue1.svg';
         });
-        clearButton.addEventListener('mouseout', function() {
-            img.src = 'assets/img/icons/close-black1.svg';
+        clearButton.addEventListener('mouseout', function () {
+            img.src = '../assets/img/icons/close-black1.svg';
         });
     }
 }
@@ -415,11 +415,11 @@ function clearFields() {
     updateSubtasklist();
     let prio = document.querySelectorAll('.prio');
     let medium = document.getElementById('medium');
-    prio.forEach(function(button) {
-        if(!button.classList.contains('prio-notselected')) {
+    prio.forEach(function (button) {
+        if (!button.classList.contains('prio-notselected')) {
             button.classList.add('prio-notselected');
             medium.classList.remove('prio-notselected');
-        } 
+        }
     });
     generateAssignedButton();
 }
@@ -439,14 +439,14 @@ async function createTask(boardcard) {
     let formatedDate = formatDate(dateValue);
 
     if (title.value && date.value && category.value) {
-        
+
         loadTasks();
         pushToTodoBoard(priority, boardcard, description, formatedDate);
         await setItem('tasks', JSON.stringify(tasks));
         clearFields();
-       
+
         let popup = document.getElementById('popup-add-task');
-        
+
         if (popup !== null) {
             openInBoard();
             await updateProgressBar();
@@ -490,28 +490,28 @@ function inputfieldFocus(field) {
     let required = document.getElementById(`required-${field}`);
 
     if (input) {
-    if (document.activeElement === input) {
-        if (input.value.trim() === '') {
-            input.classList.add('inputfield-focus-red');
-            required.classList.remove('d-none');
-            input.classList.remove('inputfield-focus-blue');
-            input.classList.remove('inputfield-focus-white');
+        if (document.activeElement === input) {
+            if (input.value.trim() === '') {
+                input.classList.add('inputfield-focus-red');
+                required.classList.remove('d-none');
+                input.classList.remove('inputfield-focus-blue');
+                input.classList.remove('inputfield-focus-white');
+            } else {
+                input.classList.add('inputfield-focus-blue');
+                required.classList.add('d-none');
+                input.classList.remove('inputfield-focus-red');
+                input.classList.remove('inputfield-focus-white');
+            }
         } else {
-            input.classList.add('inputfield-focus-blue');
-            required.classList.add('d-none');
             input.classList.remove('inputfield-focus-red');
-            input.classList.remove('inputfield-focus-white');
+            input.classList.remove('inputfield-focus-blue');
+            input.classList.add('inputfield-focus-white');
+            required.classList.add('d-none');
         }
-    } else {
-        input.classList.remove('inputfield-focus-red');
-        input.classList.remove('inputfield-focus-blue');
-        input.classList.add('inputfield-focus-white');
-        required.classList.add('d-none');
-    }
-    input.addEventListener('blur', function() {
-        input.classList.remove('inputfield-focus-red');
-        required.classList.add('d-none');
-    });
+        input.addEventListener('blur', function () {
+            input.classList.remove('inputfield-focus-red');
+            required.classList.add('d-none');
+        });
     }
 }
 
@@ -520,14 +520,14 @@ function openToBoard() {
     let popup = document.getElementById('popup-a-to-b');
 
     if (popup !== null) {
-        
+
         setTimeout(() => {
-            window.location.href = "/files/board.html";
+            window.location.href = "../files/board.html";
         }, "1500");
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
-        window.location.href = "files/board.html";
+        window.location.href = "../files/board.html";
     }
 }
 
@@ -538,11 +538,11 @@ function openInBoard() {
     if (popup !== null) {
 
         setTimeout(() => {
-            window.location.href = "files/board.html";
+            window.location.href = "../files/board.html";
         }, "1500");
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
-        window.location.href = "files/board.html";
+        window.location.href = "../files/board.html";
     }
 }

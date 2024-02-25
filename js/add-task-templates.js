@@ -1,5 +1,5 @@
 function generateRenderAddTask(boardcard) {
- return /*html*/`
+    return /*html*/`
     <h2>Add Task</h2>
     <div class="main-box">
         <div class="form-addtask">
@@ -54,7 +54,7 @@ function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
         <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" onkeyup="searchAssignedList()">
-        <img src="assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
+        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
     `;
@@ -80,9 +80,9 @@ function generateHtmlPrio() {
     return /*html*/`
         <label>Prio</label>
         <div class="prio-btn" id="prio" role="group">
-            <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
-            <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
-            <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="assets/img/icons/prio-low.svg" alt="Low Prio"></button>
+            <button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent <img src="../assets/img/icons/prio-urgent.svg" alt="Urgent Prio"></button>
+            <button type="button" class="prio prio-medium" id="medium" value="medium">Medium <img src="../assets/img/icons/prio-medium.svg" alt="Medium Prio"></button>
+            <button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low <img src="../assets/img/icons/prio-low.svg" alt="Low Prio"></button>
         </div>  
     `;
 }
@@ -106,10 +106,10 @@ function generateHtmlSubtasks() {
         <label id="subtasks-label">Subtasks</label>
         <div style="height: 47px;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
-            <img src="assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
+            <img src="../assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
-                <img src="assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
-                <img src="assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
+                <img src="../assets/img/icons/close.svg" alt="Close Icon" class="clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
+                <img src="../assets/img/icons/check.svg" alt="Check Icon" class="clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
             </div>
         </div>
         <ul id="subtasks" class="subtasks"></ul>
@@ -121,8 +121,8 @@ function generateHtmlFormSection(boardcard) {
     return /*html*/`
         <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
         <div class="form-bottom-right">
-            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
-            <button class="create-task" onclick="createTask('${boardcard}')">Create Task<img src="assets/img/icons/check1.svg" alt="Create Task"></button>
+            <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
+            <button class="create-task" onclick="createTask('${boardcard}')">Create Task<img src="../assets/img/icons/check1.svg" alt="Create Task"></button>
         </div> 
     `;
 }
