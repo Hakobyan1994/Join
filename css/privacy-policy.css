@@ -1,6 +1,11 @@
 .main-window {
     padding-right: 100px;
     width: 75%!important;
+    height: calc(100vh - 222px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    position: absolute;
 }
 
 h2 {

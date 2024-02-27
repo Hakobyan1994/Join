@@ -609,7 +609,6 @@ async function saveEditedTask(i) {
             console.log('Popup wurde nicht gefunden / SAVE EDIT');
         }
     } else {
-        alert('Notwendige Felder wurden nicht ausgefüllt');
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
         date.classList.add('inputfield-focus-red');

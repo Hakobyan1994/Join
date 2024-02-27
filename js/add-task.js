@@ -457,7 +457,6 @@ async function createTask(boardcard) {
             openToBoard();
         }
     } else {
-        alert('Please fill up the required fields!');
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
         requiredCategory.classList.remove('d-none');
