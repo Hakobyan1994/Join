@@ -461,13 +461,18 @@ function searchTasks() {
 
 function cancelButton() {
     let button = document.getElementById('clear-button');
-    button.innerHTML = '';
-    // document.getElementById('clear-button').onclick = closePopupAddTask();
-    button.innerHTML = /*html*/`
-        Cancel<img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
-    `;
+    
+    if (button) {
+        button.onclick = null;
+        button.onclick = function() {
+            closePopupAddTask();
+        };
+        button.innerHTML = /*html*/`
+            <div onclick="closePopupAddTask()"></div>
+            Cancel<img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">
+        `;
+    }
 }
-
 
 async function deleteTask(i) {
     await loadTasks();
@@ -636,19 +641,17 @@ let dateObj = new Date(date);
 }
 
 function deformatDate(date) {
-    let dateObj = new Date(date);
-    if (!isNaN(dateObj)) {
-        let day = dateObj.getDate();
-            day = day < 10 ? "0" + day : day;
-        let month = dateObj.getMonth() + 1;
-            month = month < 10 ? "0" + month : month;
-        let year = dateObj.getFullYear();
+    let parts = date.split('/');
+    if (parts.length === 3) {
+        let day = parts[0];
+        let month = parts[1];
+        let year = parts[2];
 
-        let resultDate = `${year}-${day}-${month}`;
+        let resultDate = `${year}-${month}-${day}`;
     
         return resultDate;
     }
-
+    return date;
 }
 
 

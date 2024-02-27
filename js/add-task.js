@@ -553,6 +553,8 @@ function closeList(id, eId) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
 
+    if(list){
+
     document.addEventListener('click', function(event) {
         if (!list.contains(event.target) && event.target !== eIdElement) {
             list.style.display = 'none';
@@ -560,4 +562,5 @@ function closeList(id, eId) {
             list.style.display = 'block';
         }
     });
+    }
 }

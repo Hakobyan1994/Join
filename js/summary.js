@@ -56,11 +56,16 @@ async function getValue() {
   let valueDone = 0;
   let valueUrgent = 0;
 
+  if(tasks.length > 0) {
+    document.getElementById('value-total').innerHTML = tasks.length;
+  } else {
+    document.getElementById('value-total').innerHTML = '0';
+  }
+
+
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
     const priotity = tasks[i].priority;
-
-    document.getElementById('value-total').innerHTML = tasks.length;
 
     if (state === 'board-to-do') {
       valueTodo++;
