@@ -24,6 +24,8 @@ async function addEventFunctions() {
     enterOnSubtask();
     inputfieldFocus();
     loadSelectedPage();
+    closeList('assigned-list', 'assigned');
+    closeList('category-list', 'category');
 }
 
 
@@ -545,4 +547,18 @@ function openInBoard() {
         console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
         window.location.href = "../files/board.html";
     }
+}
+
+
+function closeList(id, eId) {
+    let list = document.getElementById(id);
+    let eIdElement = document.getElementById(eId);
+
+    document.addEventListener('click', function(event) {
+        if (!list.contains(event.target) && event.target !== eIdElement) {
+            list.style.display = 'none';
+        } else {
+            list.style.display = 'block';
+        }
+    });
 }
