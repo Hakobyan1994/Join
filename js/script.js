@@ -33,12 +33,14 @@ async function initSummary() {
     initIndex();
 }
 
+/*
 async function initAddTask() {
   
     await includeHTML();
     await renderAddTask();
     loadContacts();
 }
+*/
 
 async function initContacts() {
     await includeHTML();
@@ -106,3 +108,9 @@ async function loadTasks() {
     }
 }
 
+function clickSelection() {
+    let menu = document.getElementById('add-task-page');
+    if(menu) {
+        menu.classList.toggle('selected-color');
+    }
+}

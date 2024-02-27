@@ -3,6 +3,14 @@ let subtasks = [];
 let users = [];
 let iniimg = [];
 
+async function renderAddTaskMain() {
+    clickSelection();
+    let content = document.getElementById('render-add-task');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainAddTask();
+    renderAddTask();
+    await loadContacts();
+}
 
 function renderAddTask() {
     let content = document.getElementById('add-task');
@@ -30,7 +38,6 @@ async function addEventFunctions() {
 
 
 function renderAssignedList() {
-
     let list = document.getElementById('assigned-list');
     if (list) {
         let input = document.getElementById('assigned');
@@ -90,7 +97,6 @@ function hideAssignedButton() {
         buttons.classList.remove('d-none');
     }
 }
-
 
 
 function renderCategoryList() {
