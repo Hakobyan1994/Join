@@ -110,7 +110,9 @@ async function loadTasks() {
 
 function clickSelection() {
     let menu = document.getElementById('add-task-page');
+    let old = document.getElementById('render-summary');
     if(menu) {
         menu.classList.toggle('selected-color');
+        old.style.display = 'none';
     }
 }
