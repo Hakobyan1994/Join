@@ -39,27 +39,52 @@ let form_log = document.getElementById('form_log');
 let checkBox = document.getElementById('checkBox');
 let emailInput = document.getElementById('email');
 let passwordInput = document.getElementById('password');
+ 
+  
+  
+ 
 
+ 
 
     function showUserdata(){
         if(checkBox.checked){
             if(dataUser.length>0){
                 const user=dataUser[0];
                 emailInput.value=user.email;
-                passwordInput.value=user.password
+                passwordInput.value=user.password;
+                passwordInput.addEventListener('input', showPassword());
+
+                
             }
         }else{
             emailInput.value = '';
             passwordInput.value = '';
         }
     }
+      
+    function showPassword() {
+        const inputImage = document.getElementById('imageInput')
+        if (passwordInput.value !== '') {
+            inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+            inputImage.onclick = function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg';
+                } else {
+                    passwordInput.type = 'password';
+                    inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+                }
+            };
+        } else {
+            inputImage.src = '../assets/img/anmeldung Image/lock.png';
+        }
+    }
     
-
-  
-    checkBox.addEventListener('change',showUserdata)
-
-
+    checkBox.addEventListener('change', showUserdata);
     form_log.onsubmit = validLogin;
+
+
+    
 
 
 function validLogin(e) {
