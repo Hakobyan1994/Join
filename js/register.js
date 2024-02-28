@@ -34,11 +34,13 @@ if (dataLocal) {
     dataUser = dataLocal
 }
 console.log(dataUser);
-let form_log = document.getElementById('form_log');
-form_log.onsubmit = validLogin;
-let checkBox = document.getElementById('checkBox')
-checkBox.checked
 
+let form_log = document.getElementById('form_log');
+let checkBox = document.getElementById('checkBox');
+
+checkBox.checked
+ 
+form_log.onsubmit = validLogin;
     
 
 function validLogin(e) {
@@ -64,6 +66,9 @@ function validLogin(e) {
             checkBox.checked = false;
             document.getElementById('email').style.border = `1px solid red`;
             document.getElementById('password').style.border = `1px solid red`;
+            document.querySelector('#errorMessage').innerText='The password or Email is not correct'
+            document.getElementById('imageInput').classList.add('passwordImageError');
+
         }
     }
 }
