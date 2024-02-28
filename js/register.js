@@ -40,11 +40,6 @@ let checkBox = document.getElementById('checkBox');
 let emailInput = document.getElementById('email');
 let passwordInput = document.getElementById('password');
  
-  
-  
- 
-
- 
 
     function showUserdata(){
         if(checkBox.checked){
@@ -53,15 +48,15 @@ let passwordInput = document.getElementById('password');
                 emailInput.value=user.email;
                 passwordInput.value=user.password;
                 passwordInput.addEventListener('input', showPassword());
-
-                
             }
         }else{
             emailInput.value = '';
             passwordInput.value = '';
+            passwordInput.addEventListener('input',passwordBlock())
         }
     }
       
+
     function showPassword() {
         const inputImage = document.getElementById('imageInput')
         if (passwordInput.value !== '') {
@@ -78,13 +73,17 @@ let passwordInput = document.getElementById('password');
         } else {
             inputImage.src = '../assets/img/anmeldung Image/lock.png';
         }
-    }
+    }  
+
+       function passwordBlock(){  
+        const inputImage = document.getElementById('imageInput')
+         if(passwordInput.value===''){
+            inputImage.src = '../assets/img/anmeldung Image/lock.png';
+         }
+       }
     
     checkBox.addEventListener('change', showUserdata);
     form_log.onsubmit = validLogin;
-
-
-    
 
 
 function validLogin(e) {
@@ -97,8 +96,6 @@ function validLogin(e) {
         if (foundUser) {
             if (foundUser.password === password) {
                 status = 'ok';
-               
-
             } else {
                 status = 'Error Password';
             }
@@ -112,9 +109,8 @@ function validLogin(e) {
             checkBox.checked = false;
             document.getElementById('email').style.border = `1px solid red`;
             document.getElementById('password').style.border = `1px solid red`;
-            document.querySelector('#errorMessage').innerText = 'The password or Email is not correct'
+            document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
             document.getElementById('imageInput').classList.add('passwordImageError');
-
         }
     }
 }
