@@ -8,7 +8,7 @@ let contactInfoSliderVisible = false;
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-    contacts.sort((a, b) => a.name.localeCompare(b.name));
+   // contacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
