@@ -29,7 +29,8 @@ function onsubmitFor(e) {
         validForm({ name, email, password, confirmPassword }, e)
 
     } else {
-        alert('Please accpect Privacy policy')
+        check.value==='no'
+         document.getElementById('errorPassword').innerText='Please accept the privacy policy!'
 
     }
 }
@@ -40,7 +41,7 @@ function validForm({ name, email, password, confirmPassword }, e) {
     if (password.includes(confirmPassword)) {
         let user = dataUser.find((el) => el.email === email)
         if (user) {
-            document.getElementById('emailError').innerText = 'The email is already registered'
+            document.getElementById('errorPassword').innerText = 'The email is already registered'//
         } else {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
@@ -54,14 +55,19 @@ function validForm({ name, email, password, confirmPassword }, e) {
     } else {
         e.target[3].style.border = '4px solid red';
         document.getElementById('errorPassword').innerText = 'The password is not corect';
+       
     }
 
-}
+}  
+
+
+  
 
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
 
 function backToRegister() {
+     JSON.parse(localStorage.getItem('stop'))
     window.location.href = '../index.html';
 }
 

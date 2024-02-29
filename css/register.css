@@ -261,7 +261,6 @@ body {
 
 
 .input_password {
- 
     width: 422px;
     height: 48px;
     padding: 12px 21px;
@@ -427,3 +426,80 @@ body {
     cursor: pointer;
 }
 /* .............. login end ............................. */
+
+  @media screen and (min-width:390px) {
+    body{
+         
+            background-color: #F6F7F8;
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            height: 100vh;
+        }
+    }
+
+    .loginDiv{
+        height: 515px;
+        margin-top: 77px;
+        
+    }
+    .join_image{
+        position: absolute;
+        top: 22px;
+        left: 38px;
+        width: 64px;
+        
+    } 
+      .signup-div{
+        position: absolute;
+        top: 778px;
+        left: 70px;
+        gap: 35px;
+        margin-top: -56px;
+      } 
+       .title{
+        font-size: 47px;
+        align-items: center;
+       } 
+       .main-login {
+        max-width: 332px;
+        height: 196px;
+        margin-bottom: 62px;
+    } 
+       .input_email,
+       .input_password{
+         max-width: 78%;
+         max-width: 79%;
+         background-position: calc(100% - 15px);
+     } 
+        .errorMessage{
+            position: absolute;
+            top: 419px;
+             left: 30px;
+        }
+        
+       .passwordImage {
+        position: relative;
+        top: -45px;
+        right: -294px;
+        cursor: pointer;
+    } 
+      .block_btn{
+        flex-direction: column;
+        gap: 21px;
+      } 
+      .button_login{
+        width: 180px;
+        height: 51px;
+      } 
+      .second_button_login{
+        width: 180px;
+        height: 51px;
+      } 
+       .footer{
+        position: absolute;
+         top:800px;
+         right: 0;
+         left:0;
+       }
+    

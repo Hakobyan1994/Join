@@ -1,14 +1,22 @@
+ 
+  
 let userGuests = [
     {
         name: '',
         greeting: 'Good Morning'
-    },
-]
+    }
+];
 console.log(userGuests[0].greeting);
+   
+
+
+
+
 
 let div = document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
 let stop = JSON.parse(localStorage.getItem('stop'))
+
 if (stop) {
     div.classList.remove('addAnimDiv')
     img.classList.remove('animation')
@@ -25,7 +33,9 @@ setTimeout(() => {
     img.classList.remove('startParImg')
     img.classList.add('join_image')
 
-}, 2000)
+},2000) 
+
+
 
 
 let dataUser = []
@@ -140,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 setTimeout(() => {
     localStorage.setItem('stop', JSON.stringify('stop'))
-}, 3000)
+},3000)
 
 
 function activUser(arr) {

@@ -31,24 +31,26 @@
 
                 <form id="signUp">
                   <div class="person_input">
-                    <input class="name_input" type="" placeholder="Name">
+                    <input class="name_input" type="" placeholder="Name" required>
                   </div> 
                     <div class="email_inputBox">
-                       <input class="email_input" type="email" placeholder="Email">
+                       <input class="email_input" type="email" placeholder="Email" required>
                     </div>
                        <span  id="emailError"></span>
                       <div class="password_inputBox">
-                        <input id="passwordInput" class="password_input" type="password" placeholder="Password"> <img id="passwordBlock" class="passwordBlock" src="../assets/img/anmeldung Image/lock.png" alt="">
+                        <input id="passwordInput" class="password_input" type="password" placeholder="Password" required> <img id="passwordBlock" class="passwordBlock" src="../assets/img/anmeldung Image/lock.png" alt="" >
                       </div>    
                         
                         <div class="confirm_passwordBox">
-                          <input id="confirmInput" class="confirmpassword" type="password" placeholder="Confirm Password" > <img id="confirmBlock" class="confirmBlock" src="../assets/img/anmeldung Image/lock.png" alt="">
+                          <input id="confirmInput" class="confirmpassword" type="password" placeholder="Confirm Password" required> <img id="confirmBlock" class="confirmBlock" src="../assets/img/anmeldung Image/lock.png" alt="">
                         </div>
-                        <span id="errorPassword"></span>
+                        <span style="font-family: 'Inter'; color: red;" id="errorPassword"></span>
                         <div class="input_checkox">
+                          
                           <input id="checkbox" class="input_check" type="checkbox" value="no">
-                           <span class="checkBox_span">I accpect <a class="Privacy_policy" href="">Privacy policy</a></span>
+                           <span class="checkBox_span">I accept <a class="Privacy_policy" href="">Privacy policy</a></span>
                          </div>
+                         
                         <div class="sign_upBox">
                           <button class="signup_button" type="submit">Sign up</button>
                         </div>          
