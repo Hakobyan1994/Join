@@ -439,6 +439,112 @@ h1 {
     color: #FFFFFF;
 }
 
-/* .active{
-    display: flex;
-  } */
+@media(max-width:390px) {
+     body{
+            position: fixed;
+            left: -77px;
+            right: 0;
+        
+     }
+
+
+    .join_picture {
+        width: 64px;
+        height: 78px;
+    }
+    .image_box {
+        margin-top: 30px;
+        margin-left: 24px;
+        margin-bottom: 25px;
+    } 
+
+     .title_div h1{
+        font-size: 40px;
+        margin-top: -5px;
+     } 
+
+     .line{
+        width: 80px;
+     } 
+
+     .backLogin_picture{
+        margin-left: 45px;
+     }
+
+   .main_div{
+    position: absolute;
+    top: 170.5px;
+    left: 15px;
+    padding: 32px 0;
+    width: 361px;
+    height: 498px;
+   } 
+
+   .second_signUp{
+    max-width: 275px;
+   }  
+
+   .main_signUp{
+    display: flex;   
+    align-items: flex-start;
+    margin-bottom: 32px;
+    justify-content: start;
+    margin: 15px;  
+        
+          
+   }
+
+   .name_input{
+    max-width: 68%;
+   } 
+
+   .email_input{
+    max-width: 68%;
+   } 
+
+   .password_input{
+    max-width: 68%;
+   } 
+   
+    .passwordBlock{
+        margin-left: 287px;
+    margin-top: -43px;
+    cursor: pointer;
+    }
+    .confirmpassword{
+        max-width: 68%;
+    } 
+   
+     .confirmBlock{
+        margin-left: 287px;
+    margin-top: -36px;
+     }
+     .input_checkox{
+     
+    position: absolute;
+    left: 75px;
+    top: 430px;
+}
+    
+
+     .sign_upBox {
+        position: absolute;
+        left: 98px;
+        top: 470px;
+        font-family: 'Inter';
+    } 
+
+    .signup_button{
+        width: 153px;
+        font-family: 'Inter';
+    }  
+
+     .footer{
+       
+        display: flex;
+        gap: 27px;
+        position: absolute;
+        top: 784px;
+        left: 87px;
+    }
+}
