@@ -8,7 +8,7 @@ let contactInfoSliderVisible = false;
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-    // contacts.sort((a, b) => a.name.localeCompare(b.name));
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
@@ -107,48 +107,59 @@ function addToContacts() {
     let email = emailInput.value.trim();
     let phone = phoneInput.value.trim();
 
+    let nameAddContactError = document.getElementById('nameAddErrorMessage');
+    let emailAddContactError = document.getElementById('emailAddErrorMessage');
+    let phoneAddContactError = document.getElementById('phoneAddErrorMessage');
+
+    if (!name) {
+        nameAddContactError.classList.remove('d-none');
+        nameAddContactError.innerHTML = `Please enter a name`;
+    } else {
+        nameAddContactError.classList.add('d-none');
+    }
+
+    if (!email) {
+        emailAddContactError.classList.remove('d-none');
+        emailAddContactError.innerHTML = `Please enter an email`;
+    } else {
+        emailAddContactError.classList.add('d-none');
+    }
+
+    if (!phone) {
+        phoneAddContactError.classList.remove('d-none');
+        phoneAddContactError.innerHTML = `Please enter a phonenumber`;
+    } else {
+        phoneAddContactError.classList.add('d-none');
+    }
+
+
+    if (!name || !email || !phone) {
+        return;
+    }
+
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
 
 
 function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
-    if (!validateInputs(name, email, phone)) {
-        return;
-    }
-
     let formattedName = splitNameAndCapitalize(name);
     let initials = formatInitials(formattedName);
+    let existingEmail = document.getElementById('emailAlreadyExists');
 
     if (checkExistingEmail(email)) {
-        alert('A contact with this email already exists.');
+        existingEmail.classList.remove('d-none');
+        existingEmail.innerHTML = `Email already exists`;
         return;
+    } else {
+        existingEmail.classList.add('d-none');
     }
+
     addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
 }
 
 
-function validateInputs(name, email, phone) {
-    if (!/^[a-zA-Z\s]*$/.test(name)) {
-        alert('Name should contain only letters.');
-        return false;
-    }
-
-    if (!email.includes('@')) {
-        alert('Invalid email address.');
-        return false;
-    }
-
-    if (!/^\d+$/.test(phone)) {
-        alert('Phone number should contain only numbers.');
-        return false;
-    }
-
-    if (name === '' || email === '' || phone === '') {
-        alert('Please fill in all fields.');
-        return false;
-    }
-
-    return true;
+function checkExistingEmail(email) {
+    return contacts.some(contact => contact.email === email);
 }
 
 
@@ -160,11 +171,6 @@ async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, e
     await loadContacts();
     renderContacts();
     addedContactSuccessfully();
-}
-
-
-function checkExistingEmail(email) {
-    return contacts.some(contact => contact.email === email);
 }
 
 
@@ -230,11 +236,46 @@ function saveContact(i) {
     let contactEmail = document.getElementById('emailEdit').value;
     let contactPhone = document.getElementById('phoneEdit').value;
 
+    let nameEditContactError = document.getElementById('nameErrorMessage');
+    let emailEditContactError = document.getElementById('emailErrorMessage');
+    let phoneEditContactError = document.getElementById('phoneErrorMessage');
+
+    if (!contactName.trim()) {
+        nameEditContactError.classList.remove('d-none');
+        nameEditContactError.innerHTML = `Please enter a name`;
+    } else {
+        nameEditContactError.classList.add('d-none');
+    }
+
+    if (!contactEmail.trim()) {
+        emailEditContactError.classList.remove('d-none');
+        emailEditContactError.innerHTML = `Please enter an email`;
+    } else {
+        emailEditContactError.classList.add('d-none');
+    }
+
+    if (!contactPhone.trim()) {
+        phoneEditContactError.classList.remove('d-none');
+        phoneEditContactError.innerHTML = `Please enter a phone number`;
+    } else {
+        phoneEditContactError.classList.add('d-none');
+    }
+
+    if (!contactName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
+        return;
+    }
+
     contact.name = contactName;
     contact.email = contactEmail;
     contact.phone = contactPhone;
 
-    saveContactHelp(i, contacts)
+    saveContactErrorMessages(i);
+    saveContactHelp(i, contacts);
+}
+
+
+function saveContactErrorMessages(i) {
+
 }
 
 
@@ -243,7 +284,7 @@ async function saveContactHelp(i, contacts) {
     renderContacts();
 
     closeEditContactSlider();
-    contactInfoSlider(i);
+    showContactInfoSlider(i);
 }
 
 
@@ -284,7 +325,7 @@ function showEditContactOverlay(i) {
     editMask.classList.remove('d-none');
     editMask.classList.add('slide-in');
     editMask.innerHTML = generateEditMaskOverlay(i);
-    showAddContactSlider();
+    showAddContactSlider(i);
     loadContactInfo(i);
     displayContactImage(i);
 }

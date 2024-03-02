@@ -124,20 +124,21 @@ function generateAddContactOverlay() {
                                 <div>
                                     <input id="name" name="name" class="input-con"
                                         placeholder="Name" type="text" maxlength="16" required>
-                                    <img class="input-svg-pos" src="/assets/img/icons/person.svg"
-                                        alt="">
+                                    <img class="input-svg-pos" src="/assets/img/icons/person.svg" alt="">
+                                    <div id="nameAddErrorMessage" class="error-message d-none"></div>
                                 </div>
                                 <div>
                                     <input id="email" name="email" class="input-con"
                                         placeholder="Email" type="email" required>
-                                    <img class="input-svg-pos" src="/assets/img/icons/mail.svg"
-                                        alt="">
+                                    <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
+                                    <div id="emailAddErrorMessage" class="error-message d-none"></div>
+                                    <div id="emailAlreadyExists" class="error-message d-none"></div>
                                 </div>
                                 <div>
                                     <input id="phone" name="phone" class="input-con"
-                                        placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" pattern="[0-9\s()+-]*" required>
-                                    <img class="input-svg-pos" src="/assets/img/icons/call.svg"
-                                        alt="">
+                                        placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" required>
+                                    <img class="input-svg-pos" src="/assets/img/icons/call.svg" alt="">
+                                    <div id="phoneAddErrorMessage" class="error-message d-none"></div>
                                 </div>
 
                                 <div class="add-contact-btns">
@@ -189,14 +190,17 @@ function generateEditMaskOverlay(i) {
                                     <div>
                                         <input id="nameEdit" name="name" class="input-con" placeholder="Name" type="text" maxlength="16" required>
                                         <img class="input-svg-pos" src="/assets/img/icons/person.svg" alt="">
+                                        <div id="nameErrorMessage" class="error-message d-none"></div>
                                     </div>
                                     <div>
                                         <input id="emailEdit" name="email" class="input-con" placeholder="Email" type="email" required>
                                         <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
+                                        <div id="emailErrorMessage" class="error-message d-none"></div>
                                     </div>
                                     <div>
-                                        <input id="phoneEdit" name="phone" class="input-con" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" pattern="[0-9\s()+-]*" required>
+                                        <input id="phoneEdit" name="phone" class="input-con" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
                                         <img class="input-svg-pos" src="/assets/img/icons/call.svg" alt="">
+                                        <div id="phoneErrorMessage" class="error-message d-none"></div>
                                     </div>
 
                                     <div class="add-contact-btns">
