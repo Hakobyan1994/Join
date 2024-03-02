@@ -1,4 +1,4 @@
- 
+
   
 let userGuests = [
     {
@@ -10,12 +10,17 @@ console.log(userGuests[0].greeting);
    
 
 
-
+console.log(window.innerWidth);
 
 
 let div = document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
 let stop = JSON.parse(localStorage.getItem('stop'))
+
+if (window.innerWidth <= 400) {
+    // img.src = "assets/img/anmeldung Image/logoPhone.png"
+}
+
 
 if (stop) {
     div.classList.remove('addAnimDiv')
@@ -32,8 +37,12 @@ setTimeout(() => {
     div.classList.add('anim_div')
     img.classList.remove('startParImg')
     img.classList.add('join_image')
-
+   
 },2000) 
+setTimeout(() => {
+    
+    // img.src = "assets/img/anmeldung Image/join.png"
+},3000) 
 
 
 
