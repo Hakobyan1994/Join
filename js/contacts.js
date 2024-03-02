@@ -8,7 +8,7 @@ let contactInfoSliderVisible = false;
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
-   // contacts.sort((a, b) => a.name.localeCompare(b.name));
+    // contacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
@@ -56,7 +56,7 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=ffffff`;
         applyRandomColorToImage(imageElement, initials);
     }
 }
@@ -66,7 +66,7 @@ function displayContactImage(i) {
     let contact = contacts[i];
     let contactImage = document.getElementById('contactImageEdit');
     if (contactImage) {
-        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=ffffff`;
         contactImage.style.width = '100px';
         contactImage.style.height = '100px';
         contactImage.style.backgroundColor = 'transparent';
