@@ -145,7 +145,7 @@ function actualDate() {
 
 
 function validateUpcomingDeadline() {
-  let dateDiv = document.getElementById('date');
+  let dateDiv = document.getElementById('urgentDate');
 
   if (arrayUrgent.length === 0) {
     dateDiv.innerHTML = '-';
