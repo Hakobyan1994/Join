@@ -47,7 +47,7 @@ function generateHtmlSummary() {
                     <div class="urgentVector"></div>
                     <div class="Date_box">
                         <span id="date" class="Datespan"></span>
-                        <span class="date_title"> Upcoming Deadline</span>
+                        <span class="date_title">Upcoming Deadline</span>
                     </div>
                 </div>
                 <div class="tasksmain_Board">

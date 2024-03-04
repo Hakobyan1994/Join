@@ -1,3 +1,50 @@
+function generateHtmlMainContacts() {
+    return /*html*/`
+        <div id="mainContent" class="main-content">
+            <div class="content">
+                <div class="contacts-main">
+
+                    <div id="addContactBtn" class="contacts">
+                        <div class="added-contacts">
+
+                            <div class="contact-con-btn">
+                                <div id="addBtn" class="add-contact-btn-con"></div>
+
+                                <div id="allContacts" class="all-contacts"></div>
+                            </div>
+
+                            <div class="dialog-bg d-none" id="dialogBg"></div>
+
+                            <div id="dialog" class="dialog-bg d-none"></div>
+
+                            <div id="editMask" class="dialog-bg d-none"></div>
+                        </div>
+                    </div>
+
+                    <div id="contactOverlay"></div>
+
+                    <div class="contact-info-con">
+                        <div class="headline">
+                            Contacts
+                            <div class="vertical-line">
+                                <img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
+                            </div>
+                            <div class="team-headline">
+                                Better with a team
+                            </div>
+                        </div>
+
+                        <div id="contactInfoSlider" class="contact-info-slider"></div>
+
+                        <div id="successCon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    `;
+}
+
+
 function generateAddBtn() {
     return /*html*/`
         <button type="button" class="add-contact-btn" onclick="showAddContactOverlay()">
