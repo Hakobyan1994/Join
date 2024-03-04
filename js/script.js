@@ -24,6 +24,7 @@ async function init() {
     await loadContacts();
 }
 
+
 /*
 async function initSummary() {
     await includeHTML();
@@ -31,10 +32,9 @@ async function initSummary() {
     // timer();
     await getValue();
     loadTasks();
-    loadSelectedPage();
-    initIndex();
 }
 */
+
 
 /*
 async function initAddTask() {
@@ -45,11 +45,13 @@ async function initAddTask() {
 }
 */
 
-async function initContacts() {
-    await includeHTML();
-    await loadContacts();
-    renderContacts();
-}
+
+// async function initContacts() {
+//     await includeHTML();
+//     await loadContacts();
+//     renderContacts();
+// }
+
 
 async function initBoard() {
     await includeHTML();
@@ -57,11 +59,6 @@ async function initBoard() {
     loadToDo();
 }
 
-function initIndex() {
-    deleteLocalStorage();
-    localStorage.setItem('selectedPage', 'summary');
-    loadSelectedPage();
-}
 
 function forwardToPage(pageName, event) {
     let menus = document.querySelectorAll('.menubar a');
@@ -71,22 +68,6 @@ function forwardToPage(pageName, event) {
     active.classList.add('selected-color');
     selectPage.push(pageName);
     localStorage.setItem('selectedPage', pageName);
-}
-
-
-async function loadSelectedPage() {
-    let page = localStorage.getItem('selectedPage');
-    let id = page.trim() + '-page';
-    let div = document.getElementById(`${id}`);
-    console.log(id);
-    if(div) {
-        div.classList.add('selected-color');
-    } else {
-        console.log('nicht gefunden');
-        if (div && div.classList.contains('selected-color')) {
-            div.classList.remove('selected-color');
-        }
-    }
 }
 
 
@@ -122,12 +103,13 @@ function renderPage(selectedBar, page) {
     selectedPage.style.display = 'block';
     if(page === 'render-add-task') {
         renderAddTaskMain();
-    } 
+    } else if (page === 'render-contacts') {
+        renderContactsMain();
+    }
 
     allNavbar.forEach((navbar) => {
         if (navbar.id !== selectedBar) {
             navbar.classList.remove('selected-color');
-            // currentMain.style.display = 'none';
         }
     })
     allPages.forEach((pages) => {
@@ -137,6 +119,7 @@ function renderPage(selectedBar, page) {
     })
 
 }
+
 
 /* 
 function clickSelection(bar, page) {

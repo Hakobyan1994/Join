@@ -5,6 +5,14 @@ let initials;
 let contactInfoSliderVisible = false;
 
 
+async function renderContactsMain() {
+    let content = document.getElementById('render-contacts');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainContacts();
+    renderContacts();
+    await loadContacts();
+}
+
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '';
@@ -19,8 +27,6 @@ function renderContacts() {
         let contact = contacts[i];
         lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
     }
-
-    loadSelectedPage();
 }
 
 

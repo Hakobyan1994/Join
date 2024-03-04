@@ -1,5 +1,12 @@
-loadSelectedPage();
+let arrayUrgent = [
+  {
+    priority: [],
+    date: []
+  }
+];
+
 displayGreeting();
+
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
 if (locRes) {
@@ -19,12 +26,9 @@ if (guestsUsing) {
   document.getElementById('profil_name').classList.remove('profil_name')
   document.getElementById('profil_name').classList.add('guestsGreeting')
 }
-let arrayUrgent = [
-  {
-    priority: [],
-    date: []
-  }
-];
+
+
+
 
 /*
 const currentDate = new Date();
@@ -41,20 +45,16 @@ function dateUpdate() {
 
   function timer() {
     setTimeout(() => {
-      loadSelectedPage();
   }, "100");
 }
 */
 
 async function renderSummaryMain() {
-  // clickSelection();
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
   content.innerHTML = generateHtmlSummary();
+  await loadTasks();
   await getValue();
-  loadTasks();
-  // loadSelectedPage();
-  // initIndex();
 }
 
 
@@ -118,8 +118,8 @@ function getUrgentDate() {
   }
   deleteOldUrgent();
   validateUpcomingDeadline();
-
 }
+
 
 function deleteOldUrgent() {
   let dateArray = arrayUrgent.map(urgentString => {
@@ -136,11 +136,13 @@ function deleteOldUrgent() {
 
 }
 
+
 function actualDate() {
   let date = new Date();
   let day = date.getDate();
   console.log(day);
 }
+
 
 function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('date');

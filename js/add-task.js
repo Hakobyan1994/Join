@@ -31,7 +31,6 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     enterOnSubtask();
     inputfieldFocus();
-    loadSelectedPage();
     closeList('assigned-list', 'assigned');
     closeList('category-list', 'category');
 }
