@@ -79,7 +79,6 @@ function renderHPLMain(page) {
             content.style.display = 'block';
         }
         console.log(allNavbar);
-        content.innerHTML = '';
 
 
         allNavbar.forEach((navbar) => {
