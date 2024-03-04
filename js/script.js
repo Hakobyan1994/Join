@@ -41,10 +41,12 @@ async function loadTasks() {
 
 
 function renderPage(selectedBar, page) {
+    renderHPLMain();
     let selectedNavbar = document.getElementById(selectedBar);
     let selectedPage = document.getElementById(page);
     let allNavbar = document.querySelectorAll('.navbar');
     let allPages = document.querySelectorAll('.render-page');
+    document.getElementById('render-help').style.display = 'none';
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
     if(page === 'render-add-task') {
@@ -67,4 +69,30 @@ function renderPage(selectedBar, page) {
             pages.style.display = 'none';
         }
     })
+}
+
+function renderHPLMain(page) {
+        let content = document.getElementById(page);
+        let allNavbar = document.querySelectorAll('.navbar');
+        let allPages = document.querySelectorAll('.render-page');
+        if(content) {
+            content.style.display = 'block';
+        }
+        console.log(allNavbar);
+        content.innerHTML = '';
+
+
+        allNavbar.forEach((navbar) => {
+            navbar.classList.remove('selected-color');
+        })
+        allPages.forEach((pages) => {
+            pages.style.display = 'none';
+        })
+        if(page === 'render-help') {
+            content.innerHTML = generateHtmlMainHelp();
+        }
+        if(page === 'render-privacy-policy') {
+            content.innerHTML = generateHtmlMainPrivacy();
+        }
+        return page;
 }
