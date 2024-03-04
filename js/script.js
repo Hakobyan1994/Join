@@ -36,23 +36,6 @@ async function initSummary() {
 */
 
 
-/*
-async function initAddTask() {
-  
-    await includeHTML();
-    await renderAddTask();
-    loadContacts();
-}
-*/
-
-
-// async function initContacts() {
-//     await includeHTML();
-//     await loadContacts();
-//     renderContacts();
-// }
-
-
 async function initBoard() {
     await includeHTML();
     await loadTasks();
