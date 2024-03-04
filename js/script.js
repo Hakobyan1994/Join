@@ -1,5 +1,3 @@
-let selectPage = [];
-
 const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
@@ -20,76 +18,9 @@ async function getItem(key) {
 
 async function init() {
     includeHTML();
+    renderSummaryMain();
     await loadContacts();
 }
-
-async function initSummary() {
-    await includeHTML();
-    // dateUpdate();
-    // timer();
-    await getValue();
-    loadTasks();
-    loadSelectedPage();
-    initIndex();
-}
-
-/*
-async function initAddTask() {
-  
-    await includeHTML();
-    await renderAddTask();
-    loadContacts();
-}
-*/
-
-async function initContacts() {
-    await includeHTML();
-    await loadContacts();
-    renderContacts();
-}
-
-async function initBoard() {
-    await includeHTML();
-    await loadTasks();
-    loadToDo();
-}
-
-function initIndex() {
-    deleteLocalStorage();
-    localStorage.setItem('selectedPage', 'summary');
-    loadSelectedPage();
-}
-
-function forwardToPage(pageName, event) {
-    let menus = document.querySelectorAll('.menubar a');
-    menus.forEach(item => item.classList.remove('selected-color'));
-  
-    let active = document.getElementById(`${pageName}-page`);
-    active.classList.add('selected-color');
-    selectPage.push(pageName);
-    localStorage.setItem('selectedPage', pageName);
-}
-
-
-async function loadSelectedPage() {
-    let page = localStorage.getItem('selectedPage');
-    let id = page.trim() + '-page';
-    let div = document.getElementById(`${id}`);
-    console.log(id);
-    if(div) {
-        div.classList.add('selected-color');
-    } else {
-        console.log('nicht gefunden');
-        if (div && div.classList.contains('selected-color')) {
-            div.classList.remove('selected-color');
-        }
-    }
-}
-
-
-function deleteLocalStorage() {
-    localStorage.removeItem('selectedPage');
-}    
 
 
 function goBack() {
@@ -108,11 +39,32 @@ async function loadTasks() {
     }
 }
 
-function clickSelection() {
-    let menu = document.getElementById('add-task-page');
-    let old = document.getElementById('render-summary');
-    if(menu) {
-        menu.classList.toggle('selected-color');
-        old.style.display = 'none';
+
+function renderPage(selectedBar, page) {
+    let selectedNavbar = document.getElementById(selectedBar);
+    let selectedPage = document.getElementById(page);
+    let allNavbar = document.querySelectorAll('.navbar');
+    let allPages = document.querySelectorAll('.render-page');
+    selectedNavbar.classList.add('selected-color');
+    selectedPage.style.display = 'block';
+    if(page === 'render-add-task') {
+        renderAddTaskMain();
     }
+    if(page === 'render-contacts') {
+        renderContactsMain();
+    }
+    if(page === 'render-board') {
+        renderBoardMain();
+    }
+
+    allNavbar.forEach((navbar) => {
+        if (navbar.id !== selectedBar) {
+            navbar.classList.remove('selected-color');
+        }
+    })
+    allPages.forEach((pages) => {
+        if (pages.id !== page) {
+            pages.style.display = 'none';
+        }
+    })
 }

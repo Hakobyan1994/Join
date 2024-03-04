@@ -1,12 +1,6 @@
 const datauser = JSON.parse(localStorage.getItem('activeUser'));
 
     
-
-
-   
-
-
-
 // if (datauser) {
 //     guestsUser = datauser;
 //     let txt = guestsUser.name;
@@ -22,9 +16,6 @@ const datauser = JSON.parse(localStorage.getItem('activeUser'));
 // }
  
 
- 
-
-
 function checks(){
   let profilInfo=document.querySelector('.clickInfoDiv')
   if(profilInfo.style.display==='block'){
@@ -34,6 +25,7 @@ function checks(){
   }
   
 }       
+
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;

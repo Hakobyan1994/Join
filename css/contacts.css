@@ -155,7 +155,7 @@ body {
     align-items: center;
     gap: 16px;
     overflow-x: hidden;
-    padding-top: 40px;
+    margin-top: 40px;
 }
 
 .contact-con-pos {
@@ -229,7 +229,7 @@ body {
     align-items: flex-start;
     gap: 8px;
     align-self: stretch;
-    padding-left: 92px;
+    padding-left: 85px;
 }
 
 .contact-line {
@@ -329,4 +329,8 @@ body {
     background-image: url('assets/img/icons/scrollbar.svg');
     background-size: cover;
     border: none;
+}
+
+.highlighted {
+    background-color: #2A3647;
 }

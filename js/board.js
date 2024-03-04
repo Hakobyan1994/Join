@@ -1,6 +1,15 @@
 let dataTask = [];
 
 
+async function renderBoardMain() {
+    let content = document.getElementById('render-board');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainBoard();
+    loadToDo();
+    await loadContacts();
+    await loadTasks();
+
+}
 
 
 function closePopupAddTask() {
@@ -55,7 +64,6 @@ async function loadToDo() {
         createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
-        await loadSelectedPage();
     }
     if (!hasToDo) {
         todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
@@ -70,11 +78,6 @@ async function loadToDo() {
     if (!hasDone) {
         done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
-}
-
-
-function reloadPage() {
-    location.reload(true);
 }
 
 
@@ -481,7 +484,6 @@ async function deleteTask(i) {
     await setItem('tasks', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
     await loadToDo();
-    reloadPage();
 }
 
 

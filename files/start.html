@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Kanban Project Management Tool</title>
+    <script src="../js/includeHTML.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/add-task.js"></script>
+    <script src="../js/add-task-templates.js"></script>
+    <script src="../js/board-templates.js"></script>
+    <script src="../js/summary-templates.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/contacts-templates.js"></script>
+    <script src="../js/board-templates.js"></script>    
+    <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/summary.css">
+    <link rel="stylesheet" href="../css/menubar.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/add-task.css">
+    <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/addContacts.css">
+    <link rel="stylesheet" href="../css/contact-info.css">
+    <link rel="stylesheet" href="../css/board.css">
+</head>
+
+<body onload="init()">
+    <div w3-include-html="../js/menubar.html"></div>
+    <div class="render-page" id="render-summary"></div>    
+    <div class="render-page" id="render-add-task"></div>
+    <div class="render-page" id="render-board"></div>
+    <div class="render-page" id="render-contacts"></div>
+    <div class="render-page" id="render-privacy-policy"></div>
+    <div class="render-page" id="render-legal-notice"></div>
+    <div class="render-page" id="render-help"></div>              
+
+    <script src="../js/summary.js"></script>
+    <script src="../js/board.js"></script>
+</body>
+
+
+</html>

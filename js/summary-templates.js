@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary</title>
-    <script src="../js/includeHTML.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/add-task.js"></script>
-    <script src="../js/add-task-templates.js"></script>
-    <script src="../js/board-templates.js"></script>
-    <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/summary.css">
-    <link rel="stylesheet" href="../css/menubar.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/add-task.css">
-</head>
-
-<body onload="initSummary()">
-    <div w3-include-html="../js/menubar.html"></div>
-    <div id="render-add-task"></div>   
-
-
-    <div class="" id="render-summary">
-
-        <div class="info_titleDiv">
+function generateHtmlSummary() {
+    return /*html*/`
+                <div class="info_titleDiv">
             <h1>Join 360</h1>
             <div class="vector"></div>
             <span>Key Metrics at a Glance</span>
@@ -34,7 +10,7 @@
     
         <div class="main_checkingDiv">
     
-            <a href="../files/board.html">
+            <a href="#" onclick="renderPage('board-page', 'render-board')">
                 <div class="To_Done_mainDiv">
                     <div class="toDo_mainDiv">
                         <div class="image_Todo"><img class="editImage" src="../assets/img/icons/edit.png" alt=""></div>
@@ -70,8 +46,8 @@
                     </div>
                     <div class="urgentVector"></div>
                     <div class="Date_box">
-                        <span id="date" class="Datespan"></span>
-                        <span class="date_title"> Upcoming Deadline</span>
+                        <span id="urgentDate" class="Datespan"></span>
+                        <span class="date_title">Upcoming Deadline</span>
                     </div>
                 </div>
                 <div class="tasksmain_Board">
@@ -106,11 +82,5 @@
         </div>
     
         <span id="data"></span>    
-    </div>
-            
-
-    <script src="../js/summary.js"></script>
-</body>
-
-
-</html>
+    `;
+}

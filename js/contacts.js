@@ -1,9 +1,17 @@
-
 let contacts = [];
 let contactIdCounter = 0;
 let initials;
+let initialsColor = 'white';
 let contactInfoSliderVisible = false;
 
+
+async function renderContactsMain() {
+    let content = document.getElementById('render-contacts');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainContacts();
+    renderContacts();
+    await loadContacts();
+}
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
@@ -19,10 +27,7 @@ function renderContacts() {
         let contact = contacts[i];
         lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
     }
-
-    loadSelectedPage();
 }
-
 
 
 function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
@@ -34,7 +39,8 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
         }
 
         const imageId = `contactImage${i}`;
-        contactsContainer.innerHTML += generateContact(i, contact, imageId);
+        const contactHtml = generateContact(i, contact, imageId);
+        contactsContainer.innerHTML += contactHtml;
         addInitialsToContactImage(contact, imageId);
 
         return firstLetter;
@@ -42,6 +48,7 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
 
     return lastLetter;
 }
+
 
 
 
@@ -56,21 +63,16 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=ffffff`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
         applyRandomColorToImage(imageElement, initials);
     }
 }
 
 
 function displayContactImage(i) {
-    let contact = contacts[i];
     let contactImage = document.getElementById('contactImageEdit');
     if (contactImage) {
-        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=ffffff`;
-        contactImage.style.width = '100px';
-        contactImage.style.height = '100px';
-        contactImage.style.backgroundColor = 'transparent';
-        contactImage.alt = contact.initials;
+        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
     }
 }
 
@@ -131,7 +133,6 @@ function addToContacts() {
     } else {
         phoneAddContactError.classList.add('d-none');
     }
-
 
     if (!name || !email || !phone) {
         return;
@@ -222,12 +223,13 @@ function addContactToArray(name, email, phone, initials) {
         'email': email,
         'phone': phone,
         'initials': initials,
-        'initialsColor': 'white',
+        'initialsColor': initialsColor,
         'contactImg': contactImg,
         'color': randomColor
     };
     contacts.push(contact);
 }
+
 
 
 function saveContact(i) {
@@ -415,7 +417,7 @@ function renderContactInfo(i, contactInfoSlider) {
 
 function addRandomColorToImg(imageElement, contact) {
     if (imageElement) {
-        applyRandomColorToImage(imageElement, contact.initials);
+        applyRandomColorToImage(imageElement, contact);
     }
 }
 
@@ -438,3 +440,14 @@ function changeImage(hovered) {
         document.getElementById('cancelBtnImg').src = '../assets/img/icons/close-black1.svg';
     }
 }
+
+
+function addHighlight(contactDiv) {
+    contactDiv.classList.add('highlighted');
+}
+
+
+function removeHighlight(contactDiv) {
+    contactDiv.classList.remove('highlighted');
+}
+

@@ -1,4 +1,10 @@
-loadSelectedPage();
+let arrayUrgent = [
+  {
+    priority: [],
+    date: []
+  }
+];
+
 displayGreeting();
 
 
@@ -20,12 +26,9 @@ if (guestsUsing) {
   document.getElementById('profil_name').classList.remove('profil_name')
   document.getElementById('profil_name').classList.add('guestsGreeting')
 }
-let arrayUrgent = [
-  {
-    priority: [],
-    date: []
-  }
-];
+
+
+
 
 /*
 const currentDate = new Date();
@@ -42,10 +45,18 @@ function dateUpdate() {
 
   function timer() {
     setTimeout(() => {
-      loadSelectedPage();
   }, "100");
 }
 */
+
+async function renderSummaryMain() {
+  let content = document.getElementById('render-summary');
+  content.innerHTML = '';
+  content.innerHTML = generateHtmlSummary();
+  await loadTasks();
+  await getValue();
+}
+
 
 async function getValue() {
   await loadTasks();
@@ -107,8 +118,8 @@ function getUrgentDate() {
   }
   deleteOldUrgent();
   validateUpcomingDeadline();
-
 }
+
 
 function deleteOldUrgent() {
   let dateArray = arrayUrgent.map(urgentString => {
@@ -125,14 +136,16 @@ function deleteOldUrgent() {
 
 }
 
+
 function actualDate() {
   let date = new Date();
   let day = date.getDate();
   console.log(day);
 }
 
+
 function validateUpcomingDeadline() {
-  let dateDiv = document.getElementById('date');
+  let dateDiv = document.getElementById('urgentDate');
 
   if (arrayUrgent.length === 0) {
     dateDiv.innerHTML = '-';

@@ -123,7 +123,7 @@ function validLogin(e) {
         }
         if (status === 'ok') {
             activUser(foundUser)
-            window.location.href = "../files/summary.html";
+            window.location.href = "../files/start.html";
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('email').style.border = `1px solid red`;
