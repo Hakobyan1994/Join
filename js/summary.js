@@ -1,7 +1,6 @@
 loadSelectedPage();
 displayGreeting();
 
-
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
 if (locRes) {
   localStorage.removeItem('guestsUser');
@@ -46,6 +45,18 @@ function dateUpdate() {
   }, "100");
 }
 */
+
+async function renderSummaryMain() {
+  clickSelection();
+  let content = document.getElementById('render-summary');
+  content.innerHTML = '';
+  content.innerHTML = generateHtmlSummary();
+  await getValue();
+  loadTasks();
+  // loadSelectedPage();
+  // initIndex();
+}
+
 
 async function getValue() {
   await loadTasks();

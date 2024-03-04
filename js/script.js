@@ -20,9 +20,11 @@ async function getItem(key) {
 
 async function init() {
     includeHTML();
+    renderSummaryMain();
     await loadContacts();
 }
 
+/*
 async function initSummary() {
     await includeHTML();
     // dateUpdate();
@@ -32,6 +34,7 @@ async function initSummary() {
     loadSelectedPage();
     initIndex();
 }
+*/
 
 /*
 async function initAddTask() {
@@ -108,11 +111,20 @@ async function loadTasks() {
     }
 }
 
-function clickSelection() {
-    let menu = document.getElementById('add-task-page');
-    let old = document.getElementById('render-summary');
+
+function renderPage(bar, page) {
+    let navbar = document.getElementById(bar);
+    let main = document.getElementById(page);
+    navbar.classList.add('selected-color');
+    if(page === 'render-add-task') {
+        renderAddTaskMain();
+    }
+}
+
+function clickSelection(bar, page) {
+    let menu = document.getElementById(bar);
+    let old = document.getElementById(page);
     if(menu) {
         menu.classList.toggle('selected-color');
-        old.style.display = 'none';
     }
 }
