@@ -491,6 +491,8 @@ button:focus-visible {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
+    position: relative;
+    left: 0;
     opacity: 1;
     cursor: pointer;
 }

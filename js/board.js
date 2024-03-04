@@ -1,6 +1,15 @@
- let dataTask = [];
+let dataTask = [];
 
 
+async function renderBoardMain() {
+    let content = document.getElementById('render-board');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainBoard();
+    loadToDo();
+    await loadContacts();
+    await loadTasks();
+
+}
 
 
 function closePopupAddTask() {

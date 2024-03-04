@@ -31,8 +31,10 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     enterOnSubtask();
     inputfieldFocus();
+    /*
     closeList('assigned-list', 'assigned');
     closeList('category-list', 'category');
+    */
 }
 
 
@@ -553,7 +555,7 @@ function openInBoard() {
     }
 }
 
-
+/*
 function closeList(id, eId) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
@@ -569,3 +571,4 @@ function closeList(id, eId) {
     });
     }
 }
+*/

@@ -25,24 +25,6 @@ async function init() {
 }
 
 
-/*
-async function initSummary() {
-    await includeHTML();
-    // dateUpdate();
-    // timer();
-    await getValue();
-    loadTasks();
-}
-*/
-
-
-async function initBoard() {
-    await includeHTML();
-    await loadTasks();
-    loadToDo();
-}
-
-
 function forwardToPage(pageName, event) {
     let menus = document.querySelectorAll('.menubar a');
     menus.forEach(item => item.classList.remove('selected-color'));
@@ -87,8 +69,11 @@ function renderPage(selectedBar, page) {
     if(page === 'render-add-task') {
         renderAddTaskMain();
     }
-    if (page === 'render-contacts') {
+    if(page === 'render-contacts') {
         renderContactsMain();
+    }
+    if(page === 'render-board') {
+        renderBoardMain();
     }
 
     allNavbar.forEach((navbar) => {
