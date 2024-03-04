@@ -45,12 +45,17 @@ function validForm({ name, email, password, confirmPassword }, e) {
         } else {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
+            if (window.innerWidth<=400) {
+                trasparenterDiv.style.display = 'flex';
+                // Code für den Fall, dass die Fensterbreite 600 Pixel oder weniger beträgt
+                console.log("Kleiner als 400px");
+            }else{
             trasparenterDiv.style.display = 'flex';
             setTimeout(function () {
                 trasparenterDiv.style.display = 'none';
                 window.location.href = '../index.html'
             }, 2000)
-
+        }
         }
     } else {
         e.target[3].style.border = '4px solid red';
