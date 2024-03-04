@@ -103,7 +103,8 @@ function renderPage(selectedBar, page) {
     selectedPage.style.display = 'block';
     if(page === 'render-add-task') {
         renderAddTaskMain();
-    } else if (page === 'render-contacts') {
+    }
+    if (page === 'render-contacts') {
         renderContactsMain();
     }
 
