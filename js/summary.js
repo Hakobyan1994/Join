@@ -47,7 +47,7 @@ function dateUpdate() {
 */
 
 async function renderSummaryMain() {
-  clickSelection();
+  // clickSelection();
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
   content.innerHTML = generateHtmlSummary();

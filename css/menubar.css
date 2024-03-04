@@ -64,13 +64,17 @@ nav {
 }
 
 .selected-color {
-    background-color: rgb(9,25,49);
+    background-color: rgb(9,25,49)!important;
 }
 
 .selected-color:hover {
     background-color: rgb(9,25,49)!important;
     width: 51%;
     transition: 10ms;
+}
+
+.navbar {
+    background-color: transparent;
 }
 
 .legalbox {

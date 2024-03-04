@@ -112,19 +112,40 @@ async function loadTasks() {
 }
 
 
-function renderPage(bar, page) {
-    let navbar = document.getElementById(bar);
-    let main = document.getElementById(page);
-    navbar.classList.add('selected-color');
+function renderPage(selectedBar, page) {
+    let selectedNavbar = document.getElementById(selectedBar);
+    let selectedPage = document.getElementById(page);
+    let allNavbar = document.querySelectorAll('.navbar');
+    let allPages = document.querySelectorAll('.render-page');
+    console.log(allNavbar);
+    selectedNavbar.classList.add('selected-color');
+    selectedPage.style.display = 'block';
     if(page === 'render-add-task') {
         renderAddTaskMain();
-    }
+    } 
+
+    allNavbar.forEach((navbar) => {
+        if (navbar.id !== selectedBar) {
+            navbar.classList.remove('selected-color');
+            // currentMain.style.display = 'none';
+        }
+    })
+    allPages.forEach((pages) => {
+        if (pages.id !== page) {
+            pages.style.display = 'none';
+        }
+    })
+
 }
 
+/* 
 function clickSelection(bar, page) {
     let menu = document.getElementById(bar);
     let old = document.getElementById(page);
+    let matches = document.querySelectorAll('.selection');
+    console.log(matches);
     if(menu) {
-        menu.classList.toggle('selected-color');
+        menu.classList.add('selected-color');
     }
 }
+*/

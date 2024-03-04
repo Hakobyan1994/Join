@@ -4,7 +4,7 @@ let users = [];
 let iniimg = [];
 
 async function renderAddTaskMain() {
-    clickSelection();
+    // clickSelection();
     let content = document.getElementById('render-add-task');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainAddTask();
