@@ -148,6 +148,7 @@
     align-items: center;
     gap: 4px;
     border-radius: 10px;
+    border: none;
     background: #2A3647;
     color: #FFF;
     font-family: Inter;
@@ -162,7 +163,6 @@
 
 .create-contact-btn:hover {
     background-color: #2AACE2;
-    border: none;
 }
 
 .create-contact-btn::after {

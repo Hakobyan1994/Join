@@ -9,8 +9,8 @@ function generateAddBtn() {
 function generateContact(i, contact, imageId) {
     return /*html*/`
     <div class="focus-main">
-        <div onclick="showContactInfoSlider(${i})" class="contact-con-pos">
-            <div class="contact-con">
+        <div id="contactHighlighter" onclick="showContactInfoSlider(${i})" class="contact-con-pos">
+            <div onclick="toggleHighlight(this)" class="contact-con"  onmouseover="addHighlight(this)" onmouseout="removeHighlight(this)">
                 <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
                 <div class="contact-focus-effect">
                     <div class="contact-list-name" tabindex="0">${contact.name}</div>
