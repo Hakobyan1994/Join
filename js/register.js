@@ -6,20 +6,20 @@ let userGuests = [
         greeting: 'Good Morning'
     }
 ];
-console.log(userGuests[0].greeting);
+// console.log(userGuests[0].greeting);
    
 
 
-console.log(window.innerWidth);
+
 
 
 let div = document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
 let stop = JSON.parse(localStorage.getItem('stop'))
 
-if (window.innerWidth <= 400) {
-    // img.src = "assets/img/anmeldung Image/logoPhone.png"
-}
+// if (window.innerWidth <= 400) {
+//     // img.src = "assets/img/anmeldung Image/logoPhone.png"
+// }
 
 
 if (stop) {
