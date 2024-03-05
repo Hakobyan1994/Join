@@ -191,7 +191,7 @@
     gap: 10px;
     border-radius: 10px;
     border: 1px solid var(--Version-2-main-color, #2A3647);
-    color: var(--Version-2-main-color, #2A3647);
+    color: var(--Version-2-main-color, #2A3647) !important;
     font-family: Inter;
     font-size: 20px;
     font-style: normal;
@@ -204,8 +204,9 @@
 }
 
 .cancel-btn:hover,
-.cancel-btn:hover .cancel-btn-img {
-    color: #2AACE2;
+.cancel-btn:hover .cancel-btn-img .cancel-txt-fix:hover,
+.cancel-btn:hover .cancel-btn-text { 
+    color: #2AACE2 !important; 
     border-color: #2AACE2;
 }
 
@@ -226,15 +227,17 @@
     opacity: 0;
     z-index: 1;
     width: 130px;
+    color: #2AACE2;
 }
 
 .cancel-btn:hover::after {
     opacity: 1;
     width: 130px;
+    color: #2AACE2;
 }
 
 .cancel-btn:hover .cancel-btn-text {
-    color: #2AACE2;
+    color: #2AACE2 !important;
     border-color: #2AACE2;
     width: 130px;
 }

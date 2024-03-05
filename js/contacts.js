@@ -40,6 +40,7 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
 
         const imageId = `contactImage${i}`;
         const contactHtml = generateContact(i, contact, imageId);
+
         contactsContainer.innerHTML += contactHtml;
         addInitialsToContactImage(contact, imageId);
 
@@ -48,8 +49,6 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
 
     return lastLetter;
 }
-
-
 
 
 function addInitialsToContactImage(contact, imageId) {
@@ -63,16 +62,21 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
         applyRandomColorToImage(imageElement, initials);
     }
 }
 
 
 function displayContactImage(i) {
+    let contact = contacts[i];
     let contactImage = document.getElementById('contactImageEdit');
     if (contactImage) {
-        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
+        contactImage.style.width = '100px';
+        contactImage.style.height = '100px';
+        contactImage.style.backgroundColor = 'transparent';
+        contactImage.alt = contact.initials;
     }
 }
 
@@ -231,7 +235,6 @@ function addContactToArray(name, email, phone, initials) {
 }
 
 
-
 function saveContact(i) {
     let contact = contacts[i];
     let contactName = document.getElementById('nameEdit').value;
@@ -273,11 +276,6 @@ function saveContact(i) {
 
     saveContactErrorMessages(i);
     saveContactHelp(i, contacts);
-}
-
-
-function saveContactErrorMessages(i) {
-
 }
 
 
@@ -406,12 +404,11 @@ function renderContactInfo(i, contactInfoSlider) {
     let contactName = contact.name;
     let contactEmail = contact.email;
     let contactPhone = contact.phone;
-    let imageId = `contactImageSlider`;
-    let imageElement = document.getElementById(imageId);
-    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId);
-    addInitialsToContactImage(contact, imageId);
+    let imageIdSlider = `contactImageSlider`;
+    let imageElement = document.getElementById(imageIdSlider);
+    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageIdSlider);
+    addInitialsToContactImage(contact, imageIdSlider);
     addRandomColorToImg(imageElement, contact);
-    contactInfoSlider.dataset.contactId = i;
 }
 
 
