@@ -1,3 +1,5 @@
+let activeUser = [];
+
 let arrayUrgent = [
   {
     priority: [],
@@ -5,24 +7,27 @@ let arrayUrgent = [
   }
 ];
 
-
-let locRes = JSON.parse(localStorage.getItem('activeUser'));
-if (locRes) {
-  localStorage.removeItem('guestsUser');
-  console.log(locRes);
-  let profilName = document.querySelector('.greetingName');
-  profilName.innerText = locRes.name
+function getActiveUser() {
+  let locRes = JSON.parse(localStorage.getItem('activeUser'));
+  if (locRes) {
+    localStorage.removeItem('guestsUser');
+    console.log(locRes);
+    let profilName = document.querySelector('.greetingName');
+    profilName.innerText = locRes.name
+  }
+  activeUser.push(locRes);
 }
 
-
-let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
-if (guestsUsing) {
-  let profilName = document.querySelector('.greetingName')
-  profilName.innerText = guestsUsing[0].name
-  let greetingForUser = document.querySelector('.greeting')
-  greetingForUser.innerText = guestsUsing[0].greeting
-  document.getElementById('profil_name').classList.remove('profil_name')
-  document.getElementById('profil_name').classList.add('guestsGreeting')
+function getGuestUser() {
+  let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
+  if (guestsUsing) {
+    let profilName = document.querySelector('.greetingName')
+    profilName.innerText = guestsUsing[0].name
+    let greetingForUser = document.querySelector('.greeting')
+    greetingForUser.innerText = guestsUsing[0].greeting
+    document.getElementById('profil_name').classList.remove('profil_name')
+    document.getElementById('profil_name').classList.add('guestsGreeting')
+  }
 }
 
 
@@ -53,7 +58,9 @@ async function renderSummaryMain() {
   content.innerHTML = generateHtmlSummary();
   await loadTasks();
   await getValue();
-  displayGreeting();
+
+  getActiveUser();
+  getGuestUser();
 }
 
 
@@ -66,7 +73,7 @@ async function getValue() {
   let valueDone = 0;
   let valueUrgent = 0;
 
-  if(tasks.length > 0) {
+  if (tasks.length > 0) {
     document.getElementById('value-total').innerHTML = tasks.length;
   } else {
     document.getElementById('value-total').innerHTML = '0';
@@ -176,11 +183,11 @@ function getGreeting() {
   let greeting = "";
 
   if (hour >= 5 && hour < 12) {
-    greeting = `Good morning, ${locRes.name}`;
+    greeting = `Good morning, ${activeUser}`;
   } else if (hour >= 12 && hour < 18) {
-    greeting = `Good afternoon, ${locRes.name}`;
+    greeting = `Good afternoon, ${activeUser}`;
   } else {
-    greeting = `Good evening, ${locRes.name}`;
+    greeting = `Good evening, ${activeUser}`;
   }
 
   return greeting;
