@@ -63,7 +63,7 @@ async function initBoard() {
 function forwardToPage(pageName, event) {
     let menus = document.querySelectorAll('.menubar a');
     menus.forEach(item => item.classList.remove('selected-color'));
-  
+
     let active = document.getElementById(`${pageName}-page`);
     active.classList.add('selected-color');
     selectPage.push(pageName);
@@ -73,7 +73,7 @@ function forwardToPage(pageName, event) {
 
 function deleteLocalStorage() {
     localStorage.removeItem('selectedPage');
-}    
+}
 
 
 function goBack() {
@@ -101,7 +101,7 @@ function renderPage(selectedBar, page) {
     console.log(allNavbar);
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
-    if(page === 'render-add-task') {
+    if (page === 'render-add-task') {
         renderAddTaskMain();
     } else if (page === 'render-contacts') {
         renderContactsMain();
