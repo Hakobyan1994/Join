@@ -99,9 +99,10 @@ h3 {
 }
 
 .board_div {
-    width: 244px;
+    width: 245px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 10px;
 }
 
