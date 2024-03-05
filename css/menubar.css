@@ -158,14 +158,9 @@ header p {
     transition: 125ms ease-in-out;
 }
 
-
 .d-none {
     display: none!important;
 }
-
-
-
-
 
 .clickInfoDiv {
     z-index: 999;
@@ -183,7 +178,6 @@ header p {
     
 } 
 
-
 .clickInfoDiv ul {
     padding-inline-start: 0;
     display: flex;
@@ -195,7 +189,6 @@ header p {
     
 }   
      
-
 .clickInfoDiv ul li {
     display: flex;
     text-decoration-line: none;
@@ -225,5 +218,3 @@ header p {
      width: 100%; 
      background-color: #2f4057;
    }
-
-     
