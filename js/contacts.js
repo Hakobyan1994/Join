@@ -9,8 +9,8 @@ async function renderContactsMain() {
     let content = document.getElementById('render-contacts');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainContacts();
-    renderContacts();
     await loadContacts();
+    renderContacts();
 }
 
 function renderContacts() {
