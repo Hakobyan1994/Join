@@ -530,8 +530,10 @@ function closeList(id, eId) {
             if(id === 'assigned-list') {
                 eIdElement.value = '';
                 eIdElement.placeholder = 'Select contacts to assign';
-                if(assignedButton.classList.contains === 'd-none') {
+                if(assignedButton) {
                     assignedButton.classList.remove('d-none');
+                } else {
+                    console.log('ID: assigned-button not found');
                 }
 
             }
