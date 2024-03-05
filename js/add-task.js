@@ -31,27 +31,25 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     enterOnSubtask();
     inputfieldFocus();
-    /*
     closeList('assigned-list', 'assigned');
     closeList('category-list', 'category');
-    */
 }
 
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
-    if (list) {
-        let input = document.getElementById('assigned');
-        if (list.classList.contains('d-none')) {
-            input.placeholder = '';
-        } else {
-            input.placeholder = 'Select contacts to assign';
-        }
-    }
+    let assignedButton = document.getElementById('assigned-button');
+    let input = document.getElementById('assigned');
     list.classList.toggle('d-none');
+    if(!list.classList.contains('d-none')) {
+        assignedButton.classList.add('d-none');
+        input.placeholder = '';
+    } else {
+        assignedButton.classList.remove('d-none');
+        input.placeholder = 'Select contacts to assign';
+    }
     list.innerHTML = '';
     renderContactList(list);
-    hideAssignedButton();
 }
 
 
@@ -86,16 +84,6 @@ function searchAssignedList() {
         } else {
             list.style.display = 'none';
         }
-    }
-}
-
-function hideAssignedButton() {
-    let buttons = document.getElementById('assigned-button');
-    let list = document.getElementById('assigned-button');
-    if (!list.classList.contains('d-none')) {
-        buttons.classList.add('d-none');
-    } else {
-        buttons.classList.remove('d-none');
     }
 }
 
@@ -150,6 +138,7 @@ function pushCategorytoInput(category) {
 
 
 function selectAssignedContacts(i) {
+    document.getElementById('assigned-button').classList.add('d-none');
     let contact = document.getElementById(`assigned-contacts-${i}`);
     let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
@@ -158,13 +147,13 @@ function selectAssignedContacts(i) {
         checkbox.src = '../assets/img/icons/selected1.svg';
         checkbox.classList.remove('checkbox-none-selected');
         checkbox.classList.add('checkbox-selected');
-
     } else {
         checkbox.src = '../assets/img/icons/none-selected1.svg';
         checkbox.classList.add('checkbox-none-selected');
         checkbox.classList.remove('checkbox-selected');
     }
     pushUser(i);
+    generateAssignedButton();
 }
 
 
@@ -554,7 +543,7 @@ function openInBoard() {
     }
 }
 
-/*
+
 function closeList(id, eId) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
@@ -562,12 +551,21 @@ function closeList(id, eId) {
     if(list){
 
     document.addEventListener('click', function(event) {
+
         if (!list.contains(event.target) && event.target !== eIdElement) {
-            list.style.display = 'none';
+            list.classList.add('d-none');
+            if(id === 'assigned-list') {
+                eIdElement.value = '';
+                eIdElement.placeholder = 'Select contacts to assign';
+                document.getElementById('assigned-button').classList.remove('d-none');
+            }
         } else {
-            list.style.display = 'block';
+            list.classList.add('block');
         }
     });
     }
 }
-*/
+
+function resetAssignedList(list, eIdElement) {
+    eIdElement.placeholder = '';
+}

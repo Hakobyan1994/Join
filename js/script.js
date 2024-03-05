@@ -72,6 +72,7 @@ function renderPage(selectedBar, page) {
     resetHlp();
 }
 
+
 function resetHlp() {
     let allPages = document.querySelectorAll('.hlp');
     document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
@@ -82,6 +83,7 @@ function resetHlp() {
     })
 }
 
+
 function renderHPLMain(page) {
         let content = document.getElementById(page);
         let allNavbar = document.querySelectorAll('.navbar');
@@ -90,8 +92,6 @@ function renderHPLMain(page) {
         if(content) {
             content.style.display = 'block';
         }
-        console.log(allNavbar);
-
         allHlp.forEach((pages) => {
             if(pages.id !== page) {
                 pages.style.display = 'none';
