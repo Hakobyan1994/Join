@@ -168,7 +168,7 @@ function activUser(arr) {
 function guesButton() {
     localStorage.removeItem('activeUser');
     forGuestUser('guestsUser', userGuests);
-    window.location.href = '../files/summary.html'
+    window.location.href = '../files/start.html'
 }
 
 
