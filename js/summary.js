@@ -5,8 +5,6 @@ let arrayUrgent = [
   }
 ];
 
-displayGreeting();
-
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
 if (locRes) {
@@ -55,6 +53,7 @@ async function renderSummaryMain() {
   content.innerHTML = generateHtmlSummary();
   await loadTasks();
   await getValue();
+  displayGreeting();
 }
 
 
