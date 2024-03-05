@@ -193,6 +193,10 @@ body {
     padding-bottom: 5px;
 }
 
+.contact-con:hover .contact-list-name {
+    color: white;
+}
+
 .contact-list-name:focus-within {
     color: white;
 }
@@ -302,6 +306,10 @@ body {
     width: 100%;
 }
 
+.contact-focus-effect:hover {
+    color: white;
+}
+
 .contact-focus-effect:focus {
     background-color: #2A3647;
 }
@@ -333,4 +341,5 @@ body {
 
 .highlighted {
     background-color: #2A3647;
+    color: white;
 }

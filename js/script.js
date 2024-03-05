@@ -23,60 +23,6 @@ async function init() {
 }
 
 
-<<<<<<< HEAD
-/*
-async function initSummary() {
-    await includeHTML();
-    // dateUpdate();
-    // timer();
-    await getValue();
-    loadTasks();
-}
-*/
-
-
-/*
-async function initAddTask() {
-  
-    await includeHTML();
-    await renderAddTask();
-    loadContacts();
-}
-*/
-
-
-// async function initContacts() {
-//     await includeHTML();
-//     await loadContacts();
-//     renderContacts();
-// }
-
-
-async function initBoard() {
-    await includeHTML();
-    await loadTasks();
-    loadToDo();
-}
-
-
-function forwardToPage(pageName, event) {
-    let menus = document.querySelectorAll('.menubar a');
-    menus.forEach(item => item.classList.remove('selected-color'));
-
-    let active = document.getElementById(`${pageName}-page`);
-    active.classList.add('selected-color');
-    selectPage.push(pageName);
-    localStorage.setItem('selectedPage', pageName);
-}
-
-
-function deleteLocalStorage() {
-    localStorage.removeItem('selectedPage');
-}
-
-
-=======
->>>>>>> 800578e8fbd544d5b7a0186f8bc446bf0458806f
 function goBack() {
     window.history.back();
 }
