@@ -274,7 +274,6 @@ function saveContact(i) {
     contact.email = contactEmail;
     contact.phone = contactPhone;
 
-    saveContactErrorMessages(i);
     saveContactHelp(i, contacts);
 }
 
