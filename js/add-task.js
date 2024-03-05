@@ -432,7 +432,7 @@ async function createTask(boardcard) {
     let priority = pushPrio();
     let category = document.getElementById('category');
 
-    let dateValue = '2024-03-01';
+    let dateValue = date.value;
     let formatedDate = formatDate(dateValue);
 
     if (title.value && dateValue && category.value) {
@@ -441,16 +441,7 @@ async function createTask(boardcard) {
         pushToTodoBoard(priority, boardcard, description, formatedDate);
         await setItem('tasks', JSON.stringify(tasks));
         clearFields();
-
-        let popup = document.getElementById('popup-add-task');
-
-        if (popup !== null) {
-            openInBoard();
-            await updateProgressBar();
-        } else {
-            console.log('Popup wurde nicht gefunden / CREATE TASK');
-            openToBoard();
-        }
+        openBoard();
     } else {
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
@@ -512,42 +503,24 @@ function inputfieldFocus(field) {
 }
 
 
-function openToBoard() {
-    let popup = document.getElementById('popup-a-to-b');
-
-    if (popup !== null) {
-
-        setTimeout(() => {
-            renderPage('board-page', 'render-board');
-        }, "1500");
-        popup.classList.remove('d-none');
-    } else {
-        console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
-        renderPage('board-page', 'render-board');
+function openBoard() {
+    let addTask = document.getElementById('popup-a-to-b');
+    let board = document.getElementById('popup-a-to-b-board');
+    if(addTask) {
+        addTask.classList.remove('d-none');
+    } else if(board) {
+        board.classList.remove('d-none');
     }
-}
-
-
-function openInBoard() {
-    let popup = document.getElementById('popup-a-to-b-board');
-
-    if (popup !== null) {
-
-        setTimeout(() => {
-            renderPage('board-page', 'render-board');
-        }, "1500");
-        popup.classList.remove('d-none');
-    } else {
-        console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
+    setTimeout(() => {
         renderPage('board-page', 'render-board');
-    }
+    }, "1500");
 }
 
 
 function closeList(id, eId) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
-
+    let assignedButton = document.getElementById('assigned-button');
     if(list){
 
     document.addEventListener('click', function(event) {
@@ -557,15 +530,14 @@ function closeList(id, eId) {
             if(id === 'assigned-list') {
                 eIdElement.value = '';
                 eIdElement.placeholder = 'Select contacts to assign';
-                document.getElementById('assigned-button').classList.remove('d-none');
+                if(assignedButton.classList.contains === 'd-none') {
+                    assignedButton.classList.remove('d-none');
+                }
+
             }
         } else {
             list.classList.add('block');
         }
     });
     }
-}
-
-function resetAssignedList(list, eIdElement) {
-    eIdElement.placeholder = '';
-}
+}    
