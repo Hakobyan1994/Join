@@ -8,7 +8,6 @@ async function renderBoardMain() {
     loadToDo();
     await loadContacts();
     await loadTasks();
-
 }
 
 
@@ -623,7 +622,6 @@ async function saveEditedTask(i) {
         category.classList.add('inputfield-focus-red');
     }
     loadToDo();
-    reloadPage();
 }
 
 function formatDate(date) {

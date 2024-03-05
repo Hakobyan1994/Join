@@ -162,6 +162,10 @@ header p {
     display: none!important;
 }
 
+.block {
+    display: block;
+}
+
 .clickInfoDiv {
     z-index: 999;
     display: none;
