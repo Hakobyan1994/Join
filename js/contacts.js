@@ -440,10 +440,12 @@ function changeImage(hovered) {
 
 function addHighlight(contactDiv) {
     contactDiv.classList.add('highlighted');
+    contactDiv.classList.add('white');
 }
 
 
 function removeHighlight(contactDiv) {
     contactDiv.classList.remove('highlighted');
+    contactDiv.classList.remove('white');
 }
 
