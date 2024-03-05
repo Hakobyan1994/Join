@@ -1,6 +1,15 @@
- let dataTask = [];
+let dataTask = [];
 
 
+async function renderBoardMain() {
+    let content = document.getElementById('render-board');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainBoard();
+    loadToDo();
+    await loadContacts();
+    await loadTasks();
+
+}
 
 
 function closePopupAddTask() {
@@ -28,7 +37,7 @@ async function loadToDo() {
     feedback.innerHTML = '';
     done.innerHTML = '';
 
-    let hasToDo = false; 
+    let hasToDo = false;
     let hasProgress = false;
     let hasFeedback = false;
     let hasDone = false;
@@ -55,7 +64,6 @@ async function loadToDo() {
         createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
-        await loadSelectedPage();
     }
     if (!hasToDo) {
         todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
@@ -70,11 +78,6 @@ async function loadToDo() {
     if (!hasDone) {
         done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
-}
-
-
-function reloadPage() {
-    location.reload(true);
 }
 
 
@@ -152,7 +155,7 @@ function generateBoardCardFeedback(task, i) {
                     <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
                 </div>
             </div>   
-    `; 
+    `;
 }
 
 
@@ -179,13 +182,13 @@ function generateBoardCardDone(task, i) {
                 </div>
             </div> 
     `;
-}  
+}
 
 
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
     let letters = task.letter;
-    if(iconmember) {
+    if (iconmember) {
         for (let k = 0; k < letters.length; k++) {
             const letter = letters[k];
             iconmember.innerHTML += /*html*/`
@@ -269,7 +272,7 @@ function createUserToAssigned(i) {
                 <div>${user}</div>  
             </div>
 
-        `;   
+        `;
     }
 }
 
@@ -287,7 +290,7 @@ function createSubtasksToAddTaskPopup(i) {
                 </div>
             </div>
         `;
-        
+
     }
     checkSelectedSubtasks(i);
 }
@@ -316,7 +319,7 @@ function checkSelectedSubtasks(i) {
 async function checkOffSubtask(i, k) {
     let img = document.getElementById(`select-subtask-board-${k}`);
     let subtask = document.getElementById(`each-subtasks-${k}`);
-    
+
 
 
     if (img.src.includes('none-selected.svg')) {
@@ -385,7 +388,7 @@ function calculatePercentageForProgressBar(i) {
     let total = totalSubtask(i);
     let subtotal = updateSelectedSubtasksCount(i);
 
-    if(total === 0) {
+    if (total === 0) {
         let percentage = 0;
         return percentage;
     } else {
@@ -397,7 +400,7 @@ function calculatePercentageForProgressBar(i) {
 
 async function updateProgressBar(i) {
     let div = document.getElementById(`progress-bar-${i}`);
-    if(div){
+    if (div) {
         div.style.width = calculatePercentageForProgressBar(i) + '%';
     }
 }
@@ -406,7 +409,7 @@ async function updateProgressBar(i) {
 
 function changeCategoryButton(i) {
     let categoryBtn = document.getElementById(`category-bg-change-${i}`);
-    if(categoryBtn) {
+    if (categoryBtn) {
         if (categoryBtn.textContent === 'Technical Task') {
             categoryBtn.classList.add('technical-button');
         } else if (categoryBtn.textContent === 'User Story') {
@@ -461,10 +464,10 @@ function searchTasks() {
 
 function cancelButton() {
     let button = document.getElementById('clear-button');
-    
+
     if (button) {
         button.onclick = null;
-        button.onclick = function() {
+        button.onclick = function () {
             closePopupAddTask();
         };
         button.innerHTML = /*html*/`
@@ -481,7 +484,6 @@ async function deleteTask(i) {
     await setItem('tasks', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
     await loadToDo();
-    reloadPage();
 }
 
 
@@ -522,7 +524,7 @@ function generateEditableAddtask(i) {
                 <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="../assets/img/icons/check1.svg" alt="Check Icon"></button>
             </div>       
 
-    `; 
+    `;
 }
 
 
@@ -567,7 +569,7 @@ function getSubtasks() {
                 <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
-    `;        
+    `;
     }
 }
 
@@ -604,7 +606,7 @@ async function saveEditedTask(i) {
         tasks.splice(i, 1);
 
         await setItem('tasks', JSON.stringify(tasks));
-       
+
         let popup = document.getElementById('popup-add-task');
         document.getElementById('popup-add-task-edit').classList.add('d-none');
 
@@ -620,22 +622,22 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-    loadToDo();  
-    reloadPage(); 
+    loadToDo();
+    reloadPage();
 }
 
 function formatDate(date) {
-let dateObj = new Date(date);
+    let dateObj = new Date(date);
 
     if (!isNaN(dateObj)) {
         let day = dateObj.getDate();
-            day = day < 10 ? "0" + day : day;
+        day = day < 10 ? "0" + day : day;
         let month = dateObj.getMonth() + 1;
-            month = month < 10 ? "0" + month : month;
+        month = month < 10 ? "0" + month : month;
         let year = dateObj.getFullYear();
 
         let resultDate = `${day}/${month}/${year}`;
-    
+
         return resultDate;
     }
 }
@@ -648,7 +650,7 @@ function deformatDate(date) {
         let year = parts[2];
 
         let resultDate = `${year}-${month}-${day}`;
-    
+
         return resultDate;
     }
     return date;
@@ -659,9 +661,9 @@ function getPriority(priority) {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
 
-    prioButtons.forEach(function(button) {
+    prioButtons.forEach(function (button) {
         button.classList.add('prio-notselected');
-        if(button.value === priority) {
+        if (button.value === priority) {
             button.classList.remove('prio-notselected');
         }
     });
@@ -677,13 +679,13 @@ async function closePopupEdit(i) {
 function notData() {
     let todo = document.getElementById('board-to-do');
     // console.log(tasks);
-    if(tasks.length === 0) {
+    if (tasks.length === 0) {
         // console.log(tasks.length);
-       let noTodotask=document.getElementById('NoToDo');
-       noTodotask.classList.remove('d-none');
-       noTodotask.style.display='flex';
-       todo.appendChild(noTodotask);
-    } 
+        let noTodotask = document.getElementById('NoToDo');
+        noTodotask.classList.remove('d-none');
+        noTodotask.style.display = 'flex';
+        todo.appendChild(noTodotask);
+    }
     return;
 }
 
@@ -695,16 +697,15 @@ function allowDrop(ev) {
 
 function dragStart(ev) {
     let txt = ev.srcElement.id;
-    let id = txt[txt.length-1];
+    let id = txt[txt.length - 1];
     // tasks.splice(id, 1);
     // console.log(id, 66);
     notData();
     dataTask.splice(id, 1)
     ev.dataTransfer.setData("text", ev.target.id);
-    ev.target.style.transform = "rotate(13deg)";
-    // let progress=document.getElementById('progress')
-    // progress.style.width= "50%";
-}
+    ev.target.style.transform = "rotate(15deg)";
+     
+   }
 
 
 function drop(ev) {
@@ -714,14 +715,20 @@ function drop(ev) {
     var draggedElement = document.getElementById(data);
     // ev.target.appendChild(draggedElement);
     draggedElement.style.transform = "rotate(0deg)";
-    
     if (!ev.target.contains(draggedElement)) {
         let category = ev.target.appendChild(draggedElement);
-
+        
     }
     console.log(draggedElement);
     saveDroppedElement(draggedElement);
+        
 }
+  
+
+  
+
+
+
 
 
 async function saveDroppedElement(element) {
@@ -734,6 +741,6 @@ async function saveDroppedElement(element) {
     console.log(tasks[arraypos].status);
 
 
-    await setItem('tasks', JSON.stringify(tasks)); 
+    await setItem('tasks', JSON.stringify(tasks));
     await loadToDo();
 }

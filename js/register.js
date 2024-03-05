@@ -1,25 +1,24 @@
 
-  
-let userGuests = [
-    {
-        name: '',
-        greeting: 'Good Morning'
-    }
-];
-console.log(userGuests[0].greeting);
+// let userGuests = [
+//     {
+//         name: '',
+//         greeting: 'Good Morning'
+//     }
+// ];
+// console.log(userGuests[0].greeting);
    
 
 
-console.log(window.innerWidth);
+
 
 
 let div = document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
 let stop = JSON.parse(localStorage.getItem('stop'))
 
-if (window.innerWidth <= 400) {
-    // img.src = "assets/img/anmeldung Image/logoPhone.png"
-}
+// if (window.innerWidth <= 400) {
+//     // img.src = "assets/img/anmeldung Image/logoPhone.png"
+// }
 
 
 if (stop) {
@@ -63,7 +62,7 @@ let passwordInput = document.getElementById('password');
     function showUserdata(){
         if(checkBox.checked){
             if(dataUser.length>0){
-                const user=dataUser[0];
+                const user=dataUser[dataUser.length-1];
                 emailInput.value=user.email;
                 passwordInput.value=user.password;
                 passwordInput.addEventListener('input', showPassword());
@@ -123,7 +122,7 @@ function validLogin(e) {
         }
         if (status === 'ok') {
             activUser(foundUser)
-            window.location.href = "../files/summary.html";
+            window.location.href = "../files/start.html";
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('email').style.border = `1px solid red`;
@@ -169,7 +168,7 @@ function activUser(arr) {
 function guesButton() {
     localStorage.removeItem('activeUser');
     forGuestUser('guestsUser', userGuests);
-    window.location.href = '../files/summary.html'
+    window.location.href = '../files/start.html'
 }
 
 

@@ -10,7 +10,7 @@ function generateHtmlSummary() {
     
         <div class="main_checkingDiv">
     
-            <a href="../files/board.html">
+            <a href="#" onclick="renderPage('board-page', 'render-board')">
                 <div class="To_Done_mainDiv">
                     <div class="toDo_mainDiv">
                         <div class="image_Todo"><img class="editImage" src="../assets/img/icons/edit.png" alt=""></div>
@@ -46,7 +46,7 @@ function generateHtmlSummary() {
                     </div>
                     <div class="urgentVector"></div>
                     <div class="Date_box">
-                        <span id="date" class="Datespan"></span>
+                        <span id="urgentDate" class="Datespan"></span>
                         <span class="date_title">Upcoming Deadline</span>
                     </div>
                 </div>

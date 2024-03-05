@@ -185,6 +185,8 @@
             /* border: 1px solid red; */
         }  
 
+     
+
          .card_Div2{
             width: 246px;
             height: 688px;
@@ -245,13 +247,17 @@
             cursor: pointer;
             margin-bottom: 16px;
             transition: transform 0.3s
-        }
+        } 
+          
+        
+          
 
         .progress_infocard {
             width: 220px;
             height: max-content;
         }
-
+           
+          
 
 
         .cooking_title_div {
@@ -483,6 +489,16 @@
             .rotate {
       transform: rotate(45deg);
     }
+    
+       .hoverDiv{
+        border: 1px solid red;
+        width: 50px;
+        height: 50px;
+        background-color: #0038FF;
+        
+       } 
+    
+
               
 </style>
     
@@ -542,9 +558,13 @@
     </div>
     
     <div class="card_mainContainer">
-        <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)">
+        
+        </div>
 
-        <div class="card_Div2" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="card_Div2" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">
+          
+        </div>
 
         <div class="card_Div3" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         

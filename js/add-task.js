@@ -31,8 +31,10 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     enterOnSubtask();
     inputfieldFocus();
+    /*
     closeList('assigned-list', 'assigned');
     closeList('category-list', 'category');
+    */
 }
 
 
@@ -144,7 +146,6 @@ function pushCategorytoInput(category) {
         categoryInput.value = '';
         inputfieldFocus('category');
     }
-
 }
 
 
@@ -442,10 +443,10 @@ async function createTask(boardcard) {
     let priority = pushPrio();
     let category = document.getElementById('category');
 
-    let dateValue = date.value;
+    let dateValue = '2024-03-01';
     let formatedDate = formatDate(dateValue);
 
-    if (title.value && date.value && category.value) {
+    if (title.value && dateValue && category.value) {
 
         loadTasks();
         pushToTodoBoard(priority, boardcard, description, formatedDate);
@@ -528,12 +529,12 @@ function openToBoard() {
     if (popup !== null) {
 
         setTimeout(() => {
-            window.location.href = "../files/board.html";
+            renderPage('board-page', 'render-board');
         }, "1500");
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
-        window.location.href = "../files/board.html";
+        renderPage('board-page', 'render-board');
     }
 }
 
@@ -544,16 +545,16 @@ function openInBoard() {
     if (popup !== null) {
 
         setTimeout(() => {
-            window.location.href = "../files/board.html";
+            renderPage('board-page', 'render-board');
         }, "1500");
         popup.classList.remove('d-none');
     } else {
         console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
-        window.location.href = "../files/board.html";
+        renderPage('board-page', 'render-board');
     }
 }
 
-
+/*
 function closeList(id, eId) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
@@ -569,3 +570,4 @@ function closeList(id, eId) {
     });
     }
 }
+*/

@@ -1,5 +1,3 @@
-let selectPage = [];
-
 const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
@@ -25,6 +23,7 @@ async function init() {
 }
 
 
+<<<<<<< HEAD
 /*
 async function initSummary() {
     await includeHTML();
@@ -76,6 +75,8 @@ function deleteLocalStorage() {
 }
 
 
+=======
+>>>>>>> 800578e8fbd544d5b7a0186f8bc446bf0458806f
 function goBack() {
     window.history.back();
 }
@@ -94,17 +95,22 @@ async function loadTasks() {
 
 
 function renderPage(selectedBar, page) {
+    renderHPLMain();
     let selectedNavbar = document.getElementById(selectedBar);
     let selectedPage = document.getElementById(page);
     let allNavbar = document.querySelectorAll('.navbar');
     let allPages = document.querySelectorAll('.render-page');
-    console.log(allNavbar);
+    document.getElementById('render-help').style.display = 'none';
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
     if (page === 'render-add-task') {
         renderAddTaskMain();
-    } else if (page === 'render-contacts') {
+    }
+    if(page === 'render-contacts') {
         renderContactsMain();
+    }
+    if(page === 'render-board') {
+        renderBoardMain();
     }
 
     allNavbar.forEach((navbar) => {
@@ -117,18 +123,29 @@ function renderPage(selectedBar, page) {
             pages.style.display = 'none';
         }
     })
-
 }
 
+function renderHPLMain(page) {
+        let content = document.getElementById(page);
+        let allNavbar = document.querySelectorAll('.navbar');
+        let allPages = document.querySelectorAll('.render-page');
+        if(content) {
+            content.style.display = 'block';
+        }
+        console.log(allNavbar);
 
-/* 
-function clickSelection(bar, page) {
-    let menu = document.getElementById(bar);
-    let old = document.getElementById(page);
-    let matches = document.querySelectorAll('.selection');
-    console.log(matches);
-    if(menu) {
-        menu.classList.add('selected-color');
-    }
+
+        allNavbar.forEach((navbar) => {
+            navbar.classList.remove('selected-color');
+        })
+        allPages.forEach((pages) => {
+            pages.style.display = 'none';
+        })
+        if(page === 'render-help') {
+            content.innerHTML = generateHtmlMainHelp();
+        }
+        if(page === 'render-privacy-policy') {
+            content.innerHTML = generateHtmlMainPrivacy();
+        }
+        return page;
 }
-*/
