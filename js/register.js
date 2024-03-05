@@ -1,11 +1,10 @@
 
-  
-let userGuests = [
-    {
-        name: '',
-        greeting: 'Good Morning'
-    }
-];
+// let userGuests = [
+//     {
+//         name: '',
+//         greeting: 'Good Morning'
+//     }
+// ];
 // console.log(userGuests[0].greeting);
    
 
@@ -63,7 +62,7 @@ let passwordInput = document.getElementById('password');
     function showUserdata(){
         if(checkBox.checked){
             if(dataUser.length>0){
-                const user=dataUser[0];
+                const user=dataUser[dataUser.length-1];
                 emailInput.value=user.email;
                 passwordInput.value=user.password;
                 passwordInput.addEventListener('input', showPassword());

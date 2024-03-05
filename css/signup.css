@@ -407,8 +407,32 @@ h1 {
 }
 
 
+.responsiveInfo {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 842px;
+    text-align: center;
+    left: 65px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    font-family: 'Inter';
+    text-align: center;
+    line-height: 24px;
+    font-weight: 400;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 17px 24px;
+    z-index: 4;
+}  
 
-
+.responsiveInfo.active {
+     opacity: 1;
+     visibility: visible;
+     transform:translateY(-203px);
+     transition: transform 0.5s ease;
+}
+   
 
 /* @keyframes trasparenter_div{
         from{

@@ -1,6 +1,7 @@
 const signUp = document.getElementById('signUp');
 const check = document.getElementById('checkbox');
 const trasparenterDiv = document.querySelector('.trasparenter_div');
+const responsiveInfo=document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
 
@@ -46,7 +47,11 @@ function validForm({ name, email, password, confirmPassword }, e) {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
             if (window.innerWidth<=400) {
-                trasparenterDiv.style.display = 'flex';
+                responsiveInfo.classList.add('active')
+                setTimeout(function(){
+                responsiveInfo.classList.remove('active')
+                window.location.href = '../index.html';
+                },2000)
                 // Code für den Fall, dass die Fensterbreite 600 Pixel oder weniger beträgt
                 console.log("Kleiner als 400px");
             }else{
