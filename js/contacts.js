@@ -117,6 +117,11 @@ function addToContacts() {
     let emailAddContactError = document.getElementById('emailAddErrorMessage');
     let phoneAddContactError = document.getElementById('phoneAddErrorMessage');
 
+    addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput);
+}
+
+
+function addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput) {
     if (!name) {
         nameAddContactError.classList.remove('d-none');
         nameAddContactError.innerHTML = `Please enter a name`;
@@ -141,7 +146,6 @@ function addToContacts() {
     if (!name || !email || !phone) {
         return;
     }
-
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
 
@@ -240,11 +244,18 @@ function saveContact(i) {
     let contactName = document.getElementById('nameEdit').value;
     let contactEmail = document.getElementById('emailEdit').value;
     let contactPhone = document.getElementById('phoneEdit').value;
-
     let nameEditContactError = document.getElementById('nameErrorMessage');
     let emailEditContactError = document.getElementById('emailErrorMessage');
     let phoneEditContactError = document.getElementById('phoneErrorMessage');
+    contact.name = contactName;
+    contact.email = contactEmail;
+    contact.phone = contactPhone;
 
+    saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i);
+}
+
+
+function saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i) {
     if (!contactName.trim()) {
         nameEditContactError.classList.remove('d-none');
         nameEditContactError.innerHTML = `Please enter a name`;
@@ -269,11 +280,6 @@ function saveContact(i) {
     if (!contactName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
         return;
     }
-
-    contact.name = contactName;
-    contact.email = contactEmail;
-    contact.phone = contactPhone;
-
     saveContactHelp(i, contacts);
 }
 
@@ -440,12 +446,10 @@ function changeImage(hovered) {
 
 function addHighlight(contactDiv) {
     contactDiv.classList.add('highlighted');
-    contactDiv.classList.add('white');
 }
 
 
 function removeHighlight(contactDiv) {
     contactDiv.classList.remove('highlighted');
-    contactDiv.classList.remove('white');
 }
 
