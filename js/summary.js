@@ -176,11 +176,11 @@ function getGreeting() {
   let greeting = "";
 
   if (hour >= 5 && hour < 12) {
-    greeting = "Good morning,";
+    greeting = `Good morning, ${locRes.name}`;
   } else if (hour >= 12 && hour < 18) {
-    greeting = "Good afternoon,";
+    greeting = `Good afternoon, ${locRes.name}`;
   } else {
-    greeting = "Good evening,";
+    greeting = `Good evening, ${locRes.name}`;
   }
 
   return greeting;
