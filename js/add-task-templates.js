@@ -75,7 +75,7 @@ function generateHtmlDate() {
         <label>Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input data-date-format="DD MMMM YYYY" type="date" class="inputfield" id="date" value="2024-03-01" min="2024-02-24" max="2030-12-31" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required> <!-- pattern="\d{2}/\m{2}/\y{4}" -->
+                <input type="date" class="inputfield" id="date" value="" min="" max="2030-12-31" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required> <!-- pattern="\d{2}/\m{2}/\y{4}" -->
                 <!-- <img src="assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDateTask()"> -->
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>

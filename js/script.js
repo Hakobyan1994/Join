@@ -183,3 +183,16 @@ function resetUserContent(page) {
     document.getElementById(page).innerHTML = '';
 }
 
+
+function minDate() {
+    let dateObj = new Date();
+        let day = dateObj.getDate();
+        day = day < 10 ? "0" + day : day;
+        let month = dateObj.getMonth() + 1;
+        month = month < 10 ? "0" + month : month;
+        let year = dateObj.getFullYear();
+
+        let resultDate = `${year}-${month}-${day}`;
+
+        return resultDate;
+}

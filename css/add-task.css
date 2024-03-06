@@ -275,12 +275,11 @@ textarea {
 
 .form-bottom {
     width: 1150px;
-    position: absolute;
-    bottom: 32px;
-    left: 328px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    bottom: 16px;
 }
 
 .form-bottom-right {
@@ -372,7 +371,7 @@ textarea {
     cursor: pointer;
     color: rgba(0, 0, 0, 1);
     overflow-y: scroll;
-    max-height: 112px;
+    max-height: 124px;
     width: 481px;
     scrollbar-width: thin;
     display: flex;
@@ -411,7 +410,7 @@ textarea {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 15px;
+    padding: 12px;
     border-radius: 10px;
     margin-bottom: 2px;
     padding-right: 16px;

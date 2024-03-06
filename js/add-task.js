@@ -10,6 +10,8 @@ async function renderAddTaskMain() {
     content.innerHTML = generateHtmlMainAddTask();
     renderAddTask();
     await loadContacts();
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
 }
 
 function renderAddTask() {

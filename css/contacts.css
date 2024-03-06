@@ -3,11 +3,6 @@
     src: url(../assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
-body {
-    margin: 0;
-    overflow: hidden;
-}
-
 .main-content {
     display: flex;
 }

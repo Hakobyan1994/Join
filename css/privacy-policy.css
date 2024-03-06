@@ -1,4 +1,4 @@
-.main-window {
+.privacy {
     padding-right: 100px;
     width: 75%!important;
     height: calc(100vh - 222px);
@@ -8,7 +8,7 @@
     position: absolute;
 }
 
-h2 {
+.privacy h2 {
     margin-bottom: 30px;
 }
 

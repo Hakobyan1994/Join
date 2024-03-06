@@ -5,15 +5,13 @@
     width: 100%;
     padding-right: 100px;
     width: 75%!important;
-}
-
-p {
-    margin-bottom: 24px!important;
-    margin: 0;
-}
-
-.main-window {
     overflow: scroll;
+    overflow-x: hidden;
+}
+
+.legal-notice p {
+    margin-bottom: 24px;
+    margin: 0;
 }
 
 ::-webkit-scrollbar {

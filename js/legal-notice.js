@@ -1,6 +1,6 @@
 function generateHtmlMainLegal() {
     return /*html*/`
-        <div class="main-window legal-notice">
+        <div class="legal-notice">
             <h2>Legal Notice</h2>
             <h3>Imprint</h3>
             <ul>

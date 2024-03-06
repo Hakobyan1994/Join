@@ -1,6 +1,6 @@
 function generateHtmlMainHelp() {
     return /*html*/`
-        <div class="main-window help">
+        <div class="help">
             <h2>Help</h2>
             <p>Welcome to the help page for <span>Join</span>, your guide to using our kanban project management tool. Here,
                 we'll provide an overview of what <span>Join</span> is, how it can benefit you, and how to use it.</p>
