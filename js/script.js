@@ -20,6 +20,7 @@ async function init() {
     includeHTML();
     renderSummaryMain();
     await loadContacts();
+    displayGreeting();
 }
 
 

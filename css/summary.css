@@ -3,8 +3,6 @@
     src: url(../assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
-
-
 body {
     background-color: #F6F7F8;
     ;
@@ -33,8 +31,6 @@ body {
 .vector {
     border: 3px solid #29ABE2;
     height: 59px;
-
-
 }
 
 .info_titleDiv span {
@@ -46,14 +42,12 @@ body {
     cursor: default;
 }
 
-
 .main_checkingDiv {
     position: absolute;
     top: 335px;
     left: 328px;
     width: 560px;
     height: 562px;
-  
 }
 
 .To_Done_mainDiv {
@@ -62,9 +56,7 @@ body {
     display: flex;
     gap: 32px;
     margin-bottom: 28px;
-
 }
-
 
 .toDo_mainDiv {
     width: 264px;
@@ -101,10 +93,6 @@ body {
     }
 }
 
-
-
-
-
 .image_Todo {
     width: 69px;
     height: 69px;
@@ -114,8 +102,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
-
 
 .toDo_numberDiv {
     display: flex;
@@ -139,8 +125,6 @@ body {
     line-height: 24px;
     color: #2A3647;
 }
-
-
 
 .done_main {
     width: 264px;
@@ -178,7 +162,6 @@ body {
     }
 }
 
-
 .image_box {
     width: 69px;
     height: 69px;
@@ -188,7 +171,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 
 .done_numberDiv {
     display: flex;
@@ -205,7 +187,6 @@ body {
     color: #000000;
 }
 
-
 .done_title {
     font-family: inter;
     font-size: 20px;
@@ -213,8 +194,6 @@ body {
     line-height: 24px;
     color: #2A3647;
 }
-
-
 
 .mainTime_UrgentDiv {
     background-color: #ffffff;
@@ -226,36 +205,38 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 28px
-}  
-  .mainTime_UrgentDiv:hover{
+}
+
+.mainTime_UrgentDiv:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
     background-color: #2A3647;
-    .urgent_Number{
-        color: #ffffff;
-    }
-    .urgent_title{
-        color: #ffffff;
-    }
-    .urgentVector{
-        color: #ffffff;
-    }
-    .Datespan{
-        color: #ffffff;
-    }
-    .date_title{
-        color: #ffffff;
-    }
-  }
-       
 
-    
- 
+    .urgent_Number {
+        color: #ffffff;
+    }
+
+    .urgent_title {
+        color: #ffffff;
+    }
+
+    .urgentVector {
+        color: #ffffff;
+    }
+
+    .Datespan {
+        color: #ffffff;
+    }
+
+    .date_title {
+        color: #ffffff;
+    }
+}
+
 .urgentImage_div {
     width: 69px;
     height: 69px;
 }
-
 
 .urgent_Box {
     width: 130px;
@@ -266,11 +247,10 @@ body {
 
 }
 
-.urgentt_div{
+.urgentt_div {
     text-align: center;
 
 }
-
 
 .urgent_Number {
     font-family: inter;
@@ -293,225 +273,207 @@ body {
     height: 60px;
 }
 
-
-.urgentVector{
+.urgentVector {
     height: 102px;
     background-color: #2A3647;
     border: 2px solid #D1D1D1;
 }
-  
 
- .Date_box{
+.Date_box {
     width: 178px;
     height: 57px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap:13px;
+    gap: 13px;
+}
 
- } 
+.Datespan {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 29px;
+    color: #2A3647;
+    font-family: inter;
+}
 
+.date_title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 29px;
+    color: #2A3647;
+    font-family: inter;
+}
 
-    .Datespan{
-        font-weight: 700;
-        font-size: 21px;
-        line-height: 29px;
-        color: #2A3647;
-        font-family: inter;
-    } 
-      
-     .date_title{
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 29px;
-        color: #2A3647;
-        font-family: inter;
-     }  
+.tasksmain_Board {
+    width: 560px;
+    height: 170px;
+    display: flex;
+    gap: 28px;
+}
 
+.board_Div {
+    width: 168px;
+    height: 168px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-     .tasksmain_Board{
-        width: 560px;
-        height: 170px;
-        display: flex;
-        gap: 28px;
-     } 
-
-
-
-     .board_Div{
-        width: 168px;
-        height: 168px;
-        background-color: #ffffff;
-        border-radius: 30px;
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-     }     
-
-
-      .board_Div:hover{
-        background-color: #2A3647;
-        transform: scale(1.1);
+.board_Div:hover {
+    background-color: #2A3647;
+    transform: scale(1.1);
     transition: transform 0.3s ease;
-        .boardNumber{
-            color: #ffffff;
-        }
-          .board_title{
-            color: #ffffff;
-          }
-      }
 
+    .boardNumber {
+        color: #ffffff;
+    }
 
-        .board_info{
-            width: 83px;
-            height: 125px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+    .board_title {
+        color: #ffffff;
+    }
+}
 
-         .boardNumber{
-            font-family: inter;
-            font-size: 64px;
-            font-weight: 600;
-            line-height: 79px;
-            color: #000000;
-         }  
+.board_info {
+    width: 83px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-         .board_title{
-            font-family: inter;
-            font-weight: 600;
-            line-height: 24px;
-            font-size: 20px;
-            color: #2A3647;
-            text-align: center;
-         }
-    
-   
-      .progress_Div{
-        width: 168px;
-        height: 168px;
-        background-color:#ffffff;
-        border-radius: 30px;
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-          
-        
-      }   
+.boardNumber {
+    font-family: inter;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 79px;
+    color: #000000;
+}
 
+.board_title {
+    font-family: inter;
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 20px;
+    color: #2A3647;
+    text-align: center;
+}
 
-      .progress_Div:hover{ 
-        background-color: #2A3647;
-        transform: scale(1.1);
-        transition: transform 0.3s ease;
-        .progress_number{
-            color: #ffffff;
-        }
-        .progress_Info{
-            color: #ffffff;
-        }
-      }
-            
+.progress_Div {
+    width: 168px;
+    height: 168px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-       .progress_Infobox{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+.progress_Div:hover {
+    background-color: #2A3647;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 
-       } 
+    .progress_number {
+        color: #ffffff;
+    }
 
-         .progress_number{
-            font-family: inter;
-            font-size: 64px;
-            font-weight: 600;
-            line-height: 79px;
-            color: #000000;
-         }  
+    .progress_Info {
+        color: #ffffff;
+    }
+}
 
-           .progress_Info{
-            font-family: inter;
-            font-weight: 600;
-            line-height: 24px;
-            font-size: 20px;
-            color: #2A3647;
-            text-align: center;
-           }
+.progress_Infobox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-      .feedback_div{
-        width: 168px;
-        height: 168px;
-        background-color:#ffffff;
-        border-radius: 30px;
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-       
-      }  
-     
-       .feedback_div:hover{
-        background-color:#2A3647;
-        transform: scale(1.1);
-        transition: transform 0.3s ease;
-        .feedback_number{
-            color: #ffffff;
-        } 
-        .feedback_title{
-            color: #ffffff;
-        }
-       }
-       
-       .feedback_info{
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-direction: column;
-       }
+.progress_number {
+    font-family: inter;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 79px;
+    color: #000000;
+}
 
-         .feedback_number{
-            font-family: inter;
-            font-size: 64px;
-            font-weight: 600;
-            line-height: 79px;
-            color: #000000;
-         } 
+.progress_Info {
+    font-family: inter;
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 20px;
+    color: #2A3647;
+    text-align: center;
+}
 
-         .feedback_title{
-            font-family: inter;
-            font-weight: 600;
-            line-height: 24px;
-            font-size: 20px;
-            color: #2A3647;
-            text-align: center;
-         }
-         
+.feedback_div {
+    width: 168px;
+    height: 168px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.feedback_div:hover {
+    background-color: #2A3647;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+
+    .feedback_number {
+        color: #ffffff;
+    }
+
+    .feedback_title {
+        color: #ffffff;
+    }
+}
+
+.feedback_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.feedback_number {
+    font-family: inter;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 79px;
+    color: #000000;
+}
+
+.feedback_title {
+    font-family: inter;
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 20px;
+    color: #2A3647;
+    text-align: center;
+}
 
 .profil_name {
     height: 56px;
-    position: absolute;
-    top: 542px;
-    left: 968px;
+    position: relative;
+    top: 265px;
+    left: 640px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     gap: 3px;
-
 }
-
-
-
-
 
 .greeting {
     font-size: 47px;
@@ -522,24 +484,22 @@ body {
     margin-block-end: 0;
     line-height: 56px;
     cursor: default;
-}  
+}
 
-
-.greetingName{
+.greetingName {
     font-family: inter;
     font-weight: 700;
     font-size: 64px;
-    color:   #29ABE2;
+    color: #29ABE2;
     line-height: 76.8px;
     cursor: default;
 }
 
 a {
     text-decoration: none;
-}  
+}
 
-   
- .guestsGreeting{
+.guestsGreeting {
     height: 56px;
     position: absolute;
     top: 585px;
@@ -549,4 +509,4 @@ a {
     align-items: flex-start;
     flex-direction: column;
     gap: 3px;
- }
+}

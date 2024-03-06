@@ -1,4 +1,5 @@
-let activeUser = [];
+let loggedInUser = [];
+
 
 let arrayUrgent = [
   {
@@ -7,30 +8,26 @@ let arrayUrgent = [
   }
 ];
 
-function getActiveUser() {
-  let locRes = JSON.parse(localStorage.getItem('activeUser'));
-  if (locRes) {
-    localStorage.removeItem('guestsUser');
-    console.log(locRes);
-    let profilName = document.querySelector('.greetingName');
-    profilName.innerText = locRes.name
-  }
-  activeUser.push(locRes);
+
+let locRes = JSON.parse(localStorage.getItem('activeUser'));
+if (locRes) {
+  localStorage.removeItem('guestsUser');
+  console.log(locRes);
+  let profilName = document.querySelector('.greetingName');
+  profilName.innerText = locRes.name
 }
+activeUser.push(locRes);
 
-function getGuestUser() {
-  let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
-  if (guestsUsing) {
-    let profilName = document.querySelector('.greetingName')
-    profilName.innerText = guestsUsing[0].name
-    let greetingForUser = document.querySelector('.greeting')
-    greetingForUser.innerText = guestsUsing[0].greeting
-    document.getElementById('profil_name').classList.remove('profil_name')
-    document.getElementById('profil_name').classList.add('guestsGreeting')
-  }
+
+let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
+if (guestsUsing) {
+  let profilName = document.querySelector('.greetingName')
+  profilName.innerText = guestsUsing[0].name
+  let greetingForUser = document.querySelector('.greeting')
+  greetingForUser.innerText = guestsUsing[0].greeting
+  document.getElementById('profil_name').classList.remove('profil_name')
+  document.getElementById('profil_name').classList.add('guestsGreeting')
 }
-
-
 
 
 /*
@@ -52,15 +49,13 @@ function dateUpdate() {
 }
 */
 
+
 async function renderSummaryMain() {
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
   content.innerHTML = generateHtmlSummary();
   await loadTasks();
   await getValue();
-
-  getActiveUser();
-  getGuestUser();
 }
 
 
@@ -176,28 +171,33 @@ function defineUpcomingDeadline() {
 }
 
 
-function getGreeting() {
+async function loadLoggedInUser() {
+  loggedInUser = JSON.parse(await getItem('userData'));
+}
+
+
+async function getGreeting() {
+  await loadLoggedInUser();
   const now = new Date();
   const hour = now.getHours();
-
-  let greeting = "";
+  let greetingTime = '';
 
   if (hour >= 5 && hour < 12) {
-    greeting = `Good morning, ${activeUser}`;
+      greetingTime = `Good morning,`;
   } else if (hour >= 12 && hour < 18) {
-    greeting = `Good afternoon, ${activeUser}`;
+      greetingTime = `Good afternoon,`;
   } else {
-    greeting = `Good evening, ${activeUser}`;
+      greetingTime = `Good evening,`;
   }
 
-  return greeting;
+  return { time: greetingTime, name: loggedInUser.name };
 }
 
 
-function displayGreeting() {
-  const greetingContainer = document.getElementById('timeOfDay');
-  const greeting = getGreeting();
-  greetingContainer.textContent = greeting;
+async function displayGreeting() {
+  let greetingTimeCon = document.getElementById('timeOfDay');
+  let greetingNameCon = document.getElementById('greetingName');
+  let greetingData = await getGreeting();
+  greetingTimeCon.textContent = greetingData.time;
+  greetingNameCon.textContent = greetingData.name;
 }
-
-
