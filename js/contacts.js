@@ -452,4 +452,3 @@ function addHighlight(contactDiv) {
 function removeHighlight(contactDiv) {
     contactDiv.classList.remove('highlighted');
 }
-
