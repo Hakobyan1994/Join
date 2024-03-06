@@ -469,9 +469,9 @@ h3 {
 
 .close-a-board {
     z-index: 999;
-    position: relative;
-    top: -384px;
-    right: -440px;
+    position: fixed;
+    top: 42px;
+    right: 42px;
     width: 24px;
     height: 24px;
     cursor: pointer;
