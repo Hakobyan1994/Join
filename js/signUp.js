@@ -30,7 +30,7 @@ async function onsubmitFor(e) {
     // let btn = e.target[5]
     if (name && email && password && confirmPassword && checkBox === 'yes') {
         let userData = { name, email, password, confirmPassword };
-        await setItem('userData', userData);
+        await setItem('userData', JSON.stringify(userData));
         validForm({ name, email, password, confirmPassword }, e)
     } else {
         check.value === 'no'
@@ -128,4 +128,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-  

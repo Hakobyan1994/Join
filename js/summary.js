@@ -176,6 +176,15 @@ async function loadLoggedInUser() {
 }
 
 
+async function displayGreeting() {
+  let greetingTimeCon = document.getElementById('timeOfDay');
+  let greetingNameCon = document.getElementById('greetingName');
+  let greetingData = await getGreeting();
+  greetingTimeCon.textContent = greetingData.time;
+  greetingNameCon.textContent = greetingData.name;
+}
+
+
 async function getGreeting() {
   await loadLoggedInUser();
   const now = new Date();
@@ -190,14 +199,19 @@ async function getGreeting() {
       greetingTime = `Good evening,`;
   }
 
-  return { time: greetingTime, name: loggedInUser.name };
+  const capitalizedFullName = greetingNameToUpperCaser(loggedInUser.name);
+
+  return { time: greetingTime, name: capitalizedFullName };
 }
 
 
-async function displayGreeting() {
-  let greetingTimeCon = document.getElementById('timeOfDay');
-  let greetingNameCon = document.getElementById('greetingName');
-  let greetingData = await getGreeting();
-  greetingTimeCon.textContent = greetingData.time;
-  greetingNameCon.textContent = greetingData.name;
+function greetingNameToUpperCaser(name) {
+  const nameWords = name.split(' ');
+  const capitalizedNames = nameWords.map(capitalizeFirstLetter);
+  return capitalizedNames.join(' ');
+}
+
+
+function capitalizeFirstLetter(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
