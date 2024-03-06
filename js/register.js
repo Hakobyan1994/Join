@@ -1,11 +1,11 @@
 
-// let userGuests = [
-//     {
-//         name: '',
-//         greeting: 'Good Morning'
-//     }
-// ];
-// console.log(userGuests[0].greeting);
+let userGuests = [
+    {
+        name: '',
+        greeting: 'Good Morning'
+    }
+];
+
    
 
 
