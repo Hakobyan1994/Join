@@ -54,12 +54,15 @@ body {
 
 .added-contacts {
     width: 456px;
-    height: 100vh;
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 234px;
 }
 
 .headline {
@@ -80,6 +83,7 @@ body {
 .contact-info-con {
     width: 100%;
     padding-top: 350px;
+    padding-left: 445px;
 }
 
 .contact-info-slider {
@@ -113,11 +117,11 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
-    top: 36px;
+    top: 55px;
     z-index: 1;
     background-color: white;
     padding-top: 100px;
-    padding-bottom: 30px;
+    padding-bottom: 18px;
 }
 
 .add-contact-btn {
@@ -155,7 +159,7 @@ body {
     align-items: center;
     gap: 16px;
     overflow-x: hidden;
-    margin-top: 40px;
+    margin-top: 55px;
 }
 
 .contact-con-pos {
@@ -234,7 +238,7 @@ body {
     align-items: flex-start;
     gap: 8px;
     align-self: stretch;
-    padding-left: 85px;
+    padding-left: 90px;
 }
 
 .contact-line {
@@ -334,4 +338,158 @@ body {
 
 .highlighted {
     background-color: #f6f6f6;
+}
+
+@media(max-width: 1200px) {
+    .headline {
+        font-size: 30px;
+    }
+
+    .team-headline {
+        font-size: 20px;
+    }
+
+    .contacts {
+        width: 400px;
+    }
+
+    .contact-con-pos {
+        width: 230px;
+    }
+
+    .letter-con {
+        width: 250px;
+        padding-left: 44px;
+    }
+
+    .added-contacts {
+        width: 250px;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        left: 234px;
+    }
+
+    .add-contact-btn {
+        font-size: 14px;
+        width: 200px;
+    }
+
+    .user-img-contact-list {
+        margin-left: 22px;
+    }
+
+    .contact-list-name {
+        padding-left: 0;
+        font-size: 14px;
+    }
+
+    .contact-list-email {
+        padding-left: 0;
+        font-size: 14px;
+    }
+
+    .contact-line-color {
+        width: 210px;
+    }
+
+    .contact-info-con {
+        position: fixed;
+        left: 455px;
+        padding-left: 0;
+    }
+
+    .name {
+        font-size: 25px !important;
+    }
+
+    .slider-contact-img {
+        width: 90px !important;
+        height: 90px !important;
+        margin-top: 0 !important;
+    }
+}
+
+@media(max-width: 860px) {
+    .contact-info-con {
+        display: none;
+    }
+
+    #navbar {
+        display: none;
+    }
+
+    #menubar {
+        display: none;
+    }
+
+    .menubar-text {
+        display: none;
+    }
+
+    .helpa {
+        display: none;
+    }
+
+    .add-contact-btn-con {
+        display: none;
+    }
+
+    .all-contacts {
+        margin-top: 110px;
+    }
+
+    .added-contacts {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+
+    .contact-line-color {
+        width: 90%;
+    }
+
+    .focus-main {
+        width: 90%;
+        padding-left: 30px;
+    }
+
+    .letter-con {
+        width: 100%;
+        padding-left: 73px;
+    }
+
+    .contact-line {
+        width: 350px;
+        padding-left: 30px;
+    }
+
+    .profile-icon {
+        position: relative;
+        right: 10px;
+        height: 40px;
+        width: 40px;
+    }
+
+    header {
+        height: 40px;
+        padding: 20px 40px 20px 370px;
+    }
+
+    .user-img-contact-list {
+        width: 40px;
+    }
+
+    .contact-list-name {
+font-size: 18px;
+    }
+
+    .contact-list-email {
+        font-size: 18px;
+    }
+
+    .contact-con-pos {
+        width: 93%;
+    }
 }
