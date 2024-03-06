@@ -142,17 +142,29 @@ function renderPrivacyLegal(page) {
         document.getElementById('privacyhover').style.color = '';
         document.getElementById('legalhover').style.color = 'var(--lightblue)';        
     }
-
-    // document.getElementById('privacyhover').style.color = 'var(--lightblue)';
-    document.getElementById('privacyhover').setAttribute('onClick', '');
-    document.getElementById('legalhover').setAttribute('onClick', '');
+    document.getElementById('privacyhover').setAttribute('onClick', `renderPL('login-privacy', 'login-legal')`);
+    document.getElementById('legalhover').setAttribute('onClick', `renderPL('login-legal', 'login-privacy')`);
 
 }
     
-
-
-function renderLegal() {
-
+function renderPL(page, expage) {
+    let content = document.getElementById(page);
+    let exPage = document.getElementById(expage);
+    content.innerHTML = '';
+    content.classList.remove('d-none');
+    if(page === 'login-privacy') {
+        exPage.classList.add('d-none');
+        content.innerHTML = generateHtmlMainPrivacy();
+        document.getElementById('privacyhover').style.color = 'var(--lightblue)';
+        document.getElementById('legalhover').style.color = '';  
+        document.getElementById('back-privacy').setAttribute('onClick', `resetUserContent('${page}')`); 
+    } else if (page === 'login-legal') {
+        exPage.classList.add('d-none');
+        content.innerHTML = generateHtmlMainLegal();
+        document.getElementById('privacyhover').style.color = '';
+        document.getElementById('legalhover').style.color = 'var(--lightblue)';   
+        document.getElementById('back-legal').setAttribute('onClick', `resetUserContent('${page}')`);
+    }
 }
 
 
