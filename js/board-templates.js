@@ -85,4 +85,6 @@ async function openPopupAddTask(boardcard) {
     assignedButton.classList.add('assigned-button-b-pos');
     addEventFunctions();
     cancelButton();
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
 }

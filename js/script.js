@@ -54,6 +54,9 @@ function renderPage(selectedBar, page) {
 
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
+    if (page === 'render-summary') {
+        renderSummaryMain();
+    }
     if (page === 'render-add-task') {
         renderAddTaskMain();
     }
