@@ -9,6 +9,11 @@ function generateHtmlSummary() {
     
     
         <div class="main_checkingDiv">
+
+        <div id="profil_name" class="profil_name">
+            <span id="timeOfDay" class="greeting"></span>
+            <span id="greetingName" class="greetingName"></span>
+        </div>
     
             <a href="#" onclick="renderPage('board-page', 'render-board')">
                 <div class="To_Done_mainDiv">
@@ -73,14 +78,12 @@ function generateHtmlSummary() {
                     </div>
                 </div>
     
+                
         </div>
     
-    
-        <div id="profil_name" class="profil_name">
-            <span id="timeOfDay" class="greeting"></span>
-            <span class="greetingName"></span>
-        </div>
-    
+
+
+        
         <span id="data"></span>    
     `;
 }

@@ -1,11 +1,12 @@
+let loggedInUser = [];
+
+
 let arrayUrgent = [
   {
     priority: [],
     date: []
   }
 ];
-
-displayGreeting();
 
 
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
@@ -15,6 +16,7 @@ if (locRes) {
   let profilName = document.querySelector('.greetingName');
   profilName.innerText = locRes.name
 }
+activeUser.push(locRes);
 
 
 let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
@@ -26,8 +28,6 @@ if (guestsUsing) {
   document.getElementById('profil_name').classList.remove('profil_name')
   document.getElementById('profil_name').classList.add('guestsGreeting')
 }
-
-
 
 
 /*
@@ -49,6 +49,7 @@ function dateUpdate() {
 }
 */
 
+
 async function renderSummaryMain() {
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
@@ -67,7 +68,7 @@ async function getValue() {
   let valueDone = 0;
   let valueUrgent = 0;
 
-  if(tasks.length > 0) {
+  if (tasks.length > 0) {
     document.getElementById('value-total').innerHTML = tasks.length;
   } else {
     document.getElementById('value-total').innerHTML = '0';
@@ -170,28 +171,47 @@ function defineUpcomingDeadline() {
 }
 
 
-function getGreeting() {
+async function loadLoggedInUser() {
+  loggedInUser = JSON.parse(await getItem('userData'));
+}
+
+
+async function displayGreeting() {
+  let greetingTimeCon = document.getElementById('timeOfDay');
+  let greetingNameCon = document.getElementById('greetingName');
+  let greetingData = await getGreeting();
+  greetingTimeCon.textContent = greetingData.time;
+  greetingNameCon.textContent = greetingData.name;
+}
+
+
+async function getGreeting() {
+  await loadLoggedInUser();
   const now = new Date();
   const hour = now.getHours();
-
-  let greeting = "";
+  let greetingTime = '';
 
   if (hour >= 5 && hour < 12) {
-    greeting = "Good morning,";
+      greetingTime = `Good morning,`;
   } else if (hour >= 12 && hour < 18) {
-    greeting = "Good afternoon,";
+      greetingTime = `Good afternoon,`;
   } else {
-    greeting = "Good evening,";
+      greetingTime = `Good evening,`;
   }
 
-  return greeting;
+  const capitalizedFullName = greetingNameToUpperCaser(loggedInUser.name);
+
+  return { time: greetingTime, name: capitalizedFullName };
 }
 
 
-function displayGreeting() {
-  const greetingContainer = document.getElementById('timeOfDay');
-  const greeting = getGreeting();
-  greetingContainer.textContent = greeting;
+function greetingNameToUpperCaser(name) {
+  const nameWords = name.split(' ');
+  const capitalizedNames = nameWords.map(capitalizeFirstLetter);
+  return capitalizedNames.join(' ');
 }
 
 
+function capitalizeFirstLetter(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}

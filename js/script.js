@@ -20,6 +20,7 @@ async function init() {
     includeHTML();
     renderSummaryMain();
     await loadContacts();
+    displayGreeting();
 }
 
 
@@ -46,10 +47,10 @@ function renderPage(selectedBar, page) {
     let selectedPage = document.getElementById(page);
     let allNavbar = document.querySelectorAll('.navbar');
     let allPages = document.querySelectorAll('.render-page');
-    document.getElementById('render-help').style.display = 'none';
+
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
-    if(page === 'render-add-task') {
+    if (page === 'render-add-task') {
         renderAddTaskMain();
     }
     if(page === 'render-contacts') {
@@ -69,17 +70,34 @@ function renderPage(selectedBar, page) {
             pages.style.display = 'none';
         }
     })
+    resetHlp();
 }
+
+
+function resetHlp() {
+    let allPages = document.querySelectorAll('.hlp');
+    document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
+    document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
+    allPages.forEach((page) => {
+        page.style.display = 'none';
+
+    })
+}
+
 
 function renderHPLMain(page) {
         let content = document.getElementById(page);
         let allNavbar = document.querySelectorAll('.navbar');
         let allPages = document.querySelectorAll('.render-page');
+        let allHlp = document.querySelectorAll('.hlp');
         if(content) {
             content.style.display = 'block';
         }
-        console.log(allNavbar);
-
+        allHlp.forEach((pages) => {
+            if(pages.id !== page) {
+                pages.style.display = 'none';
+            }
+        })
 
         allNavbar.forEach((navbar) => {
             navbar.classList.remove('selected-color');
@@ -92,6 +110,13 @@ function renderHPLMain(page) {
         }
         if(page === 'render-privacy-policy') {
             content.innerHTML = generateHtmlMainPrivacy();
+            document.getElementById('privacyhover').style.color = 'var(--lightblue)';
+            document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
+        }
+        if(page === 'render-legal-notice') {
+            content.innerHTML = generateHtmlMainLegal();
+            document.getElementById('legalhover').style.color = 'var(--lightblue)';
+            document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
         }
         return page;
 }

@@ -9,8 +9,8 @@ async function renderContactsMain() {
     let content = document.getElementById('render-contacts');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainContacts();
-    renderContacts();
     await loadContacts();
+    renderContacts();
 }
 
 function renderContacts() {
@@ -40,6 +40,7 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
 
         const imageId = `contactImage${i}`;
         const contactHtml = generateContact(i, contact, imageId);
+
         contactsContainer.innerHTML += contactHtml;
         addInitialsToContactImage(contact, imageId);
 
@@ -48,8 +49,6 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
 
     return lastLetter;
 }
-
-
 
 
 function addInitialsToContactImage(contact, imageId) {
@@ -63,16 +62,21 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
         applyRandomColorToImage(imageElement, initials);
     }
 }
 
 
 function displayContactImage(i) {
+    let contact = contacts[i];
     let contactImage = document.getElementById('contactImageEdit');
     if (contactImage) {
-        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&color=fff&background=random`;
+        contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
+        contactImage.style.width = '100px';
+        contactImage.style.height = '100px';
+        contactImage.style.backgroundColor = 'transparent';
+        contactImage.alt = contact.initials;
     }
 }
 
@@ -113,6 +117,11 @@ function addToContacts() {
     let emailAddContactError = document.getElementById('emailAddErrorMessage');
     let phoneAddContactError = document.getElementById('phoneAddErrorMessage');
 
+    addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput);
+}
+
+
+function addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput) {
     if (!name) {
         nameAddContactError.classList.remove('d-none');
         nameAddContactError.innerHTML = `Please enter a name`;
@@ -137,7 +146,6 @@ function addToContacts() {
     if (!name || !email || !phone) {
         return;
     }
-
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
 
@@ -231,17 +239,23 @@ function addContactToArray(name, email, phone, initials) {
 }
 
 
-
 function saveContact(i) {
     let contact = contacts[i];
     let contactName = document.getElementById('nameEdit').value;
     let contactEmail = document.getElementById('emailEdit').value;
     let contactPhone = document.getElementById('phoneEdit').value;
-
     let nameEditContactError = document.getElementById('nameErrorMessage');
     let emailEditContactError = document.getElementById('emailErrorMessage');
     let phoneEditContactError = document.getElementById('phoneErrorMessage');
+    contact.name = contactName;
+    contact.email = contactEmail;
+    contact.phone = contactPhone;
 
+    saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i);
+}
+
+
+function saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i) {
     if (!contactName.trim()) {
         nameEditContactError.classList.remove('d-none');
         nameEditContactError.innerHTML = `Please enter a name`;
@@ -266,18 +280,7 @@ function saveContact(i) {
     if (!contactName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
         return;
     }
-
-    contact.name = contactName;
-    contact.email = contactEmail;
-    contact.phone = contactPhone;
-
-    saveContactErrorMessages(i);
     saveContactHelp(i, contacts);
-}
-
-
-function saveContactErrorMessages(i) {
-
 }
 
 
@@ -406,12 +409,11 @@ function renderContactInfo(i, contactInfoSlider) {
     let contactName = contact.name;
     let contactEmail = contact.email;
     let contactPhone = contact.phone;
-    let imageId = `contactImageSlider`;
-    let imageElement = document.getElementById(imageId);
-    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId);
-    addInitialsToContactImage(contact, imageId);
+    let imageIdSlider = `contactImageSlider`;
+    let imageElement = document.getElementById(imageIdSlider);
+    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageIdSlider);
+    addInitialsToContactImage(contact, imageIdSlider);
     addRandomColorToImg(imageElement, contact);
-    contactInfoSlider.dataset.contactId = i;
 }
 
 

@@ -31,27 +31,25 @@ async function addEventFunctions() {
     setupSubtaskInputFocus();
     enterOnSubtask();
     inputfieldFocus();
-    /*
     closeList('assigned-list', 'assigned');
     closeList('category-list', 'category');
-    */
 }
 
 
 function renderAssignedList() {
     let list = document.getElementById('assigned-list');
-    if (list) {
-        let input = document.getElementById('assigned');
-        if (list.classList.contains('d-none')) {
-            input.placeholder = '';
-        } else {
-            input.placeholder = 'Select contacts to assign';
-        }
-    }
+    let assignedButton = document.getElementById('assigned-button');
+    let input = document.getElementById('assigned');
     list.classList.toggle('d-none');
+    if(!list.classList.contains('d-none')) {
+        assignedButton.classList.add('d-none');
+        input.placeholder = '';
+    } else {
+        assignedButton.classList.remove('d-none');
+        input.placeholder = 'Select contacts to assign';
+    }
     list.innerHTML = '';
     renderContactList(list);
-    hideAssignedButton();
 }
 
 
@@ -86,16 +84,6 @@ function searchAssignedList() {
         } else {
             list.style.display = 'none';
         }
-    }
-}
-
-function hideAssignedButton() {
-    let buttons = document.getElementById('assigned-button');
-    let list = document.getElementById('assigned-button');
-    if (!list.classList.contains('d-none')) {
-        buttons.classList.add('d-none');
-    } else {
-        buttons.classList.remove('d-none');
     }
 }
 
@@ -150,6 +138,7 @@ function pushCategorytoInput(category) {
 
 
 function selectAssignedContacts(i) {
+    document.getElementById('assigned-button').classList.add('d-none');
     let contact = document.getElementById(`assigned-contacts-${i}`);
     let checkbox = document.getElementById(`checkbox-contact-${i}`);
     contact.classList.toggle('select-contact-blue');
@@ -158,13 +147,13 @@ function selectAssignedContacts(i) {
         checkbox.src = '../assets/img/icons/selected1.svg';
         checkbox.classList.remove('checkbox-none-selected');
         checkbox.classList.add('checkbox-selected');
-
     } else {
         checkbox.src = '../assets/img/icons/none-selected1.svg';
         checkbox.classList.add('checkbox-none-selected');
         checkbox.classList.remove('checkbox-selected');
     }
     pushUser(i);
+    generateAssignedButton();
 }
 
 
@@ -443,7 +432,7 @@ async function createTask(boardcard) {
     let priority = pushPrio();
     let category = document.getElementById('category');
 
-    let dateValue = '2024-03-01';
+    let dateValue = date.value;
     let formatedDate = formatDate(dateValue);
 
     if (title.value && dateValue && category.value) {
@@ -452,16 +441,7 @@ async function createTask(boardcard) {
         pushToTodoBoard(priority, boardcard, description, formatedDate);
         await setItem('tasks', JSON.stringify(tasks));
         clearFields();
-
-        let popup = document.getElementById('popup-add-task');
-
-        if (popup !== null) {
-            openInBoard();
-            await updateProgressBar();
-        } else {
-            console.log('Popup wurde nicht gefunden / CREATE TASK');
-            openToBoard();
-        }
+        openBoard();
     } else {
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
@@ -523,51 +503,43 @@ function inputfieldFocus(field) {
 }
 
 
-function openToBoard() {
-    let popup = document.getElementById('popup-a-to-b');
-
-    if (popup !== null) {
-
-        setTimeout(() => {
-            renderPage('board-page', 'render-board');
-        }, "1500");
-        popup.classList.remove('d-none');
-    } else {
-        console.log('Popup wurde nicht gefunden / OPEN TO BOARD');
-        renderPage('board-page', 'render-board');
+function openBoard() {
+    let addTask = document.getElementById('popup-a-to-b');
+    let board = document.getElementById('popup-a-to-b-board');
+    if(addTask) {
+        addTask.classList.remove('d-none');
+    } else if(board) {
+        board.classList.remove('d-none');
     }
+    setTimeout(() => {
+        renderPage('board-page', 'render-board');
+    }, "1500");
 }
 
 
-function openInBoard() {
-    let popup = document.getElementById('popup-a-to-b-board');
-
-    if (popup !== null) {
-
-        setTimeout(() => {
-            renderPage('board-page', 'render-board');
-        }, "1500");
-        popup.classList.remove('d-none');
-    } else {
-        console.log('Popup wurde nicht gefunden / OPEN IN BOARD');
-        renderPage('board-page', 'render-board');
-    }
-}
-
-/*
 function closeList(id, eId) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
-
+    let assignedButton = document.getElementById('assigned-button');
     if(list){
 
     document.addEventListener('click', function(event) {
+
         if (!list.contains(event.target) && event.target !== eIdElement) {
-            list.style.display = 'none';
+            list.classList.add('d-none');
+            if(id === 'assigned-list') {
+                eIdElement.value = '';
+                eIdElement.placeholder = 'Select contacts to assign';
+                if(assignedButton) {
+                    assignedButton.classList.remove('d-none');
+                } else {
+                    console.log('ID: assigned-button not found');
+                }
+
+            }
         } else {
-            list.style.display = 'block';
+            list.classList.add('block');
         }
     });
     }
-}
-*/
+}    

@@ -177,6 +177,11 @@ body {
 
 .contact-con:focus-within {
     background-color: #2A3647;
+    color: white;
+}
+
+.contact-con.highlighted:focus-within {
+    background-color: #2A3647;
 }
 
 .contact-list-name {
@@ -193,7 +198,7 @@ body {
     padding-bottom: 5px;
 }
 
-.contact-list-name:focus-within {
+.contact-con:focus-within .contact-list-name {
     color: white;
 }
 
@@ -302,10 +307,6 @@ body {
     width: 100%;
 }
 
-.contact-focus-effect:focus {
-    background-color: #2A3647;
-}
-
 .focus-main {
     margin-top: 5px;
 }
@@ -326,11 +327,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-image: url('assets/img/icons/scrollbar.svg');
+    background-image: url('/assets/img/icons/scrollbar.svg');
     background-size: cover;
     border: none;
 }
 
 .highlighted {
-    background-color: #2A3647;
+    background-color: #f6f6f6;
 }

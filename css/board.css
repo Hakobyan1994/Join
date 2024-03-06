@@ -99,9 +99,10 @@ h3 {
 }
 
 .board_div {
-    width: 244px;
+    width: 245px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 10px;
 }
 
@@ -123,7 +124,7 @@ h3 {
 .card_mainContainer {
     width: 1208px;
     position: absolute;
-    top: 336px;
+    top: 363px;
     left: 232px;
     padding: 16px 64px;
     display: flex;
@@ -624,7 +625,6 @@ h3 {
     overflow-y: auto;
     height: 121px;
     scrollbar-width: thin;
-
 }
 
 .each-subtask-section {

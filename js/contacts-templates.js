@@ -53,14 +53,14 @@ function generateAddBtn() {
         </button>`;
 }
 
-function generateContact(i, contact, imageId) {
+function generateContact(i, contact, imageIdSlider) {
     return /*html*/`
-    <div class="focus-main">
-        <div id="contactHighlighter" onclick="showContactInfoSlider(${i})" class="contact-con-pos">
-            <div onclick="toggleHighlight(this)" class="contact-con"  onmouseover="addHighlight(this)" onmouseout="removeHighlight(this)">
-                <img id="${imageId}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
+    <div id="contactHighlighter" class="focus-main" >
+        <div onclick="showContactInfoSlider(${i})" class="contact-con-pos">
+            <div tabindex="0" class="contact-con"  onmouseover="addHighlight(this)" onmouseout="removeHighlight(this)">
+                <img id="${imageIdSlider}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
                 <div class="contact-focus-effect">
-                    <div class="contact-list-name" tabindex="0">${contact.name}</div>
+                    <div class="contact-list-name">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
                 </div>
             </div>
@@ -190,7 +190,7 @@ function generateAddContactOverlay() {
 
                                 <div class="add-contact-btns">
                                     <button onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
-                                        <span class="cancel-txt-fix">Cancel</span><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close-black1.svg" alt="Close">
+                                        <div class="cancel-txt-fix">Cancel</div><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close-black1.svg" alt="Close">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
