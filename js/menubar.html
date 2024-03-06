@@ -2,7 +2,7 @@
 <body onload="iconName()">
     <nav id="navbar">
         <img src="../assets/img/logo.svg" alt="Join Logo" class="logo">
-        <div class="menubar">
+        <div class="menubar" id="menubar">
             <a href="#" id="summary-page" class="navbar selected-color" onclick="renderPage('summary-page', 'render-summary')"><img
                     src="../assets/img/icons/summary.svg" alt="Summary Icon">Summary</a>
             <a href="#" id="add-task-page" class="navbar" onclick="renderPage('add-task-page', 'render-add-task')"><img
@@ -19,7 +19,7 @@
     </nav>
     <header>
         <div id="kan" class="menubar-text">Kanban Project Management Tool</div>
-        <div class="header-right">
+        <div class="header-right" id="header-right">
             <a class="helpa" href="#" onclick="renderHPLMain('render-help')"><img src="../assets/img/icons/help.svg" alt="Help Icon"
                     class="help-icon"></a>
             <a id="shortName" onclick="checks()" href="#" class="profile-icon"></a>

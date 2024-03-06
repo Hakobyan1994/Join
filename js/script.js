@@ -23,6 +23,10 @@ async function init() {
     displayGreeting();
 }
 
+async function initLogin() {
+    includeHTML();
+}
+
 
 function goBack() {
     window.history.back();
@@ -120,3 +124,48 @@ function renderHPLMain(page) {
         }
         return page;
 }
+
+
+function renderPrivacyLegal(page) {
+    hideUserContent();
+    let content = document.getElementById(page);
+    content.classList.remove('d-none');
+    content.innerHTML = '';
+    if(page === 'login-privacy') {
+        content.innerHTML = generateHtmlMainPrivacy(); 
+        document.getElementById('back-privacy').setAttribute('onClick', `resetUserContent('${page}')`);
+        document.getElementById('privacyhover').style.color = 'var(--lightblue)';
+        document.getElementById('legalhover').style.color = '';        
+    } else if (page === 'login-legal') {
+        content.innerHTML = generateHtmlMainLegal();
+        document.getElementById('back-legal').setAttribute('onClick', `resetUserContent('${page}')`);
+        document.getElementById('privacyhover').style.color = '';
+        document.getElementById('legalhover').style.color = 'var(--lightblue)';        
+    }
+
+    // document.getElementById('privacyhover').style.color = 'var(--lightblue)';
+    document.getElementById('privacyhover').setAttribute('onClick', '');
+    document.getElementById('legalhover').setAttribute('onClick', '');
+
+}
+    
+
+
+function renderLegal() {
+
+}
+
+
+function hideUserContent() {
+    document.getElementById('menubar').classList.add('d-none');
+    document.getElementById('header-right').classList.add('d-none');
+    document.getElementById('login-div').classList.add('d-none');
+    document.getElementById('navbar').classList.remove('d-none');
+}
+
+function resetUserContent(page) {
+    document.getElementById('login-div').classList.remove('d-none');
+    document.getElementById('navbar').classList.add('d-none');
+    document.getElementById(page).innerHTML = '';
+}
+

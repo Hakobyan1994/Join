@@ -184,6 +184,6 @@ function generateHtmlMainPrivacy() {
             <li>By email: pirathib.m@gmail.com</li>
             </ul>
         </div>
-        <img onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">          
+        <img id="back-privacy" onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">          
     `;
 }

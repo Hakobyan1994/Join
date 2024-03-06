@@ -15,7 +15,32 @@
 <script src="../js/contacts.js"></script>
 </head>
 <body onload="init()">
-    <div w3-include-html="../js/menubar.html"></div>
+    <div>
+        <nav id="navbar">
+            <img src="../assets/img/logo.svg" alt="Join Logo" class="logo">
+            <div class="menubar">
+            </div>
+            <div class="legalbox">
+                <a href="#" id="privacyhover" onclick="renderHPLMain('render-privacy-policy')">Privacy Policy</a>
+                <a href="#" id="legalhover" onclick="renderHPLMain('render-legal-notice')">Legal notice</a>
+            </div>
+        </nav>
+        <header>
+            <div id="kan" class="menubar-text">Kanban Project Management Tool</div>
+            <div class="header-right">
+                <a class="helpa" href="#" onclick="renderHPLMain('render-help')"><img src="../assets/img/icons/help.svg" alt="Help Icon"
+                        class="help-icon"></a>
+                <a id="shortName" onclick="checks()" href="#" class="profile-icon"></a>
+            </div>
+        </header>
+        <div class="clickInfoDiv">
+            <ul>
+                <li><a href="privacy-policy.html">Legal-notice</a></li>
+                <li><a href="legal-notice.html">Privacy-policy</a> </li>
+                <li><a href="../index.html">Log out</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="main-window">
         <h2>Privacy Policy</h2>
 <p>Last updated: February 27, 2024</p>

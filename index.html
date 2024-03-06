@@ -7,12 +7,22 @@
   <title>Welcome Board</title>
   <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="css/register.css">
+  <link rel="stylesheet" href="css/menubar.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/privacy-policy.css">
+  <link rel="stylesheet" href="css/legal-notice.css">
   <script src="js/script.js"></script>
+  <script src="js/includeHTML.js"></script>
+  <script src="js/privacy-policy.js"></script>
+  <script src="js/legal-notice.js"></script>
   
 </head>
 
-<body onload="init()">
-  <div class="contaner">
+<body onload="initLogin()">
+  <div class="d-none" id="navbar" w3-include-html="../js/menubar.html"></div>
+  <div class="d-none" id="login-privacy"></div>
+  <div class="d-none" id="login-legal"></div>
+  <div class="contaner" id="login-div">
     <div class="nav-bar">
 
       <div >
@@ -81,8 +91,8 @@
       </div>
     </div>
     <div class="footer">
-      <div class="Privacy_div"> <a class="aLink" href="../files/privacy-policy.html">Privacy Policy</a></div>
-      <div class="legal_notice"> <a class="aLink" href="../files/legal-notice.html">Legal notice</a></div>
+      <div class="Privacy_div"> <a class="aLink" href="#" onclick="renderPrivacyLegal('login-privacy')">Privacy Policy</a></div>
+      <div class="legal_notice"> <a class="aLink" href="#" onclick="renderPrivacyLegal('login-legal')">Legal notice</a></div>
     </div>
 
   </div>

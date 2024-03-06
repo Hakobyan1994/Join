@@ -104,6 +104,7 @@ header {
     top: 0;
     right: 0;
     left: 0;
+    height: 96px;
     display: flex;
     padding: 20px 40px 20px 348px;
     justify-content: space-between;
