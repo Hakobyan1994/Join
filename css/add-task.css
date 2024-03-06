@@ -7,7 +7,6 @@
 }
 
 .main-box {
-    width: calc(100% - 310px);
     display: flex;
     flex-direction: column;
 }

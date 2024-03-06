@@ -6,6 +6,15 @@
     overflow-x: hidden;
     scrollbar-width: thin;
     position: absolute;
+    width: 100%;
+    height: calc(100% - 206px);
+    margin-top: 206px;
+    margin-left: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: scroll;
+    scrollbar-width: none;
 }
 
 .privacy h2 {

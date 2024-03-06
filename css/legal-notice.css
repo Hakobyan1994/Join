@@ -7,6 +7,15 @@
     width: 75%!important;
     overflow: scroll;
     overflow-x: hidden;
+    width: 100%;
+    height: calc(100% - 206px);
+    margin-top: 206px;
+    margin-left: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: scroll;
+    scrollbar-width: none;
 }
 
 .legal-notice p {

@@ -4,18 +4,18 @@
 
 .main_div {
     width: 1208px;
-    height: 232px;
-    top: 96px;
-    left: 232px;
-    position: absolute;
-    padding: 71.5px 64px
+}
+
+.board-window {
+    margin-left: 320px;
+    padding-left: 8px;
 }
 
 .info_Div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 79.5px;
+    margin-bottom: 42px;
 }
 
 .info_Div h1 {
@@ -117,10 +117,6 @@ h3 {
 
 .card_mainContainer {
     width: 1208px;
-    position: absolute;
-    top: 363px;
-    left: 232px;
-    padding: 16px 64px;
     display: flex;
     justify-content: space-between;
     margin-top: 8px;

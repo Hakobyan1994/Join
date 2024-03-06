@@ -12,46 +12,47 @@ function generateHtmlMainBoard() {
         <div class="board-popup-bg d-none" id="popup-add-task-edit">
             <div class="addtask-popup popup-edit" id="popup-add-task-content-edit"></div>
         </div>
-        <div class="main_div">
-            <div class="info_Div">
-                <h1>Board</h1>
-                <form>
-                    <div class="input_button_Div">
-                        <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
-                        <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
-                            <img src="../assets/img/icons/addi.png" alt="">
-                            Add Task
-                        </button>
+        <div class="main-window board-window">
+            <div class="main_div">
+                <div class="info_Div">
+                    <h1>Board</h1>
+                    <form>
+                        <div class="input_button_Div">
+                            <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
+                            <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
+                                <img src="../assets/img/icons/addi.png" alt="">
+                                Add Task
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="adding_div">
+                    <div class="board_div">
+                        <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
+
                     </div>
-                </form>
-            </div>
-            <div class="adding_div">
-                <div class="board_div">
-                    <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
+                    <div class="board_div">
+                        <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
 
-                </div>
-                <div class="board_div">
-                    <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
+                    </div>
+                    <div class="board_div">
+                        <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
+                    </div>
 
-                </div>
-                <div class="board_div">
-                    <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
-                </div>
-
-                <div class="board_div">
-                    <h3>Done</h3>
+                    <div class="board_div">
+                        <h3>Done</h3>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="card_mainContainer">
+                <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-        <div class="card_mainContainer">
-            <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="card_Div2" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-            <div class="card_Div2" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-            <div class="card_Div3" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            
-            <div class="card_Div4" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="card_Div3" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                
+                <div class="card_Div4" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
         </div>
     `;
 }

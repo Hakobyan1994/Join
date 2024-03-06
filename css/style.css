@@ -99,7 +99,7 @@ input::placeholder {
 }
 
 .main-window {
-    width: 100%;
+    width: calc(100% - 330px);
     height: calc(100% - 206px);
     margin-top: 206px;
     margin-left: 328px;

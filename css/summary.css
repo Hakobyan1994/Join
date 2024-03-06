@@ -10,9 +10,6 @@ body {
 
 .info_titleDiv {
     height: 73px;
-    position: absolute;
-    top: 206px;
-    left: 328px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
