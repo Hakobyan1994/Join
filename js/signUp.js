@@ -1,9 +1,10 @@
 const signUp = document.getElementById('signUp');
 const check = document.getElementById('checkbox');
 const trasparenterDiv = document.querySelector('.trasparenter_div');
-const responsiveInfo=document.getElementById('responsiveInfo')
+const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
+
 
 let dataUser = []
 let dataLocal = JSON.parse(localStorage.getItem('datareg'))
@@ -17,7 +18,8 @@ function addtoLocal(arr, key) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
 
-function onsubmitFor(e) {
+
+async function onsubmitFor(e) {
     console.log(e);
     e.preventDefault()
     let name = e.target[0].value
@@ -27,12 +29,12 @@ function onsubmitFor(e) {
     let checkBox = e.target[4].value
     // let btn = e.target[5]
     if (name && email && password && confirmPassword && checkBox === 'yes') {
+        let userData = { name, email, password, confirmPassword };
+        await setItem('userData', JSON.stringify(userData));
         validForm({ name, email, password, confirmPassword }, e)
-
     } else {
-        check.value==='no'
-         document.getElementById('errorPassword').innerText='Please accept the privacy policy!'
-
+        check.value === 'no'
+        document.getElementById('errorPassword').innerText = 'Please accept the privacy policy!'
     }
 }
 
@@ -46,38 +48,35 @@ function validForm({ name, email, password, confirmPassword }, e) {
         } else {
             dataUser.push({ name, email, password, id: new Date().getTime() })
             addtoLocal(dataUser, 'datareg')
-            if (window.innerWidth<=400) {
+            if (window.innerWidth <= 400) {
                 responsiveInfo.classList.add('active')
-                setTimeout(function(){
-                responsiveInfo.classList.remove('active')
-                window.location.href = '../index.html';
-                },2000)
+                setTimeout(function () {
+                    responsiveInfo.classList.remove('active')
+                    window.location.href = '../index.html';
+                }, 2000)
                 // Code für den Fall, dass die Fensterbreite 600 Pixel oder weniger beträgt
                 console.log("Kleiner als 400px");
-            }else{
-            trasparenterDiv.style.display = 'flex';
-            setTimeout(function () {
-                trasparenterDiv.style.display = 'none';
-                window.location.href = '../index.html'
-            }, 2000)
-        }
+            } else {
+                trasparenterDiv.style.display = 'flex';
+                setTimeout(function () {
+                    trasparenterDiv.style.display = 'none';
+                    window.location.href = '../index.html'
+                }, 2000)
+            }
         }
     } else {
         e.target[3].style.border = '4px solid red';
         document.getElementById('errorPassword').innerText = 'The password is not corect';
-       
     }
+}
 
-}  
-
-
-  
 
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
 
+
 function backToRegister() {
-     JSON.parse(localStorage.getItem('stop'))
+    JSON.parse(localStorage.getItem('stop'))
     window.location.href = '../index.html';
 }
 
@@ -126,4 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmImage.src = '../assets/img/anmeldung Image/lock.png'
         }
     })
-})
+});
+
+
