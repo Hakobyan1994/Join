@@ -146,7 +146,8 @@ function renderPrivacyLegal(page) {
     document.getElementById('legalhover').setAttribute('onClick', `renderPL('login-legal', 'login-privacy')`);
 
 }
-    
+  
+
 function renderPL(page, expage) {
     let content = document.getElementById(page);
     let exPage = document.getElementById(expage);
@@ -174,6 +175,7 @@ function hideUserContent() {
     document.getElementById('login-div').classList.add('d-none');
     document.getElementById('navbar').classList.remove('d-none');
 }
+
 
 function resetUserContent(page) {
     document.getElementById('login-div').classList.remove('d-none');
