@@ -14,12 +14,11 @@ if (dataLocal) {
 
 
 function addtoLocal(arr, key) {
-    console.log('addLoc');
     localStorage.setItem(key, JSON.stringify(arr))
 }
 
 
-async function onsubmitFor(e) {
+function onsubmitFor(e) {
     console.log(e);
     e.preventDefault()
     let name = e.target[0].value
@@ -27,10 +26,10 @@ async function onsubmitFor(e) {
     let password = e.target[2].value
     let confirmPassword = e.target[3].value
     let checkBox = e.target[4].value
-    // let btn = e.target[5]
+    // let btn = e.target[5]44
     if (name && email && password && confirmPassword && checkBox === 'yes') {
         let userData = { name, email, password, confirmPassword };
-        await setItem('userData', JSON.stringify(userData));
+      
         validForm({ name, email, password, confirmPassword }, e)
     } else {
         check.value === 'no'
