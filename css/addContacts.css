@@ -48,10 +48,6 @@
     align-items: center;
 }
 
-.d-none {
-    display: none;
-}
-
 .add-contact-main {
     display: inline-flex;
     width: 30%;

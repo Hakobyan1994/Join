@@ -1,6 +1,6 @@
 function generateHtmlMainPrivacy() {
     return /*html*/`
-        <div class="main-window">
+        <div class="privacy">
             <h2>Privacy Policy</h2>
             <p>Last updated: February 27, 2024</p>
             <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -184,6 +184,6 @@ function generateHtmlMainPrivacy() {
             <li>By email: pirathib.m@gmail.com</li>
             </ul>
         </div>
-        <img onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">          
+        <img id="back-privacy" onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">          
     `;
 }

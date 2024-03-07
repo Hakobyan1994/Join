@@ -25,6 +25,18 @@ function renderAddTaskForPopup() {
 }
 
 
+function checkCategoryButton() {
+    let categoryBtn = document.querySelectorAll('.c1');
+    categoryBtn.forEach((id) => {
+        if (id.textContent === 'Technical Task') {
+            id.classList.add('technical-button');
+        } else if (id.textContent === 'User Story') {
+            id.classList.add('user-story-button');
+        }   
+    })
+}
+
+
 async function loadToDo() {
     loadTasks();
     let todo = document.getElementById('board-to-do');
@@ -59,10 +71,11 @@ async function loadToDo() {
             done.innerHTML += generateBoardCardDone(task, i);
             hasDone = true;
         }
-        changeCategoryButton(i);
+        checkCategoryButton();
         createUserButtons(task, i);
         await updateProgressBar(i);
         notData();
+        checkCategoryButton();
     }
     if (!hasToDo) {
         todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
@@ -84,7 +97,7 @@ function generateBoardCardTodo(task, i) {
     return /*html*/`
     <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
         <div  class="progress_infocard">
-            <button class="" id="category-bg-change-${i}">${task.category}</button>
+            <button class="c1" id="category-bg-change-${i}">${task.category}</button>
             <div class="cooking_title_div">
                 <h1>${task.title}</h1>
                 <span class="recipe_span">${task.description}</span>
@@ -110,7 +123,7 @@ function generateBoardCardProgress(task, i) {
     return /*html*/`
         <div draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
             <div  class="progress_infocard">
-                <button class="" id="category-bg-change-${i}">${task.category}</button>
+                <button class="c1" id="category-bg-change-${i}">${task.category}</button>
                 <div class="cooking_title_div">
                     <h1>${task.title}</h1>
                     <span class="recipe_span">${task.description}</span>
@@ -136,7 +149,7 @@ function generateBoardCardFeedback(task, i) {
     return /*html*/`
             <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
                 <div  class="progress_infocard">
-                    <button class="" id="category-bg-change-${i}">${task.category}</button>
+                    <button class="c1" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
                         <h1>${task.title}</h1>
                         <span class="recipe_span">${task.description}</span>
@@ -162,7 +175,7 @@ function generateBoardCardDone(task, i) {
     return /*html*/`
             <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
                 <div  class="progress_infocard">
-                    <button class="" id="category-bg-change-${i}">${task.category}</button>
+                    <button class="c1" id="category-bg-change-${i}">${task.category}</button>
                     <div class="cooking_title_div">
                         <h1>${task.title}</h1>
                         <span class="recipe_span">${task.description}</span>
@@ -211,7 +224,7 @@ async function openPopupAddTaskDiv(i) {
         `;
     content.innerHTML += /*html*/`
         <div class="popup-text">
-            <div class="user-popup-btn" id="category-bg-change-${i}">${task.category}</div>
+            <div class="user-popup-btn c1" id="category-bg-change-${i}">${task.category}</div>
             <h2 class="popup-title">${task.title}</h2>
             <div class="overflow">${task.description}</div>
             <div class="popup-div-assign-date-title">
@@ -252,10 +265,11 @@ async function openPopupAddTaskDiv(i) {
 
         </div>
     `;
-    changeCategoryButton(i);
+
     createUserToAssigned(i);
     createSubtasksToAddTaskPopup(i);
     checkSelectedSubtasks(i);
+    checkCategoryButton();
 }
 
 
@@ -379,7 +393,7 @@ function closePopupAddTaskDiv(i) {
     `;
     calculatePercentageForProgressBar(i);
     updateProgressBar(i);
-    changeCategoryButton(i);
+    checkCategoryButton();
 }
 
 
@@ -402,22 +416,6 @@ async function updateProgressBar(i) {
     if (div) {
         div.style.width = calculatePercentageForProgressBar(i) + '%';
     }
-}
-
-
-
-function changeCategoryButton(i) {
-    let categoryBtn = document.getElementById(`category-bg-change-${i}`);
-    if (categoryBtn) {
-        if (categoryBtn.textContent === 'Technical Task') {
-            categoryBtn.classList.add('technical-button');
-        } else if (categoryBtn.textContent === 'User Story') {
-            categoryBtn.classList.add('user-story-button');
-        }
-    } else {
-        console.log('Category was not found');
-    }
-
 }
 
 
@@ -508,6 +506,10 @@ function editTask(i) {
     subtaskLabel.classList.add('subtasks-label');
 }
 
+function showAssignedButton() {
+
+}
+
 
 function generateEditableAddtask(i) {
     return /*html*/`
@@ -550,7 +552,6 @@ async function pushValueToEdit(i) {
     }
     getSubtasks();
     tasks.splice(i, 1);
-
 }
 
 
@@ -574,6 +575,7 @@ function getSubtasks() {
 
 
 async function saveEditedTask(i) {
+    checkCategoryButton();
     loadTasks();
     let category = tasks[i].category
     let title = document.getElementById('title');
@@ -621,7 +623,9 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
+
     loadToDo();
+
 }
 
 function formatDate(date) {

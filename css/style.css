@@ -28,11 +28,13 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    color: var(--font);
+    color: black;
     margin: 0;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
     background-color: rgba(246, 247, 248, 1);
 }
 
@@ -68,6 +70,10 @@ p {
     line-height: 120%;
 }
 
+.d-none {
+    display: none!important;
+}
+
 input {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
@@ -93,7 +99,7 @@ input::placeholder {
 }
 
 .main-window {
-    width: 100%;
+    width: calc(100% - 330px);
     height: calc(100% - 206px);
     margin-top: 206px;
     margin-left: 328px;

@@ -1,4 +1,4 @@
-.main-window {
+.privacy {
     padding-right: 100px;
     width: 75%!important;
     height: calc(100vh - 222px);
@@ -6,9 +6,18 @@
     overflow-x: hidden;
     scrollbar-width: thin;
     position: absolute;
+    width: 100%;
+    height: calc(100% - 206px);
+    margin-top: 206px;
+    margin-left: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: scroll;
+    scrollbar-width: none;
 }
 
-h2 {
+.privacy h2 {
     margin-bottom: 30px;
 }
 

@@ -53,6 +53,7 @@ function generateAddBtn() {
         </button>`;
 }
 
+
 function generateContact(i, contact, imageIdSlider) {
     return /*html*/`
     <div id="contactHighlighter" class="focus-main" >
@@ -69,12 +70,14 @@ function generateContact(i, contact, imageIdSlider) {
     <div class="scroll-con"></div>`;
 }
 
+
 function generateSuccessBtnSlider() {
     return /*html*/`
         <button class="success-btn">
             Contact successfully created
         </button>`;
 }
+
 
 function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
     return /*html*/`
@@ -113,12 +116,14 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
         </div>`;
 }
 
+
 function generateLetterCon(currentLetter) {
     return /*html*/`
         <div class="letter-con">
             ${currentLetter}
         </div>`;
 }
+
 
 function generateContactImage(initials, color) {
     return /*html*/`
@@ -128,12 +133,14 @@ function generateContactImage(initials, color) {
         </svg>`;
 }
 
+
 function generateSeparator() {
     return /*html*/`
         <div class="contact-line">
             <img class="contact-line-color" src="/assets/img/icons/Vector 10.svg" alt="">
         </div>`;
 }
+
 
 function generateAddContactOverlay() {
     return /*html*/`
@@ -206,6 +213,7 @@ function generateAddContactOverlay() {
         </div>
     </div>`;
 }
+
 
 function generateEditMaskOverlay(i) {
     return /*html*/`

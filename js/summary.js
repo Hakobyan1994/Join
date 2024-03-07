@@ -56,6 +56,7 @@ async function renderSummaryMain() {
   content.innerHTML = generateHtmlSummary();
   await loadTasks();
   await getValue();
+  displayGreeting();
 }
 
 

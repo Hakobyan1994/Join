@@ -10,6 +10,8 @@ async function renderAddTaskMain() {
     content.innerHTML = generateHtmlMainAddTask();
     renderAddTask();
     await loadContacts();
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
 }
 
 function renderAddTask() {
@@ -450,7 +452,9 @@ async function createTask(boardcard) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-    localStorage.setItem('selectedPage', 'board');
+    if(document.getElementById('popup-add-task')) {
+        loadToDo();
+    }
     return tasks;
 }
 
