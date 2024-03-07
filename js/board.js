@@ -530,28 +530,32 @@ function generateEditableAddtask(i) {
 
 
 async function pushValueToEdit(i) {
-    await loadTasks();
-    let array = tasks[i];
-    let title = document.getElementById('title');
-    let description = document.getElementById('description');
-    let date = document.getElementById('date');
-    let dateValue = deformatDate(array.date);
-    // category, assigned Array 
-    title.value = array.title;
-    description.value = array.description;
-    date.value = dateValue;
-    let priority = array.priority;
-    getPriority(priority);
-    let subtasksArray = array.subtask;
-    // console.log('push', subtasksArray);
-    subtasks.push(subtasksArray);
+    try {
+        await loadTasks();
+        let array = tasks[i];
+        let title = document.getElementById('title');
+        let description = document.getElementById('description');
+        let date = document.getElementById('date');
+        let dateValue = deformatDate(array.date);
+        // category, assigned Array 
+        title.value = array.title;
+        description.value = array.description;
+        date.value = dateValue;
+        let priority = array.priority;
+        getPriority(priority);
+        let subtasksArray = array.subtask;
+        // console.log('push', subtasksArray);
+        subtasks.push(subtasksArray);
 
-    subtasks = [];
-    for (let j = 0; j < subtasksArray.length; j++) {
-        subtasks.push(subtasksArray[j]);
+        subtasks = [];
+        for (let j = 0; j < subtasksArray.length; j++) {
+            subtasks.push(subtasksArray[j]);
+        }
+        getSubtasks();
+        tasks.splice(i, 1);
+    } catch (error) {
+        console.error('Fehler beim Laden der Aufgaben:', error);
     }
-    getSubtasks();
-    tasks.splice(i, 1);
 }
 
 
