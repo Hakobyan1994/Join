@@ -466,7 +466,7 @@ h1 {
 @media(max-width:390px) {
      body{
             position: fixed;
-            left: -77px;
+            left: 0;
             right: 0;
         
      }

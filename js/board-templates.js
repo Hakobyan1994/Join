@@ -80,8 +80,8 @@ async function openPopupAddTask(boardcard) {
                 </div>  
             </div>  
         </div> 
-    `;
 
+    `;
     let assignedButton = document.getElementById('assigned-button');
     assignedButton.classList.add('assigned-button-b-pos');
     addEventFunctions();

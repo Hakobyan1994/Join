@@ -63,7 +63,7 @@ function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
         <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" onkeyup="searchAssignedList()">
-        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
+        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="btnRenderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
     `;

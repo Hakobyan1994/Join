@@ -549,3 +549,11 @@ function closeList(id, eId) {
     });
     }
 }    
+
+
+function btnRenderAssignedList() {
+    let list = document.getElementById('assigned-list');
+    let button = document.getElementById('assigned-button');
+    list.classList.remove('d-none');
+    button.classList.add('d-none');
+}

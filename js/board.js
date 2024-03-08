@@ -11,32 +11,6 @@ async function renderBoardMain() {
 }
 
 
-function closePopupAddTask() {
-    let popup = document.getElementById('popup-add-task');
-    let content = document.getElementById('popup-add-task-content');
-    popup.classList.add('d-none');
-    content.classList.remove('slide-in');
-    content.classList.add('slide-out');
-}
-
-
-function renderAddTaskForPopup() {
-    e.preventDefault();
-}
-
-
-function checkCategoryButton() {
-    let categoryBtn = document.querySelectorAll('.c1');
-    categoryBtn.forEach((id) => {
-        if (id.textContent === 'Technical Task') {
-            id.classList.add('technical-button');
-        } else if (id.textContent === 'User Story') {
-            id.classList.add('user-story-button');
-        }   
-    })
-}
-
-
 async function loadToDo() {
     loadTasks();
     let todo = document.getElementById('board-to-do');
@@ -90,6 +64,32 @@ async function loadToDo() {
     if (!hasDone) {
         done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
+}
+
+
+function closePopupAddTask() {
+    let popup = document.getElementById('popup-add-task');
+    let content = document.getElementById('popup-add-task-content');
+    popup.classList.add('d-none');
+    content.classList.remove('slide-in');
+    content.classList.add('slide-out');
+}
+
+
+function renderAddTaskForPopup() {
+    e.preventDefault();
+}
+
+
+function checkCategoryButton() {
+    let categoryBtn = document.querySelectorAll('.c1');
+    categoryBtn.forEach((id) => {
+        if (id.textContent === 'Technical Task') {
+            id.classList.add('technical-button');
+        } else if (id.textContent === 'User Story') {
+            id.classList.add('user-story-button');
+        }   
+    })
 }
 
 
@@ -580,7 +580,6 @@ function getSubtasks() {
 
 async function saveEditedTask(i) {
     checkCategoryButton();
-    loadTasks();
     let category = tasks[i].category
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
@@ -627,9 +626,8 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-
-    loadToDo();
-
+    loadTasks();
+    await loadToDo();
 }
 
 function formatDate(date) {
@@ -730,12 +728,6 @@ function drop(ev) {
         
 }
   
-
-  
-
-
-
-
 
 async function saveDroppedElement(element) {
     let arraypos = element.getAttribute('arraypos');
