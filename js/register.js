@@ -47,7 +47,7 @@ let dataUser = [];
 // const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 // const STORAGE_URL2 = 'https://remote-storage.developerakademie.org/item';
 
-
+/*
 async function setItem(key, value) {
     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
@@ -63,6 +63,7 @@ async function getItem(key) {
         } throw `Could not find data with key "${key}".`;
     });
 }
+*/
 
 
 async function getUsers(params) {

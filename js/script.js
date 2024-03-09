@@ -50,7 +50,7 @@ function renderPage(selectedBar, page) {
     renderHPLMain();
     let selectedNavbar = document.getElementById(selectedBar);
     let selectedPage = document.getElementById(page);
-    let allNavbar = document.querySelectorAll('.navbar');
+    let allNavbar = document.querySelectorAll('#navbar');
     let allPages = document.querySelectorAll('.render-page');
 
     selectedNavbar.classList.add('selected-color');
@@ -90,6 +90,42 @@ function resetHlp() {
         page.style.display = 'none';
 
     })
+}
+
+
+function renderMobilePage(selectedBar, page) {
+    renderHPLMain();
+    let selectedNavbar = document.getElementById(selectedBar);
+    let selectedPage = document.getElementById(page);
+    let allNavbar = document.querySelectorAll('.mobile-navbar');
+    let allPages = document.querySelectorAll('.render-page');
+
+    selectedNavbar.classList.add('selected-color');
+    selectedPage.style.display = 'block';
+    if (page === 'render-summary') {
+        renderSummaryMain();
+    }
+    if (page === 'render-add-task') {
+        renderAddTaskMain();
+    }
+    if(page === 'render-contacts') {
+        renderContactsMain();
+    }
+    if(page === 'render-board') {
+        renderBoardMain();
+    }
+
+    allNavbar.forEach((navbar) => {
+        if (navbar.id !== selectedBar) {
+            navbar.classList.remove('selected-color');
+        }
+    })
+    allPages.forEach((pages) => {
+        if (pages.id !== page) {
+            pages.style.display = 'none';
+        }
+    })
+    resetHlp();
 }
 
 

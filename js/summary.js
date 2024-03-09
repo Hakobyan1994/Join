@@ -20,6 +20,8 @@ activeUser.push(locRes);
 */
 
 
+/*
+
 async function getItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
   return fetch(url).then(res => res.json()).then(res => {
@@ -45,7 +47,7 @@ user()
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 
-
+*/
 
 /*
 const currentDate = new Date();

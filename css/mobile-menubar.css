@@ -115,7 +115,6 @@
         background-color: rgb(42, 61, 89);
         transition: 10ms;
         color: #FFF;
-        filter: contrast(1) brightness(110%);
     }
 
     .mobile-menubar-text {
@@ -146,12 +145,7 @@
         background-color: rgb(42, 61, 89);
     }
 
-    .selected-color {
-        background-color: rgb(9, 25, 49);
-    }
-
     .selected-color:hover {
-        background-color: rgb(42, 61, 89);
         width: 76px;
         transition: 10ms;
     }

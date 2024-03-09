@@ -446,6 +446,7 @@ async function handleValidInput(boardcard, description, formatedDate) {
     await setItem('tasks', JSON.stringify(tasks));
     clearFields();
     openBoard();
+    
 }
 
 function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category) {
@@ -519,6 +520,7 @@ function openBoard() {
     }
     setTimeout(() => {
         renderPage('board-page', 'render-board');
+        renderMobilePage('m-board-page', 'render-board');
     }, "1500");
 }
 
