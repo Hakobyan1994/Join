@@ -39,17 +39,12 @@ async function getUsers(params) {
 getUsers()
 
 
-
-
-
 function addtoLocal(arr, key) {
     console.log(dataUsers, 'ggggg');
     setItem('dataUsers', dataUsers)
 }
 
 // setItem('dataUsers', [{ name: 'hhh', email: 'uwdd', password:'12345', id: new Date().getTime()}])
-
-
 
 
 async function onsubmitFor(e) {
@@ -75,7 +70,6 @@ async function onsubmitFor(e) {
         }
     }
 }
-
 
 
 function validForm({ name, email, password, confirmPassword }, e) {

@@ -76,13 +76,10 @@ async function getUsers(params) {
 getUsers()
 
 
-
-
 function activUser(arr) {
     setItem('activeUser', [arr])
     // localStorage.setItem('activeUser', JSON.stringify(arr));
 }
-
 
 
 let form_log = document.getElementById('form_log');
