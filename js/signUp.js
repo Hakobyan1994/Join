@@ -9,10 +9,10 @@ signUp.onsubmit = onsubmitFor
 // const STORAGE_URL1 = 'https://remote-storage.developerakademie.org/item';
 
 async function setItem(key, value) {
-    const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
+    const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
-        
+
 }
 
 
@@ -29,7 +29,7 @@ async function getItem(key) {
 let dataUsers = []
 async function getUsers(params) {
     let res = await getItem('dataUsers')
-  
+
     if (res[0] !== null) {
         dataUsers = res
         console.log(dataUsers, 555);
@@ -175,7 +175,7 @@ function checkSignUpInputs() {
     let password2 = document.getElementById('confirmInput').value;
 
     let nameInputCon = document.getElementById('personInput');
-    let emailInputCon = document.getElementById('emailInput');
+    let emailInputCon = document.getElementById('emailInputCon');
     let passwordInputCon = document.getElementById('passwordInputCon');
     let passwordConfimInputCon = document.getElementById('passwordConfirmInput');
 
@@ -187,12 +187,14 @@ function checkSignUpInputs() {
     checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
 }
 
+
 function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
     if (!name) {
         nameInputCon.classList.remove('margin');
         nameSignUpError.classList.remove('d-none');
         nameSignUpError.innerHTML = `Please enter a name`;
     } else {
+        nameInputCon.classList.add('margin');
         nameSignUpError.classList.add('d-none');
     }
 
@@ -202,6 +204,7 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         emailSignUpError.innerHTML = `Please enter an email`;
     } else {
         emailSignUpError.classList.add('d-none');
+        emailInputCon.classList.add('margin');
     }
 
     if (!password1) {
@@ -210,6 +213,8 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         password1SignUpError.classList.remove('d-none');
         password1SignUpError.innerHTML = `Please enter a password`;
     } else {
+        passwordInputCon.classList.add('margin');
+        passwordInputCon.classList.remove('margin-empty');
         password1SignUpError.classList.add('d-none');
     }
 
@@ -221,6 +226,10 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         password2SignUpError.classList.remove('d-none');
         password2SignUpError.innerHTML = `Please confirm your password`;
     } else {
+        passwordConfimInputCon.classList.add('margin-privacy');
+        passwordConfimInputCon.classList.add('margin-top');
+        passwordConfimInputCon.classList.remove('margin-empty');
+        passwordConfimInputCon.classList.remove('margin-bottom');
         password2SignUpError.classList.add('d-none');
     }
 
@@ -228,3 +237,4 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         return;
     }
 }
+

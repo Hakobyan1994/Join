@@ -168,6 +168,13 @@ h1 {
     outline: 2px solid #29ABE2;
 }
 
+.input-error-existing-email {
+    font-size: 14px;
+    color: red;
+    position: relative;
+    top: -229px;
+}
+
 .password_inputBox {
     display: flex;
     flex-direction: column;
