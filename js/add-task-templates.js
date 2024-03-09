@@ -9,7 +9,7 @@ function generateHtmlMainAddTask() {
 
 function generateRenderAddTask(boardcard) {
     return /*html*/`
-    <div>
+    <div class="mobile-view">
         <h2>Add Task</h2>
         <div class="main-box">
             <div class="form-addtask">
