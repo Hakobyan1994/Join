@@ -5,21 +5,54 @@ const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
 
+// const STORAGE_TOKEN1 = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
+// const STORAGE_URL1 = 'https://remote-storage.developerakademie.org/item';
 
-let dataUser = []
-let dataLocal = JSON.parse(localStorage.getItem('datareg'))
-if (dataLocal) {
-    dataUser = dataLocal
+async function setItem(key, value) {
+    const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
+    return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
+        .then(res => res.json())
+        
 }
+
+
+async function getItem(key) {
+    const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
+    return fetch(url).then(res => res.json()).then(res => {
+        if (res.data) {
+            return JSON.parse(res.data.value);
+        } throw `Could not find data with key "${key}".`;
+    });
+}
+
+
+let dataUsers = []
+async function getUsers(params) {
+    let res = await getItem('dataUsers')
+  
+    if (res[0] !== null) {
+        dataUsers = res
+        console.log(dataUsers, 555);
+    }
+}
+// setItem('dataUsers', JSON.stringify(dataUsers) )
+getUsers()
+
+
+
 
 
 function addtoLocal(arr, key) {
-    console.log('addLoc');
-    localStorage.setItem(key, JSON.stringify(arr))
+    console.log(dataUsers, 'ggggg');
+    setItem('dataUsers', dataUsers)
 }
 
+// setItem('dataUsers', [{ name: 'hhh', email: 'uwdd', password:'12345', id: new Date().getTime()}])
 
-async function onsubmitFor(e) {
+
+
+
+function onsubmitFor(e) {
     console.log(e);
     e.preventDefault();
     let name = e.target[0].value;
@@ -31,7 +64,7 @@ async function onsubmitFor(e) {
     if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
         await setItem('userData', JSON.stringify(userData));
-        validForm({ name, email, password, confirmPassword }, e);
+        validForm({ name, email, password, confirmPassword }, e)
     } else {
         checkSignUpInputs();
         if (!checkBox) {
@@ -48,12 +81,13 @@ async function onsubmitFor(e) {
 function validForm({ name, email, password, confirmPassword }, e) {
     console.log(password.includes(confirmPassword));
     if (password.includes(confirmPassword)) {
-        let user = dataUser.find((el) => el.email === email)
+        let user = dataUsers.find((el) => el.email === email)
         if (user) {
             document.getElementById('errorPassword').innerText = 'The email is already registered'//
         } else {
-            dataUser.push({ name, email, password, id: new Date().getTime() })
-            addtoLocal(dataUser, 'datareg')
+            dataUsers.push({ name, email, password, id: new Date().getTime() })
+
+            addtoLocal(dataUsers, 'dataUsers')
             if (window.innerWidth <= 400) {
                 responsiveInfo.classList.add('active')
                 setTimeout(function () {

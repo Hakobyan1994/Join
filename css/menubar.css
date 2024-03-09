@@ -63,6 +63,10 @@ nav {
     transition: 10ms;
 }
 
+.mobile-body {
+    display: none;
+}
+
 .selected-color {
     background-color: rgb(9,25,49)!important;
 }
@@ -216,19 +220,5 @@ header p {
    .clickInfoDiv ul li:hover{
      width: 100%; 
      background-color: #2f4057;
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 860px) {
-    .menu-header {
-        display: none;
-    }
-
-    nav {
-        display: none!important;
-    }
 }
 

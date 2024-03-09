@@ -7,6 +7,7 @@ async function setItem(key, value) {
         .then(res => res.json())
 }
 
+
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {

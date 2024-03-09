@@ -1,11 +1,11 @@
 
-// let userGuests = [
-//     {
-//         name: '',
-//         greeting: 'Good Morning'
-//     }
-// ];
-// console.log(userGuests[0].greeting);
+let userGuests = [
+    {
+        name: '',
+        greeting: 'Good Morning'
+    }
+];
+
    
 
 
@@ -46,12 +46,55 @@ setTimeout(() => {
 
 
 
-let dataUser = []
-let dataLocal = JSON.parse(localStorage.getItem('datareg'))
-if (dataLocal) {
-    dataUser = dataLocal
+
+// let dataLocal = JSON.parse(localStorage.getItem('datareg'))
+// if (dataLocal) {
+//     dataUsers = dataLocal
+// }
+// console.log(dataUsers);
+let dataUser = [];
+// const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
+// const STORAGE_URL2 = 'https://remote-storage.developerakademie.org/item';
+
+async function setItem(key, value) {
+   
+    const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
+    return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
+        .then(res => res.json())
+       
 }
-console.log(dataUser);
+
+
+async function getItem(key) {
+    const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
+    return fetch(url).then(res => res.json()).then(res => {
+        if (res.data) {
+            return JSON.parse(res.data.value);
+        } throw `Could not find data with key "${key}".`;
+    });
+}
+
+
+async function getUsers(params) {
+    let res = await getItem('dataUsers')
+
+    if ( res[0] !== null) {
+        dataUser = res
+       
+    }
+}
+getUsers()
+
+
+
+
+function activUser(arr) {
+   
+    setItem('activeUser', [arr] )
+    // localStorage.setItem('activeUser', JSON.stringify(arr));
+}
+
+
 
 let form_log = document.getElementById('form_log');
 let checkBox = document.getElementById('checkBox');
@@ -161,9 +204,6 @@ setTimeout(() => {
 },3000)
 
 
-function activUser(arr) {
-    localStorage.setItem('activeUser', JSON.stringify(arr));
-}
 
 function guesButton() {
     localStorage.removeItem('activeUser');
@@ -175,5 +215,3 @@ function guesButton() {
 function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
-  
-

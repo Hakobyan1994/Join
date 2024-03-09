@@ -368,11 +368,11 @@
 }
 
 @media(max-width: 1360px) {
-    #navbar {
+    nav {
         display: none;
     }
 
-    #menubar {
+    .menubar {
         display: none;
     }
 
