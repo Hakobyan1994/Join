@@ -21,22 +21,28 @@ function addtoLocal(arr, key) {
 
 async function onsubmitFor(e) {
     console.log(e);
-    e.preventDefault()
-    let name = e.target[0].value
-    let email = e.target[1].value
-    let password = e.target[2].value
-    let confirmPassword = e.target[3].value
-    let checkBox = e.target[4].value
-    // let btn = e.target[5]
-    if (name && email && password && confirmPassword && checkBox === 'yes') {
+    e.preventDefault();
+    let name = e.target[0].value;
+    let email = e.target[1].value;
+    let password = e.target[2].value;
+    let confirmPassword = e.target[3].value;
+    let checkBox = e.target[4].checked;
+
+    if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
         await setItem('userData', JSON.stringify(userData));
-        validForm({ name, email, password, confirmPassword }, e)
+        validForm({ name, email, password, confirmPassword }, e);
     } else {
-        check.value === 'no'
-        document.getElementById('errorPassword').innerText = 'Please accept the privacy policy!'
+        checkSignUpInputs();
+        if (!checkBox) {
+            document.getElementById('errorPassword').innerText = 'Please accept the privacy policy';
+        } else {
+            check.value = 'yes';
+            document.getElementById('errorPassword').innerText = '';
+        }
     }
 }
+
 
 
 function validForm({ name, email, password, confirmPassword }, e) {
@@ -128,3 +134,63 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function checkSignUpInputs() {
+    let name = document.getElementById('nameInput').value;
+    let email = document.getElementById('emailInput').value;
+    let password1 = document.getElementById('password1Input').value;
+    let password2 = document.getElementById('confirmInput').value;
+
+    let nameInputCon = document.getElementById('personInput');
+    let emailInputCon = document.getElementById('emailInput');
+    let passwordInputCon = document.getElementById('passwordInputCon');
+    let passwordConfimInputCon = document.getElementById('passwordConfirmInput');
+
+    let nameSignUpError = document.getElementById('inputErrorSignUpName');
+    let emailSignUpError = document.getElementById('inputErrorSignUpEmail');
+    let password1SignUpError = document.getElementById('inputErrorSignUpPassword1');
+    let password2SignUpError = document.getElementById('inputErrorSignUpPassword2');
+
+    checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
+}
+
+function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
+    if (!name) {
+        nameInputCon.classList.remove('margin');
+        nameSignUpError.classList.remove('d-none');
+        nameSignUpError.innerHTML = `Please enter a name`;
+    } else {
+        nameSignUpError.classList.add('d-none');
+    }
+
+    if (!email) {
+        emailInputCon.classList.remove('margin');
+        emailSignUpError.classList.remove('d-none');
+        emailSignUpError.innerHTML = `Please enter an email`;
+    } else {
+        emailSignUpError.classList.add('d-none');
+    }
+
+    if (!password1) {
+        passwordInputCon.classList.remove('margin');
+        passwordInputCon.classList.add('margin-empty');
+        password1SignUpError.classList.remove('d-none');
+        password1SignUpError.innerHTML = `Please enter a password`;
+    } else {
+        password1SignUpError.classList.add('d-none');
+    }
+
+    if (!password2) {
+        passwordConfimInputCon.classList.remove('margin-privacy');
+        passwordConfimInputCon.classList.remove('margin-top');
+        passwordConfimInputCon.classList.add('margin-empty');
+        passwordConfimInputCon.classList.add('margin-bottom');
+        password2SignUpError.classList.remove('d-none');
+        password2SignUpError.innerHTML = `Please confirm your password`;
+    } else {
+        password2SignUpError.classList.add('d-none');
+    }
+
+    if (!name || !email || !password1 || !password2) {
+        return;
+    }
+}
