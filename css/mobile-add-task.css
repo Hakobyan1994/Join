@@ -1,0 +1,202 @@
+@media(max-width: 1505px) { 
+    .form-addtask {
+        width: 1008px;
+        margin-right: 0;
+        margin-top: unset;
+    }
+
+    .form-bottom {
+        width: 1044px;
+    }
+}
+
+@media(max-width: 1360px) {
+    .main-window {
+        margin-left: 0;
+        margin-top: 128px;
+        width: 100%;
+        align-items: center;
+    }
+
+    h2 {
+       font-size: 47px; 
+    }
+
+    .form-bottom {
+        bottom: 84px;
+    }
+
+}
+
+@media(max-width: 1200px) {   
+    h2 {
+        font-size: 47px;
+    }
+    
+    .form-addtask {
+        display: unset;
+        width: 100%;
+        margin-top: unset;
+    }
+
+    .form-bottom {
+        position: unset;
+        display: flex;
+        width: 100%;
+    }
+
+    .addtask-line {
+        display: none;
+    }
+
+    .clear-btn {
+        display: none;
+    }
+
+    .form-bottom-right {
+        margin-right: 0;
+    }
+
+    .form-bottom {
+        width: 100%;
+        margin-bottom: 88px;
+    }
+
+    .form-bottom-left {
+        padding-top: unset;
+    }
+
+    .popup-a-to-b {
+        position: fixed;
+    }
+}
+
+@media(max-width: 860px) {
+    .main-window {
+        margin-left: 0;
+        margin-top: 112px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .clear-btn {
+        display: none;
+    }
+
+    .form-bottom {
+        width: 100%;
+        margin-bottom: 88px;
+    }
+
+    .form-bottom-left {
+        padding-top: unset;
+    }
+
+    .popup-a-to-b {
+        position: fixed;
+    }
+}
+
+@media(max-width: 500px) {
+    .main-box {
+        width: 100%;
+        align-items: center;
+    }
+
+    .render-page {
+        width: 100vw;
+    }
+
+    .main-window {
+        margin-left: 0;
+        margin-top: 112px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .mobile-view {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputfield {
+        width: 320px;
+    }
+
+    .prio-btn {
+        width: 360px;
+    }
+
+    .prio-btn button {
+        font-size: 16px;
+    }
+
+    .prio img {
+        width: 16px;
+    }
+    
+    .dropdown-icon {
+        left: 332px;
+    }
+
+    .add-icon {
+        left: 332px
+    }
+
+    .clear-check-icons {
+        bottom: 18px;
+        left: 156px;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        position: relative;
+        left: 196px;
+        opacity: 1;
+        cursor: pointer;
+    }
+    
+    .subtasks {
+        width: 342px;
+    }
+    
+    .each-subtask {
+        width: 329px;
+    }
+
+    .category-list {
+        width: 358px;
+    }
+
+    .form-addtask {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: unset;
+    }
+
+    .assigned-list {
+        width: 352px;
+    }
+
+    .assigned-button {
+        width: 352px;
+    }
+
+    .clear-btn {
+        display: none;
+    }
+
+    .form-bottom {
+        width: 100%;
+        margin-bottom: 88px;
+    }
+
+    .form-bottom-left {
+        padding-top: unset;
+    }
+
+    .popup-a-to-b {
+        position: fixed;
+    }
+}

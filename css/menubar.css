@@ -127,7 +127,8 @@ header p {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 16px
+    gap: 16px;
+    width: 255px;
 }
 
 .help-icon {
