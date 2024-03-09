@@ -2,97 +2,105 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
-    <link rel="stylesheet" href="../css/signup.css">
-    <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/menubar.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/privacy-policy.css">
-    <link rel="stylesheet" href="../css/legal-notice.css">
-    <script src="../js/script.js"></script>
-    <script src="../js/includeHTML.js"></script>
-    <script src="../js/privacy-policy.js"></script>
-    <script src="../js/legal-notice.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <link rel="stylesheet" href="../css/signup.css">
+  <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="../css/menubar.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/privacy-policy.css">
+  <link rel="stylesheet" href="../css/legal-notice.css">
+  <script src="../js/script.js"></script>
+  <script src="../js/includeHTML.js"></script>
+  <script src="../js/privacy-policy.js"></script>
+  <script src="../js/legal-notice.js"></script>
 </head>
 
 <body onload="initLogin()">
   <div class="d-none" id="navbar" w3-include-html="../js/menubar.html"></div>
   <div class="d-none" id="login-privacy"></div>
   <div class="d-none" id="login-legal"></div>
-  <div class="contaner" id="login-div">   
+  <div class="contaner" id="login-div">
     <div id="responsiveInfo" class="responsiveInfo">You Signed Up succesfully</div>
-   
-  <div class="trasparenter_div">
-       <div class="Sign_UpspeedInfo">You Signed Up succesfully</div>
-     </div>
 
-    <div class="image_box"> <img class="join_picture" src="../assets/img/anmeldung Image/join.png" alt="joinPicture"> </div>
+    <div class="trasparenter_div">
+      <div class="Sign_UpspeedInfo">You Signed Up succesfully</div>
+    </div>
+
+    <div class="image_box"> <img class="join_picture" src="../assets/img/anmeldung Image/join.png" alt="joinPicture">
+    </div>
     <div class="main_div">
-        
-          <a href="../index.html">  <div class="backLogin_pictureBox" ><img   class="backLogin_picture" src="../assets/img/anmeldung Image/arrow-left-line.png" alt=""> </div></a>
-            <div class="title_div">
-              <h1>Sign up</h1>
-              <div class="line"></div>
-            </div> 
-            <div class="main_signUp">
-             <div class="second_signUp">
 
-                <form id="signUp">
-                  <div class="person_input">
-                    <input class="name_input" type="" placeholder="Name" required>
-                  </div> 
-                    <div class="email_inputBox">
-                       <input class="email_input" type="email" placeholder="Email" required>
-                    </div>
-                       <span  id="emailError"></span>
-                      <div class="password_inputBox">
-                        <input id="passwordInput" class="password_input" type="password" placeholder="Password" required> <img id="passwordBlock" class="passwordBlock" src="../assets/img/anmeldung Image/lock.png" alt="" >
-                      </div>    
-                        
-                        <div class="confirm_passwordBox">
-                          <input id="confirmInput" class="confirmpassword" type="password" placeholder="Confirm Password" required> <img id="confirmBlock" class="confirmBlock" src="../assets/img/anmeldung Image/lock.png" alt="">
-                        </div>
-                        <span style="font-family: 'Inter'; color: red;" id="errorPassword"></span>
-                        <div class="input_checkox">
-                          
-                          <input id="checkbox" class="input_check" type="checkbox" value="no">
-                           <span class="checkBox_span">I accept <a class="Privacy_policy" href="#" onclick="renderPrivacyLegal('login-privacy')">Privacy policy</a></span>
-                         </div>
-                         
-                        <div class="sign_upBox">
-                          <button class="signup_button" type="submit">Sign up</button>
-                        </div>          
-                      
-                       
-                </form> 
-                           
+      <a href="../index.html">
+        <div class="backLogin_pictureBox"><img class="backLogin_picture"
+            src="../assets/img/anmeldung Image/arrow-left-line.png" alt=""> </div>
+      </a>
+      <div class="title_div">
+        <h1>Sign up</h1>
+        <div class="line"></div>
+      </div>
+      <div class="main_signUp">
+        <div class="second_signUp">
+
+          <form id="signUp">
+            <div id="personInput" class="person_input margin">
+              <input id="nameInput" class="name_input" type="" placeholder="Name">
+              <div id="inputErrorSignUpName" class="input-error-signup-name d-none"></div>
+            </div>
+
+            <div id="emailInputCon" class="email_inputBox margin">
+              <input id="emailInput" class="email_input" type="email" placeholder="Email">
+              <div id="checkExistingEmail" class="input-error-existing-email d-none"></div>
+              <div id="inputErrorSignUpEmail" class="input-error-signup-email d-none"></div>
+            </div>
+
+            <span id="emailError"></span>
+            <div id="passwordInputCon" class="password_inputBox margin">
+              <input id="password1Input" class="password_input" type="password" placeholder="Password">
+              <img id="passwordBlock" class="passwordBlock" src="../assets/img/anmeldung Image/lock.png" alt="">
+              <div id="inputErrorSignUpPassword1" class="input-error-signup-pw1 d-none"></div>
+            </div>
+
+            <div id="passwordConfirmInput" class="confirm_passwordBox margin-privacy margin-top">
+              <input id="confirmInput" class="confirmpassword" type="password" placeholder="Confirm Password">
+              <img id="confirmBlock" class="confirmBlock" src="../assets/img/anmeldung Image/lock.png" alt="">
+              <div id="inputErrorSignUpPassword2" class="input-error-signup-pw2 d-none"></div>
+            </div>
+
+            <input id="checkbox" class="input_check" type="checkbox" value="no">
+            <span class="checkBox_span">
+              I accept
+              <a class="Privacy_policy" href="#" onclick="renderPrivacyLegal('login-privacy')">Privacy policy</a>
+            </span>
+        </div>
+
+        <div>
+          <span class="error-privacy" style="font-family: 'Inter'; color: red;" id="errorPassword"></span>
+          <div class="input_checkox">
+
+            <div class="sign_upBox">
+              <button class="signup_button" type="submit">Sign up</button>
+            </div>
+          </div>
 
 
-             
-             </div>
-                 
-               </div>
-                      
+          </form>
+        </div>
+      </div>
+    </div>
 
-                  
-               
-                        
-
-          </div>  
-
-          <div class="footer">
-            <div class="Privacy_div"> <a class="aPrivacy" href="#" onclick="renderPrivacyLegal('login-privacy')">Privacy Policy</a></div>
-            <div class="legal_notice"> <a class="aLegal" href="#" onclick="renderPrivacyLegal('login-legal')">Legal notice</a></div>
-          </div>    
+    <div class="footer">
+      <div class="Privacy_div"> <a class="aPrivacy" href="#" onclick="renderPrivacyLegal('login-privacy')">Privacy
+          Policy</a></div>
+      <div class="legal_notice"> <a class="aLegal" href="#" onclick="renderPrivacyLegal('login-legal')">Legal notice</a>
+      </div>
+    </div>
   </div>
 
-        
-        
-         
-          <script src="../js/signUp.js"></script> 
-          <script src="../js/register.js"></script>
+
+  <script src="../js/signUp.js"></script>
+  <script src="../js/register.js"></script>
 </body>
 
 </html>
