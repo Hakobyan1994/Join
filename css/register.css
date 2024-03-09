@@ -243,7 +243,14 @@ body {
     line-height: 24px;
     cursor: pointer;
     font-family: 'Inter';
-    margin-bottom: 20px;
+}
+
+.margin-bottom-login {
+    margin-bottom: 24px;
+}
+
+.margin-top-login {
+    margin-top: 6px;
 }
 
 .input_email:focus {
@@ -253,11 +260,19 @@ body {
 .input-error-login-email {
     font-size: 14px;
     color: red;
+    position: relative;
+    top: -9px;
 }
 
 .input-error-login-pw {
     font-size: 14px;
     color: red;
+    position: relative;
+    top: -38px;
+}
+
+.d-none {
+    display: none;
 }
 
 .input_password {
@@ -300,7 +315,7 @@ body {
     gap: 8px;
     width: 422px;
     height: 24px;
-    padding: 4px 42px;
+    padding: 22px 42px;
     border-radius: 15px;
 }
 
