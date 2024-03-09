@@ -57,9 +57,11 @@ let dataUser = [];
 // const STORAGE_URL2 = 'https://remote-storage.developerakademie.org/item';
 
 async function setItem(key, value) {
+   
     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
+       
 }
 
 
@@ -75,14 +77,22 @@ async function getItem(key) {
 
 async function getUsers(params) {
     let res = await getItem('dataUsers')
-    console.log(res, 'reg');
+
     if ( res[0] !== null) {
         dataUser = res
-        console.log(dataUser,'log out');
+       
     }
 }
 getUsers()
 
+
+
+
+function activUser(arr) {
+   
+    setItem('activeUser', [arr] )
+    // localStorage.setItem('activeUser', JSON.stringify(arr));
+}
 
 
 
@@ -194,9 +204,6 @@ setTimeout(() => {
 },3000)
 
 
-function activUser(arr) {
-    localStorage.setItem('activeUser', JSON.stringify(arr));
-}
 
 function guesButton() {
     localStorage.removeItem('activeUser');
