@@ -1,3 +1,33 @@
+@media(max-width: 1760px) { 
+
+}
+
+
+/* CSS ADD TASK*/
+@media(max-width: 1505px) { 
+    .form-addtask {
+        width: 1008px;
+        margin-right: 0;
+    }
+
+    .form-bottom {
+        width: 1044px;
+    }
+}
+
+/* CSS ADD TASK */
+@media(max-width: 1360px) {
+    .main-window {
+        margin-left: 0;
+        margin-top: 112px;
+        width: 100%;
+        align-items: center;
+    }
+
+}
+
+/*CSS MENUBAR*/
+
 @media(max-width: 1360px) {
     .menu-header {
         display: none;
@@ -23,7 +53,7 @@
         top: 0;
         right: 0;
         left: 0;
-        height: 80px;
+        height: 60px;
         display: flex;
         padding: 20px 16px 20px 16px;
         justify-content: space-between;
@@ -60,7 +90,7 @@
     }
 
     .mobile-nav {
-        z-index: 3;
+        z-index: 5;
         position: fixed;
         top: unset;
         right: 0;
@@ -147,13 +177,33 @@
     .selected-color:hover {
         background-color: rgb(42, 61, 89);
         width: 76px;
+        transition: 10ms;
     }
 }
 
 
+/*CSS ADD TASK*/
+@media(max-width: 1200px) {    
+    .form-addtask {
+        display: unset;
+        width: 100%;
+    }
 
-@media(max-width: 1200px) {
-    
+    .form-bottom {
+        position: unset;
+        display: flex;
+        width: 100%;
+    }
+
+    .addtask-line {
+        display: none;
+    }
+    .form-bottom-right {
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 860px) {
 }
 
 
