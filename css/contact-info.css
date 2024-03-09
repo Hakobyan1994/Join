@@ -9,6 +9,7 @@
     left: 0;
     right: calc((100vw - 500px) / 2);
     transform: translateY(15%);
+    z-index: -1;
 }
 
 .slider-main-content {
@@ -20,7 +21,6 @@
     position: relative;
     top: -90px;
 }
-
 
 .slider-content-top {
     display: flex;
