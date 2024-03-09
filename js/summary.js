@@ -8,7 +8,7 @@ let arrayUrgent = [
   }
 ];
 
-
+/*
 let locRes = JSON.parse(localStorage.getItem('activeUser'));
 if (locRes) {
   localStorage.removeItem('guestsUser');
@@ -17,7 +17,7 @@ if (locRes) {
   profilName.innerText = locRes.name
 }
 activeUser.push(locRes);
-
+*/
 
 let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 if (guestsUsing) {

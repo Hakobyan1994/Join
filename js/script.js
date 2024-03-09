@@ -188,6 +188,7 @@ function resetUserContent(page) {
 }
 
 
+
 function minDate() {
     let dateObj = new Date();
         let day = dateObj.getDate();

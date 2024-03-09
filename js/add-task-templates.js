@@ -63,7 +63,7 @@ function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
         <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" onkeyup="searchAssignedList()">
-        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="renderAssignedList()">    
+        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" onclick="btnRenderAssignedList()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
     `;
@@ -75,8 +75,7 @@ function generateHtmlDate() {
         <label>Due date<p class="redstar">*</p></label>
         <div class="dueDate-div">
             <div>
-                <input type="date" class="inputfield" id="date" value="" min="" max="2030-12-31" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required> <!-- pattern="\d{2}/\m{2}/\y{4}" -->
-                <!-- <img src="assets/img/icons/calender.svg" alt="Calendar" class="date-icon" onclick="currentDateTask()"> -->
+                <input type="date" class="inputfield" id="date" value="" min="" max="2030-12-31" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
@@ -133,5 +132,82 @@ function generateHtmlFormSection(boardcard) {
             <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
             <button class="create-task" onclick="createTask('${boardcard}')">Create Task<img src="../assets/img/icons/check1.svg" alt="Create Task"></button>
         </div> 
+    `;
+}
+
+function generateHtmlAssignedList(name, img, isSelected, i) {
+    return /*html*/`
+            <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+                <div>
+                    <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                    <div>${name}</div>
+                </div>
+                <img src="${isSelected ? '../assets/img/icons/selected1.svg' : '../assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+            </div>
+    `;
+}
+
+
+function renderCategoryList() {
+    let list = document.getElementById('category-list');
+    list.classList.toggle('d-none');
+    list.innerHTML = /*html*/`
+        <div class="category-list-div" value="Technical Task"  id="technical" onclick="selectCategory('technical', 'story')">Technical Task</div>  
+        <div class="category-list-div" value="User Story" id="story" onclick="selectCategory('story', 'technical')">User Story</div>  
+    `;
+}
+
+
+function generateAssignedButton() {
+    let div = document.getElementById('assigned-button');
+    div.innerHTML = '';
+    for (let p = 0; p < users.length; p++) {
+        const letters = iniimg[p];
+        div.innerHTML += /*html*/`
+            <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
+        `;
+    }
+}
+
+
+function updateSubtaskList(list) {
+    for (let i = 0; i < subtasks.length; i++) {
+        let text = subtasks[i];
+        list.innerHTML += /*html*/`
+        <li class="each-subtask" id="each-subtask${i}">
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
+            <div class="subtask-right">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <p class="separator"></p>
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            </div>
+        </li>
+    `;
+    }
+}
+
+
+function createEditableSubtaskElement(index, value) {
+    return /*html*/`
+        <input class="each-subtask-p editable" id="subtask${index}" value="${value}">
+        <div class="subtask-right editable-img">
+            <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${index})">
+            <p class="separator"></p>
+            <img src="../assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${index})">
+        </div>
+    `;
+}
+
+
+function generateSubtaskElement(i, text) {
+    return /*html*/`
+        <li class="each-subtask" id="each-subtask${i}">
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
+            <div class="subtask-right">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                <p class="separator"></p>
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            </div>
+        </li>
     `;
 }

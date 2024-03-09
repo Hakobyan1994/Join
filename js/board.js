@@ -11,32 +11,6 @@ async function renderBoardMain() {
 }
 
 
-function closePopupAddTask() {
-    let popup = document.getElementById('popup-add-task');
-    let content = document.getElementById('popup-add-task-content');
-    popup.classList.add('d-none');
-    content.classList.remove('slide-in');
-    content.classList.add('slide-out');
-}
-
-
-function renderAddTaskForPopup() {
-    e.preventDefault();
-}
-
-
-function checkCategoryButton() {
-    let categoryBtn = document.querySelectorAll('.c1');
-    categoryBtn.forEach((id) => {
-        if (id.textContent === 'Technical Task') {
-            id.classList.add('technical-button');
-        } else if (id.textContent === 'User Story') {
-            id.classList.add('user-story-button');
-        }   
-    })
-}
-
-
 async function loadToDo() {
     loadTasks();
     let todo = document.getElementById('board-to-do');
@@ -90,6 +64,32 @@ async function loadToDo() {
     if (!hasDone) {
         done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
     }
+}
+
+
+function closePopupAddTask() {
+    let popup = document.getElementById('popup-add-task');
+    let content = document.getElementById('popup-add-task-content');
+    popup.classList.add('d-none');
+    content.classList.remove('slide-in');
+    content.classList.add('slide-out');
+}
+
+
+function renderAddTaskForPopup() {
+    e.preventDefault();
+}
+
+
+function checkCategoryButton() {
+    let categoryBtn = document.querySelectorAll('.c1');
+    categoryBtn.forEach((id) => {
+        if (id.textContent === 'Technical Task') {
+            id.classList.add('technical-button');
+        } else if (id.textContent === 'User Story') {
+            id.classList.add('user-story-button');
+        }   
+    })
 }
 
 
@@ -530,28 +530,32 @@ function generateEditableAddtask(i) {
 
 
 async function pushValueToEdit(i) {
-    await loadTasks();
-    let array = tasks[i];
-    let title = document.getElementById('title');
-    let description = document.getElementById('description');
-    let date = document.getElementById('date');
-    let dateValue = deformatDate(array.date);
-    // category, assigned Array 
-    title.value = array.title;
-    description.value = array.description;
-    date.value = dateValue;
-    let priority = array.priority;
-    getPriority(priority);
-    let subtasksArray = array.subtask;
-    // console.log('push', subtasksArray);
-    subtasks.push(subtasksArray);
+    try {
+        await loadTasks();
+        let array = tasks[i];
+        let title = document.getElementById('title');
+        let description = document.getElementById('description');
+        let date = document.getElementById('date');
+        let dateValue = deformatDate(array.date);
+        // category, assigned Array 
+        title.value = array.title;
+        description.value = array.description;
+        date.value = dateValue;
+        let priority = array.priority;
+        getPriority(priority);
+        let subtasksArray = array.subtask;
+        // console.log('push', subtasksArray);
+        subtasks.push(subtasksArray);
 
-    subtasks = [];
-    for (let j = 0; j < subtasksArray.length; j++) {
-        subtasks.push(subtasksArray[j]);
+        subtasks = [];
+        for (let j = 0; j < subtasksArray.length; j++) {
+            subtasks.push(subtasksArray[j]);
+        }
+        getSubtasks();
+        tasks.splice(i, 1);
+    } catch (error) {
+        console.error('Fehler beim Laden der Aufgaben:', error);
     }
-    getSubtasks();
-    tasks.splice(i, 1);
 }
 
 
@@ -576,7 +580,6 @@ function getSubtasks() {
 
 async function saveEditedTask(i) {
     checkCategoryButton();
-    loadTasks();
     let category = tasks[i].category
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
@@ -623,9 +626,8 @@ async function saveEditedTask(i) {
         title.classList.add('inputfield-focus-red');
         category.classList.add('inputfield-focus-red');
     }
-
-    loadToDo();
-
+    loadTasks();
+    await loadToDo();
 }
 
 function formatDate(date) {
@@ -726,12 +728,6 @@ function drop(ev) {
         
 }
   
-
-  
-
-
-
-
 
 async function saveDroppedElement(element) {
     let arraypos = element.getAttribute('arraypos');
