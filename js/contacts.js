@@ -106,7 +106,7 @@ function applyRandomColorToImage(imageElement, seed) {
 
 function addToContacts() {
     let nameInput = document.getElementById('name');
-    let emailInput = document.getElementById('email');
+    let emailInput = document.getElementById('emailContacts');
     let phoneInput = document.getElementById('phone');
 
     let name = nameInput.value.trim();
@@ -129,11 +129,17 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
         nameAddContactError.classList.add('d-none');
     }
 
-    if (!email) {
+    if (!email || !isValidEmail(email)) {
         emailAddContactError.classList.remove('d-none');
-        emailAddContactError.innerHTML = `Please enter an email`;
+        emailAddContactError.innerHTML = `Please enter a valid email`;
     } else {
         emailAddContactError.classList.add('d-none');
+    }
+
+    if (email && !email.includes('@')) {
+        emailAddContactError.classList.remove('d-none');
+        emailAddContactError.innerHTML = `Please enter a valid email address`;
+        return;
     }
 
     if (!phone) {
@@ -148,6 +154,12 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
     }
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
+
+function isValidEmail(email) {
+    const emailRegex = /\S+@\S+\.\S+/;
+    return emailRegex.test(email);
+}
+
 
 
 function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {

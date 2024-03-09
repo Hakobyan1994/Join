@@ -169,7 +169,7 @@ h1 {
 }
 
 .input-error-existing-email {
-    font-size: 14px;
+    font-size: 12px;
     color: red;
     position: relative;
     top: -229px;
@@ -300,10 +300,10 @@ h1 {
 }
 
 .error-privacy {
-    font-size: 14px;
+    font-size: 12px;
     position: relative;
     top: -35px;
-    left: -105px;
+    left: -120px;
 }
 
 .input_check {
@@ -461,28 +461,28 @@ h1 {
 }
 
 .input-error-signup-name {
-    font-size: 14px;
+    font-size: 12px;
     color: red;
     position: relative;
     top: -7px;
 }
 
 .input-error-signup-email {
-    font-size: 14px;
+    font-size: 12px;
     color: red;
     position: relative;
     top: -6px;
 }
 
 .input-error-signup-pw1 {
-    font-size: 14px;
+    font-size: 12px;
     color: red;
     position: relative;
     top: 4px;
 }
 
 .input-error-signup-pw2 {
-    font-size: 14px;
+    font-size: 12px;
     color: red;
     position: relative;
     top: 12px;

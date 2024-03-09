@@ -182,7 +182,7 @@ function generateAddContactOverlay() {
                                     <div id="nameAddErrorMessage" class="error-message d-none"></div>
                                 </div>
                                 <div>
-                                    <input id="email" name="email" class="input-con"
+                                    <input id="emailContacts" name="email" class="input-con"
                                         placeholder="Email" type="email" required>
                                     <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
                                     <div id="emailAddErrorMessage" class="error-message d-none"></div>
