@@ -52,7 +52,7 @@ function addtoLocal(arr, key) {
 
 
 
-function onsubmitFor(e) {
+async function onsubmitFor(e) {
     console.log(e);
     e.preventDefault();
     let name = e.target[0].value;
