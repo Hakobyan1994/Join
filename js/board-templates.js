@@ -75,7 +75,7 @@ async function openPopupAddTask(boardcard) {
         <img class="close-popup" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
             <h2 class="h2-addtask-board">Add Task</h2>
-            <div>
+            <div class="mobile-board-popup-add-task">
                 <div class="main-box">
                     <div class="form popup-addtask-main">
                         ${generateHtmlAddTaskForm()}      

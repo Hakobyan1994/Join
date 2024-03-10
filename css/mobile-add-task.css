@@ -157,11 +157,12 @@
     }
     
     .subtasks {
-        width: 342px;
+        width: 93%;
+        padding-right: 16px;
     }
     
     .each-subtask {
-        width: 329px;
+        width: 100%;
     }
 
     .category-list {
@@ -176,7 +177,7 @@
     }
 
     .assigned-list {
-        width: 352px;
+        width: 99%;
     }
 
     .assigned-button {
