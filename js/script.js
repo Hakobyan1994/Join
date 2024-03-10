@@ -93,42 +93,6 @@ function resetHlp() {
 }
 
 
-function renderMobilePage(selectedBar, page) {
-    renderHPLMain();
-    let selectedNavbar = document.getElementById(selectedBar);
-    let selectedPage = document.getElementById(page);
-    let allNavbar = document.querySelectorAll('.mobile-navbar');
-    let allPages = document.querySelectorAll('.render-page');
-
-    selectedNavbar.classList.add('selected-color');
-    selectedPage.style.display = 'block';
-    if (page === 'render-summary') {
-        renderSummaryMain();
-    }
-    if (page === 'render-add-task') {
-        renderAddTaskMain();
-    }
-    if(page === 'render-contacts') {
-        renderContactsMain();
-    }
-    if(page === 'render-board') {
-        renderBoardMain();
-    }
-
-    allNavbar.forEach((navbar) => {
-        if (navbar.id !== selectedBar) {
-            navbar.classList.remove('selected-color');
-        }
-    })
-    allPages.forEach((pages) => {
-        if (pages.id !== page) {
-            pages.style.display = 'none';
-        }
-    })
-    resetHlp();
-}
-
-
 function renderHPLMain(page) {
         let content = document.getElementById(page);
         let allNavbar = document.querySelectorAll('.navbar');
@@ -151,6 +115,8 @@ function renderHPLMain(page) {
         })
         if(page === 'render-help') {
             content.innerHTML = generateHtmlMainHelp();
+            document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
+            document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
         }
         if(page === 'render-privacy-policy') {
             content.innerHTML = generateHtmlMainPrivacy();

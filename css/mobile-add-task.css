@@ -23,9 +23,8 @@
     }
 
     .form-bottom {
-        bottom: 84px;
+        bottom: 88px;
     }
-
 }
 
 @media(max-width: 1200px) {   
@@ -37,12 +36,6 @@
         display: unset;
         width: 100%;
         margin-top: unset;
-    }
-
-    .form-bottom {
-        position: unset;
-        display: flex;
-        width: 100%;
     }
 
     .addtask-line {
@@ -58,8 +51,15 @@
     }
 
     .form-bottom {
-        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         margin-bottom: 88px;
+        z-index: 5;
+        width: 100%;
+        gap: 42px;
+        justify-content: center;
     }
 
     .form-bottom-left {
@@ -68,6 +68,10 @@
 
     .popup-a-to-b {
         position: fixed;
+    }
+
+    .mobile-add-task-view {
+        height: 69vh;
     }
 }
 
@@ -81,11 +85,6 @@
 
     .clear-btn {
         display: none;
-    }
-
-    .form-bottom {
-        width: 100%;
-        margin-bottom: 88px;
     }
 
     .form-bottom-left {
@@ -115,7 +114,6 @@
     }
 
     .mobile-view {
-        height: 100%;
         display: flex;
         flex-direction: column;
     }
@@ -188,16 +186,22 @@
         display: none;
     }
 
-    .form-bottom {
-        width: 100%;
-        margin-bottom: 88px;
-    }
-
     .form-bottom-left {
         padding-top: unset;
     }
 
     .popup-a-to-b {
         position: fixed;
+    }
+
+    .create-task {
+        width: 140px;
+        height: 64px;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .form-bottom-left p {
+        font-size: 16px;
     }
 }

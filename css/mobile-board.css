@@ -51,6 +51,7 @@
     }
 
     .info_Div h1 {
+        font-size: 47px;
         margin-left: 16px;
     }
 
@@ -189,10 +190,6 @@
         top: 32px;
         right: 64px;
         left: unset;
-    }
-
-    .main-box {
-        height: 100%;
     }
 
     .popup-addtask-form {

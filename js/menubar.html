@@ -1,15 +1,15 @@
 <html>
 <body onload="iconName()">
-    <nav id="navbar">
+    <nav id="navbar" class="mobile-nav">
         <img src="../assets/img/logo.svg" alt="Join Logo" class="logo">
-        <div class="menubar" id="menubar">
-            <a href="#" id="summary-page" class="navbar selected-color" onclick="renderPage('summary-page', 'render-summary')"><img
+        <div class="menubar mobile-menubar" id="menubar">
+            <a href="#" id="summary-page" class="navbar mobile-navbar selected-color" onclick="renderPage('summary-page', 'render-summary')"><img
                     src="../assets/img/icons/summary.svg" alt="Summary Icon">Summary</a>
-            <a href="#" id="add-task-page" class="navbar" onclick="renderPage('add-task-page', 'render-add-task')"><img
+            <a href="#" id="add-task-page" class="navbar mobile-navbar" onclick="renderPage('add-task-page', 'render-add-task')"><img
                     src="../assets/img/icons/add-task.svg" alt="Add Task Icon">Add Task</a>
-            <a href="#" id="board-page" class="navbar" onclick="renderPage('board-page', 'render-board')"><img
+            <a href="#" id="board-page" class="navbar mobile-navbar" onclick="renderPage('board-page', 'render-board')"><img
                     src="../assets/img/icons/board.svg" alt="Board Icon">Board</a>
-            <a href="#" id="contacts-page" class="navbar" onclick="renderPage('contacts-page', 'render-contacts')"><img
+            <a href="#" id="contacts-page" class="navbar mobile-navbar" onclick="renderPage('contacts-page', 'render-contacts')"><img
                     src="../assets/img/icons/contacts.svg" alt="Contacts Icon">Contacts</a>
         </div>
         <div class="legalbox">
@@ -18,11 +18,12 @@
         </div>
     </nav>
     <header>
+        <img src="../assets/img/mobile-logo.svg" alt="Join Logo" class="mobile-logo">
         <div id="kan" class="menubar-text">Kanban Project Management Tool</div>
         <div class="header-right" id="header-right">
             <a class="helpa" href="#" onclick="renderHPLMain('render-help')"><img src="../assets/img/icons/help.svg" alt="Help Icon"
                     class="help-icon"></a>
-            <a id="shortName" onclick="checks()" href="#" class="profile-icon"></a>
+            <a id="shortName" onclick="checks()" href="#" class="profile-icon mobile-profile-icon"></a>
         </div>
     </header>
     <div class="clickInfoDiv">
