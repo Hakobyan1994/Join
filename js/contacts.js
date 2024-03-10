@@ -333,23 +333,41 @@ function dontCloseCard(event) {
 
 function showAddContactOverlay() {
     let dialog = document.getElementById('dialog');
-    dialog.classList.remove('slide-out');
-    dialog.classList.remove('d-none');
-    dialog.classList.add('slide-in');
-    dialog.innerHTML = generateAddContactOverlay();
-    showAddContactSlider();
+    if (window.innerWidth > 800) {
+        dialog.classList.remove('slide-out');
+        dialog.classList.remove('d-none');
+        dialog.classList.add('slide-in');
+        dialog.innerHTML = generateAddContactOverlay();
+        showAddContactSlider();
+    } else {
+        dialog.classList.remove('slide-out-mobile');
+        dialog.classList.remove('d-none');
+        dialog.classList.add('slide-in-mobile');
+        dialog.innerHTML = generateAddContactOverlay();
+        showAddContactSlider();
+    }
 }
 
 
 function showEditContactOverlay(i) {
     let editMask = document.getElementById('editMask');
-    editMask.classList.remove('slide-out');
-    editMask.classList.remove('d-none');
-    editMask.classList.add('slide-in');
-    editMask.innerHTML = generateEditMaskOverlay(i);
-    showAddContactSlider(i);
-    loadContactInfo(i);
-    displayContactImage(i);
+    if (window.innerWidth > 800) {
+        editMask.classList.remove('slide-out');
+        editMask.classList.remove('d-none');
+        editMask.classList.add('slide-in');
+        editMask.innerHTML = generateEditMaskOverlay(i);
+        showAddContactSlider(i);
+        loadContactInfo(i);
+        displayContactImage(i);
+    } else {
+        editMask.classList.remove('slide-out-mobile');
+        editMask.classList.remove('d-none');
+        editMask.classList.add('slide-in-mobile');
+        editMask.innerHTML = generateEditMaskOverlay(i);
+        showAddContactSlider(i);
+        loadContactInfo(i);
+        displayContactImage(i);
+    }
 }
 
 
@@ -471,7 +489,7 @@ function removeHighlight(contactDiv) {
 }
 
 function showHideMobile() {
-    if (window.innerWidth < 1000) {
+    if (window.innerWidth < 800) {
         document.getElementById('addContactBtnMobile').classList.remove('d-none');
         document.getElementById('cancelBtn').classList.add('d-none');
         document.getElementById('closeImgMobile').classList.remove('d-none');

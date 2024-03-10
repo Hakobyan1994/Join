@@ -279,3 +279,31 @@
         width: 93%;
     }
 }
+
+.slide-in-mobile {
+    animation: slideInFromBottom 0.5s forwards;
+}
+
+.slide-out-mobile {
+    animation: slideOutToBottom 0.5s forwards;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
