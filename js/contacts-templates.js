@@ -3,7 +3,6 @@ function generateHtmlMainContacts() {
         <div id="mainContent" class="main-content">
             <div class="content">
                 <div class="contacts-main">
-
                     <div id="addContactBtn" class="contacts">
                         <div class="added-contacts">
 
@@ -25,7 +24,7 @@ function generateHtmlMainContacts() {
                     <div id="contactOverlay"></div>
 
                     <div id="contactInfoConMobile" class="contact-info-con">
-                        <div class="headline">
+                        <div id="headlineMobile" class="headline">
                             Contacts
                             <div class="vertical-line">
                                 <img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">

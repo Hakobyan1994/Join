@@ -11,6 +11,13 @@ async function renderContactsMain() {
     content.innerHTML = generateHtmlMainContacts();
     await loadContacts();
     renderContacts();
+    showHideMobile();
+
+    let contactInfoSliderMobile = document.getElementById('contactInfoConMobile');
+
+    if (window.innerWidth < 800) {
+        contactInfoSliderMobile.classList.add('d-none');
+    }
 }
 
 function renderContacts() {
@@ -351,13 +358,13 @@ function showAddContactOverlay() {
 
 function showEditContactOverlay(i) {
     let editMask = document.getElementById('editMask');
-        editMask.classList.remove('slide-out');
-        editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in');
-        editMask.innerHTML = generateEditMaskOverlay(i);
-        showAddContactSlider(i);
-        loadContactInfo(i);
-        displayContactImage(i);
+    editMask.classList.remove('slide-out');
+    editMask.classList.remove('d-none');
+    editMask.classList.add('slide-in');
+    editMask.innerHTML = generateEditMaskOverlay(i);
+    showAddContactSlider(i);
+    loadContactInfo(i);
+    displayContactImage(i);
 }
 
 
@@ -421,8 +428,14 @@ async function deleteContact(i) {
 
 function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
-    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    contactInfoConMobile.classList.remove('d-none');
+    let contactInfoSliderMobile = document.getElementById('contactInfoConMobile');
+
+    if (window.innerWidth < 800) {
+        contactInfoSliderMobile.classList.add('d-none');
+    } else {
+        contactInfoSliderMobile.classList.remove('d-none');
+    }
+
     contactInfoSlider.innerHTML = '';
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');
