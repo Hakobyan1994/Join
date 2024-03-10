@@ -205,8 +205,8 @@
 }
 
 @media(max-width: 860px) {
-    .contact-info-con {
-        display: none;
+    body {
+        overflow: hidden;
     }
 
     .menubar-text {
@@ -278,6 +278,66 @@
     .contact-con-pos {
         width: 93%;
     }
+
+    .contact-info-con {
+        width: 390px;
+        height: 314px !important;
+        background-color: #F6F7F8;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .headline {
+        font-size: 42px;
+        z-index: 1;
+        position: fixed;
+        top: 121px;
+        right: 180px;
+        gap: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .team-headline {
+        margin-left: -10px;
+    }
+
+    .vertical-line {
+        width: 93px;
+        height: 3px;
+        position: relative;
+        top: 50px;
+        left: -45px;
+    }
+
+    .slider-main-content {
+        position: fixed;
+        top: -190px;
+        right: 23px;
+    }
+
+    .slider-content-top {
+        gap: 22px;
+    }
+
+    .slider-content-mid {
+        margin-bottom: -30px;
+    }
+
+    .slider-contact-img {
+        height: 70px;
+        width: 70px;
+    }
+
+    .back-arrow-mobile {
+        position: absolute;
+        top: 21px;
+        right: 10px;
+    }
 }
 
 .slide-in-mobile {
@@ -306,4 +366,19 @@
     to {
         transform: translateY(100%);
     }
+}
+
+
+
+
+
+
+
+.contact-info-slider {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
 }

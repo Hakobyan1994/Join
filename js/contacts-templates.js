@@ -24,7 +24,7 @@ function generateHtmlMainContacts() {
 
                     <div id="contactOverlay"></div>
 
-                    <div class="contact-info-con">
+                    <div id="contactInfoConMobile" class="contact-info-con">
                         <div class="headline">
                             Contacts
                             <div class="vertical-line">
@@ -34,6 +34,8 @@ function generateHtmlMainContacts() {
                                 Better with a team
                             </div>
                         </div>
+
+                        <img onclick="hideMobileContactInfo()" class="back-arrow-mobile" src="../assets/img/icons/arrow_back_btn.svg">
 
                         <div id="contactInfoSlider" class="contact-info-slider"></div>
 

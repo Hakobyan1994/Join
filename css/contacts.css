@@ -114,11 +114,11 @@
     display: flex;
     justify-content: center;
     position: relative;
-    top: 55px;
+    top: 25px; 
     z-index: 1;
     background-color: white;
     padding-top: 100px;
-    padding-bottom: 18px;
+    padding-bottom: -8px;
 }
 
 .add-contact-btn {
