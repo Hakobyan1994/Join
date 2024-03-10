@@ -1,0 +1,124 @@
+@media(max-width: 1505px) { 
+    .main_div {
+        width: 1021px;
+    }
+
+    .card_mainContainer {
+        width: 1021px;
+        padding-bottom: 100px;
+    }
+
+    .card_Div {
+        width: 220px;
+        height: 100%;
+    }
+
+    .Card_NotasksTodo {
+        width: 220px;
+    }
+
+    .amount-subtasks {
+        width: 32px;
+    }
+
+    .board_div {
+        margin-top: 8px;
+        width: 220px;
+    }
+
+    .mobile-add-task-board {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: 2px solid rgba(42, 54, 71, 1);
+        background-color: rgba(42, 54, 71, 1);
+        font: icon;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        font-size: 37px;
+        font-weight: 400;
+    }
+}
+
+@media(max-width: 1360px) {
+}
+
+@media(max-width: 1200px) {   
+    .card_mainContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card_Div {
+        display: flex;
+        flex-direction: row;
+        height: fit-content;
+        width: 100%;
+        overflow-x: scroll;
+        gap: 25px;
+    }
+
+    .Card_NotasksTodo {
+        width: 100%;
+    }
+
+    .board_div {
+        width: 100%;
+    }
+
+    .adding_Button {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        font-size: xxx-large;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px;
+        font: icon;
+    }
+
+    h3 {
+        font-size: 27px;
+    }
+
+    .add-task-btn {
+        display: none;
+    }
+
+    .input-searchfield {
+        width: 100%;
+    }
+
+    .mobile-search-board {
+        width: 100%;
+    }
+
+    .info_Div {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .mobile-board-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    .mobile-add-task-board {
+        display: block;
+    }
+}
+
+@media(max-width: 860px) {
+
+}
+
+@media(max-width: 500px) {
+
+}
