@@ -34,25 +34,25 @@ function generateHtmlMainBoard() {
                 </div>
             </div>
             <div class="card_mainContainer">
-                <div class="mobile-boardcard">
+                <div class="mobile-boardcard mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
                     </div>
                     <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
-                <div>
+                <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
                     </div>
                     <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
-                <div>
+                <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
                     </div>
                     <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
-                <div>
+                <div class="mobile-done-boardcard">
                     <div class="board_div">
                         <h3>Done</h3>
                     </div>
