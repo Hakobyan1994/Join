@@ -7,6 +7,7 @@
         width: 100%;
         padding-bottom: 100px;
         gap: 16px;
+        overflow-y: scroll;
     }
 
     .Card_NotasksTodo {
@@ -54,6 +55,7 @@
     }
 
     .card_mainContainer {
+        width: 100%;
         margin-left: 32px;
     }
 
@@ -220,6 +222,11 @@
     .close-popup {
         right: 32px;
         left: unset;
+    }
+
+    .progress_card {
+        height: 188px;
+        width: 194px;
     }
 
 }

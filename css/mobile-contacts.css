@@ -206,7 +206,7 @@
 
 @media(max-width: 860px) {
     body {
-        overflow: hidden;
+        overflow: unset;  /* need overflow for board & addtask :)*/
     }
 
     .menubar-text {
