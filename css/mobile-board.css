@@ -14,10 +14,6 @@
         width: 220px;
     }
 
-    .amount-subtasks {
-        width: 32px;
-    }
-
     .board_div {
         margin-top: 8px;
         width: 220px;
@@ -228,5 +224,9 @@
 
     .h2-addtask-board {
         margin-left: 16px;
+    }
+
+    .amount-subtasks {
+        width: 32px;
     }
 }

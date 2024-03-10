@@ -52,17 +52,17 @@ async function loadToDo() {
         checkCategoryButton();
     }
     if (!hasToDo) {
-        todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Tasks To do</div>';
+        todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" disabled>No Tasks To do</div>';
     }
 
     if (!hasProgress) {
-        progress.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing in progress</div>';
+        progress.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing in progress</div>';
     }
     if (!hasFeedback) {
-        feedback.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">No Feedback to give</div>';
+        feedback.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">No Feedback to give</div>';
     }
     if (!hasDone) {
-        done.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo">Nothing yet is done</div>';
+        done.innerHTML = '<div id="NoToDoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing yet is done</div>';
     }
 }
 
@@ -484,7 +484,7 @@ async function deleteTask(i) {
 }
 
 
-function editTask(i) {
+async function editTask(i) {
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
     let content = document.getElementById(`popup-add-task-content-edit`);
@@ -504,10 +504,6 @@ function editTask(i) {
     subtaskList.classList.add('no-scrollbar');
     assignedButton.classList.add('position-assigned-btn');
     subtaskLabel.classList.add('subtasks-label');
-}
-
-function showAssignedButton() {
-
 }
 
 
