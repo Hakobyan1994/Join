@@ -38,11 +38,11 @@ setTimeout(() => {
 }, 3000)
 
 
-// let dataLocal = JSON.parse(localStorage.getItem('datareg'))
-// if (dataLocal) {
-//     dataUsers = dataLocal
-// }
-// console.log(dataUsers);
+let dataLocal = JSON.parse(localStorage.getItem('datareg'))
+    if (dataLocal) {
+    dataUsers = dataLocal
+}
+console.log(dataUsers);
 let dataUser = [];
 // const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 // const STORAGE_URL2 = 'https://remote-storage.developerakademie.org/item';
