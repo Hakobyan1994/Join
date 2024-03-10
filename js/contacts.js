@@ -161,7 +161,6 @@ function isValidEmail(email) {
 }
 
 
-
 function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     let formattedName = splitNameAndCapitalize(name);
     let initials = formatInitials(formattedName);
@@ -275,11 +274,17 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
         nameEditContactError.classList.add('d-none');
     }
 
-    if (!contactEmail.trim()) {
+    if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
         emailEditContactError.classList.remove('d-none');
-        emailEditContactError.innerHTML = `Please enter an email`;
+        emailEditContactError.innerHTML = `Please enter a valid email`;
     } else {
         emailEditContactError.classList.add('d-none');
+    }
+
+    if (contactEmail && !contactEmail.includes('@')) {
+        emailEditContactError.classList.remove('d-none');
+        emailEditContactError.innerHTML = `Please enter a valid email address`;
+        return;
     }
 
     if (!contactPhone.trim()) {
@@ -377,6 +382,7 @@ function showAddContactSlider() {
     document.getElementById('dialogBg').classList.remove('d-none');
     document.getElementById('dialogBg').classList.add('dialog-bg');
     document.getElementById('contactInfoSlider').classList.add('show');
+    showHideMobile();
 }
 
 
@@ -411,7 +417,6 @@ function showContactInfoSlider(i) {
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');
     contactInfoSliderVisible = true;
-
     renderContactInfo(i, contactInfoSlider);
 }
 
@@ -463,4 +468,18 @@ function addHighlight(contactDiv) {
 
 function removeHighlight(contactDiv) {
     contactDiv.classList.remove('highlighted');
+}
+
+function showHideMobile() {
+    if (window.innerWidth < 1000) {
+        document.getElementById('addContactBtnMobile').classList.remove('d-none');
+        document.getElementById('cancelBtn').classList.add('d-none');
+        document.getElementById('closeImgMobile').classList.remove('d-none');
+        document.getElementById('closeImg').classList.add('d-none');
+    } else {
+        document.getElementById('addContactBtnMobile').classList.add('d-none');
+        document.getElementById('cancelBtn').classList.remove('d-none');
+        document.getElementById('closeImgMobile').classList.add('d-none');
+        document.getElementById('closeImg').classList.remove('d-none');
+    }
 }

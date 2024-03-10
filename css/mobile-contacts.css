@@ -1,0 +1,281 @@
+.add-contact-btn-mobile {
+    z-index: 1;
+    position: relative;
+    bottom: 100px;
+    right: -320px;
+    width: 64px;
+}
+
+@media(max-width: 1760px) {
+    .dialog {
+        margin-left: 230px;
+        width: 1100px !important;
+    }
+
+    .close-img-con {
+        position: relative;
+        top: -70px;
+        bottom: 70px;
+        left: 600px !important;
+    }
+
+    .close-img-con-edit {
+        position: relative;
+        top: -70px;
+        bottom: 70px;
+        left: 570px !important;
+    }
+
+    .input-con {
+        width: 300px !important;
+    }
+
+    .input-svg-pos {
+        position: relative;
+        bottom: 39px;
+        left: 310px !important;
+    }
+}
+
+@media(max-width: 1360px) {
+    nav {
+        display: none;
+    }
+
+    .menubar {
+        display: none;
+    }
+
+    .dialog {
+        margin-left: 230px;
+        width: 367px !important;
+        height: 363px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top: 160px;
+        margin: 0;
+        border-end-end-radius: 30px;
+        border-end-start-radius: 30px;
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
+    }
+
+    .add-contact-main {
+        position: relative;
+        top: -303px;
+        width: 271px;
+        height: 171px;
+        border-end-start-radius: 0;
+        border-start-start-radius: 30px;
+        border-start-end-radius: 30px;
+    }
+
+    .set-position {
+        position: relative;
+        bottom: -8px;
+        left: -19px;
+    }
+
+    .add-contact-headline {
+        font-size: 40px;
+    }
+
+    .add-contact-text {
+        font-size: 17px;
+    }
+
+    .blue-underline {
+        width: 77px;
+    }
+
+    .join-img {
+        display: none;
+    }
+
+    .add-contact-data {
+        position: relative;
+        bottom: 290px;
+        right: 101px;
+    }
+
+    .input-con-main {
+        height: 55px;
+    }
+
+    .input-con {
+        width: 290px;
+        height: 10px;
+    }
+
+    .person-con {
+        position: relative;
+        bottom: 482px;
+        left: 178px;
+    }
+
+    .add-contact-btns {
+        margin-top: 10px;
+        margin-left: 66px
+    }
+
+    .input-svg-pos {
+        position: relative;
+        bottom: 31px;
+        left: 310px;
+    }
+
+    .close-img-mobile {
+        position: relative;
+        bottom: 555px;
+        right: 155px;
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+@media(max-width: 1200px) {
+    .headline {
+        font-size: 30px;
+    }
+
+    .team-headline {
+        font-size: 20px;
+    }
+
+    .contacts {
+        width: 400px;
+    }
+
+    .contact-con-pos {
+        width: 230px;
+    }
+
+    .letter-con {
+        width: 250px;
+        padding-left: 44px;
+    }
+
+    .added-contacts {
+        width: 250px;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        left: 234px;
+    }
+
+    .add-contact-btn {
+        font-size: 14px;
+        width: 200px;
+    }
+
+    .user-img-contact-list {
+        margin-left: 22px;
+    }
+
+    .contact-list-name {
+        padding-left: 0;
+        font-size: 14px;
+    }
+
+    .contact-list-email {
+        padding-left: 0;
+        font-size: 14px;
+    }
+
+    .contact-line-color {
+        width: 210px;
+    }
+
+    .contact-info-con {
+        position: fixed;
+        left: 455px;
+        padding-left: 0;
+    }
+
+    .name {
+        font-size: 25px !important;
+    }
+
+    .slider-contact-img {
+        width: 90px !important;
+        height: 90px !important;
+        margin-top: 0 !important;
+    }
+}
+
+@media(max-width: 860px) {
+    .contact-info-con {
+        display: none;
+    }
+
+    .menubar-text {
+        display: none;
+    }
+
+    .helpa {
+        display: none;
+    }
+
+    .add-contact-btn-con {
+        display: none;
+    }
+
+    .all-contacts {
+        margin-top: 126px;
+    }
+
+    .added-contacts {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+
+    .contact-line-color {
+        width: 92%;
+    }
+
+    .focus-main {
+        width: 90%;
+        padding-left: 30px;
+    }
+
+    .letter-con {
+        width: 100%;
+        padding-left: 73px;
+    }
+
+    .contact-line {
+        width: 350px;
+        padding-left: 30px;
+    }
+
+    .profile-icon {
+        position: relative;
+        right: 10px;
+        height: 40px;
+        width: 40px;
+    }
+
+    header {
+        height: 40px;
+        padding: 20px 40px 20px 370px;
+    }
+
+    .user-img-contact-list {
+        width: 40px;
+    }
+
+    .contact-list-name {
+        font-size: 18px;
+    }
+
+    .contact-list-email {
+        font-size: 18px;
+    }
+
+    .contact-con-pos {
+        width: 93%;
+    }
+}
