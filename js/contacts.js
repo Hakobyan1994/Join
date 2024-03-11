@@ -11,6 +11,13 @@ async function renderContactsMain() {
     content.innerHTML = generateHtmlMainContacts();
     await loadContacts();
     renderContacts();
+    showHideMobile();
+
+    let contactInfoSliderMobile = document.getElementById('contactInfoConMobile');
+
+    if (window.innerWidth < 800) {
+        contactInfoSliderMobile.classList.add('d-none');
+    }
 }
 
 function renderContacts() {
@@ -106,7 +113,7 @@ function applyRandomColorToImage(imageElement, seed) {
 
 function addToContacts() {
     let nameInput = document.getElementById('name');
-    let emailInput = document.getElementById('email');
+    let emailInput = document.getElementById('emailContacts');
     let phoneInput = document.getElementById('phone');
 
     let name = nameInput.value.trim();
@@ -129,11 +136,17 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
         nameAddContactError.classList.add('d-none');
     }
 
-    if (!email) {
+    if (!email || !isValidEmail(email)) {
         emailAddContactError.classList.remove('d-none');
-        emailAddContactError.innerHTML = `Please enter an email`;
+        emailAddContactError.innerHTML = `Please enter a valid email`;
     } else {
         emailAddContactError.classList.add('d-none');
+    }
+
+    if (email && !email.includes('@')) {
+        emailAddContactError.classList.remove('d-none');
+        emailAddContactError.innerHTML = `Please enter a valid email address`;
+        return;
     }
 
     if (!phone) {
@@ -147,6 +160,11 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
         return;
     }
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
+}
+
+function isValidEmail(email) {
+    const emailRegex = /\S+@\S+\.\S+/;
+    return emailRegex.test(email);
 }
 
 
@@ -263,11 +281,17 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
         nameEditContactError.classList.add('d-none');
     }
 
-    if (!contactEmail.trim()) {
+    if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
         emailEditContactError.classList.remove('d-none');
-        emailEditContactError.innerHTML = `Please enter an email`;
+        emailEditContactError.innerHTML = `Please enter a valid email`;
     } else {
         emailEditContactError.classList.add('d-none');
+    }
+
+    if (contactEmail && !contactEmail.includes('@')) {
+        emailEditContactError.classList.remove('d-none');
+        emailEditContactError.innerHTML = `Please enter a valid email address`;
+        return;
     }
 
     if (!contactPhone.trim()) {
@@ -316,11 +340,19 @@ function dontCloseCard(event) {
 
 function showAddContactOverlay() {
     let dialog = document.getElementById('dialog');
-    dialog.classList.remove('slide-out');
-    dialog.classList.remove('d-none');
-    dialog.classList.add('slide-in');
-    dialog.innerHTML = generateAddContactOverlay();
-    showAddContactSlider();
+    if (window.innerWidth > 800) {
+        dialog.classList.remove('slide-out');
+        dialog.classList.remove('d-none');
+        dialog.classList.add('slide-in');
+        dialog.innerHTML = generateAddContactOverlay();
+        showAddContactSlider();
+    } else {
+        dialog.classList.remove('slide-out-mobile');
+        dialog.classList.remove('d-none');
+        dialog.classList.add('slide-in-mobile');
+        dialog.innerHTML = generateAddContactOverlay();
+        showAddContactSlider();
+    }
 }
 
 
@@ -365,6 +397,7 @@ function showAddContactSlider() {
     document.getElementById('dialogBg').classList.remove('d-none');
     document.getElementById('dialogBg').classList.add('dialog-bg');
     document.getElementById('contactInfoSlider').classList.add('show');
+    showHideMobile();
 }
 
 
@@ -395,11 +428,18 @@ async function deleteContact(i) {
 
 function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
+    let contactInfoSliderMobile = document.getElementById('contactInfoConMobile');
+
+    if (window.innerWidth < 800) {
+        contactInfoSliderMobile.classList.add('d-none');
+    } else {
+        contactInfoSliderMobile.classList.remove('d-none');
+    }
+
     contactInfoSlider.innerHTML = '';
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');
     contactInfoSliderVisible = true;
-
     renderContactInfo(i, contactInfoSlider);
 }
 
@@ -451,4 +491,22 @@ function addHighlight(contactDiv) {
 
 function removeHighlight(contactDiv) {
     contactDiv.classList.remove('highlighted');
+}
+
+function showHideMobile() {
+    if (window.innerWidth < 800) {
+        document.getElementById('addContactBtnMobile').classList.remove('d-none');
+        document.getElementById('cancelBtn').classList.add('d-none');
+        document.getElementById('closeImgMobile').classList.remove('d-none');
+        document.getElementById('closeImg').classList.add('d-none');
+    } else {
+        document.getElementById('addContactBtnMobile').classList.add('d-none');
+        document.getElementById('cancelBtn').classList.remove('d-none');
+        document.getElementById('closeImgMobile').classList.add('d-none');
+        document.getElementById('closeImg').classList.remove('d-none');
+    }
+}
+
+function hideMobileContactInfo() {
+    document.getElementById('contactInfoConMobile').classList.add('d-none');
 }

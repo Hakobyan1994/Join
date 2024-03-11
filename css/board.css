@@ -3,12 +3,12 @@
 }
 
 .main_div {
-    width: 1208px;
+    width: 1121px;
 }
 
 .board-window {
     margin-left: 320px;
-    padding-left: 8px;
+    margin-bottom: 32px;
 }
 
 .info_Div {
@@ -87,9 +87,9 @@ h3 {
 }
 
 .adding_div {
-    width: 1208px;
+    width: 1121px;
     display: flex;
-    gap: 76px;
+    gap: 48px;
 }
 
 .board_div {
@@ -116,10 +116,11 @@ h3 {
 }
 
 .card_mainContainer {
-    width: 1208px;
+    width: 1121px;
     display: flex;
     justify-content: space-between;
     margin-top: 8px;
+    margin-bottom: 32px;
 }
 
 .card_Div {
@@ -131,35 +132,11 @@ h3 {
     /* border: 1px solid red; */
 }  
 
-.card_Div2 {
-    width: 246px;
-    height: 688px;
-    display: flex;
-    flex-direction:column;
-    gap: 8px;
- } 
-
-.card_Div3 {
-    width: 246px;
-    height: 688px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  } 
-
-.card_Div4 {
-    width: 246px;
-    height: 688px;
-    display: flex;
-    flex-direction:column;
-    gap: 8px;
-}
-
 .Card_NotasksTodo {
     display: none;
     width: 246px;
     height: 48px;
-    border: 1px solid #A8A8A8;
+    border: 3px dotted rgb(168, 168, 168, 0.4);
     background-color: #E7E7E7;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
@@ -184,12 +161,13 @@ h3 {
 */
 
 .progress_card {
-    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.025);
     background-color: #FFFFFF;
     border-radius: 24px;
     padding: 16px;
     cursor: pointer;
-    margin-bottom: 16px;
+    margin: 4px;
+    margin-bottom: 8px;
     transition: transform 0.3s
 }
 
@@ -808,4 +786,8 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.mobile-add-task-board {
+    display: none;
 }

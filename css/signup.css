@@ -8,7 +8,6 @@ body {
     height: 1024px;
     background-color: #F6F7F8;
     margin-left: 77px;
-   
 }
 
 .image_box {
@@ -16,18 +15,15 @@ body {
     margin-left: 77px;
 }
 
-
 .join_picture {
     width: 100.03px;
     height: 121.97px;
-
 }
 
 .main_div {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     background-color: white;
     max-width: 598px;
-
     margin: 0 auto;
     border-radius: 30px;
     padding: 48px 88px;
@@ -44,15 +40,12 @@ body {
     cursor: pointer;
 }
 
-
 .backLogin_picture:hover {
     background-color: #c4c4c4;
     width: 32px;
     height: 32px;
     border-radius: 32px;
 }
-
-
 
 .backLogin_picture {
     width: 32px;
@@ -61,7 +54,6 @@ body {
 }
 
 .title_div {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +80,6 @@ h1 {
     width: 150px;
     border: 1px solid;
     color: #29ABE2;
-
 }
 
 .main_signUp {
@@ -112,7 +103,6 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    margin-bottom: 24px;
 }
 
 ::placeholder {
@@ -141,19 +131,15 @@ h1 {
     font-family: 'Inter';
 }
 
-
-
 .name_input:focus {
     outline: 2px solid #29ABE2;
 }
-
 
 .email_inputBox {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    margin-bottom: 24px;
 }
 
 .email_input {
@@ -182,14 +168,18 @@ h1 {
     outline: 2px solid #29ABE2;
 }
 
-
+.input-error-existing-email {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: -229px;
+}
 
 .password_inputBox {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    margin-bottom: 24px;
 }
 
 .password_input {
@@ -212,27 +202,23 @@ h1 {
     flex-shrink: 0;
     cursor: pointer;
     font-family: 'Inter';
-}  
+}
 
-.passwordBlock{
+.passwordBlock {
     margin-left: 379px;
     margin-top: -43px;
     cursor: pointer;
 }
 
-
 .password_input:focus {
     outline: 2px solid #29ABE2;
 }
-
 
 .confirm_passwordBox {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom:18px;
 }
-
 
 .confirmpassword {
     /* background-image: url(/assets/img/anmeldung\ Image/lock.png);
@@ -261,10 +247,28 @@ h1 {
     cursor: pointer;
 }
 
-
-
 .confirmpassword:focus {
     outline: 2px solid #29ABE2;
+}
+
+.margin {
+    margin-bottom: 24px;
+}
+
+.margin-privacy {
+    margin-bottom: 32px;
+}
+
+.margin-top {
+    margin-top: 34px;
+}
+
+.margin-bottom {
+    margin-bottom: 13px;
+}
+
+.margin-empty {
+    margin-bottom: 12px;
 }
 
 .input_checkox {
@@ -275,16 +279,13 @@ h1 {
     margin-bottom: 25px;
 }
 
-
-
 .checkBox_span {
-    font-size: 16px;
+    font-size: 14px;
     font-family: Inter;
     font-weight: 400;
     line-height: 19.2px;
     color: #A8A8A8;
     cursor: default;
-
 }
 
 .Privacy_policy {
@@ -296,10 +297,14 @@ h1 {
     display: inline-flex;
     align-items: flex-start;
     gap: 10px;
-
 }
 
-
+.error-privacy {
+    font-size: 12px;
+    position: relative;
+    top: -35px;
+    left: -120px;
+}
 
 .input_check {
     background-color: transparent;
@@ -315,15 +320,12 @@ h1 {
     background-color: #29ABE2;
 }
 
-
-
 .sign_upBox {
     display: flex;
     justify-content: center;
 }
 
 .signup_button {
-
     background-color: #2A3647;
     color: #FFFFFF;
     border-radius: 8px;
@@ -334,14 +336,12 @@ h1 {
     line-height: 25.2px;
     border: none;
     font-family: 'Inter';
-
 }
 
 .signup_button:hover {
     background-color: #29ABE2;
     cursor: pointer;
 }
-
 
 .footer {
     display: flex;
@@ -359,10 +359,7 @@ h1 {
 
 /* .aLink:hover {
     color: #29ABE2;
-      
-
 } */
-
 
 .aPrivacy {
     font-family: Inter;
@@ -372,12 +369,10 @@ h1 {
     font-weight: 400
 }
 
-
 .aPrivacy:hover {
     color: #29ABE2;
     font-family: 'Inter';
 }
-
 
 .aLegal {
     font-family: Inter;
@@ -393,7 +388,7 @@ h1 {
 }
 
 .trasparenter_div {
-    display:none;
+    display: none;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -405,7 +400,6 @@ h1 {
     opacity: 1;
     z-index: 1;
 }
-
 
 .responsiveInfo {
     opacity: 0;
@@ -424,15 +418,14 @@ h1 {
     border-radius: 20px;
     padding: 17px 24px;
     z-index: 4;
-}  
+}
 
 .responsiveInfo.active {
-     opacity: 1;
-     visibility: visible;
-     transform:translateY(-203px);
-     transition: transform 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-203px);
+    transition: transform 0.5s ease;
 }
-   
 
 /* @keyframes trasparenter_div{
         from{
@@ -463,108 +456,137 @@ h1 {
     color: #FFFFFF;
 }
 
-@media(max-width:390px) {
-     body{
-            position: fixed;
-            left: 0;
-            right: 0;
-        
-     }
+.d-none {
+    display: none;
+}
 
+.input-error-signup-name {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: -7px;
+}
+
+.input-error-signup-email {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: -6px;
+}
+
+.input-error-signup-pw1 {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: 4px;
+}
+
+.input-error-signup-pw2 {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: 12px;
+}
+
+@media(max-width:390px) {
+    body {
+        position: fixed;
+        left: 0;
+        right: 0;
+
+    }
 
     .join_picture {
         width: 64px;
         height: 78px;
     }
+
     .image_box {
         margin-top: 30px;
         margin-left: 24px;
         margin-bottom: 25px;
-    } 
+    }
 
-     .title_div h1{
+    .title_div h1 {
         font-size: 40px;
         margin-top: -5px;
-     } 
-
-     .line{
-        width: 80px;
-     } 
-
-     .backLogin_picture{
-        margin-left: 45px;
-     }
-
-   .main_div{
-    position: absolute;
-    top: 170.5px;
-    left: 15px;
-    padding: 32px 0;
-    width: 361px;
-    height: 498px;
-   } 
-
-   .second_signUp{
-    max-width: 275px;
-   }  
-
-   .main_signUp{
-    display: flex;   
-    align-items: flex-start;
-    margin-bottom: 32px;
-    justify-content: start;
-    margin: 15px;  
-        
-          
-   }
-
-   .name_input{
-    max-width: 68%;
-   } 
-
-   .email_input{
-    max-width: 68%;
-   } 
-
-   .password_input{
-    max-width: 68%;
-   } 
-   
-    .passwordBlock{
-        margin-left: 287px;
-    margin-top: -43px;
-    cursor: pointer;
     }
-    .confirmpassword{
-        max-width: 68%;
-    } 
-   
-     .confirmBlock{
-        margin-left: 287px;
-    margin-top: -36px;
-     }
-     .input_checkox{
-     
-    position: absolute;
-    left: 75px;
-    top: 430px;
-}
-    
 
-     .sign_upBox {
+    .line {
+        width: 80px;
+    }
+
+    .backLogin_picture {
+        margin-left: 45px;
+    }
+
+    .main_div {
+        position: absolute;
+        top: 170.5px;
+        left: 15px;
+        padding: 32px 0;
+        width: 361px;
+        height: 498px;
+    }
+
+    .second_signUp {
+        max-width: 275px;
+    }
+
+    .main_signUp {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 32px;
+        justify-content: start;
+        margin: 15px;
+    }
+
+    .name_input {
+        max-width: 68%;
+    }
+
+    .email_input {
+        max-width: 68%;
+    }
+
+    .password_input {
+        max-width: 68%;
+    }
+
+    .passwordBlock {
+        margin-left: 287px;
+        margin-top: -43px;
+        cursor: pointer;
+    }
+
+    .confirmpassword {
+        max-width: 68%;
+    }
+
+    .confirmBlock {
+        margin-left: 287px;
+        margin-top: -36px;
+    }
+
+    .input_checkox {
+        position: absolute;
+        left: 75px;
+        top: 430px;
+    }
+
+    .sign_upBox {
         position: absolute;
         left: 98px;
         top: 470px;
         font-family: 'Inter';
-    } 
+    }
 
-    .signup_button{
+    .signup_button {
         width: 153px;
         font-family: 'Inter';
-    }  
+    }
 
-     .footer{
-       
+    .footer {
         display: flex;
         gap: 27px;
         position: absolute;

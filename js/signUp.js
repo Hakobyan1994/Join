@@ -8,11 +8,11 @@ signUp.onsubmit = onsubmitFor
 // const STORAGE_TOKEN1 = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 // const STORAGE_URL1 = 'https://remote-storage.developerakademie.org/item';
 
-async function signUpItem(key, value) {
+async function signUpsetItem(key, value) {
     const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
-        
+
 }
 
 
@@ -27,7 +27,7 @@ async function signUpgetItem(key) {
 
 
 let dataUsers = []
-async function signUpgetUsers(params) {
+async function getUsers(params) {
     let res = await signUpgetItem('dataUsers')
   
     if (res[0] !== null) {
@@ -36,7 +36,7 @@ async function signUpgetUsers(params) {
     }
 }
 // setItem('dataUsers', JSON.stringify(dataUsers) )
-signUpgetUsers()
+getUsers()
 
 
 
@@ -44,26 +44,35 @@ signUpgetUsers()
 
 function addtoLocal(arr, key) {
     console.log(dataUsers, 'ggggg');
-    signUpItem('dataUsers', dataUsers)
+    signUpsetItem('dataUsers', dataUsers)
 }
 
+// setItem('dataUsers', [{ name: 'hhh', email: 'uwdd', password:'12345', id: new Date().getTime()}])
 
-function onsubmitFor(e) {
+
+
+
+async function onsubmitFor(e) {
     console.log(e);
-    e.preventDefault()
-    let name = e.target[0].value
-    let email = e.target[1].value
-    let password = e.target[2].value
-    let confirmPassword = e.target[3].value
-    let checkBox = e.target[4].value
-    // let btn = e.target[5]44
-    if (name && email && password && confirmPassword && checkBox === 'yes') {
+    e.preventDefault();
+    let name = e.target[0].value;
+    let email = e.target[1].value;
+    let password = e.target[2].value;
+    let confirmPassword = e.target[3].value;
+    let checkBox = e.target[4].checked;
+
+    if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
-      
+        await setItem('userData', JSON.stringify(userData));
         validForm({ name, email, password, confirmPassword }, e)
     } else {
-        check.value === 'no'
-        document.getElementById('errorPassword').innerText = 'Please accept the privacy policy!'
+        checkSignUpInputs();
+        if (!checkBox) {
+            document.getElementById('errorPassword').innerText = 'Please accept the privacy policy';
+        } else {
+            check.value = 'yes';
+            document.getElementById('errorPassword').innerText = '';
+        }
     }
 }
 
@@ -154,4 +163,74 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 });
 
+
+function checkSignUpInputs() {
+    let name = document.getElementById('nameInput').value;
+    let email = document.getElementById('emailInput').value;
+    let password1 = document.getElementById('password1Input').value;
+    let password2 = document.getElementById('confirmInput').value;
+
+    let nameInputCon = document.getElementById('personInput');
+    let emailInputCon = document.getElementById('emailInputCon');
+    let passwordInputCon = document.getElementById('passwordInputCon');
+    let passwordConfimInputCon = document.getElementById('passwordConfirmInput');
+
+    let nameSignUpError = document.getElementById('inputErrorSignUpName');
+    let emailSignUpError = document.getElementById('inputErrorSignUpEmail');
+    let password1SignUpError = document.getElementById('inputErrorSignUpPassword1');
+    let password2SignUpError = document.getElementById('inputErrorSignUpPassword2');
+
+    checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
+}
+
+
+function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
+    if (!name) {
+        nameInputCon.classList.remove('margin');
+        nameSignUpError.classList.remove('d-none');
+        nameSignUpError.innerHTML = `Please enter a name`;
+    } else {
+        nameInputCon.classList.add('margin');
+        nameSignUpError.classList.add('d-none');
+    }
+
+    if (!email) {
+        emailInputCon.classList.remove('margin');
+        emailSignUpError.classList.remove('d-none');
+        emailSignUpError.innerHTML = `Please enter an email`;
+    } else {
+        emailSignUpError.classList.add('d-none');
+        emailInputCon.classList.add('margin');
+    }
+
+    if (!password1) {
+        passwordInputCon.classList.remove('margin');
+        passwordInputCon.classList.add('margin-empty');
+        password1SignUpError.classList.remove('d-none');
+        password1SignUpError.innerHTML = `Please enter a password`;
+    } else {
+        passwordInputCon.classList.add('margin');
+        passwordInputCon.classList.remove('margin-empty');
+        password1SignUpError.classList.add('d-none');
+    }
+
+    if (!password2) {
+        passwordConfimInputCon.classList.remove('margin-privacy');
+        passwordConfimInputCon.classList.remove('margin-top');
+        passwordConfimInputCon.classList.add('margin-empty');
+        passwordConfimInputCon.classList.add('margin-bottom');
+        password2SignUpError.classList.remove('d-none');
+        password2SignUpError.innerHTML = `Please confirm your password`;
+    } else {
+        passwordConfimInputCon.classList.add('margin-privacy');
+        passwordConfimInputCon.classList.add('margin-top');
+        passwordConfimInputCon.classList.remove('margin-empty');
+        passwordConfimInputCon.classList.remove('margin-bottom');
+        password2SignUpError.classList.add('d-none');
+    }
+
+    if (!name || !email || !password1 || !password2) {
+        return;
+    }
+}
 

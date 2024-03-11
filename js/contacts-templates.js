@@ -3,7 +3,6 @@ function generateHtmlMainContacts() {
         <div id="mainContent" class="main-content">
             <div class="content">
                 <div class="contacts-main">
-
                     <div id="addContactBtn" class="contacts">
                         <div class="added-contacts">
 
@@ -11,6 +10,7 @@ function generateHtmlMainContacts() {
                                 <div id="addBtn" class="add-contact-btn-con"></div>
 
                                 <div id="allContacts" class="all-contacts"></div>
+                                <img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="/assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">
                             </div>
 
                             <div class="dialog-bg d-none" id="dialogBg"></div>
@@ -23,8 +23,8 @@ function generateHtmlMainContacts() {
 
                     <div id="contactOverlay"></div>
 
-                    <div class="contact-info-con">
-                        <div class="headline">
+                    <div id="contactInfoConMobile" class="contact-info-con">
+                        <div id="headlineMobile" class="headline">
                             Contacts
                             <div class="vertical-line">
                                 <img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
@@ -33,6 +33,8 @@ function generateHtmlMainContacts() {
                                 Better with a team
                             </div>
                         </div>
+
+                        <img onclick="hideMobileContactInfo()" class="back-arrow-mobile" src="../assets/img/icons/arrow_back_btn.svg">
 
                         <div id="contactInfoSlider" class="contact-info-slider"></div>
 
@@ -164,7 +166,10 @@ function generateAddContactOverlay() {
                 <div class="add-contact-content" class="set-position">
                     <div>
                         <div onclick="closeAddContactSlider()" class="close-img-con">
-                            <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
+                            <img id="closeImg" class="close-img" src="/assets/img/icons/Close.svg" alt="">
+                        </div>
+                        <div class="close-img-con">
+                            <img id="closeImgMobile" onclick="closeAddContactSlider()" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="">
                         </div>
 
                         <div class="add-contact-user-img">
@@ -175,20 +180,20 @@ function generateAddContactOverlay() {
                             </div>
 
                             <form onsubmit="addToContacts()" class="add-contact-data">
-                                <div>
+                                <div class="input-con-main">
                                     <input id="name" name="name" class="input-con"
                                         placeholder="Name" type="text" maxlength="16" required>
                                     <img class="input-svg-pos" src="/assets/img/icons/person.svg" alt="">
                                     <div id="nameAddErrorMessage" class="error-message d-none"></div>
                                 </div>
-                                <div>
-                                    <input id="email" name="email" class="input-con"
+                                <div class="input-con-main">
+                                    <input id="emailContacts" name="email" class="input-con"
                                         placeholder="Email" type="email" required>
                                     <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
                                     <div id="emailAddErrorMessage" class="error-message d-none"></div>
                                     <div id="emailAlreadyExists" class="error-message d-none"></div>
                                 </div>
-                                <div>
+                                <div class="input-con-main">
                                     <input id="phone" name="phone" class="input-con"
                                         placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" required>
                                     <img class="input-svg-pos" src="/assets/img/icons/call.svg" alt="">
@@ -196,7 +201,7 @@ function generateAddContactOverlay() {
                                 </div>
 
                                 <div class="add-contact-btns">
-                                    <button onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
+                                    <button id="cancelBtn" onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
                                         <div class="cancel-txt-fix">Cancel</div><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close-black1.svg" alt="Close">
                                     </button>
 

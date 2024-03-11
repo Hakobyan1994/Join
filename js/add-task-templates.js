@@ -9,15 +9,18 @@ function generateHtmlMainAddTask() {
 
 function generateRenderAddTask(boardcard) {
     return /*html*/`
-    <h2>Add Task</h2>
-    <div class="main-box">
-        <div class="form-addtask">
-            ${generateHtmlAddTaskForm()}      
-        </div>
-        <div class="form-bottom">    
-            ${generateHtmlFormSection(`${boardcard}`)}
-        </div>  
-    </div> 
+    <div class="mobile-view mobile-add-task-view">
+        <h2>Add Task</h2>
+        <div class="main-box mobile-main-box">
+            <div class="form-addtask">
+                ${generateHtmlAddTaskForm()}      
+            </div>
+            <div class="form-bottom">    
+                ${generateHtmlFormSection(`${boardcard}`)}
+            </div>  
+        </div> 
+    </div>
+
     `;
 }
 

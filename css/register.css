@@ -1,10 +1,8 @@
-*
-  
-  {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+}
 
 @font-face {
     font-family: 'Inter';
@@ -19,7 +17,6 @@ ul {
     list-style-type: none;
 }
 
-
 .contaner {
     max-width: 1440px;
     margin: 0 auto;
@@ -28,7 +25,6 @@ ul {
 
 body {
     background-color: #F6F7F8;
-
 }
 
 ::placeholder {
@@ -36,7 +32,6 @@ body {
 }
 
 /* .............. nav start ............................. */
-
 
 .nav-bar {
     display: flex;
@@ -48,20 +43,18 @@ body {
 }
 
 .signup-div {
-
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
 }
 
-.anim_div{
+.anim_div {
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
     background-color: #FFFFFF;
-   
 }
 
 .startParDiv {
@@ -75,7 +68,7 @@ body {
     z-index: 33;
 }
 
-.startParImg{
+.startParImg {
     position: absolute;
     top: 80px;
     right: 0;
@@ -89,49 +82,50 @@ body {
     fill: #2A3647;
 }
 
-
-.addAnimDiv{
-    animation: animDiv 3s;  
+.addAnimDiv {
+    animation: animDiv 3s;
     animation-delay: 2s;
     animation-iteration-count: 1;
 }
 
 .animation {
     animation: animImg 3s;
-    animation-delay:2s;
+    animation-delay: 2s;
 }
+
 @keyframes animImg {
-    from{  
+    from {
         top: 40%;
         left: 40%;
         width: 400px;
         height: 250px;
     }
-    to{
+
+    to {
         width: 205px;
         height: 120px;
         top: 80px;
         left: 17px;
-      animation-play-state: paused;
-      fill: #2A3647;
+        animation-play-state: paused;
+        fill: #2A3647;
     }
-}  
-  
+}
+
 @keyframes animDiv {
-    from{ 
+    from {
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         opacity: 1;
     }
-    to{
+
+    to {
         opacity: 0;
         top: 0;
         left: 0;
     }
-}   
-
+}
 
 .join_image {
     width: 100px;
@@ -139,9 +133,7 @@ body {
     top: 80px;
     left: 70px;
     fill: #2A3647;
-}  
-
-
+}
 
 /* .join_image.paused {
     animation-play-state: paused;
@@ -150,8 +142,6 @@ body {
 /* .anim_div.paused {
     animation-play-state: paused;
 } */
-
-
 
 .join-info {
     font-weight: 400;
@@ -171,7 +161,7 @@ body {
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    font-family:'Inter';
+    font-family: 'Inter';
 }
 
 .signup-button:hover {
@@ -180,7 +170,6 @@ body {
 }
 
 /* .............. nav end ............................. */
-
 
 /* .............. login star ............................. */
 
@@ -209,14 +198,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .min_line {
     height: 3px;
     width: 150px;
     background-color: #29ABE2;
-
 }
 
 .title {
@@ -225,20 +212,17 @@ body {
     font-weight: 700;
     line-height: 73px;
     color: #000000;
-
 }
 
 .main-login {
     width: 422px;
     height: 196px;
     margin-bottom: 32px;
-
 }
 
 .password_login {
     width: 422px;
     height: 152px;
-
 }
 
 .input_email {
@@ -259,13 +243,37 @@ body {
     line-height: 24px;
     cursor: pointer;
     font-family: 'Inter';
-}  
+}
+
+.margin-bottom-login {
+    margin-bottom: 24px;
+}
+
+.margin-top-login {
+    margin-top: 6px;
+}
 
 .input_email:focus {
     outline: 2px solid #29ABE2;
 }
 
+.input-error-login-email {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: -9px;
+}
 
+.input-error-login-pw {
+    font-size: 12px;
+    color: red;
+    position: relative;
+    top: -38px;
+}
+
+.d-none {
+    display: none;
+}
 
 .input_password {
     width: 422px;
@@ -281,9 +289,9 @@ body {
     line-height: 24px;
     cursor: pointer;
     font-family: 'Inter';
-}   
+}
 
-  .passwordImage{
+.passwordImage {
     position: relative;
     top: -45px;
     right: -377px;
@@ -298,8 +306,6 @@ body {
     border-radius: 3px;
     width: 24px;
     height: 24px;
-
-
 }
 
 .block_Remember {
@@ -309,7 +315,7 @@ body {
     gap: 8px;
     width: 422px;
     height: 24px;
-    padding: 4px 42px;
+    padding: 22px 42px;
     border-radius: 15px;
 }
 
@@ -320,14 +326,11 @@ body {
     color: #000000;
     cursor: default;
     font-family: 'Inter';
-
 }
-
 
 .block_btn {
     /* width: 345px; */
     height: 48px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -376,11 +379,11 @@ body {
     cursor: pointer;
     font-family: 'Inter';
 }
-   
-  .second_button_login:hover{
-   color: #29ABE2;
-   border-color: #29ABE2;
-  }
+
+.second_button_login:hover {
+    color: #29ABE2;
+    border-color: #29ABE2;
+}
 
 .footer {
     width: 246px;
@@ -392,7 +395,6 @@ body {
     margin: auto;
 }
 
-
 .Privacy_div {
     width: 121px;
     height: 35px;
@@ -400,8 +402,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
-} 
-   
+}
 
 .legal_notice {
     width: 109px;
@@ -412,19 +413,17 @@ body {
     line-height: 19.2px;
 }
 
-.aLink{
-     font-family:Inter;
+.aLink {
+    font-family: Inter;
     color: #A8A8A8;
     font-size: 16px;
     font-weight: 400;
-    line-height:19.2px;
-
-}  
-
-.aLink:hover{
-    color: #29ABE2;
+    line-height: 19.2px;
 }
 
+.aLink:hover {
+    color: #29ABE2;
+}
 
 .passwordImageError {
     position: relative;
@@ -433,10 +432,8 @@ body {
     cursor: pointer;
 }
 
-
-
 @media(max-width: 390px) {
-     body{
+    body {
         background-color: #F6F7F8;
         position: fixed;
         left: 0px;
@@ -444,7 +441,7 @@ body {
         height: 100vh;
     }
 
-    .startParImg{
+    .startParImg {
         position: absolute;
         fill: #ffffff !important;
         top: 80px;
@@ -464,16 +461,15 @@ body {
         left: 38px;
         width: 64px;
         fill: #2A3647;
-       
     }
 
     .animation {
         animation: animImg 3s;
-        animation-delay:2s;
+        animation-delay: 2s;
     }
 
     @keyframes animImg {
-        from{  
+        from {
             top: 40%;
             left: 30%;
             right: 40%;
@@ -481,54 +477,49 @@ body {
             height: 100px;
             fill: #ffffff !important;
         }
-        to{
+
+        to {
             width: 110px;
             height: 77.2px;
             top: 23px;
             left: 15px;
-          animation-play-state: paused;
-          fill: #2A3647;
+            animation-play-state: paused;
+            fill: #2A3647;
         }
-    } 
+    }
 
-    .addAnimDiv{
-        animation: animDiv 3s;  
+    .addAnimDiv {
+        animation: animDiv 3s;
         animation-delay: 2s;
         animation-iteration-count: 1;
     }
-    
-    
+
     @keyframes animDiv {
-        from{ 
+        from {
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             opacity: 1;
         }
-        to{
+
+        to {
             opacity: 0;
             top: 0;
             left: 0;
         }
-    }  
-
-
-    
-    .startParDiv {
-        
-        background-color: #2A3647;
-       
     }
 
-   .loginDiv {
+    .startParDiv {
+        background-color: #2A3647;
+    }
+
+    .loginDiv {
         height: 515px;
         margin-top: 77px;
     }
 
-    
-
-     .signup-div {
+    .signup-div {
         position: absolute;
         top: 778px;
         left: 70px;
@@ -536,55 +527,56 @@ body {
         margin-top: -56px;
     }
 
-     .title {
+    .title {
         font-size: 40px;
         align-items: center;
         margin-block-start: 0;
         margin-block-end: 0;
-    } 
+    }
+
     .min_line {
         height: 3px;
         width: 80px;
         background-color: #29ABE2;
     }
 
-   .main-login {
+    .main-login {
         max-width: 332px;
         height: 196px;
         margin-bottom: 62px;
     }
 
-     .input_email,
-     .input_password {
+    .input_email,
+    .input_password {
         max-width: 78%;
         background-position: calc(100% - 15px);
     }
 
- .errorMessage {
+    .errorMessage {
         position: absolute;
         top: 419px;
         left: 30px;
     }
 
-   .passwordImage {
+    .passwordImage {
         position: relative;
         top: -45px;
         right: -294px;
         cursor: pointer;
     }
 
-   .block_btn {
+    .block_btn {
         flex-direction: column;
         gap: 21px;
     }
 
-     .button_login,
-     .second_button_login {
+    .button_login,
+    .second_button_login {
         width: 180px;
         height: 51px;
     }
 
-   .footer {
+    .footer {
         position: absolute;
         top: 800px;
         right: 0;

@@ -2,9 +2,9 @@ function generateHtmlSummary() {
     return /*html*/`
         <div class="main-window">
             <div class="info_titleDiv">
-                <h1>Join 360</h1>
+                <h1 class="summary-headline-mobile">Join 360</h1>
                 <div class="vector"></div>
-                <span>Key Metrics at a Glance</span>
+                <span class="summary-span-mobile">Key Metrics at a Glance</span>
             </div>
         
         
@@ -16,7 +16,7 @@ function generateHtmlSummary() {
                 <span id="greetingName" class="greetingName"></span>
             </div>
         
-                <a href="#" onclick="renderPage('board-page', 'render-board')">
+                <a href="#" class="summary-mobile" onclick="renderPage('board-page', 'render-board')">
                     <div class="To_Done_mainDiv">
                         <div class="toDo_mainDiv">
                             <div class="image_Todo"><img class="editImage" src="../assets/img/icons/edit.png" alt=""></div>
@@ -28,7 +28,7 @@ function generateHtmlSummary() {
         
         
         
-                        <div class="done_main">
+                        <div class="toDo_mainDiv">
                             <div class="image_box"><img class="vector_image" src="../assets/img/icons/Vector.png" alt=""></div>
                             <div class="done_numberDiv">
                                 <span class="done_number" id="value-donearray"></span>

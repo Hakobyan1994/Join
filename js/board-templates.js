@@ -15,8 +15,12 @@ function generateHtmlMainBoard() {
         <div class="main-window board-window">
             <div class="main_div">
                 <div class="info_Div">
-                    <h1>Board</h1>
-                    <form>
+                    <div class="mobile-board-header">
+                        <h1>Board</h1>
+                        <button class="mobile-add-task-board" onclick="openPopupAddTask('board-to-do'); return false">+</button>
+                    </div>
+
+                    <form class="mobile-search-board">
                         <div class="input_button_Div">
                             <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
                             <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
@@ -27,31 +31,33 @@ function generateHtmlMainBoard() {
                     </form>
                 </div>
                 <div class="adding_div">
-                    <div class="board_div">
-                        <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
-
-                    </div>
-                    <div class="board_div">
-                        <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
-
-                    </div>
-                    <div class="board_div">
-                        <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
-                    </div>
-
-                    <div class="board_div">
-                        <h3>Done</h3>
-                    </div>
                 </div>
             </div>
             <div class="card_mainContainer">
-                <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-                <div class="card_Div2" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-                <div class="card_Div3" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                
-                <div class="card_Div4" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="mobile-boardcard mobile-mgr-boardcard">
+                    <div class="board_div">
+                        <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
+                    </div>
+                    <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="mobile-mgr-boardcard">
+                    <div class="board_div">
+                        <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
+                    </div>
+                    <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="mobile-mgr-boardcard">
+                    <div class="board_div">
+                        <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
+                    </div>
+                    <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="mobile-done-boardcard">
+                    <div class="board_div">
+                        <h3>Done</h3>
+                    </div>
+                    <div class="card_Div" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
             </div>
         </div>
     `;
@@ -69,7 +75,7 @@ async function openPopupAddTask(boardcard) {
         <img class="close-popup" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
             <h2 class="h2-addtask-board">Add Task</h2>
-            <div>
+            <div class="mobile-board-popup-add-task">
                 <div class="main-box">
                     <div class="form popup-addtask-main">
                         ${generateHtmlAddTaskForm()}      

@@ -13,7 +13,22 @@ let arrayUrgent = [
 
 
 
-async function signUpgetItem(key) {
+// async function signUpgetItem(key) {
+/*
+let locRes = JSON.parse(localStorage.getItem('activeUser'));
+if (locRes) {
+  localStorage.removeItem('guestsUser');
+  console.log(locRes);
+  let profilName = document.querySelector('.greetingName');
+  profilName.innerText = locRes.name
+}
+activeUser.push(locRes);
+*/
+
+
+/*
+
+async function getItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
   return fetch(url).then(res => res.json()).then(res => {
       if (res.data) {
@@ -36,8 +51,30 @@ async function user(params) {
   }
 }
 
+user()
+
+// let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
+
+*/
+
+/*
+const currentDate = new Date();
 
 
+function dateUpdate() {
+  let montUndDay = document.getElementById('date');
+
+  // Monatsnamen extrahieren
+  const monthName = currentDate.toLocaleString('default', { month: 'long' });
+
+  montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
+}
+
+  function timer() {
+    setTimeout(() => {
+  }, "100");
+}
+*/
 
 
 async function renderSummaryMain() {

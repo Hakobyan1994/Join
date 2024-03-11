@@ -446,6 +446,7 @@ async function handleValidInput(boardcard, description, formatedDate) {
     await setItem('tasks', JSON.stringify(tasks));
     clearFields();
     openBoard();
+    
 }
 
 function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category) {

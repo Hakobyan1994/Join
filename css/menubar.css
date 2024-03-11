@@ -63,6 +63,10 @@ nav {
     transition: 10ms;
 }
 
+.mobile-body {
+    display: none;
+}
+
 .selected-color {
     background-color: rgb(9,25,49)!important;
 }
@@ -123,7 +127,8 @@ header p {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 16px
+    gap: 16px;
+    width: 255px;
 }
 
 .help-icon {
@@ -203,6 +208,7 @@ header p {
     text-decoration: none;
     cursor: pointer;
     padding: 0;
+    width: 100%;
 }
 
 .clickInfoDiv a {
@@ -218,17 +224,11 @@ header p {
      background-color: #2f4057;
 }
 
-@media(max-width: 1200px) {
-    
+.mobile-logo {
+    display: none;
 }
 
-@media(max-width: 860px) {
-    .menu-header {
-        display: none;
-    }
-
-    nav {
-        display: none!important;
-    }
+.mobile-navbar {
+    display: none;
 }
 

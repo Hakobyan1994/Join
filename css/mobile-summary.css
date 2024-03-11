@@ -1,0 +1,52 @@
+@media(max-width: 860px) {
+    .main-window {
+        overflow: hidden;
+    }
+
+    .main_checkingDiv {
+        position: relative;
+    }
+
+    .summary-mobile {
+        position: relative;
+        bottom: 300px;
+        right: 233px;
+    }
+
+    .toDo_mainDiv {
+        height: 30px;
+        width: 140px;
+    }
+
+    .To_Done_mainDiv {
+        gap: 18px;
+    }
+
+    .info_titleDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        bottom: -20px;
+        right: 90px
+    }
+
+    .summary-headline-mobile {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    .summary-span-mobile {
+        position: relative;
+        left: 14px;
+        bottom: 15px;
+        font-weight: 300;
+        font-size: 18px;
+    }
+
+    .vector {
+        position: relative;
+        top: 32px;
+        width: 80px;
+    }
+}

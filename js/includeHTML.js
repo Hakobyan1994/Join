@@ -23,7 +23,6 @@ function checks(){
   }else{
     profilInfo.style.display='block'
   }
-  
 }       
 
 

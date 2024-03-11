@@ -50,7 +50,7 @@ function renderPage(selectedBar, page) {
     renderHPLMain();
     let selectedNavbar = document.getElementById(selectedBar);
     let selectedPage = document.getElementById(page);
-    let allNavbar = document.querySelectorAll('.navbar');
+    let allNavbar = document.querySelectorAll('#navbar');
     let allPages = document.querySelectorAll('.render-page');
 
     selectedNavbar.classList.add('selected-color');
@@ -65,6 +65,7 @@ function renderPage(selectedBar, page) {
         renderContactsMain();
     }
     if(page === 'render-board') {
+        loadTasks();
         renderBoardMain();
     }
 
@@ -115,6 +116,8 @@ function renderHPLMain(page) {
         })
         if(page === 'render-help') {
             content.innerHTML = generateHtmlMainHelp();
+            document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
+            document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
         }
         if(page === 'render-privacy-policy') {
             content.innerHTML = generateHtmlMainPrivacy();
