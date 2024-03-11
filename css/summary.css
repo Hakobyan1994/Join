@@ -90,6 +90,10 @@ body {
     }
 }
 
+.toDo_Title_Urgent {
+    color: black !important;
+}
+
 .image_Todo {
     width: 69px;
     height: 69px;
