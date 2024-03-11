@@ -8,7 +8,7 @@ signUp.onsubmit = onsubmitFor
 // const STORAGE_TOKEN1 = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 // const STORAGE_URL1 = 'https://remote-storage.developerakademie.org/item';
 
-async function setItem(key, value) {
+async function signUpItem(key, value) {
     const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
@@ -16,7 +16,7 @@ async function setItem(key, value) {
 }
 
 
-async function getItem(key) {
+async function signUpgetItem(key) {
     const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
     return fetch(url).then(res => res.json()).then(res => {
         if (res.data) {
@@ -27,8 +27,8 @@ async function getItem(key) {
 
 
 let dataUsers = []
-async function getUsers(params) {
-    let res = await getItem('dataUsers')
+async function signUpgetUsers(params) {
+    let res = await signUpgetItem('dataUsers')
   
     if (res[0] !== null) {
         dataUsers = res
@@ -36,7 +36,7 @@ async function getUsers(params) {
     }
 }
 // setItem('dataUsers', JSON.stringify(dataUsers) )
-getUsers()
+signUpgetUsers()
 
 
 
@@ -44,12 +44,8 @@ getUsers()
 
 function addtoLocal(arr, key) {
     console.log(dataUsers, 'ggggg');
-    setItem('dataUsers', dataUsers)
+    signUpItem('dataUsers', dataUsers)
 }
-
-// setItem('dataUsers', [{ name: 'hhh', email: 'uwdd', password:'12345', id: new Date().getTime()}])
-
-
 
 
 function onsubmitFor(e) {
@@ -80,7 +76,6 @@ function validForm({ name, email, password, confirmPassword }, e) {
             document.getElementById('errorPassword').innerText = 'The email is already registered'//
         } else {
             dataUsers.push({ name, email, password, id: new Date().getTime() })
-
             addtoLocal(dataUsers, 'dataUsers')
             if (window.innerWidth <= 400) {
                 responsiveInfo.classList.add('active')
@@ -88,8 +83,6 @@ function validForm({ name, email, password, confirmPassword }, e) {
                     responsiveInfo.classList.remove('active')
                     window.location.href = '../index.html';
                 }, 2000)
-                // Code für den Fall, dass die Fensterbreite 600 Pixel oder weniger beträgt
-                console.log("Kleiner als 400px");
             } else {
                 trasparenterDiv.style.display = 'flex';
                 setTimeout(function () {

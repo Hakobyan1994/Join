@@ -8,19 +8,12 @@ let arrayUrgent = [
   }
 ];
 
-/*
-let locRes = JSON.parse(localStorage.getItem('activeUser'));
-if (locRes) {
-  localStorage.removeItem('guestsUser');
-  console.log(locRes);
-  let profilName = document.querySelector('.greetingName');
-  profilName.innerText = locRes.name
-}
-activeUser.push(locRes);
-*/
 
 
-async function getItem(key) {
+
+
+
+async function signUpgetItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
   return fetch(url).then(res => res.json()).then(res => {
       if (res.data) {
@@ -28,43 +21,23 @@ async function getItem(key) {
       } throw `Could not find data with key "${key}".`;
   });
 }
+     
+     
 
 async function user(params) {
-  const user = await getItem('activeUser')
+  const user = await signUpgetItem('activeUser')
+  console.log(user);
   if (user) {
     let profilName = document.querySelector('.greetingName')
     profilName.innerText = user[0].name
-    let greetingForUser = document.querySelector('.greeting')
-    greetingForUser.innerText = guestsUsing[0].greeting
+
     document.getElementById('profil_name').classList.remove('profil_name')
     document.getElementById('profil_name').classList.add('guestsGreeting')
   }
 }
 
-user()
-
-// let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 
 
-
-/*
-const currentDate = new Date();
-
-
-function dateUpdate() {
-  let montUndDay = document.getElementById('date');
-
-  // Monatsnamen extrahieren
-  const monthName = currentDate.toLocaleString('default', { month: 'long' });
-
-  montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
-}
-
-  function timer() {
-    setTimeout(() => {
-  }, "100");
-}
-*/
 
 
 async function renderSummaryMain() {
@@ -159,9 +132,11 @@ function deleteOldUrgent() {
 function actualDate() {
   let date = new Date();
   let day = date.getDate();
-  console.log(day);
+  let options = {month: 'long',  day: 'numeric',  year: 'numeric', };
+  let formattedDate = date.toLocaleDateString('de-DE', options);
+  console.log(formattedDate);
 }
-
+actualDate()
 
 function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('urgentDate');
@@ -185,6 +160,7 @@ function defineUpcomingDeadline() {
     day: 'numeric',
     year: 'numeric'
   });
+  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -199,7 +175,7 @@ async function displayGreeting() {
   let greetingNameCon = document.getElementById('greetingName');
   let greetingData = await getGreeting();
   greetingTimeCon.textContent = greetingData.time;
-  greetingNameCon.textContent = greetingData.name;
+  greetingNameCon.textContent = user();
 }
 
 

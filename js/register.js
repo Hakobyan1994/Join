@@ -3,13 +3,9 @@ let userGuests = [
     {
         name: '',
         greeting: 'Good Morning'
-    }
+    } 
+     
 ];
-
-   
-
-
-
 
 
 let div = document.getElementById('animationDiv')
@@ -39,8 +35,6 @@ setTimeout(() => {
    
 },2000) 
 setTimeout(() => {
-    
-    // img.src = "assets/img/anmeldung Image/join.png"
 },3000) 
 
 
@@ -53,19 +47,16 @@ setTimeout(() => {
 // }
 // console.log(dataUsers);
 let dataUser = [];
-// const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
-// const STORAGE_URL2 = 'https://remote-storage.developerakademie.org/item';
 
-async function setItem(key, value) {
-   
+
+async function registerItem(key, value) {
     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
-       
 }
 
 
-async function getItem(key) {
+async function registergetItem(key) {
     const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
     return fetch(url).then(res => res.json()).then(res => {
         if (res.data) {
@@ -76,11 +67,9 @@ async function getItem(key) {
 
 
 async function getUsers(params) {
-    let res = await getItem('dataUsers')
-
+    let res = await registergetItem('dataUsers')
     if ( res[0] !== null) {
         dataUser = res
-       
     }
 }
 getUsers()
@@ -89,9 +78,7 @@ getUsers()
 
 
 function activUser(arr) {
-   
-    setItem('activeUser', [arr] )
-    // localStorage.setItem('activeUser', JSON.stringify(arr));
+    registerItem('activeUser', [arr] )
 }
 
 

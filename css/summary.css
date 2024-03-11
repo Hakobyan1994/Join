@@ -473,6 +473,7 @@ body {
 }
 
 .greeting {
+    width: 500px;
     font-size: 47px;
     font-weight: 500;
     font-family: inter;
@@ -499,8 +500,8 @@ a {
 .guestsGreeting {
     height: 56px;
     position: absolute;
-    top: 585px;
-    left: 968px;
+    top: 213px;
+    left: 609px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
