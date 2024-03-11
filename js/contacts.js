@@ -12,12 +12,6 @@ async function renderContactsMain() {
     await loadContacts();
     renderContacts();
     showHideMobile();
-
-    let contactInfoSliderMobile = document.getElementById('contactInfoConMobile');
-
-    if (window.innerWidth < 800) {
-        contactInfoSliderMobile.classList.add('d-none');
-    }
 }
 
 function renderContacts() {
@@ -428,14 +422,7 @@ async function deleteContact(i) {
 
 function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
-    let contactInfoSliderMobile = document.getElementById('contactInfoConMobile');
-
-    if (window.innerWidth < 800) {
-        contactInfoSliderMobile.classList.add('d-none');
-    } else {
-        contactInfoSliderMobile.classList.remove('d-none');
-    }
-
+    document.getElementById('contactInfoConMobile').classList.remove('d-none');
     contactInfoSlider.innerHTML = '';
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');

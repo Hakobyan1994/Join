@@ -17,12 +17,14 @@ async function getItem(key) {
     });
 }
 
+
 async function init() {
     includeHTML();
     renderSummaryMain();
     await loadContacts();
     displayGreeting();
 }
+
 
 async function initLogin() {
     includeHTML();
@@ -189,7 +191,6 @@ function resetUserContent(page) {
     document.getElementById('navbar').classList.add('d-none');
     document.getElementById(page).innerHTML = '';
 }
-
 
 
 function minDate() {

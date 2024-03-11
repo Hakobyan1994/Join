@@ -188,8 +188,7 @@
     }
 
     .contact-info-con {
-        position: fixed;
-        left: 455px;
+
         padding-left: 0;
     }
 
@@ -281,7 +280,7 @@
 
     .contact-info-con {
         width: 390px;
-        height: 314px !important;
+        height: 348px !important;
         background-color: #F6F7F8;
         position: absolute;
         top: 100px;
@@ -317,7 +316,7 @@
     .slider-main-content {
         position: fixed;
         top: -190px;
-        right: 23px;
+        right: 67px;
     }
 
     .slider-content-top {
