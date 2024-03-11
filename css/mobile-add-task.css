@@ -94,6 +94,11 @@
     .popup-a-to-b {
         position: fixed;
     }
+
+    .addtask-popup {
+        width: 396px;
+        justify-content: center;
+    }
 }
 
 @media(max-width: 500px) {

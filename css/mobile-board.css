@@ -206,6 +206,25 @@
     }
 }
 
+@media(max-width: 860px) {
+    /* .popup-task-footer {
+        width: unset;
+        margin-right: 32px;
+    }
+
+    .edit-div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: unset;
+    } */
+
+    .addtask-popup {
+        width: 440px;
+    }
+
+}
+
 @media(max-width: 500px) {
     .popup-box {
         padding-left: unset;
@@ -229,4 +248,84 @@
     .amount-subtasks {
         width: 32px;
     }
+
+    .addtask-popup {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        justify-content: unset;
+        align-items: unset;
+        border-radius: unset;
+        padding-left: unset;
+        padding-top: unset;
+        padding: unset;
+        /* padding: 32px 24px 32px 24px; */
+    }
+
+    .popup-text {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .close-a-board {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+    }
+
+    .user-popup-btn {
+        margin-left: 32px;
+        margin-top: 32px;
+    }
+
+    .popup-title {
+        margin-left: 32px;
+    }
+
+    .overflow {
+        margin-left: 32px;
+    }
+
+    .popup-div-assign-date-title {
+        margin-left: 32px;
+    }
+
+    .popup-assigned-div {
+        margin-left: 32px;
+    }
+
+    .popup-assigned {
+        margin-left: 32px;
+    }
+    
+    .popup-subtask {
+        margin-left: 32px;
+    }
+
+    .mobile-subtask-board {
+        margin-left: 32px;
+    }
+
+    .ok-btn-edit {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        left: unset;
+    }
+
+    .popup-task-footer {
+        width: unset;
+        margin-right: 32px;
+        margin-bottom: 32px;
+    }
+
+    .edit-div {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: unset;
+    }
+
 }

@@ -247,7 +247,7 @@ async function openPopupAddTaskDiv(i) {
 
             </div>
             <div>
-                <div class="">Subtasks</div>
+                <div class="mobile-subtask-board">Subtasks</div>
                 <div class="popup-subtask" id="popup-subtasks-${i}">
                 </div>
             </div>
@@ -485,6 +485,7 @@ async function deleteTask(i) {
 
 
 async function editTask(i) {
+    await loadTasks();
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
     let content = document.getElementById(`popup-add-task-content-edit`);

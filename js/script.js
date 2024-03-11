@@ -65,6 +65,7 @@ function renderPage(selectedBar, page) {
         renderContactsMain();
     }
     if(page === 'render-board') {
+        loadTasks();
         renderBoardMain();
     }
 

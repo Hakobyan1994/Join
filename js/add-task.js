@@ -520,7 +520,6 @@ function openBoard() {
     }
     setTimeout(() => {
         renderPage('board-page', 'render-board');
-        renderMobilePage('m-board-page', 'render-board');
     }, "1500");
 }
 
