@@ -430,9 +430,13 @@ body {
     top: -62px;
     right: -377px;
     cursor: pointer;
-}
+}  
 
-@media(max-width: 390px) {
+  
+  
+     
+
+@media(max-width: 500px) {
     body {
         background-color: #F6F7F8;
         position: fixed;
@@ -554,14 +558,14 @@ body {
 
     .errorMessage {
         position: absolute;
-        top: 419px;
+        top: 439px;
         left: 30px;
     }
 
     .passwordImage {
         position: relative;
-        top: -45px;
-        right: -294px;
+        top: 5px;
+        right: 42px;
         cursor: pointer;
     }
 
