@@ -26,9 +26,9 @@ activeUser.push(locRes);
 */
 
 
-/*
 
-async function getItem(key) {
+
+async function nameItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
   return fetch(url).then(res => res.json()).then(res => {
       if (res.data) {
@@ -40,14 +40,14 @@ async function getItem(key) {
      
 
 async function user(params) {
-  const user = await signUpgetItem('activeUser')
+  const user = await nameItem('activeUser')
   console.log(user);
   if (user) {
     let profilName = document.querySelector('.greetingName')
     profilName.innerText = user[0].name
 
-    document.getElementById('profil_name').classList.remove('profil_name')
-    document.getElementById('profil_name').classList.add('guestsGreeting')
+    // document.getElementById('profil_name').classList.remove('profil_name')
+    // document.getElementById('profil_name').classList.add('guestsGreeting')
   }
 }
 
@@ -55,7 +55,7 @@ user()
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 
-*/
+
 
 /*
 const currentDate = new Date();

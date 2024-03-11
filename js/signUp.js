@@ -63,7 +63,7 @@ async function onsubmitFor(e) {
 
     if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
-        await setItem('userData', JSON.stringify(userData));
+       addtoLocal(dataUsers, 'dataUsers');
         validForm({ name, email, password, confirmPassword }, e)
     } else {
         checkSignUpInputs();

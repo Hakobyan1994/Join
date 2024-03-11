@@ -1,3 +1,4 @@
+
 let userGuests = [
     {
         name: '',
@@ -6,11 +7,15 @@ let userGuests = [
      
 ];
 
+   
+
+
+
+
 
 let div = document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
 let stop = JSON.parse(localStorage.getItem('stop'))
-
 
 // if (window.innerWidth <= 400) {
 //     // img.src = "assets/img/anmeldung Image/logoPhone.png"
@@ -20,6 +25,7 @@ let stop = JSON.parse(localStorage.getItem('stop'))
 if (stop) {
     div.classList.remove('addAnimDiv')
     img.classList.remove('animation')
+
     div.classList.add('anim_div')
     div.classList.remove('startParDiv')
     img.classList.remove('startParImg')
@@ -31,29 +37,28 @@ setTimeout(() => {
     div.classList.add('anim_div')
     img.classList.remove('startParImg')
     img.classList.add('join_image')
-
-}, 2000)
+   
+},2000) 
 setTimeout(() => {
-    
-    // img.src = "assets/img/anmeldung Image/join.png"
 },3000) 
 
 
 
 
 
-let dataLocal = JSON.parse(localStorage.getItem('datareg'))
-    if (dataLocal) {
-    dataUsers = dataLocal
-}
-console.log(dataUsers);
+// let dataLocal = JSON.parse(localStorage.getItem('datareg'))
+// if (dataLocal) {
+//     dataUsers = dataLocal
+// }
+// console.log(dataUsers);
 let dataUser = [];
 
-async function setItem(key, value) {
-   
+
+async function registerItem(key, value) {
     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
+       
 }
 
 
@@ -67,78 +72,75 @@ async function registergetItem(key) {
 }
 
 
-
 async function getUsers(params) {
-    let res = await getItem('dataUsers')
-
+    let res = await registergetItem('dataUsers')
     if ( res[0] !== null) {
         dataUser = res
-       
     }
 }
 getUsers()
 
 
+
+
 function activUser(arr) {
-   
-    setItem('activeUser', [arr] )
-    // localStorage.setItem('activeUser', JSON.stringify(arr));
+    registerItem('activeUser', [arr])
 }
+
 
 
 let form_log = document.getElementById('form_log');
 let checkBox = document.getElementById('checkBox');
 let emailInput = document.getElementById('email');
 let passwordInput = document.getElementById('password');
+ 
 
-function showUserdata() {
-    if (checkBox.checked) {
-        if (dataUser.length > 0) {
-            const user = dataUser[dataUser.length - 1];
-            emailInput.value = user.email;
-            passwordInput.value = user.password;
-            passwordInput.addEventListener('input', showPassword());
-        }
-    } else {
-        emailInput.value = '';
-        passwordInput.value = '';
-        passwordInput.addEventListener('input', passwordBlock())
-    }
-}
-
-
-function showPassword() {
-    const inputImage = document.getElementById('imageInput')
-    if (passwordInput.value !== '') {
-        inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
-        inputImage.onclick = function () {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg';
-            } else {
-                passwordInput.type = 'password';
-                inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+    function showUserdata(){
+        if(checkBox.checked){
+            if(dataUser.length>0){
+                const user=dataUser[dataUser.length-1];
+                emailInput.value=user.email;
+                passwordInput.value=user.password;
+                passwordInput.addEventListener('input', showPassword());
             }
-        };
-    } else {
-        inputImage.src = '../assets/img/anmeldung Image/lock.png';
+        }else{
+            emailInput.value = '';
+            passwordInput.value = '';
+            passwordInput.addEventListener('input',passwordBlock())
+        }
     }
-}
+      
 
+    function showPassword() {
+        const inputImage = document.getElementById('imageInput')
+        if (passwordInput.value !== '') {
+            inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+            inputImage.onclick = function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg';
+                } else {
+                    passwordInput.type = 'password';
+                    inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+                }
+            };
+        } else {
+            inputImage.src = '../assets/img/anmeldung Image/lock.png';
+        }
+    }  
 
-function passwordBlock() {
-    const inputImage = document.getElementById('imageInput')
-    if (passwordInput.value === '') {
-        inputImage.src = '../assets/img/anmeldung Image/lock.png';
-    }
-}
-
-checkBox.addEventListener('change', showUserdata);
-form_log.onsubmit = validLogin;
+       function passwordBlock(){  
+        const inputImage = document.getElementById('imageInput')
+         if(passwordInput.value===''){
+            inputImage.src = '../assets/img/anmeldung Image/lock.png';
+         }
+       }
+    
+    checkBox.addEventListener('change', showUserdata);
+    form_log.onsubmit = validLogin;
 
 
 function validLogin(e) {
-    checkLogInInputs()
     e.preventDefault();
     let email = e.target[0].value;
     let password = e.target[1].value;
@@ -192,7 +194,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 setTimeout(() => {
     localStorage.setItem('stop', JSON.stringify('stop'))
-}, 3000)
+},3000)
+
 
 
 function guesButton() {
@@ -204,40 +207,4 @@ function guesButton() {
 
 function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
-}
-
-
-function checkLogInInputs() {
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-
-    let logInEmailInputCon = document.getElementById('logInEmailInputCon');
-
-    let emailLogInError = document.getElementById('inputErrorLogInEmail');
-    let passwordLogInError = document.getElementById('inputErrorLogInPassword');
-
-    checkLogInHelp(email, password, emailLogInError, passwordLogInError, logInEmailInputCon);
-}
-
-
-function checkLogInHelp(email, password, emailLogInError, passwordLogInError, logInEmailInputCon) {
-    if (!email) {
-        logInEmailInputCon.classList.remove('margin-bottom-login');
-        logInEmailInputCon.classList.add('margin-top-login');
-        emailLogInError.classList.remove('d-none');
-        emailLogInError.innerHTML = `Please enter an email`;
-    } else {
-        emailLogInError.classList.add('d-none');
-    }
-
-    if (!password) {
-        passwordLogInError.classList.remove('d-none');
-        passwordLogInError.innerHTML = `Please enter a password`;
-    } else {
-        passwordLogInError.classList.add('d-none');
-    }
-
-    if (!email || !password) {
-        return;
-    }
 }
