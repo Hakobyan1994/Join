@@ -1,6 +1,6 @@
 @media(max-width: 860px) {
     .main-window {
-        overflow: hidden;
+        overflow: hidden !important;
     }
 
     .main_checkingDiv {
@@ -14,8 +14,9 @@
     }
 
     .toDo_mainDiv {
-        height: 30px;
+        height: 40px;
         width: 140px;
+        border-radius: 20px;
     }
 
     .To_Done_mainDiv {
@@ -32,21 +33,129 @@
     }
 
     .summary-headline-mobile {
-      margin: 0;
-      font-size: 40px;
+        margin: 0;
+        font-size: 44px !important;
     }
 
     .summary-span-mobile {
-        position: relative;
-        left: 14px;
-        bottom: 15px;
-        font-weight: 300;
-        font-size: 18px;
+        position: relative !important;
+        left: 5px !important;
+        bottom: 15px !important;
+        font-weight: 300 !important;
+        font-size: 18px !important;
     }
 
     .vector {
         position: relative;
         top: 32px;
+        right: 51px;
         width: 80px;
+        border: 1.5px solid #29ABE2;
+    }
+
+    .image_Todo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .editImage {
+        height: 22px;
+    }
+
+    .editImageCheck {
+        height: 18px;
+    }
+
+    .toDo_num {
+        font-size: 44px;
+        line-height: 50px;
+    }
+
+    .toDo_title {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .mainTime_UrgentDiv {
+        width: 250px;
+        height: 70px;
+        position: relative;
+        bottom: 50px;
+        border-radius: 20px;
+    }
+
+    .urgentImage_div {
+        position: relative;
+        top: 14px;
+    }
+
+    .urgentImage {
+        width: 40px;
+        height: 40px;
+    }
+
+    .urgent_Number {
+        font-size: 44px;
+        line-height: 0;
+        position: relative;
+        top: 10px;
+    }
+
+    .date_title {
+        font-weight: 400;
+        font-size: 14px;
+        width: 130px;
+        line-height: 0;
+    }
+
+    .Datespan {
+        font-size: 16px;
+    }
+
+    .urgentVector {
+        height: 74px;
+        border: 1px solid #D1D1D1;
+    }
+
+    .urgentt_div {
+        position: relative;
+        right: 10px;
+    }
+
+    .toDo_Title_Urgent {
+        font-size: 14px;
+        line-height: 20px;
+        color: black;
+        position: relative;
+        top: 19px;
+    }
+
+    .Date_box {
+        position: relative;
+        left: 18px;
+    }
+
+    .tasksmain_Board {
+        position: relative;
+        bottom: 56px;
+    }
+
+    .board_Div {
+        height: 105px;
+        width: 105px;
+        border-radius: 20px;
+    }
+
+    .boardNumber {
+        font-size: 44px;
+        line-height: 0;
+    }
+
+    .board_title {
+        font-weight: 400;
+        font-size: 14px;
+line-height: 16px;
+position: relative;
+top: 25px;
     }
 }

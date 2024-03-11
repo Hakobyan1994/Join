@@ -22,17 +22,17 @@ function generateHtmlSummary() {
                             <div class="image_Todo"><img class="editImage" src="../assets/img/icons/edit.png" alt=""></div>
                             <div class="toDo_numberDiv">
                                 <span class="toDo_num" id="value-todoarray"></span>
-                                <span class="toDo_title">To do</span>
+                                <span class="toDo_title">To-do</span>
                             </div>
                         </div>
         
         
         
                         <div class="toDo_mainDiv">
-                            <div class="image_box"><img class="vector_image" src="../assets/img/icons/Vector.png" alt=""></div>
+                            <div class="image_Todo"><img class="editImageCheck" src="../assets/img/icons/Vector.png" alt=""></div>
                             <div class="done_numberDiv">
-                                <span class="done_number" id="value-donearray"></span>
-                                <span class="done_title">Done</span>
+                                <span class="toDo_num" id="value-donearray"></span>
+                                <span class="toDo_title">Done</span>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ function generateHtmlSummary() {
                             </div>
                             <div class="urgentt_div">
                                 <span class="urgent_Number" id="value-urgent"></span>
-                                <span class="urgent_title">Urgent</span>
+                                <span class="toDo_Title_Urgent">Urgent</span>
                             </div>
         
         
@@ -63,17 +63,17 @@ function generateHtmlSummary() {
                                 <span class="board_title"> Tasks in Board</span>
                             </div>
                         </div>
-                        <div class="progress_Div">
-                            <div class="progress_Infobox">
-                                <span class="progress_number" id="value-progressarray"></span>
-                                <span class="progress_Info">Tasks in Progress</span>
+                        <div class="board_Div">
+                            <div class="board_info">
+                                <span class="boardNumber" id="value-progressarray"></span>
+                                <span class="board_title">Tasks in Progress</span>
                             </div>
         
                         </div>
-                        <div class="feedback_div">
-                            <div class="feedback_info">
-                                <span class="feedback_number" id="value-feedbackarray"></span>
-                                <span class="feedback_title">Awaiting Feedback</span>
+                        <div class="board_Div">
+                            <div class="board_info">
+                                <span class="boardNumber" id="value-feedbackarray"></span>
+                                <span class="board_title">Awaiting Feedback</span>
                             </div>
         
                         </div>
