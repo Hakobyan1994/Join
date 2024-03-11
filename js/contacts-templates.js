@@ -23,7 +23,7 @@ function generateHtmlMainContacts() {
 
                     <div id="contactOverlay"></div>
 
-                    <div id="contactInfoConMobile" class="contact-info-con">
+                    <div id="contactInfoConMobile" class="contact-info-con d-none">
                         <div id="headlineMobile" class="headline">
                             Contacts
                             <div class="vertical-line">
