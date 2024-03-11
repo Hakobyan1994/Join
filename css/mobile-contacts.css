@@ -132,80 +132,47 @@
         width: 40px !important;
         height: 40px !important;
     }
+
+    .added-contacts {
+        position: relative;
+        left: -233px;
+    }
+
+    .contact-info-con {
+        position: relative;
+        right: 700px;
+    }
 }
 
 @media(max-width: 1200px) {
     .headline {
-        font-size: 30px;
+        position: relative;
+        top: -142px;
     }
 
     .team-headline {
-        font-size: 20px;
-    }
-
-    .contacts {
-        width: 400px;
-    }
-
-    .contact-con-pos {
-        width: 230px;
-    }
-
-    .letter-con {
         width: 250px;
-        padding-left: 44px;
     }
 
-    .added-contacts {
-        width: 250px;
-        position: fixed;
+    .contact-info-slider {
+        position: relative;
+        top: -58px !important;
+        left: 0;
+        right: 0;
         bottom: 0;
-        top: 0;
-        left: 234px;
+        z-index: 99999;
     }
 
-    .add-contact-btn {
-        font-size: 14px;
-        width: 200px;
-    }
-
-    .user-img-contact-list {
-        margin-left: 22px;
-    }
-
-    .contact-list-name {
-        padding-left: 0;
-        font-size: 14px;
-    }
-
-    .contact-list-email {
-        padding-left: 0;
-        font-size: 14px;
-    }
-
-    .contact-line-color {
-        width: 210px;
-    }
-
-    .contact-info-con {
-
-        padding-left: 0;
-    }
-
-    .name {
-        font-size: 25px !important;
-    }
-
-    .slider-contact-img {
-        width: 90px !important;
-        height: 90px !important;
-        margin-top: 0 !important;
+    .back-arrow-mobile {
+        position: relative;
+        right: 21px;
     }
 }
 
 @media(max-width: 860px) {
     body {
-        overflow: unset;  /* need overflow for board & addtask :)*/
+        overflow: unset;
+        /* need overflow for board & addtask :)*/
     }
 
     .menubar-text {
