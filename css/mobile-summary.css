@@ -1,5 +1,5 @@
 @media(max-width: 860px) {
-    .main-window {
+    .mobile-main-summary {
         overflow: hidden !important;
     }
 
@@ -159,6 +159,4 @@
         position: relative;
         top: 25px;
     }
-
-    .
 }
