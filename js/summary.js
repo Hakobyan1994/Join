@@ -7,8 +7,7 @@ let arrayUrgent = [
     date: []
   }
 ];
-
-
+  
 
 // let asGuest=JSON.parse(localStorage.getItem('guestsUsering'))
 // console.log(asGuest);
@@ -22,42 +21,55 @@ async function nameItem(key) {
   });
 }
      
-     
+      
+    
+
+
 
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
- 
-  const user = await nameItem('activeUser')
+  const user = await nameItem('activeUser');
   if (user) { 
-    let profilName = document.querySelector('.greetingName')
-    profilName.innerText = user[0].name
-    
-  if(!responsiveExecuted && user && window.innerWidth<=500){
-    let namesOfgreet=document.getElementById('namesGreetresp');
-    let greetResponsive=document.getElementById('greetResponsive')
-    let transDiv=document.getElementById('transDivforResponsive');
-    transDiv.style.display='flex'
-    greetResponsive.style.display='flex' 
-    
-    namesOfgreet.innerText=user[0].name 
-    setTimeout(function(){
-      transDiv.style.display='none'
-      greetResponsive.style.display='none'
-    },3000)
-    localStorage.setItem('responsive', JSON.stringify(true))
+    let profilName = document.querySelector('.greetingName');
+    profilName.innerText = user[0].name;
+    if (!responsiveExecuted && user && window.innerWidth <= 500) {
+      let namesOfgreet = document.getElementById('namesGreetresp');
+      let greetResponsive = document.getElementById('greetResponsive');
+      let transDiv = document.getElementById('transDivforResponsive');
+      transDiv.style.display = 'flex';
+      greetResponsive.style.display = 'flex';
+      namesOfgreet.innerText = user[0].name;
+      setTimeout(() => {
+        setTimeforResponsive(transDiv, greetResponsive);
+      }, 3000);
+    } 
+     if(asguest){
+      profilName.style.display='none'
+     }
+
+     
+  }
 }
-      
-} 
-   
-  } 
 
-
-    
  
-
-      
-
+function setTimeforResponsive(transDiv, greetResponsive) {
+  transDiv.style.display = 'none';
+  greetResponsive.style.display = 'none';
+  localStorage.setItem('responsive', JSON.stringify(true));
+} 
 user()
+    
+let asguest=JSON.parse(localStorage.getItem('guestLogin'))
+     function adam(){
+   
+   if (asguest) {
+      let aaa=document.getElementById('greetingName')
+       
+   }
+  }
+    
+
+
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 
