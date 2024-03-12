@@ -1,11 +1,13 @@
 
-// let userGuests = [
-//     {
-//         name: '',
-//         greeting: 'Good Morning'
-//     } 
+let userGuests = [
+    {
+        name:'',
+        greet:'Good Morning'
+    }
+];
+    
      
-// ];
+
 
    
 
@@ -212,7 +214,7 @@ setTimeout(() => {
 
 
 function guesButton() {
-    forGuestUser('guestsUsering', userGuests);
+    forGuestUser('guestLogin',userGuests)
     window.location.href = '../files/start.html'
 }
 
