@@ -1,6 +1,6 @@
 // const datauser = JSON.parse(localStorage.getItem('activeUser'));
 
-    
+
 // if (datauser) {
 //     guestsUser = datauser;
 //     let txt = guestsUser.name;
@@ -14,16 +14,16 @@
 //         alert('Error');
 //     }
 // }
- 
 
-function checks(){
-  let profilInfo=document.querySelector('.clickInfoDiv')
-  if(profilInfo.style.display==='block'){
-    profilInfo.style.display='none'
-  }else{
-    profilInfo.style.display='block'
+
+function checks() {
+  let profilInfo = document.querySelector('.clickInfoDiv')
+  if (profilInfo.style.display === 'block') {
+    profilInfo.style.display = 'none'
+  } else {
+    profilInfo.style.display = 'block'
   }
-}       
+}
 
 
 function includeHTML() {
@@ -37,10 +37,10 @@ function includeHTML() {
     if (file) {
       /* Make an HTTP request using the attribute value as the file name: */
       xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
+      xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+          if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
           /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
           includeHTML();
@@ -51,6 +51,6 @@ function includeHTML() {
       /* Exit the function: */
       return;
     }
-  }      
-}  
+  }
+}
 

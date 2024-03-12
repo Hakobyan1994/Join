@@ -9,10 +9,9 @@ signUp.onsubmit = onsubmitFor
 // const STORAGE_URL1 = 'https://remote-storage.developerakademie.org/item';
 
 async function signUpsetItem(key, value) {
-    const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
+    const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
-
 }
 
 
@@ -29,7 +28,7 @@ async function signUpgetItem(key) {
 let dataUsers = []
 async function getUsers(params) {
     let res = await signUpgetItem('dataUsers')
-  
+
     if (res[0] !== null) {
         dataUsers = res
         console.log(dataUsers, 555);
@@ -63,7 +62,7 @@ async function onsubmitFor(e) {
 
     if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
-       addtoLocal(dataUsers, 'dataUsers');
+        addtoLocal(dataUsers, 'dataUsers');
         validForm({ name, email, password, confirmPassword }, e)
     } else {
         checkSignUpInputs();

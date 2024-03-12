@@ -90,11 +90,11 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
                     <div class="contact-name">
                         <div class="name">${contactName}</div>
                         <div class="edit-delete-btn-con">
-                            <div onclick="showEditContactOverlay(${i})" class="edit-delete">
+                            <div id="editBtnMobile" onclick="showEditContactOverlay(${i})" class="edit-delete">
                                 <img src="/assets/img/icons/edit.svg" alt="">
                                     Edit
                             </div>
-                            <div onclick="deleteContact(${i})" class="edit-delete">
+                            <div id="deleteBtnMobile" onclick="deleteContact(${i})" class="edit-delete">
                                 <img src="/assets/img/icons/delete.svg" alt="">
                                     Delete
                             </div>
