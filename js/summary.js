@@ -25,35 +25,39 @@ async function nameItem(key) {
      
 
 async function user(params) {
-  let profilName = document.querySelector('.greetingName')
+  const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
+ 
   const user = await nameItem('activeUser')
-  const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'))
-
-  
   if (user) { 
+    let profilName = document.querySelector('.greetingName')
     profilName.innerText = user[0].name
-    } 
-   
-   
-    if(user && window.innerWidth<=500){
-         let transDiv=document.getElementById('transDivforResponsive');
-         let namesOfgreet=document.getElementById('namesGreetresp');
-         if(responsiveExecuted){
-         transDiv.style.display='flex' 
-         namesOfgreet.innerText=user[0].name
-          setTimeout(function(){
-            transDiv.style.display='none'
-          },3000)
-    }
-  } 
+    
+  if(!responsiveExecuted && user && window.innerWidth<=500){
+    let namesOfgreet=document.getElementById('namesGreetresp');
+    let greetResponsive=document.getElementById('greetResponsive')
+    let transDiv=document.getElementById('transDivforResponsive');
+    transDiv.style.display='flex'
+    greetResponsive.style.display='flex' 
+    
+    namesOfgreet.innerText=user[0].name 
+    setTimeout(function(){
+      transDiv.style.display='none'
+      greetResponsive.style.display='none'
+    },3000)
+    localStorage.setItem('responsive', JSON.stringify(true))
 }
       
-    localStorage.setItem('responsive', JSON.stringify('responsive'))
+} 
+   
+  } 
+
+
+    
  
 
       
 
-// user()
+user()
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 

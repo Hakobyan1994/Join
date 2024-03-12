@@ -499,7 +499,14 @@ body {
 
 a {
     text-decoration: none;
-}
+}    
+
+.greetResponsive{
+    color: #2A3647;
+    font-weight: 400;
+    font-size: 36px;
+    display: none;
+ }
 
 .guestsGreeting {
     height: 56px;
@@ -517,7 +524,7 @@ a {
     @media(max-width:500px){
 
    .transGreetingDiv{
-    display:flex; 
+    display:none; 
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -536,7 +543,7 @@ a {
     color: #2A3647;
     font-weight: 400;
     font-size: 36px;
-    
+    display: none;
  }
    .nameGreetResponsive{
     font-weight: 700;
