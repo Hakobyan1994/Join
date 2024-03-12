@@ -221,7 +221,7 @@ body {
     }
 
     .urgent_title {
-        color: #ffffff;
+        color: #ffffff !important;
     }
 
     .urgentVector {
@@ -234,6 +234,10 @@ body {
 
     .date_title {
         color: #ffffff;
+    }
+
+    .toDo_Title_Urgent {
+        color: white !important;
     }
 }
 
@@ -248,7 +252,6 @@ body {
     display: flex;
     align-items: center;
     gap: 18px;
-
 }
 
 .urgentt_div {
@@ -269,6 +272,14 @@ body {
     font-weight: 400;
     line-height: 24px;
     color: #2A3647;
+}
+
+.urgent_title:hover {
+    font-family: inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: white;
 }
 
 .urgentImage {
