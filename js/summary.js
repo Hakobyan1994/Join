@@ -31,7 +31,7 @@ async function user(params) {
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
-      greetResponsive.innerText=getGreetingText()
+      greetResponsive.innerText=getGreetingText() + ','
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
@@ -52,7 +52,8 @@ async function user(params) {
         let namesOfgreet = document.getElementById('namesGreetresp')
         namesOfgreet.style.display='none'
         let greetResponsive = document.getElementById('greetResponsive');
-          greetResponsive.innerText= getGreetingText()
+          greetResponsive.innerText= getGreetingText() + '!'
+          
          }   
           
        
@@ -61,14 +62,14 @@ async function user(params) {
      
   }
 }
-
+user()
  
 function setTimeforResponsive(transDiv, greetResponsive) {
   transDiv.style.display = 'none';
   greetResponsive.style.display = 'none';
   localStorage.setItem('responsive', JSON.stringify(true));
 } 
-user()
+
     
 
 function getGreetingText() {
