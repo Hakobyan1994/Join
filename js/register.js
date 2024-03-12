@@ -9,15 +9,11 @@ let userGuests = [
      
 
 
-   
-
-
-
-
 
 let div = document.getElementById('animationDiv')
 let img = document.getElementById('logo-login')
 let stop = JSON.parse(localStorage.getItem('stop'))
+
 
 // if (window.innerWidth <= 400) {
 //     // img.src = "assets/img/anmeldung Image/logoPhone.png"
@@ -39,13 +35,10 @@ setTimeout(() => {
     div.classList.add('anim_div')
     img.classList.remove('startParImg')
     img.classList.add('join_image')
-   
-},2000) 
+
+}, 2000)
 setTimeout(() => {
-},3000) 
-
-
-
+}, 3000)
 
 
 // let dataLocal = JSON.parse(localStorage.getItem('datareg'))
@@ -53,6 +46,8 @@ setTimeout(() => {
 //     dataUsers = dataLocal
 // }
 // console.log(dataUsers);
+
+
 let dataUser = [];
 
 
@@ -60,7 +55,6 @@ async function registerItem(key, value) {
     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
-       
 }
 
 
@@ -76,13 +70,11 @@ async function registergetItem(key) {
 
 async function getUsers(params) {
     let res = await registergetItem('dataUsers')
-    if ( res[0] !== null) {
+    if (res[0] !== null) {
         dataUser = res
     }
 }
 getUsers()
-
-
 
 
 function activUser(arr) {
@@ -90,56 +82,57 @@ function activUser(arr) {
 }
 
 
-
 let form_log = document.getElementById('form_log');
 let checkBox = document.getElementById('checkBox');
 let emailInput = document.getElementById('email');
 let passwordInput = document.getElementById('password');
- 
 
-    function showUserdata(){
-        if(checkBox.checked){
-            if(dataUser.length>0){
-                const user=dataUser[dataUser.length-1];
-                emailInput.value=user.email;
-                passwordInput.value=user.password;
-                passwordInput.addEventListener('input', showPassword());
-            }
-        }else{
-            emailInput.value = '';
-            passwordInput.value = '';
-            passwordInput.addEventListener('input',passwordBlock())
+
+function showUserdata() {
+    if (checkBox.checked) {
+        if (dataUser.length > 0) {
+            const user = dataUser[dataUser.length - 1];
+            emailInput.value = user.email;
+            passwordInput.value = user.password;
+            passwordInput.addEventListener('input', showPassword());
         }
+    } else {
+        emailInput.value = '';
+        passwordInput.value = '';
+        passwordInput.addEventListener('input', passwordBlock())
     }
-      
+}
 
-    function showPassword() {
-        const inputImage = document.getElementById('imageInput')
-        if (passwordInput.value !== '') {
-            inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
-            inputImage.onclick = function () {
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg';
-                } else {
-                    passwordInput.type = 'password';
-                    inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
-                }
-            };
-        } else {
-            inputImage.src = '../assets/img/anmeldung Image/lock.png';
-        }
-    }  
 
-       function passwordBlock(){  
-        const inputImage = document.getElementById('imageInput')
-         if(passwordInput.value===''){
-            inputImage.src = '../assets/img/anmeldung Image/lock.png';
-         }
-       }
-    
-    checkBox.addEventListener('change', showUserdata);
-    form_log.onsubmit = validLogin;
+function showPassword() {
+    const inputImage = document.getElementById('imageInput')
+    if (passwordInput.value !== '') {
+        inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+        inputImage.onclick = function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg';
+            } else {
+                passwordInput.type = 'password';
+                inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg';
+            }
+        };
+    } else {
+        inputImage.src = '../assets/img/anmeldung Image/lock.png';
+    }
+}
+
+
+function passwordBlock() {
+    const inputImage = document.getElementById('imageInput')
+    if (passwordInput.value === '') {
+        inputImage.src = '../assets/img/anmeldung Image/lock.png';
+    }
+}
+
+
+checkBox.addEventListener('change', showUserdata);
+form_log.onsubmit = validLogin;
 
 
 function validLogin(e) {
@@ -160,19 +153,19 @@ function validLogin(e) {
         }
         if (status === 'ok') {
             // if (window.innerWidth<=500) {
-                
-                  
+
+
             //       document.querySelector('.transGreetingDiv').style.display='flex'
             //       setTimeout(function(){
-                  
+
             //         document.querySelector('.transGreetingDiv').style.display='none' 
             //         window.location.href = "../files/start.html";
             //       },10000)
-          
+
 
             activUser(foundUser)
             window.location.href = "../files/start.html";
-          
+
 
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
@@ -209,8 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 setTimeout(() => {
     localStorage.setItem('stop', JSON.stringify('stop'))
-},3000)
-
+}, 3000)
 
 
 function guesButton() {

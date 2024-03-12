@@ -11,7 +11,7 @@ async function renderContactsMain() {
     content.innerHTML = generateHtmlMainContacts();
     await loadContacts();
     renderContacts();
-    showHideMobile();
+
 }
 
 function renderContacts() {
@@ -427,6 +427,7 @@ function showContactInfoSlider(i) {
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');
     contactInfoSliderVisible = true;
+
     renderContactInfo(i, contactInfoSlider);
 }
 
@@ -480,6 +481,7 @@ function removeHighlight(contactDiv) {
     contactDiv.classList.remove('highlighted');
 }
 
+
 function showHideMobile() {
     if (window.innerWidth < 800) {
         document.getElementById('addContactBtnMobile').classList.remove('d-none');
@@ -493,6 +495,7 @@ function showHideMobile() {
         document.getElementById('closeImg').classList.remove('d-none');
     }
 }
+
 
 function hideMobileContactInfo() {
     document.getElementById('contactInfoConMobile').classList.add('d-none');
