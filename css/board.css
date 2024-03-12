@@ -98,6 +98,7 @@ h3 {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin-bottom: 16px;
 }
 
 .adding_Button {

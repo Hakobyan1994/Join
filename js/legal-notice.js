@@ -9,7 +9,7 @@ function generateHtmlMainLegal() {
                 <li>CH-8280 Kreuzlingen</li>
             </ul>
             <h4>Exploring the Board</h4>
-            <p>info@developer-akademie.de</p>
+            <p>pirathib.m@gmail.com</p>
 
             <h4>Acceptance of terms</h4>
             <p>By accessing and using <span>Join</span> (Product), you acknowledge and agree to the

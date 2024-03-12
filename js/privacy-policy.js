@@ -3,7 +3,9 @@ function generateHtmlMainPrivacy() {
         <div class="privacy">
             <h2>Privacy Policy</h2>
             <p>Last updated: February 27, 2024</p>
+            <br>
             <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+            <br>
             <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank">Privacy Policy Generator</a>.</p>
             <h3>Interpretation and Definitions</h3>
             <h4>Interpretation</h4>
