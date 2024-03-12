@@ -1,11 +1,11 @@
 
-let userGuests = [
-    {
-        name: '',
-        greeting: 'Good Morning'
-    } 
+// let userGuests = [
+//     {
+//         name: '',
+//         greeting: 'Good Morning'
+//     } 
      
-];
+// ];
 
    
 
@@ -157,8 +157,21 @@ function validLogin(e) {
             status = 'Email not found';
         }
         if (status === 'ok') {
+            // if (window.innerWidth<=500) {
+                
+                  
+            //       document.querySelector('.transGreetingDiv').style.display='flex'
+            //       setTimeout(function(){
+                  
+            //         document.querySelector('.transGreetingDiv').style.display='none' 
+            //         window.location.href = "../files/start.html";
+            //       },10000)
+          
+
             activUser(foundUser)
             window.location.href = "../files/start.html";
+          
+
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('email').style.border = `1px solid red`;
@@ -199,8 +212,7 @@ setTimeout(() => {
 
 
 function guesButton() {
-    localStorage.removeItem('activeUser');
-    forGuestUser('guestsUser', userGuests);
+    forGuestUser('guestsUsering', userGuests);
     window.location.href = '../files/start.html'
 }
 

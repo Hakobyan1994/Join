@@ -10,23 +10,8 @@ let arrayUrgent = [
 
 
 
-
-
-
-// async function signUpgetItem(key) {
-/*
-let locRes = JSON.parse(localStorage.getItem('activeUser'));
-if (locRes) {
-  localStorage.removeItem('guestsUser');
-  console.log(locRes);
-  let profilName = document.querySelector('.greetingName');
-  profilName.innerText = locRes.name
-}
-activeUser.push(locRes);
-*/
-
-
-
+// let asGuest=JSON.parse(localStorage.getItem('guestsUsering'))
+// console.log(asGuest);
 
 async function nameItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
@@ -40,18 +25,35 @@ async function nameItem(key) {
      
 
 async function user(params) {
+  let profilName = document.querySelector('.greetingName')
   const user = await nameItem('activeUser')
-  console.log(user);
-  if (user) {
-    let profilName = document.querySelector('.greetingName')
+  const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'))
+
+  
+  if (user) { 
     profilName.innerText = user[0].name
-
-    // document.getElementById('profil_name').classList.remove('profil_name')
-    // document.getElementById('profil_name').classList.add('guestsGreeting')
-  }
+    } 
+   
+   
+    if(user && window.innerWidth<=500){
+         let transDiv=document.getElementById('transDivforResponsive');
+         let namesOfgreet=document.getElementById('namesGreetresp');
+         if(responsiveExecuted){
+         transDiv.style.display='flex' 
+         namesOfgreet.innerText=user[0].name
+          setTimeout(function(){
+            transDiv.style.display='none'
+          },3000)
+    }
+  } 
 }
+      
+    localStorage.setItem('responsive', JSON.stringify('responsive'))
+ 
 
-user()
+      
+
+// user()
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
 
@@ -156,7 +158,7 @@ function deleteOldUrgent() {
     return new Date(year, month - 1, day);
   });
   let earliestDate = new Date(Math.min(...dateArray));
-  console.log(earliestDate);
+  // console.log(earliestDate);
   if (earliestDate < new Date()) {
     arrayUrgent.splice(earliestDate);
   } else {
@@ -245,4 +247,5 @@ function greetingNameToUpperCaser(name) {
 
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
-}
+}  
+

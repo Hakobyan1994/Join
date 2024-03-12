@@ -511,4 +511,39 @@ a {
     align-items: flex-start;
     flex-direction: column;
     gap: 3px;
+}   
+     
+
+    @media(max-width:500px){
+
+   .transGreetingDiv{
+    display:flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(205, 205, 205);
+    opacity: 8;
+    z-index: 1;
+ }   
+     
+
+ .greetResponsive{
+    color: #2A3647;
+    font-weight: 400;
+    font-size: 36px;
+    
+ }
+   .nameGreetResponsive{
+    font-weight: 700;
+    line-height: 57px;
+    font-size: 46px;
+    
+
+}  
+
 }
