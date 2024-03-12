@@ -8,9 +8,8 @@ let arrayUrgent = [
   }
 ];
   
+let asguest=JSON.parse(localStorage.getItem('guestLogin'))
 
-// let asGuest=JSON.parse(localStorage.getItem('guestsUsering'))
-// console.log(asGuest);
 
 async function nameItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
@@ -21,10 +20,6 @@ async function nameItem(key) {
   });
 }
      
-      
-    
-
-
 
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
@@ -45,6 +40,18 @@ async function user(params) {
     } 
      if(asguest){
       profilName.style.display='none'
+      let time=document.getElementById('timeOfDay')
+      time.style.marginTop='37px'
+      let timeText = time.innerText;
+      const timeReplace = timeText.replace(/,/g, '');
+      time.innerText = timeReplace;
+       if(asguest && window.innerWidth<=500){
+        let namesOfgreet = document.getElementById('namesGreetresp')
+        namesOfgreet.style.display='none'
+        console.log('aaa');
+       }   
+          
+       
      }
 
      
@@ -59,14 +66,8 @@ function setTimeforResponsive(transDiv, greetResponsive) {
 } 
 user()
     
-let asguest=JSON.parse(localStorage.getItem('guestLogin'))
-     function adam(){
-   
-   if (asguest) {
-      let aaa=document.getElementById('greetingName')
-       
-   }
-  }
+
+  
     
 
 
