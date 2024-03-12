@@ -54,7 +54,6 @@ nav {
     line-height: 120%;
     flex-shrink: 0;
     width: 51%;
-
 }
 
 .menubar a:hover {
@@ -135,8 +134,6 @@ header p {
     display: block;
     width: 32px;
     height: 32px;
-
-
 }
 
 .help-icon:hover {
@@ -203,6 +200,7 @@ header p {
     line-height: 19px;
     color: #CDCDCD;
 }   
+
 .clickInfoDiv ul li a{
     color: #CDCDCD ;
     text-decoration: none;
@@ -231,4 +229,3 @@ header p {
 .mobile-navbar {
     display: none;
 }
-

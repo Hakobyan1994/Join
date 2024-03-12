@@ -161,7 +161,7 @@ function validLogin(e) {
             //       },10000)
 
 
-            activUser(foundUser)
+            activUser(foundUser);
             window.location.href = "../files/start.html";
 
 
