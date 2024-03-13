@@ -6,7 +6,6 @@
     width: 75%;
     overflow: scroll;
     overflow-x: hidden;
-    width: 100%;
     height: calc(100% - 206px);
     margin-top: 206px;
     margin-left: 328px;
@@ -40,21 +39,6 @@ span {
 
 .legal-notice h4 {
     margin: 0;
-}
-
-.back-arrow-btn {
-    height: 37px;
-    width: 37px;
-    position: absolute;
-    top: 230px;
-    right: 100px;
-    border-radius: 100%;
-}
-
-.back-arrow-btn:hover {
-    transform: scale(1.1);
-    background-color: #f0f0f0;
-    cursor: pointer;
 }
 
 .legal-notice ul {

@@ -1,6 +1,7 @@
 function generateHtmlMainLegal() {
     return /*html*/`
         <div class="legal-notice">
+            <img id="back-legal" onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">
             <h2>Legal Notice</h2>
             <h3>Imprint</h3>
             <ul>
@@ -68,7 +69,5 @@ function generateHtmlMainLegal() {
 
                 Date: February 20, 2024</p>
         </div>
-
-        <img id="back-legal" onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">
     `;
 }

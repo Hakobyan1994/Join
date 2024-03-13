@@ -1,6 +1,7 @@
 function generateHtmlMainHelp() {
     return /*html*/`
         <div class="help">
+            <img onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">
             <h2>Help</h2>
             <p>Welcome to the help page for <span>Join</span>, your guide to using our kanban project management tool. Here,
                 we'll provide an overview of what <span>Join</span> is, how it can benefit you, and how to use it.</p>
@@ -57,7 +58,5 @@ function generateHtmlMainHelp() {
             </ol>
             <h3>Enjoy using Join!</h3>
         </div>
-
-        <img onclick="renderPage('summary-page', 'render-summary')" class="back-arrow-btn" src="../assets/img/icons/arrow_back_btn.svg" alt="back-arrow-btn">
     `;
 }
