@@ -50,10 +50,12 @@ async function loadTasks() {
 
 function renderPage(selectedBar, page) {
     renderHPLMain();
+    resetMainPages();
     let selectedNavbar = document.getElementById(selectedBar);
     let selectedPage = document.getElementById(page);
     let allNavbar = document.querySelectorAll('#navbar');
     let allPages = document.querySelectorAll('.render-page');
+    let assigned = document.getElementById('add-task-page');
 
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
@@ -82,6 +84,14 @@ function renderPage(selectedBar, page) {
         }
     })
     resetHlp();
+}
+
+
+function resetMainPages() {
+    let allPages = document.querySelectorAll('.render-page');
+    allPages.forEach((page) => {
+        page.innerHTML = '';
+    })
 }
 
 
