@@ -1,6 +1,5 @@
 let loggedInUser = [];
-
-
+let nameActiveUser = [];
 let arrayUrgent = [
   {
     priority: [],
@@ -240,16 +239,18 @@ function defineUpcomingDeadline() {
 
 
 async function displayGreeting() {
+
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
   let greetingData = await getGreeting();
-  loggedInName = nameActiveUser[0];
   greetingTimeCon.textContent = greetingData.time;
-  greetingNameCon.innerHTML = `${loggedInName}`;
+  greetingNameCon.style.display = 'block';
+  greetingNameCon.textContent = greetingData.name;
 }
 
 
 async function getGreeting() {
+  await getActiveUser();
   const now = new Date();
   const hour = now.getHours();
   let greetingTime = '';
@@ -262,18 +263,18 @@ async function getGreeting() {
       greetingTime = `Good evening,`;
   }
 
-  // const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
+  const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
 
-  return { time: greetingTime, /* name: capitalizedFullName */ };
+  return {time: greetingTime, name: capitalizedFullName};
 }
 
-/*
+
 function greetingNameToUpperCaser(name) {
-  const nameWords = name.split('');
+  const nameWords = name.split(' ');
+  console.log(nameWords);
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
-  return capitalizedNames.join('');
+  return capitalizedNames.join(' ');
 }
-*/
 
 
 function capitalizeFirstLetter(word) {
@@ -281,17 +282,17 @@ function capitalizeFirstLetter(word) {
 } 
 
 
-let nameActiveUser = [];
 
 async function getActiveUser() {
-  let contact = await registergetItem('activeUser');
-  nameActiveUser.push(contact[0].name);
+  let user = await registergetItem('activeUser');
+  nameActiveUser.push(user[0].name);
 }
 
 async function showHeaderIni() {
+  await getActiveUser();
   let div = document.getElementById('shortName');
-  let name = nameActiveUser.name;
-  let initials = name.charAt(0);
-  console.log(initials);
+  let name = greetingNameToUpperCaser(nameActiveUser[0]);
+  console.log(name);
+  let initials = name.charAt(0).toUpperCase();
   div.textContent = initials;
 }
