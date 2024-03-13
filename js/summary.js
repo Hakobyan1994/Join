@@ -274,9 +274,9 @@ async function getGreeting() {
 
 
 function greetingNameToUpperCaser(name) {
-  const nameWords = name.split(' ');
+  const nameWords = name.split('');
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
-  return capitalizedNames.join(' ');
+  return capitalizedNames.join('');
 }
 
 
@@ -284,3 +284,11 @@ function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }  
 
+async function showHeaderIni() {
+  await loadLoggedInUser();
+  let div = document.getElementById('shortName');
+  let name = loggedInUser.name;
+  let initials = name.charAt(0);
+  console.log(initials);
+  div.textContent = initials;
+}

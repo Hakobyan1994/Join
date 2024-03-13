@@ -23,6 +23,7 @@ async function init() {
     renderSummaryMain();
     await loadContacts();
     displayGreeting();
+    showHeaderIni();
 }
 
 
