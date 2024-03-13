@@ -78,7 +78,7 @@ getUsers()
 
 
 function activUser(arr) {
-    registerItem('activeUser', [arr])
+    registerItem('activeUser', [arr]);
 }
 
 

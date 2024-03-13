@@ -27,7 +27,7 @@ async function user(params) {
   let time=document.getElementById('timeOfDay')
   if (user) { 
     let profilName = document.querySelector('.greetingName');
-    profilName.innerText = user[0].name;
+   /* profilName.innerText = user[0].name; */
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -239,22 +239,17 @@ function defineUpcomingDeadline() {
 }
 
 
-async function loadLoggedInUser() {
-  loggedInUser = JSON.parse(await getItem('userData'));
-}
-
-
 async function displayGreeting() {
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
   let greetingData = await getGreeting();
+  loggedInName = nameActiveUser[0];
   greetingTimeCon.textContent = greetingData.time;
-  greetingNameCon.textContent = user();
+  greetingNameCon.innerHTML = `${loggedInName}`;
 }
 
 
 async function getGreeting() {
-  await loadLoggedInUser();
   const now = new Date();
   const hour = now.getHours();
   let greetingTime = '';
@@ -267,27 +262,35 @@ async function getGreeting() {
       greetingTime = `Good evening,`;
   }
 
-  const capitalizedFullName = greetingNameToUpperCaser(loggedInUser.name);
+  // const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
 
-  return { time: greetingTime, name: capitalizedFullName };
+  return { time: greetingTime, /* name: capitalizedFullName */ };
 }
 
-
+/*
 function greetingNameToUpperCaser(name) {
   const nameWords = name.split('');
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
   return capitalizedNames.join('');
 }
+*/
 
 
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
-}  
+} 
+
+
+let nameActiveUser = [];
+
+async function getActiveUser() {
+  let contact = await registergetItem('activeUser');
+  nameActiveUser.push(contact[0].name);
+}
 
 async function showHeaderIni() {
-  await loadLoggedInUser();
   let div = document.getElementById('shortName');
-  let name = loggedInUser.name;
+  let name = nameActiveUser.name;
   let initials = name.charAt(0);
   console.log(initials);
   div.textContent = initials;

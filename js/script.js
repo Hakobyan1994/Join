@@ -23,7 +23,8 @@ async function init() {
     renderSummaryMain();
     await loadContacts();
     displayGreeting();
-    showHeaderIni();
+    // showHeaderIni();
+    getActiveUser();
 }
 
 
@@ -218,3 +219,16 @@ function minDate() {
 }
 
 
+function closeInfoList() {
+    let list = document.querySelector('.clickInfoDiv');
+
+        document.addEventListener('click', function(event) {
+            let ul = list.querySelector('ul');
+    
+            if (!ul.contains(event.target) && event.target !== list) {
+                list.style.display = 'none';
+            } else {
+                list.style.display = 'block';
+            }
+        });
+}

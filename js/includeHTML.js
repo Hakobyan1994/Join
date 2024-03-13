@@ -17,11 +17,11 @@
 
 
 function checks() {
-  let profilInfo = document.querySelector('.clickInfoDiv')
+  let profilInfo = document.querySelector('.clickInfoDiv');
   if (profilInfo.style.display === 'block') {
-    profilInfo.style.display = 'none'
+      profilInfo.style.display = 'none';
   } else {
-    profilInfo.style.display = 'block'
+      profilInfo.style.display = 'block';
   }
 }
 

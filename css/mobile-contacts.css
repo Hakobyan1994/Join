@@ -1,8 +1,9 @@
 .add-contact-btn-mobile {
+    display: none;
     z-index: 1;
-    position: relative;
-    bottom: 100px;
-    right: -320px;
+    position: fixed;
+    bottom: calc(80px + 42px);
+    right: 42px;
     width: 64px;
 }
 
@@ -310,6 +311,15 @@
         position: relative;
         right: 100px;
         top: -403px;
+    }
+
+    .add-contact-btn-mobile {
+        display: block;
+        z-index: 1;
+        position: fixed;
+        bottom: calc(80px + 42px);
+        right: 42px;
+        width: 64px;
     }
 }
 
