@@ -420,6 +420,7 @@ async function createTask(boardcard) {
     }
     if (document.getElementById('popup-add-task')) {
         loadToDo();
+        let content = document.getElementById('popup-add-task-content');
     }
     return tasks;
 }

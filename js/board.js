@@ -5,9 +5,11 @@ async function renderBoardMain() {
     let content = document.getElementById('render-board');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainBoard();
+    emptyPages();
     loadToDo();
     await loadContacts();
     await loadTasks();
+
 }
 
 
@@ -66,11 +68,16 @@ async function loadToDo() {
     }
 }
 
+function emptyPages() {
+    document.getElementById('popup-add-task').style.display = 'none';
+    document.getElementById('popup-add-task-div').style.display = 'none';
+    document.getElementById('popup-add-task-edit').style.display = 'none';
+}
 
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
-    popup.classList.add('d-none');
+    popup.style.display = 'none';
     content.classList.remove('slide-in');
     content.classList.add('slide-out');
 }
@@ -215,7 +222,7 @@ function createUserButtons(task, i) {
 async function openPopupAddTaskDiv(i) {
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
-    div.classList.remove('d-none');
+    div.style.display = 'flex';
     content.classList.remove('slide-out');
     content.classList.add('slide-in');
     let task = tasks[i];
@@ -385,7 +392,7 @@ function closePopupAddTaskDiv(i) {
     let content = document.getElementById('popup-add-task-content-div');
     let div = document.getElementById('popup-add-task-div');
     let amount = document.getElementById(`amount-subtasks-${i}`);
-    div.classList.add('d-none');
+    div.style.display = 'none';
     content.classList.remove('slide-in');
     content.classList.add('slide-out');
     amount.innerHTML = /*html*/`
@@ -489,8 +496,10 @@ async function editTask(i) {
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
     let content = document.getElementById(`popup-add-task-content-edit`);
-    popup.classList.add('d-none');
-    div.classList.remove('d-none');
+    document.getElementById('popup-add-task-content').innerHTML = '';
+    popup.style.display = 'none';
+    div.style.display = 'flex';
+    content.style.display = 'flex';
     content.innerHTML = /*html*/`
         <img class="close-a-board edit-close-icon" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
         `;
@@ -609,7 +618,8 @@ async function saveEditedTask(i) {
         await setItem('tasks', JSON.stringify(tasks));
 
         let popup = document.getElementById('popup-add-task');
-        document.getElementById('popup-add-task-edit').classList.add('d-none');
+        document.getElementById('popup-add-task-edit').style.display = 'none';
+        document.getElementById(`popup-add-task-content-edit`).innerHTML = '';
 
         if (popup !== null) {
             await updateProgressBar(i);
@@ -673,7 +683,7 @@ function getPriority(priority) {
 
 async function closePopupEdit(i) {
     let div = document.getElementById(`popup-add-task-edit`);
-    div.classList.add('d-none');
+    div.style.display = 'none';
 }
 
 

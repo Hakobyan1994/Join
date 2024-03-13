@@ -3,13 +3,13 @@ function generateHtmlMainBoard() {
         <div class="popup-a-to-b d-none" id="popup-a-to-b-board">
             <img src="../assets/img/task-to-board.svg" alt="">
         </div>
-        <div class="board-popup-bg d-none" id="popup-add-task">
+        <div class="board-popup-bg" id="popup-add-task">
                 <div class="board-popup" id="popup-add-task-content"></div>
         </div>
-        <div class="board-popup-bg d-none" id="popup-add-task-div">
+        <div class="board-popup-bg" id="popup-add-task-div">
             <div class="addtask-popup" id="popup-add-task-content-div"></div>
         </div>
-        <div class="board-popup-bg d-none" id="popup-add-task-edit">
+        <div class="board-popup-bg" id="popup-add-task-edit">
             <div class="addtask-popup popup-edit" id="popup-add-task-content-edit"></div>
         </div>
         <div class="main-window board-window">
@@ -68,7 +68,7 @@ async function openPopupAddTask(boardcard) {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
 
-    popup.classList.remove('d-none');
+    popup.style.display = 'flex';
     content.classList.remove('slide-out');
     content.classList.add('slide-in');
     content.innerHTML = /*html*/`
