@@ -14,6 +14,7 @@ function renderAddTask() {
     let boardcard = 'board-to-do';
     content.innerHTML = generateRenderAddTask(boardcard);
     addEventFunctions();
+    subtasks = [];
     addSubtask();
 }
 
