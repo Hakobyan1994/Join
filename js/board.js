@@ -9,7 +9,6 @@ async function renderBoardMain() {
     loadToDo();
     await loadContacts();
     await loadTasks();
-
 }
 
 
@@ -30,25 +29,25 @@ async function loadToDo() {
     let hasDone = false;
 
     for (let i = 0; i < tasks.length; i++) {
-        let task = tasks[i];
-        if (task.status === 'board-to-do') {
-            todo.innerHTML += generateBoardCardTodo(task, i);
+        let taskValue = tasks[i];
+        if (taskValue.status === 'board-to-do') {
+            todo.innerHTML += generateBoardCard(taskValue, i);
             hasToDo = true;
         }
-        if (task.status === 'board-in-progress') {
-            progress.innerHTML += generateBoardCardProgress(task, i);
+        if (taskValue.status === 'board-in-progress') {
+            progress.innerHTML += generateBoardCard(taskValue, i);
             hasProgress = true;
         }
-        if (task.status === 'board-await-feedback') {
-            feedback.innerHTML += generateBoardCardFeedback(task, i);
+        if (taskValue.status === 'board-await-feedback') {
+            feedback.innerHTML += generateBoardCard(taskValue, i);
             hasFeedback = true;
         }
-        if (task.status === 'board-done') {
-            done.innerHTML += generateBoardCardDone(task, i);
+        if (taskValue.status === 'board-done') {
+            done.innerHTML += generateBoardCard(taskValue, i);
             hasDone = true;
         }
         checkCategoryButton();
-        createUserButtons(task, i);
+        createUserButtons(taskValue, i);
         await updateProgressBar(i);
         notData();
         checkCategoryButton();
@@ -56,7 +55,6 @@ async function loadToDo() {
     if (!hasToDo) {
         todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" disabled>No Tasks To do</div>';
     }
-
     if (!hasProgress) {
         progress.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing in progress</div>';
     }
@@ -100,110 +98,6 @@ function checkCategoryButton() {
 }
 
 
-function generateBoardCardTodo(task, i) {
-    return /*html*/`
-    <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-        <div  class="progress_infocard">
-            <button class="c1" id="category-bg-change-${i}">${task.category}</button>
-            <div class="cooking_title_div">
-                <h1>${task.title}</h1>
-                <span class="recipe_span">${task.description}</span>
-            </div>
-        </div>
-        <div class="progress_image_Div">
-            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-            </div>
-            
-            <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-        </div>
-        <div class="Members_Div">
-            <div id="user-board-${i}"></div>
-            <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-        </div>
-    </div>      
-    `;
-}
-
-
-function generateBoardCardProgress(task, i) {
-    return /*html*/`
-        <div draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-            <div  class="progress_infocard">
-                <button class="c1" id="category-bg-change-${i}">${task.category}</button>
-                <div class="cooking_title_div">
-                    <h1>${task.title}</h1>
-                    <span class="recipe_span">${task.description}</span>
-                </div>
-            </div>
-            <div class="progress_image_Div">
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-                </div>
-                
-                <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-            </div>
-            <div class="Members_Div">
-                <div id="user-board-${i}"></div>
-                <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-            </div>
-        </div>   
-    `;
-}
-
-
-function generateBoardCardFeedback(task, i) {
-    return /*html*/`
-            <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-                <div  class="progress_infocard">
-                    <button class="c1" id="category-bg-change-${i}">${task.category}</button>
-                    <div class="cooking_title_div">
-                        <h1>${task.title}</h1>
-                        <span class="recipe_span">${task.description}</span>
-                    </div>
-                </div>
-                <div class="progress_image_Div">
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-                    </div>
-                    
-                    <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-                </div>
-                <div class="Members_Div">
-                    <div id="user-board-${i}"></div>
-                    <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-                </div>
-            </div>   
-    `;
-}
-
-
-function generateBoardCardDone(task, i) {
-    return /*html*/`
-            <div   draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}">
-                <div  class="progress_infocard">
-                    <button class="c1" id="category-bg-change-${i}">${task.category}</button>
-                    <div class="cooking_title_div">
-                        <h1>${task.title}</h1>
-                        <span class="recipe_span">${task.description}</span>
-                    </div>
-                </div>
-                <div class="progress_image_Div">
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-                    </div>
-                    
-                    <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
-                </div>
-                <div class="Members_Div">
-                    <div id="user-board-${i}"></div>
-                    <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-                </div>
-            </div> 
-    `;
-}
-
-
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
     let letters = task.letter;
@@ -215,93 +109,14 @@ function createUserButtons(task, i) {
         `;
         }
     }
-
-}
-
-
-async function openPopupAddTaskDiv(i) {
-    let div = document.getElementById('popup-add-task-div');
-    let content = document.getElementById('popup-add-task-content-div');
-    div.style.display = 'flex';
-    content.classList.remove('slide-out');
-    content.classList.add('slide-in');
-    let task = tasks[i];
-    content.innerHTML = /*html*/`
-        <img class="close-a-board" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
-        `;
-    content.innerHTML += /*html*/`
-        <div class="popup-text">
-            <div class="user-popup-btn c1" id="category-bg-change-${i}">${task.category}</div>
-            <h2 class="popup-title">${task.title}</h2>
-            <div class="overflow">${task.description}</div>
-            <div class="popup-div-assign-date-title">
-                <div>
-                    <div class="popup-date">Due Date:</div>
-                    <div>Priority:</div>
-                </div>
-                <div class="popup-div-assign-date-title-content">
-                    <div class="popup-date">${task.date}</div>
-                    <div class="popup-prio-section">
-                        <div>${task.priority.charAt(0).toUpperCase() + task.priority.slice(1).toLowerCase()}</div>
-                        <img src="../assets/img/icons/prio-${task.priority}.svg" alt="Prio" class="popup-prio-icon">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="popup-assigned-div">Assigned To:</div>
-                <div class="popup-assigned" id="popup-user-${i}">
-                </div>
-
-            </div>
-            <div>
-                <div class="mobile-subtask-board">Subtasks</div>
-                <div class="popup-subtask" id="popup-subtasks-${i}">
-                </div>
-            </div>
-            <div class="popup-task-footer">
-                <div class="popup-task-footer-section" onclick="deleteTask(${i})">
-                    <img src="../assets/img/icons/trash.svg" alt="Trash Icon">
-                    <div>Delete</div>
-                </div>
-                <p class="separator"></p>
-                <div class="popup-task-footer-section" onclick="editTask(${i})">
-                    <img src="../assets/img/icons/edit.svg" alt="Edit Icon">
-                    <div>Edit</div>
-                </div> 
-            </div>
-
-        </div>
-    `;
-
-    createUserToAssigned(i);
-    createSubtasksToAddTaskPopup(i);
-    checkSelectedSubtasks(i);
-    checkCategoryButton();
-}
-
-
-function createUserToAssigned(i) {
-    let div = document.getElementById(`popup-user-${i}`);
-    let task = tasks[i];
-    for (let k = 0; k < task.letter.length; k++) {
-        let letters = task.letter[k];
-        let user = task.assigned[k];
-        div.innerHTML += /*html*/`
-            <div class="each-user-section">
-                <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
-                <div>${user}</div>  
-            </div>
-
-        `;
-    }
 }
 
 
 function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
-    let task = tasks[i];
-    for (let k = 0; k < task.subtask.length; k++) {
-        let subtasks = task.subtask[k];
+    let taskValue = tasks[i];
+    for (let k = 0; k < taskValue.subtask.length; k++) {
+        let subtasks = taskValue.subtask[k];
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
                 <div>
@@ -310,20 +125,18 @@ function createSubtasksToAddTaskPopup(i) {
                 </div>
             </div>
         `;
-
     }
     checkSelectedSubtasks(i);
 }
 
 
 function checkSelectedSubtasks(i) {
-    let task = tasks[i];
-
-    for (let k = 0; k < task.subtask.length; k++) {
+    let taskValue = tasks[i];
+    for (let k = 0; k < taskValue.subtask.length; k++) {
         let img = document.getElementById(`select-subtask-board-${k}`);
         let subtask = document.getElementById(`each-subtasks-${k}`);
 
-        if (task.checkoffs.includes(k.toString())) {
+        if (taskValue.checkoffs.includes(k.toString())) {
             img.src = '../assets/img/icons/selected.svg';
             img.alt = 'Selected';
             subtask.setAttribute('value', 'selected');
@@ -518,24 +331,6 @@ async function editTask(i) {
 }
 
 
-function generateEditableAddtask(i) {
-    return /*html*/`
-            <div class="edit-div">
-                <div class="edit-addtask">
-                    ${generateHtmlTitle()}  
-                    ${generateHtmlDescription()}  
-                    ${generateHtmlDate()}  
-                    ${generateHtmlPrio()}
-                    ${generateHtmlAssigned()}
-                    ${generateHtmlSubtasks()}
-                </div>
-                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="../assets/img/icons/check1.svg" alt="Check Icon"></button>
-            </div>       
-
-    `;
-}
-
-
 async function pushValueToEdit(i) {
     try {
         await loadTasks();
@@ -563,25 +358,6 @@ async function pushValueToEdit(i) {
         tasks.splice(i, 1);
     } catch (error) {
         console.error('Fehler beim Laden der Aufgaben:', error);
-    }
-}
-
-
-function getSubtasks() {
-    let list = document.getElementById('subtasks');
-    list.innerHTML = '';
-    for (let i = 0; i < subtasks.length; i++) {
-        const text = subtasks[i];
-        list.innerHTML += /*html*/`
-        <li class="each-subtask" id="each-subtask${i}">
-            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
-            <div class="subtask-right">
-                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
-                <p class="separator"></p>
-                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
-            </div>
-        </li>
-    `;
     }
 }
 
