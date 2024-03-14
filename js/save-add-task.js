@@ -60,6 +60,7 @@ function addSubtask() {
     clearInput(content);
 }
 
+
 function pushSubtask(subtaskValue) {
     subtasks.push(subtaskValue);
 }
@@ -86,6 +87,7 @@ async function createTask(boardcard) {                                     // cr
     return tasks;
 }
 
+
 function getInputElements() {
     return {
         title: document.getElementById('title'),
@@ -98,9 +100,11 @@ function getInputElements() {
     };
 }
 
+
 function isValidInput(titleValue, dateValue, categoryValue) {
     return titleValue && dateValue && categoryValue;
 }
+
 
 async function handleValidInput(boardcard, description, formatedDate) {
     await loadTasks();
@@ -111,6 +115,7 @@ async function handleValidInput(boardcard, description, formatedDate) {
     
 }
 
+
 function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category) {
     requiredTitle.classList.remove('d-none');
     requiredDate.classList.remove('d-none');
@@ -119,6 +124,7 @@ function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date,
     title.classList.add('inputfield-focus-red');
     category.classList.add('inputfield-focus-red');
 }
+
 
 function pushToTodoBoard(boardcard, description, formatedDate) {
     let { title, category } = getInputElements();
