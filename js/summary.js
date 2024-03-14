@@ -23,10 +23,11 @@ async function nameItem(key) {
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
-  let time=document.getElementById('timeOfDay')
+ 
+  // let time=document.getElementById('timeOfDay')
   if (user) { 
-    let profilName = document.querySelector('.greetingName');
-   /* profilName.innerText = user[0].name; */
+     let profilName = document.querySelector('.greetingName');
+     profilName.innerText = user[0].name;
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -34,18 +35,23 @@ async function user(params) {
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
-      namesOfgreet.innerText = user[0].name;
+      let name = user[0].name;
+      let formattedName = name.charAt(0).toUpperCase() +  name.slice(1).toLowerCase();
+      namesOfgreet.innerText = formattedName;
       setTimeout(() => {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
     } 
-     if(asguest){
-       profilName.style.display='none'
-       time=document.getElementById('timeOfDay')
-       time.style.marginTop='37px'
-       let timeText = time.innerText;
-       const timeReplace = timeText.replace(/,/g, '');
-       time.innerText = timeReplace;
+    //  if(asguest){
+    //    let profilName = document.querySelector('.greetingName');
+    //    let time=document.getElementById('timeOfDay');
+    //    profilName.style.display='none'
+    //    time=document.getElementById('timeOfDay')
+    //    time.style.marginTop='37px'
+    //    let timeText = time.innerText;
+    //    const timeReplace = timeText.replace(/,/g,'');
+    //    time.innerText = timeReplace;
+
        if(asguest && window.innerWidth<=500)
          {
         let namesOfgreet = document.getElementById('namesGreetresp')
@@ -60,7 +66,7 @@ async function user(params) {
 
      
   }
-}
+// }
 user()
  
 function setTimeforResponsive(transDiv, greetResponsive) {
@@ -239,13 +245,22 @@ function defineUpcomingDeadline() {
 
 
 async function displayGreeting() {
-
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
+   
   let greetingData = await getGreeting();
   greetingTimeCon.textContent = greetingData.time;
-  greetingNameCon.style.display = 'block';
+  // greetingNameCon.style.display = 'block';
   greetingNameCon.textContent = greetingData.name;
+  if(asguest){
+    let textGreeting = greetingTimeCon.innerText;
+    let replaceText = textGreeting.replace(/,/g, ''); // Corrected the usage of replace() function
+    greetingTimeCon.style.marginTop='37px'
+    greetingTimeCon.innerText = replaceText;
+    greetingNameCon.style.display = 'none';
+
+   }
+
 }
 
 
