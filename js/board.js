@@ -1,5 +1,5 @@
 let dataTask = [];
-
+let categoryArray = [];
 
 async function renderBoardMain() {
     let content = document.getElementById('render-board');
@@ -493,6 +493,7 @@ async function deleteTask(i) {
 
 async function editTask(i) {
     await loadTasks();
+    categoryArray = [];
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
     let content = document.getElementById(`popup-add-task-content-edit`);
@@ -543,6 +544,7 @@ async function pushValueToEdit(i) {
         let description = document.getElementById('description');
         let date = document.getElementById('date');
         let dateValue = deformatDate(array.date);
+        categoryArray.push(tasks[i].category);
         // category, assigned Array 
         title.value = array.title;
         description.value = array.description;
@@ -585,8 +587,8 @@ function getSubtasks() {
 
 
 async function saveEditedTask(i) {
+    await loadTasks();
     checkCategoryButton();
-    let category = tasks[i].category
     let title = document.getElementById('title');
     let requiredTitle = document.getElementById('required-title');
     let requiredDate = document.getElementById('required-date');
@@ -606,7 +608,7 @@ async function saveEditedTask(i) {
             letter: iniimg,
             date: formatedDate,
             priority: priority,
-            category: category,
+            category: categoryArray[0],
             subtask: subtasks,
             checkoffs: tasks[i].checkoffs,
             status: tasks[i].status
@@ -634,6 +636,7 @@ async function saveEditedTask(i) {
     }
     loadTasks();
     await loadToDo();
+    categoryArray = [];
 }
 
 function formatDate(date) {
