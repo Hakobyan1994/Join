@@ -9,6 +9,7 @@ async function loadToDo() {
     updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, hasFeedback, hasDone);
 }
 
+
 function initializeElements() {
     let todo = document.getElementById('board-to-do');
     let progress = document.getElementById('board-in-progress');
@@ -17,6 +18,7 @@ function initializeElements() {
     return [todo, progress, feedback, done];
 }
 
+
 function clearBoardContents(todo, progress, feedback, done) {
     todo.innerHTML = '';
     progress.innerHTML = '';
@@ -24,41 +26,45 @@ function clearBoardContents(todo, progress, feedback, done) {
     done.innerHTML = '';
 }
 
+
 async function populateBoards(todo, progress, feedback, done) {
-    let hasToDo = false;
-    let hasProgress = false;
-    let hasFeedback = false;
-    let hasDone = false;
+    const flags = { hasToDo: false, hasProgress: false, hasFeedback: false, hasDone: false };
 
     for (let i = 0; i < tasks.length; i++) {
-        let taskValue = tasks[i];
-        switch (taskValue.status) {
-            case 'board-to-do':
-                todo.innerHTML += generateBoardCard(taskValue, i);
-                hasToDo = true;
-                break;
-            case 'board-in-progress':
-                progress.innerHTML += generateBoardCard(taskValue, i);
-                hasProgress = true;
-                break;
-            case 'board-await-feedback':
-                feedback.innerHTML += generateBoardCard(taskValue, i);
-                hasFeedback = true;
-                break;
-            case 'board-done':
-                done.innerHTML += generateBoardCard(taskValue, i);
-                hasDone = true;
-                break;
-        }
-        checkCategoryButton();
-        createUserButtons(taskValue, i);
-        await updateProgressBar(i);
-        notData();
-        checkCategoryButton();
+        const taskValue = tasks[i];
+        await updateBoard(taskValue, i, todo, progress, feedback, done, flags);
     }
 
-    return { hasToDo, hasProgress, hasFeedback, hasDone };
+    return flags;
 }
+
+
+async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) {
+    switch (taskValue.status) {
+        case 'board-to-do':
+            todo.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasToDo = true;
+            break;
+        case 'board-in-progress':
+            progress.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasProgress = true;
+            break;
+        case 'board-await-feedback':
+            feedback.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasFeedback = true;
+            break;
+        case 'board-done':
+            done.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasDone = true;
+            break;
+    }
+    checkCategoryButton();
+    createUserButtons(taskValue, i);
+    await updateProgressBar(i);
+    notData();
+    checkCategoryButton();
+}
+
 
 function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, hasFeedback, hasDone) {
     if (!hasToDo) {
@@ -74,6 +80,8 @@ function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, has
         done.innerHTML = '<div id="NoToDoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing yet is done</div>';
     }
 }
+
+
 // Push all selected Subtasks
 
 async function pushSelectedSubtask(i, k) {
@@ -90,6 +98,7 @@ async function pushSelectedSubtask(i, k) {
     }
 }
 
+
 function updateCheckoffs(task, k, value) {
     if (!Array.isArray(task.checkoffs)) {
         task.checkoffs = [];
@@ -102,11 +111,13 @@ function updateCheckoffs(task, k, value) {
     }
 }
 
+
 function addSubtaskToCheckoffs(task, k) {
     if (!task.checkoffs.includes(k)) {
         task.checkoffs.push(k);
     }
 }
+
 
 function removeSubtaskFromCheckoffs(task, k) {
     const index = task.checkoffs.indexOf(k);
@@ -115,9 +126,11 @@ function removeSubtaskFromCheckoffs(task, k) {
     }
 }
 
+
 async function saveTasks() {
     await setItem('tasks', JSON.stringify(tasks));
 }
+
 
 // open EditTask in Board
 
@@ -129,6 +142,7 @@ async function editTask(i) {
     displayEditableContent(i);
     addEventFunctions();
 }
+
 
 function hidePopup(i) {
     let popup = document.getElementById('popup-add-task-div');
@@ -143,6 +157,7 @@ function hidePopup(i) {
         `;
 }
 
+
 function displayEditPopup() {
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
@@ -151,6 +166,7 @@ function displayEditPopup() {
     div.style.display = 'flex';
     content.style.display = 'flex';
 }
+
 
 function displayEditableContent(i) {
     let content = document.getElementById(`popup-add-task-content-edit`);
@@ -177,6 +193,7 @@ async function pushValueToEdit(i) {
     tasks.splice(i, 1);
 }
 
+
 function updateFields(array) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -189,6 +206,7 @@ function updateFields(array) {
     let priority = array.priority;
     getPriority(priority);
 }
+
 
 function updateSubtasks(array) {
     let subtasksArray = array.subtask;
@@ -220,6 +238,7 @@ async function saveEditedTask(i) {
     await reloadTasks();
 }
 
+
 function validateForm() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -236,6 +255,7 @@ function validateForm() {
     }
     return true;
 }
+
 
 function createNewTask(i) {
     let title = document.getElementById('title');
@@ -257,18 +277,20 @@ function createNewTask(i) {
         checkoffs: tasks[i].checkoffs,
         status: tasks[i].status
     };
-
     return newTask;
 }
+
 
 function updateTaskList(newTask, i) {
     tasks.push(newTask);
     tasks.splice(i, 1);
 }
 
+
 async function saveTasks() {
     await setItem('tasks', JSON.stringify(tasks));
 }
+
 
 function closeEditPopup() {
     let popup = document.getElementById('popup-add-task');
@@ -279,6 +301,7 @@ function closeEditPopup() {
         console.log('Popup wurde nicht gefunden / SAVE EDIT');
     }
 }
+
 
 function handleInvalidForm() {
     let title = document.getElementById('title');
@@ -291,6 +314,7 @@ function handleInvalidForm() {
     date.classList.add('inputfield-focus-red');
     title.classList.add('inputfield-focus-red');
 }
+
 
 async function reloadTasks() {
     loadTasks();

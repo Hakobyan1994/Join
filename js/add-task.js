@@ -145,16 +145,19 @@ function handleFocus(add, closeCheck) {                                 // funct
     closeCheck.classList.remove('d-none');
 }
 
+
 function handleBlur(add, closeCheck) {
     add.classList.remove('d-none');
     closeCheck.classList.add('d-none');
 }
+
 
 function handleInput(subtask, add, closeCheck) {
     if (subtask.value.trim() !== '') {
         handleFocus(add, closeCheck);
     }
 }
+
 
 function handleBlurEvent(subtask, add, closeCheck) {
     if (subtask.value.trim() !== '') {

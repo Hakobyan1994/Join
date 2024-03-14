@@ -8,6 +8,7 @@ async function renderAddTaskMain() {
     document.getElementById('date').value = minDate();
 }
 
+
 function renderAddTask() {
     let content = document.getElementById('add-task');
     content.innerHTML = '';

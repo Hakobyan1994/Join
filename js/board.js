@@ -292,8 +292,7 @@ function dragStart(ev) {
     dataTask.splice(id, 1)
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.style.transform = "rotate(15deg)";
-     
-   }
+}
 
 
 function drop(ev) {
@@ -305,11 +304,9 @@ function drop(ev) {
     draggedElement.style.transform = "rotate(0deg)";
     if (!ev.target.contains(draggedElement)) {
         let category = ev.target.appendChild(draggedElement);
-        
     }
     console.log(draggedElement);
-    saveDroppedElement(draggedElement);
-        
+    saveDroppedElement(draggedElement);   
 }
   
 

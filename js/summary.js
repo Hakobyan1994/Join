@@ -137,12 +137,7 @@ async function getValue() {
   let valueFeedback = 0;
   let valueDone = 0;
   let valueUrgent = 0;
-
-  if (tasks.length > 0) {
-    document.getElementById('value-total').innerHTML = tasks.length;
-  } else {
-    document.getElementById('value-total').innerHTML = '0';
-  }
+  let total = 0;
 
 
   for (let i = 0; i < tasks.length; i++) {
@@ -165,6 +160,8 @@ async function getValue() {
       valueUrgent++;
     }
   }
+  total = valueTodo + valueProgress + valueFeedback;
+  console.log(total);
 
   document.getElementById('value-todoarray').innerHTML = valueTodo;
   document.getElementById('value-progressarray').innerHTML = valueProgress;
@@ -172,8 +169,15 @@ async function getValue() {
   document.getElementById('value-donearray').innerHTML = valueDone;
   document.getElementById('value-urgent').innerHTML = valueUrgent;
 
+  if (total) {
+    document.getElementById('value-total').innerHTML = `${total}`;
+  } else if (total === 0) {
+    document.getElementById('value-total').innerHTML = '0';
+  }
+
   getUrgentDate();
 }
+
 
 function getUrgentDate() {
   arrayUrgent = [];
