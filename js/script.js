@@ -25,6 +25,7 @@ async function init() {
     await loadTasks();
     displayGreeting();
     showHeaderIni();
+    // closeInfoList('clickInfoDiv', 'shortName');
 }
 
 
@@ -219,18 +220,19 @@ function minDate() {
 }
 
 
-function closeInfoList() {
-    let list = document.querySelector('.clickInfoDiv');
+function closeInfoList(id, eId) {
+    let list = document.getElementById(id);
+    let eIdElement = document.getElementById(eId);
 
+    if(list) {
         document.addEventListener('click', function(event) {
-            let ul = list.querySelector('ul');
-    
-            if (!ul.contains(event.target) && event.target !== list) {
+            if (!list.contains(event.target) && event.target !== eIdElement) {
                 list.style.display = 'none';
             } else {
                 list.style.display = 'block';
             }
         });
+    }
 }
 
 
@@ -264,6 +266,6 @@ function closeList(id, eId) {
 function btnRenderAssignedList() {
     let list = document.getElementById('assigned-list');
     let button = document.getElementById('assigned-button');
-    list.classList.remove('d-none');
-    button.classList.add('d-none');
+    list.classList.toggle('d-none');
+    button.classList.toggle('d-none');
 }
