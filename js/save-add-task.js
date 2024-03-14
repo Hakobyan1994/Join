@@ -112,7 +112,6 @@ async function handleValidInput(boardcard, description, formatedDate) {
     await setItem('tasks', JSON.stringify(tasks));
     clearFields();
     openBoard();
-    
 }
 
 

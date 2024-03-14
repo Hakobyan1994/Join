@@ -240,9 +240,9 @@ async function updateProgressBar(i) {
 
 
 function totalSubtask(i) {
-    let task = tasks[i];
-    if (task && task.subtask && Array.isArray(task.subtask)) {
-        return task.subtask.length;
+    let taskValue = tasks[i];
+    if (taskValue && taskValue.subtask && Array.isArray(taskValue.subtask)) {
+        return taskValue.subtask.length;
     } else {
         return 0;
     }
@@ -250,9 +250,9 @@ function totalSubtask(i) {
 
 
 function updateSelectedSubtasksCount(i) {
-    let task = tasks[i];
-    if (task && task.checkoffs) {
-        return task.checkoffs.length;
+    let taskValue = tasks[i];
+    if (taskValue && taskValue.checkoffs) {
+        return taskValue.checkoffs.length;
     } else {
         return 0;
     }
@@ -332,33 +332,27 @@ async function editTask(i) {
 
 
 async function pushValueToEdit(i) {
-    try {
-        await loadTasks();
-        let array = tasks[i];
-        let title = document.getElementById('title');
-        let description = document.getElementById('description');
-        let date = document.getElementById('date');
-        let dateValue = deformatDate(array.date);
-        categoryArray.push(tasks[i].category);
-        // category, assigned Array 
-        title.value = array.title;
-        description.value = array.description;
-        date.value = dateValue;
-        let priority = array.priority;
-        getPriority(priority);
-        let subtasksArray = array.subtask;
-        // console.log('push', subtasksArray);
-        subtasks.push(subtasksArray);
+    await loadTasks();
+    let array = tasks[i];
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
+    let dateValue = deformatDate(array.date);
+    categoryArray.push(tasks[i].category);
+    title.value = array.title;
+    description.value = array.description;
+    date.value = dateValue;
+    let priority = array.priority;
+    getPriority(priority);
+    let subtasksArray = array.subtask;
+    subtasks.push(subtasksArray);
 
-        subtasks = [];
-        for (let j = 0; j < subtasksArray.length; j++) {
-            subtasks.push(subtasksArray[j]);
-        }
-        getSubtasks();
-        tasks.splice(i, 1);
-    } catch (error) {
-        console.error('Fehler beim Laden der Aufgaben:', error);
+    subtasks = [];
+    for (let j = 0; j < subtasksArray.length; j++) {
+        subtasks.push(subtasksArray[j]);
     }
+    getSubtasks();
+    tasks.splice(i, 1);
 }
 
 
