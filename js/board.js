@@ -14,7 +14,7 @@ async function renderBoardMain() {
 
 
 async function loadToDo() {
-    loadTasks();
+    await loadTasks();
     let todo = document.getElementById('board-to-do');
     let progress = document.getElementById('board-in-progress');
     let feedback = document.getElementById('board-await-feedback');
@@ -631,7 +631,6 @@ async function saveEditedTask(i) {
         requiredDate.classList.remove('d-none');
         date.classList.add('inputfield-focus-red');
         title.classList.add('inputfield-focus-red');
-        category.classList.add('inputfield-focus-red');
     }
     loadTasks();
     await loadToDo();

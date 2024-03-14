@@ -22,6 +22,7 @@ async function init() {
     includeHTML();
     renderSummaryMain();
     await loadContacts();
+    await loadTasks();
     displayGreeting();
     showHeaderIni();
 }
@@ -230,4 +231,39 @@ function closeInfoList() {
                 list.style.display = 'block';
             }
         });
+}
+
+
+function closeList(id, eId) {
+    let list = document.getElementById(id);
+    let eIdElement = document.getElementById(eId);
+    let assignedButton = document.getElementById('assigned-button');
+    if(list){
+
+    document.addEventListener('click', function(event) {
+
+        if (!list.contains(event.target) && event.target !== eIdElement) {
+            list.classList.add('d-none');
+            if(id === 'assigned-list') {
+                eIdElement.value = '';
+                eIdElement.placeholder = 'Select contacts to assign';
+                if(assignedButton) {
+                    assignedButton.classList.remove('d-none');
+                } else {
+                    console.log('ID: assigned-button not found');
+                }
+            }
+        } else {
+            list.classList.add('block');
+        }
+    });
+    }
+}    
+
+
+function btnRenderAssignedList() {
+    let list = document.getElementById('assigned-list');
+    let button = document.getElementById('assigned-button');
+    list.classList.remove('d-none');
+    button.classList.add('d-none');
 }

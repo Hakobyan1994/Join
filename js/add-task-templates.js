@@ -1,3 +1,36 @@
+async function renderAddTaskMain() {
+    let content = document.getElementById('render-add-task');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainAddTask();
+    renderAddTask();
+    await loadContacts();
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
+}
+
+function renderAddTask() {
+    let content = document.getElementById('add-task');
+    content.innerHTML = '';
+    let boardcard = 'board-to-do';
+    content.innerHTML = generateRenderAddTask(boardcard);
+    addEventFunctions();
+    addSubtask();
+}
+
+
+async function addEventFunctions() {
+    getPrio();
+    document.getElementById('prio').addEventListener('click', getPrio);
+    clearButtonImgChange();
+    setupSubtaskInputFocus();
+    setupSubtaskInputFocus();
+    enterOnSubtask();
+    inputfieldFocus();
+    closeList('assigned-list', 'assigned');
+    closeList('category-list', 'category');
+}
+
+
 function generateHtmlMainAddTask() {
     return /*html*/`
         <div id="add-task" class="main-window"></div>
@@ -6,6 +39,7 @@ function generateHtmlMainAddTask() {
         </div>
     `;
 }
+
 
 function generateRenderAddTask(boardcard) {
     return /*html*/`
@@ -20,7 +54,6 @@ function generateRenderAddTask(boardcard) {
             </div>  
         </div> 
     </div>
-
     `;
 }
 
@@ -82,7 +115,6 @@ function generateHtmlDate() {
             </div>
             <div class="required-text required-text-date d-none" id="required-date">This field is required</div>
         </div>
-        
     `;
 }
 
@@ -138,15 +170,16 @@ function generateHtmlFormSection(boardcard) {
     `;
 }
 
+
 function generateHtmlAssignedList(name, img, isSelected, i) {
     return /*html*/`
-            <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
-                <div>
-                    <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
-                    <div>${name}</div>
-                </div>
-                <img src="${isSelected ? '../assets/img/icons/selected1.svg' : '../assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+        <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+            <div>
+                <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+                <div>${name}</div>
             </div>
+            <img src="${isSelected ? '../assets/img/icons/selected1.svg' : '../assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+        </div>
     `;
 }
 
@@ -214,3 +247,13 @@ function generateSubtaskElement(i, text) {
         </li>
     `;
 }
+
+
+
+
+
+
+
+
+
+
