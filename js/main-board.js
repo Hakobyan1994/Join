@@ -1,4 +1,5 @@
 // Load all Todos in Board
+
 async function loadToDo() {                    
     await loadTasks();
     const [todo, progress, feedback, done] = initializeElements();
@@ -118,10 +119,18 @@ async function saveTasks() {
     await setItem('tasks', JSON.stringify(tasks));
 }
 
-/////////////
+// open EditTask in Board
+
 async function editTask(i) {
     await loadTasks();
     categoryArray = [];
+    hidePopup(i);
+    displayEditPopup();
+    displayEditableContent(i);
+    addEventFunctions();
+}
+
+function hidePopup(i) {
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
     let content = document.getElementById(`popup-add-task-content-edit`);
@@ -132,8 +141,20 @@ async function editTask(i) {
     content.innerHTML = /*html*/`
         <img class="close-a-board edit-close-icon" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupEdit(${i})">
         `;
+}
+
+function displayEditPopup() {
+    let popup = document.getElementById('popup-add-task-div');
+    let div = document.getElementById(`popup-add-task-edit`);
+    let content = document.getElementById(`popup-add-task-content-edit`);
+    popup.style.display = 'none';
+    div.style.display = 'flex';
+    content.style.display = 'flex';
+}
+
+function displayEditableContent(i) {
+    let content = document.getElementById(`popup-add-task-content-edit`);
     content.innerHTML += generateEditableAddtask(i);
-    addEventFunctions();
     pushValueToEdit(i);
 
     let subtaskList = document.getElementById('subtasks');
@@ -146,19 +167,30 @@ async function editTask(i) {
 }
 
 
+// Push all values to the inputfields
+
 async function pushValueToEdit(i) {
     await loadTasks();
     let array = tasks[i];
+    updateFields(array);
+    updateSubtasks(array);
+    tasks.splice(i, 1);
+}
+
+function updateFields(array) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
     let dateValue = deformatDate(array.date);
-    categoryArray.push(tasks[i].category);
+    categoryArray.push(array.category);
     title.value = array.title;
     description.value = array.description;
     date.value = dateValue;
     let priority = array.priority;
     getPriority(priority);
+}
+
+function updateSubtasks(array) {
     let subtasksArray = array.subtask;
     subtasks.push(subtasksArray);
 
@@ -167,59 +199,102 @@ async function pushValueToEdit(i) {
         subtasks.push(subtasksArray[j]);
     }
     getSubtasks();
-    tasks.splice(i, 1);
 }
 
+
+// save the edited task
 
 async function saveEditedTask(i) {
     await loadTasks();
     checkCategoryButton();
+    let isValid = validateForm();
+    if (isValid) {
+        let newTask = createNewTask(i);
+        updateTaskList(newTask, i);
+        await saveTasks();
+        closeEditPopup();
+        await updateProgressBar(i);
+    } else {
+        handleInvalidForm();
+    }
+    await reloadTasks();
+}
+
+function validateForm() {
     let title = document.getElementById('title');
-    let requiredTitle = document.getElementById('required-title');
-    let requiredDate = document.getElementById('required-date');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
-    let priority = pushPrio();
+    let requiredTitle = document.getElementById('required-title');
+    let requiredDate = document.getElementById('required-date');
 
-    let dateValue = date.value;
-    let formatedDate = formatDate(dateValue);
-
-    if (title.value && date.value) {
-
-        let newTask = {
-            title: title.value,
-            description: description.value,
-            assigned: users,
-            letter: iniimg,
-            date: formatedDate,
-            priority: priority,
-            category: categoryArray[0],
-            subtask: subtasks,
-            checkoffs: tasks[i].checkoffs,
-            status: tasks[i].status
-        };
-
-        tasks.push(newTask);
-        tasks.splice(i, 1);
-
-        await setItem('tasks', JSON.stringify(tasks));
-
-        let popup = document.getElementById('popup-add-task');
-        document.getElementById('popup-add-task-edit').style.display = 'none';
-        document.getElementById(`popup-add-task-content-edit`).innerHTML = '';
-
-        if (popup !== null) {
-            await updateProgressBar(i);
-        } else {
-            console.log('Popup wurde nicht gefunden / SAVE EDIT');
-        }
-    } else {
+    if (!title.value || !date.value) {
         requiredTitle.classList.remove('d-none');
         requiredDate.classList.remove('d-none');
         date.classList.add('inputfield-focus-red');
         title.classList.add('inputfield-focus-red');
+        return false;
     }
+    return true;
+}
+
+function createNewTask(i) {
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
+    let priority = pushPrio();
+    let dateValue = date.value;
+    let formatedDate = formatDate(dateValue);
+
+    let newTask = {
+        title: title.value,
+        description: description.value,
+        assigned: users,
+        letter: iniimg,
+        date: formatedDate,
+        priority: priority,
+        category: categoryArray[0],
+        subtask: subtasks,
+        checkoffs: tasks[i].checkoffs,
+        status: tasks[i].status
+    };
+
+    return newTask;
+}
+
+function updateTaskList(newTask, i) {
+    tasks.push(newTask);
+    tasks.splice(i, 1);
+}
+
+async function saveTasks() {
+    await setItem('tasks', JSON.stringify(tasks));
+}
+
+function closeEditPopup() {
+    let popup = document.getElementById('popup-add-task');
+    if (popup !== null) {
+        document.getElementById('popup-add-task-edit').style.display = 'none';
+        document.getElementById(`popup-add-task-content-edit`).innerHTML = '';
+    } else {
+        console.log('Popup wurde nicht gefunden / SAVE EDIT');
+    }
+}
+
+function handleInvalidForm() {
+    let title = document.getElementById('title');
+    let date = document.getElementById('date');
+    let requiredTitle = document.getElementById('required-title');
+    let requiredDate = document.getElementById('required-date');
+
+    requiredTitle.classList.remove('d-none');
+    requiredDate.classList.remove('d-none');
+    date.classList.add('inputfield-focus-red');
+    title.classList.add('inputfield-focus-red');
+}
+
+async function reloadTasks() {
     loadTasks();
     await loadToDo();
     categoryArray = [];
 }
+
