@@ -5,6 +5,7 @@
 
     .main_checkingDiv {
         position: relative;
+        top: 318px;
     }
 
     .summary-mobile {
@@ -28,7 +29,6 @@
         flex-direction: column;
         gap: 0;
         position: relative;
-        bottom: -20px;
         right: 90px
     }
 
