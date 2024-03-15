@@ -40,10 +40,11 @@ body {
 
 .main_checkingDiv {
     position: absolute;
-    top: 335px;
+    top: 255px;
     left: 328px;
     width: 560px;
-    height: 562px;
+    height: calc(100% - 255px);
+    margin-bottom: 32px;
 }
 
 .To_Done_mainDiv {

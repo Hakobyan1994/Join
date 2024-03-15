@@ -25,7 +25,7 @@ async function init() {
     await loadTasks();
     displayGreeting();
     showHeaderIni();
-    // closeInfoList('clickInfoDiv', 'shortName');
+    closeInfoList();
 }
 
 
@@ -122,6 +122,8 @@ function renderHPLMain(page) {
                 pages.style.display = 'none';
             }
         })
+        document.getElementById('info-list-privacy').style.color = 'rgb(205, 205, 205)';
+        document.getElementById('info-list-legal').style.color = 'rgb(205, 205, 205)';
 
         allNavbar.forEach((navbar) => {
             navbar.classList.remove('selected-color');
@@ -137,13 +139,18 @@ function renderHPLMain(page) {
         if(page === 'render-privacy-policy') {
             content.innerHTML = generateHtmlMainPrivacy();
             document.getElementById('privacyhover').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-privacy').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-legal').style.color = 'rgb(205, 205, 205)';
             document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
         }
         if(page === 'render-legal-notice') {
             content.innerHTML = generateHtmlMainLegal();
             document.getElementById('legalhover').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-legal').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-privacy').style.color = 'rgb(205, 205, 205)';
             document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
         }
+        document.getElementById('clickInfoDiv').style.display = 'none';
         return page;
 }
 
@@ -220,19 +227,15 @@ function minDate() {
 }
 
 
-function closeInfoList(id, eId) {
-    let list = document.getElementById(id);
-    let eIdElement = document.getElementById(eId);
-
-    if(list) {
-        document.addEventListener('click', function(event) {
-            if (!list.contains(event.target) && event.target !== eIdElement) {
-                list.style.display = 'none';
-            } else {
-                list.style.display = 'block';
-            }
-        });
-    }
+function closeInfoList() {
+    document.addEventListener('click', function(event) {
+        let clickInfoDiv = document.getElementById('clickInfoDiv');
+        let shortName = document.getElementById('shortName');
+      
+        if (!clickInfoDiv.contains(event.target) && event.target !== shortName) {
+          clickInfoDiv.style.display = 'none';
+        }
+      });
 }
 
 
