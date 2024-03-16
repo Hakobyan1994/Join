@@ -38,17 +38,12 @@ async function getUsers(params) {
 getUsers()
 
 
-
-
-
 function addtoLocal(arr, key) {
     console.log(dataUsers, 'ggggg');
     signUpsetItem('dataUsers', dataUsers)
 }
 
 // setItem('dataUsers', [{ name: 'hhh', email: 'uwdd', password:'12345', id: new Date().getTime()}])
-
-
 
 
 async function onsubmitFor(e) {

@@ -1,37 +1,37 @@
 let loggedInUser = [];
 
-
 let arrayUrgent = [
   {
     priority: [],
     date: []
   }
 ];
-  
-let asguest=JSON.parse(localStorage.getItem('guestLogin'))
+
+
+let asguest = JSON.parse(localStorage.getItem('guestLogin'))
 
 
 async function nameItem(key) {
   const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
   return fetch(url).then(res => res.json()).then(res => {
-      if (res.data) {
-          return JSON.parse(res.data.value);
-      } throw `Could not find data with key "${key}".`;
+    if (res.data) {
+      return JSON.parse(res.data.value);
+    } throw `Could not find data with key "${key}".`;
   });
 }
-     
+
 
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
-  let time=document.getElementById('timeOfDay')
-  if (user) { 
+  let time = document.getElementById('timeOfDay')
+  if (user) {
     let profilName = document.querySelector('.greetingName');
     profilName.innerText = user[0].name;
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
-      greetResponsive.innerText=getGreetingText() + ','
+      greetResponsive.innerText = getGreetingText() + ','
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
@@ -39,38 +39,31 @@ async function user(params) {
       setTimeout(() => {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
-    } 
-     if(asguest){
-       profilName.style.display='none'
-       time=document.getElementById('timeOfDay')
-       time.style.marginTop='37px'
-       let timeText = time.innerText;
-       const timeReplace = timeText.replace(/,/g, '');
-       time.innerText = timeReplace;
-       if(asguest && window.innerWidth<=500)
-         {
+    }
+    if (asguest) {
+      profilName.style.display = 'none'
+      time = document.getElementById('timeOfDay')
+      time.style.marginTop = '37px'
+      let timeText = time.innerText;
+      const timeReplace = timeText.replace(/,/g, '');
+      time.innerText = timeReplace;
+      if (asguest && window.innerWidth <= 500) {
         let namesOfgreet = document.getElementById('namesGreetresp')
-        namesOfgreet.style.display='none'
+        namesOfgreet.style.display = 'none'
         let greetResponsive = document.getElementById('greetResponsive');
-          greetResponsive.innerText= getGreetingText() + '!'
-          
-         }   
-          
-       
-     }
-
-     
+        greetResponsive.innerText = getGreetingText() + '!'
+      }
+    }
   }
 }
 user()
- 
+
 function setTimeforResponsive(transDiv, greetResponsive) {
   transDiv.style.display = 'none';
   greetResponsive.style.display = 'none';
   localStorage.setItem('responsive', JSON.stringify(true));
-} 
+}
 
-    
 
 function getGreetingText() {
   const now = new Date();
@@ -85,13 +78,8 @@ function getGreetingText() {
   }
 }
 
-  
-    
-
-
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
-
 
 
 /*
@@ -161,14 +149,15 @@ async function getValue() {
     }
   }
 
+
   document.getElementById('value-todoarray').innerHTML = valueTodo;
   document.getElementById('value-progressarray').innerHTML = valueProgress;
   document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
   document.getElementById('value-donearray').innerHTML = valueDone;
   document.getElementById('value-urgent').innerHTML = valueUrgent;
-
   getUrgentDate();
 }
+
 
 function getUrgentDate() {
   arrayUrgent = [];
@@ -199,18 +188,18 @@ function deleteOldUrgent() {
   } else {
     console.log('all tasks have no expired upcoming deadline ');
   }
-
 }
 
 
 function actualDate() {
   let date = new Date();
   let day = date.getDate();
-  let options = {month: 'long',  day: 'numeric',  year: 'numeric', };
+  let options = { month: 'long', day: 'numeric', year: 'numeric', };
   let formattedDate = date.toLocaleDateString('de-DE', options);
   console.log(formattedDate);
 }
 actualDate()
+
 
 function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('urgentDate');
@@ -260,11 +249,11 @@ async function getGreeting() {
   let greetingTime = '';
 
   if (hour >= 5 && hour < 12) {
-      greetingTime = `Good morning,`;
+    greetingTime = `Good morning,`;
   } else if (hour >= 12 && hour < 18) {
-      greetingTime = `Good afternoon,`;
+    greetingTime = `Good afternoon,`;
   } else {
-      greetingTime = `Good evening,`;
+    greetingTime = `Good evening,`;
   }
 
   const capitalizedFullName = greetingNameToUpperCaser(loggedInUser.name);
@@ -282,7 +271,8 @@ function greetingNameToUpperCaser(name) {
 
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
-}  
+}
+
 
 async function showHeaderIni() {
   await loadLoggedInUser();
