@@ -34,6 +34,7 @@ function generateHtmlMainBoard() {
                 </div>
             </div>
             <div class="card_mainContainer">
+                <div id="silhouette" class="silhouette"></div>
                 <div class="mobile-boardcard mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>

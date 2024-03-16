@@ -280,9 +280,9 @@ function notData() {
 }
 
 
-function allowDrop(ev) {
-    ev.preventDefault();
-}
+// function allowDrop(ev) {
+//     ev.preventDefault();
+// }
 
 
 function dragStart(ev) {
@@ -293,22 +293,28 @@ function dragStart(ev) {
     notData();
     dataTask.splice(id, 1)
     ev.dataTransfer.setData("text", ev.target.id);
-    ev.target.style.transform = "rotate(15deg)";
+    ev.target.style.transform = "rotate(0deg)";
 }
 
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    // console.log(data);
-    var draggedElement = document.getElementById(data);
-    // ev.target.appendChild(draggedElement);
+    let data = ev.dataTransfer.getData("text");
+    let draggedElement = document.getElementById(data);
     draggedElement.style.transform = "rotate(0deg)";
-    if (!ev.target.contains(draggedElement)) {
-        let category = ev.target.appendChild(draggedElement);
+    let dropTargetId = ev.target.id;
+
+    // Verstecke das Silhouette-DIV
+    let silhouette = document.getElementById('silhouette');
+    silhouette.style.display = 'none';
+
+    let allowedTargets = ['board-to-do', 'board-in-progress', 'board-await-feedback', 'board-done'];
+    if (allowedTargets.includes(dropTargetId)) {
+        if (!ev.target.contains(draggedElement)) {
+            let category = ev.target.appendChild(draggedElement);
+            saveDroppedElement(draggedElement);
+        }
     }
-    console.log(draggedElement);
-    saveDroppedElement(draggedElement);   
 }
   
 
@@ -324,4 +330,29 @@ async function saveDroppedElement(element) {
 
     await setItem('tasks', JSON.stringify(tasks));
     await loadToDo();
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+    // var data = ev.dataTransfer.getData("text");
+    // var draggedElement = document.getElementById(data);
+
+    // // Zeige das Silhouette-DIV an
+    // var silhouette = document.getElementById('silhouette');
+    // silhouette.style.display = 'block';
+    // var targetId = ev.target.id;
+
+    // // Positioniere das Silhouette-DIV am Ende des Ziel-DIVs
+    // var targetDiv = document.getElementById(targetId);
+    // var targetRect = targetDiv.getBoundingClientRect();
+    // silhouette.style.left = targetRect.left + 'px';
+    // silhouette.style.top = targetRect.bottom + 'px'; // Positioniere am unteren Rand
+
+    // // Prüfe, ob das Ziel-DIV ein Container-DIV ist
+    // if (targetDiv.classList.contains('card_Div')) {
+    //     // Positioniere die Silhouette am unteren Rand des Container-DIVs
+    //     var containerRect = targetDiv.getBoundingClientRect();
+    //     silhouette.style.left = containerRect.left + 'px';
+    //     silhouette.style.top = containerRect.bottom + 'px';
+    // }
 }
