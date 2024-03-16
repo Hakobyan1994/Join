@@ -1,9 +1,5 @@
 let loggedInUser = [];
-<<<<<<< HEAD
-
-=======
 let nameActiveUser = [];
->>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
 let arrayUrgent = [
   {
     priority: [],
@@ -28,18 +24,11 @@ async function nameItem(key) {
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
-<<<<<<< HEAD
-  let time = document.getElementById('timeOfDay')
-  if (user) {
-    let profilName = document.querySelector('.greetingName');
-    profilName.innerText = user[0].name;
-=======
  
   // let time=document.getElementById('timeOfDay')
   if (user) { 
      let profilName = document.querySelector('.greetingName');
      profilName.innerText = user[0].name;
->>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -53,17 +42,6 @@ async function user(params) {
       setTimeout(() => {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
-<<<<<<< HEAD
-    }
-    if (asguest) {
-      profilName.style.display = 'none'
-      time = document.getElementById('timeOfDay')
-      time.style.marginTop = '37px'
-      let timeText = time.innerText;
-      const timeReplace = timeText.replace(/,/g, '');
-      time.innerText = timeReplace;
-      if (asguest && window.innerWidth <= 500) {
-=======
     } 
     //  if(asguest){
     //    let profilName = document.querySelector('.greetingName');
@@ -77,7 +55,6 @@ async function user(params) {
 
        if(asguest && window.innerWidth<=500)
          {
->>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
         let namesOfgreet = document.getElementById('namesGreetresp')
         namesOfgreet.style.display = 'none'
         let greetResponsive = document.getElementById('greetResponsive');
@@ -312,19 +289,13 @@ function greetingNameToUpperCaser(name) {
 
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
-<<<<<<< HEAD
-}
-
-=======
 } 
-
 
 
 async function getActiveUser() {
   let user = await registergetItem('activeUser');
   nameActiveUser.push(user[0].name);
 }
->>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
 
 async function showHeaderIni() {
   await getActiveUser();
