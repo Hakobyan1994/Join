@@ -1,44 +1,46 @@
-
 let userGuests = [
     {
         name:'',
         greet:'Good Morning'
     }
 ];
-    
+let dataUser = [];
+getUsers();
      
 
-
-
-let div = document.getElementById('animationDiv')
-let img = document.getElementById('logo-login')
-let stop = JSON.parse(localStorage.getItem('stop'))
-
-
-// if (window.innerWidth <= 400) {
-//     // img.src = "assets/img/anmeldung Image/logoPhone.png"
-// }
-
-
-if (stop) {
-    div.classList.remove('addAnimDiv')
-    img.classList.remove('animation')
-
-    div.classList.add('anim_div')
-    div.classList.remove('startParDiv')
-    img.classList.remove('startParImg')
-    img.classList.add('join_image')
+function logoAnimation() {
+    let div = document.getElementById('animationDiv')
+    let img = document.getElementById('logo-login')
+    let stop = JSON.parse(localStorage.getItem('stop'))
+    
+    
+    // if (window.innerWidth <= 400) {
+    //     // img.src = "assets/img/anmeldung Image/logoPhone.png"
+    // }
+    
+    
+    if (stop) {
+        div.classList.remove('addAnimDiv')
+        img.classList.remove('animation')
+    
+        div.classList.add('anim_div')
+        div.classList.remove('startParDiv')
+        img.classList.remove('startParImg')
+        img.classList.add('join_image')
+    }
+    
+    setTimeout(() => {
+        div.classList.remove('startParDiv')
+        div.classList.add('anim_div')
+        img.classList.remove('startParImg')
+        img.classList.add('join_image')
+    
+    }, 2000)
+    setTimeout(() => {
+    }, 3000)
+    
 }
 
-setTimeout(() => {
-    div.classList.remove('startParDiv')
-    div.classList.add('anim_div')
-    img.classList.remove('startParImg')
-    img.classList.add('join_image')
-
-}, 2000)
-setTimeout(() => {
-}, 3000)
 
 
 // let dataLocal = JSON.parse(localStorage.getItem('datareg'))
@@ -48,7 +50,7 @@ setTimeout(() => {
 // console.log(dataUsers);
 
 
-let dataUser = [];
+
 
 
 async function registerItem(key, value) {
@@ -74,7 +76,7 @@ async function getUsers(params) {
         dataUser = res
     }
 }
-getUsers()
+
 
 
 function activUser(arr) {
@@ -130,9 +132,11 @@ function passwordBlock() {
     }
 }
 
+function validateCheckbox() {
+    checkBox.addEventListener('change', showUserdata);
+    form_log.onsubmit = validLogin;
+}
 
-checkBox.addEventListener('change', showUserdata);
-form_log.onsubmit = validLogin;
 
 
 function validLogin(e) {
@@ -162,9 +166,9 @@ function validLogin(e) {
             //         window.location.href = "../files/start.html";
             //       },10000)
 
-
             activUser(foundUser);
             window.location.href = "../files/start.html";
+
 
 
         } else if (status === 'Error Password' || status === 'Email not found') {
@@ -177,40 +181,51 @@ function validLogin(e) {
     }
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    const passwordInput = document.getElementById('password')
-    const inputImage = document.getElementById('imageInput')
-    passwordInput.addEventListener('input', function () {
-        if (passwordInput.value !== '') {
-            inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
-            inputImage.onclick = function () {
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text'
-                    inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg'
-                } else {
-                    passwordInput.type = 'password'
-                    inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
+function validatePassword() {
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password')
+        const inputImage = document.getElementById('imageInput')
+        passwordInput.addEventListener('input', function () {
+            if (passwordInput.value !== '') {
+                inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
+                inputImage.onclick = function () {
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text'
+                        inputImage.src = '../assets/img/anmeldung Image/passwordLock.svg'
+                    } else {
+                        passwordInput.type = 'password'
+                        inputImage.src = '../assets/img/anmeldung Image/blockPassword.svg'
+                    }
                 }
+            } else {
+                inputImage.src = '../assets/img/anmeldung Image/lock.png'
             }
-        } else {
-            inputImage.src = '../assets/img/anmeldung Image/lock.png'
-        }
+        })
     })
-})
+}
 
 
-setTimeout(() => {
-    localStorage.setItem('stop', JSON.stringify('stop'))
-}, 3000)
+function setTimeout() {
+    setTimeout(() => {
+        localStorage.setItem('stop', JSON.stringify('stop'))
+    }, 3000)
+}
+
 
 
 function guesButton() {
     forGuestUser('guestLogin',userGuests)
-    window.location.href = '../files/start.html'
+    window.location.href = '../files/start.html';
 }
 
 
 function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
+
+/*
+function emptyUserNames() {
+    document.getElementById('shortName').innerHTML = '';
+    document.getElementById('greetingName').style.display = 'none';
+}
+*/
