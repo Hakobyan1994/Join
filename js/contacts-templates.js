@@ -10,7 +10,6 @@ function generateHtmlMainContacts() {
                                 <div id="addBtn" class="add-contact-btn-con"></div>
 
                                 <div id="allContacts" class="all-contacts"></div>
-                                <img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="/assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">
                             </div>
 
                             <div class="dialog-bg d-none" id="dialogBg"></div>

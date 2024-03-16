@@ -126,7 +126,7 @@ h3 {
 
 .card_Div {
     width: 246px;
-    height: 688px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;

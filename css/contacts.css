@@ -81,7 +81,6 @@
     width: 100%;
     padding-top: 350px;
     padding-left: 445px;
-    z-index: -1;
 }
 
 .contact-info-slider {
@@ -346,4 +345,6 @@
 .back-arrow-mobile {
     position: relative;
     right: 18px;
+    z-index: -1;
+    cursor: pointer;
 }

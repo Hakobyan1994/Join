@@ -17,12 +17,12 @@
 
 
 function checks() {
-  let profilInfo = document.querySelector('.clickInfoDiv')
-  if (profilInfo.style.display === 'block') {
-    profilInfo.style.display = 'none'
-  } else {
-    profilInfo.style.display = 'block'
-  }
+  let profilInfo = document.getElementById('clickInfoDiv');
+    if (profilInfo.style.display === 'block') {
+        profilInfo.style.display = 'none';
+    } else {
+        profilInfo.style.display = 'block';
+    }
 }
 
 

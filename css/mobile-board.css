@@ -5,7 +5,7 @@
 
     .card_mainContainer {
         width: 100%;
-        padding-bottom: 100px;
+        padding-bottom: 32px;
         gap: 16px;
         overflow-y: scroll;
     }
@@ -16,7 +16,7 @@
 
     .board_div {
         margin-top: 8px;
-        width: 220px;
+        width: 233px;
     }
 
     .info_Div {

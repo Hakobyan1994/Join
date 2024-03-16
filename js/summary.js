@@ -1,5 +1,9 @@
 let loggedInUser = [];
+<<<<<<< HEAD
 
+=======
+let nameActiveUser = [];
+>>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
 let arrayUrgent = [
   {
     priority: [],
@@ -24,10 +28,18 @@ async function nameItem(key) {
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
+<<<<<<< HEAD
   let time = document.getElementById('timeOfDay')
   if (user) {
     let profilName = document.querySelector('.greetingName');
     profilName.innerText = user[0].name;
+=======
+ 
+  // let time=document.getElementById('timeOfDay')
+  if (user) { 
+     let profilName = document.querySelector('.greetingName');
+     profilName.innerText = user[0].name;
+>>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -35,10 +47,13 @@ async function user(params) {
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
-      namesOfgreet.innerText = user[0].name;
+      let name = user[0].name;
+      let formattedName = name.charAt(0).toUpperCase() +  name.slice(1).toLowerCase();
+      namesOfgreet.innerText = formattedName;
       setTimeout(() => {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
+<<<<<<< HEAD
     }
     if (asguest) {
       profilName.style.display = 'none'
@@ -48,6 +63,21 @@ async function user(params) {
       const timeReplace = timeText.replace(/,/g, '');
       time.innerText = timeReplace;
       if (asguest && window.innerWidth <= 500) {
+=======
+    } 
+    //  if(asguest){
+    //    let profilName = document.querySelector('.greetingName');
+    //    let time=document.getElementById('timeOfDay');
+    //    profilName.style.display='none'
+    //    time=document.getElementById('timeOfDay')
+    //    time.style.marginTop='37px'
+    //    let timeText = time.innerText;
+    //    const timeReplace = timeText.replace(/,/g,'');
+    //    time.innerText = timeReplace;
+
+       if(asguest && window.innerWidth<=500)
+         {
+>>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
         let namesOfgreet = document.getElementById('namesGreetresp')
         namesOfgreet.style.display = 'none'
         let greetResponsive = document.getElementById('greetResponsive');
@@ -55,7 +85,7 @@ async function user(params) {
       }
     }
   }
-}
+// }
 user()
 
 function setTimeforResponsive(transDiv, greetResponsive) {
@@ -120,12 +150,7 @@ async function getValue() {
   let valueFeedback = 0;
   let valueDone = 0;
   let valueUrgent = 0;
-
-  if (tasks.length > 0) {
-    document.getElementById('value-total').innerHTML = tasks.length;
-  } else {
-    document.getElementById('value-total').innerHTML = '0';
-  }
+  let total = 0;
 
 
   for (let i = 0; i < tasks.length; i++) {
@@ -148,6 +173,8 @@ async function getValue() {
       valueUrgent++;
     }
   }
+  total = valueTodo + valueProgress + valueFeedback;
+  console.log(total);
 
 
   document.getElementById('value-todoarray').innerHTML = valueTodo;
@@ -155,6 +182,13 @@ async function getValue() {
   document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
   document.getElementById('value-donearray').innerHTML = valueDone;
   document.getElementById('value-urgent').innerHTML = valueUrgent;
+
+  if (total) {
+    document.getElementById('value-total').innerHTML = `${total}`;
+  } else if (total === 0) {
+    document.getElementById('value-total').innerHTML = '0';
+  }
+
   getUrgentDate();
 }
 
@@ -228,22 +262,28 @@ function defineUpcomingDeadline() {
 }
 
 
-async function loadLoggedInUser() {
-  loggedInUser = JSON.parse(await getItem('userData'));
-}
-
-
 async function displayGreeting() {
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
+   
   let greetingData = await getGreeting();
   greetingTimeCon.textContent = greetingData.time;
-  greetingNameCon.textContent = user();
+  // greetingNameCon.style.display = 'block';
+  greetingNameCon.textContent = greetingData.name;
+  if(asguest){
+    let textGreeting = greetingTimeCon.innerText;
+    let replaceText = textGreeting.replace(/,/g, ''); // Corrected the usage of replace() function
+    greetingTimeCon.style.marginTop='37px'
+    greetingTimeCon.innerText = replaceText;
+    greetingNameCon.style.display = 'none';
+
+   }
+
 }
 
 
 async function getGreeting() {
-  await loadLoggedInUser();
+  await getActiveUser();
   const now = new Date();
   const hour = now.getHours();
   let greetingTime = '';
@@ -256,29 +296,41 @@ async function getGreeting() {
     greetingTime = `Good evening,`;
   }
 
-  const capitalizedFullName = greetingNameToUpperCaser(loggedInUser.name);
+  const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
 
-  return { time: greetingTime, name: capitalizedFullName };
+  return {time: greetingTime, name: capitalizedFullName};
 }
 
 
 function greetingNameToUpperCaser(name) {
-  const nameWords = name.split('');
+  const nameWords = name.split(' ');
+  console.log(nameWords);
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
-  return capitalizedNames.join('');
+  return capitalizedNames.join(' ');
 }
 
 
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
+<<<<<<< HEAD
 }
 
+=======
+} 
+
+
+
+async function getActiveUser() {
+  let user = await registergetItem('activeUser');
+  nameActiveUser.push(user[0].name);
+}
+>>>>>>> e413f372a5fc5c3a9381ae19412b5006a966b518
 
 async function showHeaderIni() {
-  await loadLoggedInUser();
+  await getActiveUser();
   let div = document.getElementById('shortName');
-  let name = loggedInUser.name;
-  let initials = name.charAt(0);
-  console.log(initials);
+  let name = greetingNameToUpperCaser(nameActiveUser[0]);
+  console.log(name);
+  let initials = name.charAt(0).toUpperCase();
   div.textContent = initials;
 }

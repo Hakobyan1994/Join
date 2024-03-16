@@ -3,41 +3,8 @@ let subtasks = [];
 let users = [];
 let iniimg = [];
 
-async function renderAddTaskMain() {
-    let content = document.getElementById('render-add-task');
-    content.innerHTML = '';
-    content.innerHTML = generateHtmlMainAddTask();
-    renderAddTask();
-    await loadContacts();
-    document.getElementById('date').min = minDate();
-    document.getElementById('date').value = minDate();
-}
 
-function renderAddTask() {
-    let content = document.getElementById('add-task');
-    let boardcard = 'board-to-do';
-    content.innerHTML = generateRenderAddTask(boardcard);
-    addEventFunctions();
-    addSubtask();
-}
-
-
-async function addEventFunctions() {
-    await loadContacts();
-    await loadTasks();
-    getPrio();
-    document.getElementById('prio').addEventListener('click', getPrio);
-    clearButtonImgChange();
-    setupSubtaskInputFocus();
-    setupSubtaskInputFocus();
-    enterOnSubtask();
-    inputfieldFocus();
-    closeList('assigned-list', 'assigned');
-    closeList('category-list', 'category');
-}
-
-
-function renderAssignedList() {
+function renderAssignedList() {                                         // generate the contact list of the section assigned-to
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     let input = document.getElementById('assigned');
@@ -54,7 +21,7 @@ function renderAssignedList() {
 }
 
 
-function renderContactList(list) {
+function renderContactList(list) {                                      // add all contacts to the list
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].name;
         const img = contacts[i].initials;
@@ -65,7 +32,7 @@ function renderContactList(list) {
 }
 
 
-function searchAssignedList() {
+function searchAssignedList() {                                         // search function for assigned to list
     let input = document.getElementById('assigned');
     let filter = input.value.toUpperCase();
     for (let i = 0; i < contacts.length; i++) {
@@ -81,7 +48,7 @@ function searchAssignedList() {
 }
 
 
-function selectCategory(category, exCategory) {
+function selectCategory(category, exCategory) {                            // evaluate the category inputfield
     let selectedCategory = document.getElementById(category);
     let notSelected = document.getElementById(exCategory);
     let input = document.getElementById('category');
@@ -97,7 +64,7 @@ function selectCategory(category, exCategory) {
 }
 
 
-function styleCategoryList(selectedCategory, notSelected, input) {
+function styleCategoryList(selectedCategory, notSelected, input) {          // styling of the category list if its clicked or not
     selectedCategory.classList.toggle('grey');
     selectedCategory.classList.toggle('white-bg');
     notSelected.classList.remove('grey');
@@ -106,7 +73,7 @@ function styleCategoryList(selectedCategory, notSelected, input) {
 }
 
 
-function pushCategorytoInput() {
+function pushCategorytoInput() {                                            // category which is clicked goes to the inputfield
     let categoryInput = document.getElementById('category');
     let approvedElements = document.querySelectorAll('.grey');
     let list = document.getElementById('category-list');
@@ -121,7 +88,7 @@ function pushCategorytoInput() {
 }
 
 
-function selectAssignedContacts(i) {
+function selectAssignedContacts(i) {                                        // select the contact list of assigned to
     document.getElementById('assigned-button').classList.add('d-none');
     let contact = document.getElementById(`assigned-contacts-${i}`);
     let checkbox = document.getElementById(`checkbox-contact-${i}`);
@@ -133,7 +100,7 @@ function selectAssignedContacts(i) {
 }
 
 
-function selectBehaviorAssignedContacts(contact, checkbox) {
+function selectBehaviorAssignedContacts(contact, checkbox) {                // styling the selected contact
     if (contact.classList.contains('select-contact-blue')) {
         checkbox.src = '../assets/img/icons/selected1.svg';
         checkbox.classList.remove('checkbox-none-selected');
@@ -146,55 +113,7 @@ function selectBehaviorAssignedContacts(contact, checkbox) {
 }
 
 
-function pushUser(i) {
-    let assignedContact = document.getElementById(`assigned-contacts-${i}`);
-    let approved = assignedContact.classList.contains('select-contact-blue');
-    let user = contacts[i].name;
-    let img = contacts[i].initials;
-    let index = users.indexOf(user);
-    if (approved) {
-        addDetectedContacts(index, user, img);
-    } else {
-        deleteNotDetectedContacts(index);
-    }
-    generateAssignedButton();
-}
-
-
-function addDetectedContacts(index, user, img) {
-    if (index === -1) {
-        users.push(user);
-        iniimg.push(img);
-    }
-}
-
-
-function deleteNotDetectedContacts(index) {
-    if (index !== -1) {
-        users.splice(index, 1);
-        iniimg.splice(index, 1);
-    }
-}
-
-
-function pushPrio() {
-    let prios = document.getElementById('prio');
-    let prioButtons = prios.querySelectorAll('button');
-    let selectedPriority = null;
-
-    prioButtons.forEach(function (button) {
-        if (!button.classList.contains('prio-notselected')) {
-            selectedPriority = button.value;
-        }
-    });
-    if (selectedPriority === null) {
-        selectedPriority = 'medium';
-    }
-    return selectedPriority;
-}
-
-
-function getPrio() {
+function getPrio() {                                                        // choose the prio field
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
 
@@ -207,7 +126,7 @@ function getPrio() {
 }
 
 
-function stylingPrioButtons(button, prioButtons) {
+function stylingPrioButtons(button, prioButtons) {                          // styling the prio which is clicked
     if (!button.classList.contains('prio-notselected')) {
         button.classList.add('prio-notselected')
     } else {
@@ -221,21 +140,24 @@ function stylingPrioButtons(button, prioButtons) {
 }
 
 
-function handleFocus(add, closeCheck) {
+function handleFocus(add, closeCheck) {                                 // functions to display the several icons in subtask
     add.classList.add('d-none');
     closeCheck.classList.remove('d-none');
 }
+
 
 function handleBlur(add, closeCheck) {
     add.classList.remove('d-none');
     closeCheck.classList.add('d-none');
 }
 
+
 function handleInput(subtask, add, closeCheck) {
     if (subtask.value.trim() !== '') {
         handleFocus(add, closeCheck);
     }
 }
+
 
 function handleBlurEvent(subtask, add, closeCheck) {
     if (subtask.value.trim() !== '') {
@@ -246,7 +168,7 @@ function handleBlurEvent(subtask, add, closeCheck) {
 }
 
 
-function setupSubtaskInputFocus() {
+function setupSubtaskInputFocus() {                                      // change the inputfield of subtask in different modes
     let subtask = document.getElementById('subtask-input');
     let add = document.getElementById('subtask-change-add-icon');
     let closeCheck = document.getElementById('subtask-close-check-icon');
@@ -257,7 +179,7 @@ function setupSubtaskInputFocus() {
 }
 
 
-function enterOnSubtask() {
+function enterOnSubtask() {                                             // create subtasks with an enter key
     let input = document.getElementById('subtask-input');
 
     input.addEventListener('keypress', function (event) {
@@ -269,33 +191,7 @@ function enterOnSubtask() {
 }
 
 
-function addSubtask() {
-    let content = document.getElementById('subtask-input');
-    let list = document.getElementById('subtasks');
-    let subtask = content.value;
-    list.innerHTML = '';
-
-    if (subtask.trim() === '') {
-        updateSubtasklist();
-        return;
-    }
-
-    pushSubtask(subtask);
-    updateSubtaskList(list);
-    clearInput(content);
-}
-
-function pushSubtask(subtask) {
-    subtasks.push(subtask);
-}
-
-
-function clearInput(content) {
-    content.value = '';
-}
-
-
-function editSubtask(i) {
+function editSubtask(i) {                                                   // able to edit subtask
     let subtaskInput = document.getElementById(`subtask${i}`);
     let listItem = document.getElementById(`each-subtask${i}`);
     let inputValue = subtaskInput.innerText || subtaskInput.textContent;
@@ -310,7 +206,7 @@ function makeListItemEditable(listItem, i, inputValue) {
 }
 
 
-function deleteSubtask(i) {
+function deleteSubtask(i) {                                                 // delete subtask befor creating the task
     let position = i;
     subtasks.splice(position, 1);
 
@@ -324,7 +220,7 @@ function deleteSubtask(i) {
 }
 
 
-function pushEditedSubtask(i) {
+function pushEditedSubtask(i) {                                             // push each subtasks in subtask array
     let inputField = document.getElementById(`subtask${i}`);
     let newText = inputField.value;
     let position = i;
@@ -333,7 +229,7 @@ function pushEditedSubtask(i) {
         subtasks.splice(position, 1, newText);
         updateSubtasklist();
     } else {
-        console.log('Das Feld ist leer')
+        console.log('subtasks: empty field');
     };
 }
 
@@ -355,7 +251,7 @@ function clearSubtaskInputField() {
 }
 
 
-function clearButtonImgChange() {
+function clearButtonImgChange() {                                       //change clear button when it is hovering
     let img = document.getElementById('clear-button-img');
     let clearButton = document.getElementById('clear-button');
     if (clearButton) {
@@ -369,7 +265,7 @@ function clearButtonImgChange() {
 }
 
 
-function clearFields() {
+function clearFields() {                                                // clear all value fields
     resetFieldValues();
     hideAssignedList();
     resetGlobalVariables();
@@ -377,6 +273,7 @@ function clearFields() {
     resetPrioritySelection();
     generateAssignedButton();
 }
+
 
 function resetFieldValues() {
     document.getElementById('title').value = '';
@@ -387,15 +284,18 @@ function resetFieldValues() {
     document.getElementById('subtask-input').value = '';
 }
 
+
 function hideAssignedList() {
     document.getElementById('assigned-list').classList.add('d-none');
 }
+
 
 function resetGlobalVariables() {
     users = [];
     iniimg = [];
     subtasks = [];
 }
+
 
 function resetPrioritySelection() {
     let prio = document.querySelectorAll('.prio');
@@ -409,90 +309,21 @@ function resetPrioritySelection() {
 }
 
 
-async function createTask(boardcard) {
-    let { title, requiredTitle, requiredDate, requiredCategory, description, date, category } = getInputElements();
-    let dateValue = date.value;
-    let formatedDate = formatDate(dateValue);
-    if (isValidInput(title.value, dateValue, category.value)) {
-        await handleValidInput(boardcard, description, formatedDate);
-    } else {
-        handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category);
-    }
-    if (document.getElementById('popup-add-task')) {
-        loadToDo();
-    }
-    return tasks;
-}
-
-function getInputElements() {
-    return {
-        title: document.getElementById('title'),
-        requiredTitle: document.getElementById('required-title'),
-        requiredDate: document.getElementById('required-date'),
-        requiredCategory: document.getElementById('required-category'),
-        description: document.getElementById('description'),
-        date: document.getElementById('date'),
-        category: document.getElementById('category')
-    };
-}
-
-function isValidInput(titleValue, dateValue, categoryValue) {
-    return titleValue && dateValue && categoryValue;
-}
-
-async function handleValidInput(boardcard, description, formatedDate) {
-    loadTasks();
-    pushToTodoBoard(boardcard, description, formatedDate);
-    await setItem('tasks', JSON.stringify(tasks));
-    clearFields();
-    openBoard();
-    
-}
-
-function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category) {
-    requiredTitle.classList.remove('d-none');
-    requiredDate.classList.remove('d-none');
-    requiredCategory.classList.remove('d-none');
-    date.classList.add('inputfield-focus-red');
-    title.classList.add('inputfield-focus-red');
-    category.classList.add('inputfield-focus-red');
-}
-
-function pushToTodoBoard(boardcard, description, formatedDate) {
-    let { title, category } = getInputElements();
-    let priority = pushPrio();
-    let newTask = {
-        title: title.value,
-        description: description.value,
-        assigned: users,
-        letter: iniimg,
-        date: formatedDate,
-        priority: priority,
-        category: category.value,
-        subtask: subtasks,
-        checkoffs: [],
-        status: boardcard
-    };
-    tasks.push(newTask);
-}
-
-
 function inputfieldFocus(field) {
     let input = document.getElementById(field);
     let required = document.getElementById(`required-${field}`);
-
     if (input) {
         if (document.activeElement === input) {
             handleFocusedInput(input, required);
         } else {
             handleBlurredInput(input, required);
         }
-
         input.addEventListener('blur', function () {
             handleBlurredInput(input, required);
         });
     }
 }
+
 
 function handleFocusedInput(input, required) {
     let isInputEmpty = input.value.trim() === '';
@@ -502,12 +333,12 @@ function handleFocusedInput(input, required) {
     input.classList.toggle('inputfield-focus-white', false);
 }
 
+
 function handleBlurredInput(input, required) {
     input.classList.remove('inputfield-focus-red', 'inputfield-focus-blue');
     input.classList.add('inputfield-focus-white');
     required.classList.add('d-none');
 }
-
 
 
 function openBoard() {
@@ -521,40 +352,4 @@ function openBoard() {
     setTimeout(() => {
         renderPage('board-page', 'render-board');
     }, "1500");
-}
-
-
-function closeList(id, eId) {
-    let list = document.getElementById(id);
-    let eIdElement = document.getElementById(eId);
-    let assignedButton = document.getElementById('assigned-button');
-    if(list){
-
-    document.addEventListener('click', function(event) {
-
-        if (!list.contains(event.target) && event.target !== eIdElement) {
-            list.classList.add('d-none');
-            if(id === 'assigned-list') {
-                eIdElement.value = '';
-                eIdElement.placeholder = 'Select contacts to assign';
-                if(assignedButton) {
-                    assignedButton.classList.remove('d-none');
-                } else {
-                    console.log('ID: assigned-button not found');
-                }
-
-            }
-        } else {
-            list.classList.add('block');
-        }
-    });
-    }
-}    
-
-
-function btnRenderAssignedList() {
-    let list = document.getElementById('assigned-list');
-    let button = document.getElementById('assigned-button');
-    list.classList.remove('d-none');
-    button.classList.add('d-none');
 }

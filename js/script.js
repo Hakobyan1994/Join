@@ -22,8 +22,10 @@ async function init() {
     includeHTML();
     renderSummaryMain();
     await loadContacts();
+    await loadTasks();
     displayGreeting();
     showHeaderIni();
+    closeInfoList();
 }
 
 
@@ -120,6 +122,8 @@ function renderHPLMain(page) {
                 pages.style.display = 'none';
             }
         })
+        document.getElementById('info-list-privacy').style.color = 'rgb(205, 205, 205)';
+        document.getElementById('info-list-legal').style.color = 'rgb(205, 205, 205)';
 
         allNavbar.forEach((navbar) => {
             navbar.classList.remove('selected-color');
@@ -135,13 +139,18 @@ function renderHPLMain(page) {
         if(page === 'render-privacy-policy') {
             content.innerHTML = generateHtmlMainPrivacy();
             document.getElementById('privacyhover').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-privacy').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-legal').style.color = 'rgb(205, 205, 205)';
             document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
         }
         if(page === 'render-legal-notice') {
             content.innerHTML = generateHtmlMainLegal();
             document.getElementById('legalhover').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-legal').style.color = 'var(--lightblue)';
+            document.getElementById('info-list-privacy').style.color = 'rgb(205, 205, 205)';
             document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
         }
+        document.getElementById('clickInfoDiv').style.display = 'none';
         return page;
 }
 
@@ -218,3 +227,48 @@ function minDate() {
 }
 
 
+function closeInfoList() {
+    document.addEventListener('click', function(event) {
+        let clickInfoDiv = document.getElementById('clickInfoDiv');
+        let shortName = document.getElementById('shortName');
+      
+        if (!clickInfoDiv.contains(event.target) && event.target !== shortName) {
+          clickInfoDiv.style.display = 'none';
+        }
+      });
+}
+
+
+function closeList(id, eId) {
+    let list = document.getElementById(id);
+    let eIdElement = document.getElementById(eId);
+    let assignedButton = document.getElementById('assigned-button');
+    if(list){
+
+    document.addEventListener('click', function(event) {
+
+        if (!list.contains(event.target) && event.target !== eIdElement) {
+            list.classList.add('d-none');
+            if(id === 'assigned-list') {
+                eIdElement.value = '';
+                eIdElement.placeholder = 'Select contacts to assign';
+                if(assignedButton) {
+                    assignedButton.classList.remove('d-none');
+                } else {
+                    console.log('ID: assigned-button not found');
+                }
+            }
+        } else {
+            list.classList.add('block');
+        }
+    });
+    }
+}    
+
+
+function btnRenderAssignedList() {
+    let list = document.getElementById('assigned-list');
+    let button = document.getElementById('assigned-button');
+    list.classList.toggle('d-none');
+    button.classList.toggle('d-none');
+}
