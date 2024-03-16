@@ -23,14 +23,16 @@ async function init() {
     renderSummaryMain();
     await loadContacts();
     await loadTasks();
-    displayGreeting();
-    showHeaderIni();
     closeInfoList();
 }
 
 
 async function initLogin() {
     includeHTML();
+    logoAnimation();
+    validateCheckbox();
+    setTimeout();
+    validatePassword();
 }
 
 
@@ -264,4 +266,11 @@ function closeList(id, eId, icon) {
         }
     });
     }
-}    
+}   
+
+function logoutUser() {
+    localStorage.clear();
+    window.location.href = '../index.html';
+    document.getElementById('shortName').innerHTML = '';
+    nameActiveUser = [];
+}

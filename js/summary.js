@@ -8,7 +8,7 @@ let arrayUrgent = [
 ];
 
 
-let asguest = JSON.parse(localStorage.getItem('guestLogin'))
+let asguest = JSON.parse(localStorage.getItem('guestLogin'));
 
 
 async function nameItem(key) {
@@ -242,25 +242,26 @@ function defineUpcomingDeadline() {
 async function displayGreeting() {
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
-   
+  let shortName = document.getElementById('shortName');
   let greetingData = await getGreeting();
   greetingTimeCon.textContent = greetingData.time;
-  // greetingNameCon.style.display = 'block';
-  greetingNameCon.textContent = greetingData.name;
   if(asguest){
     let textGreeting = greetingTimeCon.innerText;
     let replaceText = textGreeting.replace(/,/g, ''); // Corrected the usage of replace() function
     greetingTimeCon.style.marginTop='37px'
     greetingTimeCon.innerText = replaceText;
     greetingNameCon.style.display = 'none';
-
+    shortName.innerHTML = 'G';
+   } else {
+    showHeaderIni();
+    greetingNameCon.style.display = 'block';
+    greetingNameCon.textContent = greetingData.name;
    }
 
 }
 
 
 async function getGreeting() {
-  await getActiveUser();
   const now = new Date();
   const hour = now.getHours();
   let greetingTime = '';
@@ -272,9 +273,8 @@ async function getGreeting() {
   } else {
     greetingTime = `Good evening,`;
   }
-
+  await getActiveUser();
   const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
-
   return {time: greetingTime, name: capitalizedFullName};
 }
 

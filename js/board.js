@@ -264,6 +264,8 @@ async function closePopupEdit(i) {
 }
 
 
+// Drag and Drop Function
+
 function notData() {
     let todo = document.getElementById('board-to-do');
     // console.log(tasks);

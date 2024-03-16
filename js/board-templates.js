@@ -37,15 +37,13 @@ function generateHtmlMainBoard() {
                 <div class="mobile-boardcard mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
-                       
                     </div>
                     <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    <div  id='testt'>grgr</div>
+                    <!-- <div  id='testt'>grgr</div> -->
                 </div>
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
-                        <div></div>
                     </div>
                     <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
@@ -53,7 +51,6 @@ function generateHtmlMainBoard() {
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
-                        <div></div>
                     </div>
                     <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
