@@ -239,15 +239,16 @@ function closeInfoList() {
 }
 
 
-function closeList(id, eId) {
+function closeList(id, eId, icon) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
     let assignedButton = document.getElementById('assigned-button');
+    let dropdown = document.getElementById(icon);
     if(list){
 
     document.addEventListener('click', function(event) {
 
-        if (!list.contains(event.target) && event.target !== eIdElement) {
+        if (!list.contains(event.target) && event.target !== eIdElement && event.target !== dropdown) {
             list.classList.add('d-none');
             if(id === 'assigned-list') {
                 eIdElement.value = '';
@@ -264,11 +265,3 @@ function closeList(id, eId) {
     });
     }
 }    
-
-
-function btnRenderAssignedList() {
-    let list = document.getElementById('assigned-list');
-    let button = document.getElementById('assigned-button');
-    list.classList.toggle('d-none');
-    button.classList.toggle('d-none');
-}
