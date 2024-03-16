@@ -24,11 +24,11 @@ async function nameItem(key) {
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
- 
+
   // let time=document.getElementById('timeOfDay')
-  if (user) { 
-     let profilName = document.querySelector('.greetingName');
-     profilName.innerText = user[0].name;
+  if (user) {
+    let profilName = document.querySelector('.greetingName');
+    profilName.innerText = user[0].name;
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -37,12 +37,12 @@ async function user(params) {
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
       let name = user[0].name;
-      let formattedName = name.charAt(0).toUpperCase() +  name.slice(1).toLowerCase();
+      let formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
       namesOfgreet.innerText = formattedName;
       setTimeout(() => {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
-    } 
+    }
     //  if(asguest){
     //    let profilName = document.querySelector('.greetingName');
     //    let time=document.getElementById('timeOfDay');
@@ -53,15 +53,14 @@ async function user(params) {
     //    const timeReplace = timeText.replace(/,/g,'');
     //    time.innerText = timeReplace;
 
-       if(asguest && window.innerWidth<=500)
-         {
-        let namesOfgreet = document.getElementById('namesGreetresp')
-        namesOfgreet.style.display = 'none'
-        let greetResponsive = document.getElementById('greetResponsive');
-        greetResponsive.innerText = getGreetingText() + '!'
-      }
+    if (asguest && window.innerWidth <= 500) {
+      let namesOfgreet = document.getElementById('namesGreetresp')
+      namesOfgreet.style.display = 'none'
+      let greetResponsive = document.getElementById('greetResponsive');
+      greetResponsive.innerText = getGreetingText() + '!'
     }
   }
+}
 // }
 user()
 
@@ -77,17 +76,16 @@ function getGreetingText() {
   const hour = now.getHours();
 
   if (hour >= 5 && hour < 12) {
-    return 'Good morning';
+    return 'Good morning,';
   } else if (hour >= 12 && hour < 18) {
-    return 'Good afternoon';
+    return 'Good afternoon,';
   } else {
-    return 'Good evening';
+    return 'Good evening,';
   }
 }
 
 
 // let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
-
 
 /*
 const currentDate = new Date();
@@ -242,20 +240,21 @@ function defineUpcomingDeadline() {
 async function displayGreeting() {
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
-   
+
   let greetingData = await getGreeting();
   greetingTimeCon.textContent = greetingData.time;
-  // greetingNameCon.style.display = 'block';
+  greetingNameCon.style.display = 'block';
   greetingNameCon.textContent = greetingData.name;
-  if(asguest){
+
+  if (asguest) {
     let textGreeting = greetingTimeCon.innerText;
     let replaceText = textGreeting.replace(/,/g, ''); // Corrected the usage of replace() function
-    greetingTimeCon.style.marginTop='37px'
+    greetingTimeCon.style.marginTop = '37px'
     greetingTimeCon.innerText = replaceText;
     greetingNameCon.style.display = 'none';
-
-   }
-
+  } else {
+    
+  }
 }
 
 
@@ -275,7 +274,7 @@ async function getGreeting() {
 
   const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
 
-  return {time: greetingTime, name: capitalizedFullName};
+  return { time: greetingTime, name: capitalizedFullName };
 }
 
 
@@ -289,13 +288,14 @@ function greetingNameToUpperCaser(name) {
 
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
-} 
+}
 
 
 async function getActiveUser() {
   let user = await registergetItem('activeUser');
   nameActiveUser.push(user[0].name);
 }
+
 
 async function showHeaderIni() {
   await getActiveUser();
