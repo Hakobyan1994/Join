@@ -299,8 +299,13 @@ async function getActiveUser() {
 async function showHeaderIni() {
   await getActiveUser();
   let div = document.getElementById('shortName');
-  let name = greetingNameToUpperCaser(nameActiveUser[0]);
-  console.log(name);
-  let initials = name.charAt(0).toUpperCase();
+  let name = nameActiveUser[0];
+  let initials = getInitials(name);
   div.textContent = initials;
+}
+
+function getInitials(name) {
+  let nameWords = name.split(' ');
+  let initials = nameWords.map(word => word.charAt(0).toUpperCase()).join('');
+  return initials;
 }

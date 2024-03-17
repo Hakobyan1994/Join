@@ -149,3 +149,11 @@
     position: relative;
     bottom: 26px;
 }
+
+.contact-edit-btn-mobile {
+    display: none;
+}
+
+.slide-in-menu-mobile {
+    display: none;
+}

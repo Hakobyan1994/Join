@@ -1,46 +1,45 @@
 let userGuests = [
     {
-        name:'',
-        greet:'Good Morning'
+        name: '',
+        greet: 'Good Morning'
     }
 ];
 let dataUser = [];
 getUsers();
-     
+
 
 function logoAnimation() {
     let div = document.getElementById('animationDiv')
     let img = document.getElementById('logo-login')
     let stop = JSON.parse(localStorage.getItem('stop'))
-    
-    
+
+
     // if (window.innerWidth <= 400) {
     //     // img.src = "assets/img/anmeldung Image/logoPhone.png"
     // }
-    
-    
+
+
     if (stop) {
         div.classList.remove('addAnimDiv')
         img.classList.remove('animation')
-    
+
         div.classList.add('anim_div')
         div.classList.remove('startParDiv')
         img.classList.remove('startParImg')
         img.classList.add('join_image')
     }
-    
+
     setTimeout(() => {
         div.classList.remove('startParDiv')
         div.classList.add('anim_div')
         img.classList.remove('startParImg')
         img.classList.add('join_image')
-    
+
     }, 2000)
     setTimeout(() => {
     }, 3000)
-    
-}
 
+}
 
 
 // let dataLocal = JSON.parse(localStorage.getItem('datareg'))
@@ -48,9 +47,6 @@ function logoAnimation() {
 //     dataUsers = dataLocal
 // }
 // console.log(dataUsers);
-
-
-
 
 
 async function registerItem(key, value) {
@@ -76,7 +72,6 @@ async function getUsers(params) {
         dataUser = res
     }
 }
-
 
 
 function activUser(arr) {
@@ -132,11 +127,11 @@ function passwordBlock() {
     }
 }
 
+
 function validateCheckbox() {
     checkBox.addEventListener('change', showUserdata);
     form_log.onsubmit = validLogin;
 }
-
 
 
 function validLogin(e) {
@@ -157,19 +152,14 @@ function validLogin(e) {
         }
         if (status === 'ok') {
             // if (window.innerWidth<=500) {
-
-
             //       document.querySelector('.transGreetingDiv').style.display='flex'
             //       setTimeout(function(){
-
             //         document.querySelector('.transGreetingDiv').style.display='none' 
             //         window.location.href = "../files/start.html";
             //       },10000)
 
             activUser(foundUser);
             window.location.href = "../files/start.html";
-
-
 
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
@@ -180,6 +170,7 @@ function validLogin(e) {
         }
     }
 }
+
 
 function validatePassword() {
     document.addEventListener('DOMContentLoaded', function () {
@@ -205,16 +196,14 @@ function validatePassword() {
 }
 
 
-function setTimeout() {
-    setTimeout(() => {
-        localStorage.setItem('stop', JSON.stringify('stop'))
-    }, 3000)
-}
 
+setTimeout(() => {
+    localStorage.setItem('stop', JSON.stringify('stop'))
+}, 3000)
 
 
 function guesButton() {
-    forGuestUser('guestLogin',userGuests)
+    forGuestUser('guestLogin', userGuests)
     window.location.href = '../files/start.html';
 }
 

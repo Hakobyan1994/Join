@@ -52,14 +52,16 @@
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        border: 3px solid var(--darkblue, rgb(42, 61, 89));
+        border: 2px solid var(--darkblue, rgb(42, 61, 89));
         width: 40px;
         height: 40px;
         text-decoration: none;
         color: rgb(41, 171, 226);
         flex-shrink: 0;
-        font-size: 13px;
+        font-size: 17px;
         font-weight: 600;
+        position: relative;
+        right: -18px;
     }
 
     .mobile-profile-icon:hover {

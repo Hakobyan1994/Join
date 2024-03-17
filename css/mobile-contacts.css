@@ -165,6 +165,10 @@
         position: relative;
         right: 21px;
     }
+
+    .name {
+        font-size: 32px;
+    }
 }
 
 @media(max-width: 860px) {
@@ -174,8 +178,9 @@
     }
 
     .name {
-        font-size: 28px;
+        font-size: 32px;
         font-weight: 600;
+        padding-bottom: 0;
     }
 
     .menubar-text {
@@ -192,6 +197,7 @@
 
     .all-contacts {
         margin-top: 126px;
+        gap: 6px;
     }
 
     .added-contacts {
@@ -202,7 +208,7 @@
     }
 
     .contact-line-color {
-        width: 92%;
+        width: 100%;
     }
 
     .focus-main {
@@ -216,14 +222,7 @@
     }
 
     .contact-line {
-        width: 100%;
-    }
-
-    .profile-icon {
-        position: relative;
-        right: 10px;
-        height: 40px;
-        width: 40px;
+        width: 80%;
     }
 
     header {
@@ -288,7 +287,7 @@
     .slider-main-content {
         position: relative;
         left: -70px;
-        top: 190px
+        top: 200px
     }
 
     .slider-content-top {
@@ -296,17 +295,21 @@
     }
 
     .slider-content-mid {
-        margin-bottom: -30px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        height: 0;
     }
 
     .slider-contact-img {
         height: 70px;
         width: 70px;
+        margin-top: 0;
     }
 
     .back-arrow-mobile {
         position: fixed;
         top: 141px;
+        right: 10px;
         z-index: 999999;
     }
 
@@ -314,14 +317,80 @@
         display: block;
         z-index: 1;
         position: fixed;
-        bottom: calc(80px + 42px);
-        right: 42px;
+        bottom: 100px;
+        right: 10px;
         width: 64px;
         cursor: pointer;
     }
 
     .edit-delete-btn-con {
         display: none;
+    }
+
+    .contact-edit-btn-mobile {
+        display: block;
+        z-index: 1;
+        position: fixed;
+        bottom: 100px;
+        right: 10px;
+        width: 64px;
+        cursor: pointer;
+    }
+
+    .contact-edit-btn-mobile img:hover {
+        background-color: #2AACE2;
+        border: none;
+    }
+
+    .slide-in-menu-mobile {
+        z-index: 1;
+        background-color: white;
+        padding: 6px;
+        position: fixed;
+        width: 83px;
+        height: 63px;
+        right: 6px;
+        bottom: 93px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        display: block;
+        font-size: 14px;
+    }
+
+    .mobile-menu-btns-main {
+        position: relative;
+        top: 10px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 6px;
+    }
+
+    .mobile-edit-img {
+        margin-right: 8px;
+        width: 16px;
+        position: relative;
+        left: -5px;
+    }
+
+    .mobile-delete-img {
+        margin-right: 6px;
+        width: 20px;
+    }
+
+    .edit-txt {
+        position: relative;
+        left: -7px;
     }
 }
 

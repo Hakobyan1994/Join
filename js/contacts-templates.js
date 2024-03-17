@@ -22,7 +22,14 @@ function generateHtmlMainContacts() {
 
                     <div id="contactOverlay"></div>
 
-                    <div id="contactInfoConMobile" class="contact-info-con d-none">
+                    <div onclick="closeMobileMenu()" id="contactInfoConMobile" class="contact-info-con d-none">
+                        <img onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
+                        <div id="slideInMenuMobile" class="slide-in-menu-mobile d-none">
+                            <div class="mobile-menu-btns-main">
+                                <div onclick="showEditContactOverlay(i)" class="mobile-menu-btns"><img class="mobile-edit-img" src="../assets/img/icons/edit.svg" alt=""><div class="edit-txt">Edit</div></div>
+                                <div onclick="deleteContact(i)" class="mobile-menu-btns"><img class="mobile-delete-img" src="../assets/img/icons/delete.svg" alt="">Delete</div>
+                            </div>
+                        </div>
                         <div id="headlineMobile" class="headline">
                             Contacts
                             <div class="vertical-line">

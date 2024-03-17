@@ -12,7 +12,15 @@ async function renderContactsMain() {
     await loadContacts();
     renderContacts();
 
+    let slideInMobileMenu = document.getElementById('slideInMenuMobile');
+    slideInMobileMenu.addEventListener('click', preventEventPropagation);
 }
+
+
+function preventEventPropagation(event) {
+    event.stopPropagation();
+}
+
 
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
@@ -498,4 +506,18 @@ function showHideMobile() {
 
 function hideMobileContactInfo() {
     document.getElementById('contactInfoConMobile').classList.add('d-none');
+}
+
+
+function openMobileMenu(event) {
+    event.stopPropagation();
+
+    let menuMobileCon = document.getElementById('slideInMenuMobile');
+    menuMobileCon.classList.remove('d-none');
+}
+
+
+function closeMobileMenu() {
+    let menuMobileCon = document.getElementById('slideInMenuMobile');
+    menuMobileCon.classList.add('d-none');
 }
