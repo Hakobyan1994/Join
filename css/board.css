@@ -796,14 +796,14 @@ h3 {
 .silhouette {
     display: none;
     box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.025);
-    background-color: #FFFFFF;
+    background-color: rgba(246, 247, 248, 0.9);
     border-radius: 24px;
     padding: 16px;
     margin: 4px;
     margin-bottom: 8px;
     transition: transform 0.3s;
-    position: absolute;
+    position: relative;
     border: 2px dashed lightgray;
-    width: 220px;
-    height: 212px; 
+    width: 202px;
+    height: 182px; 
 }
