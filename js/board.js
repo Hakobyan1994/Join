@@ -5,7 +5,6 @@ async function renderBoardMain() {
     let content = document.getElementById('render-board');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainBoard();
-    document.getElementById('silhouette').style.display = 'none';
     emptyPages();
     loadToDo();
     await loadContacts();
@@ -281,11 +280,6 @@ function notData() {
 }
 
 
-// function allowDrop(ev) {
-//     ev.preventDefault();
-// }
-
-
 function dragStart(ev) {
     let txt = ev.srcElement.id;
     let id = txt[txt.length - 1];
@@ -327,8 +321,6 @@ async function saveDroppedElement(element) {
 
     console.log(arraypos);
     console.log(tasks[arraypos].status);
-
-    // deleteSilhouette(dropTargetId);
     await setItem('tasks', JSON.stringify(tasks));
     await loadToDo();
 }
@@ -354,6 +346,7 @@ function isDropPossible(targetId) {
     return allowedTargets.includes(targetId);
 }
 
+
 function showSilhouette(targetId) {
     let silhouette = document.createElement('div');
     document.getElementById(targetId).appendChild(silhouette);
@@ -362,6 +355,7 @@ function showSilhouette(targetId) {
     silhouette.style.display = 'block';
     silhouette.style.top = '0px';
 }
+
 
 function deleteSilhouette(targetId) {
     let silhouette = document.getElementById('silhouette');
