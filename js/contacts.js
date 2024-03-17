@@ -11,9 +11,6 @@ async function renderContactsMain() {
     content.innerHTML = generateHtmlMainContacts();
     await loadContacts();
     renderContacts();
-
-    let slideInMobileMenu = document.getElementById('slideInMenuMobile');
-    slideInMobileMenu.addEventListener('click', preventEventPropagation);
 }
 
 
@@ -372,8 +369,14 @@ function showEditContactOverlay(i) {
 
 function closeAddContactSlider() {
     let dialog = document.getElementById('dialog');
-    dialog.classList.remove('slide-in');
-    dialog.classList.add('slide-out');
+
+    if (window.innerWidth > 1360) {
+        dialog.classList.remove('slide-in');
+        dialog.classList.add('slide-out');
+    } else {
+        dialog.classList.remove('slide-in-mobile');
+        dialog.classList.add('slide-out-mobile');
+    }
 
     setTimeout(() => {
         dialog.classList.add('d-none');
@@ -399,7 +402,6 @@ function showAddContactSlider() {
     document.getElementById('dialogBg').classList.remove('d-none');
     document.getElementById('dialogBg').classList.add('dialog-bg');
     document.getElementById('contactInfoSlider').classList.add('show');
-    showHideMobile();
 }
 
 
@@ -431,6 +433,7 @@ async function deleteContact(i) {
 function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     document.getElementById('contactInfoConMobile').classList.remove('d-none');
+    document.getElementById('headlineMobile').classList.add('z-index');
     contactInfoSlider.innerHTML = '';
     contactInfoSlider.classList.remove('d-none');
     contactInfoSlider.classList.add('slide-in');
@@ -489,23 +492,9 @@ function removeHighlight(contactDiv) {
 }
 
 
-function showHideMobile() {
-    if (window.innerWidth < 800) {
-        document.getElementById('addContactBtnMobile').classList.remove('d-none');
-        document.getElementById('cancelBtn').classList.add('d-none');
-        document.getElementById('closeImgMobile').classList.remove('d-none');
-        document.getElementById('closeImg').classList.add('d-none');
-    } else {
-        document.getElementById('addContactBtnMobile').classList.add('d-none');
-        document.getElementById('cancelBtn').classList.remove('d-none');
-        document.getElementById('closeImgMobile').classList.add('d-none');
-        document.getElementById('closeImg').classList.remove('d-none');
-    }
-}
-
-
 function hideMobileContactInfo() {
     document.getElementById('contactInfoConMobile').classList.add('d-none');
+    document.getElementById('headlineMobile').classList.remove('z-index');
 }
 
 

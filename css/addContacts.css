@@ -178,7 +178,7 @@
     opacity: 1;
 }
 
-.cancel-btn {
+.cancel-btn-edit {
     position: relative;
     display: flex;
     padding: 16px;
@@ -199,9 +199,9 @@
     background-color: white;
 }
 
-.cancel-btn:hover,
-.cancel-btn:hover .cancel-btn-img .cancel-txt-fix:hover,
-.cancel-btn:hover .cancel-btn-text { 
+.cancel-btn-edit:hover,
+.cancel-btn-edit:hover .cancel-btn-img .cancel-txt-fix:hover,
+.cancel-btn-edit:hover .cancel-btn-text { 
     color: #2AACE2 !important; 
     border-color: #2AACE2;
 }
@@ -210,7 +210,7 @@
     z-index: 100;
 }
 
-.cancel-btn::after {
+.cancel-btn-edit::after {
     content: '';
     position: absolute;
     left: 0;
@@ -222,17 +222,17 @@
     border-radius: 10px;
     opacity: 0;
     z-index: 1;
-    width: 130px;
+    width: 79px !important;
     color: #2AACE2;
 }
 
-.cancel-btn:hover::after {
+.cancel-btn-edit:hover::after {
     opacity: 1;
     width: 130px;
     color: #2AACE2;
 }
 
-.cancel-btn:hover .cancel-btn-text {
+.cancel-btn-edit:hover .cancel-btn-text {
     color: #2AACE2 !important;
     border-color: #2AACE2;
     width: 130px;

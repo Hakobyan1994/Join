@@ -22,15 +22,7 @@ function generateHtmlMainContacts() {
 
                     <div id="contactOverlay"></div>
 
-                    <div onclick="closeMobileMenu()" id="contactInfoConMobile" class="contact-info-con d-none">
-                        <img onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
-                        <div id="slideInMenuMobile" class="slide-in-menu-mobile d-none">
-                            <div class="mobile-menu-btns-main">
-                                <div onclick="showEditContactOverlay(i)" class="mobile-menu-btns"><img class="mobile-edit-img" src="../assets/img/icons/edit.svg" alt=""><div class="edit-txt">Edit</div></div>
-                                <div onclick="deleteContact(i)" class="mobile-menu-btns"><img class="mobile-delete-img" src="../assets/img/icons/delete.svg" alt="">Delete</div>
-                            </div>
-                        </div>
-                        <div id="headlineMobile" class="headline">
+                    <div id="headlineMobile" class="headline">
                             Contacts
                             <div class="vertical-line">
                                 <img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
@@ -39,6 +31,8 @@ function generateHtmlMainContacts() {
                                 Better with a team
                             </div>
                         </div>
+
+                    <div onclick="closeMobileMenu()" id="contactInfoConMobile" class="contact-info-con d-none">
 
                         <img onclick="hideMobileContactInfo()" class="back-arrow-mobile" src="../assets/img/icons/arrow_back_btn.svg">
 
@@ -121,6 +115,14 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <img onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
+        <div id="slideInMenuMobile" class="slide-in-menu-mobile d-none">
+            <div class="mobile-menu-btns-main">
+                <div onclick="showEditContactOverlay(${i})" class="mobile-menu-btns"><img class="mobile-edit-img" src="../assets/img/icons/edit.svg" alt=""><div class="edit-txt">Edit</div></div>
+                <div onclick="deleteContact(${i})" class="mobile-menu-btns"><img class="mobile-delete-img" src="../assets/img/icons/delete.svg" alt="">Delete</div>
+            </div>
         </div>`;
 }
 
@@ -174,8 +176,8 @@ function generateAddContactOverlay() {
                         <div onclick="closeAddContactSlider()" class="close-img-con">
                             <img id="closeImg" class="close-img" src="/assets/img/icons/Close.svg" alt="">
                         </div>
-                        <div class="close-img-con">
-                            <img id="closeImgMobile" onclick="closeAddContactSlider()" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="">
+                        <div onclick="closeAddContactSlider()" class="close-img-con-mobile" style="display: none">
+                            <img id="closeImg" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="">
                         </div>
 
                         <div class="add-contact-user-img">
@@ -248,11 +250,11 @@ function generateEditMaskOverlay(i) {
                             </div>
 
                             <div class="add-contact-user-img">
-                                <div class="person-con">
+                                <div class="person-con-edit">
                                     <img id="contactImageEdit" class="person-img">
                                 </div>
 
-                                <form onsubmit="addToContacts()" class="add-contact-data">
+                                <form onsubmit="addToContacts()" class="edit-contact-data">
                                     <div>
                                         <input id="nameEdit" name="name" class="input-con" placeholder="Name" type="text" maxlength="16" required>
                                         <img class="input-svg-pos" src="/assets/img/icons/person.svg" alt="">
@@ -270,7 +272,7 @@ function generateEditMaskOverlay(i) {
                                     </div>
 
                                     <div class="add-contact-btns">
-                                        <button type="button" class="cancel-btn" onclick="deleteContact(${i})">Delete</button>
+                                        <button type="button" class="cancel-btn-edit" onclick="deleteContact(${i})">Delete</button>
                                         <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg" src="/assets/img/icons/check1.svg" alt=""></button>
                                     </div>
                                 </form>

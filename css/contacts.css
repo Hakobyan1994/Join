@@ -58,13 +58,14 @@
     position: fixed;
     bottom: 0;
     top: 0;
-    left: 234px;
+    left: 232px;
 }
 
 .headline {
     padding-left: 60px;
     position: fixed;
     top: 200px;
+    left: 700px !important;
     gap: 30px;
     color: #000;
     font-family: Inter;
@@ -347,4 +348,8 @@
     right: 18px;
     z-index: -1;
     cursor: pointer;
+}
+
+.z-index {
+    z-index: 2;
 }
