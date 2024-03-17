@@ -334,25 +334,51 @@ async function saveDroppedElement(element) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-    // var data = ev.dataTransfer.getData("text");
-    // var draggedElement = document.getElementById(data);
+    /*
+    var data = ev.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
 
-    // // Zeige das Silhouette-DIV an
-    // var silhouette = document.getElementById('silhouette');
-    // silhouette.style.display = 'block';
-    // var targetId = ev.target.id;
+    // Zeige das Silhouette-DIV an
+    var silhouette = document.getElementById('silhouette');
+    silhouette.style.display = 'block';
+    var targetId = ev.target.id;
 
-    // // Positioniere das Silhouette-DIV am Ende des Ziel-DIVs
-    // var targetDiv = document.getElementById(targetId);
-    // var targetRect = targetDiv.getBoundingClientRect();
-    // silhouette.style.left = targetRect.left + 'px';
-    // silhouette.style.top = targetRect.bottom + 'px'; // Positioniere am unteren Rand
+    // Positioniere das Silhouette-DIV am Ende des Ziel-DIVs
+    var targetDiv = document.getElementById(targetId);
+    var targetRect = targetDiv.getBoundingClientRect();
+    silhouette.style.left = targetRect.left + 'px';
+    silhouette.style.top = targetRect.bottom + 'px'; // Positioniere am unteren Rand
 
-    // // Prüfe, ob das Ziel-DIV ein Container-DIV ist
-    // if (targetDiv.classList.contains('card_Div')) {
-    //     // Positioniere die Silhouette am unteren Rand des Container-DIVs
-    //     var containerRect = targetDiv.getBoundingClientRect();
-    //     silhouette.style.left = containerRect.left + 'px';
-    //     silhouette.style.top = containerRect.bottom + 'px';
-    // }
+    // Prüfe, ob das Ziel-DIV ein Container-DIV ist
+    if (targetDiv.classList.contains('card_Div')) {
+        // Positioniere die Silhouette am unteren Rand des Container-DIVs
+        var containerRect = targetDiv.getBoundingClientRect();
+        silhouette.style.left = containerRect.left + 'px';
+        silhouette.style.top = containerRect.bottom + 'px';
+    }
+    */
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+
+    let data = ev.dataTransfer.getData("text");
+    let draggedElement = document.getElementById(data);
+
+    let targetId = ev.target.id;
+
+    let dropPossible = isDropPossible(targetId);
+    if (!dropPossible) {
+        ev.dataTransfer.dropEffect = 'none';
+    } else {
+        ev.dataTransfer.dropEffect = 'move'; 
+        ev.target.style.backgroundColor = '';
+    }
+}
+
+
+function isDropPossible(targetId) {
+    let allowedTargets = ['board-to-do', 'board-in-progress', 'board-await-feedback', 'board-done'];
+    return allowedTargets.includes(targetId);
 }
