@@ -162,4 +162,14 @@
     .form-addtask {
         margin-top: 64px;
     }
+
+    .mobile-logo {
+        display: block!important;
+        position: fixed;
+        left: 32px;
+    }
+
+    .header-right {
+        gap: unset;
+    }
 }

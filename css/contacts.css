@@ -58,7 +58,12 @@
     position: fixed;
     bottom: 0;
     top: 0;
-    left: 232px;
+    left: 232px!important;
+}
+
+.close-img-mobile {
+    display: none;
+    cursor: pointer;
 }
 
 .headline {

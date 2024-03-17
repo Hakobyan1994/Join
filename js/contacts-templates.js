@@ -157,6 +157,7 @@ function generateAddContactOverlay() {
         <div class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
             <div class="add-contact-main">
+                <img id="closeImg" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="" onclick="closeAddContactSlider()">
                 <div class="set-position">
                     <img class="join-img" src="/assets/img/icons/Capa 2.svg" alt="join-icon">
                     <div class="add-contact-headline">
@@ -177,7 +178,6 @@ function generateAddContactOverlay() {
                             <img id="closeImg" class="close-img" src="/assets/img/icons/Close.svg" alt="">
                         </div>
                         <div onclick="closeAddContactSlider()" class="close-img-con-mobile" style="display: none">
-                            <img id="closeImg" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="">
                         </div>
 
                         <div class="add-contact-user-img">

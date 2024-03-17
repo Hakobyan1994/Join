@@ -17,7 +17,7 @@
     }
 
     .dialog-bg {
-        z-index: 2;
+        z-index: 3;
     }
 
     .dialog {
@@ -44,6 +44,13 @@
     .team-headline {
         width: 250px;
         font-size: 16px;
+    }
+
+    .close-img-mobile {
+        display: block;
+        position: relative;
+        top: -69px;
+        right: -272px;
     }
 
     .add-contact-main {
@@ -136,8 +143,9 @@
     }
 
     .added-contacts {
-        position: relative;
-        left: -233px;
+        /* position: relative;
+        left: -233px; */
+        left: 0!important;
     }
 
     .contact-info-con {
@@ -270,7 +278,6 @@
 
     .added-contacts {
         width: 100%;
-        position: fixed;
         left: 0;
         right: 0;
     }
@@ -468,6 +475,7 @@
 .slide-out-mobile {
     animation: slideOutToBottom 0.5s forwards;
 }
+
 
 @keyframes slideInFromBottom {
     from {
