@@ -281,6 +281,7 @@ function notData() {
 
 
 function dragStart(ev) {
+    deleteAllSilhouettes();
     let txt = ev.srcElement.id;
     let id = txt[txt.length - 1];
     let status = tasks[id].status;
@@ -292,6 +293,7 @@ function dragStart(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     console.log(ev.target.id);
     ev.target.style.transform = "rotate(0deg)";
+    return status;
 }
 
 
@@ -301,13 +303,14 @@ function drop(ev) {
     let draggedElement = document.getElementById(data);
     draggedElement.style.transform = "rotate(0deg)";
     let dropTargetId = ev.target.id;
-    console.log('drop(event)', dropTargetId)
-    let allowedTargets = ['board-to-do', 'board-in-progress', 'board-await-feedback', 'board-done'];
-    if (allowedTargets.includes(dropTargetId)) {
+    console.log('drop(event)', dropTargetId);
+    
+    // Überprüfen, ob das Ziel-Element die ID "silhouette" hat
+    if (dropTargetId === 'silhouette') {
+        // Überprüfen, ob das gezogene Element nicht bereits im Ziel-Element vorhanden ist
         if (!ev.target.contains(draggedElement)) {
             let category = ev.target.appendChild(draggedElement);
             saveDroppedElement(draggedElement);
-            
         }
     }
 }
@@ -332,11 +335,12 @@ function allowDrop(ev) {
     let targetId = ev.target.id;
     console.log(targetId);
     let dropPossible = isDropPossible(targetId);
-    if (!dropPossible) {
+    if (!dropPossible && !document.querySelector('#silhouette')) {
         ev.dataTransfer.dropEffect = 'none';
-    } else {
+    } else if(dropPossible) {
         ev.dataTransfer.dropEffect = 'move'; 
         ev.target.style.backgroundColor = '';
+        showSilhouette(targetId);
     }
 }
 
@@ -348,16 +352,25 @@ function isDropPossible(targetId) {
 
 
 function showSilhouette(targetId) {
-    let silhouette = document.createElement('div');
-    document.getElementById(targetId).appendChild(silhouette);
-    silhouette.id = 'silhouette';
-    silhouette.classList.add('silhouette');
-    silhouette.style.display = 'block';
-    silhouette.style.top = '0px';
+    let silhouette = document.getElementById('silhouette');
+    if (!silhouette) {
+        let targetElement = document.getElementById(targetId);
+        let newSilhouette = document.createElement('div');
+        newSilhouette.id = 'silhouette';
+        newSilhouette.classList.add('silhouette');
+        newSilhouette.style.display = 'block';
+        newSilhouette.style.top = '0px';
+        targetElement.appendChild(newSilhouette);
+        console.log('Silhouette erstellt');
+    } else {
+        console.log('Silhouette bereits vorhanden');
+        deleteAllSilhouettes();
+    }
 }
 
 
-function deleteSilhouette(targetId) {
-    let silhouette = document.getElementById('silhouette');
-    document.getElementById(targetId).removeChild(silhouette);
+function deleteAllSilhouettes() {
+    let silhouettes = document.querySelectorAll('#silhouette');
+    silhouettes.forEach(silhouette => silhouette.parentNode.removeChild(silhouette));
+    console.log(`${silhouettes.length} Silhouetten entfernt`);
 }
