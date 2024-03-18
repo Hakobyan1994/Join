@@ -268,9 +268,7 @@ async function closePopupEdit(i) {
 
 function notData() {
     let todo = document.getElementById('board-to-do');
-    // console.log(tasks);
     if (tasks.length === 0) {
-        // console.log(tasks.length);
         let noTodotask = document.getElementById('NoToDo');
         noTodotask.classList.remove('d-none');
         noTodotask.style.display = 'flex';
@@ -286,8 +284,6 @@ function dragStart(ev) {
     let id = txt[txt.length - 1];
     let status = tasks[id].status;
     console.log(status);
-    // tasks.splice(id, 1);
-    // console.log(id, 66);
     notData();
     dataTask.splice(id, 1)
     ev.dataTransfer.setData("text", ev.target.id);
@@ -303,16 +299,25 @@ function drop(ev) {
     let draggedElement = document.getElementById(data);
     draggedElement.style.transform = "rotate(0deg)";
     let dropTargetId = ev.target.id;
-    console.log('drop(event)', dropTargetId);
     
-    // Überprüfen, ob das Ziel-Element die ID "silhouette" hat
     if (dropTargetId === 'silhouette') {
-        // Überprüfen, ob das gezogene Element nicht bereits im Ziel-Element vorhanden ist
-        if (!ev.target.contains(draggedElement)) {
-            let category = ev.target.appendChild(draggedElement);
-            saveDroppedElement(draggedElement);
+        let parentTargetId = ev.target.parentElement.id;
+        switch (parentTargetId) {
+            case 'board-to-do':
+            case 'board-in-progress':
+            case 'board-await-feedback':
+            case 'board-done':
+                if (!ev.target.contains(draggedElement)) {
+                    let category = ev.target.parentElement.appendChild(draggedElement);
+                    saveDroppedElement(draggedElement);
+                }
+                break;
+            default:
+                console.log("Ungültiges Ziel für das Ablegen des Elements.");
+                break;
         }
     }
+    deleteAllSilhouettes();
 }
   
 

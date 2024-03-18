@@ -4,7 +4,7 @@ let users = [];
 let iniimg = [];
 
 
-function renderAssignedList() {                                         // generate the contact list of the section assigned-to
+function renderAssignedList() {                                    // generate the contact list of the section assigned-to
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     let input = document.getElementById('assigned');
@@ -18,15 +18,27 @@ function renderAssignedList() {                                         // gener
     }
     list.innerHTML = '';
     renderContactList(list);
+    resetAllSelectedContacts();
+}
+
+
+function resetAllSelectedContacts() {
+    for (let i = 0; i < contacts.length; i++) {
+        let assignedContact = document.getElementById(`assigned-contacts-${i}`);
+        if (assignedContact.classList.contains === 'white') {
+            assignedContact.classList.remove('select-contact-blue');
+            assignedContact.classList.remove('white');
+        }        
+    }
 }
 
 
 function renderContactList(list) {                                      // add all contacts to the list
     for (let i = 0; i < contacts.length; i++) {
-        const name = contacts[i].name;
-        const img = contacts[i].initials;
-        const userIndex = users.indexOf(name);
-        const isSelected = userIndex !== -1;
+        let name = contacts[i].name;
+        let img = contacts[i].initials;
+        let userIndex = users.indexOf(name);
+        let isSelected = userIndex !== -1;
         list.innerHTML += generateHtmlAssignedList(name, img, isSelected, i);
     }
 }

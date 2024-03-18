@@ -102,6 +102,7 @@ async function openPopupAddTask(boardcard) {
 
 
 async function openPopupAddTaskDiv(i) {
+    await loadTasks();
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.style.display = 'flex';
