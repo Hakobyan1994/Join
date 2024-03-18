@@ -338,6 +338,8 @@ function dontCloseCard(event) {
 
 
 function showAddContactOverlay() {
+    document.getElementById('navbar').classList.add('z-index-header');
+    //document.getElementById('mobile-header').classList.add('z-index-header');
     let dialog = document.getElementById('dialog');
     if (window.innerWidth > 800) {
         dialog.classList.remove('slide-out');
@@ -356,6 +358,8 @@ function showAddContactOverlay() {
 
 
 function showEditContactOverlay(i) {
+    document.getElementById('navbar').classList.add('z-index-header');
+    document.getElementById('')
     let editMask = document.getElementById('editMask');
     editMask.classList.remove('slide-out');
     editMask.classList.remove('d-none');

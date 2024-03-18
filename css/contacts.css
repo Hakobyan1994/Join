@@ -353,3 +353,7 @@
 .z-index {
     z-index: 2;
 }
+
+.z-index-header {
+    z-index: 0;
+}
