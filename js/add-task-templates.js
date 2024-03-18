@@ -4,6 +4,7 @@ async function renderAddTaskMain() {
     content.innerHTML = generateHtmlMainAddTask();
     renderAddTask();
     await loadContacts();
+    resetGlobalVariables();
     document.getElementById('date').min = minDate();
     document.getElementById('date').value = minDate();
 }
@@ -178,7 +179,7 @@ function generateHtmlAssignedList(name, img, isSelected, i) {
         <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
             <div>
                 <img src="https://ui-avatars.com/api/?name=${img}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
-                <div>${name}</div>
+                <div id="contact-name-${i}">${name}</div>
             </div>
             <img src="${isSelected ? '../assets/img/icons/selected1.svg' : '../assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
         </div>

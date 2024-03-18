@@ -34,7 +34,6 @@ function generateHtmlMainBoard() {
                 </div>
             </div>
             <div class="card_mainContainer">
-                <div id="silhouette" class="silhouette"></div>
                 <div class="mobile-boardcard mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
@@ -103,6 +102,7 @@ async function openPopupAddTask(boardcard) {
 
 
 async function openPopupAddTaskDiv(i) {
+    await loadTasks();
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.style.display = 'flex';

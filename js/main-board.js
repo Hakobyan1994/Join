@@ -74,10 +74,10 @@ function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, has
         progress.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing in progress</div>';
     }
     if (!hasFeedback) {
-        feedback.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">No Feedback to give</div>';
+        feedback.innerHTML = '<div id="NoFeedback" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">No Feedback to give</div>';
     }
     if (!hasDone) {
-        done.innerHTML = '<div id="NoToDoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing yet is done</div>';
+        done.innerHTML = '<div id="NoDone" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;">Nothing yet is done</div>';
     }
 }
 
@@ -137,6 +137,7 @@ async function saveTasks() {
 async function editTask(i) {
     await loadTasks();
     categoryArray = [];
+    users = [];
     hidePopup(i);
     displayEditPopup();
     displayEditableContent(i);
@@ -189,6 +190,7 @@ async function pushValueToEdit(i) {
     await loadTasks();
     let array = tasks[i];
     updateFields(array);
+    updateContactList(array);
     updateSubtasks(array);
     tasks.splice(i, 1);
 }
@@ -205,6 +207,30 @@ function updateFields(array) {
     date.value = dateValue;
     let priority = array.priority;
     getPriority(priority);
+}
+
+
+function updateContactList(array) {
+    renderAssignedList();
+    for (let i = 0; i < array.assigned.length; i++) {
+        let selectedContacts = array.assigned[i];
+        console.log(selectedContacts);
+        for (let k = 0; k < contacts.length; k++) {
+            let contact = document.getElementById(`contact-name-${k}`);
+            // let list = document.getElementById(`assigned-contacts-${k}`);
+            // let checkbox = document.getElementById(`checkbox-contact-${k}`);
+            console.log(selectedContacts.toUpperCase());
+            if(selectedContacts.toUpperCase() === contact.textContent.toUpperCase()) {
+                // list.classList.add('select-contact-blue');
+                // list.classList.add('white');
+                // checkbox.classList.remove('checkbox-none-selected');
+                // checkbox.src = '../assets/img/icons/selected1.svg';
+                // checkbox.classList.add('checkbox-selected');
+                selectAssignedContacts(k);
+            } 
+        }
+    }
+
 }
 
 

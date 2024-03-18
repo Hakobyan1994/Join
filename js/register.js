@@ -196,10 +196,12 @@ function validatePassword() {
 }
 
 
+function loginSetTimeout() {
+    setTimeout(() => {
+        localStorage.setItem('stop', JSON.stringify('stop'))
+    }, 3000)
+}
 
-setTimeout(() => {
-    localStorage.setItem('stop', JSON.stringify('stop'))
-}, 3000)
 
 
 function guesButton() {

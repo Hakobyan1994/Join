@@ -169,11 +169,12 @@ h3 {
     cursor: pointer;
     margin: 4px;
     margin-bottom: 8px;
-    transition: transform 0.3s
+    transition: transform 0.3s;
+    height: max-content;
 }
 
 .progress_infocard {
-    width: 220px;
+    width: 200px;
     height: max-content;
 }
 
@@ -195,6 +196,7 @@ h3 {
     color: #2A3647;
     cursor: pointer;
     overflow-wrap: anywhere;
+    margin-right: 16px;
 }
 
 .recipe_span {
@@ -205,10 +207,11 @@ h3 {
     color: #A8A8A8;
     overflow-wrap: break-word;
     height: fit-content;
+    margin-right: 16px;
 }
 
 .progress_image_Div {
-    width: 220px;
+    width: 200px;
     height: 16px;
     margin-bottom: 24px;
     display: flex;
@@ -222,7 +225,7 @@ h3 {
 }
 
 .Members_Div {
-    width: 100%;
+    width: 200px;
     height: 32px;
     display: flex;
     justify-content: space-between;
@@ -486,7 +489,7 @@ h3 {
     background-color: rgba(246,247,248,1);
     border-radius: 10px;
     height: 8px!important;
-    width: 128px;
+    width: 113px;
 }
 
 .board-user-icon {
@@ -527,7 +530,7 @@ h3 {
 
 .popup-title {
     width: 445px;
-    max-height: 143px;
+    max-height: 140px;
     font-family: 'Inter';
     font-weight: 700!important;
     font-size: 61px;
@@ -562,7 +565,6 @@ h3 {
 
 .overflow {
     overflow-y: auto;
-    scrollbar-width: thin;
     margin-bottom: 16px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
@@ -624,6 +626,8 @@ h3 {
     margin-left: 16px;
     margin-top: 16px;
     gap: 16px;
+    height: 116px;
+    overflow-y: scroll;
 }
 
 .popup-assigned-div {

@@ -124,6 +124,8 @@ header p {
 }
 
 .header-right {
+    position: fixed;
+    right: 32px;
     display: flex;
     align-items: center;
     gap: 16px;
