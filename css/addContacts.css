@@ -199,6 +199,27 @@
     background-color: white;
 }
 
+.cancel-btn {
+    position: relative;
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--Version-2-main-color, #2A3647);
+    color: var(--Version-2-main-color, #2A3647) !important;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    cursor: pointer;
+    height: 50px;
+    width: 130px;
+    background-color: white;
+}
+
 .cancel-btn-edit:hover,
 .cancel-btn-edit:hover .cancel-btn-img .cancel-txt-fix:hover,
 .cancel-btn-edit:hover .cancel-btn-text { 
@@ -278,7 +299,7 @@
     height: 64px;
     position: relative;
     right: 38px;
-    bottom: 3px;
+    bottom: 30px;
     border-radius: 100px;
     border: 3px solid var(--white, #FFF);
     background: #FFF;

@@ -4,7 +4,7 @@ function generateHtmlMainContacts() {
             <div class="content">
                 <div class="contacts-main">
                     <div id="addContactBtn" class="contacts">
-                        <div class="added-contacts">
+                        <div id="addedContactsCon" class="added-contacts">
 
                             <div class="contact-con-btn">
                                 <div id="addBtn" class="add-contact-btn-con"></div>
@@ -117,7 +117,7 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
             </div>
         </div>
         
-        <img onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
+        <img id="openMobileMenuBtn" onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
         <div id="slideInMenuMobile" class="slide-in-menu-mobile d-none">
             <div class="mobile-menu-btns-main">
                 <div onclick="showEditContactOverlay(${i})" class="mobile-menu-btns"><img class="mobile-edit-img" src="../assets/img/icons/edit.svg" alt=""><div class="edit-txt">Edit</div></div>
@@ -230,9 +230,10 @@ function generateAddContactOverlay() {
 
 function generateEditMaskOverlay(i) {
     return /*html*/`
-        <div id="editMask" class="set-dialog-pos">
+        <div class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
                 <div class="add-contact-main">
+                <img id="closeImgEdit" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="" onclick="closeEditContactSlider()">
                     <div class="set-position">
                         <img class="join-img" src="/assets/img/icons/Capa 2.svg" alt="join-icon">
                         <div class="add-contact-headline">

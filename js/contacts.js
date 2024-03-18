@@ -77,6 +77,7 @@ function addInitialsToContactImage(contact, imageId) {
 function displayContactImage(i) {
     let contact = contacts[i];
     let contactImage = document.getElementById('contactImageEdit');
+
     if (contactImage) {
         contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
         contactImage.style.width = '100px';
@@ -90,6 +91,14 @@ function displayContactImage(i) {
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
+
+    getRandomColorHELP(seed, letters, color);
+
+    return color;
+}
+
+
+function getRandomColorHELP(seed, letters, color) {
     if (seed && seed.length > 0) {
         for (let i = 0; i < 6; i++) {
             const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
@@ -100,7 +109,6 @@ function getRandomColor(seed) {
             color += letters[Math.floor(Math.random() * 16)];
         }
     }
-    return color;
 }
 
 
@@ -161,6 +169,7 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
 
+
 function isValidEmail(email) {
     const emailRegex = /\S+@\S+\.\S+/;
     return emailRegex.test(email);
@@ -172,6 +181,13 @@ function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     let initials = formatInitials(formattedName);
     let existingEmail = document.getElementById('emailAlreadyExists');
 
+    checkInputsHELP(existingEmail);
+
+    addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
+}
+
+
+function checkInputsHELP(existingEmail) {
     if (checkExistingEmail(email)) {
         existingEmail.classList.remove('d-none');
         existingEmail.innerHTML = `Email already exists`;
@@ -179,8 +195,6 @@ function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     } else {
         existingEmail.classList.add('d-none');
     }
-
-    addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
 }
 
 
@@ -338,32 +352,42 @@ function dontCloseCard(event) {
 
 
 function showAddContactOverlay() {
-    document.getElementById('navbar').classList.add('z-index-header');
-    //document.getElementById('mobile-header').classList.add('z-index-header');
     let dialog = document.getElementById('dialog');
-    if (window.innerWidth > 800) {
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let infoSliderHeadline = document.getElementById('headlineMobile');
+
+    showAddContactOverlayHELP(dialog, contactInfoConMobile, infoSliderHeadline);
+    showAddContactSlider();
+}
+
+
+function showAddContactOverlayHELP(dialog, contactInfoConMobile, infoSliderHeadline) {
+    if (window.innerWidth > 1360) {
         dialog.classList.remove('slide-out');
         dialog.classList.remove('d-none');
         dialog.classList.add('slide-in');
         dialog.innerHTML = generateAddContactOverlay();
-        showAddContactSlider();
     } else {
         dialog.classList.remove('slide-out-mobile');
         dialog.classList.remove('d-none');
         dialog.classList.add('slide-in-mobile');
+        contactInfoConMobile.classList.remove('z-index-minus-1');
+        infoSliderHeadline.classList.remove('z-index-minus-1');
         dialog.innerHTML = generateAddContactOverlay();
-        showAddContactSlider();
     }
 }
 
 
 function showEditContactOverlay(i) {
-    document.getElementById('navbar').classList.add('z-index-header');
-    document.getElementById('')
     let editMask = document.getElementById('editMask');
-    editMask.classList.remove('slide-out');
-    editMask.classList.remove('d-none');
-    editMask.classList.add('slide-in');
+    let editMobileBtn = document.getElementById('openMobileMenuBtn');
+    let contactInfoSliderMobile = document.getElementById('contactInfoSlider');
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let infoSliderHeadline = document.getElementById('headlineMobile');
+    let contactList = document.getElementById('allContacts');
+    let addNewContactBtn = document.getElementById('addBtn');
+
+    showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn);
     editMask.innerHTML = generateEditMaskOverlay(i);
     showAddContactSlider(i);
     loadContactInfo(i);
@@ -371,16 +395,32 @@ function showEditContactOverlay(i) {
 }
 
 
+function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn) {
+    if (window.innerWidth > 1360) {
+        editMask.classList.remove('slide-out');
+        editMask.classList.remove('d-none');
+        editMask.classList.add('slide-in');
+    } else {
+        editMask.classList.remove('slide-out-mobile');
+        editMask.classList.remove('d-none');
+        editMask.classList.add('slide-in-mobile');
+        editMask.innerHTML = generateEditMaskOverlay(i);
+        editMobileBtn.classList.add('d-none');
+        contactInfoSliderMobile.classList.add('d-none');
+        contactInfoConMobile.classList.add('z-index-minus-1');
+        infoSliderHeadline.classList.add('z-index-minus-1');
+        contactList.classList.add('d-none');
+        addNewContactBtn.classList.add('d-none');
+    }
+}
+
+
 function closeAddContactSlider() {
     let dialog = document.getElementById('dialog');
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let infoSliderHeadline = document.getElementById('headlineMobile');
 
-    if (window.innerWidth > 1360) {
-        dialog.classList.remove('slide-in');
-        dialog.classList.add('slide-out');
-    } else {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.add('slide-out-mobile');
-    }
+    closeAddContactSliderHELP(dialog, contactInfoConMobile, infoSliderHeadline);
 
     setTimeout(() => {
         dialog.classList.add('d-none');
@@ -389,15 +429,51 @@ function closeAddContactSlider() {
 }
 
 
+function closeAddContactSliderHELP(dialog, contactInfoConMobile, infoSliderHeadline) {
+    if (window.innerWidth > 1360) {
+        dialog.classList.remove('slide-in');
+        dialog.classList.add('slide-out');
+    } else {
+        dialog.classList.remove('slide-in-mobile');
+        dialog.classList.add('slide-out-mobile');
+        contactInfoConMobile.classList.remove('z-index-minus-1');
+        infoSliderHeadline.classList.remove('z-index-minus-1');
+    }
+}
+
+
 function closeEditContactSlider() {
     let editMask = document.getElementById('editMask');
-    editMask.classList.remove('slide-in');
-    editMask.classList.add('slide-out');
+    let editMobileBtn = document.getElementById('openMobileMenuBtn');
+    let contactInfoSliderMobile = document.getElementById('contactInfoSlider');
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let infoSliderHeadline = document.getElementById('headlineMobile');
+    let contactList = document.getElementById('allContacts');
+    let addNewContactBtn = document.getElementById('addBtn');
+
+    closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn);
 
     setTimeout(() => {
         editMask.classList.add('d-none');
         hideAddContactSlider();
     }, 200);
+}
+
+
+function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn) {
+    if (window.innerWidth > 1360) {
+        editMask.classList.remove('slide-in');
+        editMask.classList.add('slide-out');
+    } else {
+        editMask.classList.remove('slide-in-mobile');
+        editMask.classList.add('slide-out-mobile');
+        editMobileBtn.classList.remove('d-none');
+        contactInfoSliderMobile.classList.remove('d-none');
+        contactInfoConMobile.classList.remove('z-index-minus-1');
+        infoSliderHeadline.classList.remove('z-index-minus-1');
+        contactList.classList.remove('d-none');
+        addNewContactBtn.classList.remove('d-none');
+    }
 }
 
 
@@ -438,11 +514,24 @@ function showContactInfoSlider(i) {
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     document.getElementById('contactInfoConMobile').classList.remove('d-none');
     document.getElementById('headlineMobile').classList.add('z-index');
-    contactInfoSlider.innerHTML = '';
-    contactInfoSlider.classList.remove('d-none');
-    contactInfoSlider.classList.add('slide-in');
-    contactInfoSliderVisible = true;
+
+    showContactInfoSliderHELP(i, contactInfoSlider);
     renderContactInfo(i, contactInfoSlider);
+}
+
+
+function showContactInfoSliderHELP(i, contactInfoSlider) {
+    if (window.innerWidth < 1360) {
+        contactInfoSlider.innerHTML = '';
+        contactInfoSlider.classList.remove('d-none');
+        contactInfoSlider.classList.add('slide-in-mobile-info');
+        contactInfoSliderVisible = true;
+    } else {
+        contactInfoSlider.innerHTML = '';
+        contactInfoSlider.classList.remove('d-none');
+        contactInfoSlider.classList.add('slide-in');
+        contactInfoSliderVisible = true;
+    }
 }
 
 

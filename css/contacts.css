@@ -362,3 +362,7 @@
 .z-index-header {
     z-index: 0;
 }
+
+.z-index-minus-1 {
+    z-index: -1 !important;
+}

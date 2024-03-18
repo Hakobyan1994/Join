@@ -120,7 +120,8 @@
 
     .add-contact-btns {
         margin-top: 10px;
-        margin-left: 42px
+        margin-left: 42px;
+        gap: 0;
     }
 
     .input-svg-pos {
@@ -145,12 +146,16 @@
     .added-contacts {
         /* position: relative;
         left: -233px; */
-        left: 0!important;
+        left: 0 !important;
     }
 
     .contact-info-con {
         position: relative;
-        right: 700px;
+        right: 213px;
+        top: 354px;
+        z-index: -1;
+        padding-top: 0;
+        padding-left: 0;
     }
 
     .cancel-btn-edit {
@@ -222,6 +227,28 @@
     }
 
     .cancel-btn {
+        display: none;
+    }
+
+    .create-contact-btn {
+        position: relative;
+        left: 29px;
+    }
+
+    .contact-info-slider {
+        position: fixed;
+        top: 180px !important;
+        left: 220px;
+        z-index: 99999 !important;
+    }
+
+    .person-img {
+        position: relative;
+        right: 38px;
+        bottom: 6px;
+    }
+
+    .close-img {
         display: none;
     }
 }
@@ -360,8 +387,8 @@
 
     .slider-main-content {
         position: relative;
-        left: -70px;
-        top: 200px
+        left: -502px;
+        top: -100px;
     }
 
     .slider-content-top {
@@ -392,7 +419,7 @@
         z-index: 1;
         position: fixed;
         bottom: 100px;
-        right: 10px;
+        right: 5px;
         width: 64px;
         cursor: pointer;
     }
@@ -403,10 +430,10 @@
 
     .contact-edit-btn-mobile {
         display: block;
-        z-index: 1;
+        z-index: 3;
         position: fixed;
-        top: 610px;
-        right: 10px;
+        bottom: 100px;
+        right: 225px;
         width: 64px;
         cursor: pointer;
     }
@@ -417,14 +444,14 @@
     }
 
     .slide-in-menu-mobile {
-        z-index: 1;
+        z-index: 4;
         background-color: white;
         padding: 6px;
         position: fixed;
         width: 83px;
         height: 63px;
-        right: 6px;
-        top: 605px;
+        right: 225px;
+        bottom: 92px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -466,6 +493,10 @@
         position: relative;
         left: -7px;
     }
+
+    .contact-info-slider {
+        z-index: -1 !important;
+    }
 }
 
 .slide-in-mobile {
@@ -488,6 +519,35 @@
 }
 
 @keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.slide-in-mobile-info {
+    animation: slideInFromRightSide 0.5s forwards;
+}
+
+.slide-out-mobile-info {
+    animation: slideOutToRightSide 0.5s forwards;
+}
+
+
+@keyframes slideInFromRightSide {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightSide {
     from {
         transform: translateY(0);
     }
