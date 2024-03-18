@@ -214,11 +214,9 @@ textarea {
     margin-left: 8px;
 }
 
-
 .prio-urgent .prio-medium .prio-low {
     color: white!important;
 }
-
 
 .prio-urgent {
     background-color: rgba(255,61,0,1);
@@ -495,19 +493,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-/* .subtask {
-    z-index: 4;
-    background-image: url(/assets/img/icons/add.svg);
-    background-size: 24px 24px;
-    background-position: 395px 50%;
-    background-repeat: no-repeat;
-    color: rgba(0, 0, 0, 1);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-} */
-
 .add-icon {
     position: relative;
     bottom: 32px;
@@ -523,25 +508,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: rgba(246, 247, 248, 1);
     padding: 5px  ;
 }
-
-/* .select-category {
-    position: relative;
-    bottom: 38px;
-    left: 404px;
-    width: 24px;
-    height: 24px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.select-category:hover {
-    width: 24px;
-    height: 24px;
-    border-radius: 100%;
-    background-color: rgba(246, 247, 248, 1);
-    padding: 5px;
-    cursor: pointer;
-} */
 
 .subtasks {
     display: flex;
