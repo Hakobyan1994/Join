@@ -30,7 +30,7 @@ body {
     font-family: 'Inter', sans-serif;
     color: black;
     margin: 0;
-    height: 100%;
+    height: 10px;
     width: 100vw;
     overflow: hidden;
     overflow-y: scroll;
@@ -109,4 +109,9 @@ input::placeholder {
     align-items: flex-start;
     overflow: scroll;
     scrollbar-width: none;
+}
+
+.render-page {
+    position: relative;
+    z-index: -11;
 }

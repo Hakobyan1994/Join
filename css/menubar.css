@@ -1,5 +1,5 @@
 nav {
-    z-index: 3;
+    z-index: -9;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -102,7 +102,7 @@ nav {
 }
 
 header {
-    z-index: 2;
+    z-index: -10;
     position: fixed;
     top: 0;
     right: 0;

@@ -40,7 +40,7 @@ body {
 
 .main_checkingDiv {
     position: absolute;
-    top: 255px;
+    top: 85px;
     left: 328px;
     width: 560px;
     height: calc(100% - 255px);

@@ -364,31 +364,32 @@
         font-size: 42px;
         position: fixed;
         top: 140px;
-        left: -75px !important;
+        left: -42px !important;
         gap: 8px;
         display: flex;
         flex-direction: column;
+
     }
 
     .team-headline {
-        position: relative;
-        bottom: 15px;
-        left: 33px;
+        position: fixed;
+        top: 186px;
+        left: 20px;
         font-size: 18px;
     }
 
     .vertical-line {
         width: 80px;
         height: 3px;
-        position: relative;
-        top: 30px;
-        left: -51px;
+        position: fixed;
+        top: 220px;
+        left: 23px;
     }
 
     .slider-main-content {
-        position: relative;
-        left: -502px;
-        top: -100px;
+        position: fixed;
+        left: -278px;
+        top: 58px;
     }
 
     .slider-content-top {
@@ -497,6 +498,11 @@
     .contact-info-slider {
         z-index: -1 !important;
     }
+
+    .z-index {
+        display: block;
+        z-index: 2;
+    }
 }
 
 .slide-in-mobile {
@@ -529,11 +535,13 @@
 }
 
 .slide-in-mobile-info {
-    animation: slideInFromRightSide 0.5s forwards;
+    display: block;
+    /* animation: slideInFromRightSide 0.5s forwards; */
 }
 
 .slide-out-mobile-info {
-    animation: slideOutToRightSide 0.5s forwards;
+    display: block;
+    /* animation: slideOutToRightSide 0.5s forwards; */
 }
 
 

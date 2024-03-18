@@ -58,7 +58,7 @@
     position: fixed;
     bottom: 0;
     top: 0;
-    left: 232px!important;
+    left: 232px !important;
 }
 
 .close-img-mobile {
@@ -353,10 +353,6 @@
     right: 18px;
     z-index: -1;
     cursor: pointer;
-}
-
-.z-index {
-    z-index: 2;
 }
 
 .z-index-header {
