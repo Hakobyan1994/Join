@@ -208,18 +208,6 @@
 }
 
 @media(max-width: 860px) {
-    /* .popup-task-footer {
-        width: unset;
-        margin-right: 32px;
-    }
-
-    .edit-div {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: unset;
-    } */
-
     .addtask-popup {
         width: 440px;
     }
@@ -257,7 +245,6 @@
         padding-left: unset;
         padding-top: unset;
         padding: unset;
-        /* padding: 32px 24px 32px 24px; */
     }
 
     .popup-text {
@@ -323,5 +310,4 @@
         width: 100%;
         padding: unset;
     }
-
 }

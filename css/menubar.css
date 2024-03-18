@@ -214,13 +214,9 @@ header p {
     margin-left: 16px;
 }
    
-   /* .clickInfoDiv ul li a:hover{
+.clickInfoDiv ul li:hover{
+    width: 100%; 
     background-color: #2f4057;
-   }  */
-
-   .clickInfoDiv ul li:hover{
-     width: 100%; 
-     background-color: #2f4057;
 }
 
 .mobile-logo {
