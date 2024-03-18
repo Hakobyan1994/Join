@@ -83,11 +83,11 @@ nav {
 .legalbox {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 16px;
     align-self: stretch;
-    padding: 124px 0px 0px 52px;
+    padding: 0;
 }
 
 .legalbox a {
@@ -228,5 +228,18 @@ header p {
 }
 
 .mobile-navbar {
-    display: none;
+    display: block;
+}
+
+.bg-blue {
+    background-color: rgb(9, 25, 49);
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.bg-blue:hover {
+    color: rgb(205, 205, 205)!important;
 }

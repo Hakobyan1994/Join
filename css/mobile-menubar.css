@@ -172,4 +172,13 @@
     .header-right {
         gap: unset;
     }
+
+    .p-extern {
+        display: none;
+    }
+
+    .privacy-extern {
+        height: 100%!important;
+        margin-top: 178px;
+    }
 }

@@ -19,7 +19,7 @@ async function getItem(key) {
 }
 
 
-changeWindowSize();
+// changeWindowSize();
 
 
 async function init() {
@@ -160,7 +160,7 @@ function renderHPLMain(page) {
     return page;
 }
 
-
+/*
 function renderPrivacyLegal(page) {
     hideUserContent();
     let content = document.getElementById(page);
@@ -182,8 +182,9 @@ function renderPrivacyLegal(page) {
     document.getElementById('privacyhover').setAttribute('onClick', `renderPL('login-privacy', 'login-legal')`);
     document.getElementById('legalhover').setAttribute('onClick', `renderPL('login-legal', 'login-privacy')`);
 }
+*/
 
-
+/*
 function changeWindowSize() {
     window.addEventListener('resize', function () {
         deleteNavbarMobile();
@@ -202,8 +203,9 @@ function deleteNavbarMobile() {
     }
 
 }
+*/
 
-
+/*
 function renderPL(page, expage) {
     let content = document.getElementById(page);
     let exPage = document.getElementById(expage);
@@ -223,21 +225,24 @@ function renderPL(page, expage) {
         document.getElementById('back-legal').setAttribute('onClick', `resetUserContent('${page}')`);
     }
 }
+*/
 
-
+/*
 function hideUserContent() {
     document.getElementById('menubar').classList.add('d-none');
     document.getElementById('header-right').classList.add('d-none');
     document.getElementById('login-div').classList.add('d-none');
-    document.getElementById('signup-navbar').classList.remove('d-none');
+    // document.getElementById('signup-navbar').classList.remove('d-none');
 }
+*/
 
-
+/*
 function resetUserContent(page) {
     document.getElementById('login-div').classList.remove('d-none');
     document.getElementById('signup-navbar').classList.add('d-none');
     document.getElementById(page).innerHTML = '';
 }
+*/
 
 
 function minDate() {
