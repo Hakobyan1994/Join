@@ -28,6 +28,7 @@ async function init() {
     await loadContacts();
     await loadTasks();
     closeInfoList();
+
 }
 
 
