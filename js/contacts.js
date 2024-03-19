@@ -404,18 +404,17 @@ function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSlide
         editMask.classList.remove('d-none');
         editMask.classList.add('slide-in');
     } else {
-        editMask.classList.remove('slide-out');
+        editMask.classList.remove('slide-out-mobile');
         editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in');
+        editMask.classList.add('slide-in-mobile');
         editMobileBtn.classList.add('d-none');
         contactInfoSliderMobile.classList.add('d-none');
-        // contactInfoConMobile.classList.add('z-index-minus-1');
-        // infoSliderHeadline.classList.add('z-index-minus-1');
+         contactInfoConMobile.classList.add('z-index-minus-2');
+         infoSliderHeadline.classList.add('d-none');
         editMask.innerHTML = generateEditMaskOverlay(i);
-        // contactList.classList.add('d-none');
-        // addNewContactBtn.classList.add('d-none');
     }
 }
+
 
 function closeAddContactSlider() {
     let dialog = document.getElementById('dialog');
@@ -467,8 +466,8 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
         editMask.classList.remove('slide-in');
         editMask.classList.add('slide-out');
     } else {
-        editMask.classList.remove('slide-in');
-        editMask.classList.add('slide-out');
+        editMask.classList.remove('slide-in-mobile');
+        editMask.classList.add('slide-out-mobile');
         editMobileBtn.classList.remove('d-none');
         contactInfoSliderMobile.classList.remove('d-none');
         contactInfoConMobile.classList.remove('z-index-minus-1');
@@ -526,6 +525,13 @@ function showContactInfoSlider(i) {
     document.getElementById('contactInfoConMobile').classList.remove('d-none');
     document.getElementById('headlineMobile').classList.add('z-index');
 
+    if (window.innerWidth < 860) {
+        document.getElementById('addedContactsCon').classList.add('z-index-minus-1');
+        document.getElementById('headlineMobile').classList.add('z-index-2');
+        document.getElementById('headlineMobile').classList.remove('z-index-minus-1');
+        contactInfoSlider.classList.toggle('z-index-minus-1');
+    }
+
     showContactInfoSliderHELP(i, contactInfoSlider);
     renderContactInfo(i, contactInfoSlider);
 }
@@ -535,6 +541,7 @@ function showContactInfoSliderHELP(i, contactInfoSlider) {
     if (window.innerWidth < 1360) {
         contactInfoSlider.innerHTML = '';
         contactInfoSlider.classList.remove('d-none');
+        contactInfoSlider.classList.add('z-index-999');
         contactInfoSlider.classList.add('slide-in');
         contactInfoSliderVisible = true;
     } else {
@@ -598,7 +605,8 @@ function removeHighlight(contactDiv) {
 
 function hideMobileContactInfo() {
     document.getElementById('contactInfoConMobile').classList.add('d-none');
-    document.getElementById('headlineMobile').classList.remove('z-index');
+    document.getElementById('headlineMobile').classList.remove('z-index-1');
+    document.getElementById('headlineMobile').classList.add('d-none');
 }
 
 

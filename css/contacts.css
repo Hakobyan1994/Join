@@ -364,3 +364,15 @@
 .z-index-minus-1 {
     z-index: -1 !important;
 }
+
+.z-index-1 {
+    z-index: 1 !important;
+}
+
+.z-index-minus-2 {
+    z-index: -2 !important;
+}
+
+.z-index-2 {
+    z-index: 2 !important;
+}

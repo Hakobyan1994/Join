@@ -39,9 +39,9 @@ body {
 }
 
 .main_checkingDiv {
-    position: absolute;
-    top: 85px;
-    left: 328px;
+    position: relative;
+    top: 27px;
+    left: 2px;
     width: 560px;
     height: calc(100% - 255px);
     margin-bottom: 32px;

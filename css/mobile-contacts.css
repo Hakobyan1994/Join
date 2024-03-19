@@ -153,7 +153,6 @@
         position: relative;
         right: 213px;
         top: 354px;
-        z-index: -1 !important;
         padding-top: 0;
         padding-left: 0;
     }
@@ -261,6 +260,7 @@
     .back-arrow-mobile {
         position: relative;
         right: 21px;
+        z-index: -2 !important;
     }
 
     .name {
@@ -368,7 +368,6 @@
         gap: 8px;
         display: flex;
         flex-direction: column;
-        z-index: -1 !important;
     }
 
     .team-headline {
@@ -412,7 +411,7 @@
         position: fixed;
         top: 141px;
         right: 10px;
-        z-index: 999999;
+        z-index: -2 !important;
     }
 
     .add-contact-btn-mobile {
