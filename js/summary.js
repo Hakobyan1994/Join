@@ -127,31 +127,10 @@ async function getValue() {
   let valueUrgent = 0;
   let total = 0;
 
-  displayValue(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
 
-  total = valueTodo + valueProgress + valueFeedback;
-
-  document.getElementById('value-todoarray').innerHTML = valueTodo;
-  document.getElementById('value-progressarray').innerHTML = valueProgress;
-  document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
-  document.getElementById('value-donearray').innerHTML = valueDone;
-  document.getElementById('value-urgent').innerHTML = valueUrgent;
-
-  if (total) {
-    document.getElementById('value-total').innerHTML = `${total}`;
-  } else if (total === 0) {
-    document.getElementById('value-total').innerHTML = '0';
-  }
-
-  getUrgentDate();
-}
-
-
-function displayValue(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent) {
   for (let i = 0; i < tasks.length; i++) {
-    let state = tasks[i].status;
-    console.log(state);
-    let priotity = tasks[i].priority;
+    const state = tasks[i].status;
+    const priotity = tasks[i].priority;
 
     if (state === 'board-to-do') {
       valueTodo++;
@@ -169,8 +148,23 @@ function displayValue(valueTodo, valueProgress, valueFeedback, valueDone, valueU
       valueUrgent++;
     }
   }
+  total = valueTodo + valueProgress + valueFeedback;
+  console.log(total);
 
-  return {valueTodo, valueProgress, valueFeedback}
+
+  document.getElementById('value-todoarray').innerHTML = valueTodo;
+  document.getElementById('value-progressarray').innerHTML = valueProgress;
+  document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
+  document.getElementById('value-donearray').innerHTML = valueDone;
+  document.getElementById('value-urgent').innerHTML = valueUrgent;
+
+  if (total) {
+    document.getElementById('value-total').innerHTML = `${total}`;
+  } else if (total === 0) {
+    document.getElementById('value-total').innerHTML = '0';
+  }
+
+  getUrgentDate();
 }
 
 
@@ -178,10 +172,12 @@ function getUrgentDate() {
   arrayUrgent = [];
 
   for (let j = 0; j < tasks.length; j++) {
-    let array = tasks[j].priority;
-    let date = tasks[j].date;
+    const array = tasks[j].priority;
+    const date = tasks[j].date;
     if (array === 'urgent') {
       arrayUrgent.push(date);
+    } else {
+      console.log('not found a urgent pos');
     }
   }
   deleteOldUrgent();
@@ -195,8 +191,11 @@ function deleteOldUrgent() {
     return new Date(year, month - 1, day);
   });
   let earliestDate = new Date(Math.min(...dateArray));
+  // console.log(earliestDate);
   if (earliestDate < new Date()) {
     arrayUrgent.splice(earliestDate);
+  } else {
+    console.log('all tasks have no expired upcoming deadline ');
   }
 }
 
@@ -206,6 +205,7 @@ function actualDate() {
   let day = date.getDate();
   let options = { month: 'long', day: 'numeric', year: 'numeric', };
   let formattedDate = date.toLocaleDateString('de-DE', options);
+  console.log(formattedDate);
 }
 actualDate()
 
@@ -232,6 +232,7 @@ function defineUpcomingDeadline() {
     day: 'numeric',
     year: 'numeric'
   });
+  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -278,6 +279,7 @@ async function getGreeting() {
 
 function greetingNameToUpperCaser(name) {
   const nameWords = name.split(' ');
+  console.log(nameWords);
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
   return capitalizedNames.join(' ');
 }

@@ -2,10 +2,10 @@
 
 async function loadToDo() {                    
     await loadTasks();
-    let [todo, progress, feedback, done] = initializeElements();
+    const [todo, progress, feedback, done] = initializeElements();
     clearBoardContents(todo, progress, feedback, done);
 
-    let { hasToDo, hasProgress, hasFeedback, hasDone } = await populateBoards(todo, progress, feedback, done);
+    const { hasToDo, hasProgress, hasFeedback, hasDone } = await populateBoards(todo, progress, feedback, done);
     updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, hasFeedback, hasDone);
 }
 
@@ -28,10 +28,10 @@ function clearBoardContents(todo, progress, feedback, done) {
 
 
 async function populateBoards(todo, progress, feedback, done) {
-    let flags = { hasToDo: false, hasProgress: false, hasFeedback: false, hasDone: false };
+    const flags = { hasToDo: false, hasProgress: false, hasFeedback: false, hasDone: false };
 
     for (let i = 0; i < tasks.length; i++) {
-        let taskValue = tasks[i];
+        const taskValue = tasks[i];
         await updateBoard(taskValue, i, todo, progress, feedback, done, flags);
     }
 
@@ -40,26 +40,23 @@ async function populateBoards(todo, progress, feedback, done) {
 
 
 async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) {
-    console.log('Task Value:', taskValue);
-    if(taskValue) {
-        switch (taskValue.status) {
-            case 'board-to-do':
-                todo.innerHTML += generateBoardCard(taskValue, i);
-                flags.hasToDo = true;
-                break;
-            case 'board-in-progress':
-                progress.innerHTML += generateBoardCard(taskValue, i);
-                flags.hasProgress = true;
-                break;
-            case 'board-await-feedback':
-                feedback.innerHTML += generateBoardCard(taskValue, i);
-                flags.hasFeedback = true;
-                break;
-            case 'board-done':
-                done.innerHTML += generateBoardCard(taskValue, i);
-                flags.hasDone = true;
-                break;
-        }
+    switch (taskValue.status) {
+        case 'board-to-do':
+            todo.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasToDo = true;
+            break;
+        case 'board-in-progress':
+            progress.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasProgress = true;
+            break;
+        case 'board-await-feedback':
+            feedback.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasFeedback = true;
+            break;
+        case 'board-done':
+            done.innerHTML += generateBoardCard(taskValue, i);
+            flags.hasDone = true;
+            break;
     }
     checkCategoryButton();
     createUserButtons(taskValue, i);
@@ -90,11 +87,11 @@ function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, has
 async function pushSelectedSubtask(i, k) {
     await loadTasks();
 
-    let subtask = document.getElementById(`each-subtasks-${k}`);
-    let task = tasks[i];
+    const subtask = document.getElementById(`each-subtasks-${k}`);
+    const task = tasks[i];
 
     if (subtask && task) {
-        let value = subtask.getAttribute('value');
+        const value = subtask.getAttribute('value');
 
         updateCheckoffs(task, k, value);
         await saveTasks();
@@ -123,7 +120,7 @@ function addSubtaskToCheckoffs(task, k) {
 
 
 function removeSubtaskFromCheckoffs(task, k) {
-    let index = task.checkoffs.indexOf(k);
+    const index = task.checkoffs.indexOf(k);
     if (index !== -1) {
         task.checkoffs.splice(index, 1);
     }
@@ -220,8 +217,15 @@ function updateContactList(array) {
         console.log(selectedContacts);
         for (let k = 0; k < contacts.length; k++) {
             let contact = document.getElementById(`contact-name-${k}`);
+            // let list = document.getElementById(`assigned-contacts-${k}`);
+            // let checkbox = document.getElementById(`checkbox-contact-${k}`);
             console.log(selectedContacts.toUpperCase());
             if(selectedContacts.toUpperCase() === contact.textContent.toUpperCase()) {
+                // list.classList.add('select-contact-blue');
+                // list.classList.add('white');
+                // checkbox.classList.remove('checkbox-none-selected');
+                // checkbox.src = '../assets/img/icons/selected1.svg';
+                // checkbox.classList.add('checkbox-selected');
                 selectAssignedContacts(k);
             } 
         }
@@ -287,11 +291,6 @@ function createNewTask(i) {
     let dateValue = date.value;
     let formatedDate = formatDate(dateValue);
 
-    getValueOfNewTask(i, title, description, priority, formatedDate);
-}
-
-
-function getValueOfNewTask(i, title, description, priority, formatedDate) {
     let newTask = {
         title: title.value,
         description: description.value,
