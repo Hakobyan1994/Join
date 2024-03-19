@@ -149,8 +149,6 @@ async function getValue() {
     }
   }
   total = valueTodo + valueProgress + valueFeedback;
-  console.log(total);
-
 
   document.getElementById('value-todoarray').innerHTML = valueTodo;
   document.getElementById('value-progressarray').innerHTML = valueProgress;
@@ -168,16 +166,19 @@ async function getValue() {
 }
 
 
+function displayValue() {
+
+}
+
+
 function getUrgentDate() {
   arrayUrgent = [];
 
   for (let j = 0; j < tasks.length; j++) {
-    const array = tasks[j].priority;
-    const date = tasks[j].date;
+    let array = tasks[j].priority;
+    let date = tasks[j].date;
     if (array === 'urgent') {
       arrayUrgent.push(date);
-    } else {
-      console.log('not found a urgent pos');
     }
   }
   deleteOldUrgent();
@@ -191,11 +192,8 @@ function deleteOldUrgent() {
     return new Date(year, month - 1, day);
   });
   let earliestDate = new Date(Math.min(...dateArray));
-  // console.log(earliestDate);
   if (earliestDate < new Date()) {
     arrayUrgent.splice(earliestDate);
-  } else {
-    console.log('all tasks have no expired upcoming deadline ');
   }
 }
 
@@ -205,7 +203,6 @@ function actualDate() {
   let day = date.getDate();
   let options = { month: 'long', day: 'numeric', year: 'numeric', };
   let formattedDate = date.toLocaleDateString('de-DE', options);
-  console.log(formattedDate);
 }
 actualDate()
 
@@ -232,7 +229,6 @@ function defineUpcomingDeadline() {
     day: 'numeric',
     year: 'numeric'
   });
-  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -279,7 +275,6 @@ async function getGreeting() {
 
 function greetingNameToUpperCaser(name) {
   const nameWords = name.split(' ');
-  console.log(nameWords);
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
   return capitalizedNames.join(' ');
 }

@@ -39,7 +39,6 @@ function generateHtmlMainBoard() {
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
                     </div>
                     <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    <!-- <div  id='testt'>grgr</div> -->
                 </div>
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
@@ -134,7 +133,6 @@ async function openPopupAddTaskDiv(i) {
                 <div class="popup-assigned-div">Assigned To:</div>
                 <div class="popup-assigned" id="popup-user-${i}">
                 </div>
-
             </div>
             <div>
                 <div class="mobile-subtask-board">Subtasks</div>
@@ -201,8 +199,7 @@ function generateEditableAddtask(i) {
                     ${generateHtmlSubtasks()}
                 </div>
                 <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="../assets/img/icons/check1.svg" alt="Check Icon"></button>
-            </div>       
-
+            </div>
     `;
 }
 

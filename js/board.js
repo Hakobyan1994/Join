@@ -302,9 +302,12 @@ function drop(ev) {
     not.forEach(function(div) {
         div.classList.remove('d-none');
     })
+    ifDropPossible(ev, dropTargetId, draggedElement);
+    deleteAllSilhouettes();
+}
 
 
-    
+function ifDropPossible(ev, dropTargetId, draggedElement) {
     if (dropTargetId === 'silhouette') {
         let parentTargetId = ev.target.parentElement.id;
         switch (parentTargetId) {
@@ -321,7 +324,6 @@ function drop(ev) {
                 break;
         }
     }
-    deleteAllSilhouettes();
 }
   
 
@@ -334,19 +336,19 @@ async function saveDroppedElement(element) {
     await loadToDo();
 }
 
-////// right one
+
 function allowDrop(ev) {
     ev.preventDefault();
-
     let targetId = ev.target.id;
-    console.log(ev.target.id);
-    
-   let not = document.querySelector('.Card_NotasksTodo');
+    let not = document.querySelector('.Card_NotasksTodo');
     
     if (ev.target.classList.contains('Card_NotasksTodo')) {
         ev.target.remove();
     }
+    dropCard(ev, targetId, not);
+}
 
+function dropCard(ev, targetId, not) {
     let dropPossible = isDropPossible(targetId);
 
     if (!dropPossible && !document.querySelector('#silhouette')) {
