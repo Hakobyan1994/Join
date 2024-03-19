@@ -409,8 +409,8 @@ function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSlide
         editMask.classList.add('slide-in-mobile');
         editMobileBtn.classList.add('d-none');
         contactInfoSliderMobile.classList.add('d-none');
-         contactInfoConMobile.classList.add('z-index-minus-2');
-         infoSliderHeadline.classList.add('d-none');
+        contactInfoConMobile.classList.add('z-index-minus-2');
+        infoSliderHeadline.classList.add('d-none');
         editMask.innerHTML = generateEditMaskOverlay(i);
     }
 }
@@ -465,6 +465,7 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
     if (window.innerWidth > 1360) {
         editMask.classList.remove('slide-in');
         editMask.classList.add('slide-out');
+        editMask.classList.add('d-none');
     } else {
         editMask.classList.remove('slide-in-mobile');
         editMask.classList.add('slide-out-mobile');
@@ -474,6 +475,7 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
         infoSliderHeadline.classList.remove('z-index-minus-1');
         contactList.classList.remove('d-none');
         addNewContactBtn.classList.remove('d-none');
+        editMask.classList.add('d-none');
     }
 }
 
