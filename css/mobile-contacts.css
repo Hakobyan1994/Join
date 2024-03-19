@@ -153,7 +153,7 @@
         position: relative;
         right: 213px;
         top: 354px;
-        z-index: -1;
+        z-index: -1 !important;
         padding-top: 0;
         padding-left: 0;
     }
@@ -368,7 +368,7 @@
         gap: 8px;
         display: flex;
         flex-direction: column;
-
+        z-index: -1 !important;
     }
 
     .team-headline {

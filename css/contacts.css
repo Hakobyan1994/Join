@@ -263,10 +263,11 @@
     position: absolute;
     top: 1000px;
     left: 750px;
+    z-index: 999999 !important;
 }
 
 .success-btn {
-    z-index: 9999;
+    z-index: 999999 !important;
     display: flex;
     height: 50px;
     width: 352px;
@@ -308,6 +309,7 @@
 }
 
 .slide-in-success-btn {
+    display: block;
     animation: slideInFromRightSuccess 0.5s forwards;
 }
 

@@ -143,31 +143,28 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
         nameAddContactError.classList.add('d-none');
     }
 
-    if (!email || !isValidEmail(email)) {
-        emailAddContactError.classList.remove('d-none');
-        emailAddContactError.innerHTML = `Please enter a valid email`;
-    } else {
-        emailAddContactError.classList.add('d-none');
-    }
-
-    if (email && !email.includes('@')) {
-        emailAddContactError.classList.remove('d-none');
-        emailAddContactError.innerHTML = `Please enter a valid email address`;
-        return;
-    }
-
     if (!phone) {
         phoneAddContactError.classList.remove('d-none');
-        phoneAddContactError.innerHTML = `Please enter a phonenumber`;
+        phoneAddContactError.innerHTML = `Please enter a phone number`;
     } else {
         phoneAddContactError.classList.add('d-none');
     }
+
+    setTimeout(() => {
+        if (!email || !isValidEmail(email)) {
+            emailAddContactError.classList.remove('d-none');
+            emailAddContactError.innerHTML = !email ? `Please enter an email` : `Please enter a valid email`;
+        } else {
+            emailAddContactError.classList.add('d-none');
+        }
+    }, 200);
 
     if (!name || !email || !phone) {
         return;
     }
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
+
 
 
 function isValidEmail(email) {
@@ -181,13 +178,13 @@ function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     let initials = formatInitials(formattedName);
     let existingEmail = document.getElementById('emailAlreadyExists');
 
-    checkInputsHELP(existingEmail);
+    checkInputsHELP(existingEmail, email);
 
     addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
 }
 
 
-function checkInputsHELP(existingEmail) {
+function checkInputsHELP(existingEmail, email) {
     if (checkExistingEmail(email)) {
         existingEmail.classList.remove('d-none');
         existingEmail.innerHTML = `Email already exists`;
@@ -223,8 +220,13 @@ function addedContactSuccessfully() {
     setTimeout(() => {
         success.classList.remove('slide-in-success-btn');
         success.classList.add('slide-out-success-btn');
+
+        setTimeout(() => {
+            success.classList.add('d-none');
+        }, 500);
     }, 1500);
 }
+
 
 
 function splitNameAndCapitalize(inputName) {
@@ -294,12 +296,14 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
         nameEditContactError.classList.add('d-none');
     }
 
-    if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
-        emailEditContactError.classList.remove('d-none');
-        emailEditContactError.innerHTML = `Please enter a valid email`;
-    } else {
-        emailEditContactError.classList.add('d-none');
-    }
+    setTimeout(() => {
+        if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
+            emailEditContactError.classList.remove('d-none');
+            emailEditContactError.innerHTML = `Please enter a valid email`;
+        } else {
+            emailEditContactError.classList.add('d-none');
+        }
+    }, 200);
 
     if (contactEmail && !contactEmail.includes('@')) {
         emailEditContactError.classList.remove('d-none');
@@ -324,7 +328,6 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
 async function saveContactHelp(i, contacts) {
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
-
     closeEditContactSlider();
     showContactInfoSlider(i);
 }
@@ -401,13 +404,13 @@ function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSlide
         editMask.classList.remove('d-none');
         editMask.classList.add('slide-in');
     } else {
-        editMask.classList.remove('slide-out-mobile');
+        editMask.classList.remove('slide-out');
         editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in-mobile');
+        editMask.classList.add('slide-in');
         editMobileBtn.classList.add('d-none');
         contactInfoSliderMobile.classList.add('d-none');
-        contactInfoConMobile.classList.add('z-index-minus-1');
-        infoSliderHeadline.classList.add('z-index-minus-1');
+        // contactInfoConMobile.classList.add('z-index-minus-1');
+        // infoSliderHeadline.classList.add('z-index-minus-1');
         editMask.innerHTML = generateEditMaskOverlay(i);
         // contactList.classList.add('d-none');
         // addNewContactBtn.classList.add('d-none');
@@ -464,8 +467,8 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
         editMask.classList.remove('slide-in');
         editMask.classList.add('slide-out');
     } else {
-        editMask.classList.remove('slide-in-mobile');
-        editMask.classList.add('slide-out-mobile');
+        editMask.classList.remove('slide-in');
+        editMask.classList.add('slide-out');
         editMobileBtn.classList.remove('d-none');
         contactInfoSliderMobile.classList.remove('d-none');
         contactInfoConMobile.classList.remove('z-index-minus-1');
@@ -532,7 +535,7 @@ function showContactInfoSliderHELP(i, contactInfoSlider) {
     if (window.innerWidth < 1360) {
         contactInfoSlider.innerHTML = '';
         contactInfoSlider.classList.remove('d-none');
-        contactInfoSlider.classList.add('slide-in-mobile-info');
+        contactInfoSlider.classList.add('slide-in');
         contactInfoSliderVisible = true;
     } else {
         contactInfoSlider.innerHTML = '';

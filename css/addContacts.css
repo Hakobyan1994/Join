@@ -402,12 +402,12 @@
 
 .slide-in {
     display: block;
-    /* animation: slideInFromRight 0.5s forwards; */
+    animation: slideInFromRight 0.5s forwards;
 }
 
 .slide-out {
     display: block;
-    /* animation: slideOutToRight 0.5s forwards; */
+    animation: slideOutToRight 0.5s forwards;
 }
 
 @keyframes slideInFromRight {
