@@ -127,27 +127,8 @@ async function getValue() {
   let valueUrgent = 0;
   let total = 0;
 
+  displayValue(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
 
-  for (let i = 0; i < tasks.length; i++) {
-    const state = tasks[i].status;
-    const priotity = tasks[i].priority;
-
-    if (state === 'board-to-do') {
-      valueTodo++;
-    }
-    if (state === 'board-in-progress') {
-      valueProgress++;
-    }
-    if (state === 'board-await-feedback') {
-      valueFeedback++;
-    }
-    if (state === 'board-done') {
-      valueDone++;
-    }
-    if (priotity === 'urgent') {
-      valueUrgent++;
-    }
-  }
   total = valueTodo + valueProgress + valueFeedback;
 
   document.getElementById('value-todoarray').innerHTML = valueTodo;
@@ -166,8 +147,30 @@ async function getValue() {
 }
 
 
-function displayValue() {
+function displayValue(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent) {
+  for (let i = 0; i < tasks.length; i++) {
+    let state = tasks[i].status;
+    console.log(state);
+    let priotity = tasks[i].priority;
 
+    if (state === 'board-to-do') {
+      valueTodo++;
+    }
+    if (state === 'board-in-progress') {
+      valueProgress++;
+    }
+    if (state === 'board-await-feedback') {
+      valueFeedback++;
+    }
+    if (state === 'board-done') {
+      valueDone++;
+    }
+    if (priotity === 'urgent') {
+      valueUrgent++;
+    }
+  }
+
+  return {valueTodo, valueProgress, valueFeedback}
 }
 
 

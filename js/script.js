@@ -195,13 +195,13 @@ function closeList(id, eId, icon) {
     let dropdown = document.getElementById(icon);
     if (list) {
         document.addEventListener('click', function (event) {
-            checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, event);
+            checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, event, id);
         });
     }
 }
 
 
-function checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, event) {
+function checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, event, id) {
     if (!list.contains(event.target) && event.target !== eIdElement && event.target !== dropdown) {
         list.classList.add('d-none');
         if (id === 'assigned-list') {
