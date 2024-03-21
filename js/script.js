@@ -28,7 +28,6 @@ async function init() {
     await loadContacts();
     await loadTasks();
     closeInfoList();
-
 }
 
 
@@ -234,4 +233,14 @@ function addZindex() {
 function removeZindex() {
     document.getElementById('mobile-header').classList.remove('z-12');
     document.getElementById('navbar').classList.remove('z-11');
+}
+
+function addZindex13() {
+    document.getElementById('mobile-header').classList.add('z-13');
+    document.getElementById('navbar').classList.add('z-12');
+}
+
+function removeZindex13() {
+    document.getElementById('mobile-header').classList.remove('z-13');
+    document.getElementById('navbar').classList.remove('z-12');
 }

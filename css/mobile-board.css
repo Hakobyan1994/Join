@@ -191,7 +191,7 @@
 
     .popup-addtask-form {
         position: absolute;
-        bottom: 80px;
+        bottom: 0px;
         width: 100%;
         justify-content: space-evenly;
         gap: 4px;
@@ -296,7 +296,7 @@
 
     .ok-btn-edit {
         position: fixed;
-        bottom: 32px;
+        bottom: 88px;
         right: 32px;
         left: unset;
     }

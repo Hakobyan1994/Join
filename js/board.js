@@ -25,7 +25,7 @@ function closePopupAddTask() {
     popup.style.display = 'none';
     content.classList.remove('slide-in');
     content.classList.add('slide-out');
-    removeZindex();
+    removeZindex13();
 }
 
 

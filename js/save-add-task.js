@@ -72,7 +72,7 @@ function clearInput(content) {
 
 
 async function createTask(boardcard) { 
-    removeZindex();                                    // create Task to board
+    removeZindex13();                                    // create Task to board
     let { title, requiredTitle, requiredDate, requiredCategory, description, date, category } = getInputElements();
     let dateValue = date.value;
     let formatedDate = formatDate(dateValue);

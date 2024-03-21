@@ -68,7 +68,7 @@ function generateHtmlMainBoard() {
 
 
 async function openPopupAddTask(boardcard) {
-    addZindex();
+    addZindex13();
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
 
@@ -97,6 +97,7 @@ async function openPopupAddTask(boardcard) {
     cancelButton();
     document.getElementById('date').min = minDate();
     document.getElementById('date').value = minDate();
+    clearButtonImgChange();
 }
 
 
