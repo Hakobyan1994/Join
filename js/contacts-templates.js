@@ -61,7 +61,7 @@ function generateContact(i, contact, imageIdSlider) {
     <div id="contactHighlighter" class="focus-main" >
         <div onclick="showContactInfoSlider(${i})" class="contact-con-pos">
             <div tabindex="0" class="contact-con"  onmouseover="addHighlight(this)" onmouseout="removeHighlight(this)">
-                <img id="${imageIdSlider}" class="user-img-contact-list" src="/assets/img/icons/Ellipse 5.svg">
+                <img id="${imageIdSlider}" class="user-img-contact-list" src="../assets/img/icons/Ellipse 5.svg">
                 <div class="contact-focus-effect">
                     <div class="contact-list-name">${contact.name}</div>
                     <div class="contact-list-email">${contact.email}</div>
@@ -86,16 +86,16 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
         <div id="contactSlider" class="contact-info-slider">
             <div class="slider-main-content">
                 <div class="slider-content-top">
-                    <img id="${imageId}" class="slider-contact-img" src="/assets/img/icons/Ellipse 5.svg" alt="">
+                    <img id="${imageId}" class="slider-contact-img" src="../assets/img/icons/Ellipse 5.svg" alt="">
                     <div class="contact-name">
                         <div class="name">${contactName}</div>
                         <div class="edit-delete-btn-con">
                             <div id="editBtnMobile" onclick="showEditContactOverlay(${i})" class="edit-delete">
-                                <img src="/assets/img/icons/edit.svg" alt="">
+                                <img src="../assets/img/icons/edit.svg" alt="">
                                     Edit
                             </div>
                             <div id="deleteBtnMobile" onclick="deleteContact(${i})" class="edit-delete">
-                                <img src="/assets/img/icons/delete.svg" alt="">
+                                <img src="../assets/img/icons/delete.svg" alt="">
                                     Delete
                             </div>
                         </div>
@@ -147,7 +147,7 @@ function generateContactImage(initials, color) {
 function generateSeparator() {
     return /*html*/`
         <div class="contact-line">
-            <img class="contact-line-color" src="/assets/img/icons/Vector 10.svg" alt="">
+            <img class="contact-line-color" src="../assets/img/icons/Vector 10.svg" alt="">
         </div>`;
 }
 
@@ -157,16 +157,16 @@ function generateAddContactOverlay() {
         <div class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
             <div class="add-contact-main">
-                <img id="closeImg" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="" onclick="closeAddContactSlider()">
+                <img id="closeImg" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeAddContactSlider()">
                 <div class="set-position">
-                    <img class="join-img" src="/assets/img/icons/Capa 2.svg" alt="join-icon">
+                    <img class="join-img" src="../assets/img/icons/Capa 2.svg" alt="join-icon">
                     <div class="add-contact-headline">
                         Add contact
                     </div>
                     <span class="add-contact-text">
                         Tasks are better with a team!
                     </span>
-                    <img class="blue-underline" src="/assets/img/icons/Vector 5.svg"
+                    <img class="blue-underline" src="../assets/img/icons/Vector 5.svg"
                         alt="blue-underline">
                 </div>
             </div>
@@ -175,46 +175,46 @@ function generateAddContactOverlay() {
                 <div class="add-contact-content" class="set-position">
                     <div>
                         <div onclick="closeAddContactSlider()" class="close-img-con">
-                            <img id="closeImg" class="close-img" src="/assets/img/icons/Close.svg" alt="">
+                            <img id="closeImg" class="close-img" src="../assets/img/icons/Close.svg" alt="">
                         </div>
                         <div onclick="closeAddContactSlider()" class="close-img-con-mobile" style="display: none">
                         </div>
 
                         <div class="add-contact-user-img">
                             <div class="person-con">
-                                <img class="person-img-bgr" src="/assets/img/icons/Group 9.svg"
+                                <img class="person-img-bgr" src="../assets/img/icons/Group 9.svg"
                                     alt="">
-                                <img class="person-img-add-contacts" src="/assets/img/icons/contact_person_white.svg" alt="">
+                                <img class="person-img-add-contacts" src="../assets/img/icons/contact_person_white.svg" alt="">
                             </div>
 
                             <form onsubmit="addToContacts()" class="add-contact-data">
                                 <div class="input-con-main">
                                     <input id="name" name="name" class="input-con"
                                         placeholder="Name" type="text" maxlength="16" required>
-                                    <img class="input-svg-pos" src="/assets/img/icons/person.svg" alt="">
+                                    <img class="input-svg-pos" src="../assets/img/icons/person.svg" alt="">
                                     <div id="nameAddErrorMessage" class="error-message d-none"></div>
                                 </div>
                                 <div class="input-con-main">
                                     <input id="emailContacts" name="email" class="input-con"
                                         placeholder="Email" type="email" required>
-                                    <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
+                                    <img class="input-svg-pos" src="../assets/img/icons/mail.svg" alt="">
                                     <div id="emailAddErrorMessage" class="error-message d-none"></div>
                                     <div id="emailAlreadyExists" class="error-message d-none"></div>
                                 </div>
                                 <div class="input-con-main">
                                     <input id="phone" name="phone" class="input-con"
                                         placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" required>
-                                    <img class="input-svg-pos" src="/assets/img/icons/call.svg" alt="">
+                                    <img class="input-svg-pos" src="../assets/img/icons/call.svg" alt="">
                                     <div id="phoneAddErrorMessage" class="error-message d-none"></div>
                                 </div>
 
                                 <div class="add-contact-btns">
                                     <button id="cancelBtn" onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
-                                        <div class="cancel-txt-fix">Cancel</div><img id="cancelBtnImg" class="cancel-btn-img" src="/assets/img/icons/close-black1.svg" alt="Close">
+                                        <div class="cancel-txt-fix">Cancel</div><img id="cancelBtnImg" class="cancel-btn-img" src="../assets/img/icons/close-black1.svg" alt="Close">
                                     </button>
 
                                     <button type="button" onclick="addToContacts()" class="create-contact-btn">
-                                        Create contact <img src="/assets/img/icons/check1.svg"
+                                        Create contact <img src="../assets/img/icons/check1.svg"
                                             alt="crerate contact">
                                     </button>
                                 </div>
@@ -233,13 +233,13 @@ function generateEditMaskOverlay(i) {
         <div class="set-dialog-pos">
             <div class="dialog" onclick="dontCloseCard(event)">
                 <div class="add-contact-main">
-                <img id="closeImgEdit" class="close-img-mobile" src="/assets/img/icons/close_white.svg" alt="" onclick="closeEditContactSlider()">
+                <img id="closeImgEdit" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeEditContactSlider()">
                     <div class="set-position">
-                        <img class="join-img" src="/assets/img/icons/Capa 2.svg" alt="join-icon">
+                        <img class="join-img" src="../assets/img/icons/Capa 2.svg" alt="join-icon">
                         <div class="add-contact-headline">
                             Edit contact
                         </div>
-                        <img class="blue-underline" src="/assets/img/icons/Vector 5.svg" alt="blue-underline">
+                        <img class="blue-underline" src="../assets/img/icons/Vector 5.svg" alt="blue-underline">
                     </div>
                 </div>
 
@@ -247,7 +247,7 @@ function generateEditMaskOverlay(i) {
                     <div class="add-contact-content set-position">
                         <div>
                             <div onclick="closeEditContactSlider()" class="close-img-con-edit">
-                                <img class="close-img" src="/assets/img/icons/Close.svg" alt="">
+                                <img class="close-img" src="../assets/img/icons/Close.svg" alt="">
                             </div>
 
                             <div class="add-contact-user-img">
@@ -258,23 +258,23 @@ function generateEditMaskOverlay(i) {
                                 <form onsubmit="addToContacts()" class="edit-contact-data">
                                     <div>
                                         <input id="nameEdit" name="name" class="input-con" placeholder="Name" type="text" maxlength="16" required>
-                                        <img class="input-svg-pos" src="/assets/img/icons/person.svg" alt="">
+                                        <img class="input-svg-pos" src="../assets/img/icons/person.svg" alt="">
                                         <div id="nameErrorMessage" class="error-message d-none"></div>
                                     </div>
                                     <div>
                                         <input id="emailEdit" name="email" class="input-con" placeholder="Email" type="email" required>
-                                        <img class="input-svg-pos" src="/assets/img/icons/mail.svg" alt="">
+                                        <img class="input-svg-pos" src="../assets/img/icons/mail.svg" alt="">
                                         <div id="emailErrorMessage" class="error-message d-none"></div>
                                     </div>
                                     <div>
                                         <input id="phoneEdit" name="phone" class="input-con" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
-                                        <img class="input-svg-pos" src="/assets/img/icons/call.svg" alt="">
+                                        <img class="input-svg-pos" src="../assets/img/icons/call.svg" alt="">
                                         <div id="phoneErrorMessage" class="error-message d-none"></div>
                                     </div>
 
                                     <div class="add-contact-btns">
                                         <button type="button" class="cancel-btn-edit" onclick="deleteContact(${i})">Delete</button>
-                                        <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg" src="/assets/img/icons/check1.svg" alt=""></button>
+                                        <button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save <img class="check-svg" src="../assets/img/icons/check1.svg" alt=""></button>
                                     </div>
                                 </form>
                             </div>

@@ -224,3 +224,14 @@ function logoutUser() {
     document.getElementById('shortName').innerHTML = '';
     nameActiveUser = [];
 }
+
+// set z-index to 11 
+function addZindex() {
+    document.getElementById('mobile-header').classList.add('z-12');
+    document.getElementById('navbar').classList.add('z-11');
+}
+
+function removeZindex() {
+    document.getElementById('mobile-header').classList.remove('z-12');
+    document.getElementById('navbar').classList.remove('z-11');
+}

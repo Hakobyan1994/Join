@@ -68,6 +68,7 @@ function generateHtmlMainBoard() {
 
 
 async function openPopupAddTask(boardcard) {
+    addZindex();
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
 
@@ -89,7 +90,6 @@ async function openPopupAddTask(boardcard) {
                 </div>  
             </div>  
         </div> 
-
     `;
     let assignedButton = document.getElementById('assigned-button');
     assignedButton.classList.add('assigned-button-b-pos');

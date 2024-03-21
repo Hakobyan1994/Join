@@ -276,7 +276,7 @@ textarea {
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    bottom: 32px;
+    bottom: -70px;
 }
 
 .form-bottom-right {
