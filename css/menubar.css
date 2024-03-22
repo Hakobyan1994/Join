@@ -1,5 +1,5 @@
 nav {
-    z-index: -9;
+    z-index: auto;
     position: fixed;
     top: 0;
     bottom: 0;

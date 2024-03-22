@@ -113,5 +113,5 @@ input::placeholder {
 
 .render-page-contacts {
     position: relative;
-    z-index: -11;
+    z-index: auto;
 }
