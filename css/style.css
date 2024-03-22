@@ -111,7 +111,7 @@ input::placeholder {
     scrollbar-width: none;
 }
 
-.render-page {
+.render-page-contacts {
     position: relative;
-    z-index: -12;
+    z-index: -11;
 }

@@ -68,7 +68,6 @@ function generateHtmlMainBoard() {
 
 
 async function openPopupAddTask(boardcard) {
-    addZindex13();
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
 

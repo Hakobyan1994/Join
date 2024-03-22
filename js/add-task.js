@@ -277,8 +277,7 @@ function clearButtonImgChange() {                                       //change
 }
 
 
-function clearFields() {        
-    removeZindex13();                                        // clear all value fields
+function clearFields() {                                           // clear all value fields
     resetFieldValues();
     hideAssignedList();
     resetGlobalVariables();

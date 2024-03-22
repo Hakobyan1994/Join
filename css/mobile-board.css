@@ -191,13 +191,10 @@
 
     .popup-addtask-form {
         position: absolute;
-        bottom: 0px;
+        bottom: 32px;
         width: 100%;
         justify-content: space-evenly;
         gap: 4px;
-        background-color: rgb(255, 255, 255);
-        z-index: 4;
-        height: 75px;
     }
 
     .mobile-board-popup-add-task {
@@ -296,7 +293,7 @@
 
     .ok-btn-edit {
         position: fixed;
-        bottom: 88px;
+        bottom: 32px;
         right: 32px;
         left: unset;
     }

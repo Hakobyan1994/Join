@@ -167,7 +167,7 @@ header p {
 }
 
 .clickInfoDiv {
-    z-index: 999;
+    z-index: 0;
     display: none;
     width: 150px;
     height: 158px;

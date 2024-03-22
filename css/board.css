@@ -1,6 +1,6 @@
 .board-popup-bg {
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 5;
+    z-index: -7;
     position: fixed;
     top: 0;
     left: 0;
@@ -44,7 +44,7 @@
 }
 
 .close-a-board {
-    z-index: 999;
+    z-index: 0;
     position: fixed;
     top: 42px;
     right: 42px;
@@ -320,7 +320,7 @@
 }
 
 .edit-addtask {
-    height: 66%;
+    height: 70%;
     overflow-y: auto;
     scrollbar-width: thin;
     overflow-x: hidden;
@@ -328,10 +328,9 @@
 
 .ok-btn-edit {
     position: relative;
-    bottom: -22px;
+    bottom: -23px;
     left: 366px;
     cursor: pointer;
-    z-index: 9;
 }
 
 .assigned-button-b-pos {

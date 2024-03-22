@@ -70,7 +70,7 @@
     }
 
     .mobile-nav {
-        z-index: 5;
+        z-index: -7;
         position: fixed;
         top: unset;
         right: 0;
