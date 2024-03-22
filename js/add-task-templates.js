@@ -36,7 +36,7 @@ async function addEventFunctions() {
 
 function generateHtmlMainAddTask() {
     return /*html*/`
-        <div id="add-task" class="main-window"></div>
+        <div id="add-task" class="main-window main-window-add-task"></div>
             <div class="popup-a-to-b d-none" id="popup-a-to-b">
             <img src="../assets/img/task-to-board.svg" alt="">
         </div>

@@ -42,6 +42,7 @@
 
     .board-window {
         margin-right: 32px;
+        margin-bottom: 44px;
         position: fixed;
         z-index: -2;
     }

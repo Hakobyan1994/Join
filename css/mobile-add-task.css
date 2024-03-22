@@ -83,6 +83,10 @@
         align-items: center;
     }
 
+    .main-window-add-task {
+        margin-bottom: 158px;
+    }
+
     .clear-btn {
         display: none;
     }
