@@ -1,15 +1,14 @@
 .legal-notice {
     padding-right: 100px;
     width: 75%;
-    height: calc(100vh - 222px);
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: thin;
     position: fixed;
     top: 0;
     bottom: 0;
-    height: calc(100% - 206px);
-    margin-top: 206px;
+    height: calc(100% - 140px);
+    margin-top: 144px;
     margin-left: 328px;
     margin-bottom: 88px;
     display: flex;

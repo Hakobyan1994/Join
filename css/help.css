@@ -4,8 +4,8 @@
     align-items: flex-start;
     width: 75%;
     overflow: scroll;
-    height: calc(100% - 206px);
-    margin-top: 206px;
+    height: calc(100% - 140px);
+    margin-top: 144px;
     margin-left: 328px;
     display: flex;
     flex-direction: column;

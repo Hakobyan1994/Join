@@ -45,6 +45,7 @@ body {
     width: 560px;
     height: calc(100% - 255px);
     margin-bottom: 32px;
+    padding-left: 28px;
 }
 
 .To_Done_mainDiv {

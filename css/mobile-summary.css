@@ -1,3 +1,17 @@
+@media(max-width: 1360px) {
+    .greeting {
+        display: none;
+    }
+
+    .greetingName {
+        display: none;
+    }
+
+    .profil_name {
+        display: none;
+    }
+}
+
 @media(max-width: 860px) {
     .mobile-main-summary {
         overflow: hidden !important;
@@ -5,7 +19,8 @@
 
     .main_checkingDiv {
         position: relative;
-        top: 318px;
+        top: 360px;
+        left: 326px;
     }
 
     .summary-mobile {
@@ -29,7 +44,8 @@
         flex-direction: column;
         gap: 0;
         position: relative;
-        right: 90px
+        right: 90px;
+        padding-left: 28px;
     }
 
     .summary-headline-mobile {
