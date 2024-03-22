@@ -632,4 +632,4 @@ function openMobileMenu(event) {
 function closeMobileMenu() {
     let menuMobileCon = document.getElementById('slideInMenuMobile');
     menuMobileCon.classList.add('d-none');
-}  
+} 
