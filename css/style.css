@@ -98,14 +98,14 @@ input::placeholder {
 
 .main-window {
     width: calc(100% - 330px);
-    height: calc(100% - 206px);
-    margin-top: 206px;
+    margin-top: 144px;
     margin-left: 328px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     overflow: scroll;
     scrollbar-width: none;
+    position: fixed;
 }
 
 .render-page-contacts {
