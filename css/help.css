@@ -12,6 +12,8 @@
     align-items: flex-start;
     overflow: scroll;
     scrollbar-width: none;
+    position: fixed;
+    z-index: 0;
 }
 
 .help h3 {
@@ -60,7 +62,6 @@
         margin-left: unset;
         margin-bottom: 88px;
         width: 94%;
-        height: 100%;
         padding-left: 16px;
         padding-right: 16px;
     }

@@ -32,9 +32,6 @@ body {
     margin: 0;
     height: 10px;
     width: 100vw;
-    overflow: hidden;
-    overflow-y: scroll;
-    scrollbar-width: thin;
     background-color: rgba(246, 247, 248, 1);
 }
 
@@ -113,5 +110,5 @@ input::placeholder {
 
 .render-page-contacts {
     position: relative;
-    z-index: auto;
+    z-index: -8;
 }

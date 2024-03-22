@@ -547,7 +547,7 @@ a {
         height: 100%;
         background-color: rgba(205, 205, 205);
         opacity: 8;
-        z-index: -11;
+        z-index: 0;
     }
 
     .greetResponsive {

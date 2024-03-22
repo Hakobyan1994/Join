@@ -5,7 +5,6 @@
 
     .card_mainContainer {
         width: 100%;
-        padding-bottom: 32px;
         gap: 16px;
     }
 
@@ -43,6 +42,8 @@
 
     .board-window {
         margin-right: 32px;
+        position: fixed;
+        z-index: -2;
     }
 
     .info_Div h1 {
@@ -53,7 +54,6 @@
     .card_mainContainer {
         width: 100%;
         padding-left: 32px;
-        margin-bottom: 88px;
     }
 
     .mobile-done-boardcard {

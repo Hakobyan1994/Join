@@ -70,7 +70,7 @@
     }
 
     .mobile-nav {
-        z-index: -7;
+        z-index: 3;
         position: fixed;
         top: unset;
         right: 0;
@@ -179,6 +179,7 @@
 
     .privacy-extern {
         height: 100%!important;
-        margin-top: 178px;
+        position: absolute;
+        z-index: -2;
     }
 }

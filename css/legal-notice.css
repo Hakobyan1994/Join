@@ -1,14 +1,17 @@
 .legal-notice {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding-right: 100px;
     width: 75%;
-    overflow: scroll;
+    height: calc(100vh - 222px);
+    overflow-y: scroll;
     overflow-x: hidden;
+    scrollbar-width: thin;
+    position: fixed;
+    top: 0;
+    bottom: 0;
     height: calc(100% - 206px);
     margin-top: 206px;
     margin-left: 328px;
+    margin-bottom: 88px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -52,7 +55,6 @@ span {
         margin-left: unset;
         margin-bottom: 88px;
         width: 94%;
-        height: 100%;
         padding-left: 16px;
         padding-right: 16px;
     }
