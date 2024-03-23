@@ -24,8 +24,8 @@ function generateHtmlSummary() {
                             </div>
                         </div>        
         
-                        <div class="toDo_mainDiv">
-                            <div class="image_Todo"><img class="editImageCheck" src="../assets/img/icons/Vector.png" alt=""></div>
+                        <div class="toDo_mainDiv" id="check-button-div">
+                            <div class="image_Todo"><img class="editImageCheck" id="check-button" src="../assets/img/icons/check-button-white.svg" alt=""></div>
                             <div class="done_numberDiv">
                                 <span class="toDo_num" id="value-donearray"></span>
                                 <span class="toDo_title">Done</span>
