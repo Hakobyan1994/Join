@@ -138,6 +138,7 @@ async function editTask(i) {
     await loadTasks();
     categoryArray = [];
     users = [];
+    iniimg = [];
     hidePopup(i);
     displayEditPopup();
     displayEditableContent(i);
@@ -214,18 +215,9 @@ function updateContactList(array) {
     renderAssignedList();
     for (let i = 0; i < array.assigned.length; i++) {
         let selectedContacts = array.assigned[i];
-        console.log(selectedContacts);
         for (let k = 0; k < contacts.length; k++) {
             let contact = document.getElementById(`contact-name-${k}`);
-            // let list = document.getElementById(`assigned-contacts-${k}`);
-            // let checkbox = document.getElementById(`checkbox-contact-${k}`);
-            console.log(selectedContacts.toUpperCase());
             if(selectedContacts.toUpperCase() === contact.textContent.toUpperCase()) {
-                // list.classList.add('select-contact-blue');
-                // list.classList.add('white');
-                // checkbox.classList.remove('checkbox-none-selected');
-                // checkbox.src = '../assets/img/icons/selected1.svg';
-                // checkbox.classList.add('checkbox-selected');
                 selectAssignedContacts(k);
             } 
         }

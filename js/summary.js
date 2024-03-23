@@ -149,8 +149,6 @@ async function getValue() {
     }
   }
   total = valueTodo + valueProgress + valueFeedback;
-  console.log(total);
-
 
   document.getElementById('value-todoarray').innerHTML = valueTodo;
   document.getElementById('value-progressarray').innerHTML = valueProgress;
@@ -176,8 +174,6 @@ function getUrgentDate() {
     const date = tasks[j].date;
     if (array === 'urgent') {
       arrayUrgent.push(date);
-    } else {
-      console.log('not found a urgent pos');
     }
   }
   deleteOldUrgent();
@@ -205,7 +201,6 @@ function actualDate() {
   let day = date.getDate();
   let options = { month: 'long', day: 'numeric', year: 'numeric', };
   let formattedDate = date.toLocaleDateString('de-DE', options);
-  console.log(formattedDate);
 }
 actualDate()
 
@@ -232,7 +227,6 @@ function defineUpcomingDeadline() {
     day: 'numeric',
     year: 'numeric'
   });
-  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -279,7 +273,6 @@ async function getGreeting() {
 
 function greetingNameToUpperCaser(name) {
   const nameWords = name.split(' ');
-  console.log(nameWords);
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
   return capitalizedNames.join(' ');
 }

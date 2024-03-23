@@ -32,6 +32,10 @@
         font-size: 47px;
     }
     
+    .main-window-add-task {
+        margin-bottom: 158px;
+    }
+    
     .form-addtask {
         display: unset;
         width: 100%;

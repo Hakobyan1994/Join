@@ -168,6 +168,12 @@ textarea:focus {
     border-color: var(--lightblue);
 }
 
+.subtask-input {
+    padding-right: 50px !important;
+    width: 484px;
+    box-sizing: border-box;
+}
+
 .inputfield::placeholder {
     color: rgba(209, 209, 209, 1);
     font-family: 'Inter', sans-serif;
@@ -178,6 +184,7 @@ textarea:focus {
     display: flex;
     justify-items: center;
     align-items: center;
+
 }
 
 .inputfield-textarea {
