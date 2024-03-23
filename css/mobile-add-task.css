@@ -148,16 +148,16 @@
     }
     
     .dropdown-icon {
-        left: 332px;
+        left: 322px;
     }
 
     .add-icon {
-        left: 332px
+        left: 322px
     }
 
     .clear-check-icons {
         bottom: 18px;
-        left: 156px;
+        left: 152px;
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -168,8 +168,12 @@
     }
     
     .subtasks {
-        width: 93%;
+        width: 335px;
         padding-right: 16px;
+    }
+
+    .subtask-input {
+        width: 360px;
     }
     
     .each-subtask {
@@ -189,7 +193,7 @@
     }
 
     .assigned-list {
-        width: 99%;
+        width: 360px;
     }
 
     .assigned-button {

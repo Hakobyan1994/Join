@@ -280,6 +280,7 @@
 
     .overflow {
         margin-left: 32px;
+        margin-right: 32px;
     }
 
     .popup-div-assign-date-title {
@@ -296,6 +297,7 @@
     
     .popup-subtask {
         margin-left: 32px;
+        margin-right: 32px;
     }
 
     .mobile-subtask-board {
@@ -383,7 +385,7 @@
 
     .card_Div {
         gap: 12px;
-        padding-bottom: 32px;
+        padding-bottom: 0px;
     } 
 
     .input-searchfield {
@@ -462,6 +464,7 @@
     }
 
     .edit-div {
-        padding-left: 4px;
+        width: 96%;
+        padding-left: 10px;
     }
 }
