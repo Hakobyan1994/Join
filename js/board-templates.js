@@ -16,7 +16,7 @@ function generateHtmlMainBoard() {
             <div class="main_div">
                 <div class="info_Div">
                     <div class="mobile-board-header">
-                        <h1>Board</h1>
+                        <h2>Board</h2>
                         <button class="mobile-add-task-board" onclick="openPopupAddTask('board-to-do'); return false">+</button>
                     </div>
 

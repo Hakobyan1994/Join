@@ -2,7 +2,7 @@ function generateHtmlSummary() {
     return /*html*/`
         <div class="main-window mobile-main-summary">
             <div class="info_titleDiv">
-                <h1 class="summary-headline-mobile">Join 360</h1>
+                <h2 class="summary-headline-mobile">Join 360</h2>
                 <div class="vector"></div>
                 <span class="summary-span-mobile">Key Metrics at a Glance</span>
             </div>

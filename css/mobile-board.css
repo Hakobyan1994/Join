@@ -32,6 +32,10 @@
 }
 
 @media(max-width: 1360px) {
+    .mobile-board-header h2 {
+        margin-left: 16px;
+    }
+
     .main_div {
         width: 100%;
     }
@@ -60,6 +64,11 @@
     .mobile-done-boardcard {
         margin-right: 32px;
     }
+
+    .silhouette {
+        width: 180px;
+        height: 160px; 
+    }
 }
 
 @media(max-width: 1200px) {     
@@ -73,7 +82,7 @@
         flex-direction: row;
         min-height: 58px;
         max-height: fit-content;
-        width: 100%;
+        width: 95%;
         overflow-x: scroll;
         gap: 25px;
     }
@@ -149,7 +158,7 @@
     }
 
     .mobile-mgr-boardcard {
-        margin-right: 32px;
+        padding-right: 32px;
     }
 
     .popup-addtask-form {
@@ -310,5 +319,90 @@
         justify-content: center;
         width: 100%;
         padding: unset;
+    }
+
+    .progress_card {
+        padding: 12px;
+        width: 170px;
+    }
+
+    .c1 {
+        font-size: 14px;
+    }
+
+    .user-story-button {
+        width: 100px;
+    }
+
+    .technical-button {
+        width: 124px;
+    }
+
+    .cooking_title_div h1 {
+        font-size: 14px;
+    }
+
+    .recipe_span {
+        font-size: 12px;
+    }
+
+    .amount-subtasks {
+        font-size: 10px;
+    }
+
+    .progress_infocard button div {
+        width: 170px;
+    }
+
+    .cooking_title_div {
+        width: 170px;
+    } 
+
+    .progress_image_Div {
+        width: 170px;
+    }
+
+    .Members_Div {
+        width: 164px;
+    } 
+
+    .progress {
+        width: 100px;
+    }
+
+    .board-user-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .board-prio-icons {
+        width: 16px;
+        height: 16px;
+    }
+
+    .card_Div {
+        gap: 12px;
+    } 
+
+    .input-searchfield {
+        font-size: 12px;
+    }
+
+    .input-searchfield::placeholder {
+        font-size: 12px;
+    }
+
+    .mobile-add-task-board {
+        width: 32px;
+        height: 32px;
+    }
+
+    .card_mainContainer h3 {
+        font-size: 22px;
+    }
+
+    .Card_NotasksTodo {
+        border: 2px dotted rgb(168, 168, 168, 0.4);
+        font-size: 12px;
     }
 }
