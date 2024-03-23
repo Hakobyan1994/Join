@@ -116,3 +116,9 @@ input::placeholder {
     position: relative;
     z-index: -8;
 }
+
+@media (max-width: 320px) {
+    * {
+        display: none;;
+    }
+}
