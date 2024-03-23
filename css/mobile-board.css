@@ -67,7 +67,7 @@
 
     .silhouette {
         width: 180px;
-        height: 160px; 
+        height: 200px; 
     }
 }
 
@@ -404,5 +404,62 @@
     .Card_NotasksTodo {
         border: 2px dotted rgb(168, 168, 168, 0.4);
         font-size: 12px;
+    }
+
+    .popup-title {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .overflow {
+        font-size: 14px;
+    }
+
+    .popup-div-assign-date-title div {
+        font-size: 14px;
+    }
+
+    .popup-assigned-div {
+        font-size: 14px;
+    }
+
+    .popup-assigned div {
+        font-size: 14px;
+    }
+
+    .mobile-subtask-board {
+        font-size: 14px;
+    }
+
+    .popup-subtask {
+        font-size: 14px;
+    }
+
+    .popup-task-footer {
+        font-size: 14px;
+    }
+
+    .each-subtask {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 390px) {
+    .popup-title {
+        width: 288px;
+    }
+
+    .overflow {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    .each-subtask-section img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .edit-div {
+        padding-left: 4px;
     }
 }
