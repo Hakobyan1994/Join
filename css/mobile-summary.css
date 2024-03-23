@@ -186,3 +186,53 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 390px) {
+    .info_titleDiv {
+        padding-left: 80px;
+    }
+
+    .To_Done_mainDiv {
+        width: 300px;
+    } 
+
+    .mainTime_UrgentDiv {
+        width: 178px;
+    }
+
+    .tasksmain_Board {
+        width: 300px;
+    }
+
+    .summary-mobile {
+        right: 210px;
+    }
+
+    .urgent_Box {
+        left: unset;
+    }
+
+    .Date_box {
+        left: 8px;
+    }
+
+    .summary-headline-mobile {
+        font-size: 40px;
+    }
+
+    .toDo_num {
+        font-size: 36px;
+    }
+
+    .done_numberDiv {
+        font-size: 36px;
+    }
+
+    .urgent_Number {
+        font-size: 36px;
+    }
+
+    .boardNumber {
+        font-size: 36px;
+    }
+}
