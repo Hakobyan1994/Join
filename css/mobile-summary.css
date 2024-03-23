@@ -175,4 +175,14 @@
         position: relative;
         top: 25px;
     }
+
+    .urgent_Box {
+        gap: 4px;
+        position: relative;
+        left: -22px;
+    }
+
+    .mainTime_UrgentDiv {
+        justify-content: center;
+    }
 }
