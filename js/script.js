@@ -244,3 +244,15 @@ function removeZindex13() {
     document.getElementById('mobile-header').classList.remove('z-13');
     document.getElementById('navbar').classList.remove('z-12');
 }
+
+// function notSupported() {
+//     if(window.innerWidth < 320) {
+//         let body = document.body;
+//         body.innerHTML = '';
+//         body.innerHTML = 'Hallo';
+//     } else if (window.innerWidth > 320) {
+//         window.location.href = '../index.html';
+//     }
+// }
+
+// window.addEventListener('resize', notSupported);
