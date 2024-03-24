@@ -24,6 +24,16 @@ function generateHtmlMainContacts() {
 
                     <div id="successCon"></div>
 
+                    <div id="headline" class="headline">
+                            Contacts
+                            <div class="vertical-line">
+                                <img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
+                            </div>
+                            <div class="team-headline">
+                                Better with a team
+                            </div>
+                        </div>
+
                     <div id="headlineMobile" class="headline">
                             Contacts
                             <div class="vertical-line">

@@ -450,7 +450,7 @@
     .back-arrow-mobile {
         position: fixed;
         top: 141px;
-        right: 85px;
+        right: 8px;
         z-index: -2 !important;
     }
 
@@ -473,7 +473,7 @@
         z-index: 3;
         position: fixed;
         bottom: 100px;
-        right: 225px;
+        right: 456px;
         width: 64px;
         cursor: pointer;
     }
@@ -490,7 +490,7 @@
         position: fixed;
         width: 83px;
         height: 63px;
-        right: 225px;
+        right: 456px;
         bottom: 92px;
         display: flex;
         flex-direction: column;

@@ -1,30 +1,39 @@
 function showAddContactOverlay() {
     let dialog = document.getElementById('dialog');
     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    let infoSliderHeadline = document.getElementById('headlineMobile');
-    let contactInfoSlider = document.getElementById('contactSlider');
     let isMobileView = window.innerWidth < 1360;
 
-    showAddContactOverlayHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider);
-    showAddContactSlider();
+    showAddContactOverlayHELP(dialog, contactInfoConMobile, isMobileView);
 }
 
 
-function showAddContactOverlayHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider) {
-    if (isMobileView) {
+function showAddContactOverlayHELP(dialog, contactInfoConMobile, isMobileView) {
+    if (isMobileView === true) {
         dialog.classList.remove('slide-out-mobile');
         dialog.classList.remove('d-none');
         dialog.classList.add('slide-in-mobile');
         contactInfoConMobile.classList.remove('z-index-minus-1');
-        infoSliderHeadline.classList.remove('z-index-minus-1');
-        dialog.innerHTML = generateAddContactOverlay();
-    } else {
+    }
+    else if (isMobileView === false) {
         dialog.classList.remove('slide-in-mobile');
         dialog.classList.remove('slide-out');
         dialog.classList.remove('d-none');
         dialog.classList.add('slide-in');
-        dialog.innerHTML = generateAddContactOverlay();
     }
+    dialog.innerHTML = generateAddContactOverlay();
+    showAddContactSlider();
+}
+
+
+function showAddContactSlider() {
+    let dialogBg = document.getElementById('dialogBg');
+    let contactInfoSlider = document.getElementById('contactInfoSlider');
+
+    dialogBg.classList.remove('hide-dialog-bg');
+    dialogBg.classList.remove('d-none');
+    dialogBg.classList.add('dialog-bg');
+    contactInfoSlider.classList.add('show');
+    addZindex();
 }
 
 
@@ -144,18 +153,6 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
 }
 
 
-function showAddContactSlider() {
-    let dialogBg = document.getElementById('dialogBg');
-    let contactInfoSlider = document.getElementById('contactInfoSlider');
-
-    dialogBg.classList.remove('hide-dialog-bg');
-    dialogBg.classList.remove('d-none');
-    dialogBg.classList.add('dialog-bg');
-    contactInfoSlider.classList.add('show');
-    addZindex();
-}
-
-
 function hideAddContactSlider() {
     let dialogBg = document.getElementById('dialogBg');
     let contactInfoSlider = document.getElementById('contactInfoSlider');
@@ -174,35 +171,45 @@ function hideAddContactSlider() {
 
 
 function showContactInfoSlider(i) {
-    document.getElementById('headlineMobile').classList.remove('d-none');
+    let headline = document.getElementById('headline');
+    let headlineMobile = document.getElementById('headlineMobile');
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
     contactInfoConMobile.classList.remove('d-none');
-    // document.getElementById('headlineMobile').classList.add('z-index');
 
-    if (window.innerWidth < 860) {
-        // document.getElementById('addedContactsCon').classList.add('z-index-minus-1');
-        // document.getElementById('headlineMobile').classList.remove('z-index');
-        document.getElementById('headlineMobile').classList.add('z-index-2');
-        document.getElementById('headlineMobile').classList.remove('z-index-minus-1');
-        contactInfoSlider.classList.remove('z-index-minus-1');
-        contactInfoConMobile.classList.remove('z-index-minus-2');
+    function updateContactInfoSlider() {
+        let isMobileView = window.innerWidth < 1360;
+
+        if (window.innerWidth < 860) {
+            headlineMobile.classList.add('z-index-2');
+            headlineMobile.classList.remove('z-index-minus-1');
+            contactInfoSlider.classList.remove('z-index-minus-1');
+            contactInfoConMobile.classList.remove('z-index-minus-2');
+        }
+
+        showContactInfoSliderHELP(i, contactInfoSlider, isMobileView, headline, headlineMobile);
+        renderContactInfo(i, contactInfoSlider);
     }
 
-    showContactInfoSliderHELP(i, contactInfoSlider);
-    renderContactInfo(i, contactInfoSlider);
+    updateContactInfoSlider(); 
+
+    window.addEventListener('resize', updateContactInfoSlider); 
 }
 
 
-function showContactInfoSliderHELP(i, contactInfoSlider) {
-    if (window.innerWidth < 1360) {
+function showContactInfoSliderHELP(i, contactInfoSlider, isMobileView, headline, headlineMobile) {
+    if (isMobileView === true) {
         contactInfoSlider.innerHTML = '';
+        headlineMobile.classList.remove('d-none');
+        headline.classList.add('d-none');
         contactInfoSlider.classList.remove('d-none');
         contactInfoSlider.classList.add('z-index-999');
         contactInfoSlider.classList.add('slide-in');
         contactInfoSliderVisible = true;
-    } else {
+    } else if (isMobileView === false) {
         contactInfoSlider.innerHTML = '';
+        headlineMobile.classList.add('d-none');
+        headline.classList.remove('d-none');
         contactInfoSlider.classList.remove('d-none');
         contactInfoSlider.classList.add('slide-in');
         contactInfoSliderVisible = true;
@@ -220,5 +227,4 @@ function hideMobileContactInfo() {
     contactInfoConMobile.classList.remove('slide-in');
     contactInfoConMobile.classList.add('d-none');
     headlineMobile.classList.remove('z-index-1');
-    // headlineMobile.classList.add('d-none');
 }
