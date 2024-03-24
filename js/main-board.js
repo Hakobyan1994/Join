@@ -1,8 +1,7 @@
 // Load all Todos in Board
 let array = [];
 
-async function loadToDo() {   
-    resetGlobalVariables();           
+async function loadToDo() {              
     await loadTasks();
     const [todo, progress, feedback, done] = initializeElements();
     clearBoardContents(todo, progress, feedback, done);
@@ -91,8 +90,8 @@ function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, has
 async function pushSelectedSubtask(i, k) {
     await loadTasks();
 
-    const subtask = document.getElementById(`each-subtasks-${k}`);
-    const task = tasks[i];
+    let subtask = document.getElementById(`each-subtasks-${k}`);
+    let task = tasks[i];
 
     if (subtask && task) {
         const value = subtask.getAttribute('value');
@@ -192,8 +191,10 @@ function displayEditableContent(i) {
 // Push all values to the inputfields
 
 async function pushValueToEdit(i) {
+
     await loadTasks();
     array = tasks[i];
+    console.log(array);
     updateFields(array);
     updateContactList(array);
     updateSubtasks(array);
@@ -232,15 +233,19 @@ function updateContactList(array) {
 
 function updateSubtasks(array) {
     let subtasksArray = array.subtask;
-    let checkoffsArray = array.checkoffs[0];
+    let checkoffsArray = array.checkoffs;
     subtasks.push(subtasksArray);
     checkoffs.push(checkoffsArray)
     subtasks = [];
     checkoffs = [];
-    checkoffs.push(checkoffsArray);
-    console.log(checkoffs);
+    // checkoffs.push(checkoffsArray);
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
+    }
+
+    for (let k = 0; k < checkoffsArray.length; k++) {
+        checkoffs.push(checkoffsArray[k]);
+        console.log(checkoffs);
     }
     getSubtasks();
 }
@@ -262,7 +267,6 @@ async function saveEditedTask(i) {
         handleInvalidForm();
     }
     await reloadTasks();
-    array = [];
 }
 
 
@@ -291,7 +295,6 @@ function createNewTask(i) {
     let priority = pushPrio();
     let dateValue = date.value;
     let formatedDate = formatDate(dateValue);
-
     let newTask = {
         title: title.value,
         description: description.value,
