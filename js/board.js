@@ -458,3 +458,20 @@ function deleteAllSilhouettes() {
     let silhouettes = document.querySelectorAll('#silhouette');
     silhouettes.forEach(silhouette => silhouette.parentNode.removeChild(silhouette));
 }
+
+
+function onTouchStart(ev) {
+    console.log('start')
+}
+
+
+function onTouchMove(ev) {
+    console.log('move');
+}
+
+
+function onTouchEnd(ev) {
+    // ev.preventDefault();
+    console.log('end');
+
+}
