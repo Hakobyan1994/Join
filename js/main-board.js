@@ -1,4 +1,5 @@
 // Load all Todos in Board
+let array = [];
 
 async function loadToDo() {              
     await loadTasks();
@@ -191,10 +192,10 @@ function displayEditableContent(i) {
 
 async function pushValueToEdit(i) {
     await loadTasks();
-    let array = tasks[i];
+    array = tasks[i];
     updateFields(array);
     updateContactList(array);
-    updateSubtasks(i, array);
+    updateSubtasks(array);
     tasks.splice(i, 1);
 }
 
@@ -228,18 +229,14 @@ function updateContactList(array) {
 }
 
 
-function updateSubtasks(i, array) {
+function updateSubtasks(array) {
     let subtasksArray = array.subtask;
-    let checkOffArray = array.checkoffs;
     subtasks.push(subtasksArray);
-    checkOffs.push(checkOffArray);
     subtasks = [];
-    checkOffs = [];
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
-        checkOffs.push(checkOffArray[j]);
     }
-    getSubtasks(i);
+    getSubtasks();
 }
 
 
@@ -259,6 +256,7 @@ async function saveEditedTask(i) {
         handleInvalidForm();
     }
     await reloadTasks();
+    array = [];
 }
 
 
@@ -297,7 +295,7 @@ function createNewTask(i) {
         priority: priority,
         category: categoryArray[0],
         subtask: subtasks,
-        checkoffs: checkOffs,
+        checkoffs: tasks[i].checkoffs,
         status: tasks[i].status
     };
     return newTask;

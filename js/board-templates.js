@@ -214,7 +214,7 @@ function generateEditableAddtask(i) {
 }
 
 
-function getSubtasks(k) {
+function getSubtasks() {
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
@@ -223,9 +223,9 @@ function getSubtasks(k) {
         <li class="each-subtask" id="each-subtask${i}">
             <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
             <div class="subtask-right">
-                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${k}, ${i})">
+                <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
-                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${k}, ${i})">
+                <img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
             </div>
         </li>
     `;
