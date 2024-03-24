@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 75%;
     overflow: scroll;
     height: calc(100% - 188px);
     margin-top: 144px;
@@ -14,6 +13,7 @@
     scrollbar-width: none;
     position: fixed;
     z-index: 0;
+    padding-right: 32px;
 }
 
 .help h3 {
@@ -68,5 +68,11 @@
 
     .help h2 {
         font-size: 47px;
+    }
+}
+
+@media(max-width: 500px) {
+    .help h2 {
+        font-size: 36px;
     }
 }
