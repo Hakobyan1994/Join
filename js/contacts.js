@@ -14,11 +14,6 @@ async function renderContactsMain() {
 }
 
 
-function preventEventPropagation(event) {
-    event.stopPropagation();
-}
-
-
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '<img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">';
@@ -166,7 +161,6 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
 }
 
 
-
 function isValidEmail(email) {
     const emailRegex = /\S+@\S+\.\S+/;
     return emailRegex.test(email);
@@ -179,7 +173,6 @@ function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     let existingEmail = document.getElementById('emailAlreadyExists');
 
     checkInputsHELP(existingEmail, email);
-
     addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
 }
 
@@ -226,7 +219,6 @@ function addedContactSuccessfully() {
         }, 500);
     }, 1500);
 }
-
 
 
 function splitNameAndCapitalize(inputName) {
@@ -333,13 +325,6 @@ async function saveContactHelp(i, contacts) {
 }
 
 
-function clearInputs(name, email, phone) {
-    name.value = '';
-    email.value = '';
-    phone.value = '';
-}
-
-
 async function loadContacts() {
     try {
         contacts = JSON.parse(await getItem('contacts'));
@@ -349,250 +334,39 @@ async function loadContacts() {
 }
 
 
-function dontCloseCard(event) {
-    event.stopPropagation();
-}
-
-
-function showAddContactOverlay() {
-    let dialog = document.getElementById('dialog');
-    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    let infoSliderHeadline = document.getElementById('headlineMobile');
-    let contactInfoSlider = document.getElementById('contactSlider');
-    let isMobileView = window.innerWidth < 1360;
-
-    showAddContactOverlayHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider);
-    showAddContactSlider();
-}
-
-
-function showAddContactOverlayHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider) {
-    if (isMobileView) {
-        dialog.classList.remove('slide-out-mobile');
-        dialog.classList.remove('d-none');
-        dialog.classList.add('slide-in-mobile');
-        contactInfoConMobile.classList.remove('z-index-minus-1');
-        infoSliderHeadline.classList.remove('z-index-minus-1');
-        dialog.innerHTML = generateAddContactOverlay();
-    } else {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.remove('slide-out');
-        dialog.classList.remove('d-none');
-        dialog.classList.add('slide-in');
-        dialog.innerHTML = generateAddContactOverlay();
-    }
-}
-
-
-function showEditContactOverlay(i) {
-    let editMask = document.getElementById('editMask');
-    let editMobileBtn = document.getElementById('openMobileMenuBtn');
-    let contactInfoSliderMobile = document.getElementById('contactInfoSlider');
-    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    let infoSliderHeadline = document.getElementById('headlineMobile');
-    let contactList = document.getElementById('allContacts');
-    let addNewContactBtn = document.getElementById('addBtn');
-
-    showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn);
-    editMask.innerHTML = generateEditMaskOverlay(i);
-    showAddContactSlider(i);
-    loadContactInfo(i);
-    displayContactImage(i);
-}
-
-
-function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn) {
-    if (window.innerWidth > 1360) {
-        editMask.classList.remove('slide-out');
-        editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in');
-    } else {
-        editMask.classList.remove('slide-out-mobile');
-        editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in-mobile');
-        editMobileBtn.classList.add('d-none');
-        contactInfoSliderMobile.classList.add('d-none');
-        contactInfoConMobile.classList.add('z-index-minus-2');
-        infoSliderHeadline.classList.add('d-none');
-        editMask.innerHTML = generateEditMaskOverlay(i);
-    }
-}
-
-
-function closeAddContactSlider() {
-    let dialog = document.getElementById('dialog');
-    let contactInfoSlider = document.getElementById('contactSlider');
-    let infoSliderHeadline = document.getElementById('headlineMobile');
-    let isMobileView = window.innerWidth < 1360;
-
-    closeAddContactSliderHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider);
-    closeAddNewContactSliderTimeout(dialog);
-}
-
-
-function closeAddNewContactSliderTimeout(dialog) {
-    setTimeout(() => {
-        dialog.classList.add('d-none');
-        hideAddContactSlider();
-    }, 200);
-}
-
-
-function closeAddContactSliderHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider) {
-    if (isMobileView) {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.add('slide-out-mobile');
-        contactInfoConMobile.classList.remove('z-index-minus-1');
-        infoSliderHeadline.classList.remove('z-index-minus-1');
-        contactInfoMobileTimeout(contactInfoSlider);
-    }
-    else {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.remove('slide-in');
-        dialog.classList.add('slide-out');
-    }
-}
-
-
-function contactInfoMobileTimeout(contactInfoSlider) {
-    setTimeout(() => {
-        contactInfoSlider.classList.remove('d-none');
-    }, 200);
-}
-
-
-function closeEditContactSlider() {
-    let editMask = document.getElementById('editMask');
-    let editMobileBtn = document.getElementById('openMobileMenuBtn');
-    let contactInfoSliderMobile = document.getElementById('contactInfoSlider');
-    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    let infoSliderHeadline = document.getElementById('headlineMobile');
-    let contactList = document.getElementById('allContacts');
-    let addNewContactBtn = document.getElementById('addBtn');
-
-    closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn);
-
-    setTimeout(() => {
-        editMask.classList.add('d-none');
-        hideAddContactSlider();
-    }, 200);
-}
-
-
-function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn) {
-    if (window.innerWidth > 1360) {
-        editMask.classList.remove('slide-in');
-        editMask.classList.add('slide-out');
-        editMask.classList.add('d-none');
-        // infoSliderHeadline.classList.add('z-index-minus-1');
-        // contactList.classList.add('d-none');
-    } else {
-        editMask.classList.remove('slide-in-mobile');
-        editMask.classList.add('slide-out-mobile');
-        editMobileBtn.classList.remove('d-none');
-        contactInfoSliderMobile.classList.remove('d-none');
-        contactInfoConMobile.classList.remove('z-index-minus-1');
-        infoSliderHeadline.classList.remove('z-index-minus-1');
-        contactList.classList.remove('d-none');
-        addNewContactBtn.classList.remove('d-none');
-        editMask.classList.add('d-none');
-    }
-}
-
-
-function showAddContactSlider() {
-    document.getElementById('dialogBg').classList.remove('hide-dialog-bg');
-    document.getElementById('dialogBg').classList.remove('d-none');
-    document.getElementById('dialogBg').classList.add('dialog-bg');
-    document.getElementById('contactInfoSlider').classList.add('show');
-    addZindex();
-}
-
-
-function hideAddContactSlider() {
-    document.getElementById('dialogBg').classList.add('hide-dialog-bg');
-    document.getElementById('dialogBg').classList.add('d-none');
-    document.getElementById('dialogBg').classList.remove('dialog-bg');
-    document.getElementById('dialogBg').classList.add('d-none');
-    document.getElementById('contactInfoSlider').classList.remove('show');
-    document.getElementById('navbar').classList.remove('z-11');
-    document.getElementById('mobile-header').classList.remove('z-12');
-    removeZindex();
-}
-
-
 function loadContactInfo(i) {
-    document.getElementById('nameEdit').value = contacts[i].name;
-    document.getElementById('emailEdit').value = contacts[i].email;
-    document.getElementById('phoneEdit').value = contacts[i].phone;
+    let nameEdit = document.getElementById('nameEdit').value;
+    let emailEdit = document.getElementById('emailEdit').value;
+    let phoneEdit = document.getElementById('phoneEdit').value;
+
+    nameEdit = contacts[i].name;
+    emailEdit = contacts[i].email;
+    phoneEdit = contacts[i].phone;
 }
 
 
 async function deleteContact(i) {
-    if (window.innerWidth < 860) {
-        document.getElementById('contactInfoConMobile').classList.add('d-none');
-        document.getElementById('headlineMobile').classList.add('d-none');
-    } else {
-        document.getElementById('contactInfoConMobile').classList.remove('d-none');
-        document.getElementById('headlineMobile').classList.remove('d-none');
-    }
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let headlineMobile = document.getElementById('headlineMobile');
+    let contactSlider = document.getElementById('contactSlider');
 
+    deleteContactHELP(contactInfoConMobile, headlineMobile, i);
     contacts.splice(i, 1);
-    document.getElementById('contactSlider').innerHTML = '';
+    contactSlider.innerHTML = '';
     closeEditContactSlider();
     await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
 }
 
 
-function showContactInfoSlider(i) {
-    document.getElementById('headlineMobile').classList.remove('d-none');
-    let contactInfoSlider = document.getElementById('contactInfoSlider');
-    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    contactInfoConMobile.classList.remove('d-none');
-    // document.getElementById('headlineMobile').classList.add('z-index');
-
+function deleteContactHELP(contactInfoConMobile, headlineMobile, i) {
     if (window.innerWidth < 860) {
-        // document.getElementById('addedContactsCon').classList.add('z-index-minus-1');
-        // document.getElementById('headlineMobile').classList.remove('z-index');
-        document.getElementById('headlineMobile').classList.add('z-index-2');
-        document.getElementById('headlineMobile').classList.remove('z-index-minus-1');
-        contactInfoSlider.classList.remove('z-index-minus-1');
-        contactInfoConMobile.classList.remove('z-index-minus-2');
-    }
-
-    showContactInfoSliderHELP(i, contactInfoSlider);
-    renderContactInfo(i, contactInfoSlider);
-}
-
-
-function showContactInfoSliderHELP(i, contactInfoSlider) {
-    if (window.innerWidth < 1360) {
-        contactInfoSlider.innerHTML = '';
-        contactInfoSlider.classList.remove('d-none');
-        contactInfoSlider.classList.add('z-index-999');
-        contactInfoSlider.classList.add('slide-in');
-        contactInfoSliderVisible = true;
+        contactInfoConMobile.classList.add('d-none');
+        headlineMobile.classList.add('d-none');
     } else {
-        contactInfoSlider.innerHTML = '';
-        contactInfoSlider.classList.remove('d-none');
-        contactInfoSlider.classList.add('slide-in');
-        contactInfoSliderVisible = true;
+        contactInfoConMobile.classList.remove('d-none');
+        headlineMobile.classList.remove('d-none');
     }
-}
-
-
-function hideMobileContactInfo() {
-    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-    let headlineMobile = document.getElementById('headlineMobile');
-    let dialogBg = document.getElementById('dialog');
-
-    document.getElementById('headlineMobile').classList.remove('z-index-2');
-    dialogBg.classList.remove('slide-in');
-    contactInfoConMobile.classList.remove('slide-in');
-    contactInfoConMobile.classList.add('d-none');
-    headlineMobile.classList.remove('z-index-1');
-    // headlineMobile.classList.add('d-none');
 }
 
 
@@ -607,54 +381,3 @@ function renderContactInfo(i, contactInfoSlider) {
     addInitialsToContactImage(contact, imageIdSlider);
     addRandomColorToImg(imageElement, contact);
 }
-
-
-function addRandomColorToImg(imageElement, contact) {
-    if (imageElement) {
-        applyRandomColorToImage(imageElement, contact);
-    }
-}
-
-
-function onlyNumbers(evt) {
-    let charCode = (evt.which) ? evt.which : event.keyCode;
-
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 8 && charCode !== 37 && charCode !== 39) {
-        return false;
-    }
-
-    return true;
-}
-
-
-function changeImage(hovered) {
-    if (hovered) {
-        document.getElementById('cancelBtnImg').src = '../assets/img/icons/close-blue1.svg';
-    } else {
-        document.getElementById('cancelBtnImg').src = '../assets/img/icons/close-black1.svg';
-    }
-}
-
-
-function addHighlight(contactDiv) {
-    contactDiv.classList.add('highlighted');
-}
-
-
-function removeHighlight(contactDiv) {
-    contactDiv.classList.remove('highlighted');
-}
-
-
-function openMobileMenu(event) {
-    event.stopPropagation();
-
-    let menuMobileCon = document.getElementById('slideInMenuMobile');
-    menuMobileCon.classList.remove('d-none');
-}
-
-
-function closeMobileMenu() {
-    let menuMobileCon = document.getElementById('slideInMenuMobile');
-    menuMobileCon.classList.add('d-none');
-} 
