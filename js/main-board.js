@@ -63,6 +63,7 @@ async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) 
     await updateProgressBar(i);
     notData();
     checkCategoryButton();
+    highlightProgressbar(i);
 }
 
 

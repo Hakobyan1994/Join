@@ -70,7 +70,9 @@ function generateHtmlMainBoard() {
 async function openPopupAddTask(boardcard) {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
-
+    users = [];
+    iniimg = [];
+    subtasks = [];
     popup.style.display = 'flex';
     content.classList.remove('slide-out');
     content.classList.add('slide-in');

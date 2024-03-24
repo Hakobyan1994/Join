@@ -4,11 +4,11 @@ let users = [];
 let iniimg = [];
 
 
-function renderAssignedList() {                                    // generate the contact list of the section assigned-to
+function renderAssignedList() {                                  // generate the contact list of the section assigned-to
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     let input = document.getElementById('assigned');
-    list.classList.toggle('d-none');
+    list.classList.remove('d-none');
     if(!list.classList.contains('d-none')) {
         assignedButton.classList.add('d-none');
         input.placeholder = '';
@@ -17,12 +17,26 @@ function renderAssignedList() {                                    // generate t
         input.placeholder = 'Select contacts to assign';
     }
     list.innerHTML = '';
-    renderContactList(list);
     resetAllSelectedContacts();
+}
+
+function toggleAssignedlist() {
+    let list = document.getElementById('assigned-list');
+    let assignedButton = document.getElementById('assigned-button');
+    list.classList.toggle('d-none');
+    if(!list.classList.contains('d-none')) {
+        assignedButton.classList.add('d-none');
+        input.placeholder = '';
+    } else {
+        assignedButton.classList.remove('d-none');
+        input.placeholder = 'Select contacts to assign';
+    }
 }
 
 
 function resetAllSelectedContacts() {
+    let list = document.getElementById('assigned-list');
+    renderContactList(list);
     for (let i = 0; i < contacts.length; i++) {
         let assignedContact = document.getElementById(`assigned-contacts-${i}`);
         if (assignedContact.classList.contains === 'white') {
@@ -43,20 +57,22 @@ function renderContactList(list) {                                      // add a
     }
 }
 
-
-function searchAssignedList() {                                         // search function for assigned to list
+// search function for assigned to list
+function searchAssignedList() {                 
     let input = document.getElementById('assigned');
     let filter = input.value.toUpperCase();
-    for (let i = 0; i < contacts.length; i++) {
-        let list = document.getElementById(`assigned-contacts-${i}`);
-        let array = contacts[i].name;
-        let name = array.toUpperCase();
-        if (name.indexOf(filter) > -1) {
-            list.style.display = 'flex';
-        } else {
-            list.style.display = 'none';
+    // if (document.querySelector('assigned-contact-list')) {
+        for (let i = 0; i < contacts.length; i++) {
+            let list = document.getElementById(`assigned-contacts-${i}`);
+            let array = contacts[i].name;
+            let name = array.toUpperCase();
+            if (name.indexOf(filter) > -1) {
+                list.style.display = 'flex';
+            } else {
+                list.style.display = 'none';
+            }
         }
-    }
+    // }
 }
 
 

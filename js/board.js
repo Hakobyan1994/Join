@@ -126,6 +126,7 @@ function closePopupAddTaskDiv(i) {
     calculatePercentageForProgressBar(i);
     updateProgressBar(i);
     checkCategoryButton();
+    highlightProgressbar(i);
 }
 
 
@@ -167,6 +168,18 @@ function updateSelectedSubtasksCount(i) {
         return taskValue.checkoffs.length;
     } else {
         return 0;
+    }
+}
+
+async function highlightProgressbar(i) {
+    let text = document.getElementById(`amount-subtasks-${i}`);
+    let bar = document.getElementById(`progress-bar-${i}`);
+    if(updateSelectedSubtasksCount(i) === totalSubtask(i)) {
+        text.style.fontWeight = '600';
+        bar.style.backgroundColor = 'rgba(0, 89, 243, 1)';
+    } else {
+        text.style.fontWeight = '400';
+        bar.style.backgroundColor = 'rgba(69, 137, 255, 1)';
     }
 }
 

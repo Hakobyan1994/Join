@@ -101,8 +101,8 @@ function generateHtmlDescription() {
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
-        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onclick="renderAssignedList()" onkeyup="searchAssignedList()">
-        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" id="dropdown-assigned" onclick="renderAssignedList()">    
+        <input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onfocus="renderAssignedList()" onkeypress="renderAssignedList()" onkeyup="searchAssignedList()">
+        <img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" id="dropdown-assigned" onclick="toggleAssignedlist()">    
         <div class="assigned-list d-none" id="assigned-list"></div>
         <div class="assigned-button" id="assigned-button"></div>
     `;
