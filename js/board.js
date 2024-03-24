@@ -137,10 +137,10 @@ function calculatePercentageForProgressBar(i) {
 
     if (total === 0) {
         let percentage = 0;
-        return percentage;
+        return Math.round(percentage);
     } else {
         let percentage = (subtotal * 100) / total;
-        return percentage;
+        return Math.round(percentage);
     }
 }
 
