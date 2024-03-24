@@ -231,8 +231,13 @@ function updateContactList(array) {
 
 function updateSubtasks(array) {
     let subtasksArray = array.subtask;
+    let checkoffsArray = array.checkoffs[0];
     subtasks.push(subtasksArray);
+    checkoffs.push(checkoffsArray)
     subtasks = [];
+    checkoffs = [];
+    checkoffs.push(checkoffsArray);
+    console.log(checkoffs);
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
     }
@@ -295,7 +300,7 @@ function createNewTask(i) {
         priority: priority,
         category: categoryArray[0],
         subtask: subtasks,
-        checkoffs: tasks[i].checkoffs,
+        checkoffs: checkoffs,
         status: tasks[i].status
     };
     return newTask;

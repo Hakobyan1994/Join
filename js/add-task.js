@@ -1,5 +1,6 @@
 let tasks = [];
 let subtasks = [];
+let checkoffs = [];
 let users = [];
 let iniimg = [];
 
@@ -237,6 +238,10 @@ function makeListItemEditable(listItem, i, inputValue) {
 function deleteSubtask(i) {                                                 // delete subtask befor creating the task
     let position = i;
     subtasks.splice(position, 1);
+    let indexToDelete = checkoffs.indexOf(i.toString());
+    if (indexToDelete !== -1) {
+        checkoffs.splice(indexToDelete, 1); // Lösche das gefundene Element
+    }
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
 
@@ -321,6 +326,7 @@ function resetGlobalVariables() {
     users = [];
     iniimg = [];
     subtasks = [];
+    checkoffs = [];
 }
 
 
