@@ -257,18 +257,18 @@ function generateEditMaskOverlay(i) {
 
                                 <form onsubmit="addToContacts()" class="edit-contact-data">
                                     <div>
-                                        <input id="nameEdit" name="name" class="input-con" placeholder="Name" type="text" maxlength="16" required>
-                                        <img class="input-svg-pos" src="../assets/img/icons/person.svg" alt="">
+                                        <input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="16" required>
+                                        <img class="input-svg-pos-edit" src="../assets/img/icons/person.svg" alt="">
                                         <div id="nameErrorMessage" class="error-message d-none"></div>
                                     </div>
                                     <div>
-                                        <input id="emailEdit" name="email" class="input-con" placeholder="Email" type="email" required>
-                                        <img class="input-svg-pos" src="../assets/img/icons/mail.svg" alt="">
+                                        <input id="emailEdit" name="email" class="input-con-edit" placeholder="Email" type="email" required>
+                                        <img class="input-svg-pos-edit" src="../assets/img/icons/mail.svg" alt="">
                                         <div id="emailErrorMessage" class="error-message d-none"></div>
                                     </div>
                                     <div>
-                                        <input id="phoneEdit" name="phone" class="input-con" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
-                                        <img class="input-svg-pos" src="../assets/img/icons/call.svg" alt="">
+                                        <input id="phoneEdit" name="phone" class="input-con-edit" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
+                                        <img class="input-svg-pos-edit" src="../assets/img/icons/call.svg" alt="">
                                         <div id="phoneErrorMessage" class="error-message d-none"></div>
                                     </div>
 

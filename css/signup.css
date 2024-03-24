@@ -528,9 +528,9 @@ h1 {
     }
 
     .image_boxx {
-        margin-top: 30px;
-        margin-left: 24px;
-        margin-bottom: 25px;
+        position: absolute;
+        top: 26px;
+        left: 18px;
     }
 
     .title_div h1 {
@@ -629,7 +629,11 @@ h1 {
 
 }
 
-@media(max-width: 390px) {
+@media(max-width: 320px) {
+    .main_div {
+        
+    }
+
     .image_boxx {
         position: absolute;
         top: 0px;

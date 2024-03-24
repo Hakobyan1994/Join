@@ -290,35 +290,6 @@
     line-height: 120%;
 }
 
-@keyframes slideInFromRightSuccess {
-    from {
-        transform: translateX(550%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOutToRightSuccess {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(550%);
-    }
-}
-
-.slide-in-success-btn {
-    display: block;
-    animation: slideInFromRightSuccess 0.5s forwards;
-}
-
-.slide-out-success-btn {
-    animation: slideOutToRightSuccess 0.5s forwards;
-}
-
 .contact-focus-effect {
     width: 100%;
 }

@@ -132,6 +132,28 @@
     outline: none;
 }
 
+.input-con-edit {
+    width: 422px;
+    display: flex;
+    padding: 13px 21px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--Style, #D1D1D1);
+    background: #FFF;
+    margin-right: 48px;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.input-con-edit:focus {
+    border-color: #2AACE2 !important;
+    outline: none;
+}
+
 .add-contact-user-img {
     display: flex;
     align-items: center;
@@ -391,6 +413,12 @@
     left: 422px
 }
 
+.input-svg-pos-edit {
+    position: relative;
+    bottom: 39px;
+    left: 422px
+}
+
 .set-position {
     position: relative;
     bottom: 40px;
@@ -398,34 +426,4 @@
 
 .check-svg {
     color: white;
-}
-
-.slide-in {
-    display: block;
-    animation: slideInFromRight 0.5s forwards;
-}
-
-.slide-out {
-    display: block;
-    animation: slideOutToRight 0.5s forwards;
-}
-
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOutToRight {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(100%);
-    }
 }

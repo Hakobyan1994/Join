@@ -1,6 +1,6 @@
 .contact-info-slider {
     width: 100%;
-    transition: right 0.5s ease-in-out;
+    /* transition: right 0.5s ease-in-out; */
 }
 
 .contact-info-slider.show {
@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     right: calc((100vw - 500px) / 2);
-    transform: translateY(15%);
+    /* transform: translateY(15%); */
     z-index: -1;
 }
 

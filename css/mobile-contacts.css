@@ -110,6 +110,11 @@
         height: 10px;
     }
 
+    .input-con-edit {
+        width: 300px !important;
+        height: 10px;
+    }
+
     .person-con {
         position: relative;
         bottom: 416px;
@@ -129,6 +134,12 @@
     }
 
     .input-svg-pos {
+        position: relative;
+        bottom: 31px;
+        left: 310px;
+    }
+
+    .input-svg-pos-edit {
         position: relative;
         bottom: 31px;
         left: 310px;
@@ -241,7 +252,7 @@
     .contact-info-slider {
         position: fixed;
         top: 180px !important;
-        left: 220px;
+        left: 451px;
         z-index: 99999 !important;
     }
 
@@ -254,11 +265,22 @@
     .close-img {
         display: none;
     }
+
+    .slider-main-content {
+        position: fixed;
+        top: 85px !important;
+        left: 0px;
+    }
 }
 
 @media(max-width: 1200px) {
     .contact-info-slider {
         z-index: -1;
+    }
+
+    .slider-contact-img {
+        height: 90px;
+        width: 90px;
     }
 
     .back-arrow-mobile {
@@ -267,14 +289,25 @@
         z-index: -2 !important;
     }
 
+    .contact-name {
+        position: relative;
+        right: 40px;
+        top: 10px;
+    }
+
     .name {
-        font-size: 32px;
+        font-size: 26px;
     }
 }
 
 @media(max-width: 1000px) {
     .headline {
         font-size: 32px;
+        gap: 12px;
+    }
+
+    .vertical-line {
+        height: 40px;
     }
 }
 
@@ -285,6 +318,9 @@
     }
 
     .name {
+        position: relative;
+        left: 40px;
+        bottom: 12px;
         font-size: 32px;
         font-weight: 600;
         padding-bottom: 0;
@@ -391,8 +427,8 @@
 
     .slider-main-content {
         position: fixed;
-        left: -278px;
-        top: 58px;
+        top: 49px !important;
+        left: -510px;
     }
 
     .slider-content-top {
@@ -414,7 +450,7 @@
     .back-arrow-mobile {
         position: fixed;
         top: 141px;
-        right: 10px;
+        right: 85px;
         z-index: -2 !important;
     }
 
@@ -508,62 +544,92 @@
     }
 }
 
-.slide-in-mobile {
-    animation: slideInFromBottom 0.5s forwards;
-}
-
-.slide-out-mobile {
-    animation: slideOutToBottom 0.5s forwards;
-}
-
-
-@keyframes slideInFromBottom {
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0);
+@media(max-width: 395px) {
+    .name {
+        font-size: 22px;
     }
 }
 
-@keyframes slideOutToBottom {
-    from {
-        transform: translateY(0);
+@media(max-width: 380px) {
+    .dialog {
+        width: 310px !important;
     }
 
-    to {
-        transform: translateY(100%);
+    .add-contact-main {
+        width: 215px;
+    }
+
+    .add-contact-data {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-con {
+        position: relative;
+        left: 28px;
+        width: 240px !important;
+    }
+
+    .input-con-edit {
+        position: relative;
+        left: 1px;
+        width: 240px !important;
+    }
+
+    .input-svg-pos {
+        position: relative;
+        bottom: 31px;
+        left: 275px;
+    }
+
+    .input-svg-pos-edit {
+        position: relative;
+        bottom: 31px;
+        left: 250px;
+    }
+
+    .person-con {
+        margin-left: 27px;
+    }
+
+    .person-con-edit {
+        bottom: 483px;
+        left: 227px;
+    }
+
+    .create-contact-btn {
+        position: relative;
+        left: -16px;
+    }
+
+    .set-position {
+        bottom: 26px;
+    }
+
+    .close-img-mobile {
+        top: -48px;
+        right: -213px;
+    }
+
+    .edit-contact-data {
+        bottom: 288px;
+    }
+
+    .cancel-btn-edit {
+        width: 77px;
+    }
+
+    .create-contact-btn {
+        left: 17px;
     }
 }
 
-.slide-in-mobile-info {
-    display: block;
-    /* animation: slideInFromRightSide 0.5s forwards; */
-}
-
-.slide-out-mobile-info {
-    display: block;
-    /* animation: slideOutToRightSide 0.5s forwards; */
-}
-
-
-@keyframes slideInFromRightSide {
-    from {
-        transform: translateX(100%);
+@media(max-width: 360px) {
+    .contact-list-name {
+        font-size: 14px;
     }
 
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOutToRightSide {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(100%);
+    .contact-list-email {
+        font-size: 14px;
     }
 }

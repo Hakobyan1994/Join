@@ -1,0 +1,129 @@
+/* slide in desktop version */
+
+.slide-in {
+    display: block;
+    animation: slideInFromRight 0.5s forwards;
+}
+
+.slide-out {
+    display: block;
+    animation: slideOutToRight 0.5s forwards;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+
+/* slide in mobile version */
+
+.slide-in-mobile {
+    animation: slideInFromBottom 0.5s forwards;
+}
+
+.slide-out-mobile {
+    animation: slideOutToBottom 0.5s forwards;
+}
+
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+
+/* slide in contact info mobile */
+
+.slide-in-mobile-info {
+    display: block;
+    /* animation: slideInFromRightSide 0.5s forwards; */
+}
+
+.slide-out-mobile-info {
+    display: block;
+    /* animation: slideOutToRightSide 0.5s forwards; */
+}
+
+
+@keyframes slideInFromRightSide {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightSide {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+
+/* slide in success btn */
+
+.slide-in-success-btn {
+    display: block;
+    animation: slideInFromRightSuccess 0.5s forwards;
+}
+
+.slide-out-success-btn {
+    animation: slideOutToRightSuccess 0.5s forwards;
+}
+
+@keyframes slideInFromRightSuccess {
+    from {
+        transform: translateX(550%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightSuccess {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(550%);
+    }
+}
