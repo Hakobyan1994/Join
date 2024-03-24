@@ -173,18 +173,26 @@ function generateBoardCard(task, i) {
                 <span class="recipe_span">${task.description}</span>
             </div>
         </div>
-        <div class="progress_image_Div">
+        <div class="progress_image_Div" id="progress-bar-div-${i}" >
             <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-            </div>
-            
-            <div class="amount-subtasks" id="amount-subtasks-${i}">${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks</div>     
+            </div>                
+            <div class="amount-subtasks" id="amount-subtasks-${i}">${calculatePercentageForProgressBar(i)} %</div>     
         </div>
+        ${generateProgressDetails(i)}
         <div class="Members_Div">
             <div id="user-board-${i}"></div>
             <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
         </div>
-    </div>      
+    </div> 
+    `;
+}
+
+function generateProgressDetails(i) {
+    return /*html*/`
+        <div class="progress-hover">
+            ${updateSelectedSubtasksCount(i)} of ${totalSubtask(i)} subtasks finished
+        </div>  
     `;
 }
 

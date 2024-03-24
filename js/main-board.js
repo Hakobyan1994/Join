@@ -1,6 +1,6 @@
 // Load all Todos in Board
 
-async function loadToDo() {                    
+async function loadToDo() {              
     await loadTasks();
     const [todo, progress, feedback, done] = initializeElements();
     clearBoardContents(todo, progress, feedback, done);
@@ -64,6 +64,7 @@ async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) 
     notData();
     checkCategoryButton();
     highlightProgressbar(i);
+    emptyProgressBar(i);
 }
 
 

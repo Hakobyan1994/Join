@@ -127,6 +127,7 @@ function closePopupAddTaskDiv(i) {
     updateProgressBar(i);
     checkCategoryButton();
     highlightProgressbar(i);
+    loadToDo();
 }
 
 
@@ -181,6 +182,15 @@ async function highlightProgressbar(i) {
         text.style.fontWeight = '400';
         bar.style.backgroundColor = 'rgba(69, 137, 255, 1)';
     }
+}
+
+async function emptyProgressBar(i) {
+    let progressbar = document.getElementById(`progress-bar-div-${i}`);
+        if (totalSubtask(i) === 0) {
+            progressbar.style.display = 'none';
+        } else {
+            progressbar.style.display = 'flex';
+        }
 }
 
 
