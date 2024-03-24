@@ -1,7 +1,8 @@
 // Load all Todos in Board
 let array = [];
 
-async function loadToDo() {              
+async function loadToDo() {   
+    resetGlobalVariables();           
     await loadTasks();
     const [todo, progress, feedback, done] = initializeElements();
     clearBoardContents(todo, progress, feedback, done);

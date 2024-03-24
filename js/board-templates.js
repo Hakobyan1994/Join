@@ -21,6 +21,7 @@ function generateHtmlMainBoard() {
                     </div>
 
                     <form class="mobile-search-board">
+                        <div class="no-results" id="no-results">No results found</div>
                         <div class="input_button_Div">
                             <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
                             <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">

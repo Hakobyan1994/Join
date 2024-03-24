@@ -420,3 +420,17 @@
     width: 202px;
     height: 182px; 
 }
+
+.no-results {
+    display: none;
+    position: relative;
+    top: 67px;
+    left: 12px;
+    width: 119px;
+    height: 12px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.4px;
+    color: rgba(255, 129, 144, 1);
+    margin-top: 6px;
+}

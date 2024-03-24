@@ -240,7 +240,7 @@ function deleteSubtask(i) {                                                 // d
     subtasks.splice(position, 1);
     let indexToDelete = checkoffs.indexOf(i.toString());
     if (indexToDelete !== -1) {
-        checkoffs.splice(indexToDelete, 1); // Lösche das gefundene Element
+        checkoffs.splice(indexToDelete, 1);
     }
     let list = document.getElementById('subtasks');
     list.innerHTML = '';

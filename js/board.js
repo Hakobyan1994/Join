@@ -195,8 +195,10 @@ async function emptyProgressBar(i) {
 
 
 function searchTasks() {
+    hideAllNoCards();
     let input = document.getElementById('input-search-task');
     let filter = input.value.toUpperCase();
+    let resultsFound = false;
     for (let i = 0; i < tasks.length; i++) {
         let todo = document.getElementById(`board-to-do-section-${i}`);
         let array = tasks[i];
@@ -206,10 +208,49 @@ function searchTasks() {
         let subname = description.toUpperCase();
         if (name.indexOf(filter) > -1 || subname.indexOf(filter) > -1) {
             todo.style.display = 'block';
+            resultsFound = true;
         } else {
             todo.style.display = 'none';
         }
     }
+    
+    if (!resultsFound) {
+        showNoResultsMessage();
+    } else {
+        hideNoResultsMessage();
+    }
+}
+
+
+function hideAllNoCards() {
+    let input = document.getElementById('input-search-task');
+    let div = document.querySelectorAll('.Card_NotasksTodo');
+    if(input.value !== '') {
+        div.forEach(card => {
+            card.style.display = 'none';
+        });
+    } else {
+        div.forEach(card => {
+            card.style.display = 'flex';
+        });
+    }
+}
+
+
+function showNoResultsMessage() {
+    let noResultsDiv = document.getElementById('no-results');
+    let input = document.getElementById('input-search-task');
+    noResultsDiv.style.display = 'flex';
+    input.style.border = '1px solid rgba(255, 129, 144, 1)';
+    
+}
+
+
+function hideNoResultsMessage() {
+    let noResultsDiv = document.getElementById('no-results');
+    let input = document.getElementById('input-search-task');
+    noResultsDiv.style.display = 'none';
+    input.style.border = '1px solid #D1D1D1';
 }
 
 
