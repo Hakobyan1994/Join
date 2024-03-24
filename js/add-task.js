@@ -1,5 +1,6 @@
 let tasks = [];
 let subtasks = [];
+let checkOffs = [];
 let users = [];
 let iniimg = [];
 
@@ -219,7 +220,7 @@ function enterOnSubtask() {                                             // creat
 }
 
 
-function editSubtask(i) {                                                   // able to edit subtask
+function editSubtask(k, i) {                                                   // able to edit subtask
     let subtaskInput = document.getElementById(`subtask${i}`);
     let listItem = document.getElementById(`each-subtask${i}`);
     let inputValue = subtaskInput.innerText || subtaskInput.textContent;
@@ -234,10 +235,10 @@ function makeListItemEditable(listItem, i, inputValue) {
 }
 
 
-function deleteSubtask(i) {                                                 // delete subtask befor creating the task
+function deleteSubtask(k, i) {                                                 // delete subtask befor creating the task
     let position = i;
     subtasks.splice(position, 1);
-
+    checkOffs.splice(position, 1);
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
 
@@ -245,6 +246,7 @@ function deleteSubtask(i) {                                                 // d
         const text = subtasks[i];
         list.innerHTML += generateSubtaskElement(i, text);
     }
+    return {tasks: k, checkoffs: i};
 }
 
 
@@ -322,6 +324,7 @@ function resetGlobalVariables() {
     users = [];
     iniimg = [];
     subtasks = [];
+    checkOffs = [];
 }
 
 

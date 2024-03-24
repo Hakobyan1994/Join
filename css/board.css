@@ -94,7 +94,8 @@
 .progress-hover {
     display: none;
     box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.025);
-    background-color: rgba(255,255,255,1);
+    border: 1px solid rgba(211, 211, 211, 0.2);
+    background-color: rgba(246, 247, 248, 1);
     border-radius: 10px;
     padding: 16px;
     margin-top: -16px;

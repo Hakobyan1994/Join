@@ -194,7 +194,7 @@ async function pushValueToEdit(i) {
     let array = tasks[i];
     updateFields(array);
     updateContactList(array);
-    updateSubtasks(array);
+    updateSubtasks(i, array);
     tasks.splice(i, 1);
 }
 
@@ -228,15 +228,18 @@ function updateContactList(array) {
 }
 
 
-function updateSubtasks(array) {
+function updateSubtasks(i, array) {
     let subtasksArray = array.subtask;
+    let checkOffArray = array.checkoffs;
     subtasks.push(subtasksArray);
-
+    checkOffs.push(checkOffArray);
     subtasks = [];
+    checkOffs = [];
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
+        checkOffs.push(checkOffArray[j]);
     }
-    getSubtasks();
+    getSubtasks(i);
 }
 
 
@@ -294,7 +297,7 @@ function createNewTask(i) {
         priority: priority,
         category: categoryArray[0],
         subtask: subtasks,
-        checkoffs: tasks[i].checkoffs,
+        checkoffs: checkOffs,
         status: tasks[i].status
     };
     return newTask;
