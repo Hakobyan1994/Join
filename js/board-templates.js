@@ -39,27 +39,27 @@ function generateHtmlMainBoard() {
                     <div class="board_div">
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
                     </div>
-                    <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"></div>
+                    <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
                 </div>
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
                     </div>
-                    <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"></div>
+                    <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
 
                 </div>
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
                     </div>
-                    <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"></div>
+                    <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
 
                 </div>
                 <div class="mobile-done-boardcard">
                     <div class="board_div">
                         <h3>Done</h3>
                     </div>
-                    <div class="card_Div" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"></div>
+                    <div class="card_Div" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
                     <div></div>
                 </div>
             </div>
@@ -166,26 +166,26 @@ async function openPopupAddTaskDiv(i) {
 
 function generateBoardCard(task, i) {
     return /*html*/`
-    <div onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}" draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" ontouchstart="onTouchStart(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)">
-        <div  class="progress_infocard">
-            <button class="c1" id="category-bg-change-${i}">${task.category}</button>
-            <div class="cooking_title_div">
-                <h1>${task.title}</h1>
-                <span class="recipe_span">${task.description}</span>
+        <div onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}" draggable="true" ondragstart="dragStart(event)"  ondrop="allowDrop(event)" ontouchstart="onTouchStart(event)">        <!--  ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)" -->
+            <div  class="progress_infocard">
+                <button class="c1" id="category-bg-change-${i}">${task.category}</button>
+                <div class="cooking_title_div">
+                    <h1>${task.title}</h1>
+                    <span class="recipe_span">${task.description}</span>
+                </div>
             </div>
-        </div>
-        <div class="progress_image_Div" id="progress-bar-div-${i}" >
-            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
-            </div>                
-            <div class="amount-subtasks" id="amount-subtasks-${i}">${calculatePercentageForProgressBar(i)} %</div>     
-        </div>
-        ${generateProgressDetails(i)}
-        <div class="Members_Div">
-            <div id="user-board-${i}"></div>
-            <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
-        </div>
-    </div> 
+            <div class="progress_image_Div" id="progress-bar-div-${i}" >
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" id="progress-bar-${i}" style="width: 70%"></div>
+                </div>                
+                <div class="amount-subtasks" id="amount-subtasks-${i}">${calculatePercentageForProgressBar(i)} %</div>     
+            </div>
+            ${generateProgressDetails(i)}
+            <div class="Members_Div">
+                <div id="user-board-${i}"></div>
+                <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+            </div>
+        </div> 
     `;
 }
 

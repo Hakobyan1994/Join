@@ -52,8 +52,8 @@ span {
         margin-top: 112px;
         margin-left: unset;
         margin-bottom: 88px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 32px;
+        padding-right: 32px;
     }
 
     .legal-notice h2 {
@@ -64,5 +64,10 @@ span {
 @media(max-width: 500px) {
     .legal-notice h2 {
         font-size: 36px;
+    }
+
+    .legal-notice {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }

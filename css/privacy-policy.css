@@ -85,8 +85,8 @@
         margin-left: unset;
         margin-bottom: 88px;
         height: calc(93% - 112px);
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 32px;
+        padding-right: 32px;
     }
 
     .privacy ul {
@@ -111,4 +111,10 @@
     .privacy h2 {
         font-size: 36px;
     }
+
+    .privacy {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
 }

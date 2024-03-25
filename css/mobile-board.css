@@ -231,6 +231,11 @@
 }
 
 @media(max-width: 500px) {
+    .silhouette {
+        width: 160px;
+        height: 160px; 
+    }
+
     .popup-box {
         padding-left: unset;
         padding-right: unset;

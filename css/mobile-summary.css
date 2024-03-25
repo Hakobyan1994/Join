@@ -177,9 +177,9 @@
     }
 
     .urgent_Box {
-        gap: 4px;
+        gap: 8px;
         position: relative;
-        left: -22px;
+        left: -18px;
     }
 
     .mainTime_UrgentDiv {

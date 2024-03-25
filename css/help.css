@@ -62,8 +62,8 @@
         margin-left: unset;
         margin-bottom: 88px;
         width: 94%;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 32px;
+        padding-right: 32x;
     }
 
     .help h2 {
@@ -74,5 +74,10 @@
 @media(max-width: 500px) {
     .help h2 {
         font-size: 36px;
+    }
+
+    .help {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }

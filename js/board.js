@@ -460,18 +460,19 @@ function deleteAllSilhouettes() {
 }
 
 
-function onTouchStart(ev) {
-    console.log('start')
+function onTouchStart(ev) {  // dragstart
+    let draggedElement = ev.target;
+    let elementId = draggedElement.id;
+    ev.preventDefault();
+    console.log('Touch Start', elementId);
 }
 
-
-function onTouchMove(ev) {
-    console.log('move');
+function onTouchMove(ev) {  // allowdrop
+    console.log('Touch Move');
+    ev.preventDefault();
 }
 
-
-function onTouchEnd(ev) {
-    // ev.preventDefault();
-    console.log('end');
-
+function onTouchEnd(ev) { // drop
+    console.log('Touch End');
+    ev.preventDefault();
 }
