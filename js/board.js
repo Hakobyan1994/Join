@@ -47,13 +47,37 @@ function checkCategoryButton() {
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
     let letters = task.letter;
+    let maxIcons = 4;
+    let remainingIcons = letters.length - maxIcons;
     if (iconmember) {
-        for (let k = 0; k < letters.length; k++) {
-            const letter = letters[k];
-            iconmember.innerHTML += /*html*/`
-            <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
-        `;
+        if(remainingIcons > 0) {
+            greaterThanFour(letters, iconmember, maxIcons, remainingIcons);
+        } else if (remainingIcons <= 0) {
+            smallerThanFour(letters, iconmember);
         }
+    }
+}
+
+
+function greaterThanFour(letters, iconmember, maxIcons, remainingIcons) {
+    for (let k = 0; k < maxIcons; k++) {
+        const letter = letters[k];
+        iconmember.innerHTML += /*html*/`
+        <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
+        `;
+    }
+    iconmember.innerHTML += /*html*/`
+    <img src="https://ui-avatars.com/api/?name=${remainingIcons}&background=2a3647&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
+    `;
+}
+
+
+function smallerThanFour(letters, iconmember) {
+    for (let k = 0; k < letters.length; k++) {
+        const letter = letters[k];
+        iconmember.innerHTML += /*html*/`
+        <img src="https://ui-avatars.com/api/?name=${letter}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon board-user-icon">
+        `;
     }
 }
 
