@@ -200,7 +200,7 @@ function generateAddContactOverlay() {
                             <form onsubmit="addToContacts()" class="add-contact-data">
                                 <div class="input-con-main">
                                     <input id="name" name="name" class="input-con"
-                                        placeholder="Name" type="text" maxlength="16" required>
+                                        placeholder="Name" type="text" maxlength="20" required>
                                     <img class="input-svg-pos" src="../assets/img/icons/person.svg" alt="">
                                     <div id="nameAddErrorMessage" class="error-message d-none"></div>
                                 </div>
@@ -267,7 +267,7 @@ function generateEditMaskOverlay(i) {
 
                                 <form onsubmit="addToContacts()" class="edit-contact-data">
                                     <div>
-                                        <input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="16" required>
+                                        <input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="20" required>
                                         <img class="input-svg-pos-edit" src="../assets/img/icons/person.svg" alt="">
                                         <div id="nameErrorMessage" class="error-message d-none"></div>
                                     </div>

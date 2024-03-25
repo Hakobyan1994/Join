@@ -310,13 +310,18 @@
 
 ::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 6px;
+    border-radius: 30px;
 }
 
-::-webkit-scrollbar-thumb {
-    background-image: url('/assets/img/icons/scrollbar.svg');
+/* ::-webkit-scrollbar-thumb {
+    background-image: url('../assets/img/icons/scrollbar.svg');
     background-size: cover;
     border: none;
+} */
+
+::-webkit-scrollbar {
+    display: block !important;
+    width: 7px;
 }
 
 .highlighted {

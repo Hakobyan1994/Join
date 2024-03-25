@@ -130,7 +130,7 @@ function addToContacts() {
 }
 
 
-function addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput) {
+async function addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput) {
     if (!name) {
         nameAddContactError.classList.remove('d-none');
         nameAddContactError.innerHTML = `Please enter a name`;
@@ -145,20 +145,27 @@ function addToContactsCheckValues(nameAddContactError, emailAddContactError, pho
         phoneAddContactError.classList.add('d-none');
     }
 
-    setTimeout(() => {
-        if (!email || !isValidEmail(email)) {
-            emailAddContactError.classList.remove('d-none');
-            emailAddContactError.innerHTML = !email ? `Please enter an email` : `Please enter a valid email`;
-        } else {
-            emailAddContactError.classList.add('d-none');
-        }
-    }, 200);
+    if (!email || !isValidEmail(email)) {
+        emailAddContactError.classList.remove('d-none');
+        emailAddContactError.innerHTML = !email ? `Please enter an email` : `Please enter a valid email adress`;
+        return;
+    } else {
+        emailAddContactError.classList.add('d-none');
+    }
+
+    if (!email.includes('.com') && !email.includes('.de')) {
+        emailAddContactError.classList.remove('d-none');
+        emailAddContactError.innerHTML = `Please enter a valid email address`;
+    } else {
+        emailAddContactError.classList.add('d-none');
+    }
 
     if (!name || !email || !phone) {
         return;
     }
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
+
 
 
 function isValidEmail(email) {
@@ -288,26 +295,27 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
         nameEditContactError.classList.add('d-none');
     }
 
-    setTimeout(() => {
-        if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
-            emailEditContactError.classList.remove('d-none');
-            emailEditContactError.innerHTML = `Please enter a valid email`;
-        } else {
-            emailEditContactError.classList.add('d-none');
-        }
-    }, 200);
-
-    if (contactEmail && !contactEmail.includes('@')) {
-        emailEditContactError.classList.remove('d-none');
-        emailEditContactError.innerHTML = `Please enter a valid email address`;
-        return;
-    }
-
     if (!contactPhone.trim()) {
         phoneEditContactError.classList.remove('d-none');
         phoneEditContactError.innerHTML = `Please enter a phone number`;
     } else {
         phoneEditContactError.classList.add('d-none');
+    }
+
+    if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
+        emailEditContactError.classList.remove('d-none');
+        emailEditContactError.innerHTML = !contactEmail.trim() ? `Please enter an email` : `Please enter a valid email address`;
+        return;
+    } else {
+        emailEditContactError.classList.add('d-none');
+    }
+
+    if (!contactEmail.includes('.com') && !contactEmail.includes('.de')) {
+        emailEditContactError.classList.remove('d-none');
+        emailEditContactError.innerHTML = `Please enter a valid email address`;
+        return;
+    } else {
+        emailEditContactError.classList.add('d-none');
     }
 
     if (!contactName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
@@ -335,13 +343,14 @@ async function loadContacts() {
 
 
 function loadContactInfo(i) {
-    let nameEdit = document.getElementById('nameEdit').value;
-    let emailEdit = document.getElementById('emailEdit').value;
-    let phoneEdit = document.getElementById('phoneEdit').value;
+    let contact = contacts[i];
+    let nameEdit = document.getElementById('nameEdit');
+    let emailEdit = document.getElementById('emailEdit');
+    let phoneEdit = document.getElementById('phoneEdit');
 
-    nameEdit = contacts[i].name;
-    emailEdit = contacts[i].email;
-    phoneEdit = contacts[i].phone;
+    nameEdit.value = contact.name;
+    emailEdit.value = contact.email;
+    phoneEdit.value = contact.phone;
 }
 
 
