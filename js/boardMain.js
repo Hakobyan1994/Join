@@ -197,7 +197,6 @@ function displayEditableContent(i) {
 async function pushValueToEdit(i) {
     await loadTasks();
     array = tasks[i];
-    console.log(array);
     updateFields(array);
     updateContactList(array);
     updateSubtasks(array);
@@ -245,7 +244,6 @@ function updateSubtasks(array) {
     }
     for (let k = 0; k < checkoffsArray.length; k++) {
         checkoffs.push(checkoffsArray[k]);
-        console.log(checkoffs);
     }
     getSubtasks();
 }
@@ -325,8 +323,6 @@ function closeEditPopup() {
     if (popup !== null) {
         document.getElementById('popup-add-task-edit').style.display = 'none';
         document.getElementById(`popup-add-task-content-edit`).innerHTML = '';
-    } else {
-        console.log('Popup wurde nicht gefunden / SAVE EDIT');
     }
 }
 

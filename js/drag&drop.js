@@ -54,7 +54,7 @@ function ifDropPossible(ev, dropTargetId, draggedElement) {
                     saveDroppedElement(draggedElement);
                 }
                 break;
-            default:
+                    default:
                 break;
         }
     }
