@@ -20,11 +20,11 @@
         display: none;
     }
 
-    .dialog-bg {
+    .dark-bgr {
         z-index: 3;
     }
 
-    .dialog {
+    .add-contact-mask {
         margin-left: 230px;
         width: 367px !important;
         height: 363px;
@@ -555,7 +555,7 @@
 }
 
 @media(max-width: 380px) {
-    .dialog {
+    .add-contact-mask {
         width: 310px !important;
     }
 

@@ -12,11 +12,11 @@ function generateHtmlMainContacts() {
                                 <div id="allContacts" class="all-contacts"></div>
                             </div>
 
-                            <div class="dialog-bg d-none" id="dialogBg"></div>
+                            <div class="dark-bgr d-none" id="darkBgr"></div>
 
-                            <div id="dialog" class="dialog-bg d-none"></div>
+                            <div id="addMask" class="dark-bgr d-none"></div>
 
-                            <div id="editMask" class="dialog-bg d-none"></div>
+                            <div id="editMask" class="dark-bgr d-none"></div>
                         </div>
                     </div>
 
@@ -164,8 +164,8 @@ function generateSeparator() {
 
 function generateAddContactOverlay() {
     return /*html*/`
-        <div class="set-dialog-pos">
-            <div class="dialog" onclick="dontCloseCard(event)">
+        <div class="set-overlay-pos">
+            <div class="add-contact-mask" onclick="dontCloseCard(event)">
             <div class="add-contact-main">
                 <img id="closeImg" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeAddContactSlider()">
                 <div class="set-position">
@@ -240,8 +240,8 @@ function generateAddContactOverlay() {
 
 function generateEditMaskOverlay(i) {
     return /*html*/`
-        <div class="set-dialog-pos">
-            <div class="dialog" onclick="dontCloseCard(event)">
+        <div class="set-overlay-pos">
+            <div class="add-contact-mask" onclick="dontCloseCard(event)">
                 <div class="add-contact-main">
                 <img id="closeImgEdit" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeEditContactSlider()">
                     <div class="set-position">

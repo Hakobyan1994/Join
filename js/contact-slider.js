@@ -1,40 +1,41 @@
 function showAddContactOverlay() {
-    let dialog = document.getElementById('dialog');
+    let addMask = document.getElementById('addMask');
     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
     let isMobileView = window.innerWidth < 1360;
 
-    showAddContactOverlayHELP(dialog, contactInfoConMobile, isMobileView);
+    showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView);
 }
 
 
-function showAddContactOverlayHELP(dialog, contactInfoConMobile, isMobileView) {
-    if (isMobileView === true) {
-        dialog.classList.remove('slide-out-mobile');
-        dialog.classList.remove('d-none');
-        dialog.classList.add('slide-in-mobile');
+function showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView) {
+    if (isMobileView) {
+        addMask.classList.remove('slide-out-mobile');
+        addMask.classList.remove('d-none');
+        addMask.classList.add('slide-in-mobile');
         contactInfoConMobile.classList.remove('z-index-minus-1');
         contactInfoConMobile.classList.add('d-none');
     }
-    else if (isMobileView === false) {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.remove('slide-out');
-        dialog.classList.remove('d-none');
-        dialog.classList.add('slide-in');
+    else {
+        addMask.classList.remove('slide-in-mobile');
+        addMask.classList.remove('slide-out');
+        addMask.classList.remove('d-none');
+        addMask.classList.add('slide-in');
     }
-    dialog.innerHTML = generateAddContactOverlay();
+    addMask.innerHTML = generateAddContactOverlay();
     showAddContactSlider();
 }
 
 
 function showAddContactSlider() {
-    let dialogBg = document.getElementById('dialogBg');
+    let addMask = document.getElementById('addMask');
+    let darkBgr = document.getElementById('darkBgr');
     let contactInfoSlider = document.getElementById('contactInfoSlider');
-
-    dialogBg.classList.remove('hide-dialog-bg');
-    dialogBg.classList.remove('d-none');
-    dialogBg.classList.add('dialog-bg');
-    contactInfoSlider.classList.add('show');
     addZindex();
+    darkBgr.classList.remove('hide-dark-bgr');
+    darkBgr.classList.remove('d-none');
+    darkBgr.classList.add('dark-bgr');
+    contactInfoSlider.classList.add('show');
+
 }
 
 
@@ -67,7 +68,7 @@ function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSlide
         contactInfoSliderMobile.classList.add('d-none');
         contactInfoConMobile.classList.add('z-index-minus-2');
         infoSliderHeadline.classList.add('d-none');
-        // editMask.innerHTML = generateEditMaskOverlay(i);
+        editMask.innerHTML = generateEditMaskOverlay(i);
     } else {
         editMask.classList.remove('slide-out');
         editMask.classList.remove('slide-out-mobile');
@@ -78,45 +79,42 @@ function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSlide
 
 
 function closeAddContactSlider() {
-    let dialog = document.getElementById('dialog');
+    let addMask = document.getElementById('addMask');
     let contactInfoSlider = document.getElementById('contactSlider');
     let infoSliderHeadline = document.getElementById('headlineMobile');
+    let darkBgr = document.getElementById('darkBgr');
     let isMobileView = window.innerWidth < 1360;
 
-    closeAddContactSliderHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider);
-    closeAddNewContactSliderTimeout(dialog);
+    closeAddContactSliderHELP(addMask, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider, darkBgr);
+    // closeAddNewContactSliderTimeout(addMask);
+    // setTimeout(() => {
+    //     addMask.classList.add('d-none');
+    //     hideAddContactSlider();
+    // }, 250);
 }
 
 
-function closeAddNewContactSliderTimeout(dialog) {
-    setTimeout(() => {
-        dialog.classList.add('d-none');
-        hideAddContactSlider();
-    }, 200);
-}
-
-
-function closeAddContactSliderHELP(dialog, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider) {
+function closeAddContactSliderHELP(addMask, contactInfoConMobile, infoSliderHeadline, isMobileView, contactInfoSlider, darkBgr) {
     if (isMobileView) {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.add('slide-out-mobile');
+        darkBgr.classList.add('hide-dark-bgr');
+        darkBgr.classList.add('d-none');
+        darkBgr.classList.remove('dark-bgr');
+        addMask.classList.add('slide-out-mobile');
+        addMask.classList.remove('slide-in')
+        addMask.classList.remove('slide-in-mobile');
         contactInfoConMobile.classList.remove('z-index-minus-1');
         contactInfoConMobile.classList.remove('d-none');
         infoSliderHeadline.classList.remove('z-index-minus-1');
-        contactInfoMobileTimeout(contactInfoSlider);
+        contactInfoSlider.classList.remove('d-none');
+        addMask.classList.add('d-none');
     }
     else {
-        dialog.classList.remove('slide-in-mobile');
-        dialog.classList.remove('slide-in');
-        dialog.classList.add('slide-out');
+         addMask.classList.remove('slide-in-mobile');
+        addMask.classList.remove('slide-in');
+        addMask.classList.add('slide-out');
+        addMask.classList.add('slide-in');
     }
-}
-
-
-function contactInfoMobileTimeout(contactInfoSlider) {
-    setTimeout(() => {
-        contactInfoSlider.classList.remove('d-none');
-    }, 200);
+    hideAddContactSlider();
 }
 
 
@@ -142,7 +140,6 @@ function closeEditContactSlider() {
 
 function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn, headline, isMobileView) {
     if (isMobileView) {
-        editMask.classList.remove('slide-in-mobile');
         editMask.classList.add('slide-out-mobile');
         editMobileBtn.classList.remove('d-none');
         contactInfoSliderMobile.classList.remove('d-none');
@@ -150,35 +147,29 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
         infoSliderHeadline.classList.remove('z-index-minus-1');
         contactList.classList.remove('d-none');
         addNewContactBtn.classList.remove('d-none');
-        // editMask.classList.add('d-none');
         headline.classList.remove('d-none');
     } else {
-        editMask.classList.remove('slide-out');
-        editMask.classList.remove('slide-in-mobile');
         editMask.classList.remove('slide-in');
         editMask.classList.add('slide-out');
-        // editMask.classList.add('d-none');
-        // infoSliderHeadline.classList.add('z-index-minus-1');
-        // contactList.classList.add('d-none');
     }
 }
 
 
 window.addEventListener('resize', function () {
-    closeEditContactSlider(); // Funktion wird aufgerufen, wenn sich die Bildschirmgröße ändert
+    closeEditContactSlider();
 });
 
 
 function hideAddContactSlider() {
-    let dialogBg = document.getElementById('dialogBg');
+    let darkBgr = document.getElementById('darkBgr');
     let contactInfoSlider = document.getElementById('contactInfoSlider');
     let navbar = document.getElementById('navbar');
     let mobileHeader = document.getElementById('mobile-header');
 
-    dialogBg.classList.add('hide-dialog-bg');
-    dialogBg.classList.add('d-none');
-    dialogBg.classList.remove('dialog-bg');
-    dialogBg.classList.add('d-none');
+    darkBgr.classList.add('hide-dark-bgr');
+    darkBgr.classList.add('d-none');
+    darkBgr.classList.remove('dark-bgr');
+    darkBgr.classList.add('d-none');
     contactInfoSlider.classList.remove('show');
     navbar.classList.remove('z-11');
     mobileHeader.classList.remove('z-12');
@@ -217,7 +208,7 @@ function showContactInfoSliderHELP(i, contactInfoSlider, isMobileView, headline,
         headlineMobile.classList.remove('d-none');
         headline.classList.add('d-none');
         contactInfoSlider.classList.remove('d-none');
-        // contactInfoSlider.classList.add('z-index-999');
+        contactInfoSlider.classList.add('z-index-999');
         contactInfoSlider.classList.add('slide-in');
         contactInfoSliderVisible = true;
     } else if (isMobileView === false) {
@@ -234,11 +225,82 @@ function showContactInfoSliderHELP(i, contactInfoSlider, isMobileView, headline,
 function hideMobileContactInfo() {
     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
     let headlineMobile = document.getElementById('headlineMobile');
-    let dialogBg = document.getElementById('dialog');
+    let addMask = document.getElementById('addMask');
 
     headlineMobile.classList.remove('z-index-2');
-    dialogBg.classList.remove('slide-in');
+    addMask.classList.remove('slide-in');
     contactInfoConMobile.classList.remove('slide-in');
-    contactInfoConMobile.classList.remove('d-none');
+    contactInfoConMobile.classList.add('d-none');
     headlineMobile.classList.remove('z-index-1');
 }
+
+
+function showAddContactOverlay() {
+    let addMask = document.getElementById('addMask');
+    let darkBgr = document.getElementById('darkBgr');
+    let isMobileView = window.innerWidth < 1360;
+
+     if (isMobileView) {
+        addMask.classList.remove('d-none');
+        addMask.classList.add('slide-in-mobile');
+        darkBgr.classList.remove('d-none');
+     }
+     else {
+        addMask.classList.remove('d-none');
+        addMask.classList.add('slide-in');
+        darkBgr.classList.remove('d-none');
+     }
+     addMask.innerHTML = generateAddContactOverlay();
+}
+
+
+function closeAddContactSlider() {
+    let addMask = document.getElementById('addMask');
+    let darkBgr = document.getElementById('darkBgr');
+    let isMobileView = window.innerWidth < 1360;
+
+    if (isMobileView) {
+        addMask.classList.add('d-none');
+        addMask.classList.remove('slide-in-mobile');
+        darkBgr.classList.add('d-none');
+     }
+     else {
+        addMask.classList.add('d-none');
+        addMask.classList.remove('slide-in');
+        darkBgr.classList.add('d-none');
+     }
+}
+
+
+// function showOverlay(addMask, editMask, i) {
+//     let darkBgr = document.getElementById('darkBgr');
+//     addMask = document.getElementById('addMask');
+//     editMask = document.getElementById('editMask');
+
+//     if (addMask) {
+//         addMask.classList.remove('d-none');
+//         darkBgr.classList.remove('d-none');
+//         addMask.innerHTML = generateAddContactOverlay();
+//     }
+
+//     if (editMask) {
+//         editMask.classList.remove('d-none');
+//         darkBgr.classList.remove('d-none');
+//         editMask.innerHTML = generateEditContactOverlay(i);
+//     }
+//     addZindex();
+// }
+
+
+// function closeAddContactSlider() {
+//     let addMask = document.getElementById('addMask');
+//     let darkBgr = document.getElementById('darkBgr');
+
+//     addMask.classList.add('d-none');
+//     darkBgr.classList.add('d-none');
+// }
+
+
+// function showContactInfoSlider() {
+
+// }
