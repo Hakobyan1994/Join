@@ -345,4 +345,3 @@ async function reloadTasks() {
     await loadToDo();
     categoryArray = [];
 }
-

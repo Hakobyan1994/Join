@@ -261,9 +261,7 @@ function pushEditedSubtask(i) {                                             // p
     if (newText.trim() !== '') {
         subtasks.splice(position, 1, newText);
         updateSubtasklist();
-    } else {
-        console.log('subtasks: empty field');
-    };
+    }
 }
 
 

@@ -129,19 +129,30 @@ function deleteAllSilhouettes() {
 }
 
 
-function onTouchStart(ev) {  // dragstart
-    let draggedElement = ev.target;
-    let elementId = draggedElement.id;
-    ev.preventDefault();
-    console.log('Touch Start', elementId);
+function onTouchStart(id) {  // dragstart
+    currentDraggedElement = id;
+    console.log('Touch Start', currentDraggedElement);
 }
 
+
 function onTouchMove(ev) {  // allowdrop
-    console.log('Touch Move');
     ev.preventDefault();
+    let targetId = ev.srcElement.id;
+
+    console.log('Touch Move', targetId);
+
 }
+
 
 function onTouchEnd(ev) { // drop
     console.log('Touch End');
-    ev.preventDefault();
+}
+
+
+function highlight(ev) {
+    console.log(ev.target)
+}
+
+function removeHighlight(id) {
+    console.log('removehighlight')
 }
