@@ -19,9 +19,6 @@ async function getItem(key) {
 }
 
 
-// changeWindowSize();
-
-
 async function init() {
     includeHTML();
     renderSummaryMain();
@@ -64,10 +61,16 @@ function renderPage(selectedBar, page) {
     let selectedPage = document.getElementById(page);
     let allNavbar = document.querySelectorAll('#navbar');
     let allPages = document.querySelectorAll('.render-page');
-    let assigned = document.getElementById('add-task-page');
 
     selectedNavbar.classList.add('selected-color');
     selectedPage.style.display = 'block';
+    selectPage(page);
+    highlightSelectedPage(page, selectedBar, allNavbar, allPages);
+    resetHlp();
+}
+
+
+function selectPage(page) {
     if (page === 'render-summary') {
         renderSummaryMain();
     }
@@ -81,7 +84,10 @@ function renderPage(selectedBar, page) {
         loadTasks();
         renderBoardMain();
     }
+}
 
+
+function highlightSelectedPage(page, selectedBar, allNavbar, allPages) {
     allNavbar.forEach((navbar) => {
         if (navbar.id !== selectedBar) {
             navbar.classList.remove('selected-color');
@@ -92,7 +98,6 @@ function renderPage(selectedBar, page) {
             pages.style.display = 'none';
         }
     })
-    resetHlp();
 }
 
 
@@ -110,7 +115,6 @@ function resetHlp() {
     document.getElementById('privacyhover').style.color = 'rgb(205, 205, 205)';
     allPages.forEach((page) => {
         page.style.display = 'none';
-
     })
 }
 

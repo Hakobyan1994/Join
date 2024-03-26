@@ -82,9 +82,9 @@ function allowDrop(ev) {
     dropCard(ev, targetId, not);
 }
 
+
 function dropCard(ev, targetId, not) {
     let dropPossible = isDropPossible(targetId);
-
     if (!dropPossible && !document.querySelector('#silhouette')) {
         ev.dataTransfer.dropEffect = 'none';
         if (not) {
@@ -99,7 +99,6 @@ function dropCard(ev, targetId, not) {
         showSilhouette(targetId);
     }
 }
-
 
 
 function isDropPossible(targetId) {

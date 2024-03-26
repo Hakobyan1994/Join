@@ -18,6 +18,7 @@ function emptyPages() {
     document.getElementById('popup-add-task-edit').style.display = 'none';
 }
 
+
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
@@ -120,6 +121,15 @@ async function checkOffSubtask(i, k) {
     let img = document.getElementById(`select-subtask-board-${k}`);
     let subtask = document.getElementById(`each-subtasks-${k}`);
 
+    highlightCheckOffSubtask(i, k, img, subtask);
+
+    await loadTasks();
+    pushSelectedSubtask(i, k);
+    updateSelectedSubtasksCount(i);
+}
+
+
+function highlightCheckOffSubtask(i, k, img, subtask) {
     if (img.src.includes('none-selected.svg')) {
         img.src = '../assets/img/icons/selected.svg';
         img.alt = 'Selected';
@@ -131,9 +141,6 @@ async function checkOffSubtask(i, k) {
         subtask.setAttribute('value', 'not-selected');
         pushSelectedSubtask(i, k);
     }
-    await loadTasks();
-    pushSelectedSubtask(i, k);
-    updateSelectedSubtasksCount(i);
 }
 
 
@@ -196,6 +203,7 @@ function updateSelectedSubtasksCount(i) {
     }
 }
 
+
 async function highlightProgressbar(i) {
     let text = document.getElementById(`amount-subtasks-${i}`);
     let bar = document.getElementById(`progress-bar-${i}`);
@@ -207,6 +215,7 @@ async function highlightProgressbar(i) {
         bar.style.backgroundColor = 'rgba(69, 137, 255, 1)';
     }
 }
+
 
 async function emptyProgressBar(i) {
     let progressbar = document.getElementById(`progress-bar-div-${i}`);
@@ -222,7 +231,18 @@ function searchTasks() {
     hideAllNoCards();
     let input = document.getElementById('input-search-task');
     let filter = input.value.toUpperCase();
-    let resultsFound = false;
+    let searchResult = { found: false };
+    searchFunction(filter, searchResult);
+
+    if (!searchResult.found) {
+        showNoResultsMessage();
+    } else {
+        hideNoResultsMessage();
+    }
+}
+
+
+function searchFunction(filter, searchResult) {
     for (let i = 0; i < tasks.length; i++) {
         let todo = document.getElementById(`board-to-do-section-${i}`);
         let array = tasks[i];
@@ -232,16 +252,10 @@ function searchTasks() {
         let subname = description.toUpperCase();
         if (name.indexOf(filter) > -1 || subname.indexOf(filter) > -1) {
             todo.style.display = 'block';
-            resultsFound = true;
+            searchResult.found = true; 
         } else {
             todo.style.display = 'none';
         }
-    }
-    
-    if (!resultsFound) {
-        showNoResultsMessage();
-    } else {
-        hideNoResultsMessage();
     }
 }
 

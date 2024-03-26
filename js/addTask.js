@@ -21,6 +21,7 @@ function renderAssignedList() {                                  // generate the
     resetAllSelectedContacts();
 }
 
+
 function toggleAssignedlist() {
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
@@ -58,22 +59,22 @@ function renderContactList(list) {                                      // add a
     }
 }
 
+
 // search function for assigned to list
 function searchAssignedList() {                 
     let input = document.getElementById('assigned');
     let filter = input.value.toUpperCase();
-    // if (document.querySelector('assigned-contact-list')) {
-        for (let i = 0; i < contacts.length; i++) {
-            let list = document.getElementById(`assigned-contacts-${i}`);
-            let array = contacts[i].name;
-            let name = array.toUpperCase();
-            if (name.indexOf(filter) > -1) {
-                list.style.display = 'flex';
-            } else {
-                list.style.display = 'none';
-            }
+    for (let i = 0; i < contacts.length; i++) {
+        let list = document.getElementById(`assigned-contacts-${i}`);
+        let array = contacts[i].name;
+        let name = array.toUpperCase();
+        if (name.indexOf(filter) > -1) {
+            list.style.display = 'flex';
+        } else {
+            list.style.display = 'none';
         }
-    // }
+    }
+
 }
 
 
