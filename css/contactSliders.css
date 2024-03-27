@@ -30,7 +30,6 @@
     }
 }
 
-
 /* slide in mobile version */
 
 .slide-in-mobile {
@@ -122,5 +121,41 @@
 
     to {
         transform: translateX(550%);
+    }
+}
+
+.dark-bgr {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    animation: darkenBackground 1s forwards;
+}
+
+.hide-dark-bgr {
+    animation: lightenBackground 1s forwards;
+}
+
+@keyframes darkenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes lightenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0);
     }
 }

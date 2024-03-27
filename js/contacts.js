@@ -15,12 +15,6 @@ async function renderContactsMain() {
 }
 
 
-async function loadContactsAndRender() {
-    await loadContacts();
-    renderContacts();
-}
-
-
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '<img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">';
@@ -224,6 +218,11 @@ function addedContactSuccessfully() {
     success.classList.remove('slide-out-success-btn');
     success.classList.add('slide-in-success-btn');
 
+    setTimeoutSuccesDiv(success);
+}
+
+
+function setTimeoutSuccesDiv(success) {
     setTimeout(() => {
         success.classList.remove('slide-in-success-btn');
         success.classList.add('slide-out-success-btn');
