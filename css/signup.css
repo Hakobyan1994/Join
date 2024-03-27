@@ -38,7 +38,7 @@ body {
 .backLogin_pictureBox {
     display: flex;
     width: 32px;
-    height: 32px;
+    height: 67px;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -507,11 +507,26 @@ h1 {
     color: red;
     position: relative;
     top: 12px;
+} 
+
+@media(max-width: 705px) {
+  
+       .backLogin_pictureBox{
+                width: 3px;
+        }
+    
 }
+
 
 @media(max-width: 620px) {
     .main_div {
-        width: 300px;
+       width: 300px;
+    }   
+
+    .image_boxx {
+        position: absolute;
+        top: 26px;
+        left: 18px;
     }
 }
 
@@ -545,13 +560,24 @@ h1 {
     .backLogin_picture {
         margin-left: 45px;
     }
+    
+    .backLogin_pictureBox{
+        display: flex;
+    width: 32px;
+    height: 37px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    }
 
+      
     .main_div {
-        position: absolute;
+        position: relative;
         top: 170.5px;
         left: 15px;
         padding: 32px 0;
-        width: 361px;
+        width: 366px;
         height: 498px;
         margin: 0;
     }
@@ -627,16 +653,111 @@ h1 {
         gap: 3px;
     }
 
-}
+}  
 
-@media(max-width: 320px) {
+
+  
+
+@media(max-width: 457px) {
     .main_div {
-        
-    }
+        position: relative;
+        top: 170.5px;
+        left: auto;
+        padding: 32px 0;
+        width: 366px;
+        height: 498px;
+        margin: 0 auto; 
+    }  
 
-    .image_boxx {
+    /* .image_boxx {
         position: absolute;
         top: 0px;
         left: -8px;
+    } */
+}   
+
+   @media(max-width:400px){
+
+
+
+    .main_div {
+        position: relative;
+        top: 170.5px;
+        left: auto;
+        padding: 32px 0;
+        width: 329px;
+        height: 498px;
+        margin: 0 auto; 
+    }  
+    .name_input {
+        max-width: 61%;
     }
-}
+     .email_input {
+        max-width: 61%;
+    } 
+    .password_input {
+        max-width: 61%;
+    } 
+    .passwordBlock {
+        margin-left: 260px;
+        margin-top: -43px;
+        cursor: pointer;
+    } 
+    .confirmpassword {
+        max-width: 61%;
+    }
+    .confirmBlock {
+        margin-left: 261px;
+        margin-top: -36px;
+    }   
+      
+    .cc {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin-left: -136px;
+        margin-bottom: 15px;
+        gap: 3px;
+    } 
+    .sign_upBox {
+        position: absolute;
+        left: 10px;
+        top: 31px;
+        font-family: 'Inter';
+    }
+   }  
+
+   @media(max-width:350px){
+    .main_div {
+        position: relative;
+        top: 170.5px;
+        left: auto;
+        padding: 32px 0;
+        width: 309px;
+        height: 498px;
+        margin: 0 auto; 
+    }  
+     
+    .name_input {
+        max-width: 57%;
+    }
+     .email_input {
+        max-width: 57%;
+    } 
+    .password_input {
+        max-width: 57%;
+    } 
+    .passwordBlock {
+        margin-left: 244px;
+        margin-top: -43px;
+        cursor: pointer;
+    } 
+    .confirmpassword {
+        max-width: 57%;
+    }
+    .confirmBlock {
+        margin-left: 245px;
+        margin-top: -36px;
+    }
+      
+   }
