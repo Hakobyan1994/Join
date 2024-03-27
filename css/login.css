@@ -20,7 +20,7 @@ ul {
 .contaner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 11px;
 }
 
 body {
@@ -587,3 +587,62 @@ body {
         left: 0;
     }  
 }
+  
+
+  @media(max-width:372px ){
+    .title {
+        font-size: 30px;
+        align-items: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+  }   
+
+
+     @media(max-width:364px){
+        .input_email, .input_password {
+            max-width: 72%;
+            background-position: calc(100% - 15px);
+            margin-left: 12px;
+        }  
+        .signup-div {
+            position: absolute;
+            top: 778px;
+            left: 39px;
+            gap: 35px;
+            margin-top: -56px;
+        }
+     }  
+
+       @media(max-width:341px){
+        .title {
+            font-size: 26px;
+            align-items: center;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }  
+        .input_email, .input_password {
+            max-width: 68%;
+            background-position: calc(100% - 15px);
+            margin-left: 23px;
+        }
+       }      
+
+
+        @media(max-width:325px){
+            .signup-div {
+                position: absolute;
+                top: 778px;
+                left: 24px;
+                gap: 30px;
+                margin-top: -56px;
+            } 
+            .footer {
+                position: absolute;
+                top: 800px;
+                right: 0;
+                left: -24px;
+            }
+        }
+
+      
