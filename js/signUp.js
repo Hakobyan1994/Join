@@ -158,24 +158,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function checkSignUpInputs() {
-    let name = document.getElementById('nameInput').value;
-    let email = document.getElementById('emailInput').value;
-    let password1 = document.getElementById('password1Input').value;
-    let password2 = document.getElementById('confirmInput').value;
 
-    let nameInputCon = document.getElementById('personInput');
-    let emailInputCon = document.getElementById('emailInputCon');
-    let passwordInputCon = document.getElementById('passwordInputCon');
-    let passwordConfimInputCon = document.getElementById('passwordConfirmInput');
 
-    let nameSignUpError = document.getElementById('inputErrorSignUpName');
-    let emailSignUpError = document.getElementById('inputErrorSignUpEmail');
-    let password1SignUpError = document.getElementById('inputErrorSignUpPassword1');
-    let password2SignUpError = document.getElementById('inputErrorSignUpPassword2');
-
-    checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
-}
 
 
 function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {

@@ -80,8 +80,8 @@ async function openPopupAddTask(boardcard) {
     content.innerHTML = /*html*/`
         <img class="close-popup" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
-            <h2 class="h2-addtask-board">Add Task</h2>
             <div class="mobile-board-popup-add-task">
+                <h2 class="h2-addtask-board">Add Task</h2>
                 <div class="main-box">
                     <div class="form popup-addtask-main">
                         ${generateHtmlAddTaskForm()}      
@@ -213,7 +213,9 @@ function generateEditableAddtask(i) {
                     ${generateHtmlAssigned()}
                     ${generateHtmlSubtasks()}
                 </div>
-                <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="../assets/img/icons/check1.svg" alt="Check Icon"></button>
+                <div class="ok-btn-edit-section">
+                    <button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK <img src="../assets/img/icons/check1.svg" alt="Check Icon"></button>
+                </div>
             </div>
     `;
 }

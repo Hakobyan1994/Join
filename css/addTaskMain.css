@@ -132,6 +132,7 @@ label p {
     display: flex;
     align-items: center;
     padding: 12px 21px;
+    margin-right: 8px;
     gap: 10px;
     align-self: stretch;
     border-radius: 10px;

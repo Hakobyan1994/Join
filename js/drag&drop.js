@@ -128,6 +128,7 @@ function deleteAllSilhouettes() {
     silhouettes.forEach(silhouette => silhouette.parentNode.removeChild(silhouette));
 }
 
+/*
 let touchedElement = null; 
 
 function onTouchStart(ev) {  // dragstart
@@ -162,7 +163,7 @@ function onTouchEnd(ev) { // drop
     console.log('Touch End');
 }
 
-
+/*
 function highlight(ev) {
     let targetId = ev.srcElement.id;
     console.log(targetId)
@@ -171,3 +172,5 @@ function highlight(ev) {
 function removeHighlight(id) {
     console.log('removehighlight')
 }
+
+*/
