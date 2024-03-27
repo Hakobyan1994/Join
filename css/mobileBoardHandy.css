@@ -1,0 +1,248 @@
+@media(max-width: 500px) {
+    .silhouette {
+        width: 160px;
+        height: 160px; 
+    }
+
+    .popup-box {
+        padding-left: unset;
+        padding-right: unset;
+    }
+
+    .close-popup {
+        right: 32px;
+        left: unset;
+    }
+
+    .h2-addtask-board {
+        margin-left: 16px;
+    }
+
+    .amount-subtasks {
+        width: 32px;
+    }
+
+    .addtask-popup {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        justify-content: unset;
+        align-items: unset;
+        border-radius: unset;
+        padding-left: unset;
+        padding-top: unset;
+        padding: unset;
+    }
+
+    .popup-text {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .close-a-board {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+    }
+
+    .user-popup-btn {
+        margin-left: 32px;
+        margin-top: 32px;
+    }
+
+    .popup-title {
+        margin-left: 32px;
+    }
+
+    .overflow {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    .popup-div-assign-date-title {
+        margin-left: 32px;
+    }
+
+    .popup-assigned-div {
+        margin-left: 32px;
+    }
+
+    .popup-assigned {
+        margin-left: 32px;
+    }
+    
+    .popup-subtask {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    .mobile-subtask-board {
+        margin-left: 32px;
+    }
+
+    .ok-btn-edit {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        left: unset;
+    }
+
+    .popup-task-footer {
+        width: unset;
+        margin-right: 32px;
+        margin-bottom: 32px;
+    }
+
+    .edit-div {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: unset;
+    }
+
+    .progress_card {
+        padding: 12px;
+        width: 170px;
+    }
+
+    .c1 {
+        font-size: 14px;
+    }
+
+    .user-story-button {
+        width: 100px;
+    }
+
+    .technical-button {
+        width: 124px;
+    }
+
+    .cooking_title_div h1 {
+        font-size: 14px;
+    }
+
+    .recipe_span {
+        font-size: 12px;
+    }
+
+    .amount-subtasks {
+        font-size: 10px;
+    }
+
+    .progress_infocard button div {
+        width: 170px;
+    }
+
+    .cooking_title_div {
+        width: 170px;
+    } 
+
+    .progress_image_Div {
+        width: 170px;
+    }
+
+    .Members_Div {
+        width: 164px;
+    } 
+
+    .board-user-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .board-prio-icons {
+        width: 16px;
+        height: 16px;
+    }
+
+    .card_Div {
+        gap: 12px;
+        padding-bottom: 0px;
+    } 
+
+    .input-searchfield {
+        font-size: 12px;
+    }
+
+    .input-searchfield::placeholder {
+        font-size: 12px;
+    }
+
+    .mobile-add-task-board {
+        width: 32px;
+        height: 32px;
+    }
+
+    .card_mainContainer h3 {
+        font-size: 22px;
+    }
+
+    .no-results {
+        font-size: 11px;
+    }
+
+    .Card_NotasksTodo {
+        border: 2px dotted rgb(168, 168, 168, 0.4);
+        font-size: 12px;
+    }
+
+    .popup-title {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .overflow {
+        font-size: 14px;
+    }
+
+    .popup-div-assign-date-title div {
+        font-size: 14px;
+    }
+
+    .popup-assigned-div {
+        font-size: 14px;
+    }
+
+    .popup-assigned div {
+        font-size: 14px;
+    }
+
+    .mobile-subtask-board {
+        font-size: 14px;
+    }
+
+    .popup-subtask {
+        font-size: 14px;
+    }
+
+    .popup-task-footer {
+        font-size: 14px;
+    }
+
+    .each-subtask {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 390px) {
+    .popup-title {
+        width: 288px;
+    }
+
+    .overflow {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    .each-subtask-section img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .edit-div {
+        width: 96%;
+        padding-left: 10px;
+    }
+}

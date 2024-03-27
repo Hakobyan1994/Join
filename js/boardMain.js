@@ -59,6 +59,10 @@ async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) 
             flags.hasDone = true;
             break;
     }
+    updateBoardCard(taskValue, i);
+}
+
+async function updateBoardCard(taskValue, i) {
     checkCategoryButton();
     createUserButtons(taskValue, i);
     await updateProgressBar(i);
@@ -191,10 +195,8 @@ function displayEditableContent(i) {
 // Push all values to the inputfields
 
 async function pushValueToEdit(i) {
-
     await loadTasks();
     array = tasks[i];
-    console.log(array);
     updateFields(array);
     updateContactList(array);
     updateSubtasks(array);
@@ -227,7 +229,6 @@ function updateContactList(array) {
             } 
         }
     }
-
 }
 
 
@@ -238,21 +239,17 @@ function updateSubtasks(array) {
     checkoffs.push(checkoffsArray)
     subtasks = [];
     checkoffs = [];
-    // checkoffs.push(checkoffsArray);
     for (let j = 0; j < subtasksArray.length; j++) {
         subtasks.push(subtasksArray[j]);
     }
-
     for (let k = 0; k < checkoffsArray.length; k++) {
         checkoffs.push(checkoffsArray[k]);
-        console.log(checkoffs);
     }
     getSubtasks();
 }
 
 
 // save the edited task
-
 async function saveEditedTask(i) {
     await loadTasks();
     checkCategoryButton();
@@ -272,7 +269,6 @@ async function saveEditedTask(i) {
 
 function validateForm() {
     let title = document.getElementById('title');
-    let description = document.getElementById('description');
     let date = document.getElementById('date');
     let requiredTitle = document.getElementById('required-title');
     let requiredDate = document.getElementById('required-date');
@@ -327,8 +323,6 @@ function closeEditPopup() {
     if (popup !== null) {
         document.getElementById('popup-add-task-edit').style.display = 'none';
         document.getElementById(`popup-add-task-content-edit`).innerHTML = '';
-    } else {
-        console.log('Popup wurde nicht gefunden / SAVE EDIT');
     }
 }
 
@@ -351,4 +345,3 @@ async function reloadTasks() {
     await loadToDo();
     categoryArray = [];
 }
-

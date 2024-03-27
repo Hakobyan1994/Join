@@ -120,19 +120,17 @@ async function renderSummaryMain() {
 
 async function getValue() {
   await loadTasks();
+  const { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total } = countTaskValues(tasks);
+  putValues(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
+  ifTotalEmpty(total);
+  getUrgentDate();
+}
 
-  let valueTodo = 0;
-  let valueProgress = 0;
-  let valueFeedback = 0;
-  let valueDone = 0;
-  let valueUrgent = 0;
-  let total = 0;
-
-
+function countTaskValues(tasks) {
+  let valueTodo = 0, valueProgress = 0, valueFeedback = 0, valueDone = 0, valueUrgent = 0, total = 0;
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
-    const priotity = tasks[i].priority;
-
+    const priority = tasks[i].priority;
     if (state === 'board-to-do') {
       valueTodo++;
     }
@@ -145,25 +143,30 @@ async function getValue() {
     if (state === 'board-done') {
       valueDone++;
     }
-    if (priotity === 'urgent') {
+    if (priority === 'urgent') {
       valueUrgent++;
     }
   }
   total = valueTodo + valueProgress + valueFeedback;
+  return { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total };
+}
 
+
+function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgent) {
   document.getElementById('value-todoarray').innerHTML = valueTodo;
   document.getElementById('value-progressarray').innerHTML = valueProgress;
   document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
   document.getElementById('value-donearray').innerHTML = valueDone;
   document.getElementById('value-urgent').innerHTML = valueUrgent;
+}
 
+
+function ifTotalEmpty(total) {
   if (total) {
     document.getElementById('value-total').innerHTML = `${total}`;
   } else if (total === 0) {
     document.getElementById('value-total').innerHTML = '0';
   }
-
-  getUrgentDate();
 }
 
 
@@ -188,11 +191,8 @@ function deleteOldUrgent() {
     return new Date(year, month - 1, day);
   });
   let earliestDate = new Date(Math.min(...dateArray));
-  // console.log(earliestDate);
   if (earliestDate < new Date()) {
     arrayUrgent.splice(earliestDate);
-  } else {
-    console.log('all tasks have no expired upcoming deadline ');
   }
 }
 
