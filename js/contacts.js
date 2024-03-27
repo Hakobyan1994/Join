@@ -3,6 +3,7 @@ let contactIdCounter = 0;
 let initials;
 let initialsColor = 'white';
 let contactInfoSliderVisible = false;
+let loggedInUser = [];
 
 
 async function renderContactsMain() {
@@ -14,10 +15,16 @@ async function renderContactsMain() {
 }
 
 
+async function loadContactsAndRender() {
+    await loadContacts();
+    renderContacts();
+}
+
+
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '<img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">';
-    contacts.sort((a, b) => a.name.localeCompare(b.name));
+    // contacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();

@@ -52,8 +52,7 @@ function generateHtmlMainContacts() {
                     </div>
                 </div>
             </div>
-        </div>  
-    `;
+        </div>`;
 }
 
 

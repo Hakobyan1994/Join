@@ -245,6 +245,13 @@ function removeZindex13() {
     document.getElementById('navbar').classList.remove('z-12');
 }
 
+function addZindexContacts() {
+    let navbar = document.getElementById('navbar');
+    let header = document.getElementById('mobile-header');
+    navbar.classList.add('z-index-minus-8');
+    header.classList.add('z-index-minus-9');
+}
+
 // function notSupported() {
 //     if(window.innerWidth < 320) {
 //         let body = document.body;

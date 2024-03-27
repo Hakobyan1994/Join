@@ -1,4 +1,3 @@
-let loggedInUser = [];
 let nameActiveUser = [];
 let arrayUrgent = [
   {
@@ -60,6 +59,7 @@ async function user(params) {
       greetResponsive.innerText = getGreetingText() + '!'
     }
   }
+  loggedInUser.push(user);
 }
 // }
 user()
@@ -298,11 +298,13 @@ async function showHeaderIni() {
   div.textContent = initials;
 }
 
+
 function getInitials(name) {
   let nameWords = name.split(' ');
   let initials = nameWords.map(word => word.charAt(0).toUpperCase()).join('');
   return initials;
 }
+
 
 function checkButtonImgChange() {                                       //change check button when it is hovering
   let img = document.getElementById('check-button');
