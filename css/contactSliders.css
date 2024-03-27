@@ -62,7 +62,6 @@
     }
 }
 
-
 /* slide in contact info mobile */
 
 .slide-in-mobile-info {
@@ -74,7 +73,6 @@
     display: block;
     /* animation: slideOutToRightSide 0.5s forwards; */
 }
-
 
 @keyframes slideInFromRightSide {
     from {
@@ -95,7 +93,6 @@
         transform: translateY(100%);
     }
 }
-
 
 /* slide in success btn */
 
