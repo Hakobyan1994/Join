@@ -117,6 +117,7 @@ function closeAddContactSliderHELP(addMask, contactInfoConMobile, infoSliderHead
         addMask.classList.remove('slide-in');
         addMask.classList.add('slide-out');
         addMask.classList.add('slide-in');
+        addMask.classList.add('d-none');
     }
     hideAddContactSlider();
 }
@@ -134,11 +135,6 @@ function closeEditContactSlider() {
     let isMobileView = window.innerWidth < 1360;
 
     closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn, headline, isMobileView);
-    setTimeoutHideSlider(editMask);
-}
-
-
-function setTimeoutHideSlider(editMask) {
     setTimeout(() => {
         editMask.classList.add('d-none');
         hideAddContactSlider();
