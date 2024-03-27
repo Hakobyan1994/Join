@@ -353,7 +353,7 @@ h1 {
     justify-content: center;
     gap: 28px;
     position: relative;
-    bottom: -150px;
+    bottom: -93px;
 }
 
 .aLink {
@@ -641,7 +641,10 @@ h1 {
 
     .footer {
         display: flex;
-        gap: 27px;
+        justify-content: center;
+        gap: 28px;
+        position: relative;
+        bottom: -154px;
     }
 
     .cc {
