@@ -133,7 +133,7 @@ let touchedElement = null;
 
 function onTouchStart(ev) {  // dragstart
     deleteAllSilhouettes();
-    let touch = ev.touches[0];
+    let touch = ev.targetTouches[0];
     let currentTarget = ev.currentTarget;
     let currentId = ev.currentTarget.getAttribute('id');
     let element = document.getElementById(currentId);
@@ -152,11 +152,11 @@ function onTouchStart(ev) {  // dragstart
 function onTouchMove(ev) {  // allowdrop
     let draggableElement = ev.currentTarget;
     if(touchedElement) {
-        let touch = ev.touches[0];
-        let x = touch.clientX; // 115
-        let y = touch.clientY; // 235
-        touchedElement.style.left = x + 'px';
-        touchedElement.style.top = y + 'px';
+        let touchLocation = ev.targetTouches[0];
+        // let x = touch.touchLocaltion - 115;
+        // let y = touch.clientY - 235;
+        touchedElement.style.left = touchLocation.pageX + 'px';
+        touchedElement.style.top = touchLocation.pageY + 'px';
         }
     
 }
