@@ -153,8 +153,8 @@ function onTouchMove(ev) {  // allowdrop
     let draggableElement = ev.currentTarget;
     if(touchedElement) {
         let touch = ev.touches[0];
-        let x = touch.clientX - 115;
-        let y = touch.clientY - 235;
+        let x = touch.clientX; // 115
+        let y = touch.clientY; // 235
         touchedElement.style.left = x + 'px';
         touchedElement.style.top = y + 'px';
         }
