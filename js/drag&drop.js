@@ -128,12 +128,23 @@ function deleteAllSilhouettes() {
     silhouettes.forEach(silhouette => silhouette.parentNode.removeChild(silhouette));
 }
 
+touchEvents();
 
 let touchedElement = null; 
+let offsetX;
+let offsetY;
+
+function touchEvents() {
+    let boardcard = document.querySelectorAll('.progress_card');
+    boardcard.forEach(card => {
+        card.addEventListener('touchstart', onTouchStart);
+        card.addEventListener('touchmove', onTouchMove);
+        card.addEventListener('touchend', onTouchEnd);
+    })
+}
 
 function onTouchStart(ev) {  // dragstart
     deleteAllSilhouettes();
-    let touch = ev.targetTouches[0];
     let currentTarget = ev.currentTarget;
     let currentId = ev.currentTarget.getAttribute('id');
     let element = document.getElementById(currentId);
@@ -144,32 +155,41 @@ function onTouchStart(ev) {  // dragstart
     element.style.zIndex = '1';
 
     let arrayPosition = currentId.replace(/\D/g, '');
-
+    let status = tasks[arrayPosition].status;
+    console.log(status);
     console.log('Touch Start',touchedElement);
+
+    offsetX = ev.touches[0].clientX - touchedElement.getBoundingClientRect().left;
+    offsetY = ev.touches[0].clientY - touchedElement.getBoundingClientRect().right;
 }
 
 
 function onTouchMove(ev) {  // allowdrop
-    let draggableElement = ev.currentTarget;
     if(touchedElement) {
         let touchLocation = ev.targetTouches[0];
-        // let x = touch.touchLocaltion - 115;
-        // let y = touch.clientY - 235;
-        touchedElement.style.left = touchLocation.pageX + 'px';
-        touchedElement.style.top = touchLocation.pageY + 'px';
+        const x = touchLocation.clientX - offsetX;
+        const y = touchLocation.clientY - offsetY;
+
+        touchedElement.style.transform = `translate(${x}px, ${y}px)`;
         }
     
 }
 
 
 function onTouchEnd(ev) { // drop
-    console.log('Touch End');
+    const x = ev.changedTouches[0].clientX - offsetX;
+    const y = ev.changedTouches[0].clientY - offsetY;
+
+    touchedElement.style.transform = 'none'; // Zurücksetzen der Transformation
+//   ziel.appendChild(karte); // Karte ins Ziel verschieben
+  touchedElement.style.position = 'absolute'; // Absolute Positionierung beibehalten
+  touchedElement.style.left = `${x}px`; // Position relativ zur Seite festlegen
+  touchedElement.style.top = `${y}px`; // Position relativ zur Seite festlegen
 }
 
 
 function highlightContainer(ev) {
-    let targetId = ev.target;
-    console.log(targetId)
+    
 }
 
 function removeHighlightContainer(ev) {
