@@ -128,7 +128,7 @@ function deleteAllSilhouettes() {
     silhouettes.forEach(silhouette => silhouette.parentNode.removeChild(silhouette));
 }
 
-/*
+
 let touchedElement = null; 
 
 function onTouchStart(ev) {  // dragstart
@@ -141,6 +141,7 @@ function onTouchStart(ev) {  // dragstart
 
     element.style.opacity = '0.7';
     element.style.transform = 'scale(0.9)';
+    element.style.zIndex = '1';
 
     let arrayPosition = currentId.replace(/\D/g, '');
 
@@ -152,10 +153,12 @@ function onTouchMove(ev) {  // allowdrop
     let draggableElement = ev.currentTarget;
     if(touchedElement) {
         let touch = ev.touches[0];
-        touchedElement.style.left = touch.clientX + 'px';
-        touchedElement.style.top = touch.clientY + 'px';
+        let x = touch.clientX - 115;
+        let y = touch.clientY - 235;
+        touchedElement.style.left = x + 'px';
+        touchedElement.style.top = y + 'px';
         }
-    console.log('Touch Move', touchedElement);
+    
 }
 
 
@@ -163,14 +166,13 @@ function onTouchEnd(ev) { // drop
     console.log('Touch End');
 }
 
-/*
-function highlight(ev) {
-    let targetId = ev.srcElement.id;
+
+function highlightContainer(ev) {
+    let targetId = ev.target;
     console.log(targetId)
 }
 
-function removeHighlight(id) {
+function removeHighlightContainer(ev) {
     console.log('removehighlight')
 }
 
-*/

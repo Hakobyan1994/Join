@@ -81,7 +81,7 @@
     .card_Div {
         display: flex;
         flex-direction: row;
-        min-height: 58px;
+        min-height: 227px;
         max-height: fit-content;
         width: 95%;
         overflow-x: scroll;
