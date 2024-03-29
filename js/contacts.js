@@ -104,7 +104,7 @@ function displayContactImage(i) {
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    
+
     getRandomColorHELP(seed, letters, color);
     return color;
 }
