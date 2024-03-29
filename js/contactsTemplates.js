@@ -56,10 +56,10 @@ function generateHtmlMainContacts() {
 }
 
 
-// function generateAddBtnMobile() {
-//     return /*html*/`
-//         <img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">`;
-// }
+function generateAddBtnMobile() {
+    return /*html*/`
+        <img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">`;
+}
 
 
 function generateAddBtn() {

@@ -16,12 +16,25 @@ async function renderContactsMain() {
 
 
 function renderContacts() {
-    let contactsContainer = document.getElementById('allContacts');
-    contactsContainer.innerHTML = '<img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">';
-    contacts.sort((a, b) => a.name.localeCompare(b.name));
-    
     let addBtn = document.getElementById('addBtn');
-    addBtn.innerHTML = generateAddBtn();
+    let contactsContainer = document.getElementById('allContacts');
+    addContactBtnHTML(addBtn, contactsContainer);
+    const predefinedOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+    contacts.sort((a, b) => {
+        const nameA = a.name || '';
+        const nameB = b.name || '';
+        const indexA = predefinedOrder.indexOf(nameA.charAt(0).toUpperCase());
+        const indexB = predefinedOrder.indexOf(nameB.charAt(0).toUpperCase());
+
+        if (indexA === -1) {
+            return 1;
+        }
+        if (indexB === -1) {
+            return -1;
+        }
+        return indexA - indexB;
+    });
 
     let lastLetter = '';
 
@@ -29,6 +42,12 @@ function renderContacts() {
         let contact = contacts[i];
         lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
     }
+}
+
+
+function addContactBtnHTML(addBtn, contactsContainer) {
+    addBtn.innerHTML = generateAddBtn();
+    contactsContainer.innerHTML = generateAddBtnMobile();
 }
 
 
@@ -42,13 +61,11 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
 
         const imageId = `contactImage${i}`;
         const contactHtml = generateContact(i, contact, imageId);
-
         contactsContainer.innerHTML += contactHtml;
-        addInitialsToContactImage(contact, imageId);
 
+        addInitialsToContactImage(contact, imageId);
         return firstLetter;
     }
-
     return lastLetter;
 }
 
@@ -87,9 +104,8 @@ function displayContactImage(i) {
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
-
+    
     getRandomColorHELP(seed, letters, color);
-
     return color;
 }
 
@@ -118,11 +134,9 @@ function addToContacts() {
     let nameInput = document.getElementById('name');
     let emailInput = document.getElementById('emailContacts');
     let phoneInput = document.getElementById('phone');
-
     let name = nameInput.value.trim();
     let email = emailInput.value.trim();
     let phone = phoneInput.value.trim();
-
     let nameAddContactError = document.getElementById('nameAddErrorMessage');
     let emailAddContactError = document.getElementById('emailAddErrorMessage');
     let phoneAddContactError = document.getElementById('phoneAddErrorMessage');
@@ -138,14 +152,12 @@ async function addToContactsCheckValues(nameAddContactError, emailAddContactErro
     } else {
         nameAddContactError.classList.add('d-none');
     }
-
     if (!phone) {
         phoneAddContactError.classList.remove('d-none');
         phoneAddContactError.innerHTML = `Please enter a phone number`;
     } else {
         phoneAddContactError.classList.add('d-none');
     }
-
     if (!email || !isValidEmail(email)) {
         emailAddContactError.classList.remove('d-none');
         emailAddContactError.innerHTML = !email ? `Please enter an email` : `Please enter a valid email adress`;
@@ -153,14 +165,12 @@ async function addToContactsCheckValues(nameAddContactError, emailAddContactErro
     } else {
         emailAddContactError.classList.add('d-none');
     }
-
     if (!email.includes('.com') && !email.includes('.de')) {
         emailAddContactError.classList.remove('d-none');
         emailAddContactError.innerHTML = `Please enter a valid email address`;
     } else {
         emailAddContactError.classList.add('d-none');
     }
-
     if (!name || !email || !phone) {
         return;
     }
@@ -179,7 +189,6 @@ function checkInputs(nameInput, emailInput, phoneInput, name, email, phone) {
     let formattedName = splitNameAndCapitalize(name);
     let initials = formatInitials(formattedName);
     let existingEmail = document.getElementById('emailAlreadyExists');
-
     checkInputsHELP(existingEmail, email);
     addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials);
 }
@@ -217,7 +226,6 @@ function addedContactSuccessfully() {
     success.innerHTML = generateSuccessBtnSlider();
     success.classList.remove('slide-out-success-btn');
     success.classList.add('slide-in-success-btn');
-
     setTimeoutSuccesDiv(success);
 }
 
@@ -243,7 +251,6 @@ function splitNameAndCapitalize(inputName) {
         const formattedPart = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
         formattedNameParts.push(formattedPart);
     }
-
     return formattedNameParts.join(' ');
 }
 
@@ -255,7 +262,6 @@ function formatInitials(inputName) {
     for (let i = 0; i < nameParts.length; i++) {
         initials += nameParts[i].charAt(0).toUpperCase();
     }
-
     return initials;
 }
 
@@ -288,7 +294,6 @@ function saveContact(i) {
     contact.name = contactName;
     contact.email = contactEmail;
     contact.phone = contactPhone;
-
     saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i);
 }
 
@@ -300,14 +305,12 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
     } else {
         nameEditContactError.classList.add('d-none');
     }
-
     if (!contactPhone.trim()) {
         phoneEditContactError.classList.remove('d-none');
         phoneEditContactError.innerHTML = `Please enter a phone number`;
     } else {
         phoneEditContactError.classList.add('d-none');
     }
-
     if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
         emailEditContactError.classList.remove('d-none');
         emailEditContactError.innerHTML = !contactEmail.trim() ? `Please enter an email` : `Please enter a valid email address`;
@@ -315,7 +318,6 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
     } else {
         emailEditContactError.classList.add('d-none');
     }
-
     if (!contactEmail.includes('.com') && !contactEmail.includes('.de')) {
         emailEditContactError.classList.remove('d-none');
         emailEditContactError.innerHTML = `Please enter a valid email address`;
@@ -323,7 +325,6 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
     } else {
         emailEditContactError.classList.add('d-none');
     }
-
     if (!contactName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
         return;
     }
@@ -353,7 +354,6 @@ function loadContactInfo(i) {
     let nameEdit = document.getElementById('nameEdit');
     let emailEdit = document.getElementById('emailEdit');
     let phoneEdit = document.getElementById('phoneEdit');
-
     nameEdit.value = contact.name;
     emailEdit.value = contact.email;
     phoneEdit.value = contact.phone;
@@ -364,7 +364,6 @@ async function deleteContact(i) {
     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
     let headlineMobile = document.getElementById('headlineMobile');
     let contactSlider = document.getElementById('contactSlider');
-
     deleteContactHELP(contactInfoConMobile, headlineMobile, i);
     contacts.splice(i, 1);
     contactSlider.innerHTML = '';
