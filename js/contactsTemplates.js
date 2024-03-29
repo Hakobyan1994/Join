@@ -12,7 +12,7 @@ function generateHtmlMainContacts() {
                                 <div id="allContacts" class="all-contacts"></div>
                             </div>
 
-                            <div class="dark-bgr d-none" id="darkBgr"></div>
+                            <div id="darkBgr" class="dark-bgr d-none"></div>
 
                             <div id="addMask" class="dark-bgr d-none"></div>
 
@@ -54,6 +54,12 @@ function generateHtmlMainContacts() {
             </div>
         </div>`;
 }
+
+
+// function generateAddBtnMobile() {
+//     return /*html*/`
+//         <img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">`;
+// }
 
 
 function generateAddBtn() {
@@ -265,17 +271,17 @@ function generateEditMaskOverlay(i) {
                                 </div>
 
                                 <form onsubmit="addToContacts()" class="edit-contact-data">
-                                    <div>
+                                    <div class="input-con-main">
                                         <input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="20" required>
                                         <img class="input-svg-pos-edit" src="../assets/img/icons/person.svg" alt="">
                                         <div id="nameErrorMessage" class="error-message d-none"></div>
                                     </div>
-                                    <div>
+                                    <div class="input-con-main">
                                         <input id="emailEdit" name="email" class="input-con-edit" placeholder="Email" type="email" required>
                                         <img class="input-svg-pos-edit" src="../assets/img/icons/mail.svg" alt="">
                                         <div id="emailErrorMessage" class="error-message d-none"></div>
                                     </div>
-                                    <div>
+                                    <div class="input-con-main">
                                         <input id="phoneEdit" name="phone" class="input-con-edit" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
                                         <img class="input-svg-pos-edit" src="../assets/img/icons/call.svg" alt="">
                                         <div id="phoneErrorMessage" class="error-message d-none"></div>

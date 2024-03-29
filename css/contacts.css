@@ -248,7 +248,7 @@
     align-items: flex-start;
     gap: 8px;
     align-self: stretch;
-    padding-left: 90px;
+    padding-left: 86px;
 }
 
 .contact-line {
@@ -374,3 +374,7 @@ z-index: -11;
 .z-index-minus-9 {
     z-index: -9 !important;
 }
+
+/* .d-none {
+    display: none;
+} */

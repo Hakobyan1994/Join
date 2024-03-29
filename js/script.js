@@ -246,6 +246,7 @@ function checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, even
     }
 }
 
+
 function logoutUser() {
     localStorage.clear();
     window.location.href = '../index.html';
@@ -253,32 +254,44 @@ function logoutUser() {
     nameActiveUser = [];
 }
 
-// set z-index to 11 
+
 function addZindex() {
     document.getElementById('mobile-header').classList.add('z-12');
     document.getElementById('navbar').classList.add('z-11');
 }
+
 
 function removeZindex() {
     document.getElementById('mobile-header').classList.remove('z-12');
     document.getElementById('navbar').classList.remove('z-11');
 }
 
+
 function addZindex13() {
     document.getElementById('mobile-header').classList.add('z-13');
     document.getElementById('navbar').classList.add('z-12');
 }
+
 
 function removeZindex13() {
     document.getElementById('mobile-header').classList.remove('z-13');
     document.getElementById('navbar').classList.remove('z-12');
 }
 
+
 function addZindexContacts() {
     let navbar = document.getElementById('navbar');
     let header = document.getElementById('mobile-header');
     navbar.classList.add('z-index-minus-8');
     header.classList.add('z-index-minus-9');
+}
+
+
+function removeZindexContacts() {
+    let navbar = document.getElementById('navbar');
+    let header = document.getElementById('mobile-header');
+    navbar.classList.remove('z-index-minus-8');
+    header.classList.remove('z-index-minus-9');
 }
 
 // function notSupported() {

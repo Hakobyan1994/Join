@@ -118,6 +118,10 @@
     outline: none;
 }
 
+.input-con-main {
+    height: 70px;
+}
+
 .add-contact-user-img {
     display: flex;
     align-items: center;

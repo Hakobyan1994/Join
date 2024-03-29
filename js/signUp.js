@@ -154,10 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
-
 function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
     if (!name) {
         nameInputCon.classList.remove('margin');

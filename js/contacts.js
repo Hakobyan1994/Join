@@ -18,8 +18,8 @@ async function renderContactsMain() {
 function renderContacts() {
     let contactsContainer = document.getElementById('allContacts');
     contactsContainer.innerHTML = '<img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">';
-    // contacts.sort((a, b) => a.name.localeCompare(b.name));
-
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
+    
     let addBtn = document.getElementById('addBtn');
     addBtn.innerHTML = generateAddBtn();
 

@@ -124,6 +124,8 @@
     }
 }
 
+/* slide in dark bgr */
+
 .dark-bgr {
     z-index: 999;
     position: fixed;
