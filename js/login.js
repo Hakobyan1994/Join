@@ -7,7 +7,6 @@ let userGuests = [
 let dataUser = [];
 getUsers();
 
-
 function logoAnimation() {
     let div = document.getElementById('animationDiv')
     let img = document.getElementById('logo-login')
@@ -140,7 +139,7 @@ function validLogin(e) {
     let password = e.target[1].value;
     let status = 'no';
     if (email && password) {
-        const foundUser = dataUser.find((user) => user.email.includes(email));
+        let foundUser = dataUser.find((user) => user.email.includes(email));
         if (foundUser) {
             if (foundUser.password === password) {
                 status = 'ok';

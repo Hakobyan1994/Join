@@ -11,6 +11,7 @@ async function renderContactsMain() {
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainContacts();
     await loadContacts();
+    await getLoggedInUser();
     renderContacts();
 }
 
@@ -394,4 +395,24 @@ function renderContactInfo(i, contactInfoSlider) {
     contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageIdSlider);
     addInitialsToContactImage(contact, imageIdSlider);
     addRandomColorToImg(imageElement, contact);
+}
+
+
+async function getLoggedInUser() {
+    let name = await getLoggedInUserFromLocalStorage();
+    if (name) {
+        let loggedInUserContact = {
+            name: name,
+            email: ''
+        };
+        contacts.push(loggedInUserContact);
+    }
+}
+
+function addUserToLocalStorage(loggedInUserName) {
+    localStorage.setItem('loggedInUser', loggedInUserName);
+}
+
+function getLoggedInUserFromLocalStorage() {
+    return localStorage.getItem('loggedInUser');
 }
