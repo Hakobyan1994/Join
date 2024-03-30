@@ -11,7 +11,7 @@ async function renderContactsMain() {
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainContacts();
     await loadContacts();
-    await getLoggedInUser();
+    // await getLoggedInUser();
     renderContacts();
 }
 
@@ -398,21 +398,21 @@ function renderContactInfo(i, contactInfoSlider) {
 }
 
 
-async function getLoggedInUser() {
-    let name = await getLoggedInUserFromLocalStorage();
-    if (name) {
-        let loggedInUserContact = {
-            name: name,
-            email: ''
-        };
-        contacts.push(loggedInUserContact);
-    }
-}
+// async function getLoggedInUser() {
+//     let name = await getLoggedInUserFromLocalStorage();
+//     if (name) {
+//         let loggedInUserContact = {
+//             name: name,
+//             email: ''
+//         };
+//         contacts.push(loggedInUserContact);
+//     }
+// }
 
-function addUserToLocalStorage(loggedInUserName) {
-    localStorage.setItem('loggedInUser', loggedInUserName);
-}
+// function addUserToLocalStorage(loggedInUserName) {
+//     localStorage.setItem('loggedInUser', loggedInUserName);
+// }
 
-function getLoggedInUserFromLocalStorage() {
-    return localStorage.getItem('loggedInUser');
-}
+// function getLoggedInUserFromLocalStorage() {
+//     return localStorage.getItem('loggedInUser');
+// }
