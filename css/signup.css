@@ -570,12 +570,11 @@ h1 {
     position: absolute;
     cursor: pointer;
     }
-
       
     .main_div {
         position: relative;
         top: 170.5px;
-        left: 15px;
+        left: 0;
         padding: 32px 0;
         width: 366px;
         height: 498px;
@@ -656,6 +655,12 @@ h1 {
         gap: 3px;
     }
 
+    .error-privacy {
+        font-size: 12px;
+        position: relative;
+        top: -16px;
+        left: 80px;
+    }
 }  
 
 
@@ -680,9 +685,6 @@ h1 {
 }   
 
    @media(max-width:400px){
-
-
-
     .main_div {
         position: relative;
         top: 170.5px;
@@ -692,23 +694,29 @@ h1 {
         height: 498px;
         margin: 0 auto; 
     }  
+
     .name_input {
         max-width: 61%;
     }
+
      .email_input {
         max-width: 61%;
     } 
+
     .password_input {
         max-width: 61%;
     } 
+
     .passwordBlock {
         margin-left: 260px;
         margin-top: -43px;
         cursor: pointer;
     } 
+
     .confirmpassword {
         max-width: 61%;
     }
+
     .confirmBlock {
         margin-left: 261px;
         margin-top: -36px;
@@ -728,7 +736,17 @@ h1 {
         top: 31px;
         font-family: 'Inter';
     }
+    .error-privacy {
+        font-size: 12px;
+        position: relative;
+        top: -16px;
+        left: 60px;
+    }
    }  
+
+   @media(max-width: 390px) {
+
+   }
 
    @media(max-width:350px){
     .main_div {
@@ -763,4 +781,10 @@ h1 {
         margin-top: -36px;
     }
       
+    .error-privacy {
+        font-size: 12px;
+        position: relative;
+        top: -16px;
+        left: 61px;
+    }
    }
