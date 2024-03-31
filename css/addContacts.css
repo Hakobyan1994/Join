@@ -30,7 +30,7 @@
 
 .add-contact-headline {
     color: var(--white, #FFF);
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 61px;
     font-style: normal;
     font-weight: 700;
@@ -39,7 +39,7 @@
 
 .add-contact-text {
     color: var(--white, #FFF);
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 27px;
     font-style: normal;
     font-weight: 400;
@@ -84,7 +84,7 @@
     border: 1px solid var(--Style, #D1D1D1);
     background: #FFF;
     margin-right: 48px;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -106,7 +106,7 @@
     border: 1px solid var(--Style, #D1D1D1);
     background: #FFF;
     margin-right: 48px;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -139,7 +139,7 @@
     border: none;
     background: #2A3647;
     color: #FFF;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 21px;
     font-style: normal;
     font-weight: 700;
@@ -180,7 +180,7 @@
     border-radius: 10px;
     border: 1px solid var(--Version-2-main-color, #2A3647);
     color: var(--Version-2-main-color, #2A3647) !important;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -201,7 +201,7 @@
     border-radius: 10px;
     border: 1px solid var(--Version-2-main-color, #2A3647);
     color: var(--Version-2-main-color, #2A3647) !important;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;

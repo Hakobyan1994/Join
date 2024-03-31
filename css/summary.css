@@ -32,7 +32,7 @@
 }
 
 .progress_number {
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     font-size: 64px;
     font-weight: 600;
     line-height: 79px;
@@ -40,7 +40,7 @@
 }
 
 .progress_Info {
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     line-height: 24px;
     font-size: 20px;
@@ -82,7 +82,7 @@
 }
 
 .feedback_number {
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     font-size: 64px;
     font-weight: 600;
     line-height: 79px;
@@ -90,7 +90,7 @@
 }
 
 .feedback_title {
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     line-height: 24px;
     font-size: 20px;
@@ -114,7 +114,7 @@
     width: 500px;
     font-size: 47px;
     font-weight: 500;
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     color: #2A3647;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -123,7 +123,7 @@
 }
 
 .greetingName {
-    font-family: inter;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 64px;
     color: #29ABE2;
