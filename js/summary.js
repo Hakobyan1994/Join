@@ -153,11 +153,13 @@ function countTaskValues(tasks) {
 
 
 function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgent) {
-  document.getElementById('value-todoarray').innerHTML = valueTodo;
-  document.getElementById('value-progressarray').innerHTML = valueProgress;
-  document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
-  document.getElementById('value-donearray').innerHTML = valueDone;
-  document.getElementById('value-urgent').innerHTML = valueUrgent;
+  if(document.getElementById('value-todoarray')) {
+    document.getElementById('value-todoarray').innerHTML = valueTodo;
+    document.getElementById('value-progressarray').innerHTML = valueProgress;
+    document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
+    document.getElementById('value-donearray').innerHTML = valueDone;
+    document.getElementById('value-urgent').innerHTML = valueUrgent;
+  }
 }
 
 

@@ -366,11 +366,31 @@ async function deleteContact(i) {
     let headlineMobile = document.getElementById('headlineMobile');
     let contactSlider = document.getElementById('contactSlider');
     deleteContactHELP(contactInfoConMobile, headlineMobile, i);
+    deleteDeletedContact(i);
     contacts.splice(i, 1);
     contactSlider.innerHTML = '';
     closeEditContactSlider();
     await setItem('contacts', JSON.stringify(contacts));
+    await setItem('tasks', JSON.stringify(tasks));
     renderContacts();
+}
+
+
+function deleteDeletedContact(i) {
+    let contactName = contacts[i].name;
+    let filter = contactName.trim().toUpperCase();
+    for (let j = 0; j < tasks.length; j++) {
+        const name = tasks[j].assigned;
+        for (let k = 0; k < name.length; k++) {
+            const assignedContact = name[k];
+            let tasksName = assignedContact.trim().toUpperCase();
+            if(!tasksName.indexOf(filter) > -1) {
+                console.log(tasks[j].assigned[k]);
+                tasks[j].assigned.splice(k, 1);
+                tasks[j].letter.splice(k, 1);
+            }
+        }
+    }
 }
 
 
