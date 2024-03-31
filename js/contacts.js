@@ -385,7 +385,6 @@ function deleteDeletedContact(i) {
             const assignedContact = name[k];
             let tasksName = assignedContact.trim().toUpperCase();
             if(!tasksName.indexOf(filter) > -1) {
-                console.log(tasks[j].assigned[k]);
                 tasks[j].assigned.splice(k, 1);
                 tasks[j].letter.splice(k, 1);
             }
