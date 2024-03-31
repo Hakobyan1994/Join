@@ -414,7 +414,6 @@
     transition: transform 0.3s;
     position: relative;
     border: 2px dashed lightgray;
-    width: 202px;
     height: 182px; 
 }
 

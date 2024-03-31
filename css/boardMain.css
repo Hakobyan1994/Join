@@ -135,7 +135,6 @@ h3 {
 
 .Card_NotasksTodo {
     display: none;
-    width: 246px;
     height: 48px;
     border: 3px dotted rgb(168, 168, 168, 0.4);
     background-color: #E7E7E7;
@@ -160,7 +159,6 @@ h3 {
     margin-bottom: 8px;
     transition: transform 0.3s;
     height: max-content;
-    position: absolute;
 }
 
 .progress_infocard {
