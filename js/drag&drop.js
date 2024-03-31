@@ -18,6 +18,7 @@ function allowDrop(ev) {
     ev.preventDefault();
     onHover = ev.currentTarget.getAttribute('id');
     if(currentStatus !== onHover) {
+        hideNoCards(onHover);
         showSilhouette(onHover);
     }
 }
@@ -40,6 +41,7 @@ function showSilhouette(id) {
         }
     } else if (div && currentOnHover !== onHover) {
         deleteAllSilhouettes();
+        showNoCards();
     }
 }
 
@@ -62,9 +64,10 @@ function deleteAllSilhouettes() {
 }
 
 
-let touchedElement = null;
+
 let offsetX;
 let offsetY;
+let touchedElement;
 
 /*
 function touchEvents() {
@@ -75,47 +78,60 @@ function touchEvents() {
         card.addEventListener('touchend', onTouchEnd);
     });
 }
-
 */
-/*
 
 function onTouchStart(ev) {
-    deleteAllSilhouettes();
-    let currentId = ev.currentTarget.getAttribute('id');
-    let element = document.getElementById(currentId);
-    touchedElement = element;
-
-    element.style.opacity = '0.7';
-    element.style.transform = 'scale(0.9)';
-    element.style.zIndex = '1';
-
-    offsetX = ev.touches[0].clientX - touchedElement.getBoundingClientRect().left;
-    offsetY = ev.touches[0].clientY - touchedElement.getBoundingClientRect().top;
+    dragStart(ev);
+    console.log(currentStatus);
+    touchedElement = document.getElementById(currentDraggedElement);
+    touchedElement.style.opacity = '0.7';
+    touchedElement.style.transform = 'scale(0.9)';
+    touchedElement.style.zIndex = '4';
+    offsetX = ev.touches[0].clientX;
+    offsetY = ev.touches[0].clientY;
 }
+
 
 function onTouchMove(ev) {
     ev.preventDefault();
-    if (touchedElement) {
-        const x = ev.touches[0].clientX - offsetX;
-        const y = ev.touches[0].clientY - offsetY;
-        touchedElement.style.left = `${x}px`;
-        touchedElement.style.top = `${y}px`;
+    let x = ev.touches[0].clientX - offsetX;
+    let y = ev.touches[0].clientY - offsetY;
+    touchedElement.style.left = `${x}px`;
+    touchedElement.style.top = `${y}px`;
+    let hoveredElements = document.elementsFromPoint(ev.touches[0].clientX, ev.touches[0].clientY);
+    hoveredElements.forEach(element => {
+        if(element.classList.contains('card_Div')) {
+            onHover = element.id;
+        }
+    })
+    if(currentStatus !== onHover) {
+        hideNoCards(onHover);
+        showSilhouette(onHover);
     }
 }
 
-function onTouchEnd(ev) {
-    if (touchedElement) {
-        const x = ev.changedTouches[0].clientX - offsetX;
-        const y = ev.changedTouches[0].clientY - offsetY;
-        touchedElement.style.opacity = '1';
-        touchedElement.style.transform = 'none';
-        touchedElement.style.zIndex = '0';
-        touchedElement.style.position = 'absolute';
-        touchedElement.style.left = `${x}px`;
-        touchedElement.style.top = `${y}px`;
-        touchedElement = null;
-    }
-    let end = ev.currentTarget;
-    console.log('end:', end);
+
+async function onTouchEnd(ev) {
+    tasks[arrayPosition].status = onHover;
+    await saveTasks();
+    loadToDo();
+    offsetX = null;
+    offsetY = null;
 }
-*/
+
+
+function hideNoCards(id) {
+    let hoveredElements = document.getElementById(id);
+    let check = hoveredElements.querySelectorAll('.Card_NotasksTodo');
+    check.forEach(element => {
+        element.style.display = 'none';
+    })
+}
+
+
+function showNoCards() {
+    let noCard = document.querySelectorAll('.Card_NotasksTodo');
+    noCard.forEach(element => {
+        element.style.display = 'flex';
+    })
+}
