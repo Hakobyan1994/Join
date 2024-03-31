@@ -46,8 +46,10 @@
 
     .board-window {
         margin-right: 32px;
-        margin-bottom: 44px;
+        margin-bottom: unset;
+        margin-top: 160px;
         position: fixed;
+        height: calc(100% - 208px);
         z-index: -2;
     }
 

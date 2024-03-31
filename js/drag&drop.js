@@ -82,7 +82,6 @@ function touchEvents() {
 
 function onTouchStart(ev) {
     dragStart(ev);
-    console.log(currentStatus);
     touchedElement = document.getElementById(currentDraggedElement);
     touchedElement.style.opacity = '0.7';
     touchedElement.style.transform = 'scale(0.9)';
