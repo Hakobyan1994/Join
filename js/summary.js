@@ -27,7 +27,7 @@ async function user(params) {
   // let time=document.getElementById('timeOfDay')
   if (user) {
     let profilName = document.querySelector('.greetingName');
-    // profilName.innerText = user[0].name;
+    profilName.innerText = user[0].name;
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -114,7 +114,7 @@ async function renderSummaryMain() {
   await loadTasks();
   await getValue();
   displayGreeting();
-  // checkButtonImgChange();
+  checkButtonImgChange();
 }
 
 
@@ -305,7 +305,7 @@ function getInitials(name) {
   return initials;
 }
 
-/*
+
 function checkButtonImgChange() {                                       //change check button when it is hovering
   let img = document.getElementById('check-button');
   let checkButton = document.getElementById('check-button-div');
@@ -318,4 +318,3 @@ function checkButtonImgChange() {                                       //change
       });
   }
 }
-*/
