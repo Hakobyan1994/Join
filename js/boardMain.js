@@ -74,16 +74,16 @@ async function updateBoardCard(taskValue, i) {
 
 function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, hasFeedback, hasDone) {
     if (!hasToDo) {
-        todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled>No Tasks To do</div>';
+        todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled ontouchend="return false;" ontouchmove="return false;">No Tasks To do</div>';
     }
     if (!hasProgress) {
-        progress.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled>Nothing in progress</div>';
+        progress.innerHTML = '<div id="NoProgress" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled ontouchend="return false;" ontouchmove="return false;">Nothing in progress</div>';
     }
     if (!hasFeedback) {
-        feedback.innerHTML = '<div id="NoFeedback" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled>No Feedback to give</div>';
+        feedback.innerHTML = '<div id="NoFeedback" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled ontouchend="return false;" ontouchmove="return false;">No Feedback to give</div>';
     }
     if (!hasDone) {
-        done.innerHTML = '<div id="NoDone" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled>Nothing yet is done</div>';
+        done.innerHTML = '<div id="NoDone" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled ontouchend="return false;" ontouchmove="return false;">Nothing yet is done</div>';
     }
 }
 

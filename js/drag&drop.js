@@ -2,8 +2,8 @@
 let currentDraggedElement;
 let arrayPosition;
 let currentStatus;
-let onHover;
-let currentOnHover;
+let onHover = [];
+let currentOnHover = [];
 let offsetX;
 let offsetY;
 let touchedElement;
@@ -14,6 +14,8 @@ function dragStart(ev) {
     currentDraggedElement = ev.currentTarget.getAttribute('id');
     arrayPosition = currentDraggedElement.replace(/\D/g, "");
     currentStatus = tasks[arrayPosition].status;
+    currentOnHover = currentStatus;
+    onHover = currentStatus;
 }
 
 
@@ -68,41 +70,50 @@ function deleteAllSilhouettes() {
 
 
 function onTouchStart(ev) {
-    dragStart(ev);
-    touchedElement = document.getElementById(currentDraggedElement);
-    touchedElement.style.opacity = '0.7';
-    touchedElement.style.transform = 'scale(0.9)';
-    touchedElement.style.zIndex = '4';
-    offsetX = ev.touches[0].clientX;
-    offsetY = ev.touches[0].clientY;
-}
-
-
-function onTouchMove(ev) {
-    ev.preventDefault();
-    let x = ev.touches[0].clientX - offsetX;
-    let y = ev.touches[0].clientY - offsetY;
-    touchedElement.style.left = `${x}px`;
-    touchedElement.style.top = `${y}px`;
-    let hoveredElements = document.elementsFromPoint(ev.touches[0].clientX, ev.touches[0].clientY);
-    hoveredElements.forEach(element => {
-        if(element.classList.contains('card_Div')) {
-            onHover = element.id;
-        }
-    })
-    if(currentStatus !== onHover) {
-        hideNoCards(onHover);
-        showSilhouette(onHover);
+    let progressCard = document.querySelector('.progress_card');
+    if(progressCard) {
+        dragStart(ev);
+        touchedElement = document.getElementById(currentDraggedElement);
+        touchedElement.style.opacity = '0.7';
+        touchedElement.style.transform = 'scale(0.9)';
+        touchedElement.style.zIndex = '4';
+        offsetX = ev.touches[0].clientX;
+        offsetY = ev.touches[0].clientY;
     }
 }
 
 
-async function onTouchEnd() {
-    tasks[arrayPosition].status = onHover;
-    await saveTasks();
-    loadToDo();
-    offsetX = null;
-    offsetY = null;
+function onTouchMove(ev) {
+    let progressCard = document.querySelector('.progress_card');
+    if(progressCard) {
+        ev.preventDefault();
+        let x = ev.touches[0].clientX - offsetX;
+        let y = ev.touches[0].clientY - offsetY;
+        touchedElement.style.left = `${x}px`;
+        touchedElement.style.top = `${y}px`;
+        let hoveredElements = document.elementsFromPoint(ev.touches[0].clientX, ev.touches[0].clientY);
+        hoveredElements.forEach(element => {
+            if(element.classList.contains('card_Div')) {
+                onHover = element.id;
+            }
+        })
+        if(currentStatus !== onHover) {
+            hideNoCards(onHover);
+            showSilhouette(onHover);
+        }
+    }
+}
+
+
+async function onTouchEnd(ev) {
+    let progressCard = document.querySelector('.progress_card');
+    if(progressCard) {
+        tasks[arrayPosition].status = onHover;
+        await saveTasks();
+        await loadToDo();
+        offsetX = null;
+        offsetY = null;
+    }
 }
 
 

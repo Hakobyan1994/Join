@@ -151,9 +151,9 @@ function closePopupAddTaskDiv(i) {
     div.style.display = 'none';
     content.classList.remove('slide-in');
     content.classList.add('slide-out');
-    amount.innerHTML = /*html*/`
-        ${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks
-    `;
+    // amount.innerHTML = /*html*/`
+    //     ${updateSelectedSubtasksCount(i)} / ${totalSubtask(i)} Subtasks
+    // `;
     calculatePercentageForProgressBar(i);
     updateProgressBar(i);
     checkCategoryButton();
@@ -207,24 +207,29 @@ function updateSelectedSubtasksCount(i) {
 async function highlightProgressbar(i) {
     let text = document.getElementById(`amount-subtasks-${i}`);
     let bar = document.getElementById(`progress-bar-${i}`);
-    if(updateSelectedSubtasksCount(i) === totalSubtask(i)) {
-        text.style.fontWeight = '600';
-        bar.style.backgroundColor = 'rgba(0, 89, 243, 1)';
-    } else {
-        text.style.fontWeight = '400';
-        bar.style.backgroundColor = 'rgba(69, 137, 255, 1)';
+    if(bar) {
+        if(updateSelectedSubtasksCount(i) === totalSubtask(i)) {
+            text.style.fontWeight = '600';
+            bar.style.backgroundColor = 'rgba(0, 89, 243, 1)';
+        } else {
+            text.style.fontWeight = '400';
+            bar.style.backgroundColor = 'rgba(69, 137, 255, 1)';
+        }
     }
 }
 
 
 async function emptyProgressBar(i) {
     let progressbar = document.getElementById(`progress-bar-div-${i}`);
+    if(progressbar) {
         if (totalSubtask(i) === 0) {
             progressbar.style.display = 'none';
         } else {
             progressbar.style.display = 'flex';
         }
+    }
 }
+
 
 
 function searchTasks() {
