@@ -487,16 +487,16 @@ body {
     @keyframes animImg {
         from {
             top: 40%;
-            left: 40%;
+            left: 20%;
             width: 400px;
             height: 250px;
         }
     
         to {
-            width: 70px;
-            height: 70px;
+            width:73px;
+            height: 73px;
             top: 40px;
-            left: 40px;
+            left: 44px;
             animation-play-state: paused;
             fill: #2A3647;
         }
@@ -594,8 +594,255 @@ body {
         right: 0;
         left: 0;
     }  
-}
-  
+}    
+
+@media(max-width: 460px) {
+    .anim_div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background-color: #FFFFFF;
+    }
+    
+    .startParDiv {
+        position: absolute;
+        background-color: #2A3647;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        z-index: 33;
+    }
+    
+    .startParImg {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        top: 40%;
+        left: 10%;
+        width: 400px !important;
+        height: 250px;
+        z-index: 34;
+        fill: #FFFFFF;
+    }
+    
+    .addAnimDiv {
+        animation: animDiv 3s;
+        animation-delay: 2s;
+        animation-iteration-count: 1;
+    }
+    
+    .animation {
+        animation: animImg 3s;
+        animation-delay: 2s;
+    }
+    
+    @keyframes animImg {
+        from {
+            top: 40%;
+            /* left: 10%; */
+            width: 400px;
+            height: 250px;
+        }
+    
+        to {
+            width:73px;
+            height: 73px;
+            top: 40px;
+            left: 44px;
+            animation-play-state: paused;
+            fill: #2A3647;
+        }
+    }
+    
+    @keyframes animDiv {
+        from {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+        }
+    
+        to {
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+    }
+}  
+
+
+     @media(max-width:390px){
+        .anim_div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            background-color: #FFFFFF;
+        }
+        
+        .startParDiv {
+            position: absolute;
+            background-color: #2A3647;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            z-index: 33;
+        }
+        
+        .startParImg {
+            position: absolute;
+            top: 80px;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            top: 40%;
+            left: 10%;
+            width: 360px !important;
+            height: 250px;
+            z-index: 34;
+            fill: #FFFFFF;
+        }
+        
+        .addAnimDiv {
+            animation: animDiv 3s;
+            animation-delay: 2s;
+            animation-iteration-count: 1;
+        }
+        
+        .animation {
+            animation: animImg 3s;
+            animation-delay: 2s;
+        }
+        
+        @keyframes animImg {
+            from {
+                top: 40%;
+                /* left: 40%; */
+                width: 400px;
+                height: 250px;
+            }
+        
+            to {
+                width:73px;
+                height: 73px;
+                top: 40px;
+                left: 44px;
+                animation-play-state: paused;
+                fill: #2A3647;
+            }
+        }
+        
+        @keyframes animDiv {
+            from {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 1;
+            }
+        
+            to {
+                opacity: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+
+
+     }
+   
+    @media(max-width:338px){
+    
+        .anim_div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            background-color: #FFFFFF;
+        }
+        
+        .startParDiv {
+            position: absolute;
+            background-color: #2A3647;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            z-index: 33;
+        }
+        
+        .startParImg {
+            position: absolute;
+            top: 80px;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            top: 40%;
+            left: 5%;
+            width: 360px !important;
+            height: 250px;
+            z-index: 34;
+            fill: #FFFFFF;
+        }
+        
+        .addAnimDiv {
+            animation: animDiv 3s;
+            animation-delay: 2s;
+            animation-iteration-count: 1;
+        }
+        
+        .animation {
+            animation: animImg 3s;
+            animation-delay: 2s;
+        }
+        
+        @keyframes animImg {
+            from {
+                top: 40%;
+                left: 3%;
+                width: 400px;
+                height: 250px;
+            }
+        
+            to {
+                width:73px;
+                height: 73px;
+                top: 40px;
+                left: 44px;
+                animation-play-state: paused;
+                fill: #2A3647;
+            }
+        }
+        
+        @keyframes animDiv {
+            from {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 1;
+            }
+        
+            to {
+                opacity: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+
+
+    }
+   
+
 
   @media(max-width:372px ){
     .title {
@@ -650,7 +897,9 @@ body {
                 top: 800px;
                 right: 0;
                 left: -24px;
-            }
+            }  
+
+              
         }
 
       

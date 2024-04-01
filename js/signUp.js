@@ -50,7 +50,6 @@ async function onsubmitFor(e) {
     let password = e.target[2].value;
     let confirmPassword = e.target[3].value;
     let checkBox = e.target[4].checked;
-         
     if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
         addtoLocal(dataUsers, 'dataUsers');
