@@ -9,7 +9,6 @@ function showAddContactOverlay() {
     darkBgr.classList.remove('d-none');
     darkBgr.classList.remove('hide-dark-bgr');
     showAddContactSlider();
-
     showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView, navbar, header);
 }
 
@@ -141,6 +140,11 @@ function closeEditContactSlider() {
     let isMobileView = window.innerWidth < 1360;
 
     closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn, headline, isMobileView);
+    timeoutEditSlider(editMask);
+}
+
+
+function timeoutEditSlider(editMask) {
     setTimeout(() => {
         editMask.classList.add('d-none');
         hideAddContactSlider();
@@ -255,6 +259,13 @@ window.addEventListener('resize', function () {
 
 
 function refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible) {
+    refreshMobileView(isMobileView, contactInfoSliderVisible, headline, headlineMobile);
+    refreshMobileViewIphone(isMobileViewIphone, headlineMobile);
+    refreshMobileViewIphoneAndIfVisible(contactInfoSliderVisible, isMobileViewIphone, headlineMobile, contactInfoSlider, contactInfoConMobile);
+}
+
+
+function refreshMobileView(isMobileView, contactInfoSliderVisible, headline, headlineMobile) {
     if (isMobileView && !contactInfoSliderVisible) {
         headline.classList.add('d-none');
         headlineMobile.classList.remove('d-none');
@@ -262,14 +273,20 @@ function refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlid
         headline.classList.remove('d-none');
         headlineMobile.classList.add('d-none');
     }
+}
 
+
+function refreshMobileViewIphone(isMobileViewIphone, headlineMobile) {
     if (isMobileViewIphone) {
         headlineMobile.classList.add('z-index-2');
         headlineMobile.classList.remove('z-index-minus-2');
     } else {
         headlineMobile.classList.remove('z-index-minus-2');
     }
+}
 
+
+function refreshMobileViewIphoneAndIfVisible(contactInfoSliderVisible, isMobileViewIphone, headlineMobile, contactInfoSlider, contactInfoConMobile) {
     if (!contactInfoSliderVisible && isMobileViewIphone) {
         headlineMobile.classList.add('d-none');
         contactInfoSlider.classList.add('d-none');
