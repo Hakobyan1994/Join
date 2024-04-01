@@ -24,8 +24,8 @@ async function signUpgetItem(key) {
 }
 
 
-    let dataUsers = []
-    async function getUsers(params) {
+let dataUsers = []
+async function getUsers(params) {
     let res = await signUpgetItem('dataUsers')
 
     if (res[0] !== null) {
@@ -68,8 +68,8 @@ async function onsubmitFor(e) {
 
 function validForm({ name, email, password, confirmPassword }, e) {
     let checkEmailregex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+(?:de|com)$/;
-    
-     
+
+
     // Überprüfe, ob die E-Mail-Adresse mit einem Punkt endet
     if (checkEmailregex.test(email) && (email.endsWith('.com') || email.endsWith('.de'))) {
         console.log('ok');
@@ -96,24 +96,24 @@ function validForm({ name, email, password, confirmPassword }, e) {
                 }
             }
         } else {
-            document.getElementById('errorPasswordSecond').innerText='The Password is not correct'
+            document.getElementById('errorPasswordSecond').innerText = 'The Password is not correct'
         }
     } else if (email.endsWith('.') || email.endsWith('@')) { // Neue Bedingung für die Überprüfung
         showError('Please enter a valid email without "@" or "." at the end');
     } else {
         showError('Please enter a valid email ending with .de or .com');
-    } 
+    }
 }
-    
+
 
 
 function showError(message) {
     document.getElementById('errorPassword').innerText = message;
-    
+
 }
-  
-  
-  
+
+
+
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
 
@@ -192,11 +192,13 @@ function checkSignUpInputs() {
 
 
 function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
-    checkName(name, nameInputCon, nameSignUpError);
-    checkEmail(email, emailInputCon, emailSignUpError);
-    checkPassword(password1, passwordInputCon, password1SignUpError);
-    checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUpError);
-    checkIfInputsEmpty(name, email, password1, password2);
+    if (!name || !email || !password1 || !password2) {
+        checkName(name, nameInputCon, nameSignUpError);
+        checkEmail(email, emailInputCon, emailSignUpError);
+        checkPassword(password1, passwordInputCon, password1SignUpError);
+        checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUpError);
+        return;
+    }
 }
 
 
@@ -256,12 +258,5 @@ function checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUp
         passwordConfimInputCon.classList.remove('margin-empty');
         passwordConfimInputCon.classList.remove('margin-bottom');
         password2SignUpError.classList.add('d-none');
-    }
-}
-
-
-function checkIfInputsEmpty(name, email, password1, password2) {
-    if (!name || !email || !password1 || !password2) {
-        return;
     }
 }

@@ -14,10 +14,18 @@ function addToContacts() {
 
 
 async function addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput) {
-    addContactNameCheck(name, nameAddContactError);
-    addContactPhoneCheck(phone, phoneAddContactError);
-    addContactEmailCheck(email, emailAddContactError);
-    checkIfAddContactInputsEmpty(name, phone, email);
+    if (!name || !email || !phone) {
+        addContactNameCheck(name, nameAddContactError);
+        addContactPhoneCheck(phone, phoneAddContactError);
+        addContactEmailCheck(email, emailAddContactError);
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        emailAddContactError.classList.remove('d-none');
+        emailAddContactError.innerHTML = `Please enter a valid email address`;
+        return;
+    }
     checkInputs(nameInput, emailInput, phoneInput, name, email, phone);
 }
 
@@ -45,29 +53,16 @@ function addContactPhoneCheck(phone, phoneAddContactError) {
 function addContactEmailCheck(email, emailAddContactError) {
     if (!email || !isValidEmail(email)) {
         emailAddContactError.classList.remove('d-none');
-        emailAddContactError.innerHTML = !email ? `Please enter an email` : `Please enter a valid email adress`;
+        emailAddContactError.innerHTML = !email ? `Please enter an email` : `Please enter a valid email address`;
         return;
     } else {
         emailAddContactError.classList.add('d-none');
-    }
-    if (!email.includes('.com') && !email.includes('.de')) {
-        emailAddContactError.classList.remove('d-none');
-        emailAddContactError.innerHTML = `Please enter a valid email address`;
-    } else {
-        emailAddContactError.classList.add('d-none');
-    }
-}
-
-
-function checkIfAddContactInputsEmpty(name, phone, email) {
-    if (!name || !email || !phone) {
-        return;
     }
 }
 
 
 function isValidEmail(email) {
-    const emailRegex = /\S+@\S+\.\S+/;
+    const emailRegex = /\S+@\S+\.(com|de)/;
     return emailRegex.test(email);
 }
 
@@ -99,9 +94,9 @@ function checkExistingEmail(email) {
 
 function saveContact(i) {
     let contact = contacts[i];
-    let contactName = document.getElementById('nameEdit').value;
-    let contactEmail = document.getElementById('emailEdit').value;
-    let contactPhone = document.getElementById('phoneEdit').value;
+    let contactName = document.getElementById('nameEdit').value.trim();
+    let contactEmail = document.getElementById('emailEdit').value.trim();
+    let contactPhone = document.getElementById('phoneEdit').value.trim();
     let nameEditContactError = document.getElementById('nameErrorMessage');
     let emailEditContactError = document.getElementById('emailErrorMessage');
     let phoneEditContactError = document.getElementById('phoneErrorMessage');
@@ -113,16 +108,24 @@ function saveContact(i) {
 
 
 function saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i) {
-    saveContactNameCheck(contactName, nameEditContactError);
-    saveContactPhoneCheck(contactPhone, phoneEditContactError);
-    saveContactEmailCheck(contactEmail, emailEditContactError);
-    checkIfSaveContactInputsEmpty(contactName, contactEmail, contactPhone);
+    if (!contactName || !contactEmail || !contactPhone) {
+        saveContactNameCheck(contactName, nameEditContactError);
+        saveContactPhoneCheck(contactPhone, phoneEditContactError);
+        saveContactEmailCheck(contactEmail, emailEditContactError);
+        return;
+    }
+
+    if (!isValidEmail(contactEmail)) {
+        emailEditContactError.classList.remove('d-none');
+        emailEditContactError.innerHTML = `Please enter a valid email address`;
+        return;
+    }
     saveContactHelp(i, contacts);
 }
 
 
 function saveContactNameCheck(contactName, nameEditContactError) {
-    if (!contactName.trim()) {
+    if (!contactName) {
         nameEditContactError.classList.remove('d-none');
         nameEditContactError.innerHTML = `Please enter a name`;
     } else {
@@ -132,7 +135,7 @@ function saveContactNameCheck(contactName, nameEditContactError) {
 
 
 function saveContactPhoneCheck(contactPhone, phoneEditContactError) {
-    if (!contactPhone.trim()) {
+    if (!contactPhone) {
         phoneEditContactError.classList.remove('d-none');
         phoneEditContactError.innerHTML = `Please enter a phone number`;
     } else {
@@ -142,26 +145,12 @@ function saveContactPhoneCheck(contactPhone, phoneEditContactError) {
 
 
 function saveContactEmailCheck(contactEmail, emailEditContactError) {
-    if (!contactEmail.trim() || !isValidEmail(contactEmail)) {
+    if (!contactEmail || !isValidEmail(contactEmail)) {
         emailEditContactError.classList.remove('d-none');
-        emailEditContactError.innerHTML = !contactEmail.trim() ? `Please enter an email` : `Please enter a valid email address`;
+        emailEditContactError.innerHTML = !contactEmail ? `Please enter an email` : `Please enter a valid email address`;
         return;
     } else {
         emailEditContactError.classList.add('d-none');
-    }
-    if (!contactEmail.includes('.com') && !contactEmail.includes('.de')) {
-        emailEditContactError.classList.remove('d-none');
-        emailEditContactError.innerHTML = `Please enter a valid email address`;
-        return;
-    } else {
-        emailEditContactError.classList.add('d-none');
-    }
-}
-
-
-function checkIfSaveContactInputsEmpty(contactName, contactEmail, contactPhone) {
-    if (!contactName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
-        return;
     }
 }
 
