@@ -48,33 +48,33 @@ function logoAnimation() {
 // console.log(dataUsers);
 
 
-// async function registerItem(key, value) {
-//     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
-//     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
-//         .then(res => res.json())
-// }
+async function registerItem(key, value) {
+    const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
+    return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
+        .then(res => res.json())
+}
 
 
-// async function registergetItem(key) {
-//     const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
-//     return fetch(url).then(res => res.json()).then(res => {
-//         if (res.data) {
-//             return JSON.parse(res.data.value);
-//         } throw `Could not find data with key "${key}".`;
-//     });
-// }
+async function registergetItem(key) {
+    const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
+    return fetch(url).then(res => res.json()).then(res => {
+        if (res.data) {
+            return JSON.parse(res.data.value);
+        } throw `Could not find data with key "${key}".`;
+    });
+}
 
 
 async function getUsers(params) {
-    let res = await getItem('dataUsers')
+    let res = await registergetItem('dataUsers')
     if (res[0] !== null) {
-        dataUser = res;
+        dataUser = res
     }
 }
 
 
 function activUser(arr) {
-    setItem('activeUser', [arr]);
+    registerItem('activeUser', [arr]);
 }
 
 
@@ -139,7 +139,7 @@ function validLogin(e) {
     let password = e.target[1].value;
     let status = 'no';
     if (email && password) {
-        const foundUser = dataUser.find((user) => user.email.includes(email));
+        let foundUser = dataUser.find((user) => user.email.includes(email));
         if (foundUser) {
             if (foundUser.password === password) {
                 status = 'ok';
@@ -222,46 +222,46 @@ function emptyUserNames() {
 */
 
 
-// function checkLogInInputs() {
-//     let email = document.getElementById('emaillogIn').value;
-//     let password = document.getElementById('passwordlogIn').value;
+function checkLogInInputs() {
+    let email = document.getElementById('emaillogIn').value;
+    let password = document.getElementById('passwordlogIn').value;
 
-//     let emailInputCon = document.getElementById('logInEmailInputCon');
-//     let passwordInputCon = document.getElementById('logInPasswordInputCon');
+    let emailInputCon = document.getElementById('logInEmailInputCon');
+    let passwordInputCon = document.getElementById('logInPasswordInputCon');
 
-//     let emailErrorCon = document.getElementById('inputErrorLogInEmail');
-//     let passwordErrorCon = document.getElementById('inputErrorLogInPassword');
+    let emailErrorCon = document.getElementById('inputErrorLogInEmail');
+    let passwordErrorCon = document.getElementById('inputErrorLogInPassword');
 
-//     checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, emailErrorCon, passwordErrorCon);
-// }
+    checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, emailErrorCon, passwordErrorCon);
+}
 
 
-// function checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, emailErrorCon, passwordErrorCon) {
-//     if (!email) {
-//         emailInputCon.classList.remove('margin');
-//         emailErrorCon.classList.remove('d-none');
-//         emailErrorCon.innerHTML = `Please enter an email`;
-//     } else if (!email.includes('.com') && !email.includes('.de') && !email.endsWith('.')) {
-//         emailInputCon.classList.remove('margin');
-//         emailErrorCon.classList.remove('d-none');
-//         emailErrorCon.innerHTML = `Please enter a valid email address`;
-//     } else {
-//         emailErrorCon.classList.add('d-none');
-//         emailInputCon.classList.add('margin');
-//     }
+function checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, emailErrorCon, passwordErrorCon) {
+    if (!email) {
+        emailInputCon.classList.remove('margin');
+        emailErrorCon.classList.remove('d-none');
+        emailErrorCon.innerHTML = `Please enter an email`;
+    } else if (!email.includes('.com') && !email.includes('.de') && !email.endsWith('.')) {
+        emailInputCon.classList.remove('margin');
+        emailErrorCon.classList.remove('d-none');
+        emailErrorCon.innerHTML = `Please enter a valid email address`;
+    } else {
+        emailErrorCon.classList.add('d-none');
+        emailInputCon.classList.add('margin');
+    }
 
-//     if (!password) {
-//         passwordInputCon.classList.remove('margin');
-//         passwordInputCon.classList.add('margin-empty');
-//         passwordErrorCon.classList.remove('d-none');
-//         passwordErrorCon.innerHTML = `Please enter a password`;
-//     } else {
-//         passwordInputCon.classList.add('margin');
-//         passwordInputCon.classList.remove('margin-empty');
-//         passwordErrorCon.classList.add('d-none');
-//     }
+    if (!password) {
+        passwordInputCon.classList.remove('margin');
+        passwordInputCon.classList.add('margin-empty');
+        passwordErrorCon.classList.remove('d-none');
+        passwordErrorCon.innerHTML = `Please enter a password`;
+    } else {
+        passwordInputCon.classList.add('margin');
+        passwordInputCon.classList.remove('margin-empty');
+        passwordErrorCon.classList.add('d-none');
+    }
 
-//     if (!email || !password) {
-//         return;
-//     }
-// }
+    if (!email || !password) {
+        return;
+    }
+}
