@@ -39,27 +39,27 @@ function generateHtmlMainBoard() {
                     <div class="board_div">
                         <h3>To do</h3> <button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+</button>
                     </div>
-                    <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
+                    <div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd()" ontouchmove="onTouchMove(event)"></div>
                 </div>
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>In progress</h3> <button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+</button>
                     </div>
-                    <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
+                    <div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd()" ontouchmove="onTouchMove(event)"></div>
 
                 </div>
                 <div class="mobile-mgr-boardcard">
                     <div class="board_div">
                         <h3>Await Feedback</h3> <button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+</button>
                     </div>
-                    <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
+                    <div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd()" ontouchmove="onTouchMove(event)"></div>
 
                 </div>
                 <div class="mobile-done-boardcard">
                     <div class="board_div">
                         <h3>Done</h3>
                     </div>
-                    <div class="card_Div" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)"></div>
+                    <div class="card_Div" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd()" ontouchmove="onTouchMove(event)"></div>
                     <div></div>
                 </div>
             </div>
@@ -166,11 +166,7 @@ async function openPopupAddTaskDiv(i) {
 
 function generateBoardCard(task, i) {
     return /*html*/`
-        <div onclick="openPopupAddTaskDiv(${i})" class="progress_card" 
-        id="board-to-do-section-${i}" arraypos="${i}" draggable="true" 
-        ondragstart="dragStart(event)" ondrop="return false;"  
-        ontouchstart="onTouchStart(event)">        <!--ondrop="allowDrop(event)" -->
-        <!--  ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)" -->
+        <div onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}" draggable="true" ondragstart="dragStart(event)" ondrop="return false;" ontouchstart="onTouchStart(event)">           
             <div  class="progress_infocard">
                 <button class="c1" id="category-bg-change-${i}">${task.category}</button>
                 <div class="cooking_title_div">

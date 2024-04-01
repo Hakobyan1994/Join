@@ -4,6 +4,9 @@ let arrayPosition;
 let currentStatus;
 let onHover;
 let currentOnHover;
+let offsetX;
+let offsetY;
+let touchedElement;
 
 
 function dragStart(ev) {
@@ -64,22 +67,6 @@ function deleteAllSilhouettes() {
 }
 
 
-
-let offsetX;
-let offsetY;
-let touchedElement;
-
-/*
-function touchEvents() {
-    let boardcards = document.querySelectorAll('.progress_card');
-    boardcards.forEach(card => {
-        card.addEventListener('touchstart', onTouchStart);
-        card.addEventListener('touchmove', onTouchMove);
-        card.addEventListener('touchend', onTouchEnd);
-    });
-}
-*/
-
 function onTouchStart(ev) {
     dragStart(ev);
     touchedElement = document.getElementById(currentDraggedElement);
@@ -110,7 +97,7 @@ function onTouchMove(ev) {
 }
 
 
-async function onTouchEnd(ev) {
+async function onTouchEnd() {
     tasks[arrayPosition].status = onHover;
     await saveTasks();
     loadToDo();

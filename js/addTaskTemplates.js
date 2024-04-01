@@ -250,13 +250,3 @@ function generateSubtaskElement(i, text) {
         </li>
     `;
 }
-
-
-
-
-
-
-
-
-
-
