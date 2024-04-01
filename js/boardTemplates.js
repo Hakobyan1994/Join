@@ -104,8 +104,6 @@ async function openPopupAddTask(boardcard) {
 
 
 async function openPopupAddTaskDiv(i) {
-    currentOnHover = currentStatus;
-    onHover = currentStatus;
     await loadTasks();
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
