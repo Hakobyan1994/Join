@@ -363,7 +363,17 @@ h1 {
     color: #A8A8A8;
     font-weight: 400
 }
-
+  
+.errorPasswordSecond {
+    position: fixed;
+    top: 657px;
+    left: auto;
+    margin: 0 auto;
+    color: red;
+    font-family: 'Inter';
+    font-size: 12px;
+}
+ 
 /* .aLink:hover {
     color: #29ABE2;
 } */
@@ -535,6 +545,13 @@ h1 {
         position: fixed;
         left: 0;
         right: 0;
+    }  
+
+    .error-privacy {
+        font-size: 12px;
+        position: relative;
+        top: -16px;
+        left: 80px;
     }
 
     .join_picture {
@@ -655,7 +672,17 @@ h1 {
         margin-bottom: 15px;
         gap: 3px;
     }
+     
 
+    .errorPasswordSecond {
+        position: fixed;
+        top: 572px;
+        left: auto;
+        margin: 0 auto;
+        color: red;
+        font-family: 'Inter';
+        font-size: 12px;
+    }
 }  
 
 
@@ -681,7 +708,12 @@ h1 {
 
    @media(max-width:400px){
 
-
+    .error-privacy {
+        font-size: 12px;
+        position: relative;
+        top: -16px;
+        left: 59px;
+    }
 
     .main_div {
         position: relative;

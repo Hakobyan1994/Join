@@ -24,8 +24,8 @@ async function signUpgetItem(key) {
 }
 
 
-let dataUsers = []
-async function getUsers(params) {
+    let dataUsers = []
+    async function getUsers(params) {
     let res = await signUpgetItem('dataUsers')
 
     if (res[0] !== null) {
@@ -50,7 +50,7 @@ async function onsubmitFor(e) {
     let password = e.target[2].value;
     let confirmPassword = e.target[3].value;
     let checkBox = e.target[4].checked;
-
+         
     if (name && email && password && confirmPassword && checkBox) {
         let userData = { name, email, password, confirmPassword };
         addtoLocal(dataUsers, 'dataUsers');
@@ -68,35 +68,53 @@ async function onsubmitFor(e) {
 
 
 function validForm({ name, email, password, confirmPassword }, e) {
-    console.log(password.includes(confirmPassword));
-    if (password.includes(confirmPassword)) {
-        let user = dataUsers.find((el) => el.email === email)
-        if (user) {
-            document.getElementById('errorPassword').innerText = 'The email is already registered'//
-        } else {
-            dataUsers.push({ name, email, password, id: new Date().getTime() })
-            addtoLocal(dataUsers, 'dataUsers')
-            if (window.innerWidth <= 500) {
-                responsiveInfo.classList.add('active')
-                setTimeout(function () {
-                    responsiveInfo.classList.remove('active')
-                    window.location.href = '../index.html';
-                }, 2000)
+    let checkEmailregex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+(?:de|com)$/;
+    
+     
+    // Überprüfe, ob die E-Mail-Adresse mit einem Punkt endet
+    if (checkEmailregex.test(email) && (email.endsWith('.com') || email.endsWith('.de'))) {
+        console.log('ok');
+
+        if (password.includes(confirmPassword)) {
+            let user = dataUsers.find((el) => el.email === email);
+            if (user) {
+                showError('The email is already registered');
             } else {
-                trasparenterDiv.style.display = 'flex';
-                setTimeout(function () {
-                    trasparenterDiv.style.display = 'none';
-                    window.location.href = '../index.html'
-                }, 2000)
+                dataUsers.push({ name, email, password, id: new Date().getTime() });
+                addtoLocal(dataUsers, 'dataUsers');
+                if (window.innerWidth <= 500) {
+                    responsiveInfo.classList.add('active');
+                    setTimeout(function () {
+                        responsiveInfo.classList.remove('active');
+                        window.location.href = '../index.html';
+                    }, 2000);
+                } else {
+                    trasparenterDiv.style.display = 'flex';
+                    setTimeout(function () {
+                        trasparenterDiv.style.display = 'none';
+                        // window.location.href = '../index.html'
+                    }, 2000);
+                }
             }
+        } else {
+            document.getElementById('errorPasswordSecond').innerText='The Password is not correct'
         }
+    } else if (email.endsWith('.') || email.endsWith('@')) { // Neue Bedingung für die Überprüfung
+        showError('Please enter a valid email without "@" or "." at the end');
     } else {
-        e.target[3].style.border = '4px solid red';
-        document.getElementById('errorPassword').innerText = 'The password is not corect';
-    }
+        showError('Please enter a valid email ending with .de or .com');
+    } 
 }
+    
 
 
+function showError(message) {
+    document.getElementById('errorPassword').innerText = message;
+    
+}
+  
+  
+  
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
 
