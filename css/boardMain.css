@@ -122,6 +122,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     margin-top: 8px;
+    position: relative;
 }
 
 .card_Div {
@@ -131,11 +132,11 @@ h3 {
     flex-direction: column;
     gap: 8px;
     padding-bottom: 32px;
+    position: relative;
 }  
 
 .Card_NotasksTodo {
     display: none;
-    width: 246px;
     height: 48px;
     border: 3px dotted rgb(168, 168, 168, 0.4);
     background-color: #E7E7E7;
@@ -160,7 +161,7 @@ h3 {
     margin-bottom: 8px;
     transition: transform 0.3s;
     height: max-content;
-    position: fixed;
+    position: relative;
 }
 
 .progress_infocard {

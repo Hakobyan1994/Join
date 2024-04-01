@@ -186,7 +186,7 @@
         border-radius: 10px;
         border: 1px solid var(--Version-2-main-color, #2A3647);
         color: var(--Version-2-main-color, #2A3647) !important;
-        font-family: Inter;
+        font-family: 'Inter', sans-serif;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;

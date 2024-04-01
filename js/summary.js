@@ -27,7 +27,7 @@ async function user(params) {
   // let time=document.getElementById('timeOfDay')
   if (user) {
     let profilName = document.querySelector('.greetingName');
-    profilName.innerText = user[0].name;
+    // profilName.innerText = user[0].name;
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
@@ -153,11 +153,13 @@ function countTaskValues(tasks) {
 
 
 function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgent) {
-  document.getElementById('value-todoarray').innerHTML = valueTodo;
-  document.getElementById('value-progressarray').innerHTML = valueProgress;
-  document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
-  document.getElementById('value-donearray').innerHTML = valueDone;
-  document.getElementById('value-urgent').innerHTML = valueUrgent;
+  if(document.getElementById('value-todoarray')) {
+    document.getElementById('value-todoarray').innerHTML = valueTodo;
+    document.getElementById('value-progressarray').innerHTML = valueProgress;
+    document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
+    document.getElementById('value-donearray').innerHTML = valueDone;
+    document.getElementById('value-urgent').innerHTML = valueUrgent;
+  }
 }
 
 
