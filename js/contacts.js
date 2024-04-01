@@ -42,6 +42,31 @@ function renderContacts() {
         let contact = contacts[i];
         lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
     }
+resizeHandler();
+}
+
+
+function resizeHandler() {
+    let headline = document.getElementById('headline');
+    let headlineMobile = document.getElementById('headlineMobile');
+    let contactInfoSlider = document.getElementById('contactInfoSlider');
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let isMobileView = window.innerWidth < 1360;
+    let isMobileViewIphone = window.innerWidth < 860;
+    let contactInfoSliderVisible = contactInfoSlider.classList.contains('show');
+
+    refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible);
+}
+
+
+function checkResize() {
+    let div = document.getElementById('addedContactsCon');
+
+    if (div) {
+        window.addEventListener('resize', resizeHandler);
+    } else {
+        window.removeEventListener('resize', resizeHandler);
+    }
 }
 
 
@@ -246,7 +271,7 @@ function deleteDeletedContact(i) {
         for (let k = 0; k < name.length; k++) {
             const assignedContact = name[k];
             let tasksName = assignedContact.trim().toUpperCase();
-            if(!tasksName.indexOf(filter) > -1) {
+            if (!tasksName.indexOf(filter) > -1) {
                 tasks[j].assigned.splice(k, 1);
                 tasks[j].letter.splice(k, 1);
             }

@@ -45,7 +45,6 @@ function logoAnimation() {
 // if (dataLocal) {
 //     dataUsers = dataLocal
 // }
-// console.log(dataUsers);
 
 
 async function registerItem(key, value) {

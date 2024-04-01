@@ -2,6 +2,7 @@
 
 .slide-in {
     display: block;
+    z-index: 2;
     animation: slideInFromRight 0.5s forwards;
 }
 
@@ -33,6 +34,7 @@
 /* slide in mobile version */
 
 .slide-in-mobile {
+    z-index: 1;
     animation: slideInFromBottom 0.5s forwards;
 }
 
@@ -127,7 +129,7 @@
 /* slide in dark bgr */
 
 .dark-bgr {
-    z-index: 999;
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
@@ -135,7 +137,8 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-    animation: darkenBackground 1s forwards;
+    /* animation: darkenBackground 1s forwards; */
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .hide-dark-bgr {

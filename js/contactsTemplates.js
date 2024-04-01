@@ -14,9 +14,9 @@ function generateHtmlMainContacts() {
 
                             <div id="darkBgr" class="dark-bgr d-none"></div>
 
-                            <div id="addMask" class="dark-bgr d-none"></div>
+                            <div id="addMask" class="d-none"></div>
 
-                            <div id="editMask" class="dark-bgr d-none"></div>
+                            <div id="editMask" class="d-none"></div>
                         </div>
                     </div>
 
