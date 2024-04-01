@@ -29,7 +29,8 @@ async function init() {
 
 
 async function initLogin() {
-    includeHTML();
+    await includeHTML();
+    await renderLogin();
     logoAnimation();
     validateCheckbox();
     loginSetTimeout();

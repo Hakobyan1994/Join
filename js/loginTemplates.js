@@ -1,0 +1,88 @@
+async function renderLogin() {
+    let content = document.getElementById('render-login');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlLogin();
+}
+
+
+function generateHtmlLogin() {
+    return /*html*/`
+        <div class="contaner" id="login-div">
+            <div class="nav-bar">
+            <div>
+                <div id="animationDiv" class="startParDiv addAnimDiv"></div>
+                <!-- <img class="startParImg animation" id="logo-login" src="assets/img/anmeldung Image/join.png" alt="login image"> -->
+                <svg id="logo-login" class="startParImg animation" viewBox="0 0 101 122" xmlns="http://www.w3.org/2000/svg">
+                <path d="M71.6725 0H49.5146V25.4923H71.6725V0Z" />
+                <path
+                    d="M49.5142 46.2251H71.6721V82.1779C71.7733 90.8292 69.3112 99.3153 64.5986 106.557C59.9455 113.594 50.963 121.966 34.3446 121.966C16.2434 121.966 5.69286 113.406 0 108.715L13.9765 91.4743C19.533 96.0112 24.885 99.7435 34.4299 99.7435C41.6567 99.7435 44.5372 96.7988 46.2247 94.2307C48.5186 90.6637 49.7052 86.4923 49.6335 82.2464L49.5142 46.2251Z" />
+                <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2" />
+                <path
+                    d="M83.2795 111.522C83.2795 116.265 80.8762 118.815 77.5184 118.815C74.1607 118.815 71.9619 115.785 71.9619 111.762C71.9619 107.739 74.2288 104.554 77.7059 104.554C81.183 104.554 83.2795 107.687 83.2795 111.522ZM74.5356 111.711C74.5356 114.57 75.6776 116.675 77.6377 116.675C79.5978 116.675 80.7057 114.45 80.7057 111.539C80.7057 108.988 79.6831 106.592 77.6377 106.592C75.5924 106.592 74.5356 108.903 74.5356 111.711Z" />
+                <path d="M87.6771 104.76V118.593H85.2227V104.76H87.6771Z" />
+                <path
+                    d="M90.3359 118.593V104.76H93.0631L95.9947 110.461C96.7494 111.952 97.4209 113.483 98.006 115.049C97.8526 113.337 97.7844 111.368 97.7844 109.177V104.76H100.034V118.593H97.4946L94.5289 112.772C93.7437 111.243 93.0438 109.671 92.4324 108.064C92.4324 109.776 92.5517 111.711 92.5517 114.09V118.576L90.3359 118.593Z" />
+                </svg>
+            </div>
+
+            <div class="signup-div">
+                <p class="join-info">Not a Join user?</p><a class="signup-button" href="files/signup.html">Sign up</a>
+            </div>
+            </div>
+
+            <div class="parent_loginDiv">
+            <div class="loginDiv">
+                <div class="flexb_block">
+                <div class="block_title">
+                    <h1 class="title">Log in</h1>
+                    <div class="min_line"></div>
+                </div>
+
+                <div class="form_block">
+                    <form id="form_log">
+                    <div class="main-login">
+                        <div class="password_login">
+                        <div id="logInEmailInputCon" class="block_name margin-bottom-login">
+                            <input id="emailLogIn" class="input_email" type="email" placeholder="Email">
+                            <p id="email_login"></p>
+                            <div id="inputErrorLogInEmail" class="input-error-login-email d-none"></div>
+                        </div>
+                        <div id="logInPasswordInputCon" class="block_pass">
+                            <input id="passwordLogIn" class="input_password" type="password" placeholder="Password"> <img
+                            id="imageInput" class="passwordImage" src="assets/img/anmeldung Image/lock.png" alt="">
+                            <span class="errorMessage" style="font-family: 'Inter', sans-serif;" id="errorMessage"></span>
+                            <div id="inputErrorLogInPassword" class="input-error-login-pw d-none"></div>
+                        </div>
+
+                        <!-- <p id="password_login"></p> -->
+                        </div>
+                        <div class="block_Remember">
+                        <input id="checkBox" type="checkbox" class="checkbox_input">
+                        <span class="span_remember">Remember me</span>
+                        </div>
+                    </div>
+                    <div class="block_btn">
+                        <button class="button_login" type="submit">Login</button>
+                        <button onclick="guesButton()" class="second_button_login" type="submit">Guest Log in</button>
+
+                    </div>
+
+
+                    </form>
+
+
+                </div>
+
+                </div>
+            </div>
+            </div>
+            <div class="footer">
+            <div class="Privacy_div"> <a class="aLink" href="/files/privacyExtern.html">Privacy
+                Policy</a></div>
+            <div class="legal_notice"> <a class="aLink" href="/files/legalExtern.html">Legal notice</a>
+            </div>
+            </div>
+
+  </div>
+    `;
+}
