@@ -87,20 +87,29 @@ function onTouchMove(ev) {
     let progressCard = document.querySelector('.progress_card');
     if(progressCard) {
         ev.preventDefault();
-        let x = ev.touches[0].clientX - offsetX;
-        let y = ev.touches[0].clientY - offsetY;
-        touchedElement.style.left = `${x}px`;
-        touchedElement.style.top = `${y}px`;
+        setPositionOfTouchedElement(ev);
         let hoveredElements = document.elementsFromPoint(ev.touches[0].clientX, ev.touches[0].clientY);
         hoveredElements.forEach(element => {
             if(element.classList.contains('card_Div')) {
                 onHover = element.id;
             }
         })
-        if(currentStatus !== onHover) {
-            hideNoCards(onHover);
-            showSilhouette(onHover);
-        }
+        ifToShowSilhouette();
+    }
+}
+
+
+function setPositionOfTouchedElement(ev) {
+    let x = ev.touches[0].clientX - offsetX;
+    let y = ev.touches[0].clientY - offsetY;
+    touchedElement.style.left = `${x}px`;
+    touchedElement.style.top = `${y}px`;
+}
+
+function ifToShowSilhouette() {
+    if(currentStatus !== onHover) {
+        hideNoCards(onHover);
+        showSilhouette(onHover);
     }
 }
 
