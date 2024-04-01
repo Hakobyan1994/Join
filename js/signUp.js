@@ -92,7 +92,7 @@ function validForm({ name, email, password, confirmPassword }, e) {
                     trasparenterDiv.style.display = 'flex';
                     setTimeout(function () {
                         trasparenterDiv.style.display = 'none';
-                        // window.location.href = '../index.html'
+                        window.location.href = '../index.html'
                     }, 2000);
                 }
             }
