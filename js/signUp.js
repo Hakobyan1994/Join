@@ -219,7 +219,7 @@ function checkEmail(email, emailInputCon, emailSignUpError) {
         emailInputCon.classList.remove('margin');
         emailSignUpError.classList.remove('d-none');
         emailSignUpError.innerHTML = `Please enter an email`;
-    } else if (!email.includes('.com') && !email.includes('.de') && !email.endsWith('.')) {
+    } else if (!isValidEmail(email)) {
         emailInputCon.classList.remove('margin');
         emailSignUpError.classList.remove('d-none');
         emailSignUpError.innerHTML = `Please enter a valid email address`;
@@ -259,4 +259,10 @@ function checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUp
         passwordConfimInputCon.classList.remove('margin-bottom');
         password2SignUpError.classList.add('d-none');
     }
+}
+
+
+function isValidEmail(email) {
+    const emailRegex = /\S+@\S+\.(com|de)/;
+    return emailRegex.test(email);
 }
