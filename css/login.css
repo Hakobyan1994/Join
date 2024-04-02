@@ -86,6 +86,17 @@ body {
 .animation {
     animation: animImg 3s;
     animation-delay: 2s;
+}  
+
+.errorMessage {
+    color: red;
+    /* margin: -23px; */
+    /* margin-bottom: 8px; */
+    position: fixed;
+    top: 543px;
+    font-size: 12px;
+    left: auto;
+    margin-left: -17px;
 }
 
 @keyframes animImg {
@@ -422,12 +433,13 @@ body {
 
 .passwordImageError {
     position: relative;
-    top: -62px;
+    top: -45px;
     right: -377px;
     cursor: pointer;
 }  
 
-  
+      
+
   
      
 
@@ -565,9 +577,10 @@ body {
     }
 
     .errorMessage {
-        position: absolute;
-        top: 439px;
-        left: 30px;
+        position: fixed;
+        top: 431px;
+        left: auto;
+        margin-left: -357px;
     }
 
     .passwordImage {
@@ -757,7 +770,24 @@ body {
         }
 
 
-     }
+     }   
+          @media(max-width:365px){
+            .errorMessage {
+                position: fixed;
+                top: 431px;
+                left: auto;
+                margin-left: -329px;
+            }
+          }
+
+          @media(max-width:341px){
+            .errorMessage {
+                position: fixed;
+                top: 431px;
+                left: auto;
+                margin-left: -312px;
+            }
+          }  
    
     @media(max-width:338px){
     

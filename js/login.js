@@ -13,11 +13,6 @@ function logoAnimation() {
     let stop = JSON.parse(localStorage.getItem('stop'))
 
 
-    // if (window.innerWidth <= 400) {
-    //     // img.src = "assets/img/anmeldung Image/logoPhone.png"
-    // }
-
-
     if (stop) {
         div.classList.remove('addAnimDiv')
         img.classList.remove('animation')
@@ -150,16 +145,8 @@ function validLogin(e) {
             status = 'Email not found';
         }
         if (status === 'ok') {
-            // if (window.innerWidth<=500) {
-            //       document.querySelector('.transGreetingDiv').style.display='flex'
-            //       setTimeout(function(){
-            //         document.querySelector('.transGreetingDiv').style.display='none' 
-            //         window.location.href = "../files/start.html";
-            //       },10000)
-
             activUser(foundUser);
             window.location.href = "../files/start.html";
-
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('emailLogIn').style.border = `1px solid red`;
@@ -213,13 +200,6 @@ function guesButton() {
 function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
-
-/*
-function emptyUserNames() {
-    document.getElementById('shortName').innerHTML = '';
-    document.getElementById('greetingName').style.display = 'none';
-}
-*/
 
 
 function checkLogInInputs() {
