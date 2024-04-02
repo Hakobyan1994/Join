@@ -28,7 +28,7 @@ async function user(params) {
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
-      greetResponsive.innerText = getGreetingText() 
+      greetResponsive.innerText = getGreetingText() + ',' 
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
