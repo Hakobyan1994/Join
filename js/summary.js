@@ -39,15 +39,7 @@ async function user(params) {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
     }
-    //  if(asguest){
-    //    let profilName = document.querySelector('.greetingName');
-    //    let time=document.getElementById('timeOfDay');
-    //    profilName.style.display='none'
-    //    time=document.getElementById('timeOfDay')
-    //    time.style.marginTop='37px'
-    //    let timeText = time.innerText;
-    //    const timeReplace = timeText.replace(/,/g,'');
-    //    time.innerText = timeReplace;
+   
 
     if (asguest && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp')

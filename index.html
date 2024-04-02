@@ -62,16 +62,19 @@
                 <div class="password_login">
                   <div id="logInEmailInputCon" class="block_name margin-bottom-login">
                     <input id="emailLogIn" class="input_email" type="email" placeholder="Email">
-                    <p id="email_login"></p>
+                     <div id="div" class="messageEmptyInput"></div>
                     <div id="inputErrorLogInEmail" class="input-error-login-email d-none"></div>
                   </div>
                   <div id="logInPasswordInputCon" class="block_pass">
                     <input id="passwordLogIn" class="input_password" type="password" placeholder="Password"> <img
                       id="imageInput" class="passwordImage" src="assets/img/anmeldung Image/lock.png" alt="">
+                     
                     <span class="errorMessage" id="errorMessage"></span>
+                    
                     <div id="inputErrorLogInPassword" class="input-error-login-pw d-none"></div>
+                    
                   </div>
-
+                  <div id="passworEmptyInput" class="passworEmptyInput"></div>
                   <!-- <p id="password_login"></p> -->
                 </div>
                 <div class="block_Remember">
@@ -80,7 +83,7 @@
                 </div>
               </div>
               <div class="block_btn">
-                <button class="button_login" type="submit">Login</button>
+                <button onclick="emptyInputerrorMessage()" class="button_login" type="submit">Login</button>
                 <button onclick="guesButton()" class="second_button_login" type="submit">Guest Log in</button>
 
               </div>

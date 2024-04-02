@@ -153,14 +153,39 @@ function validLogin(e) {
             document.getElementById('passwordLogIn').style.border = `1px solid red`;
             document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
             document.getElementById('imageInput').classList.add('passwordImageError');
-        }
-    }
+        } 
+        
+    }  
 }
+
+
+function emptyInputerrorMessage() {
+    let input = document.getElementById('emailLogIn');
+    let passwordInput = document.getElementById('passwordLogIn');
+    let inputdiv = document.getElementById('div');
+    let passworddiv = document.getElementById('passworEmptyInput');
+
+    if (input.value === '' && passwordInput.value === '') {
+        inputdiv.innerText = 'Please enter email';
+        passworddiv.innerText = 'Please enter password';
+    } else if (input.value === '') {
+        inputdiv.innerText = 'Please enter email';
+        passworddiv.innerText = '';
+    } else if (passwordInput.value === '') {
+        inputdiv.innerText = '';
+        passworddiv.innerText = 'Please enter password';
+    } else {
+        inputdiv.innerText = '';
+        passworddiv.innerText = '';
+    }
+} 
+    
+
 
 
 function validatePassword() {
     document.addEventListener('DOMContentLoaded', function () {
-        const passwordInput = document.getElementById('password')
+        const passwordInput = document.getElementById('passwordLogIn')
         const inputImage = document.getElementById('imageInput')
         passwordInput.addEventListener('input', function () {
             if (passwordInput.value !== '') {
@@ -181,7 +206,8 @@ function validatePassword() {
         })
     })
 }
-
+   
+    
 
 function loginSetTimeout() {
     setTimeout(() => {
@@ -201,7 +227,7 @@ function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
 
-
+ 
 function checkLogInInputs() {
     let email = document.getElementById('emaillogIn').value;
     let password = document.getElementById('passwordlogIn').value;
