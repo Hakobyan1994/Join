@@ -86,6 +86,17 @@ body {
 .animation {
     animation: animImg 3s;
     animation-delay: 2s;
+}  
+
+.errorMessage {
+    color: red;
+    /* margin: -23px; */
+    /* margin-bottom: 8px; */
+    position: fixed;
+    top: 543px;
+    font-size: 12px;
+    left: auto;
+    margin-left: -17px;
 }
 
 @keyframes animImg {
@@ -422,13 +433,33 @@ body {
 
 .passwordImageError {
     position: relative;
-    top: -62px;
+    top: -45px;
     right: -377px;
     cursor: pointer;
 }  
 
-  
-  
+.messageEmptyInput {
+    position: fixed;
+    margin-top: -7px;
+    font-size: 12px;
+    margin-left: 7px;
+    color: red;
+    font-family: 'Inter';
+}   
+
+.passworEmptyInput{
+    position: fixed;
+    top: 500px;
+}
+
+  .passworEmptyInput {
+    position: fixed;
+    top: 541px;
+    font-size: 12px;
+    margin-left: 8px;
+    color: red;
+}
+
      
 
 @media(max-width: 500px) {
@@ -565,9 +596,10 @@ body {
     }
 
     .errorMessage {
-        position: absolute;
-        top: 439px;
-        left: 30px;
+        position: fixed;
+        top: 431px;
+        left: auto;
+        margin-left: -357px;
     }
 
     .passwordImage {
@@ -593,7 +625,15 @@ body {
         top: 800px;
         right: 0;
         left: 0;
-    }  
+    }   
+
+    .passworEmptyInput {
+        position: fixed;
+        top: 429px;
+        font-size: 12px;
+        margin-left: 8px;
+        color: red;
+    }
 }    
 
 @media(max-width: 460px) {
@@ -757,7 +797,42 @@ body {
         }
 
 
-     }
+     }   
+          @media(max-width:365px){
+            .errorMessage {
+                position: fixed;
+                top: 431px;
+                left: auto;
+                margin-left: -329px;
+            }
+          }
+
+          @media(max-width:341px){
+            .errorMessage {
+                position: fixed;
+                top: 431px;
+                left: auto;
+                margin-left: -312px;
+            }  
+
+            .passworEmptyInput {
+                position: fixed;
+                top: 429px;
+                font-size: 12px;
+                margin-left: 31px;
+                color: red;
+            }  
+            .messageEmptyInput {
+                position: fixed;
+                margin-top: -7px;
+                font-size: 12px;
+                margin-left: 32px;
+                color: red;
+                font-family: 'Inter';
+            }
+            
+              
+          }  
    
     @media(max-width:338px){
     
@@ -767,6 +842,21 @@ body {
             left: 0;
             opacity: 0;
             background-color: #FFFFFF;
+        }   
+        .passworEmptyInput {
+            position: fixed;
+            top: 429px;
+            font-size: 12px;
+            margin-left: 31px;
+            color: red;
+        }  
+        .messageEmptyInput {
+            position: fixed;
+            margin-top: -7px;
+            font-size: 12px;
+            margin-left: 32px;
+            color: red;
+            font-family: 'Inter';
         }
         
         .startParDiv {

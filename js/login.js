@@ -13,11 +13,6 @@ function logoAnimation() {
     let stop = JSON.parse(localStorage.getItem('stop'))
 
 
-    // if (window.innerWidth <= 400) {
-    //     // img.src = "assets/img/anmeldung Image/logoPhone.png"
-    // }
-
-
     if (stop) {
         div.classList.remove('addAnimDiv')
         img.classList.remove('animation')
@@ -150,30 +145,47 @@ function validLogin(e) {
             status = 'Email not found';
         }
         if (status === 'ok') {
-            // if (window.innerWidth<=500) {
-            //       document.querySelector('.transGreetingDiv').style.display='flex'
-            //       setTimeout(function(){
-            //         document.querySelector('.transGreetingDiv').style.display='none' 
-            //         window.location.href = "../files/start.html";
-            //       },10000)
-
             activUser(foundUser);
             window.location.href = "../files/start.html";
-
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('emailLogIn').style.border = `1px solid red`;
             document.getElementById('passwordLogIn').style.border = `1px solid red`;
             document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
             document.getElementById('imageInput').classList.add('passwordImageError');
-        }
-    }
+        } 
+        
+    }  
 }
+
+
+function emptyInputerrorMessage() {
+    let input = document.getElementById('emailLogIn');
+    let passwordInput = document.getElementById('passwordLogIn');
+    let inputdiv = document.getElementById('div');
+    let passworddiv = document.getElementById('passworEmptyInput');
+
+    if (input.value === '' && passwordInput.value === '') {
+        inputdiv.innerText = 'Please enter email';
+        passworddiv.innerText = 'Please enter password';
+    } else if (input.value === '') {
+        inputdiv.innerText = 'Please enter email';
+        passworddiv.innerText = '';
+    } else if (passwordInput.value === '') {
+        inputdiv.innerText = '';
+        passworddiv.innerText = 'Please enter password';
+    } else {
+        inputdiv.innerText = '';
+        passworddiv.innerText = '';
+    }
+} 
+    
+
 
 
 function validatePassword() {
     document.addEventListener('DOMContentLoaded', function () {
-        const passwordInput = document.getElementById('password')
+        const passwordInput = document.getElementById('passwordLogIn')
         const inputImage = document.getElementById('imageInput')
         passwordInput.addEventListener('input', function () {
             if (passwordInput.value !== '') {
@@ -194,7 +206,8 @@ function validatePassword() {
         })
     })
 }
-
+   
+    
 
 function loginSetTimeout() {
     setTimeout(() => {
@@ -214,14 +227,7 @@ function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
 
-/*
-function emptyUserNames() {
-    document.getElementById('shortName').innerHTML = '';
-    document.getElementById('greetingName').style.display = 'none';
-}
-*/
-
-
+ 
 function checkLogInInputs() {
     let email = document.getElementById('emaillogIn').value;
     let password = document.getElementById('passwordlogIn').value;

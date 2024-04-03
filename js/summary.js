@@ -23,15 +23,12 @@ async function nameItem(key) {
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
-
-  // let time=document.getElementById('timeOfDay')
   if (user) {
     let profilName = document.querySelector('.greetingName');
-    // profilName.innerText = user[0].name;
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
-      greetResponsive.innerText = getGreetingText() + ','
+      greetResponsive.innerText = getGreetingText() + ',' 
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
@@ -42,15 +39,7 @@ async function user(params) {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
     }
-    //  if(asguest){
-    //    let profilName = document.querySelector('.greetingName');
-    //    let time=document.getElementById('timeOfDay');
-    //    profilName.style.display='none'
-    //    time=document.getElementById('timeOfDay')
-    //    time.style.marginTop='37px'
-    //    let timeText = time.innerText;
-    //    const timeReplace = timeText.replace(/,/g,'');
-    //    time.innerText = timeReplace;
+   
 
     if (asguest && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp')
@@ -76,11 +65,11 @@ function getGreetingText() {
   const hour = now.getHours();
 
   if (hour >= 5 && hour < 12) {
-    return 'Good morning,';
+    return 'Good morning';
   } else if (hour >= 12 && hour < 18) {
-    return 'Good afternoon,';
+    return 'Good afternoon';
   } else {
-    return 'Good evening,';
+    return 'Good evening';
   }
 }
 
