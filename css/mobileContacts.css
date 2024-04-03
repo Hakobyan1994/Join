@@ -92,13 +92,13 @@
     .add-contact-data {
         position: relative;
         bottom: 217px;
-        right: 101px;
+        right: 367px;
     }
 
     .edit-contact-data {
         position: relative;
         bottom: 310px;
-        right: 10px;
+        right: 277px;
     }
 
     .input-con-main {
@@ -118,13 +118,13 @@
     .person-con {
         position: relative;
         bottom: 416px;
-        left: 178px;
+        left: -88px;
     }
 
     .person-con-edit {
         position: relative;
-        bottom: 518px;
-        left: 250px;
+        bottom: 499px;
+        left: -12px;
     }
 
     .add-contact-btns {
