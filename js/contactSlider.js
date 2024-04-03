@@ -25,9 +25,9 @@ function showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView, 
         addZindexContacts();
         addMask.classList.remove('slide-in-mobile');
         addMask.classList.remove('slide-out-mobile');
-        addMask.classList.remove('slide-out');
+        addMask.classList.remove('slide-out-mask');
         addMask.classList.remove('d-none');
-        addMask.classList.add('slide-in');
+        addMask.classList.add('slide-in-mask');
         addMask.innerHTML = generateAddContactOverlay();
     }
 }
@@ -70,7 +70,7 @@ function showEditContactOverlay(i) {
 function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSliderMobile, contactInfoConMobile, infoSliderHeadline, contactList, addNewContactBtn, isMobileView) {
     addZindexContacts();
     if (isMobileView) {
-        editMask.classList.remove('slide-in');
+        editMask.classList.remove('slide-in-mask');
         editMask.classList.remove('slide-in-mobile');
         editMask.classList.remove('slide-out-mobile');
         editMask.classList.remove('d-none');
@@ -81,11 +81,11 @@ function showEditContactOverlayHELP(i, editMask, editMobileBtn, contactInfoSlide
         infoSliderHeadline.classList.add('d-none');
         editMask.innerHTML = generateEditMaskOverlay(i);
     } else {
-        editMask.classList.remove('slide-out');
+        editMask.classList.remove('slide-out-mask');
         editMask.classList.remove('slide-in-mobile');
         editMask.classList.remove('slide-out-mobile');
         editMask.classList.remove('d-none');
-        editMask.classList.add('slide-in');
+        editMask.classList.add('slide-in-mask');
         contactInfoConMobile.classList.add('z-index-minus-2');
     }
 }
@@ -112,17 +112,16 @@ function closeAddContactSliderHELP(infoSlider, addMask, contactInfoConMobile, in
         darkBgr.classList.add('d-none');
         darkBgr.classList.remove('dark-bgr');
         addMask.classList.add('slide-out-mobile');
-        addMask.classList.remove('slide-in')
+        addMask.classList.remove('slide-in-mask')
         addMask.classList.remove('slide-in-mobile');
         contactInfoConMobile.classList.add('d-none');
         infoSliderHeadline.classList.remove('z-index-minus-1');
-        addMask.classList.add('d-none');
+        // addMask.classList.add('d-none');
     } else {
         addMask.classList.remove('slide-in-mobile');
-        addMask.classList.remove('slide-in');
-        addMask.classList.add('slide-out');
-        addMask.classList.add('slide-in');
-        addMask.classList.add('d-none');
+        addMask.classList.remove('slide-in-mask');
+        addMask.classList.add('slide-out-mask');
+        // addMask.classList.add('d-none');
     }
     hideAddContactSlider();
 }
@@ -164,8 +163,8 @@ function closeEditContactSliderHELP(editMask, editMobileBtn, contactInfoSliderMo
         addNewContactBtn.classList.remove('d-none');
         headline.classList.remove('d-none');
     } else {
-        editMask.classList.remove('slide-in');
-        editMask.classList.add('slide-out');
+        editMask.classList.remove('slide-in-mask');
+        editMask.classList.add('slide-out-mask');
         contactInfoConMobile.classList.remove('z-index-minus-2');
     }
 }
@@ -243,19 +242,6 @@ function hideMobileContactInfo() {
     headlineMobile.classList.remove('z-index-1');
     headlineMobile.classList.add('d-none');
 }
-
-
-// window.addEventListener('resize', function () {
-//     let headline = document.getElementById('headline');
-//     let headlineMobile = document.getElementById('headlineMobile');
-//     let contactInfoSlider = document.getElementById('contactInfoSlider');
-//     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
-//     let isMobileView = window.innerWidth < 1360;
-//     let isMobileViewIphone = window.innerWidth < 860;
-//     let contactInfoSliderVisible = contactInfoSlider.classList.contains('show');
-
-//     refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible);
-// });
 
 
 function refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible) {

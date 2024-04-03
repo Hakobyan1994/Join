@@ -252,13 +252,13 @@
 }
 
 .contact-set {
-    width: 100%;
+    width: 900px;
     display: flex;
     align-items: center;
 }
 
 .contact-set-edit {
-    width: 100%;
+width: 900px;
     display: flex;
     align-items: center;
     position: relative;
@@ -322,9 +322,9 @@
 
 .close-img-con {
     position: relative;
-    top: -70px;
+    top: -100px;
     bottom: 70px;
-    left: 710px;
+    left: 696px;
     width: 32px;
     height: 32px;
     justify-content: center;

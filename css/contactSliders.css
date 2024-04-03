@@ -1,4 +1,4 @@
-/* slide in desktop version */
+/* slide in contact info */
 
 .slide-in {
     display: block;
@@ -31,14 +31,68 @@
     }
 }
 
+/* slide in add and edit contact mask */
+
+.slide-in-mask {
+    display: block;
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: slideInFromRightMask 0.5s forwards;
+}
+
+.slide-out-mask {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: slideOutToRightMask 0.5s forwards;
+}
+
+@keyframes slideInFromRightMask {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(70%);
+    }
+}
+
+@keyframes slideOutToRightMask {
+    from {
+        transform: translateX(50%);
+    }
+
+    to {
+        transform: translateX(400%);
+    }
+}
+
 /* slide in mobile version */
 
 .slide-in-mobile {
-    z-index: 1;
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     animation: slideInFromBottom 0.5s forwards;
 }
 
 .slide-out-mobile {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     animation: slideOutToBottom 0.5s forwards;
 }
 
