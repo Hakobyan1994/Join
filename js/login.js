@@ -134,28 +134,33 @@ function validLogin(e) {
     let password = e.target[1].value;
     let status = 'no';
     if (email && password) {
-        let foundUser = dataUser.find((user) => user.email.includes(email));
-        if (foundUser) {
-            if (foundUser.password === password) {
-                status = 'ok';
-            } else {
-                status = 'Error Password';
-            }
+        if (!isValidEmailLogIn(email)) {
+            status = 'Invalid Email';
         } else {
-            status = 'Email not found';
+            let foundUser = dataUser.find((user) => user.email.includes(email));
+            if (foundUser) {
+                if (foundUser.password === password) {
+                    status = 'ok';
+                } else {
+                    status = 'Error Password';
+                }
+            } else {
+                status = 'Email not found';
+            }
         }
+
         if (status === 'ok') {
-            activUser(foundUser);
+            // activUser(foundUser);
             window.location.href = "../files/start.html";
-        } else if (status === 'Error Password' || status === 'Email not found') {
+        } else if (status === 'Error Password' || status === 'Email not found' || status === 'Invalid Email') {
             checkBox.checked = false;
             document.getElementById('emailLogIn').style.border = `1px solid red`;
             document.getElementById('passwordLogIn').style.border = `1px solid red`;
             document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
             document.getElementById('imageInput').classList.add('passwordImageError');
-        } 
-        
-    }  
+        }
+
+    }
 }
 
 
@@ -178,9 +183,7 @@ function emptyInputerrorMessage() {
         inputdiv.innerText = '';
         passworddiv.innerText = '';
     }
-} 
-    
-
+}
 
 
 function validatePassword() {
@@ -206,8 +209,8 @@ function validatePassword() {
         })
     })
 }
-   
-    
+
+
 
 function loginSetTimeout() {
     setTimeout(() => {
@@ -227,7 +230,7 @@ function forGuestUser(key, arr) {
     localStorage.setItem(key, JSON.stringify(arr))
 }
 
- 
+
 function checkLogInInputs() {
     let email = document.getElementById('emaillogIn').value;
     let password = document.getElementById('passwordlogIn').value;
@@ -243,11 +246,20 @@ function checkLogInInputs() {
 
 
 function checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, emailErrorCon, passwordErrorCon) {
+    if (!email || !password) {
+        checkLogInEmail(email, emailInputCon, emailErrorCon);
+        checkLogInPassword(password, passwordInputCon, passwordErrorCon);
+        return;
+    }
+}
+
+
+function checkLogInEmail(email, emailInputCon, emailErrorCon) {
     if (!email) {
         emailInputCon.classList.remove('margin');
         emailErrorCon.classList.remove('d-none');
         emailErrorCon.innerHTML = `Please enter an email`;
-    } else if (!email.includes('.com') && !email.includes('.de') && !email.endsWith('.')) {
+    } else if (!isValidEmailLogIn(email)) {
         emailInputCon.classList.remove('margin');
         emailErrorCon.classList.remove('d-none');
         emailErrorCon.innerHTML = `Please enter a valid email address`;
@@ -256,6 +268,10 @@ function checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, 
         emailInputCon.classList.add('margin');
     }
 
+}
+
+
+function checkLogInPassword(password, passwordInputCon, passwordErrorCon) {
     if (!password) {
         passwordInputCon.classList.remove('margin');
         passwordInputCon.classList.add('margin-empty');
@@ -266,8 +282,10 @@ function checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, 
         passwordInputCon.classList.remove('margin-empty');
         passwordErrorCon.classList.add('d-none');
     }
+}
 
-    if (!email || !password) {
-        return;
-    }
+
+function isValidEmailLogIn(email) {
+    const emailRegex = /\S+@\S+\.(com|de)/;
+    return emailRegex.test(email);
 }

@@ -59,6 +59,7 @@ function validForm({ name, email, password, confirmPassword }, e) {
                 showError('The email is already registered');
             } else {
                 dataUsers.push({ name, email, password, id: new Date().getTime() });
+                contacts.push(name, email);
                 addtoLocal(dataUsers, 'dataUsers');
                 if (window.innerWidth <= 500) {
                     responsiveInfo.classList.add('active');
@@ -174,6 +175,15 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         checkPassword(password1, passwordInputCon, password1SignUpError);
         checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUpError);
         return;
+    }
+
+    ifAllInputsAreValid(name, email, password1, password2);
+}
+
+
+function ifAllInputsAreValid(name, email, password1, password2) {
+    if (name && isValidEmail(email) && password1 && password1 === password2) {
+        addContactToArray(name, email);
     }
 }
 
