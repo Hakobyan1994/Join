@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: summaryTemplates.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,103 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: summaryTemplates.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Generates the HTML content for the summary section of the main window.
+ * 
+ * @returns {string} The HTML content for the summary section.
+ */
+function generateHtmlSummary() {
+    return /*html*/`
+        &lt;div class="main-window mobile-main-summary">
+            &lt;div class="info_titleDiv">
+                &lt;h2 class="summary-headline-mobile">Join 360&lt;/h2>
+                &lt;div class="vector">&lt;/div>
+                &lt;span class="summary-span-mobile">Key Metrics at a Glance&lt;/span>
+            &lt;/div>
+        
+            &lt;div class="main_checkingDiv">
 
+            &lt;div id="profil_name" class="profil_name">
+                &lt;span id="timeOfDay" class="greeting">&lt;/span>
+                &lt;span id="greetingName" class="greetingName">&lt;/span>
+            &lt;/div>
+        
+                &lt;a href="#" class="summary-mobile" onclick="renderPage('board-page', 'render-board')">
+                    &lt;div class="To_Done_mainDiv">
+                        &lt;div class="toDo_mainDiv">
+                            &lt;div class="image_Todo">&lt;img class="editImage" src="../assets/img/icons/edit.png" alt="">&lt;/div>
+                            &lt;div class="toDo_numberDiv">
+                                &lt;span class="toDo_num" id="value-todoarray">&lt;/span>
+                                &lt;span class="toDo_title">To-do&lt;/span>
+                            &lt;/div>
+                        &lt;/div>        
+        
+                        &lt;div class="toDo_mainDiv" id="check-button-div">
+                            &lt;div class="image_Todo">&lt;img class="editImageCheck" id="check-button" src="../assets/img/icons/check-button-white.svg" alt="">&lt;/div>
+                            &lt;div class="done_numberDiv">
+                                &lt;span class="toDo_num" id="value-donearray">&lt;/span>
+                                &lt;span class="toDo_title">Done&lt;/span>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+        
+                    &lt;div class="mainTime_UrgentDiv">
+                        &lt;div class="urgent_Box">
+                            &lt;div class="urgentImage_div">&lt;img class="urgentImage" src="../assets/img/icons/urgent.png" alt="">
+                            &lt;/div>
 
-    <h3> </h3>
+                            &lt;div class="urgentt_div">
+                                &lt;span class="urgent_Number" id="value-urgent">&lt;/span>
+                                &lt;span class="toDo_Title_Urgent">Urgent&lt;/span>
+                            &lt;/div>
+                        &lt;/div>
 
+                        &lt;div class="urgentVector">&lt;/div>
+                        
+                        &lt;div class="Date_box">
+                            &lt;span id="urgentDate" class="Datespan">&lt;/span>
+                            &lt;span class="date_title">Upcoming Deadline&lt;/span>
+                        &lt;/div>
+                    &lt;/div>
 
+                    &lt;div class="tasksmain_Board">
+                        &lt;div class="board_Div">
+                            &lt;div class="board_info">
+                                &lt;span class="boardNumber" id="value-total">&lt;/span>
+                                &lt;span class="board_title"> Tasks in Board&lt;/span>
+                            &lt;/div>
+                        &lt;/div>
 
+                        &lt;div class="board_Div">
+                            &lt;div class="board_info">
+                                &lt;span class="boardNumber" id="value-progressarray">&lt;/span>
+                                &lt;span class="board_title">Tasks in Progress&lt;/span>
+                            &lt;/div>
+                        &lt;/div>
 
-
-
-
-
-
-
-    
-
-
-
-
-
+                        &lt;div class="board_Div">
+                            &lt;div class="board_info">
+                                &lt;span class="boardNumber" id="value-feedbackarray">&lt;/span>
+                                &lt;span class="board_title">Awaiting Feedback&lt;/span>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+        
+                &lt;span id="data">&lt;/span>    
+            &lt;/div>`;
+}</code></pre>
+        </article>
+    </section>
 
 
 

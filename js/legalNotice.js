@@ -1,3 +1,8 @@
+/**
+ * Generates HTML content for the legal notice page.
+ * 
+ * @returns {string} HTML content for the legal notice page.
+ */
 function generateHtmlMainLegal() {
     return /*html*/`
         <div class="legal-notice">

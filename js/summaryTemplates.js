@@ -1,3 +1,8 @@
+/**
+ * Generates the HTML content for the summary section of the main window.
+ * 
+ * @returns {string} The HTML content for the summary section.
+ */
 function generateHtmlSummary() {
     return /*html*/`
         <div class="main-window mobile-main-summary">

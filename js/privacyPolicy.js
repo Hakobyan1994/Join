@@ -1,3 +1,8 @@
+/**
+ * Generates HTML content for the privacy policy page.
+ * 
+ * @returns {string} HTML content for the privacy policy page.
+ */
 function generateHtmlMainPrivacy() {
     return /*html*/`
         <div class="privacy">

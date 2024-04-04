@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: contactsTemplates.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,375 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: contactsTemplates.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Generates HTML markup for the main contacts section.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
+function generateHtmlMainContacts() {
+    return /*html*/`
+        &lt;div id="mainContent" class="main-content">
+            &lt;div class="content">
+                &lt;div class="contacts-main">
+                    &lt;div id="addContactBtn" class="contacts">
+                        &lt;div id="addedContactsCon" class="added-contacts">
 
+                            &lt;div class="contact-con-btn">
+                                &lt;div id="addBtn" class="add-contact-btn-con">&lt;/div>
 
-    <h3> </h3>
+                                &lt;div id="allContacts" class="all-contacts">&lt;/div>
+                            &lt;/div>
 
+                            &lt;div id="darkBgr" class="dark-bgr d-none">&lt;/div>
 
+                            &lt;div id="addMask" class="d-none">&lt;/div>
 
+                            &lt;div id="editMask" class="d-none">&lt;/div>
+                        &lt;/div>
+                    &lt;/div>
 
+                    &lt;div id="contactOverlay">&lt;/div>
 
+                    &lt;div id="successCon">&lt;/div>
 
+                    &lt;div id="headline" class="headline">
+                            Contacts
+                            &lt;div class="vertical-line">
+                                &lt;img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
+                            &lt;/div>
+                            &lt;div class="team-headline">
+                                Better with a team
+                            &lt;/div>
+                        &lt;/div>
 
+                    &lt;div id="headlineMobile" class="headline">
+                            Contacts
+                            &lt;div class="vertical-line">
+                                &lt;img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
+                            &lt;/div>
+                            &lt;div class="team-headline">
+                                Better with a team
+                            &lt;/div>
+                        &lt;/div>
 
+                    &lt;div onclick="closeMobileMenu()" id="contactInfoConMobile" class="contact-info-con d-none">
 
+                        &lt;img onclick="hideMobileContactInfo()" class="back-arrow-mobile" src="../assets/img/icons/arrow_back_btn.svg">
 
-    
+                        &lt;div id="contactInfoSlider" class="contact-info-slider">&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>`;
+}
 
+/**
+ * Generates HTML markup for the mobile add contact button.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
+function generateAddBtnMobile() {
+    return /*html*/`
+        &lt;img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">`;
+}
 
+/**
+ * Generates HTML markup for the add contact button.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
+function generateAddBtn() {
+    return /*html*/`
+        &lt;button type="button" class="add-contact-btn" onclick="showAddContactOverlay()">
+            Add new contact 
+            &lt;img src="/assets/img/icons/person_add.svg" alt="">
+        &lt;/button>`;
+}
 
+/**
+ * Generates HTML markup for a contact.
+ * 
+ * @param {number} i - The index of the contact.
+ * @param {object} contact - The contact object containing name and email.
+ * @param {string} imageIdSlider - The id of the contact image element.
+ * @returns {string} The generated HTML markup for the contact.
+ */
+function generateContact(i, contact, imageIdSlider) {
+    return /*html*/`
+    &lt;div id="contactHighlighter" class="focus-main" >
+        &lt;div onclick="showContactInfoSlider(${i})" class="contact-con-pos">
+            &lt;div tabindex="0" class="contact-con"  onmouseover="addHighlight(this)" onmouseout="removeHighlight(this)">
+                &lt;img id="${imageIdSlider}" class="user-img-contact-list" src="../assets/img/icons/Ellipse 5.svg">
+                &lt;div class="contact-focus-effect">
+                    &lt;div class="contact-list-name">${contact.name}&lt;/div>
+                    &lt;div class="contact-list-email">${contact.email}&lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="scroll-con">&lt;/div>`;
+}
 
+/**
+ * Generates HTML markup for a success button slider.
+ * 
+ * @returns {string} The generated HTML markup for the success button slider.
+ */
+function generateSuccessBtnSlider() {
+    return /*html*/`
+        &lt;button class="success-btn">
+            Contact successfully created
+        &lt;/button>`;
+}
 
+/**
+ * Generates HTML markup for the contact information slider.
+ * 
+ * @param {number} i - The index of the contact.
+ * @param {string} contactName - The name of the contact.
+ * @param {string} contactEmail - The email of the contact.
+ * @param {string} contactPhone - The phone number of the contact.
+ * @param {string} imageId - The id of the contact image element.
+ * @returns {string} The generated HTML markup for the contact information slider.
+ */
+function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
+    return /*html*/`
+        &lt;div id="contactSlider" class="contact-info-slider">
+            &lt;div class="slider-main-content">
+                &lt;div class="slider-content-top">
+                    &lt;img id="${imageId}" class="slider-contact-img" src="../assets/img/icons/Ellipse 5.svg" alt="">
+                    &lt;div class="contact-name">
+                        &lt;div class="name">${contactName}&lt;/div>
+                        &lt;div class="edit-delete-btn-con">
+                            &lt;div id="editBtnMobile" onclick="showEditContactOverlay(${i})" class="edit-delete">
+                                &lt;img src="../assets/img/icons/edit.svg" alt="">
+                                    Edit
+                            &lt;/div>
+                            &lt;div id="deleteBtnMobile" onclick="deleteContact(${i})" class="edit-delete">
+                                &lt;img src="../assets/img/icons/delete.svg" alt="">
+                                    Delete
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div class="slider-content-mid">
+                    Contact Information
+                &lt;/div>
+                &lt;div class="slider-content-bottom">
+                    &lt;div class="email-phone-con-main">
+                        &lt;div class="email-phone-con-top">&lt;b>Email&lt;/b>&lt;/div>
+                        &lt;div class="email-con-bottom">${contactEmail}&lt;/div>
+                    &lt;/div>
+                    &lt;div class="email-phone-con-main">
+                        &lt;div class="email-phone-con-top">&lt;b>Phone&lt;/b>&lt;/div>
+                        &lt;div class="phone-con-bottom">${contactPhone}&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+        
+        &lt;img id="openMobileMenuBtn" onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
+        &lt;div id="slideInMenuMobile" class="slide-in-menu-mobile d-none">
+            &lt;div class="mobile-menu-btns-main">
+                &lt;div onclick="showEditContactOverlay(${i})" class="mobile-menu-btns">&lt;img class="mobile-edit-img" src="../assets/img/icons/edit.svg" alt="">&lt;div class="edit-txt">Edit&lt;/div>&lt;/div>
+                &lt;div onclick="deleteContact(${i})" class="mobile-menu-btns">&lt;img class="mobile-delete-img" src="../assets/img/icons/delete.svg" alt="">Delete&lt;/div>
+            &lt;/div>
+        &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for a letter container.
+ * 
+ * @param {string} currentLetter - The current letter to be displayed in the container.
+ * @returns {string} The generated HTML markup for the letter container.
+ */
+function generateLetterCon(currentLetter) {
+    return /*html*/`
+        &lt;div class="letter-con">
+            ${currentLetter}
+        &lt;/div>`;
+}
+
+/**
+ * Generates SVG markup for a contact image with specified initials and background color.
+ * 
+ * @param {string} initials - The initials to be displayed on the contact image.
+ * @param {string} color - The background color of the contact image.
+ * @returns {string} The SVG markup for the contact image.
+ */
+function generateContactImage(initials, color) {
+    return /*html*/`
+        &lt;svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            &lt;rect width="100%" height="100%" fill="${color}"/>
+            &lt;text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="40">${initials}&lt;/text>
+        &lt;/svg>`;
+}
+
+/**
+ * Generates HTML markup for a separator line between contacts.
+ * 
+ * @returns {string} The HTML markup for the separator line.
+ */
+function generateSeparator() {
+    return /*html*/`
+        &lt;div class="contact-line">
+            &lt;img class="contact-line-color" src="../assets/img/icons/Vector 10.svg" alt="">
+        &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for the add contact overlay.
+ * 
+ * @returns {string} The HTML markup for the add contact overlay.
+ */
+function generateAddContactOverlay() {
+    return /*html*/`
+        &lt;div class="set-overlay-pos">
+            &lt;div class="add-contact-mask" onclick="dontCloseCard(event)">
+            &lt;div class="add-contact-main">
+                &lt;img id="closeImg" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeAddContactSlider()">
+                &lt;div class="set-position">
+                    &lt;img class="join-img" src="../assets/img/icons/Capa 2.svg" alt="join-icon">
+                    &lt;div class="add-contact-headline">
+                        Add contact
+                    &lt;/div>
+                    &lt;span class="add-contact-text">
+                        Tasks are better with a team!
+                    &lt;/span>
+                    &lt;img class="blue-underline" src="../assets/img/icons/Vector 5.svg"
+                        alt="blue-underline">
+                &lt;/div>
+            &lt;/div>
+
+            &lt;div class="contact-set">
+                &lt;div class="add-contact-content" class="set-position">
+                    &lt;div>
+                        &lt;div onclick="closeAddContactSlider()" class="close-img-con">
+                            &lt;img id="closeImg" class="close-img" src="../assets/img/icons/Close.svg" alt="">
+                        &lt;/div>
+                        &lt;div onclick="closeAddContactSlider()" class="close-img-con-mobile" style="display: none">
+                        &lt;/div>
+
+                        &lt;div class="add-contact-user-img">
+                            &lt;div class="person-con">
+                                &lt;img class="person-img-bgr" src="../assets/img/icons/Group 9.svg"
+                                    alt="">
+                                &lt;img class="person-img-add-contacts" src="../assets/img/icons/contact_person_white.svg" alt="">
+                            &lt;/div>
+
+                            &lt;form onsubmit="addToContacts()" class="add-contact-data">
+                                &lt;div class="input-con-main">
+                                    &lt;input id="name" name="name" class="input-con"
+                                        placeholder="Name" type="text" maxlength="20" required>
+                                    &lt;img class="input-svg-pos" src="../assets/img/icons/person.svg" alt="">
+                                    &lt;div id="nameAddErrorMessage" class="error-message d-none">&lt;/div>
+                                &lt;/div>
+                                &lt;div class="input-con-main">
+                                    &lt;input id="emailContacts" name="email" class="input-con"
+                                        placeholder="Email" type="email" required>
+                                    &lt;img class="input-svg-pos" src="../assets/img/icons/mail.svg" alt="">
+                                    &lt;div id="emailAddErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;div id="emailAlreadyExists" class="error-message d-none">&lt;/div>
+                                &lt;/div>
+                                &lt;div class="input-con-main">
+                                    &lt;input id="phone" name="phone" class="input-con"
+                                        placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" required>
+                                    &lt;img class="input-svg-pos" src="../assets/img/icons/call.svg" alt="">
+                                    &lt;div id="phoneAddErrorMessage" class="error-message d-none">&lt;/div>
+                                &lt;/div>
+
+                                &lt;div class="add-contact-btns">
+                                    &lt;button id="cancelBtn" onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
+                                        &lt;div class="cancel-txt-fix">Cancel&lt;/div>&lt;img id="cancelBtnImg" class="cancel-btn-img" src="../assets/img/icons/close-black1.svg" alt="Close">
+                                    &lt;/button>
+
+                                    &lt;button type="button" onclick="addToContacts()" class="create-contact-btn">
+                                        Create contact &lt;img src="../assets/img/icons/check1.svg"
+                                            alt="crerate contact">
+                                    &lt;/button>
+                                &lt;/div>
+                            &lt;/form>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for the edit contact overlay.
+ * 
+ * @param {number} i - The index of the contact to be edited.
+ * @returns {string} The HTML markup for the edit contact overlay.
+ */
+function generateEditMaskOverlay(i) {
+    return /*html*/`
+        &lt;div class="set-overlay-pos">
+            &lt;div class="add-contact-mask" onclick="dontCloseCard(event)">
+                &lt;div class="add-contact-main">
+                &lt;img id="closeImgEdit" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeEditContactSlider()">
+                    &lt;div class="set-position">
+                        &lt;img class="join-img" src="../assets/img/icons/Capa 2.svg" alt="join-icon">
+                        &lt;div class="add-contact-headline">
+                            Edit contact
+                        &lt;/div>
+                        &lt;img class="blue-underline" src="../assets/img/icons/Vector 5.svg" alt="blue-underline">
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;div class="contact-set-edit">
+                    &lt;div class="add-contact-content set-position">
+                        &lt;div>
+                            &lt;div onclick="closeEditContactSlider()" class="close-img-con-edit">
+                                &lt;img class="close-img" src="../assets/img/icons/Close.svg" alt="">
+                            &lt;/div>
+
+                            &lt;div class="add-contact-user-img">
+                                &lt;div class="person-con-edit">
+                                    &lt;img id="contactImageEdit" class="person-img">
+                                &lt;/div>
+
+                                &lt;form onsubmit="addToContacts()" class="edit-contact-data">
+                                    &lt;div class="input-con-main">
+                                        &lt;input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="20" required>
+                                        &lt;img class="input-svg-pos-edit" src="../assets/img/icons/person.svg" alt="">
+                                        &lt;div id="nameErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;/div>
+                                    &lt;div class="input-con-main">
+                                        &lt;input id="emailEdit" name="email" class="input-con-edit" placeholder="Email" type="email" required>
+                                        &lt;img class="input-svg-pos-edit" src="../assets/img/icons/mail.svg" alt="">
+                                        &lt;div id="emailErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;/div>
+                                    &lt;div class="input-con-main">
+                                        &lt;input id="phoneEdit" name="phone" class="input-con-edit" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
+                                        &lt;img class="input-svg-pos-edit" src="../assets/img/icons/call.svg" alt="">
+                                        &lt;div id="phoneErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;/div>
+
+                                    &lt;div class="add-contact-btns">
+                                        &lt;button type="button" class="cancel-btn-edit" onclick="deleteContact(${i})">Delete&lt;/button>
+                                        &lt;button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save &lt;img class="check-svg" src="../assets/img/icons/check1.svg" alt="">&lt;/button>
+                                    &lt;/div>
+                                &lt;/form>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>`;
+}</code></pre>
+        </article>
+    </section>
 
 
 

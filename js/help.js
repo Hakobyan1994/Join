@@ -1,3 +1,8 @@
+/**
+ * Generates HTML content for the main help page.
+ * 
+ * @returns {string} The HTML content for the main help page.
+ */
 function generateHtmlMainHelp() {
     return /*html*/`
         <div class="help">

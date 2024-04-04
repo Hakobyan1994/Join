@@ -2,6 +2,13 @@ const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 
+/**
+ * Sets an item in the remote storage.
+ * 
+ * @param {string} key - The key for the item.
+ * @param {any} value - The value to be stored.
+ * @returns {Promise<Object>} A promise representing the result of the operation.
+ */
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
@@ -9,6 +16,12 @@ async function setItem(key, value) {
 }
 
 
+/**
+ * Retrieves an item from the remote storage.
+ * 
+ * @param {string} key - The key of the item to retrieve.
+ * @returns {Promise<any>} A promise that resolves with the retrieved value.
+ */
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
@@ -19,6 +32,10 @@ async function getItem(key) {
 }
 
 
+/**
+ * Initializes the application.
+ * Includes HTML content, renders the summary page, and loads contacts and tasks asynchronously.
+ */
 async function init() {
     includeHTML();
     renderSummaryMain();
@@ -28,6 +45,10 @@ async function init() {
 }
 
 
+/**
+ * Initializes the login page.
+ * Includes HTML content, animates the logo, validates form inputs, and sets timeouts for login functionality.
+ */
 async function initLogin() {
     includeHTML();
     logoAnimation();
@@ -37,11 +58,17 @@ async function initLogin() {
 }
 
 
+/**
+ * Navigates the user back to the previous page.
+ */
 function goBack() {
     window.history.back();
 }
 
 
+/**
+ * Loads tasks asynchronously.
+ */
 async function loadTasks() {
     try {
         tasks = JSON.parse(await getItem('tasks')) || [];
@@ -54,6 +81,12 @@ async function loadTasks() {
 }
 
 
+/**
+ * Renders a specific page.
+ * 
+ * @param {string} selectedBar - The selected navbar item.
+ * @param {string} page - The page to render.
+ */
 function renderPage(selectedBar, page) {
     renderHPLMain();
     resetMainPages();
@@ -87,6 +120,14 @@ function selectPage(page) {
 }
 
 
+/**
+ * Highlights the selected page in the navbar.
+ * 
+ * @param {string} page - The page to highlight.
+ * @param {string} selectedBar - The selected navbar item.
+ * @param {NodeList} allNavbar - All navbar elements.
+ * @param {NodeList} allPages - All page elements.
+ */
 function highlightSelectedPage(page, selectedBar, allNavbar, allPages) {
     allNavbar.forEach((navbar) => {
         if (navbar.id !== selectedBar) {
@@ -101,6 +142,9 @@ function highlightSelectedPage(page, selectedBar, allNavbar, allPages) {
 }
 
 
+/**
+ * Resets main pages content.
+ */
 function resetMainPages() {
     let allPages = document.querySelectorAll('.render-page');
     allPages.forEach((page) => {
@@ -109,6 +153,9 @@ function resetMainPages() {
 }
 
 
+/**
+ * Resets help pages content.
+ */
 function resetHlp() {
     let allPages = document.querySelectorAll('.hlp');
     document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
@@ -119,6 +166,12 @@ function resetHlp() {
 }
 
 
+/**
+ * Renders the Help, Privacy Policy, or Legal Notice page.
+ * 
+ * @param {string} page - The page to render.
+ * @returns {string} The rendered page.
+ */
 function renderHPLMain(page) {
     let content = document.getElementById(page);
     let allHlp = document.querySelectorAll('.hlp');
@@ -137,6 +190,9 @@ function renderHPLMain(page) {
 }
 
 
+/**
+ * Resets the style of navbar and pages.
+ */
 function resetStyle() {
     let allNavbar = document.querySelectorAll('.navbar');
     let allPages = document.querySelectorAll('.render-page');
@@ -152,6 +208,12 @@ function resetStyle() {
 }
 
 
+/**
+ * Determines the styling function to be applied based on the provided page name.
+ *
+ * @param {string} page - The name of the page to determine styling for.
+ * @param {HTMLElement} content - The content element to be styled.
+ */
 function styleIf(page, content) {
     if (page === 'render-help') {
         styleHelp(content);
@@ -165,6 +227,11 @@ function styleIf(page, content) {
 }
 
 
+/**
+ * Styles the Help page.
+ * 
+ * @param {HTMLElement} content - The content container.
+ */
 function styleHelp(content) {
     content.innerHTML = generateHtmlMainHelp();
     document.getElementById('legalhover').style.color = 'rgb(205, 205, 205)';
@@ -172,6 +239,11 @@ function styleHelp(content) {
 }
 
 
+/**
+ * Styles the Privacy Policy page.
+ * 
+ * @param {HTMLElement} content - The content container.
+ */
 function stylePrivacy(content) {
     content.innerHTML = generateHtmlMainPrivacy();
     document.getElementById('privacyhover').style.color = 'var(--lightblue)';
@@ -181,6 +253,11 @@ function stylePrivacy(content) {
 }
 
 
+/**
+ * Styles the Legal Notice page.
+ * 
+ * @param {HTMLElement} content - The content container.
+ */
 function styleLegal(content) {
     content.innerHTML = generateHtmlMainLegal();
     document.getElementById('legalhover').style.color = 'var(--lightblue)';
@@ -190,6 +267,11 @@ function styleLegal(content) {
 }
 
 
+/**
+ * Returns the current date in YYYY-MM-DD format.
+ * 
+ * @returns {string} The current date.
+ */
 function minDate() {
     let dateObj = new Date();
     let day = dateObj.getDate();
@@ -204,6 +286,9 @@ function minDate() {
 }
 
 
+/**
+ * Closes the info list dropdown.
+ */
 function closeInfoList() {
     document.addEventListener('click', function (event) {
         let clickInfoDiv = document.getElementById('clickInfoDiv');
@@ -216,6 +301,13 @@ function closeInfoList() {
 }
 
 
+/**
+ * Closes a dropdown list.
+ * 
+ * @param {string} id - The ID of the dropdown list.
+ * @param {string} eId - The ID of the related input element.
+ * @param {string} icon - The ID of the dropdown icon.
+ */
 function closeList(id, eId, icon) {
     let list = document.getElementById(id);
     let eIdElement = document.getElementById(eId);
@@ -229,6 +321,17 @@ function closeList(id, eId, icon) {
 }
 
 
+/**
+ * Checks if the clicked element is outside the specified list, input element, or dropdown icon.
+ * If the clicked element is outside, hides the list and optionally resets the input element and button.
+ * 
+ * @param {HTMLElement} list - The dropdown list element.
+ * @param {HTMLElement} eIdElement - The input element associated with the dropdown list.
+ * @param {HTMLElement} assignedButton - The button to be reset (optional).
+ * @param {HTMLElement} dropdown - The dropdown icon element.
+ * @param {MouseEvent} event - The click event.
+ * @param {string} id - The ID of the dropdown list.
+ */
 function checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, event, id) {
     if (!list.contains(event.target) && event.target !== eIdElement && event.target !== dropdown) {
         list.classList.add('d-none');
@@ -247,6 +350,9 @@ function checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, even
 }
 
 
+/**
+ * Logs out the user and redirects to the login page.
+ */
 function logoutUser() {
     localStorage.clear();
     window.location.href = '../index.html';
@@ -254,45 +360,6 @@ function logoutUser() {
     nameActiveUser = [];
 }
 
-
-function addZindex() {
-    document.getElementById('mobile-header').classList.add('z-12');
-    document.getElementById('navbar').classList.add('z-11');
-}
-
-
-function removeZindex() {
-    document.getElementById('mobile-header').classList.remove('z-12');
-    document.getElementById('navbar').classList.remove('z-11');
-}
-
-
-function addZindex13() {
-    document.getElementById('mobile-header').classList.add('z-13');
-    document.getElementById('navbar').classList.add('z-12');
-}
-
-
-function removeZindex13() {
-    document.getElementById('mobile-header').classList.remove('z-13');
-    document.getElementById('navbar').classList.remove('z-12');
-}
-
-
-function addZindexContacts() {
-    let navbar = document.getElementById('navbar');
-    let header = document.getElementById('mobile-header');
-    navbar.classList.add('z-index-minus-8');
-    header.classList.add('z-index-minus-9');
-}
-
-
-function removeZindexContacts() {
-    let navbar = document.getElementById('navbar');
-    let header = document.getElementById('mobile-header');
-    navbar.classList.remove('z-index-minus-8');
-    header.classList.remove('z-index-minus-9');
-}
 
 // function notSupported() {
 //     if(window.innerWidth < 320) {

@@ -1,214 +1,7 @@
-let tasks = [];
-let subtasks = [];
-let checkoffs = [];
-let users = [];
-let iniimg = [];
-
-
 /**
- * This function generate the assigned list
- * 
- * @param {String} name - This is a function
+ * Sets up focus and input event handlers for the subtask input field.
  */
-function renderAssignedList() {                             
-    let list = document.getElementById('assigned-list');
-    let assignedButton = document.getElementById('assigned-button');
-    let input = document.getElementById('assigned');
-    list.classList.remove('d-none');
-    if(!list.classList.contains('d-none')) {
-        assignedButton.classList.add('d-none');
-        input.placeholder = '';
-    } else {
-        assignedButton.classList.remove('d-none');
-        input.placeholder = 'Select contacts to assign';
-    }
-    list.innerHTML = '';
-    resetAllSelectedContacts();
-}
-
-
-/**
- * This function generate the assigned list
- * 
- * @param {String} name - This is a function
- */
-function toggleAssignedlist() {
-    let list = document.getElementById('assigned-list');
-    let assignedButton = document.getElementById('assigned-button');
-    list.classList.toggle('d-none');
-    if(!list.classList.contains('d-none')) {
-        assignedButton.classList.add('d-none');
-        input.placeholder = '';
-    } else {
-        assignedButton.classList.remove('d-none');
-        input.placeholder = 'Select contacts to assign';
-    }
-}
-
-
-function resetAllSelectedContacts() {
-    let list = document.getElementById('assigned-list');
-    renderContactList(list);
-    for (let i = 0; i < contacts.length; i++) {
-        let assignedContact = document.getElementById(`assigned-contacts-${i}`);
-        if (assignedContact.classList.contains === 'white') {
-            assignedContact.classList.remove('select-contact-blue');
-            assignedContact.classList.remove('white');
-        }        
-    }
-}
-
-
-function renderContactList(list) {                                      // add all contacts to the list
-    for (let i = 0; i < contacts.length; i++) {
-        let name = contacts[i].name;
-        let img = contacts[i].initials;
-        let userIndex = users.indexOf(name);
-        let isSelected = userIndex !== -1;
-        list.innerHTML += generateHtmlAssignedList(name, img, isSelected, i);
-    }
-}
-
-
-// search function for assigned to list
-function searchAssignedList() {                 
-    let input = document.getElementById('assigned');
-    let filter = input.value.toUpperCase();
-    for (let i = 0; i < contacts.length; i++) {
-        let list = document.getElementById(`assigned-contacts-${i}`);
-        let array = contacts[i].name;
-        let name = array.toUpperCase();
-        if (name.indexOf(filter) > -1) {
-            list.style.display = 'flex';
-        } else {
-            list.style.display = 'none';
-        }
-    }
-
-}
-
-
-function selectCategory(category, exCategory) {                            // evaluate the category inputfield
-    let selectedCategory = document.getElementById(category);
-    let notSelected = document.getElementById(exCategory);
-    let input = document.getElementById('category');
-
-    if (category === 'technical') {
-        styleCategoryList(selectedCategory, notSelected, input);
-    }
-    else if (category === 'story') {
-        styleCategoryList(selectedCategory, notSelected, input);
-    }
-    pushCategorytoInput();
-    inputfieldFocus('category');
-}
-
-
-function styleCategoryList(selectedCategory, notSelected, input) {          // styling of the category list if its clicked or not
-    selectedCategory.classList.toggle('grey');
-    selectedCategory.classList.toggle('white-bg');
-    notSelected.classList.remove('grey');
-    notSelected.classList.remove('white-bg');
-    input.focus();
-}
-
-
-function pushCategorytoInput() {                                            // category which is clicked goes to the inputfield
-    let categoryInput = document.getElementById('category');
-    let approvedElements = document.querySelectorAll('.grey');
-    let list = document.getElementById('category-list');
-
-    if (approvedElements.length > 0) {
-        categoryInput.value = approvedElements[0].textContent;
-        list.classList.add('d-none');
-    } else {
-        categoryInput.value = '';
-        inputfieldFocus('category');
-    }
-}
-
-
-function selectAssignedContacts(i) {                                        // select the contact list of assigned to
-    document.getElementById('assigned-button').classList.add('d-none');
-    let contact = document.getElementById(`assigned-contacts-${i}`);
-    let checkbox = document.getElementById(`checkbox-contact-${i}`);
-    contact.classList.toggle('select-contact-blue');
-    contact.classList.toggle('white');
-    selectBehaviorAssignedContacts(contact, checkbox);
-    pushUser(i);
-    generateAssignedButton();
-}
-
-
-function selectBehaviorAssignedContacts(contact, checkbox) {                // styling the selected contact
-    if (contact.classList.contains('select-contact-blue')) {
-        checkbox.src = '../assets/img/icons/selected1.svg';
-        checkbox.classList.remove('checkbox-none-selected');
-        checkbox.classList.add('checkbox-selected');
-    } else {
-        checkbox.src = '../assets/img/icons/none-selected1.svg';
-        checkbox.classList.add('checkbox-none-selected');
-        checkbox.classList.remove('checkbox-selected');
-    }
-}
-
-
-function getPrio() {                                                        // choose the prio field
-    let prios = document.getElementById('prio');
-    let prioButtons = prios.querySelectorAll('button');
-
-    prioButtons.forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.stopPropagation();
-            stylingPrioButtons(button, prioButtons);
-        });
-    });
-}
-
-
-function stylingPrioButtons(button, prioButtons) {                          // styling the prio which is clicked
-    if (!button.classList.contains('prio-notselected')) {
-        button.classList.add('prio-notselected')
-    } else {
-        prioButtons.forEach(function (btn) {
-            btn.classList.remove('prio-notselected');
-            btn.classList.add('prio-notselected');
-        });
-        button.classList.add('prio-notselected');
-        button.classList.remove('prio-notselected');
-    }
-}
-
-
-function handleFocus(add, closeCheck) {                                 // functions to display the several icons in subtask
-    add.classList.add('d-none');
-    closeCheck.classList.remove('d-none');
-}
-
-
-function handleBlur(add, closeCheck) {
-    add.classList.remove('d-none');
-    closeCheck.classList.add('d-none');
-}
-
-
-function handleInput(subtask, add, closeCheck) {
-    if (subtask.value.trim() !== '') {
-        handleFocus(add, closeCheck);
-    }
-}
-
-
-function handleBlurEvent(subtask, add, closeCheck) {
-    if (subtask.value.trim() !== '') {
-        handleFocus(add, closeCheck);
-    } else {
-        handleBlur(add, closeCheck);
-    }
-}
-
-
-function setupSubtaskInputFocus() {                                      // change the inputfield of subtask in different modes
+function setupSubtaskInputFocus() {
     let subtask = document.getElementById('subtask-input');
     let add = document.getElementById('subtask-change-add-icon');
     let closeCheck = document.getElementById('subtask-close-check-icon');
@@ -219,7 +12,10 @@ function setupSubtaskInputFocus() {                                      // chan
 }
 
 
-function enterOnSubtask() {                                             // create subtasks with an enter key
+/**
+ * Handles 'Enter' key press event on the subtask input field.
+ */
+function enterOnSubtask() {
     let input = document.getElementById('subtask-input');
 
     input.addEventListener('keypress', function (event) {
@@ -231,7 +27,12 @@ function enterOnSubtask() {                                             // creat
 }
 
 
-function editSubtask(i) {                                                   // able to edit subtask
+/**
+ * Edits the content of a subtask.
+ * 
+ * @param {number} i - The index of the subtask.
+ */
+function editSubtask(i) {
     let subtaskInput = document.getElementById(`subtask${i}`);
     let listItem = document.getElementById(`each-subtask${i}`);
     let inputValue = subtaskInput.innerText || subtaskInput.textContent;
@@ -240,13 +41,25 @@ function editSubtask(i) {                                                   // a
 }
 
 
+/**
+ * Makes a list item editable for subtask modification.
+ * 
+ * @param {HTMLElement} listItem - The list item element to be made editable.
+ * @param {number} i - The index of the subtask.
+ * @param {string} inputValue - The current content of the subtask.
+ */
 function makeListItemEditable(listItem, i, inputValue) {
     listItem.classList.add('editable-each');
     listItem.innerHTML = createEditableSubtaskElement(i, inputValue);
 }
 
 
-function deleteSubtask(i) {                                                 // delete subtask befor creating the task
+/**
+ * Deletes a subtask from the list.
+ * 
+ * @param {number} i - The index of the subtask to be deleted.
+ */
+function deleteSubtask(i) {
     let position = i;
     subtasks.splice(position, 1);
     let indexToDelete = checkoffs.indexOf(i.toString());
@@ -263,7 +76,12 @@ function deleteSubtask(i) {                                                 // d
 }
 
 
-function pushEditedSubtask(i) {                                             // push each subtasks in subtask array
+/**
+ * Pushes the edited subtask to the subtasks array.
+ * 
+ * @param {number} i - The index of the edited subtask.
+ */
+function pushEditedSubtask(i) {
     let inputField = document.getElementById(`subtask${i}`);
     let newText = inputField.value;
     let position = i;
@@ -275,6 +93,9 @@ function pushEditedSubtask(i) {                                             // p
 }
 
 
+/**
+ * Updates the subtask list in the UI.
+ */
 function updateSubtasklist() {
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
@@ -286,13 +107,19 @@ function updateSubtasklist() {
 }
 
 
+/**
+ * Clears the subtask input field.
+ */
 function clearSubtaskInputField() {
     let input = document.getElementById('subtask-input');
     input.value = '';
 }
 
 
-function clearButtonImgChange() {                                       //change clear button when it is hovering
+/**
+ * Changes the image source of the clear button on mouseover and mouseout events.
+ */
+function clearButtonImgChange() {
     let img = document.getElementById('clear-button-img');
     let clearButton = document.getElementById('clear-button');
     if (clearButton) {
@@ -306,7 +133,10 @@ function clearButtonImgChange() {                                       //change
 }
 
 
-function clearFields() {                                           // clear all value fields
+/**
+ * Clears and resets various fields and UI elements.
+ */
+function clearFields() {
     resetFieldValues();
     hideAssignedList();
     resetGlobalVariables();
@@ -317,6 +147,9 @@ function clearFields() {                                           // clear all 
 }
 
 
+/**
+ * Resets the values of various input fields.
+ */
 function resetFieldValues() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
@@ -327,11 +160,17 @@ function resetFieldValues() {
 }
 
 
+/**
+ * Hides the assigned list element.
+ */
 function hideAssignedList() {
     document.getElementById('assigned-list').classList.add('d-none');
 }
 
 
+/**
+ * Resets global variables used in the application.
+ */
 function resetGlobalVariables() {
     users = [];
     iniimg = [];
@@ -340,6 +179,9 @@ function resetGlobalVariables() {
 }
 
 
+/**
+ * Resets the priority selection UI.
+ */
 function resetPrioritySelection() {
     let prio = document.querySelectorAll('.prio');
     let medium = document.getElementById('medium');
@@ -352,6 +194,11 @@ function resetPrioritySelection() {
 }
 
 
+/**
+ * Focuses on the specified input field and handles related UI changes.
+ * 
+ * @param {string} field - The ID of the input field to focus on.
+ */
 function inputfieldFocus(field) {
     let input = document.getElementById(field);
     let required = document.getElementById(`required-${field}`);
@@ -368,6 +215,12 @@ function inputfieldFocus(field) {
 }
 
 
+/**
+ * Handles UI changes when the input field is focused.
+ * 
+ * @param {HTMLElement} input - The input field element.
+ * @param {HTMLElement} required - The required indicator element.
+ */
 function handleFocusedInput(input, required) {
     let isInputEmpty = input.value.trim() === '';
     input.classList.toggle('inputfield-focus-red', isInputEmpty);
@@ -377,13 +230,21 @@ function handleFocusedInput(input, required) {
 }
 
 
+/**
+ * Handles UI changes when the input field is blurred.
+ * 
+ * @param {HTMLElement} input - The input field element.
+ * @param {HTMLElement} required - The required indicator element.
+ */
 function handleBlurredInput(input, required) {
     input.classList.remove('inputfield-focus-red', 'inputfield-focus-blue');
     input.classList.add('inputfield-focus-white');
     required.classList.add('d-none');
 }
 
-
+/**
+ * Opens the board element.
+ */
 function openBoard() {
     let addTask = document.getElementById('popup-a-to-b');
     let board = document.getElementById('popup-a-to-b-board');

@@ -1,3 +1,7 @@
+/**
+ * Generates the HTML content for the main board.
+ * @returns {string} The HTML content for the main board.
+ */
 function generateHtmlMainBoard() {
     return /*html*/`
         <div class="popup-a-to-b d-none" id="popup-a-to-b-board">
@@ -68,6 +72,11 @@ function generateHtmlMainBoard() {
 }
 
 
+/**
+ * Opens the add task popup for a specific board card.
+ * 
+ * @param {string} boardcard - The type of board card to open the popup for.
+ */
 async function openPopupAddTask(boardcard) {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
@@ -103,6 +112,11 @@ async function openPopupAddTask(boardcard) {
 }
 
 
+/**
+ * Opens the add task popup for a specific task.
+ * 
+ * @param {number} i - The index of the task to open the popup for.
+ */
 async function openPopupAddTaskDiv(i) {
     await loadTasks();
     let div = document.getElementById('popup-add-task-div');
@@ -164,6 +178,13 @@ async function openPopupAddTaskDiv(i) {
 }
 
 
+/**
+ * Generates the HTML content for a board card.
+ * 
+ * @param {Object} task - The task object for the card.
+ * @param {number} i - The index of the task.
+ * @returns {string} The HTML content for the board card.
+ */
 function generateBoardCard(task, i) {
     return /*html*/`
         <div onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}" draggable="true" ondragstart="dragStart(event)" ondrop="return false;" ontouchstart="onTouchStart(event)">           
@@ -189,6 +210,13 @@ function generateBoardCard(task, i) {
     `;
 }
 
+
+/**
+ * Generates the HTML content for the progress details section of a board card.
+ * 
+ * @param {number} i - The index of the task.
+ * @returns {string} The HTML content for the progress details section.
+ */
 function generateProgressDetails(i) {
     return /*html*/`
         <div class="progress-hover">
@@ -198,6 +226,12 @@ function generateProgressDetails(i) {
 }
 
 
+/**
+ * Generates the HTML content for the editable add task popup.
+ * 
+ * @param {number} i - The index of the task being edited.
+ * @returns {string} The HTML content for the editable add task popup.
+ */
 function generateEditableAddtask(i) {
     return /*html*/`
             <div class="edit-div">
@@ -217,6 +251,12 @@ function generateEditableAddtask(i) {
 }
 
 
+/**
+ * Generates the HTML content for a subtask item.
+ * @param {number} i - The index of the subtask item.
+ * @param {string} text - The text content of the subtask item.
+ * @returns {string} The HTML content for the subtask item.
+ */
 function getSubtasks() {
     let list = document.getElementById('subtasks');
     list.innerHTML = '';
@@ -236,6 +276,11 @@ function getSubtasks() {
 }
 
 
+/**
+ * Creates user avatars and names for the assigned section of the popup.
+ * 
+ * @param {number} i - The index of the task.
+ */
 function createUserToAssigned(i) {
     let div = document.getElementById(`popup-user-${i}`);
     let taskValue = tasks[i];

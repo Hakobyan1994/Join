@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: boardTemplates.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,314 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: boardTemplates.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Generates the HTML content for the main board.
+ * @returns {string} The HTML content for the main board.
+ */
+function generateHtmlMainBoard() {
+    return /*html*/`
+        &lt;div class="popup-a-to-b d-none" id="popup-a-to-b-board">
+            &lt;img src="../assets/img/task-to-board.svg" alt="">
+        &lt;/div>
+        &lt;div class="board-popup-bg" id="popup-add-task">
+                &lt;div class="board-popup" id="popup-add-task-content">&lt;/div>
+        &lt;/div>
+        &lt;div class="board-popup-bg" id="popup-add-task-div">
+            &lt;div class="addtask-popup" id="popup-add-task-content-div">&lt;/div>
+        &lt;/div>
+        &lt;div class="board-popup-bg" id="popup-add-task-edit">
+            &lt;div class="addtask-popup popup-edit" id="popup-add-task-content-edit">&lt;/div>
+        &lt;/div>
+        &lt;div class="main-window board-window">
+            &lt;div class="main_div">
+                &lt;div class="info_Div">
+                    &lt;div class="mobile-board-header">
+                        &lt;h2>Board&lt;/h2>
+                        &lt;button class="mobile-add-task-board" onclick="openPopupAddTask('board-to-do'); return false">+&lt;/button>
+                    &lt;/div>
+
+                    &lt;form class="mobile-search-board">
+                        &lt;div class="no-results" id="no-results">No results found&lt;/div>
+                        &lt;div class="input_button_Div">
+                            &lt;input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
+                            &lt;button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
+                                &lt;img src="../assets/img/icons/addi.png" alt="">
+                                Add Task
+                            &lt;/button>
+                        &lt;/div>
+                    &lt;/form>
+                &lt;/div>
+                &lt;div class="adding_div">
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="card_mainContainer">
+                &lt;div class="mobile-boardcard mobile-mgr-boardcard">
+                    &lt;div class="board_div">
+                        &lt;h3>To do&lt;/h3> &lt;button class="adding_Button" onclick="openPopupAddTask('board-to-do')">+&lt;/button>
+                    &lt;/div>
+                    &lt;div class="card_Div" id="board-to-do" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)">&lt;/div>
+                &lt;/div>
+                &lt;div class="mobile-mgr-boardcard">
+                    &lt;div class="board_div">
+                        &lt;h3>In progress&lt;/h3> &lt;button class="adding_Button" onclick="openPopupAddTask('board-in-progress')">+&lt;/button>
+                    &lt;/div>
+                    &lt;div class="card_Div" id="board-in-progress" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)">&lt;/div>
+
+                &lt;/div>
+                &lt;div class="mobile-mgr-boardcard">
+                    &lt;div class="board_div">
+                        &lt;h3>Await Feedback&lt;/h3> &lt;button class="adding_Button" onclick="openPopupAddTask('board-await-feedback')">+&lt;/button>
+                    &lt;/div>
+                    &lt;div class="card_Div" id="board-await-feedback" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)">&lt;/div>
+
+                &lt;/div>
+                &lt;div class="mobile-done-boardcard">
+                    &lt;div class="board_div">
+                        &lt;h3>Done&lt;/h3>
+                    &lt;/div>
+                    &lt;div class="card_Div" id="board-done" ondrop="drop(event)" ondragover="allowDrop(event)" ontouchend="onTouchEnd(event)" ontouchmove="onTouchMove(event)">&lt;/div>
+                    &lt;div>&lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    `;
+}
 
 
-    <h3> </h3>
+/**
+ * Opens the add task popup for a specific board card.
+ * 
+ * @param {string} boardcard - The type of board card to open the popup for.
+ */
+async function openPopupAddTask(boardcard) {
+    let popup = document.getElementById('popup-add-task');
+    let content = document.getElementById('popup-add-task-content');
+    users = [];
+    iniimg = [];
+    subtasks = [];
+    popup.style.display = 'flex';
+    content.classList.remove('slide-out');
+    content.classList.add('slide-in');
+    content.innerHTML = /*html*/`
+        &lt;img class="close-popup" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
+        &lt;div class="popup-box">
+            &lt;div class="mobile-board-popup-add-task">
+                &lt;h2 class="h2-addtask-board">Add Task&lt;/h2>
+                &lt;div class="main-box board-add-task-window">
+                    &lt;div class="form popup-addtask-main">
+                        ${generateHtmlAddTaskForm()}      
+                    &lt;/div>
+                    &lt;div class="popup-addtask-form">
+                        ${generateHtmlFormSection(`${boardcard}`)}
+                    &lt;/div>
+                &lt;/div>  
+            &lt;/div>  
+        &lt;/div> 
+    `;
+    let assignedButton = document.getElementById('assigned-button');
+    assignedButton.classList.add('assigned-button-b-pos');
+    addEventFunctions();
+    cancelButton();
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
+    clearButtonImgChange();
+}
 
 
+/**
+ * Opens the add task popup for a specific task.
+ * 
+ * @param {number} i - The index of the task to open the popup for.
+ */
+async function openPopupAddTaskDiv(i) {
+    await loadTasks();
+    let div = document.getElementById('popup-add-task-div');
+    let content = document.getElementById('popup-add-task-content-div');
+    div.style.display = 'flex';
+    content.classList.remove('slide-out');
+    content.classList.add('slide-in');
+    let taskValue = tasks[i];
+    content.innerHTML = /*html*/`
+        &lt;img class="close-a-board" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
+        `;
+    content.innerHTML += /*html*/`
+        &lt;div class="popup-text">
+            &lt;div class="user-popup-btn c1" id="category-bg-change-${i}">${taskValue.category}&lt;/div>
+            &lt;h2 class="popup-title">${taskValue.title}&lt;/h2>
+            &lt;div class="overflow">${taskValue.description}&lt;/div>
+            &lt;div class="popup-div-assign-date-title">
+                &lt;div>
+                    &lt;div class="popup-date">Due Date:&lt;/div>
+                    &lt;div>Priority:&lt;/div>
+                &lt;/div>
+                &lt;div class="popup-div-assign-date-title-content">
+                    &lt;div class="popup-date">${taskValue.date}&lt;/div>
+                    &lt;div class="popup-prio-section">
+                        &lt;div>${taskValue.priority.charAt(0).toUpperCase() + taskValue.priority.slice(1).toLowerCase()}&lt;/div>
+                        &lt;img src="../assets/img/icons/prio-${taskValue.priority}.svg" alt="Prio" class="popup-prio-icon">
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;div>
+                &lt;div class="popup-assigned-div">Assigned To:&lt;/div>
+                &lt;div class="popup-assigned" id="popup-user-${i}">
+                &lt;/div>
+            &lt;/div>
+            &lt;div>
+                &lt;div class="mobile-subtask-board">Subtasks&lt;/div>
+                &lt;div class="popup-subtask" id="popup-subtasks-${i}">
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="popup-task-footer">
+                &lt;div class="popup-task-footer-section" onclick="deleteTask(${i})">
+                    &lt;img src="../assets/img/icons/trash.svg" alt="Trash Icon">
+                    &lt;div>Delete&lt;/div>
+                &lt;/div>
+                &lt;p class="separator">&lt;/p>
+                &lt;div class="popup-task-footer-section" onclick="editTask(${i})">
+                    &lt;img src="../assets/img/icons/edit.svg" alt="Edit Icon">
+                    &lt;div>Edit&lt;/div>
+                &lt;/div> 
+            &lt;/div>
+
+        &lt;/div>
+    `;
+
+    createUserToAssigned(i);
+    createSubtasksToAddTaskPopup(i);
+    checkSelectedSubtasks(i);
+    checkCategoryButton();
+}
 
 
+/**
+ * Generates the HTML content for a board card.
+ * 
+ * @param {Object} task - The task object for the card.
+ * @param {number} i - The index of the task.
+ * @returns {string} The HTML content for the board card.
+ */
+function generateBoardCard(task, i) {
+    return /*html*/`
+        &lt;div onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}" draggable="true" ondragstart="dragStart(event)" ondrop="return false;" ontouchstart="onTouchStart(event)">           
+            &lt;div  class="progress_infocard">
+                &lt;button class="c1" id="category-bg-change-${i}">${task.category}&lt;/button>
+                &lt;div class="cooking_title_div">
+                    &lt;h1>${task.title}&lt;/h1>
+                    &lt;span class="recipe_span">${task.description}&lt;/span>
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="progress_image_Div" id="progress-bar-div-${i}" >
+                &lt;div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    &lt;div class="progress-bar" id="progress-bar-${i}" style="width: 70%">&lt;/div>
+                &lt;/div>                
+                &lt;div class="amount-subtasks" id="amount-subtasks-${i}">${calculatePercentageForProgressBar(i)} %&lt;/div>     
+            &lt;/div>
+            ${generateProgressDetails(i)}
+            &lt;div class="Members_Div">
+                &lt;div id="user-board-${i}">&lt;/div>
+                &lt;img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+            &lt;/div>
+        &lt;/div> 
+    `;
+}
 
 
+/**
+ * Generates the HTML content for the progress details section of a board card.
+ * 
+ * @param {number} i - The index of the task.
+ * @returns {string} The HTML content for the progress details section.
+ */
+function generateProgressDetails(i) {
+    return /*html*/`
+        &lt;div class="progress-hover">
+            ${updateSelectedSubtasksCount(i)} of ${totalSubtask(i)} subtasks finished
+        &lt;/div>  
+    `;
+}
 
 
+/**
+ * Generates the HTML content for the editable add task popup.
+ * 
+ * @param {number} i - The index of the task being edited.
+ * @returns {string} The HTML content for the editable add task popup.
+ */
+function generateEditableAddtask(i) {
+    return /*html*/`
+            &lt;div class="edit-div">
+                &lt;div class="edit-addtask">
+                    ${generateHtmlTitle()}  
+                    ${generateHtmlDescription()}  
+                    ${generateHtmlDate()}  
+                    ${generateHtmlPrio()}
+                    ${generateHtmlAssigned()}
+                    ${generateHtmlSubtasks()}
+                &lt;/div>
+                &lt;div class="ok-btn-edit-section">
+                    &lt;button class="ok-btn-edit create-task" onclick="saveEditedTask(${i})">OK &lt;img src="../assets/img/icons/check1.svg" alt="Check Icon">&lt;/button>
+                &lt;/div>
+            &lt;/div>
+    `;
+}
 
 
-    
+/**
+ * Generates the HTML content for a subtask item.
+ * @param {number} i - The index of the subtask item.
+ * @param {string} text - The text content of the subtask item.
+ * @returns {string} The HTML content for the subtask item.
+ */
+function getSubtasks() {
+    let list = document.getElementById('subtasks');
+    list.innerHTML = '';
+    for (let i = 0; i &lt; subtasks.length; i++) {
+        const text = subtasks[i];
+        list.innerHTML += /*html*/`
+        &lt;li class="each-subtask" id="each-subtask${i}">
+            &lt;div class="each-subtask-p" id="subtask${i}">&lt;p class="subtask-p">&lt;/p>${text}&lt;/div>
+            &lt;div class="subtask-right">
+                &lt;img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                &lt;p class="separator">&lt;/p>
+                &lt;img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            &lt;/div>
+        &lt;/li>
+    `;
+    }
+}
 
 
-
-
-
+/**
+ * Creates user avatars and names for the assigned section of the popup.
+ * 
+ * @param {number} i - The index of the task.
+ */
+function createUserToAssigned(i) {
+    let div = document.getElementById(`popup-user-${i}`);
+    let taskValue = tasks[i];
+    for (let k = 0; k &lt; taskValue.letter.length; k++) {
+        let letters = taskValue.letter[k];
+        let user = taskValue.assigned[k];
+        div.innerHTML += /*html*/`
+            &lt;div class="each-user-section">
+                &lt;img src="https://ui-avatars.com/api/?name=${letters}&amp;background=random&amp;color=fff" alt="Initials" class="assigned-contact-list-icon">
+                &lt;div>${user}&lt;/div>  
+            &lt;/div>
+        `;
+    }
+}</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,6 +1,11 @@
 // Load all Todos in Board
 let array = [];
 
+
+/**
+ * Loads tasks into the respective boards (To Do, In Progress, Awaiting Feedback, Done) based on their status,
+ * and updates the display accordingly.
+ */
 async function loadToDo() {              
     await loadTasks();
     const [todo, progress, feedback, done] = initializeElements();
@@ -11,6 +16,11 @@ async function loadToDo() {
 }
 
 
+/**
+ * Initializes the board elements by retrieving them from the DOM.
+ * 
+ * @returns {Array<Element>} An array containing the board elements for To Do, In Progress, Awaiting Feedback, and Done.
+ */
 function initializeElements() {
     let todo = document.getElementById('board-to-do');
     let progress = document.getElementById('board-in-progress');
@@ -20,6 +30,14 @@ function initializeElements() {
 }
 
 
+/**
+ * Clears the contents of the board elements by setting their inner HTML to an empty string.
+ * 
+ * @param {Element} todo - The element representing the To Do board.
+ * @param {Element} progress - The element representing the In Progress board.
+ * @param {Element} feedback - The element representing the Awaiting Feedback board.
+ * @param {Element} done - The element representing the Done board.
+ */
 function clearBoardContents(todo, progress, feedback, done) {
     todo.innerHTML = '';
     progress.innerHTML = '';
@@ -40,6 +58,15 @@ async function populateBoards(todo, progress, feedback, done) {
 }
 
 
+/**
+ * Populates the boards with tasks based on the tasks array.
+ * 
+ * @param {Element} todo - The element representing the To Do board.
+ * @param {Element} progress - The element representing the In Progress board.
+ * @param {Element} feedback - The element representing the Awaiting Feedback board.
+ * @param {Element} done - The element representing the Done board.
+ * @returns {Object} An object containing flags indicating whether each board has tasks.
+ */
 async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) {
     switch (taskValue.status) {
         case 'board-to-do':
@@ -62,6 +89,13 @@ async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) 
     updateBoardCard(taskValue, i);
 }
 
+
+/**
+ * Updates the card for a specific task on the board.
+ * 
+ * @param {Object} taskValue - The task object containing details of the task.
+ * @param {number} i - The index of the task in the tasks array.
+ */
 async function updateBoardCard(taskValue, i) {
     checkCategoryButton();
     createUserButtons(taskValue, i);
@@ -72,6 +106,18 @@ async function updateBoardCard(taskValue, i) {
 }
 
 
+/**
+ * Updates the display of each board based on whether they have tasks or not.
+ * 
+ * @param {HTMLElement} todo - The DOM element representing the "To Do" board.
+ * @param {HTMLElement} progress - The DOM element representing the "In Progress" board.
+ * @param {HTMLElement} feedback - The DOM element representing the "Await Feedback" board.
+ * @param {HTMLElement} done - The DOM element representing the "Done" board.
+ * @param {boolean} hasToDo - Indicates if the "To Do" board has tasks.
+ * @param {boolean} hasProgress - Indicates if the "In Progress" board has tasks.
+ * @param {boolean} hasFeedback - Indicates if the "Await Feedback" board has tasks.
+ * @param {boolean} hasDone - Indicates if the "Done" board has tasks.
+ */
 function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, hasFeedback, hasDone) {
     if (!hasToDo) {
         todo.innerHTML = '<div id="NoToDo" class="Card_NotasksTodo" ondragstart="return false;" ondrop="return false;" ondragover="return false;" disabled ontouchend="return false;" ontouchmove="return false;">No Tasks To do</div>';
@@ -88,8 +134,12 @@ function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, has
 }
 
 
-// Push all selected Subtasks
-
+/**
+ * Pushes the selected subtask to the task's checkoffs array.
+ * 
+ * @param {number} i - The index of the task in the tasks array.
+ * @param {number} k - The index of the subtask in the task's subtask array.
+ */
 async function pushSelectedSubtask(i, k) {
     await loadTasks();
 
@@ -105,6 +155,14 @@ async function pushSelectedSubtask(i, k) {
 }
 
 
+/**
+ * Updates the checkoffs array of a task based on the value of the subtask.
+ * 
+ * @param {object} task - The task object.
+ * @param {number} k - The index of the subtask in the task's subtask array.
+ * @param {string} value - The value indicating if the subtask is selected or not.
+ */
+
 function updateCheckoffs(task, k, value) {
     if (!Array.isArray(task.checkoffs)) {
         task.checkoffs = [];
@@ -118,6 +176,12 @@ function updateCheckoffs(task, k, value) {
 }
 
 
+/**
+ * Adds the index of a subtask to the task's checkoffs array if it's not already included.
+ * 
+ * @param {object} task - The task object.
+ * @param {number} k - The index of the subtask in the task's subtask array.
+ */
 function addSubtaskToCheckoffs(task, k) {
     if (!task.checkoffs.includes(k)) {
         task.checkoffs.push(k);
@@ -125,6 +189,12 @@ function addSubtaskToCheckoffs(task, k) {
 }
 
 
+/**
+ * Removes the index of a subtask from the task's checkoffs array if it's included.
+ * 
+ * @param {object} task - The task object.
+ * @param {number} k - The index of the subtask in the task's subtask array.
+ */
 function removeSubtaskFromCheckoffs(task, k) {
     const index = task.checkoffs.indexOf(k);
     if (index !== -1) {
@@ -133,13 +203,19 @@ function removeSubtaskFromCheckoffs(task, k) {
 }
 
 
+/**
+ * Saves the tasks array to local storage.
+ */
 async function saveTasks() {
     await setItem('tasks', JSON.stringify(tasks));
 }
 
 
-// open EditTask in Board
-
+/**
+* Handles the editing of a task.
+*
+* @param {number} i - The index of the task to be edited.
+*/
 async function editTask(i) {
     await loadTasks();
     categoryArray = [];
@@ -152,6 +228,11 @@ async function editTask(i) {
 }
 
 
+/**
+ * Hides the popup for adding a task and shows the popup for editing a task.
+ * 
+ * @param {number} i - The index of the task being edited.
+ */
 function hidePopup(i) {
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
@@ -166,6 +247,9 @@ function hidePopup(i) {
 }
 
 
+/**
+ * Displays the edit popup for editing a task.
+ */
 function displayEditPopup() {
     let popup = document.getElementById('popup-add-task-div');
     let div = document.getElementById(`popup-add-task-edit`);
@@ -176,6 +260,11 @@ function displayEditPopup() {
 }
 
 
+/**
+ * Displays the editable content for the task being edited.
+ * 
+ * @param {number} i - The index of the task being edited.
+ */
 function displayEditableContent(i) {
     let content = document.getElementById(`popup-add-task-content-edit`);
     content.innerHTML += generateEditableAddtask(i);
@@ -191,8 +280,11 @@ function displayEditableContent(i) {
 }
 
 
-// Push all values to the inputfields
-
+/**
+ * Pushes the values of the task to be edited to the edit form.
+ * 
+ * @param {number} i - The index of the task to be edited.
+ */
 async function pushValueToEdit(i) {
     await loadTasks();
     array = tasks[i];
@@ -203,6 +295,11 @@ async function pushValueToEdit(i) {
 }
 
 
+/**
+ * Updates the input fields of the edit form with the task values.
+ * 
+ * @param {Object} array - The task object containing the values.
+ */
 function updateFields(array) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -217,6 +314,11 @@ function updateFields(array) {
 }
 
 
+/**
+ * Updates the assigned contact list in the edit form with the task's assigned contacts.
+ * 
+ * @param {Object} array - The task object containing the assigned contacts.
+ */
 function updateContactList(array) {
     renderAssignedList();
     for (let i = 0; i < array.assigned.length; i++) {
@@ -231,6 +333,11 @@ function updateContactList(array) {
 }
 
 
+/**
+ * Updates the subtasks in the edit form with the task's subtasks.
+ * 
+ * @param {Object} array - The task object containing the subtasks.
+ */
 function updateSubtasks(array) {
     let subtasksArray = array.subtask;
     let checkoffsArray = array.checkoffs;
@@ -245,102 +352,4 @@ function updateSubtasks(array) {
         checkoffs.push(checkoffsArray[k]);
     }
     getSubtasks();
-}
-
-
-// save the edited task
-async function saveEditedTask(i) {
-    await loadTasks();
-    checkCategoryButton();
-    let isValid = validateForm();
-    if (isValid) {
-        let newTask = createNewTask(i);
-        updateTaskList(newTask, i);
-        await saveTasks();
-        closeEditPopup();
-        await updateProgressBar(i);
-    } else {
-        handleInvalidForm();
-    }
-    await reloadTasks();
-}
-
-
-function validateForm() {
-    let title = document.getElementById('title');
-    let date = document.getElementById('date');
-    let requiredTitle = document.getElementById('required-title');
-    let requiredDate = document.getElementById('required-date');
-
-    if (!title.value || !date.value) {
-        requiredTitle.classList.remove('d-none');
-        requiredDate.classList.remove('d-none');
-        date.classList.add('inputfield-focus-red');
-        title.classList.add('inputfield-focus-red');
-        return false;
-    }
-    return true;
-}
-
-
-function createNewTask(i) {
-    let title = document.getElementById('title');
-    let description = document.getElementById('description');
-    let date = document.getElementById('date');
-    let priority = pushPrio();
-    let dateValue = date.value;
-    let formatedDate = formatDate(dateValue);
-    let newTask = {
-        title: title.value,
-        description: description.value,
-        assigned: users,
-        letter: iniimg,
-        date: formatedDate,
-        priority: priority,
-        category: categoryArray[0],
-        subtask: subtasks,
-        checkoffs: checkoffs,
-        status: tasks[i].status
-    };
-    return newTask;
-}
-
-
-function updateTaskList(newTask, i) {
-    tasks.push(newTask);
-    tasks.splice(i, 1);
-}
-
-
-async function saveTasks() {
-    await setItem('tasks', JSON.stringify(tasks));
-}
-
-
-function closeEditPopup() {
-    let popup = document.getElementById('popup-add-task');
-    if (popup !== null) {
-        document.getElementById('popup-add-task-edit').style.display = 'none';
-        document.getElementById(`popup-add-task-content-edit`).innerHTML = '';
-    }
-}
-
-
-function handleInvalidForm() {
-    let title = document.getElementById('title');
-    let date = document.getElementById('date');
-    let requiredTitle = document.getElementById('required-title');
-    let requiredDate = document.getElementById('required-date');
-
-    requiredTitle.classList.remove('d-none');
-    requiredDate.classList.remove('d-none');
-    date.classList.add('inputfield-focus-red');
-    title.classList.add('inputfield-focus-red');
-}
-
-
-async function reloadTasks() {
-    loadTasks();
-    await loadToDo();
-    categoryArray = [];
 }
