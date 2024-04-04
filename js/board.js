@@ -43,6 +43,9 @@ function renderAddTaskForPopup() {
 }
 
 
+/**
+ * Checks and styles category buttons.
+ */
 function checkCategoryButton() {
     let categoryBtn = document.querySelectorAll('.c1');
     categoryBtn.forEach((id) => {
@@ -55,6 +58,12 @@ function checkCategoryButton() {
 }
 
 
+/**
+ * Creates user buttons for a task.
+ * 
+ * @param {Object} task - The task object containing user information.
+ * @param {number} i - The index of the task.
+ */
 function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
     let letters = task.letter;
@@ -70,6 +79,14 @@ function createUserButtons(task, i) {
 }
 
 
+/**
+ * Renders user buttons when there are more than four users assigned to a task.
+ * 
+ * @param {string[]} letters - The array of initials of users assigned to the task.
+ * @param {HTMLElement} iconmember - The HTML element where the user buttons will be rendered.
+ * @param {number} maxIcons - The maximum number of user buttons to be displayed.
+ * @param {number} remainingIcons - The number of additional users beyond the maximum number to be displayed.
+ */
 function greaterThanFour(letters, iconmember, maxIcons, remainingIcons) {
     for (let k = 0; k < maxIcons; k++) {
         const letter = letters[k];
@@ -83,6 +100,12 @@ function greaterThanFour(letters, iconmember, maxIcons, remainingIcons) {
 }
 
 
+/**
+ * Renders user buttons when there are four or fewer users assigned to a task.
+ * 
+ * @param {string[]} letters - The array of initials of users assigned to the task.
+ * @param {HTMLElement} iconmember - The HTML element where the user buttons will be rendered.
+ */
 function smallerThanFour(letters, iconmember) {
     for (let k = 0; k < letters.length; k++) {
         const letter = letters[k];
@@ -93,6 +116,11 @@ function smallerThanFour(letters, iconmember) {
 }
 
 
+/**
+ * Creates subtasks for the task in the popup.
+ * 
+ * @param {number} i - The index of the task.
+ */
 function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
     let taskValue = tasks[i];
@@ -111,6 +139,11 @@ function createSubtasksToAddTaskPopup(i) {
 }
 
 
+/**
+ * Checks and updates the selected subtasks for the task in the popup.
+ * 
+ * @param {number} i - The index of the task.
+ */
 function checkSelectedSubtasks(i) {
     let taskValue = tasks[i];
     for (let k = 0; k < taskValue.subtask.length; k++) {
@@ -127,6 +160,12 @@ function checkSelectedSubtasks(i) {
 }
 
 
+/**
+ * Handles checking off a subtask in the task popup.
+ * 
+ * @param {number} i - The index of the task.
+ * @param {number} k - The index of the subtask.
+ */
 async function checkOffSubtask(i, k) {
     let img = document.getElementById(`select-subtask-board-${k}`);
     let subtask = document.getElementById(`each-subtasks-${k}`);
@@ -139,6 +178,14 @@ async function checkOffSubtask(i, k) {
 }
 
 
+/**
+ * Highlights or un-highlights a subtask in the task popup based on its current state.
+ * 
+ * @param {number} i - The index of the task.
+ * @param {number} k - The index of the subtask.
+ * @param {HTMLImageElement} img - The image element representing the subtask check icon.
+ * @param {HTMLElement} subtask - The element representing the subtask.
+ */
 function highlightCheckOffSubtask(i, k, img, subtask) {
     if (img.src.includes('none-selected.svg')) {
         img.src = '../assets/img/icons/selected.svg';
@@ -154,6 +201,11 @@ function highlightCheckOffSubtask(i, k, img, subtask) {
 }
 
 
+/**
+ * Closes the task popup and updates the task details accordingly.
+ * 
+ * @param {number} i - The index of the task.
+ */
 function closePopupAddTaskDiv(i) {
     let content = document.getElementById('popup-add-task-content-div');
     let div = document.getElementById('popup-add-task-div');
@@ -172,6 +224,12 @@ function closePopupAddTaskDiv(i) {
 }
 
 
+/**
+ * Calculates the percentage completion for the progress bar of a task.
+ * 
+ * @param {number} i - The index of the task.
+ * @returns {number} - The percentage completion.
+ */
 function calculatePercentageForProgressBar(i) {
     let total = totalSubtask(i);
     let subtotal = updateSelectedSubtasksCount(i);
@@ -186,6 +244,11 @@ function calculatePercentageForProgressBar(i) {
 }
 
 
+/**
+ * Updates the width of the progress bar based on the percentage completion.
+ * 
+ * @param {number} i - The index of the task.
+ */
 async function updateProgressBar(i) {
     let div = document.getElementById(`progress-bar-${i}`);
     if (div) {
@@ -194,6 +257,12 @@ async function updateProgressBar(i) {
 }
 
 
+/**
+ * Calculates the total number of subtasks for a given task.
+ * 
+ * @param {number} i - The index of the task.
+ * @returns {number} - The total number of subtasks.
+ */
 function totalSubtask(i) {
     let taskValue = tasks[i];
     if (taskValue && taskValue.subtask && Array.isArray(taskValue.subtask)) {
@@ -204,6 +273,12 @@ function totalSubtask(i) {
 }
 
 
+/**
+ * Calculates the number of selected subtasks for a given task.
+ * 
+ * @param {number} i - The index of the task.
+ * @returns {number} - The number of selected subtasks.
+ */
 function updateSelectedSubtasksCount(i) {
     let taskValue = tasks[i];
     if (taskValue && taskValue.checkoffs) {
@@ -214,6 +289,11 @@ function updateSelectedSubtasksCount(i) {
 }
 
 
+/**
+ * Highlights the progress bar of a task based on the completion status of subtasks.
+ * 
+ * @param {number} i - The index of the task.
+ */
 async function highlightProgressbar(i) {
     let text = document.getElementById(`amount-subtasks-${i}`);
     let bar = document.getElementById(`progress-bar-${i}`);
@@ -229,6 +309,11 @@ async function highlightProgressbar(i) {
 }
 
 
+/**
+ * Empties the progress bar of a task if there are no subtasks.
+ * 
+ * @param {number} i - The index of the task.
+ */
 async function emptyProgressBar(i) {
     let progressbar = document.getElementById(`progress-bar-div-${i}`);
     if(progressbar) {
@@ -241,7 +326,9 @@ async function emptyProgressBar(i) {
 }
 
 
-
+/**
+ * Searches for tasks based on user input.
+ */
 function searchTasks() {
     hideAllNoCards();
     let input = document.getElementById('input-search-task');
@@ -257,6 +344,12 @@ function searchTasks() {
 }
 
 
+/**
+ * Searches for tasks based on user input.
+ * 
+ * @param {string} filter - The search query.
+ * @param {Object} searchResult - Object to store the search result.
+ */
 function searchFunction(filter, searchResult) {
     for (let i = 0; i < tasks.length; i++) {
         let todo = document.getElementById(`board-to-do-section-${i}`);
@@ -290,6 +383,9 @@ function hideAllNoCards() {
 }
 
 
+/**
+ * Hides all "no tasks" cards when searching for tasks.
+ */
 function showNoResultsMessage() {
     let noResultsDiv = document.getElementById('no-results');
     let input = document.getElementById('input-search-task');
@@ -299,6 +395,9 @@ function showNoResultsMessage() {
 }
 
 
+/**
+ * Hides the "no results" message and restores the border of the search input field.
+ */
 function hideNoResultsMessage() {
     let noResultsDiv = document.getElementById('no-results');
     let input = document.getElementById('input-search-task');
@@ -307,6 +406,9 @@ function hideNoResultsMessage() {
 }
 
 
+/**
+ * Resets the onclick event of the cancel button and updates its inner HTML to include the cancel text and icon.
+ */
 function cancelButton() {
     let button = document.getElementById('clear-button');
     if (button) {
@@ -321,6 +423,12 @@ function cancelButton() {
     }
 }
 
+
+/**
+ * Deletes the task at the given index and updates the task list.
+ * 
+ * @param {number} i - The index of the task to delete.
+ */
 async function deleteTask(i) {
     await loadTasks();
     tasks.splice(i, 1);
@@ -331,6 +439,12 @@ async function deleteTask(i) {
 }
 
 
+/**
+ * Formats the given date string to "DD/MM/YYYY" format.
+ * 
+ * @param {string} date - The date string to format.
+ * @returns {string} The formatted date string.
+ */
 function formatDate(date) {
     let dateObj = new Date(date);
 
@@ -347,6 +461,13 @@ function formatDate(date) {
     }
 }
 
+
+/**
+ * Deformats the given date string from "DD/MM/YYYY" format to "YYYY-MM-DD" format.
+ * 
+ * @param {string} date - The date string to deformat.
+ * @returns {string} The deformatted date string.
+ */
 function deformatDate(date) {
     let parts = date.split('/');
     if (parts.length === 3) {
@@ -362,6 +483,11 @@ function deformatDate(date) {
 }
 
 
+/**
+ * Updates the UI to reflect the selected priority.
+ * 
+ * @param {string} priority - The selected priority value.
+ */
 function getPriority(priority) {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
@@ -375,6 +501,11 @@ function getPriority(priority) {
 }
 
 
+/**
+ * Closes the popup window for editing a task.
+ * 
+ * @param {number} i - The index of the task.
+ */
 async function closePopupEdit(i) {
     let div = document.getElementById(`popup-add-task-edit`);
     div.style.display = 'none';

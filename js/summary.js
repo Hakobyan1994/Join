@@ -96,6 +96,9 @@ function dateUpdate() {
 */
 
 
+/**
+ * Renders the summary main content.
+ */
 async function renderSummaryMain() {
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
@@ -107,6 +110,11 @@ async function renderSummaryMain() {
 }
 
 
+/**
+ * Retrieves task values and updates the content with the retrieved values.
+ * 
+ * @param {HTMLElement} content - The HTML element to update with the retrieved values.
+ */
 async function getValue(content) {
   await loadTasks();
   const { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total } = countTaskValues(tasks);
@@ -115,6 +123,13 @@ async function getValue(content) {
   ifTotalEmpty(total, content);
 }
 
+
+/**
+ * Counts the values of different task states.
+ * 
+ * @param {Array} tasks - An array of tasks.
+ * @returns {Object} - Object containing the counts of task values.
+ */
 function countTaskValues(tasks) {
   let valueTodo = 0, valueProgress = 0, valueFeedback = 0, valueDone = 0, valueUrgent = 0, total = 0;
   for (let i = 0; i < tasks.length; i++) {
@@ -141,6 +156,15 @@ function countTaskValues(tasks) {
 }
 
 
+/**
+ * Updates the HTML content with the provided values.
+ * 
+ * @param {number} valueTodo - The number of tasks in 'To Do' state.
+ * @param {number} valueProgress - The number of tasks in 'In Progress' state.
+ * @param {number} valueFeedback - The number of tasks in 'Await Feedback' state.
+ * @param {number} valueDone - The number of tasks in 'Done' state.
+ * @param {number} valueUrgent - The number of tasks marked as urgent.
+ */
 function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgent) {
   if(document.getElementById('value-todoarray')) {
     document.getElementById('value-todoarray').innerHTML = valueTodo;
@@ -152,6 +176,12 @@ function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgen
 }
 
 
+/**
+ * Updates the total value in the HTML content if the total value is empty.
+ * 
+ * @param {number} total - The total count of tasks.
+ * @param {HTMLElement} content - The HTML element to update if the total value is empty.
+ */
 function ifTotalEmpty(total, content) {
   if(content) {
     if (total) {
@@ -163,6 +193,9 @@ function ifTotalEmpty(total, content) {
 }
 
 
+/**
+ * Retrieves urgent dates and performs necessary operations based on the retrieved data.
+ */
 function getUrgentDate() {
   arrayUrgent = [];
 
@@ -178,6 +211,9 @@ function getUrgentDate() {
 }
 
 
+/**
+ * Deletes old urgent dates from the array.
+ */
 function deleteOldUrgent() {
   let dateArray = arrayUrgent.map(urgentString => {
     let [day, month, year] = urgentString.split('/').map(Number);
@@ -190,6 +226,9 @@ function deleteOldUrgent() {
 }
 
 
+/**
+ * Retrieves the current date.
+ */
 function actualDate() {
   let date = new Date();
   let day = date.getDate();
@@ -199,6 +238,9 @@ function actualDate() {
 actualDate()
 
 
+/**
+ * Validates upcoming deadlines and updates the HTML content accordingly.
+ */
 function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('urgentDate');
 
@@ -210,6 +252,11 @@ function validateUpcomingDeadline() {
 }
 
 
+/**
+ * Defines the upcoming deadline based on the urgent dates.
+ * 
+ * @returns {string} - The formatted upcoming deadline date.
+ */
 function defineUpcomingDeadline() {
   let dateArray = arrayUrgent.map(urgentString => {
     let [day, month, year] = urgentString.split('/').map(Number);
@@ -225,6 +272,9 @@ function defineUpcomingDeadline() {
 }
 
 
+/**
+ * Displays a greeting message and updates the greeting time and name in the UI.
+ */
 async function displayGreeting() {
   let greetingTimeCon = document.getElementById('timeOfDay');
   let greetingNameCon = document.getElementById('greetingName');
@@ -243,10 +293,15 @@ async function displayGreeting() {
     greetingNameCon.style.display = 'block';
     greetingNameCon.textContent = greetingData.name;
    }
-
 }
 
 
+/**
+ * Gets the appropriate greeting based on the current time of the day
+ * and the active user's name, if available.
+ * 
+ * @returns {Promise<{time: string, name: string}>} An object containing the greeting time and the user's capitalized name.
+ */
 async function getGreeting() {
   const now = new Date();
   const hour = now.getHours();
@@ -265,6 +320,12 @@ async function getGreeting() {
 }
 
 
+/**
+ * Capitalizes the first letter of each word in a given name string.
+ * 
+ * @param {string} name The name string to capitalize.
+ * @returns {string} The name string with the first letter of each word capitalized.
+ */
 function greetingNameToUpperCaser(name) {
   const nameWords = name.split(' ');
   const capitalizedNames = nameWords.map(capitalizeFirstLetter);
@@ -272,17 +333,29 @@ function greetingNameToUpperCaser(name) {
 }
 
 
+/**
+ * Capitalizes the first letter of a given word.
+ * 
+ * @param {string} word The word to capitalize.
+ * @returns {string} The word with its first letter capitalized.
+ */
 function capitalizeFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 
+/**
+ * Retrieves the active user from storage and adds their name to the nameActiveUser array.
+ */
 async function getActiveUser() {
   let user = await registergetItem('activeUser');
   nameActiveUser.push(user[0].name);
 }
 
 
+/**
+ * Displays the initials of the active user in the header.
+ */
 async function showHeaderIni() {
   await getActiveUser();
   let div = document.getElementById('shortName');
@@ -292,14 +365,22 @@ async function showHeaderIni() {
 }
 
 
+/**
+ * Generates the initials from a given name.
+ * 
+ * @param {string} name - The name from which to generate the initials.
+ * @returns {string} The initials generated from the name.
+ */
 function getInitials(name) {
   let nameWords = name.split(' ');
   let initials = nameWords.map(word => word.charAt(0).toUpperCase()).join('');
   return initials;
 }
 
-
-function checkButtonImgChange() {                                       //change check button when it is hovering
+/**
+ * Changes the check button image when hovering over it.
+ */
+function checkButtonImgChange() {
   let img = document.getElementById('check-button');
   let checkButton = document.getElementById('check-button-div');
   if (checkButton) {

@@ -1,3 +1,6 @@
+/**
+ * Toggles the display of the profile information.
+ */
 function checks() {
   let profilInfo = document.getElementById('clickInfoDiv');
     if (profilInfo.style.display === 'block') {
@@ -8,6 +11,9 @@ function checks() {
 }
 
 
+/**
+ * Includes HTML content into elements with the "w3-include-html" attribute.
+ */
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
