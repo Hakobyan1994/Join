@@ -5,7 +5,11 @@ let initialsColor = 'white';
 let contactInfoSliderVisible = false;
 let loggedInUser = [];
 
-
+/**
+ * This function clears the existing content in the 'render-contacts' element, generates HTML for the main contacts, 
+ * waits for the contacts to load asynchronously, and finally renders the contacts onto the page.
+ * 
+ */
 async function renderContactsMain() {
     let content = document.getElementById('render-contacts');
     content.innerHTML = '';
@@ -14,14 +18,35 @@ async function renderContactsMain() {
     renderContacts();
 }
 
-
+/**
+ * Renders the contacts into the contact page, arranging them alphabetically by their initials.
+ * This function also adds an 'Add' button and handles the resizing of contact elements.
+ * 
+ */
 function renderContacts() {
     let addBtn = document.getElementById('addBtn');
     let contactsContainer = document.getElementById('allContacts');
     addContactBtnHTML(addBtn, contactsContainer);
     const predefinedOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-    contacts.sort((a, b) => {
+    sortContacts(predefinedOrder);
+
+    let lastLetter = '';
+
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+        lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
+    }
+resizeHandler();
+}
+
+/**
+ * This function sorts the contacts by their initials.
+ * 
+ * @param {string} predefinedOrder - These are the letters used to assign and sort the initials of the names.
+ */
+function sortContacts(predefinedOrder) {
+ contacts.sort((a, b) => {
         const nameA = a.name || '';
         const nameB = b.name || '';
         const indexA = predefinedOrder.indexOf(nameA.charAt(0).toUpperCase());
@@ -35,17 +60,12 @@ function renderContacts() {
         }
         return indexA - indexB;
     });
-
-    let lastLetter = '';
-
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
-    }
-resizeHandler();
 }
 
-
+/**
+ * Handles the resizing of elements on the page based on the current window size.
+ * 
+ */
 function resizeHandler() {
     let headline = document.getElementById('headline');
     let headlineMobile = document.getElementById('headlineMobile');
@@ -58,7 +78,11 @@ function resizeHandler() {
     refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible);
 }
 
-
+/**
+ * Checks for the presence of a specific HTML element ('addedContactsCon') and adds or removes
+ * an event listener for window resize accordingly.
+ * 
+ */
 function checkResize() {
     let div = document.getElementById('addedContactsCon');
 
@@ -69,13 +93,28 @@ function checkResize() {
     }
 }
 
-
+/**
+ * Generates HTML content for the add contact button and inserts it into the specified button element.
+ * Additionally, generates HTML content for the mobile version of the add contact button and inserts it
+ * into the specified container element.
+ *
+ * @param {HTMLElement} addBtn - The HTML button element where the add contact button content will be inserted.
+ * @param {HTMLElement} contactsContainer - The HTML element where the mobile version of the add contact button content will be inserted.
+ */
 function addContactBtnHTML(addBtn, contactsContainer) {
     addBtn.innerHTML = generateAddBtn();
     contactsContainer.innerHTML = generateAddBtnMobile();
 }
 
-
+/**
+ * Renders the contact's image and initials into the contacts container, along with separators based on the initial letter of the contact's name.
+ *
+ * @param {string} lastLetter - The last letter processed during rendering to determine if a new separator is needed.
+ * @param {object} contact - The contact object containing information like name and image.
+ * @param {number} i - The index of the contact being rendered.
+ * @param {HTMLElement} contactsContainer - The HTML element where the contacts are rendered.
+ * @returns {string} The first letter of the current contact's name.
+ */
 function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
     if (contact.name && contact.name.length > 0) {
         const firstLetter = contact.name.charAt(0).toUpperCase();
@@ -94,7 +133,12 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
     return lastLetter;
 }
 
-
+/**
+ * Adds initials to the contact's image and sets the image source using UI Avatars API.
+ *
+ * @param {object} contact - The contact object containing information like name and initials.
+ * @param {string} imageId - The ID of the image element to which the initials will be added.
+ */
 function addInitialsToContactImage(contact, imageId) {
     if (contact && contact.name) {
         const nameParts = contact.name.trim().split(' ');
@@ -111,7 +155,11 @@ function addInitialsToContactImage(contact, imageId) {
     }
 }
 
-
+/**
+ * Displays the contact image for the specified index by setting its source and styling.
+ *
+ * @param {number} i - The index of the contact in the contacts array.
+ */
 function displayContactImage(i) {
     let contact = contacts[i];
     let contactImage = document.getElementById('contactImageEdit');
@@ -125,7 +173,12 @@ function displayContactImage(i) {
     }
 }
 
-
+/**
+ * Generates a random color hex code based on the provided seed.
+ *
+ * @param {string} seed - The seed used to generate the random color.
+ * @returns {string} A random color hex code.
+ */
 function getRandomColor(seed) {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -134,7 +187,13 @@ function getRandomColor(seed) {
     return color;
 }
 
-
+/**
+ * Helper function to generate a random color hex code based on the provided seed or using a default random generation method.
+ *
+ * @param {string} seed - The seed used to generate the random color. If not provided, a random color will be generated.
+ * @param {string} letters - The string containing hexadecimal characters used for color generation.
+ * @param {string} color - The initial color value.
+ */
 function getRandomColorHELP(seed, letters, color) {
     if (seed && seed.length > 0) {
         for (let i = 0; i < 6; i++) {
@@ -148,13 +207,30 @@ function getRandomColorHELP(seed, letters, color) {
     }
 }
 
-
+/**
+ * Applies a random background color to the specified image element based on the provided seed.
+ *
+ * @param {HTMLElement} imageElement - The image element to which the random background color will be applied.
+ * @param {string} seed - The seed used to generate the random background color.
+ */
 function applyRandomColorToImage(imageElement, seed) {
     const randomColor = getRandomColor(seed);
     imageElement.style.backgroundColor = randomColor;
 }
 
-
+/**
+ * Adds a new contact to the contacts array upon successful addition, clears input fields, closes the add contact slider,
+ * updates the contacts in the local storage, reloads the contacts, and renders them on the page.
+ *
+ * @param {HTMLElement} nameInput - The input field for the contact's name.
+ * @param {HTMLElement} emailInput - The input field for the contact's email.
+ * @param {HTMLElement} phoneInput - The input field for the contact's phone number.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} formattedName - The formatted name of the contact.
+ * @param {string} initials - The initials of the contact.
+ */
 async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials) {
     addContactToArray(formattedName, email, phone, initials);
     clearInputs(nameInput, emailInput, phoneInput);
@@ -165,7 +241,10 @@ async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, e
     addedContactSuccessfully();
 }
 
-
+/**
+ * Displays a success message upon successfully adding a contact, showing a success button slider.
+ * 
+ */
 function addedContactSuccessfully() {
     let success = document.getElementById('successCon');
     success.innerHTML = generateSuccessBtnSlider();
@@ -174,7 +253,11 @@ function addedContactSuccessfully() {
     setTimeoutSuccesDiv(success);
 }
 
-
+/**
+ * Sets a timeout to remove the success message by sliding it out and hiding it after a certain duration.
+ * 
+ * @param {HTMLElement} success - The success message container element.
+ */
 function setTimeoutSuccesDiv(success) {
     setTimeout(() => {
         success.classList.remove('slide-in-success-btn');
@@ -186,7 +269,12 @@ function setTimeoutSuccesDiv(success) {
     }, 1500);
 }
 
-
+/**
+ * Splits a name into parts, capitalizes the first letter of each part, and returns the formatted name.
+ * 
+ * @param {string} inputName - The name to be formatted.
+ * @returns {string} The formatted name with each part capitalized.
+ */
 function splitNameAndCapitalize(inputName) {
     const nameParts = inputName.trim().split(' ');
     const formattedNameParts = [];
@@ -199,7 +287,12 @@ function splitNameAndCapitalize(inputName) {
     return formattedNameParts.join(' ');
 }
 
-
+/**
+ * Formats the initials of a name by taking the first letter of each part and capitalizing it.
+ * 
+ * @param {string} inputName - The name to extract initials from.
+ * @returns {string} The formatted initials.
+ */
 function formatInitials(inputName) {
     let nameParts = inputName.trim().split(' ');
     let initials = '';
@@ -210,7 +303,14 @@ function formatInitials(inputName) {
     return initials;
 }
 
-
+/**
+ * Adds a new contact object to the contacts array.
+ * 
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} initials - The initials of the contact.
+ */
 function addContactToArray(name, email, phone, initials) {
     let randomColor = getRandomColor(initials);
     let contactImg = generateContactImage(initials, randomColor);
@@ -227,7 +327,11 @@ function addContactToArray(name, email, phone, initials) {
     contacts.push(contact);
 }
 
-
+/**
+ * Loads contacts data from storage and assigns it to the contacts array.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when contacts data is successfully loaded.
+ */
 async function loadContacts() {
     try {
         contacts = JSON.parse(await getItem('contacts'));
@@ -236,7 +340,11 @@ async function loadContacts() {
     }
 }
 
-
+/**
+ * Loads contact information for the specified contact index and populates the corresponding input fields.
+ * 
+ * @param {number} i - The index of the contact in the contacts array.
+ */
 function loadContactInfo(i) {
     let contact = contacts[i];
     let nameEdit = document.getElementById('nameEdit');
@@ -247,7 +355,11 @@ function loadContactInfo(i) {
     phoneEdit.value = contact.phone;
 }
 
-
+/**
+ * Deletes the contact at the specified index and updates the contact list.
+ * 
+ * @param {number} i - The index of the contact to be deleted.
+ */
 async function deleteContact(i) {
     let contactInfoConMobile = document.getElementById('contactInfoConMobile');
     let headlineMobile = document.getElementById('headlineMobile');
@@ -262,7 +374,11 @@ async function deleteContact(i) {
     renderContacts();
 }
 
-
+/**
+ * Removes the deleted contact from the assigned tasks.
+ * 
+ * @param {number} i - The index of the contact that was deleted.
+ */
 function deleteDeletedContact(i) {
     let contactName = contacts[i].name;
     let filter = contactName.trim().toUpperCase();
@@ -279,7 +395,13 @@ function deleteDeletedContact(i) {
     }
 }
 
-
+/**
+ * Hides or shows the contact information container and headline on mobile devices based on window width.
+ * 
+ * @param {HTMLElement} contactInfoConMobile - The container for contact information on mobile devices.
+ * @param {HTMLElement} headlineMobile - The headline for contacts on mobile devices.
+ * @param {number} i - The index of the contact being deleted.
+ */
 function deleteContactHELP(contactInfoConMobile, headlineMobile, i) {
     if (window.innerWidth < 860) {
         contactInfoConMobile.classList.add('d-none');
@@ -290,7 +412,12 @@ function deleteContactHELP(contactInfoConMobile, headlineMobile, i) {
     }
 }
 
-
+/**
+ * Renders contact information for a given contact index into the contact information slider.
+ * 
+ * @param {number} i - The index of the contact to render information for.
+ * @param {HTMLElement} contactInfoSlider - The container for contact information slider.
+ */
 function renderContactInfo(i, contactInfoSlider) {
     let contact = contacts[i];
     let contactName = contact.name;

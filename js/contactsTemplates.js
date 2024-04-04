@@ -1,3 +1,8 @@
+/**
+ * Generates HTML markup for the main contacts section.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
 function generateHtmlMainContacts() {
     return /*html*/`
         <div id="mainContent" class="main-content">
@@ -55,13 +60,21 @@ function generateHtmlMainContacts() {
         </div>`;
 }
 
-
+/**
+ * Generates HTML markup for the mobile add contact button.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
 function generateAddBtnMobile() {
     return /*html*/`
         <img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">`;
 }
 
-
+/**
+ * Generates HTML markup for the add contact button.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
 function generateAddBtn() {
     return /*html*/`
         <button type="button" class="add-contact-btn" onclick="showAddContactOverlay()">
@@ -70,7 +83,14 @@ function generateAddBtn() {
         </button>`;
 }
 
-
+/**
+ * Generates HTML markup for a contact.
+ * 
+ * @param {number} i - The index of the contact.
+ * @param {object} contact - The contact object containing name and email.
+ * @param {string} imageIdSlider - The id of the contact image element.
+ * @returns {string} The generated HTML markup for the contact.
+ */
 function generateContact(i, contact, imageIdSlider) {
     return /*html*/`
     <div id="contactHighlighter" class="focus-main" >
@@ -87,7 +107,11 @@ function generateContact(i, contact, imageIdSlider) {
     <div class="scroll-con"></div>`;
 }
 
-
+/**
+ * Generates HTML markup for a success button slider.
+ * 
+ * @returns {string} The generated HTML markup for the success button slider.
+ */
 function generateSuccessBtnSlider() {
     return /*html*/`
         <button class="success-btn">
@@ -95,7 +119,16 @@ function generateSuccessBtnSlider() {
         </button>`;
 }
 
-
+/**
+ * Generates HTML markup for the contact information slider.
+ * 
+ * @param {number} i - The index of the contact.
+ * @param {string} contactName - The name of the contact.
+ * @param {string} contactEmail - The email of the contact.
+ * @param {string} contactPhone - The phone number of the contact.
+ * @param {string} imageId - The id of the contact image element.
+ * @returns {string} The generated HTML markup for the contact information slider.
+ */
 function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
     return /*html*/`
         <div id="contactSlider" class="contact-info-slider">
@@ -141,7 +174,12 @@ function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, i
         </div>`;
 }
 
-
+/**
+ * Generates HTML markup for a letter container.
+ * 
+ * @param {string} currentLetter - The current letter to be displayed in the container.
+ * @returns {string} The generated HTML markup for the letter container.
+ */
 function generateLetterCon(currentLetter) {
     return /*html*/`
         <div class="letter-con">
@@ -149,7 +187,13 @@ function generateLetterCon(currentLetter) {
         </div>`;
 }
 
-
+/**
+ * Generates SVG markup for a contact image with specified initials and background color.
+ * 
+ * @param {string} initials - The initials to be displayed on the contact image.
+ * @param {string} color - The background color of the contact image.
+ * @returns {string} The SVG markup for the contact image.
+ */
 function generateContactImage(initials, color) {
     return /*html*/`
         <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +202,11 @@ function generateContactImage(initials, color) {
         </svg>`;
 }
 
-
+/**
+ * Generates HTML markup for a separator line between contacts.
+ * 
+ * @returns {string} The HTML markup for the separator line.
+ */
 function generateSeparator() {
     return /*html*/`
         <div class="contact-line">
@@ -166,7 +214,11 @@ function generateSeparator() {
         </div>`;
 }
 
-
+/**
+ * Generates HTML markup for the add contact overlay.
+ * 
+ * @returns {string} The HTML markup for the add contact overlay.
+ */
 function generateAddContactOverlay() {
     return /*html*/`
         <div class="set-overlay-pos">
@@ -242,7 +294,12 @@ function generateAddContactOverlay() {
     </div>`;
 }
 
-
+/**
+ * Generates HTML markup for the edit contact overlay.
+ * 
+ * @param {number} i - The index of the contact to be edited.
+ * @returns {string} The HTML markup for the edit contact overlay.
+ */
 function generateEditMaskOverlay(i) {
     return /*html*/`
         <div class="set-overlay-pos">
