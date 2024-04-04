@@ -1,6 +1,10 @@
 let dataTask = [];
 let categoryArray = [];
 
+
+/**
+ * Renders the main board interface.
+ */
 async function renderBoardMain() {
     let content = document.getElementById('render-board');
     content.innerHTML = '';
@@ -12,6 +16,9 @@ async function renderBoardMain() {
 }
 
 
+/**
+ * Empties any open pages.
+ */
 function emptyPages() {
     document.getElementById('popup-add-task').style.display = 'none';
     document.getElementById('popup-add-task-div').style.display = 'none';
@@ -19,6 +26,9 @@ function emptyPages() {
 }
 
 
+/**
+ * Closes the 'Add Task' popup.
+ */
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');

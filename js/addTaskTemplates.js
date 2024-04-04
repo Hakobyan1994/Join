@@ -1,3 +1,6 @@
+/**
+ * Renders the main add task section.
+ */
 async function renderAddTaskMain() {
     let content = document.getElementById('render-add-task');
     content.innerHTML = '';
@@ -8,6 +11,9 @@ async function renderAddTaskMain() {
 }
 
 
+/**
+ * Renders the add task section.
+ */
 async function renderAddTask() {
     let content = document.getElementById('add-task');
     content.innerHTML = '';
@@ -20,6 +26,9 @@ async function renderAddTask() {
 }
 
 
+/**
+ * Adds event functions to elements in the add task section.
+ */
 async function addEventFunctions() {
     getPrio();
     document.getElementById('prio').addEventListener('click', getPrio);
@@ -33,6 +42,11 @@ async function addEventFunctions() {
 }
 
 
+/**
+ * Generates the HTML for the main add task section.
+ * 
+ * @returns {string} - The HTML string for the main add task section.
+ */
 function generateHtmlMainAddTask() {
     return /*html*/`
         <div id="add-task" class="main-window main-window-add-task"></div>
@@ -43,6 +57,12 @@ function generateHtmlMainAddTask() {
 }
 
 
+/**
+ * Generates the HTML for rendering the add task section.
+ * 
+ * @param {string} boardcard - The identifier of the board card.
+ * @returns {string} - The HTML string for rendering the add task section.
+ */
 function generateRenderAddTask(boardcard) {
     return /*html*/`
     <div class="mobile-view mobile-add-task-view">
@@ -60,6 +80,11 @@ function generateRenderAddTask(boardcard) {
 }
 
 
+/**
+ * Generates the HTML for the add task form.
+ * 
+ * @returns {string} - The HTML string for the add task form.
+ */
 function generateHtmlAddTaskForm() {
     return /*html*/`
         <form>
@@ -78,6 +103,11 @@ function generateHtmlAddTaskForm() {
 }
 
 
+/**
+ * Generates the HTML for the title input field.
+ * 
+ * @returns {string} - The HTML string for the title input field.
+ */
 function generateHtmlTitle() {
     return /*html*/`
         <div class="title-div">
@@ -89,6 +119,11 @@ function generateHtmlTitle() {
 }
 
 
+/**
+ * Generates the HTML for the description input field.
+ * 
+ * @returns {string} - The HTML string for the description input field.
+ */
 function generateHtmlDescription() {
     return /*html*/`
         <label>Description</label>
@@ -97,6 +132,11 @@ function generateHtmlDescription() {
 }
 
 
+/**
+ * Generates the HTML for the assigned contacts input field.
+ * 
+ * @returns {string} - The HTML string for the assigned contacts input field.
+ */
 function generateHtmlAssigned() {
     return /*html*/`
         <label>Assigned to</label>
@@ -108,6 +148,11 @@ function generateHtmlAssigned() {
 }
 
 
+/**
+ * Generates the HTML for the due date input field.
+ * 
+ * @returns {string} - The HTML string for the due date input field.
+ */
 function generateHtmlDate() {
     return /*html*/`
         <label>Due date<p class="redstar">*</p></label>
@@ -121,6 +166,11 @@ function generateHtmlDate() {
 }
 
 
+/**
+ * Generates the HTML for the priority selection buttons.
+ * 
+ * @returns {string} - The HTML string for the priority selection buttons.
+ */
 function generateHtmlPrio() {
     return /*html*/`
         <label>Prio</label>
@@ -133,6 +183,11 @@ function generateHtmlPrio() {
 }
 
 
+/**
+ * Generates the HTML for the category input field.
+ * 
+ * @returns {string} - The HTML string for the category input field.
+ */
 function generateHtmlCategory() {
     return /*html*/`
         <label>Category<p class="redstar">*</p></label>
@@ -146,6 +201,11 @@ function generateHtmlCategory() {
 }
 
 
+/**
+ * Generates the HTML for the subtasks input field.
+ * 
+ * @returns {string} - The HTML string for the subtasks input field.
+ */
 function generateHtmlSubtasks() {
     return /*html*/`
         <label id="subtasks-label">Subtasks</label>
@@ -162,6 +222,12 @@ function generateHtmlSubtasks() {
 }
 
 
+/**
+ * Generates the HTML for the form bottom section.
+ *  
+ * @param {string} boardcard - The identifier of the board card.
+ * @returns {string} - The HTML string for the form bottom section.
+ */
 function generateHtmlFormSection(boardcard) {
     return /*html*/`
         <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
@@ -173,6 +239,15 @@ function generateHtmlFormSection(boardcard) {
 }
 
 
+/**
+ * Generates the HTML for the assigned contact list item.
+ * 
+ * @param {string} name - The name of the contact.
+ * @param {string} img - The initials or avatar of the contact.
+ * @param {boolean} isSelected - Indicates whether the contact is selected.
+ * @param {number} i - The index of the contact.
+ * @returns {string} - The HTML string for the assigned contact list item.
+ */
 function generateHtmlAssignedList(name, img, isSelected, i) {
     return /*html*/`
         <div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
@@ -186,6 +261,9 @@ function generateHtmlAssignedList(name, img, isSelected, i) {
 }
 
 
+/**
+ * Renders the category list.
+ */
 function renderCategoryList() {
     let list = document.getElementById('category-list');
     list.classList.toggle('d-none');
@@ -196,6 +274,9 @@ function renderCategoryList() {
 }
 
 
+/**
+ * Generates the HTML for the assigned button.
+ */
 function generateAssignedButton() {
     let div = document.getElementById('assigned-button');
     div.innerHTML = '';
@@ -208,6 +289,11 @@ function generateAssignedButton() {
 }
 
 
+/**
+ * Updates the subtask list.
+ * 
+ * @param {HTMLElement} list - The HTML element representing the subtask list.
+ */
 function updateSubtaskList(list) {
     for (let i = 0; i < subtasks.length; i++) {
         let text = subtasks[i];
@@ -225,6 +311,13 @@ function updateSubtaskList(list) {
 }
 
 
+/**
+ * Creates an editable subtask element.
+ * 
+ * @param {number} index - The index of the subtask.
+ * @param {string} value - The value of the subtask.
+ * @returns {string} - The HTML for the editable subtask element.
+ */
 function createEditableSubtaskElement(index, value) {
     return /*html*/`
         <input class="each-subtask-p editable" id="subtask${index}" value="${value}">
@@ -237,6 +330,13 @@ function createEditableSubtaskElement(index, value) {
 }
 
 
+/**
+ * Generates the HTML for a subtask element.
+ * 
+ * @param {number} i - The index of the subtask.
+ * @param {string} text - The text content of the subtask.
+ * @returns {string} - The HTML for the subtask element.
+ */
 function generateSubtaskElement(i, text) {
     return /*html*/`
         <li class="each-subtask" id="each-subtask${i}">
@@ -251,6 +351,9 @@ function generateSubtaskElement(i, text) {
 }
 
 
+/**
+ * Sets the minimum date and current date value for the date input field.
+ */
 function getCurrentDate() {
     document.getElementById('date').min = minDate();
     document.getElementById('date').value = minDate();

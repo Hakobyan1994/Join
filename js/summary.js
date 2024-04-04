@@ -111,8 +111,8 @@ async function getValue(content) {
   await loadTasks();
   const { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total } = countTaskValues(tasks);
   putValues(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
-  ifTotalEmpty(total, content);
   getUrgentDate();
+  ifTotalEmpty(total, content);
 }
 
 function countTaskValues(tasks) {
