@@ -4,6 +4,8 @@ const trasparenterDiv = document.querySelector('.trasparenter_div');
 const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
+   
+
 
 
 let dataUsers = []
@@ -71,6 +73,7 @@ function validForm({ name, email, password, confirmPassword }, e) {
                     trasparenterDiv.style.display = 'flex';
                     setTimeout(function () {
                         trasparenterDiv.style.display = 'none';
+                        console.log('ok');
                         window.location.href = '../index.html'
                     }, 2000);
                 }
