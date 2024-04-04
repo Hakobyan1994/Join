@@ -5,12 +5,10 @@ async function renderAddTaskMain() {
     renderAddTask();
     await loadContacts();
     resetGlobalVariables();
-    document.getElementById('date').min = minDate();
-    document.getElementById('date').value = minDate();
 }
 
 
-function renderAddTask() {
+async function renderAddTask() {
     let content = document.getElementById('add-task');
     content.innerHTML = '';
     let boardcard = 'board-to-do';
@@ -18,6 +16,7 @@ function renderAddTask() {
     addEventFunctions();
     subtasks = [];
     addSubtask();
+    await getCurrentDate();
 }
 
 
@@ -249,4 +248,10 @@ function generateSubtaskElement(i, text) {
             </div>
         </li>
     `;
+}
+
+
+function getCurrentDate() {
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
 }

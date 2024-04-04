@@ -303,6 +303,7 @@ function clearFields() {                                           // clear all 
     updateSubtasklist();
     resetPrioritySelection();
     generateAssignedButton();
+    getCurrentDate();
 }
 
 
