@@ -11,20 +11,16 @@ signUp.onsubmit = onsubmitFor
 let dataUsers = []
 async function getUsers(params) {
     let res = await getItem('dataUsers')
-
     if (res[0] !== null) {
         dataUsers = res
         console.log(dataUsers, 555);
     }
 }
 getUsers();
-
-
 function addtoLocal(arr, key) {
+    console.log(dataUsers, 'ggggg');
     setItem('dataUsers', dataUsers)
 }
-
-
 async function onsubmitFor(e) {
     console.log(e);
     e.preventDefault();
@@ -38,7 +34,7 @@ async function onsubmitFor(e) {
         addtoLocal(dataUsers, 'dataUsers');
         validForm({ name, email, password, confirmPassword }, e)
     } else {
-        checkSignUpInputs();
+        // checkSignUpInputs();
         if (!checkBox) {
             document.getElementById('errorPassword').innerText = 'Please accept the privacy policy';
         } else {
@@ -47,21 +43,17 @@ async function onsubmitFor(e) {
         }
     }
 }
-
-
 function validForm({ name, email, password, confirmPassword }, e) {
     let checkEmailregex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+(?:de|com)$/;
-
+    // Überprüfe, ob die E-Mail-Adresse mit einem Punkt endet
     if (checkEmailregex.test(email) && (email.endsWith('.com') || email.endsWith('.de'))) {
         console.log('ok');
-
         if (password.includes(confirmPassword)) {
             let user = dataUsers.find((el) => el.email === email);
             if (user) {
                 showError('The email is already registered');
             } else {
                 dataUsers.push({ name, email, password, id: new Date().getTime() });
-                contacts.push(name, email);
                 addtoLocal(dataUsers, 'dataUsers');
                 if (window.innerWidth <= 500) {
                     responsiveInfo.classList.add('active');
@@ -87,23 +79,15 @@ function validForm({ name, email, password, confirmPassword }, e) {
         showError('Please enter a valid email ending with .de or .com');
     }
 }
-
-
 function showError(message) {
     document.getElementById('errorPassword').innerText = message;
 }
-
-
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
-
-
 function backToRegister() {
     JSON.parse(localStorage.getItem('stop'))
     window.location.href = '../index.html';
 }
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('password1Input');
     const passwordImage = document.getElementById('passwordBlock')
@@ -125,8 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const confirmInput = document.getElementById('confirmInput');
     const confirmImage = document.getElementById('confirmBlock')
@@ -149,109 +131,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 });
-
-
-function checkSignUpInputs() {
-    let name = document.getElementById('nameInput').value;
-    let email = document.getElementById('emailInput').value;
-    let password1 = document.getElementById('password1Input').value;
-    let password2 = document.getElementById('confirmInput').value;
-
-    let nameInputCon = document.getElementById('personInput');
-    let emailInputCon = document.getElementById('emailInputCon');
-    let passwordInputCon = document.getElementById('passwordInputCon');
-    let passwordConfimInputCon = document.getElementById('passwordConfirmInput');
-
-    let nameSignUpError = document.getElementById('inputErrorSignUpName');
-    let emailSignUpError = document.getElementById('inputErrorSignUpEmail');
-    let password1SignUpError = document.getElementById('inputErrorSignUpPassword1');
-    let password2SignUpError = document.getElementById('inputErrorSignUpPassword2');
-
-    checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
-}
-
-
-function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
-    if (!name || !email || !password1 || !password2) {
-        checkName(name, nameInputCon, nameSignUpError);
-        checkEmail(email, emailInputCon, emailSignUpError);
-        checkPassword(password1, passwordInputCon, password1SignUpError);
-        checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUpError);
-        return;
-    }
-
-    ifAllInputsAreValid(name, email, password1, password2);
-}
-
-
-function ifAllInputsAreValid(name, email, password1, password2) {
-    if (name && isValidEmail(email) && password1 && password1 === password2) {
-        addContactToArray(name, email);
-    }
-}
-
-
-function checkName(name, nameInputCon, nameSignUpError) {
-    if (!name) {
-        nameInputCon.classList.remove('margin');
-        nameSignUpError.classList.remove('d-none');
-        nameSignUpError.innerHTML = `Please enter a name`;
-    } else {
-        nameInputCon.classList.add('margin');
-        nameSignUpError.classList.add('d-none');
-    }
-}
-
-
-function checkEmail(email, emailInputCon, emailSignUpError) {
-    if (!email) {
-        emailInputCon.classList.remove('margin');
-        emailSignUpError.classList.remove('d-none');
-        emailSignUpError.innerHTML = `Please enter an email`;
-    } else if (!isValidEmail(email)) {
-        emailInputCon.classList.remove('margin');
-        emailSignUpError.classList.remove('d-none');
-        emailSignUpError.innerHTML = `Please enter a valid email address`;
-    } else {
-        emailSignUpError.classList.add('d-none');
-        emailInputCon.classList.add('margin');
-    }
-}
-
-
-function checkPassword(password1, passwordInputCon, password1SignUpError) {
-    if (!password1) {
-        passwordInputCon.classList.remove('margin');
-        passwordInputCon.classList.add('margin-empty');
-        password1SignUpError.classList.remove('d-none');
-        password1SignUpError.innerHTML = `Please enter a password`;
-    } else {
-        passwordInputCon.classList.add('margin');
-        passwordInputCon.classList.remove('margin-empty');
-        password1SignUpError.classList.add('d-none');
-    }
-}
-
-
-function checkPasswordConfirm(password2, passwordConfimInputCon, password2SignUpError) {
-    if (!password2) {
-        passwordConfimInputCon.classList.remove('margin-privacy');
-        passwordConfimInputCon.classList.remove('margin-top');
-        passwordConfimInputCon.classList.add('margin-empty');
-        passwordConfimInputCon.classList.add('margin-bottom');
-        password2SignUpError.classList.remove('d-none');
-        password2SignUpError.innerHTML = `Please confirm your password`;
-    } else {
-        passwordConfimInputCon.classList.add('margin-privacy');
-        passwordConfimInputCon.classList.add('margin-top');
-        passwordConfimInputCon.classList.remove('margin-empty');
-        passwordConfimInputCon.classList.remove('margin-bottom');
-        password2SignUpError.classList.add('d-none');
-    }
-}
-
-
-function isValidEmail(email) {
-    const emailRegex = /\S+@\S+\.(com|de)/;
-    return emailRegex.test(email);
-}
