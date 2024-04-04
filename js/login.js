@@ -134,61 +134,33 @@ function validLogin(e) {
     let password = e.target[1].value;
     let status = 'no';
     if (email && password) {
-        if (!isValidEmailLogIn(email)) {
-            status = 'Invalid Email';
-        } else {
-            let foundUser = dataUser.find((user) => user.email.includes(email));
-            if (foundUser) {
-                if (foundUser.password === password) {
-                    status = 'ok';
-                } else {
-                    status = 'Error Password';
-                }
+        let foundUser = dataUser.find((user) => user.email.includes(email));
+        if (foundUser) {
+            if (foundUser.password === password) {
+                status = 'ok';
             } else {
-                status = 'Email not found';
+                status = 'Error Password';
             }
+        } else {
+            status = 'Email not found';
         }
-
         if (status === 'ok') {
-            // activUser(foundUser);
+            activUser(foundUser);
             window.location.href = "../files/start.html";
-        } else if (status === 'Error Password' || status === 'Email not found' || status === 'Invalid Email') {
+        } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
             document.getElementById('emailLogIn').style.border = `1px solid red`;
             document.getElementById('passwordLogIn').style.border = `1px solid red`;
             document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
             document.getElementById('imageInput').classList.add('passwordImageError');
         }
-
-    }
-}
-
-
-function emptyInputerrorMessage() {
-    let input = document.getElementById('emailLogIn');
-    let passwordInput = document.getElementById('passwordLogIn');
-    let inputdiv = document.getElementById('div');
-    let passworddiv = document.getElementById('passworEmptyInput');
-
-    if (input.value === '' && passwordInput.value === '') {
-        inputdiv.innerText = 'Please enter email';
-        passworddiv.innerText = 'Please enter password';
-    } else if (input.value === '') {
-        inputdiv.innerText = 'Please enter email';
-        passworddiv.innerText = '';
-    } else if (passwordInput.value === '') {
-        inputdiv.innerText = '';
-        passworddiv.innerText = 'Please enter password';
-    } else {
-        inputdiv.innerText = '';
-        passworddiv.innerText = '';
     }
 }
 
 
 function validatePassword() {
     document.addEventListener('DOMContentLoaded', function () {
-        const passwordInput = document.getElementById('passwordLogIn')
+        const passwordInput = document.getElementById('password')
         const inputImage = document.getElementById('imageInput')
         passwordInput.addEventListener('input', function () {
             if (passwordInput.value !== '') {
@@ -209,7 +181,6 @@ function validatePassword() {
         })
     })
 }
-
 
 
 function loginSetTimeout() {
@@ -246,20 +217,11 @@ function checkLogInInputs() {
 
 
 function checkLogInInputsHelp(email, password, emailInputCon, passwordInputCon, emailErrorCon, passwordErrorCon) {
-    if (!email || !password) {
-        checkLogInEmail(email, emailInputCon, emailErrorCon);
-        checkLogInPassword(password, passwordInputCon, passwordErrorCon);
-        return;
-    }
-}
-
-
-function checkLogInEmail(email, emailInputCon, emailErrorCon) {
     if (!email) {
         emailInputCon.classList.remove('margin');
         emailErrorCon.classList.remove('d-none');
         emailErrorCon.innerHTML = `Please enter an email`;
-    } else if (!isValidEmailLogIn(email)) {
+    } else if (!email.includes('.com') && !email.includes('.de') && !email.endsWith('.')) {
         emailInputCon.classList.remove('margin');
         emailErrorCon.classList.remove('d-none');
         emailErrorCon.innerHTML = `Please enter a valid email address`;
@@ -268,10 +230,6 @@ function checkLogInEmail(email, emailInputCon, emailErrorCon) {
         emailInputCon.classList.add('margin');
     }
 
-}
-
-
-function checkLogInPassword(password, passwordInputCon, passwordErrorCon) {
     if (!password) {
         passwordInputCon.classList.remove('margin');
         passwordInputCon.classList.add('margin-empty');
@@ -282,10 +240,8 @@ function checkLogInPassword(password, passwordInputCon, passwordErrorCon) {
         passwordInputCon.classList.remove('margin-empty');
         passwordErrorCon.classList.add('d-none');
     }
-}
 
-
-function isValidEmailLogIn(email) {
-    const emailRegex = /\S+@\S+\.(com|de)/;
-    return emailRegex.test(email);
+    if (!email || !password) {
+        return;
+    }
 }

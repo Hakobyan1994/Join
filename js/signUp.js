@@ -5,18 +5,36 @@ const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
    
+async function setItem(key, value) {
+    const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
+    return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
+        .then(res => res.json())
 
+}
+
+async function getItem(key) {
+    const url = `https://remote-storage.developerakademie.org/item?key=${key}&token=MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ`;
+    return fetch(url).then(res => res.json()).then(res => {
+        if (res.data) {
+            return JSON.parse(res.data.value);
+        } throw `Could not find data with key "${key}".`;
+    });
+}
 
 
 let dataUsers = []
 async function getUsers(params) {
     let res = await getItem('dataUsers')
+
     if (res[0] !== null) {
         dataUsers = res
-        console.log(dataUsers, 555);
+      
     }
 }
-getUsers();
+    getUsers()
+
+
+
 function addtoLocal(arr, key) {
     console.log(dataUsers, 'ggggg');
     setItem('dataUsers', dataUsers)

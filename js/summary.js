@@ -1,4 +1,5 @@
 let nameActiveUser = [];
+ 
 let arrayUrgent = [
   {
     priority: [],
@@ -18,11 +19,15 @@ async function nameItem(key) {
     } throw `Could not find data with key "${key}".`;
   });
 }
+  
+
+
 
 
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
+      console.log(user);
   if (user) {
     let profilName = document.querySelector('.greetingName');
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
