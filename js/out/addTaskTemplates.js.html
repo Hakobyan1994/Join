@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: addTaskTemplates.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,377 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: addTaskTemplates.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Renders the main add task section.
+ */
+async function renderAddTaskMain() {
+    let content = document.getElementById('render-add-task');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainAddTask();
+    renderAddTask();
+    await loadContacts();
+    resetGlobalVariables();
+}
 
 
-    <h3> </h3>
+/**
+ * Renders the add task section.
+ */
+async function renderAddTask() {
+    let content = document.getElementById('add-task');
+    content.innerHTML = '';
+    let boardcard = 'board-to-do';
+    content.innerHTML = generateRenderAddTask(boardcard);
+    addEventFunctions();
+    subtasks = [];
+    addSubtask();
+    await getCurrentDate();
+}
 
 
+/**
+ * Adds event functions to elements in the add task section.
+ */
+async function addEventFunctions() {
+    getPrio();
+    document.getElementById('prio').addEventListener('click', getPrio);
+    clearButtonImgChange();
+    setupSubtaskInputFocus();
+    setupSubtaskInputFocus();
+    enterOnSubtask();
+    inputfieldFocus();
+    closeList('assigned-list', 'assigned', 'dropdown-assigned');
+    closeList('category-list', 'category', 'dropdown-category');
+}
 
 
+/**
+ * Generates the HTML for the main add task section.
+ * 
+ * @returns {string} - The HTML string for the main add task section.
+ */
+function generateHtmlMainAddTask() {
+    return /*html*/`
+        &lt;div id="add-task" class="main-window main-window-add-task">&lt;/div>
+            &lt;div class="popup-a-to-b d-none" id="popup-a-to-b">
+            &lt;img src="../assets/img/task-to-board.svg" alt="">
+        &lt;/div>
+    `;
+}
 
 
+/**
+ * Generates the HTML for rendering the add task section.
+ * 
+ * @param {string} boardcard - The identifier of the board card.
+ * @returns {string} - The HTML string for rendering the add task section.
+ */
+function generateRenderAddTask(boardcard) {
+    return /*html*/`
+    &lt;div class="mobile-view mobile-add-task-view">
+        &lt;h2>Add Task&lt;/h2>
+        &lt;div class="main-box mobile-main-box">
+            &lt;div class="form-addtask">
+                ${generateHtmlAddTaskForm()}      
+            &lt;/div>
+            &lt;div class="form-bottom">    
+                ${generateHtmlFormSection(`${boardcard}`)}
+            &lt;/div>  
+        &lt;/div> 
+    &lt;/div>
+    `;
+}
 
 
+/**
+ * Generates the HTML for the add task form.
+ * 
+ * @returns {string} - The HTML string for the add task form.
+ */
+function generateHtmlAddTaskForm() {
+    return /*html*/`
+        &lt;form>
+            ${generateHtmlTitle()}
+            ${generateHtmlDescription()}  
+            ${generateHtmlAssigned()}
+        &lt;/form>
+        &lt;p class="addtask-line">&lt;/p>
+        &lt;form>
+            ${generateHtmlDate()}  
+            ${generateHtmlPrio()}
+            ${generateHtmlCategory()}
+            ${generateHtmlSubtasks()}
+        &lt;/form>
+    `;
+}
 
 
-    
+/**
+ * Generates the HTML for the title input field.
+ * 
+ * @returns {string} - The HTML string for the title input field.
+ */
+function generateHtmlTitle() {
+    return /*html*/`
+        &lt;div class="title-div">
+            &lt;label>Title&lt;p class="redstar">*&lt;/p>&lt;/label>
+            &lt;input type="text" class="inputfield" id="title" placeholder="Enter a title" onfocus="inputfieldFocus('title')" oninput="inputfieldFocus('title')" required>
+            &lt;div class="required-text d-none" id="required-title">This field is required&lt;/div>
+        &lt;/div>
+    `;
+}
 
 
+/**
+ * Generates the HTML for the description input field.
+ * 
+ * @returns {string} - The HTML string for the description input field.
+ */
+function generateHtmlDescription() {
+    return /*html*/`
+        &lt;label>Description&lt;/label>
+        &lt;textarea class="inputfield inputfield-textarea" id="description" placeholder="Enter a Description">&lt;/textarea>  
+    `;
+}
 
 
+/**
+ * Generates the HTML for the assigned contacts input field.
+ * 
+ * @returns {string} - The HTML string for the assigned contacts input field.
+ */
+function generateHtmlAssigned() {
+    return /*html*/`
+        &lt;label>Assigned to&lt;/label>
+        &lt;input class="inputfield assigned-to" placeholder="Select contacts to assign" id="assigned" onfocus="renderAssignedList()" onkeypress="renderAssignedList()" onkeyup="searchAssignedList()">
+        &lt;img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" id="dropdown-assigned" onclick="toggleAssignedlist()">    
+        &lt;div class="assigned-list d-none" id="assigned-list">&lt;/div>
+        &lt;div class="assigned-button" id="assigned-button">&lt;/div>
+    `;
+}
 
+
+/**
+ * Generates the HTML for the due date input field.
+ * 
+ * @returns {string} - The HTML string for the due date input field.
+ */
+function generateHtmlDate() {
+    return /*html*/`
+        &lt;label>Due date&lt;p class="redstar">*&lt;/p>&lt;/label>
+        &lt;div class="dueDate-div">
+            &lt;div>
+                &lt;input type="date" class="inputfield" id="date" value="" min="" max="2030-12-31" onfocus="inputfieldFocus('date')" oninput="inputfieldFocus('date')" required>
+            &lt;/div>
+            &lt;div class="required-text required-text-date d-none" id="required-date">This field is required&lt;/div>
+        &lt;/div>
+    `;
+}
+
+
+/**
+ * Generates the HTML for the priority selection buttons.
+ * 
+ * @returns {string} - The HTML string for the priority selection buttons.
+ */
+function generateHtmlPrio() {
+    return /*html*/`
+        &lt;label>Prio&lt;/label>
+        &lt;div class="prio-btn" id="prio" role="group">
+            &lt;button type="button" class="prio prio-urgent prio-notselected" id="urgent" value="urgent">Urgent &lt;img src="../assets/img/icons/prio-urgent.svg" alt="Urgent Prio">&lt;/button>
+            &lt;button type="button" class="prio prio-medium" id="medium" value="medium">Medium &lt;img src="../assets/img/icons/prio-medium.svg" alt="Medium Prio">&lt;/button>
+            &lt;button type="button" class="prio prio-low prio-notselected" id="low" value="low">Low &lt;img src="../assets/img/icons/prio-low.svg" alt="Low Prio">&lt;/button>
+        &lt;/div>  
+    `;
+}
+
+
+/**
+ * Generates the HTML for the category input field.
+ * 
+ * @returns {string} - The HTML string for the category input field.
+ */
+function generateHtmlCategory() {
+    return /*html*/`
+        &lt;label>Category&lt;p class="redstar">*&lt;/p>&lt;/label>
+        &lt;div class="category-div">
+            &lt;input class="inputfield category" value="" placeholder="Select task category" id="category" onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')"required readonly>
+            &lt;img src="../assets/img/icons/dropdown.svg" alt="Dropdown Icon" class="dropdown-icon" id="dropdown-category"  onclick="renderCategoryList()" onfocus="inputfieldFocus('category')" oninput="inputfieldFocus('category')">
+            &lt;div class="category-list d-none" id="category-list">&lt;/div>
+            &lt;div class="required-text d-none" id="required-category" style="margin-top: -19px;">This field is required&lt;/div> 
+        &lt;/div>
+    `;
+}
+
+
+/**
+ * Generates the HTML for the subtasks input field.
+ * 
+ * @returns {string} - The HTML string for the subtasks input field.
+ */
+function generateHtmlSubtasks() {
+    return /*html*/`
+        &lt;label id="subtasks-label">Subtasks&lt;/label>
+        &lt;div style="height: 47px;">
+            &lt;input type="text" class="inputfield subtask-input" id="subtask-input"> 
+            &lt;img src="../assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
+            &lt;div class="clear-check-icons d-none" id="subtask-close-check-icon">
+                &lt;img src="../assets/img/icons/Close.svg" alt="Close Icon" class="h-10 clear-check-icons separator-border" id="subtask-close-icon" onclick="clearSubtaskInputField()">
+                &lt;img src="../assets/img/icons/check.svg" alt="Check Icon" class="h-10 clear-check-icons" id="subtask-check-icon" onclick="addSubtask()" style="margin-left: -5px;">
+            &lt;/div>
+        &lt;/div>
+        &lt;ul id="subtasks" class="subtasks">&lt;/ul>
+    `;
+}
+
+
+/**
+ * Generates the HTML for the form bottom section.
+ *  
+ * @param {string} boardcard - The identifier of the board card.
+ * @returns {string} - The HTML string for the form bottom section.
+ */
+function generateHtmlFormSection(boardcard) {
+    return /*html*/`
+        &lt;div class="form-bottom-left">&lt;p>&lt;p class="red">*&lt;/p>This field is required&lt;/p>&lt;/div>
+        &lt;div class="form-bottom-right">
+            &lt;button class="clear-btn" id="clear-button" onclick="clearFields()">Clear&lt;img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img">&lt;/button>
+            &lt;button class="create-task" onclick="createTask('${boardcard}')">Create Task&lt;img src="../assets/img/icons/check1.svg" alt="Create Task">&lt;/button>
+        &lt;/div> 
+    `;
+}
+
+
+/**
+ * Generates the HTML for the assigned contact list item.
+ * 
+ * @param {string} name - The name of the contact.
+ * @param {string} img - The initials or avatar of the contact.
+ * @param {boolean} isSelected - Indicates whether the contact is selected.
+ * @param {number} i - The index of the contact.
+ * @returns {string} - The HTML string for the assigned contact list item.
+ */
+function generateHtmlAssignedList(name, img, isSelected, i) {
+    return /*html*/`
+        &lt;div class="assigned-contact-list ${isSelected ? 'select-contact-blue white' : ''}" id="assigned-contacts-${i}" onclick="selectAssignedContacts(${i})">
+            &lt;div>
+                &lt;img src="https://ui-avatars.com/api/?name=${img}&amp;background=random&amp;color=fff" alt="Initials" class="assigned-contact-list-icon">
+                &lt;div id="contact-name-${i}">${name}&lt;/div>
+            &lt;/div>
+            &lt;img src="${isSelected ? '../assets/img/icons/selected1.svg' : '../assets/img/icons/none-selected1.svg'}" alt="" class="${isSelected ? 'checkbox-selected' : 'checkbox-none-selected'}" id="checkbox-contact-${i}">
+        &lt;/div>
+    `;
+}
+
+
+/**
+ * Renders the category list.
+ */
+function renderCategoryList() {
+    let list = document.getElementById('category-list');
+    list.classList.toggle('d-none');
+    list.innerHTML = /*html*/`
+        &lt;div class="category-list-div" value="Technical Task"  id="technical" onclick="selectCategory('technical', 'story')">Technical Task&lt;/div>  
+        &lt;div class="category-list-div" value="User Story" id="story" onclick="selectCategory('story', 'technical')">User Story&lt;/div>  
+    `;
+}
+
+
+/**
+ * Generates the HTML for the assigned button.
+ */
+function generateAssignedButton() {
+    let div = document.getElementById('assigned-button');
+    div.innerHTML = '';
+    for (let p = 0; p &lt; users.length; p++) {
+        const letters = iniimg[p];
+        div.innerHTML += /*html*/`
+            &lt;img src="https://ui-avatars.com/api/?name=${letters}&amp;background=random&amp;color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
+        `;
+    }
+}
+
+
+/**
+ * Updates the subtask list.
+ * 
+ * @param {HTMLElement} list - The HTML element representing the subtask list.
+ */
+function updateSubtaskList(list) {
+    for (let i = 0; i &lt; subtasks.length; i++) {
+        let text = subtasks[i];
+        list.innerHTML += /*html*/`
+        &lt;li class="each-subtask" id="each-subtask${i}">
+            &lt;div class="each-subtask-p" id="subtask${i}">&lt;p class="subtask-p">&lt;/p>${text}&lt;/div>
+            &lt;div class="subtask-right">
+                &lt;img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                &lt;p class="separator">&lt;/p>
+                &lt;img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            &lt;/div>
+        &lt;/li>
+    `;
+    }
+}
+
+
+/**
+ * Creates an editable subtask element.
+ * 
+ * @param {number} index - The index of the subtask.
+ * @param {string} value - The value of the subtask.
+ * @returns {string} - The HTML for the editable subtask element.
+ */
+function createEditableSubtaskElement(index, value) {
+    return /*html*/`
+        &lt;input class="each-subtask-p editable" id="subtask${index}" value="${value}">
+        &lt;div class="subtask-right editable-img">
+            &lt;img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${index})">
+            &lt;p class="separator">&lt;/p>
+            &lt;img src="../assets/img/icons/check.svg" alt="Edit" onclick="pushEditedSubtask(${index})">
+        &lt;/div>
+    `;
+}
+
+
+/**
+ * Generates the HTML for a subtask element.
+ * 
+ * @param {number} i - The index of the subtask.
+ * @param {string} text - The text content of the subtask.
+ * @returns {string} - The HTML for the subtask element.
+ */
+function generateSubtaskElement(i, text) {
+    return /*html*/`
+        &lt;li class="each-subtask" id="each-subtask${i}">
+            &lt;div class="each-subtask-p" id="subtask${i}">&lt;p class="subtask-p">&lt;/p>${text}&lt;/div>
+            &lt;div class="subtask-right">
+                &lt;img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
+                &lt;p class="separator">&lt;/p>
+                &lt;img src="../assets/img/icons/trash.svg" alt="Edit" onclick="deleteSubtask(${i})">
+            &lt;/div>
+        &lt;/li>
+    `;
+}
+
+
+/**
+ * Sets the minimum date and current date value for the date input field.
+ */
+function getCurrentDate() {
+    document.getElementById('date').min = minDate();
+    document.getElementById('date').value = minDate();
+}</code></pre>
+        </article>
+    </section>
 
 
 
