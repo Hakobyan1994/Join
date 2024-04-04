@@ -101,17 +101,17 @@ async function renderSummaryMain() {
   content.innerHTML = '';
   content.innerHTML = generateHtmlSummary();
   await loadTasks();
-  await getValue();
+  await getValue(content);
   displayGreeting();
   checkButtonImgChange();
 }
 
 
-async function getValue() {
+async function getValue(content) {
   await loadTasks();
   const { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total } = countTaskValues(tasks);
   putValues(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
-  ifTotalEmpty(total);
+  ifTotalEmpty(total, content);
   getUrgentDate();
 }
 
@@ -152,11 +152,13 @@ function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgen
 }
 
 
-function ifTotalEmpty(total) {
-  if (total) {
-    document.getElementById('value-total').innerHTML = `${total}`;
-  } else if (total === 0) {
-    document.getElementById('value-total').innerHTML = '0';
+function ifTotalEmpty(total, content) {
+  if(content) {
+    if (total) {
+      document.getElementById('value-total').innerHTML = `${total}`;
+    } else if (total === 0) {
+      document.getElementById('value-total').innerHTML = '0';
+    }
   }
 }
 

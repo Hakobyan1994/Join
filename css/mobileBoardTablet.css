@@ -186,7 +186,7 @@
         height: calc(100% - 98px);
         padding-left: 16px;
         padding-right: unset;
-        align-items: flex-start;
+        align-items: center;
         margin-top: 32px;
     }
 
@@ -203,25 +203,39 @@
     .close-popup {
         position: absolute;
         top: 32px;
-        right: 64px;
+        right: 32px;
         left: unset;
     }
 
     .popup-addtask-form {
-        position: absolute;
-        bottom: 32px;
+        position: fixed;
+        z-index: 2;
+        right: 0;
+        bottom: 16px;
+        left: 0;
         width: 100%;
         justify-content: space-evenly;
         gap: 4px;
     }
 
     .mobile-board-popup-add-task {
-        width: 100%;
         height: calc(100% - 96px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .h2-addtask-board {
-        margin-left: 32px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: unset;
+    }
+
+    .board-add-task-window {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 }
 

@@ -82,7 +82,7 @@ async function openPopupAddTask(boardcard) {
         <div class="popup-box">
             <div class="mobile-board-popup-add-task">
                 <h2 class="h2-addtask-board">Add Task</h2>
-                <div class="main-box">
+                <div class="main-box board-add-task-window">
                     <div class="form popup-addtask-main">
                         ${generateHtmlAddTaskForm()}      
                     </div>
