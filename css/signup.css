@@ -440,7 +440,6 @@ h1 {
 }
 
 .responsiveInfo.active {
-
     opacity: 1;
     visibility: visible;
     transform: translateY(-221px);
