@@ -5,6 +5,7 @@ const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
    
+
 async function setItem(key, value) {
     const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
@@ -39,6 +40,8 @@ function addtoLocal(arr, key) {
     console.log(dataUsers, 'ggggg');
     setItem('dataUsers', dataUsers)
 }
+
+
 async function onsubmitFor(e) {
     console.log(e);
     e.preventDefault();

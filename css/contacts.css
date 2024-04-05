@@ -350,6 +350,10 @@
     z-index: 2 !important;
 }
 
+.z-index-3 {
+    z-index: 3;
+}
+
 .z-11 {
 z-index: -11;
 }

@@ -249,6 +249,9 @@
     .add-contact-data {
         display: flex;
         align-items: center;
+        position: relative;
+        bottom: 217px;
+        right: 396px;
     }
 
     .input-con {
@@ -277,11 +280,14 @@
 
     .person-con {
         margin-left: 27px;
+        position: relative;
+        bottom: 416px;
+        left: -115px;
     }
 
     .person-con-edit {
-        bottom: 483px;
-        left: 227px;
+        bottom: 465px;
+        left: -68px;
     }
 
     .create-contact-btn {
@@ -300,6 +306,7 @@
 
     .edit-contact-data {
         bottom: 288px;
+        left: -306px;
     }
 
     .cancel-btn-edit {

@@ -40,6 +40,7 @@ function showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView, 
         addMask.classList.remove('slide-out-mask');
         addMask.classList.remove('d-none');
         addMask.classList.add('slide-in-mask');
+        contactInfoConMobile.classList.add('d-none');
         addMask.innerHTML = generateAddContactOverlay();
     }
 }
@@ -283,7 +284,6 @@ function updateContactInfoSlider(i, headline, headlineMobile, contactInfoSlider,
         contactInfoSlider.classList.remove('z-index-minus-1');
         contactInfoConMobile.classList.remove('z-index-minus-2');
     }
-
     showContactInfoSliderHELP(i, contactInfoSlider, isMobileView, headline, headlineMobile);
     renderContactInfo(i, contactInfoSlider);
 }

@@ -5,6 +5,9 @@ let initialsColor = 'white';
 let contactInfoSliderVisible = false;
 let loggedInUser = [];
 
+
+// window.addEventListener('resize', resizeHandler);
+
 /**
  * This function clears the existing content in the 'render-contacts' element, generates HTML for the main contacts, 
  * waits for the contacts to load asynchronously, and finally renders the contacts onto the page.
@@ -79,21 +82,6 @@ function resizeHandler() {
 }
 
 /**
- * Checks for the presence of a specific HTML element ('addedContactsCon') and adds or removes
- * an event listener for window resize accordingly.
- * 
- */
-function checkResize() {
-    let div = document.getElementById('addedContactsCon');
-
-    if (div) {
-        window.addEventListener('resize', resizeHandler);
-    } else {
-        window.removeEventListener('resize', resizeHandler);
-    }
-}
-
-/**
  * Generates HTML content for the add contact button and inserts it into the specified button element.
  * Additionally, generates HTML content for the mobile version of the add contact button and inserts it
  * into the specified container element.
@@ -122,11 +110,9 @@ function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
         if (firstLetter !== lastLetter) {
             contactsContainer.innerHTML += generateLetterCon(firstLetter) + generateSeparator();
         }
-
         const imageId = `contactImage${i}`;
         const contactHtml = generateContact(i, contact, imageId);
         contactsContainer.innerHTML += contactHtml;
-
         addInitialsToContactImage(contact, imageId);
         return firstLetter;
     }
@@ -270,37 +256,31 @@ function setTimeoutSuccesDiv(success) {
 }
 
 /**
- * Splits a name into parts, capitalizes the first letter of each part, and returns the formatted name.
+ * Displays a success mobile message upon successfully adding a contact, showing a success button slider.
  * 
- * @param {string} inputName - The name to be formatted.
- * @returns {string} The formatted name with each part capitalized.
  */
-function splitNameAndCapitalize(inputName) {
-    const nameParts = inputName.trim().split(' ');
-    const formattedNameParts = [];
-
-    for (let i = 0; i < nameParts.length; i++) {
-        const part = nameParts[i];
-        const formattedPart = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-        formattedNameParts.push(formattedPart);
-    }
-    return formattedNameParts.join(' ');
+function addedContactSuccessfullyMobile() {
+    let success = document.getElementById('successConMobile');
+    success.innerHTML = generateSuccessBtnSliderMobile();
+    success.classList.remove('slide-out-success-btn-mobile');
+    success.classList.add('slide-in-success-btn-mobile');
+    setTimeoutSuccesDivMobile(success);
 }
 
 /**
- * Formats the initials of a name by taking the first letter of each part and capitalizing it.
+ * Sets a timeout to remove the success mobile message by sliding it out and hiding it after a certain duration.
  * 
- * @param {string} inputName - The name to extract initials from.
- * @returns {string} The formatted initials.
+ * @param {HTMLElement} success - The success message container element.
  */
-function formatInitials(inputName) {
-    let nameParts = inputName.trim().split(' ');
-    let initials = '';
+function setTimeoutSuccesDivMobile(success) {
+    setTimeout(() => {
+        success.classList.remove('slide-in-success-btn-mobile');
+        success.classList.add('slide-out-success-btn-mobile');
 
-    for (let i = 0; i < nameParts.length; i++) {
-        initials += nameParts[i].charAt(0).toUpperCase();
-    }
-    return initials;
+        setTimeout(() => {
+            success.classList.add('d-none');
+        }, 500);
+    }, 1500);
 }
 
 /**
@@ -325,19 +305,6 @@ function addContactToArray(name, email, phone, initials) {
         'color': randomColor
     };
     contacts.push(contact);
-}
-
-/**
- * Loads contacts data from storage and assigns it to the contacts array.
- * 
- * @returns {Promise<void>} - A promise that resolves when contacts data is successfully loaded.
- */
-async function loadContacts() {
-    try {
-        contacts = JSON.parse(await getItem('contacts'));
-    } catch (e) {
-        console.error('Error in loadContacts:', e);
-    }
 }
 
 /**
