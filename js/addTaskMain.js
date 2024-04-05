@@ -29,6 +29,7 @@ function renderAssignedList() {
  * Toggles the visibility of the assigned list and updates UI elements accordingly.
  */
 function toggleAssignedlist() {
+    let input = document.getElementById('assigned');
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     list.classList.toggle('d-none');

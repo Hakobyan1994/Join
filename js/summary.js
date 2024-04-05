@@ -27,7 +27,6 @@ async function nameItem(key) {
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
-      console.log(user);
   if (user) {
     let profilName = document.querySelector('.greetingName');
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
