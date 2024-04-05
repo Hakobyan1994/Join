@@ -1,4 +1,52 @@
 /**
+ * Loads contacts data from storage and assigns it to the contacts array.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when contacts data is successfully loaded.
+ */
+async function loadContacts() {
+    try {
+        contacts = JSON.parse(await getItem('contacts'));
+    } catch (e) {
+        console.error('Error in loadContacts:', e);
+    }
+}
+
+/**
+ * Splits a name into parts, capitalizes the first letter of each part, and returns the formatted name.
+ * 
+ * @param {string} inputName - The name to be formatted.
+ * @returns {string} The formatted name with each part capitalized.
+ */
+function splitNameAndCapitalize(inputName) {
+    const nameParts = inputName.trim().split(' ');
+    const formattedNameParts = [];
+
+    for (let i = 0; i < nameParts.length; i++) {
+        const part = nameParts[i];
+        const formattedPart = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+        formattedNameParts.push(formattedPart);
+    }
+    return formattedNameParts.join(' ');
+}
+
+/**
+ * Formats the initials of a name by taking the first letter of each part and capitalizing it.
+ * 
+ * @param {string} inputName - The name to extract initials from.
+ * @returns {string} The formatted initials.
+ */
+function formatInitials(inputName) {
+    let nameParts = inputName.trim().split(' ');
+    let initials = '';
+
+    for (let i = 0; i < nameParts.length; i++) {
+        initials += nameParts[i].charAt(0).toUpperCase();
+    }
+    return initials;
+}
+
+
+/**
  * Applies a random color to the background of the specified image element based on the contact information.
  * 
  * @param {HTMLElement} imageElement - The image element to which the random color will be applied.
@@ -107,4 +155,19 @@ function clearInputs(name, email, phone) {
     name.value = '';
     email.value = '';
     phone.value = '';
+}
+
+/**
+ * Checks for the presence of a specific HTML element ('addedContactsCon') and adds or removes
+ * an event listener for window resize accordingly.
+ * 
+ */
+function checkResize() {
+    let div = document.getElementById('addedContactsCon');
+
+    if (div) {
+        window.addEventListener('resize', resizeHandler);
+    } else {
+        window.removeEventListener('resize', resizeHandler);
+    }
 }

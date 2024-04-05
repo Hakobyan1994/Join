@@ -180,6 +180,40 @@
     }
 }
 
+.slide-in-success-btn-mobile {
+    display: block;
+    position: absolute;
+    top: 600px;
+    bottom: 0;
+    left: 19px;
+    right: 0;
+    animation: slideInFromBottomSuccess 0.5s forwards;
+}
+
+.slide-out-success-btn-mobile {
+    animation: slideOutToBottomSuccess 0.5s forwards;
+}
+
+@keyframes slideInFromBottomSuccess {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottomSuccess {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
 /* slide in dark bgr */
 
 .dark-bgr {

@@ -36,7 +36,6 @@ async function addToContactsCheckValues(nameAddContactError, emailAddContactErro
         addContactEmailCheck(email, emailAddContactError);
         return;
     }
-
     if (!isValidEmail(email)) {
         emailAddContactError.classList.remove('d-none');
         emailAddContactError.innerHTML = `Please enter a valid email address`;
@@ -186,7 +185,6 @@ function saveContactCheckValues(nameEditContactError, emailEditContactError, pho
         saveContactEmailCheck(contactEmail, emailEditContactError);
         return;
     }
-
     if (!isValidEmail(contactEmail)) {
         emailEditContactError.classList.remove('d-none');
         emailEditContactError.innerHTML = `Please enter a valid email address`;

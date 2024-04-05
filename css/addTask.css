@@ -127,13 +127,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     height: 104px;
     width: 462px;
-    padding-right: 8px;
+    padding-right: 12px;
     padding-left: 8px;
     margin-top: 0;
     gap: 4px;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-width: thin;
 }
 
 .each-subtask {

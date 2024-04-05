@@ -212,7 +212,6 @@ function loginSetTimeout() {
 }
 
 
-
 function guesButton() {
     forGuestUser('guestLogin', userGuests)
     window.location.href = '../files/start.html';
