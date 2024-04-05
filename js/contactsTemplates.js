@@ -28,6 +28,7 @@ function generateHtmlMainContacts() {
                     <div id="contactOverlay"></div>
 
                     <div id="successCon"></div>
+                    <div id="successConMobile"></div>
 
                     <div id="headline" class="headline">
                             Contacts
@@ -115,6 +116,18 @@ function generateContact(i, contact, imageIdSlider) {
 function generateSuccessBtnSlider() {
     return /*html*/`
         <button class="success-btn">
+            Contact successfully created
+        </button>`;
+}
+
+/**
+ * Generates HTML markup for a success mobile button slider.
+ * 
+ * @returns {string} The generated HTML markup for the success mobile button slider.
+ */
+function generateSuccessBtnSliderMobile() {
+    return /*html*/`
+        <button class="success-btn-mobile">
             Contact successfully created
         </button>`;
 }

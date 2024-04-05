@@ -40,7 +40,7 @@ function renderContacts() {
         let contact = contacts[i];
         lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
     }
-resizeHandler();
+    resizeHandler();
 }
 
 /**
@@ -49,7 +49,7 @@ resizeHandler();
  * @param {string} predefinedOrder - These are the letters used to assign and sort the initials of the names.
  */
 function sortContacts(predefinedOrder) {
- contacts.sort((a, b) => {
+    contacts.sort((a, b) => {
         const nameA = a.name || '';
         const nameB = b.name || '';
         const indexA = predefinedOrder.indexOf(nameA.charAt(0).toUpperCase());
@@ -224,23 +224,36 @@ async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, e
     await setItem('contacts', JSON.stringify(contacts));
     await loadContacts();
     renderContacts();
-    addedContactSuccessfully();
+    showSuccessMessage();
 }
 
 /**
  * Displays a success message upon successfully adding a contact, showing a success button slider.
- * 
+ * The animation classes are determined based on the screen size.
  */
-function addedContactSuccessfully() {
+function showSuccessMessage() {
     let success = document.getElementById('successCon');
-    success.innerHTML = generateSuccessBtnSlider();
-    success.classList.remove('slide-out-success-btn');
-    success.classList.add('slide-in-success-btn');
-    setTimeoutSuccesDiv(success);
+    let successMobile = document.getElementById('successConMobile');
+    let isMobileView = window.innerWidth < 1360;
+
+    if (isMobileView) {
+        successMobile.classList.remove('d-none');
+        successMobile.innerHTML = generateSuccessBtnSliderMobile();
+        successMobile.classList.remove('slide-out-success-btn-mobile');
+        successMobile.classList.add('slide-in-success-btn-mobile');
+        setTimeoutSuccesDivMobile(successMobile);
+    } else {
+        success.classList.remove('d-none');
+        success.innerHTML = generateSuccessBtnSlider();
+        success.classList.remove('slide-out-success-btn');
+        success.classList.add('slide-in-success-btn');
+        setTimeoutSuccesDiv(success);
+    }
 }
 
 /**
  * Sets a timeout to remove the success message by sliding it out and hiding it after a certain duration.
+ * The animation classes are determined based on the screen size.
  * 
  * @param {HTMLElement} success - The success message container element.
  */
@@ -256,31 +269,17 @@ function setTimeoutSuccesDiv(success) {
 }
 
 /**
- * Displays a success mobile message upon successfully adding a contact, showing a success button slider.
+ * Sets a timeout to remove the mobile success message by sliding it out and hiding it after a certain duration.
+ * The animation classes are determined based on the screen size.
  * 
+ * @param {HTMLElement} successMobile - The success message container element.
  */
-function addedContactSuccessfullyMobile() {
-    let success = document.getElementById('successConMobile');
-    success.innerHTML = generateSuccessBtnSliderMobile();
-    success.classList.remove('slide-out-success-btn-mobile');
-    success.classList.add('slide-in-success-btn-mobile');
-    setTimeoutSuccesDivMobile(success);
-}
-
-/**
- * Sets a timeout to remove the success mobile message by sliding it out and hiding it after a certain duration.
- * 
- * @param {HTMLElement} success - The success message container element.
- */
-function setTimeoutSuccesDivMobile(success) {
+function setTimeoutSuccesDivMobile(successMobile) {
     setTimeout(() => {
-        success.classList.remove('slide-in-success-btn-mobile');
-        success.classList.add('slide-out-success-btn-mobile');
-
-        setTimeout(() => {
-            success.classList.add('d-none');
-        }, 500);
-    }, 1500);
+        successMobile.classList.remove('slide-in-success-btn-mobile');
+        successMobile.classList.add('slide-out-success-btn-mobile');
+        successMobile.classList.add('d-none');
+    }, 1000);
 }
 
 /**
