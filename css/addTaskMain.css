@@ -377,7 +377,6 @@ textarea {
     overflow-y: scroll;
     max-height: 124px;
     width: 481px;
-    scrollbar-width: thin;
     display: flex;
     flex-direction: column;
     margin-top: 5px;
