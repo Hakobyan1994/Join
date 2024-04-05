@@ -181,7 +181,29 @@ function validatePassword() {
         })
     })
 }
+   
+function emptyInputerrorMessage() {
+    let input = document.getElementById('emailLogIn');
+    let passwordInput = document.getElementById('passwordLogIn');
+    let inputdiv = document.getElementById('div');
+    let passworddiv = document.getElementById('passworEmptyInput');
 
+    if (input.value === '' && passwordInput.value === '') {
+        inputdiv.innerText = 'Please enter email';
+        passworddiv.innerText = 'Please enter password';
+    } else if (input.value === '') {
+        inputdiv.innerText = 'Please enter email';
+        passworddiv.innerText = '';
+    } else if (passwordInput.value === '') {
+        inputdiv.innerText = '';
+        passworddiv.innerText = 'Please enter password';
+    } else {
+        inputdiv.innerText = '';
+        passworddiv.innerText = '';
+    }
+}
+     
+  
 
 function loginSetTimeout() {
     setTimeout(() => {

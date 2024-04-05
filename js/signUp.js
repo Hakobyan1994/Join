@@ -25,7 +25,6 @@ async function getItem(key) {
 let dataUsers = []
 async function getUsers(params) {
     let res = await getItem('dataUsers')
-
     if (res[0] !== null) {
         dataUsers = res
       
@@ -36,11 +35,9 @@ async function getUsers(params) {
 
 
 function addtoLocal(arr, key) {
-    console.log(dataUsers, 'ggggg');
     setItem('dataUsers', dataUsers)
 }
 async function onsubmitFor(e) {
-    console.log(e);
     e.preventDefault();
     let name = e.target[0].value;
     let email = e.target[1].value;
@@ -52,7 +49,7 @@ async function onsubmitFor(e) {
         addtoLocal(dataUsers, 'dataUsers');
         validForm({ name, email, password, confirmPassword }, e)
     } else {
-        // checkSignUpInputs();
+        checkSignUpInputs();
         if (!checkBox) {
             document.getElementById('errorPassword').innerText = 'Please accept the privacy policy';
         } else {
@@ -61,11 +58,11 @@ async function onsubmitFor(e) {
         }
     }
 }
+
+
 function validForm({ name, email, password, confirmPassword }, e) {
     let checkEmailregex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+(?:de|com)$/;
-    // Überprüfe, ob die E-Mail-Adresse mit einem Punkt endet
     if (checkEmailregex.test(email) && (email.endsWith('.com') || email.endsWith('.de'))) {
-        console.log('ok');
         if (password.includes(confirmPassword)) {
             let user = dataUsers.find((el) => el.email === email);
             if (user) {
@@ -83,7 +80,6 @@ function validForm({ name, email, password, confirmPassword }, e) {
                     trasparenterDiv.style.display = 'flex';
                     setTimeout(function () {
                         trasparenterDiv.style.display = 'none';
-                        console.log('ok');
                         window.location.href = '../index.html'
                     }, 2000);
                 }
@@ -98,7 +94,7 @@ function validForm({ name, email, password, confirmPassword }, e) {
     }
 }
 function showError(message) {
-    document.getElementById('errorPassword').innerText = message;
+    document.getElementById('errorEmailend').innerText = message;
 }
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
@@ -148,4 +144,80 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmImage.src = '../assets/img/anmeldung Image/lock.png'
         }
     })
-});
+});  
+
+
+
+function checkSignUpInputs() {
+    let name = document.getElementById('nameInput').value;
+    let email = document.getElementById('emailInput').value;
+    let password1 = document.getElementById('password1Input').value;
+    let password2 = document.getElementById('confirmInput').value;
+
+    let nameInputCon = document.getElementById('personInput');
+    let emailInputCon = document.getElementById('emailInputCon');
+    let passwordInputCon = document.getElementById('passwordInputCon');
+    let passwordConfimInputCon = document.getElementById('passwordConfirmInput');
+
+    let nameSignUpError = document.getElementById('inputErrorSignUpName');
+    let emailSignUpError = document.getElementById('inputErrorSignUpEmail');
+    let password1SignUpError = document.getElementById('inputErrorSignUpPassword1');
+    let password2SignUpError = document.getElementById('inputErrorSignUpPassword2');
+
+    checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
+}
+
+
+function checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon) {
+    if (!name) {
+        nameInputCon.classList.remove('margin');
+        nameSignUpError.classList.remove('d-none');
+        nameSignUpError.innerHTML = `Please enter a name`;
+    } else {
+        nameInputCon.classList.add('margin');
+        nameSignUpError.classList.add('d-none');
+    }
+
+    if (!email) {
+        emailInputCon.classList.remove('margin');
+        emailSignUpError.classList.remove('d-none');
+        emailSignUpError.innerHTML = `Please enter an email`;
+    } else if (!email.endsWith('.com') && !email.endsWith('.de')) {
+        emailInputCon.classList.remove('margin');
+        emailSignUpError.classList.remove('d-none');
+        emailSignUpError.innerHTML = `Please enter a valid email address`;
+    } else {
+        emailSignUpError.classList.add('d-none');
+        emailInputCon.classList.add('margin');
+    }
+
+    if (!password1) {
+        passwordInputCon.classList.remove('margin');
+        passwordInputCon.classList.add('margin-empty');
+        password1SignUpError.classList.remove('d-none');
+        password1SignUpError.innerHTML = `Please enter a password`;
+    } else {
+        passwordInputCon.classList.add('margin');
+        passwordInputCon.classList.remove('margin-empty');
+        password1SignUpError.classList.add('d-none');
+    }
+
+    if (!password2) {
+        passwordConfimInputCon.classList.remove('margin-privacy');
+        passwordConfimInputCon.classList.remove('margin-top');
+        passwordConfimInputCon.classList.add('margin-empty');
+        passwordConfimInputCon.classList.add('margin-bottom');
+        password2SignUpError.classList.remove('d-none');
+        password2SignUpError.innerHTML = `Please confirm your password`;
+    } else {
+        passwordConfimInputCon.classList.add('margin-privacy');
+        passwordConfimInputCon.classList.add('margin-top');
+        passwordConfimInputCon.classList.remove('margin-empty');
+        passwordConfimInputCon.classList.remove('margin-bottom');
+        password2SignUpError.classList.add('d-none');
+    }
+
+    if (!name || !email || !password1 || !password2) {
+        return;
+    }
+}
