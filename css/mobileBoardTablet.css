@@ -192,7 +192,7 @@
 
     .popup-addtask-main {
         width: 100%;
-        height: 72vh;
+        height: 69vh;
         margin-top: unset;
         overflow-y: scroll;
         flex-direction: column;
