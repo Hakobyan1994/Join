@@ -392,7 +392,6 @@ textarea {
 }
 
 .overflow {
-    overflow-y: auto;
     margin-bottom: 16px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
