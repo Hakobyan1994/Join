@@ -224,7 +224,7 @@
 
     .To_Done_mainDiv {
         width: 300px;
-    } 
+    }
 
     .mainTime_UrgentDiv {
         width: 178px;
@@ -264,5 +264,39 @@
 
     .boardNumber {
         font-size: 36px;
+    }
+}
+
+@media(max-width: 375px) {
+    .info_titleDiv {
+        padding-left: 0;
+        line-height: 12px;
+    }
+
+    .summary-headline-mobile {
+        font-size: 36px !important;
+    }
+
+    .vector {
+        position: relative;
+        top: 12px;
+        right: 35px;
+    }
+
+    .summary-span-mobile {
+        position: relative !important;
+        left: -10px !important;
+        bottom: 15px !important;
+        font-weight: 300 !important;
+        font-size: 12px !important;
+    }
+
+    .summary-mobile {
+        position: relative;
+        bottom: 350px;
+    }
+
+    h2 {
+        padding-bottom: 4px;
     }
 }

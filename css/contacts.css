@@ -330,12 +330,6 @@
     border-radius: 30px;
 }
 
-/* ::-webkit-scrollbar-thumb {
-    background-image: url('../assets/img/icons/scrollbar.svg');
-    background-size: cover;
-    border: none;
-} */
-
 ::-webkit-scrollbar {
     display: block !important;
     width: 7px;
@@ -395,7 +389,3 @@ z-index: -11;
 .z-index-minus-9 {
     z-index: -9 !important;
 }
-
-/* .d-none {
-    display: none;
-} */

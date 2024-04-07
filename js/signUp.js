@@ -224,3 +224,4 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         return;
     }
 }
+

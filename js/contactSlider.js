@@ -26,6 +26,7 @@ function showAddContactOverlay() {
  * @param {HTMLElement} header - The header element.
  */
 function showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView, navbar, header) {
+    addZindexContacts();
     if (isMobileView) {
         addMask.classList.remove('slide-out-mobile');
         addMask.classList.remove('d-none');

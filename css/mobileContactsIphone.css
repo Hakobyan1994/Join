@@ -238,8 +238,19 @@
 }
 
 @media(max-width: 380px) {
+    .contact-con {
+        gap: 0;
+    }
+
+    .focus-main {
+        padding-left: 0;
+    }
+
     .add-contact-mask {
         width: 310px !important;
+        height: 320px;
+        position: relative;
+        top: 145px
     }
 
     .add-contact-main {
@@ -315,6 +326,16 @@
 
     .create-contact-btn {
         left: 17px;
+    }
+
+    .letter-con {
+        padding-left: 57px;
+    }
+
+    .error-message {
+        position: relative;
+        bottom: 28px;
+        left: 28px;
     }
 }
 
