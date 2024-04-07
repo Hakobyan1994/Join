@@ -115,9 +115,12 @@
 
     .edit-div {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         width: 100%;
         padding: unset;
+        position: unset;
     }
 
     .progress_card {
@@ -241,6 +244,23 @@
 
     .each-subtask {
         font-size: 14px;
+    }
+
+    .edit-addtask {
+        height: 73%;
+    }
+
+    .ok-btn-edit-section {
+        display: flex;
+        justify-content: flex-end;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        height: 108px;
+        width: 100%;
+        z-index: 2;
     }
 }
 

@@ -59,6 +59,7 @@
     .subtasks {
         width: 335px;
         padding-right: 16px;
+        height: unset;
     }
 
     .subtask-input {

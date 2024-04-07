@@ -150,8 +150,8 @@
 .popup-title {
     font-family: 'Inter', sans-serif;
     font-weight: 700!important;
-    font-size: 61px;
-    line-height: 73.2px;
+    font-size: 47px;
+    line-height: 52px;
     color: rgba(0, 0, 0, 1);
     padding: 0;
     margin-bottom: 16px;
@@ -206,7 +206,7 @@
     margin-bottom: 16px;
     gap: 16px;
     overflow-y: auto;
-    height: 121px;
+    max-height: 121px;
 }
 
 .each-subtask-section {
@@ -324,12 +324,11 @@
 }
 
 .edit-div {
-    height: 80%;
+    height: 95%;
     width: 100%;
     position: relative;
-    top: 0;
+    top: 8px;
     bottom: 32px;
-    margin-top: 120px;
     padding: 16px;
 }
 
@@ -338,16 +337,27 @@
 }
 
 .edit-addtask {
-    height: 80%;
+    height: 93%;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .ok-btn-edit {
-    position: relative;
-    bottom: -23px;
-    left: 366px;
     cursor: pointer;
+}
+
+.ok-btn-edit-section {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    height: unset;
+    width: 100%;
+    z-index: 2;
+    margin-top: 32px;
 }
 
 .assigned-button-b-pos {

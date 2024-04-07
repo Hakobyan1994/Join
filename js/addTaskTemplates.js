@@ -209,7 +209,7 @@ function generateHtmlCategory() {
 function generateHtmlSubtasks() {
     return /*html*/`
         <label id="subtasks-label">Subtasks</label>
-        <div style="height: 47px;">
+        <div style="height: unset;">
             <input type="text" class="inputfield subtask-input" id="subtask-input"> 
             <img src="../assets/img/icons/add.svg" alt="Add Icon" class="add-icon inputfield-icon-hover" id="subtask-change-add-icon">
             <div class="clear-check-icons d-none" id="subtask-close-check-icon">
