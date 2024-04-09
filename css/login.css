@@ -715,9 +715,40 @@ body {
         }
     }
 }  
+   
+
+@media   only screen and (max-width: 390px) {
+    /* Adjust styles for iPhone 12 */
+    /* For example: */
+      
+}
+
+  
+
+     @media(max-width:390px){ 
+       
+        .loginDiv {
+            height: 515px;
+            margin-top: 77px;
+            
+           
+            
+            z-index: 0;
+        }  
+      @media screen {
+        .contaner {
+            position: fixed;
+            /* width: auto; */
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin-left: auto;
+        }
+      }
+       
 
 
-     @media(max-width:390px){
         .anim_div {
             position: absolute;
             top: 0;
@@ -797,7 +828,11 @@ body {
         }
 
 
-     }   
+     }    
+
+
+       
+        
           @media(max-width:365px){
             .errorMessage {
                 position: fixed;
