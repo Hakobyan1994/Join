@@ -795,8 +795,38 @@ h1 {
     }
    }  
 
-   @media(max-width: 390px) {
+   @media(max-width: 375px) {
+         
+       @media screen {
+        .main_div {
+            position: relative;
+            top: 99.5px;
+            left: auto;
+            padding: 32px 0;
+            width: 329px;
+            height: 464px;
+            margin: 0 auto;
+        }  
+            
+        .image_boxx {
+            position: absolute;
+            top: 13px;
+            left: 31px;
+        }   
 
+        .footer{
+             
+                display: flex;
+                justify-content: center;
+                gap: 28px;
+                position: relative;
+                bottom: -43px;
+            
+        }
+           
+
+       }
+      
    }
 
    @media(max-width:350px){

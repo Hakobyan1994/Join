@@ -717,11 +717,7 @@ body {
 }  
    
 
-@media   only screen and (max-width: 390px) {
-    /* Adjust styles for iPhone 12 */
-    /* For example: */
-      
-}
+
 
   
 
@@ -745,7 +741,7 @@ body {
             bottom: 0;
             margin-left: auto;
         }
-      }
+    }
        
 
 
@@ -829,8 +825,64 @@ body {
 
 
      }    
+          
+     @media(max-width:375px){ 
+       
+            @media screen {
+                .contaner {
+                    position: fixed;
+                    /* width: auto; */
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin-left: auto;
+              
+              } 
+              .footer {
+                position: absolute;
+                top: 635px;
+                right: 0;
+                left: 0;
+            }   
 
+            .loginDiv {
+                height: 461px;
+                margin-top: 47px;
+                z-index: 0;
+            }  
 
+            .signup-div {
+                position: absolute;
+                top: 648px;
+                left: 56px;
+                gap: 35px;
+                margin-top: -56px;
+                margin-bottom: 35pxx;
+            }
+
+              .block_Remember {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 8px;
+                width: 433px;
+                height: 33px;
+                padding: 22px 42px;
+                border-radius: 15px;
+                position: absolute;
+                top: 403px;
+            } 
+            .block_btn {
+                flex-direction: column;
+                gap: 5px;
+                position: absolute;
+                top: 481px;
+                left: 90px;
+            }
+        }
+     }
+    
        
         
           @media(max-width:365px){
