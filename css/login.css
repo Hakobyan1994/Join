@@ -837,8 +837,19 @@ body {
                     top: 0;
                     bottom: 0;
                     margin-left: auto;
-              
-              } 
+               
+              }   
+              .contaner {
+                position: fixed;
+                /* width: auto; */
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin-left: auto;
+            }
+
+
               .footer {
                 position: absolute;
                 top: 635px;
