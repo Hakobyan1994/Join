@@ -42,6 +42,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 30px;
+    margin-right: 55px;
 }
 
 .anim_div {
@@ -86,7 +87,7 @@ body {
 .animation {
     animation: animImg 3s;
     animation-delay: 2s;
-}  
+}
 
 .errorMessage {
     color: red;
@@ -221,7 +222,6 @@ body {
 }
 
 .main-login {
-    width: 422px;
     height: 196px;
     margin-bottom: 32px;
 }
@@ -436,7 +436,7 @@ body {
     top: -45px;
     right: -377px;
     cursor: pointer;
-}  
+}
 
 .messageEmptyInput {
     position: fixed;
@@ -445,14 +445,14 @@ body {
     margin-left: 7px;
     color: red;
     font-family: 'Inter';
-}   
+}
 
-.passworEmptyInput{
+.passworEmptyInput {
     position: fixed;
     top: 500px;
 }
 
-  .passworEmptyInput {
+.passworEmptyInput {
     position: fixed;
     top: 541px;
     font-size: 12px;
@@ -460,7 +460,7 @@ body {
     color: red;
 }
 
-     
+
 
 @media(max-width: 500px) {
     /* body {
@@ -471,6 +471,22 @@ body {
         height: 100vh;
     } */
 
+    .margin-bottom-login {
+        width: 300px;
+    }
+
+    .input_email {
+        width: 100%;
+    }
+
+    .input_password {
+        width: 100%;
+    }
+
+    .block_Remember {
+        width: 333px;
+    }
+
     .anim_div {
         position: absolute;
         top: 0;
@@ -478,7 +494,7 @@ body {
         opacity: 0;
         background-color: #FFFFFF;
     }
-    
+
     .startParDiv {
         position: absolute;
         background-color: #2A3647;
@@ -489,7 +505,7 @@ body {
         opacity: 1;
         z-index: 33;
     }
-    
+
     .startParImg {
         position: absolute;
         top: 80px;
@@ -503,18 +519,18 @@ body {
         z-index: 34;
         fill: #FFFFFF;
     }
-    
+
     .addAnimDiv {
         animation: animDiv 3s;
         animation-delay: 2s;
         animation-iteration-count: 1;
     }
-    
+
     .animation {
         animation: animImg 3s;
         animation-delay: 2s;
     }
-    
+
     @keyframes animImg {
         from {
             top: 40%;
@@ -522,9 +538,9 @@ body {
             width: 400px;
             height: 250px;
         }
-    
+
         to {
-            width:73px;
+            width: 73px;
             height: 73px;
             top: 40px;
             left: 44px;
@@ -532,7 +548,7 @@ body {
             fill: #2A3647;
         }
     }
-    
+
     @keyframes animDiv {
         from {
             top: 0;
@@ -541,14 +557,14 @@ body {
             bottom: 0;
             opacity: 1;
         }
-    
+
         to {
             opacity: 0;
             top: 0;
             left: 0;
         }
     }
-    
+
     .join_image {
         width: 60px;
         position: absolute;
@@ -584,15 +600,24 @@ body {
     }
 
     .main-login {
-        max-width: 332px;
         height: 196px;
         margin-bottom: 62px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .password_login {
+        width: 333px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .input_email,
     .input_password {
-        max-width: 78%;
         background-position: calc(100% - 15px);
+        width: 100%;
     }
 
     .errorMessage {
@@ -604,8 +629,8 @@ body {
 
     .passwordImage {
         position: relative;
-        top: 5px;
-        right: 42px;
+        top: -47px;
+        right: -263px;
         cursor: pointer;
     }
 
@@ -625,7 +650,7 @@ body {
         top: 800px;
         right: 0;
         left: 0;
-    }   
+    }
 
     .passworEmptyInput {
         position: fixed;
@@ -634,7 +659,7 @@ body {
         margin-left: 8px;
         color: red;
     }
-}    
+}
 
 @media(max-width: 460px) {
     .anim_div {
@@ -644,7 +669,7 @@ body {
         opacity: 0;
         background-color: #FFFFFF;
     }
-    
+
     .startParDiv {
         position: absolute;
         background-color: #2A3647;
@@ -655,7 +680,7 @@ body {
         opacity: 1;
         z-index: 33;
     }
-    
+
     .startParImg {
         position: absolute;
         top: 80px;
@@ -669,18 +694,18 @@ body {
         z-index: 34;
         fill: #FFFFFF;
     }
-    
+
     .addAnimDiv {
         animation: animDiv 3s;
         animation-delay: 2s;
         animation-iteration-count: 1;
     }
-    
+
     .animation {
         animation: animImg 3s;
         animation-delay: 2s;
     }
-    
+
     @keyframes animImg {
         from {
             top: 40%;
@@ -688,9 +713,9 @@ body {
             width: 400px;
             height: 250px;
         }
-    
+
         to {
-            width:73px;
+            width: 73px;
             height: 73px;
             top: 40px;
             left: 44px;
@@ -698,7 +723,7 @@ body {
             fill: #2A3647;
         }
     }
-    
+
     @keyframes animDiv {
         from {
             top: 0;
@@ -707,31 +732,138 @@ body {
             bottom: 0;
             opacity: 1;
         }
-    
+
         to {
             opacity: 0;
             top: 0;
             left: 0;
         }
     }
-}  
-   
+}
 
 
 
-  
 
-     @media(max-width:390px){ 
-       
-        .loginDiv {
-            height: 515px;
-            margin-top: 77px;
-            
-           
-            
-            z-index: 0;
-        }  
-      @media screen {
+
+
+@media(max-width:390px) {
+    .loginDiv {
+        height: 515px;
+        margin-top: 77px;
+        z-index: 0;
+    }
+
+    .main-login {
+        width: unset;
+    }
+
+    @media screen {
+        .contaner {
+            position: fixed;
+            width: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin-left: auto;
+        }
+    }
+
+    .anim_div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background-color: #FFFFFF;
+    }
+
+    .startParDiv {
+        position: absolute;
+        background-color: #2A3647;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        z-index: 33;
+    }
+
+    .startParImg {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        top: 40%;
+        left: 10%;
+        width: 360px !important;
+        height: 250px;
+        z-index: 34;
+        fill: #FFFFFF;
+    }
+
+    .addAnimDiv {
+        animation: animDiv 3s;
+        animation-delay: 2s;
+        animation-iteration-count: 1;
+    }
+
+    .animation {
+        animation: animImg 3s;
+        animation-delay: 2s;
+    }
+
+    @keyframes animImg {
+        from {
+            top: 40%;
+            /* left: 40%; */
+            width: 400px;
+            height: 250px;
+        }
+
+        to {
+            width: 73px;
+            height: 73px;
+            top: 40px;
+            left: 44px;
+            animation-play-state: paused;
+            fill: #2A3647;
+        }
+    }
+
+    @keyframes animDiv {
+        from {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+    }
+
+
+}
+
+@media(max-width:375px) {
+
+    @media screen {
+        .contaner {
+            position: fixed;
+            /* width: auto; */
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin-left: auto;
+
+        }
+
         .contaner {
             position: fixed;
             /* width: auto; */
@@ -741,353 +873,265 @@ body {
             bottom: 0;
             margin-left: auto;
         }
+
+
+        .footer {
+            position: absolute;
+            top: 635px;
+            right: 0;
+            left: 0;
+        }
+
+        .loginDiv {
+            height: 461px;
+            margin-top: 47px;
+            z-index: 0;
+        }
+
+        .signup-div {
+            position: absolute;
+            top: 648px;
+            left: 56px;
+            gap: 35px;
+            margin-top: -56px;
+            margin-bottom: 35pxx;
+        }
+
+        .block_Remember {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            height: 33px;
+            padding: 22px 42px;
+            border-radius: 15px;
+            position: absolute;
+            top: 403px;
+        }
+
+        .block_btn {
+            flex-direction: column;
+            gap: 5px;
+            position: absolute;
+            top: 481px;
+            left: 90px;
+        }
     }
-       
+}
 
 
-        .anim_div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            background-color: #FFFFFF;
-        }
-        
-        .startParDiv {
-            position: absolute;
-            background-color: #2A3647;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 1;
-            z-index: 33;
-        }
-        
-        .startParImg {
-            position: absolute;
-            top: 80px;
-            right: 0;
-            bottom: 0;
-            opacity: 1;
-            top: 40%;
-            left: 10%;
-            width: 360px !important;
-            height: 250px;
-            z-index: 34;
-            fill: #FFFFFF;
-        }
-        
-        .addAnimDiv {
-            animation: animDiv 3s;
-            animation-delay: 2s;
-            animation-iteration-count: 1;
-        }
-        
-        .animation {
-            animation: animImg 3s;
-            animation-delay: 2s;
-        }
-        
-        @keyframes animImg {
-            from {
-                top: 40%;
-                /* left: 40%; */
-                width: 400px;
-                height: 250px;
-            }
-        
-            to {
-                width:73px;
-                height: 73px;
-                top: 40px;
-                left: 44px;
-                animation-play-state: paused;
-                fill: #2A3647;
-            }
-        }
-        
-        @keyframes animDiv {
-            from {
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                opacity: 1;
-            }
-        
-            to {
-                opacity: 0;
-                top: 0;
-                left: 0;
-            }
-        }
 
-
-     }    
-          
-     @media(max-width:375px){ 
-       
-            @media screen {
-                .contaner {
-                    position: fixed;
-                    /* width: auto; */
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    margin-left: auto;
-               
-              }   
-              .contaner {
-                position: fixed;
-                /* width: auto; */
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                margin-left: auto;
-            }
-
-
-              .footer {
-                position: absolute;
-                top: 635px;
-                right: 0;
-                left: 0;
-            }   
-
-            .loginDiv {
-                height: 461px;
-                margin-top: 47px;
-                z-index: 0;
-            }  
-
-            .signup-div {
-                position: absolute;
-                top: 648px;
-                left: 56px;
-                gap: 35px;
-                margin-top: -56px;
-                margin-bottom: 35pxx;
-            }
-
-              .block_Remember {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 8px;
-                width: 433px;
-                height: 33px;
-                padding: 22px 42px;
-                border-radius: 15px;
-                position: absolute;
-                top: 403px;
-            } 
-            .block_btn {
-                flex-direction: column;
-                gap: 5px;
-                position: absolute;
-                top: 481px;
-                left: 90px;
-            }
-        }
-     }
-    
-       
-        
-          @media(max-width:365px){
-            .errorMessage {
-                position: fixed;
-                top: 431px;
-                left: auto;
-                margin-left: -329px;
-            }
-          }
-
-          @media(max-width:341px){
-            .errorMessage {
-                position: fixed;
-                top: 431px;
-                left: auto;
-                margin-left: -312px;
-            }  
-
-            .passworEmptyInput {
-                position: fixed;
-                top: 429px;
-                font-size: 12px;
-                margin-left: 31px;
-                color: red;
-            }  
-            .messageEmptyInput {
-                position: fixed;
-                margin-top: -7px;
-                font-size: 12px;
-                margin-left: 32px;
-                color: red;
-                font-family: 'Inter';
-            }
-            
-              
-          }  
-   
-    @media(max-width:338px){
-    
-        .anim_div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            background-color: #FFFFFF;
-        }   
-        .passworEmptyInput {
-            position: fixed;
-            top: 429px;
-            font-size: 12px;
-            margin-left: 31px;
-            color: red;
-        }  
-        .messageEmptyInput {
-            position: fixed;
-            margin-top: -7px;
-            font-size: 12px;
-            margin-left: 32px;
-            color: red;
-            font-family: 'Inter';
-        }
-        
-        .startParDiv {
-            position: absolute;
-            background-color: #2A3647;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 1;
-            z-index: 33;
-        }
-        
-        .startParImg {
-            position: absolute;
-            top: 80px;
-            right: 0;
-            bottom: 0;
-            opacity: 1;
-            top: 40%;
-            left: 5%;
-            width: 360px !important;
-            height: 250px;
-            z-index: 34;
-            fill: #FFFFFF;
-        }
-        
-        .addAnimDiv {
-            animation: animDiv 3s;
-            animation-delay: 2s;
-            animation-iteration-count: 1;
-        }
-        
-        .animation {
-            animation: animImg 3s;
-            animation-delay: 2s;
-        }
-        
-        @keyframes animImg {
-            from {
-                top: 40%;
-                left: 3%;
-                width: 400px;
-                height: 250px;
-            }
-        
-            to {
-                width:73px;
-                height: 73px;
-                top: 40px;
-                left: 44px;
-                animation-play-state: paused;
-                fill: #2A3647;
-            }
-        }
-        
-        @keyframes animDiv {
-            from {
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                opacity: 1;
-            }
-        
-            to {
-                opacity: 0;
-                top: 0;
-                left: 0;
-            }
-        }
-
-
+@media(max-width:365px) {
+    .errorMessage {
+        position: fixed;
+        top: 431px;
+        left: auto;
+        margin-left: -329px;
     }
-   
+}
+
+@media(max-width:341px) {
+    .errorMessage {
+        position: fixed;
+        top: 431px;
+        left: auto;
+        margin-left: -312px;
+    }
+
+    .passworEmptyInput {
+        position: fixed;
+        top: 429px;
+        font-size: 12px;
+        margin-left: 31px;
+        color: red;
+    }
+
+    .messageEmptyInput {
+        position: fixed;
+        margin-top: -7px;
+        font-size: 12px;
+        margin-left: 32px;
+        color: red;
+        font-family: 'Inter';
+    }
 
 
-  @media(max-width:372px ){
+}
+
+@media(max-width:338px) {
+
+    .anim_div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background-color: #FFFFFF;
+    }
+
+    .passworEmptyInput {
+        position: fixed;
+        top: 429px;
+        font-size: 12px;
+        margin-left: 31px;
+        color: red;
+    }
+
+    .messageEmptyInput {
+        position: fixed;
+        margin-top: -7px;
+        font-size: 12px;
+        margin-left: 32px;
+        color: red;
+        font-family: 'Inter';
+    }
+
+    .startParDiv {
+        position: absolute;
+        background-color: #2A3647;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        z-index: 33;
+    }
+
+    .startParImg {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        top: 40%;
+        left: 5%;
+        width: 360px !important;
+        height: 250px;
+        z-index: 34;
+        fill: #FFFFFF;
+    }
+
+    .addAnimDiv {
+        animation: animDiv 3s;
+        animation-delay: 2s;
+        animation-iteration-count: 1;
+    }
+
+    .animation {
+        animation: animImg 3s;
+        animation-delay: 2s;
+    }
+
+    @keyframes animImg {
+        from {
+            top: 40%;
+            left: 3%;
+            width: 400px;
+            height: 250px;
+        }
+
+        to {
+            width: 73px;
+            height: 73px;
+            top: 40px;
+            left: 44px;
+            animation-play-state: paused;
+            fill: #2A3647;
+        }
+    }
+
+    @keyframes animDiv {
+        from {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+    }
+
+
+}
+
+
+
+@media(max-width:372px) {
     .title {
         font-size: 30px;
         align-items: center;
         margin-block-start: 0;
         margin-block-end: 0;
     }
-  }   
+}
 
 
-     @media(max-width:364px){
-        .input_email, .input_password {
-            max-width: 72%;
-            background-position: calc(100% - 15px);
-            margin-left: 12px;
-        }  
-        .signup-div {
-            position: absolute;
-            top: 778px;
-            left: 39px;
-            gap: 35px;
-            margin-top: -56px;
-        }
-     }  
+@media(max-width:364px) {
 
-       @media(max-width:341px){
-        .title {
-            font-size: 26px;
-            align-items: center;
-            margin-block-start: 0;
-            margin-block-end: 0;
-        }  
-        .input_email, .input_password {
-            max-width: 68%;
-            background-position: calc(100% - 15px);
-            margin-left: 23px;
-        }
-       }      
+    .input_email,
+    .input_password {
+        background-position: calc(100% - 15px);
+        width: 100%;
+    }
+
+    .signup-div {
+        position: absolute;
+        top: 778px;
+        left: 39px;
+        gap: 35px;
+        margin-top: -56px;
+    }
+}
+
+@media(max-width:341px) {
+    .title {
+        font-size: 26px;
+        align-items: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    .input_email,
+    .input_password {
+        background-position: calc(100% - 15px);
+        width: 100%;
+    }
+}
 
 
-        @media(max-width:325px){
-            .signup-div {
-                position: absolute;
-                top: 778px;
-                left: 24px;
-                gap: 30px;
-                margin-top: -56px;
-            } 
-            .footer {
-                position: absolute;
-                top: 800px;
-                right: 0;
-                left: -24px;
-            }  
+@media(max-width:325px) {
+    .signup-div {
+        position: absolute;
+        top: 778px;
+        left: 24px;
+        gap: 30px;
+        margin-top: -56px;
+    }
 
-              
-        }
+    .footer {
+        position: absolute;
+        top: 800px;
+        right: 0;
+        left: -24px;
+    }
+}
 
-      
+@media(max-width: 350px) {
+    .password_login {
+        width: 270px;
+    }
+
+    .margin-bottom-login {
+        width: unset;
+    }
+
+    .passwordImage {
+        position: relative;
+        top: -47px;
+        right: -234px;
+    }
+}
