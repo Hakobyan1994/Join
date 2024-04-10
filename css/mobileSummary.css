@@ -14,7 +14,6 @@
 
 @media(max-width: 860px) {
     .mobile-main-summary {
-        overflow: hidden !important;
     }
 
     .main_checkingDiv {
@@ -269,7 +268,7 @@
 
 @media(max-width: 375px) {
     .info_titleDiv {
-        padding-left: 0;
+        padding-left: 44px;
         line-height: 12px;
     }
 
