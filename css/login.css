@@ -439,7 +439,7 @@ body {
 }
 
 .messageEmptyInput {
-    position: fixed;
+    position: absolute;
     margin-top: -7px;
     font-size: 12px;
     margin-left: 7px;
@@ -448,18 +448,204 @@ body {
 }
 
 .passworEmptyInput {
-    position: fixed;
+    position: absolute;
     top: 500px;
 }
 
 .passworEmptyInput {
-    position: fixed;
+    position: absolute;
     top: 541px;
     font-size: 12px;
     margin-left: 8px;
     color: red;
 }
+        
+      @media(max-width:1000px){
 
+ 
+    @media screen {
+        .anim_div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            background-color: #FFFFFF;
+        }
+        
+        .startParDiv {
+            position: absolute;
+            background-color: #FFFFFF;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            z-index: 33;
+        }
+        
+        .startParImg {
+            position: absolute;
+            top: 80px;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            top: 40%;
+            left: 30%;
+            width: 400px !important;
+            height: 250px;
+            z-index: 34;
+            fill: #2A3647;
+        }
+        .addAnimDiv {
+            animation: animDiv 3s;
+            animation-delay: 2s;
+            animation-iteration-count: 1;
+        }
+        
+        .animation {
+            animation: animImg 3s;
+            animation-delay: 2s;
+        }   
+
+        @keyframes animImg {
+            from {
+                top: 40%;
+                left: 38%;
+                width: 400px;
+                height: 250px;
+            }
+        
+            to {
+                width: 205px;
+                height: 120px;
+                top: 80px;
+                left: 17px;
+                animation-play-state: paused;
+                fill: #2A3647;
+            }
+        }
+        
+        @keyframes animDiv {
+            from {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 1;
+            }
+        
+            to {
+                opacity: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+          
+    }
+    }          
+ 
+
+
+  
+
+    @media(max-width:694px){
+   
+         @media screen {
+                
+            .anim_div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                
+                background-color: #FFFFFF;
+            }
+        
+            .startParDiv {
+                position: absolute;
+                background-color: #2A3647;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 1;
+                z-index: 33;
+            }
+        
+            .startParImg {
+                position: absolute;
+                top: 80px;
+                right: 0;
+                bottom: 0;
+                opacity: 1;
+                top: 40%;
+                left: 20%;
+                width: 400px !important;
+                height: 250px;
+                z-index: 34;
+                fill: #FFFFFF;
+            }
+        
+            /* .addAnimDiv {
+                animation: animDiv 3s;
+                animation-delay: 2s;
+                animation-iteration-count: 1;
+            } */
+/*         
+            .animation {
+                animation: animImg 3s;
+                animation-delay: 2s;
+            } */
+        
+            @keyframes animImg {
+                from {
+                    top: 40%;
+                    /* left: 10%; */
+                    width: 400px;
+                    height: 250px;
+                }
+        
+                to {
+                    width: 120px;
+                    height: 120px;
+                    top: 80px;
+                    left: 60px;
+                    animation-play-state: paused;
+                    fill: #2A3647;
+                }
+            }
+        
+            @keyframes animDiv {
+                from {
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    opacity: 1;
+                    height: 100vh;
+                }
+        
+                to {
+                    opacity: 0;
+                    top: 0;
+                    left: 0;
+                    
+                }
+            }
+        }
+        
+
+           
+
+
+         }
+          
+    
+
+
+
+
+   
 
 
 @media(max-width: 500px) {
@@ -472,7 +658,7 @@ body {
     } */
 
     .margin-bottom-login {
-        width: 300px;
+        width: 337px;
     }
 
     .input_email {
@@ -630,7 +816,7 @@ body {
     .passwordImage {
         position: relative;
         top: -47px;
-        right: -263px;
+        right: -296px;
         cursor: pointer;
     }
 
@@ -652,11 +838,13 @@ body {
         left: 0;
     }
 
+  
     .passworEmptyInput {
-        position: fixed;
+        position: absolute;
         top: 429px;
         font-size: 12px;
-        margin-left: 8px;
+        left: auto;
+        margin-left: -191px;
         color: red;
     }
 }
@@ -915,8 +1103,22 @@ body {
             position: absolute;
             top: 481px;
             left: 90px;
+        }   
+
+        .passworEmptyInput {
+            position: absolute;
+            top: 62%;
+            left: 4%;
+            font-size: 12px;
+            margin-left: 8px;
+            color: red;
         }
-    }
+     
+          
+    }   
+
+    
+       
 }
 
 
@@ -927,10 +1129,44 @@ body {
         top: 431px;
         left: auto;
         margin-left: -329px;
+    }  
+   @media screen {
+  
+    .passworEmptyInput {
+        position: absolute;
+        top: 62%;
+        left: 3%;
+        font-size: 12px;
+        margin-left: 8px;
+        color: red;
     }
+   
+     
 }
+}   
+      @media(max-width:350px){
+          
+        @media screen {
+  
+            .passworEmptyInput {
+                position: absolute;
+                top: 62%;
+                left: 11%;
+                font-size: 12px;
+                color: red;
+            }
+           
+             
+        }
 
-@media(max-width:341px) {
+            
+      }
+  
+
+
+
+
+@media(max-width:344px) {
     .errorMessage {
         position: fixed;
         top: 431px;
@@ -939,26 +1175,29 @@ body {
     }
 
     .passworEmptyInput {
-        position: fixed;
-        top: 429px;
+        position: absolute;
+        top: 394px;
+        left: 11%;
         font-size: 12px;
-        margin-left: 31px;
+        /* margin-left: 31px; */
         color: red;
     }
 
     .messageEmptyInput {
-        position: fixed;
+        position: absolute;
         margin-top: -7px;
         font-size: 12px;
-        margin-left: 32px;
+        margin-left: 3px;
         color: red;
         font-family: 'Inter';
     }
 
+    
+
 
 }
 
-@media(max-width:338px) {
+@media(max-width:339px) {
 
     .anim_div {
         position: absolute;
@@ -969,18 +1208,19 @@ body {
     }
 
     .passworEmptyInput {
-        position: fixed;
-        top: 429px;
+        position: absolute;
+        top: 395px;
+        left: 27px;
         font-size: 12px;
-        margin-left: 31px;
+        /* margin-left: 31px; */
         color: red;
     }
 
     .messageEmptyInput {
-        position: fixed;
+        position: absolute;
         margin-top: -7px;
         font-size: 12px;
-        margin-left: 32px;
+        margin-left: 2px;
         color: red;
         font-family: 'Inter';
     }
