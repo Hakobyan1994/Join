@@ -14,12 +14,13 @@ function logoAnimation() {
 
 
     if (stop) {
-        div.classList.add('addAnimDiv')
-        img.classList.add('animation')
-        div.classList.remove('anim_div')
-        div.classList.add('startParDiv')
-        img.classList.add('startParImg')
-        img.classList.remove('join_image')
+        div.classList.remove('addAnimDiv')
+        img.classList.remove('animation')
+
+        div.classList.add('anim_div')
+        div.classList.remove('startParDiv')
+        img.classList.remove('startParImg')
+        img.classList.add('join_image')
     }
 
     setTimeout(() => {
@@ -30,7 +31,6 @@ function logoAnimation() {
 
     }, 2000)
     setTimeout(() => {
-        div.style.display = 'none';
     }, 3000)
 
 }
@@ -210,6 +210,7 @@ function loginSetTimeout() {
         localStorage.setItem('stop', JSON.stringify('stop'))
     }, 3000)
 }
+
 
 
 function guesButton() {

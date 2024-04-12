@@ -5,7 +5,6 @@ const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
    
-
 async function setItem(key, value) {
     const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
@@ -32,14 +31,15 @@ async function getUsers(params) {
     }
 }
     getUsers()
-
+   
+     
+   
+      
 
 
 function addtoLocal(arr, key) {
     setItem('dataUsers', dataUsers)
 }
-
-
 async function onsubmitFor(e) {
     e.preventDefault();
     let name = e.target[0].value;
@@ -224,4 +224,3 @@ function checkSignUpHelp(name, email, password1, password2, nameSignUpError, ema
         return;
     }
 }
-
