@@ -50,8 +50,8 @@ async function init() {
  * Includes HTML content, animates the logo, validates form inputs, and sets timeouts for login functionality.
  */
 async function initLogin() {
-    includeHTML();
     logoAnimation();
+    includeHTML();
     validateCheckbox();
     loginSetTimeout();
     validatePassword();
