@@ -6,42 +6,49 @@ let userGuests = [
 ];
 let dataUser = [];
 getUsers();
+  
+
+
 
 function logoAnimation() {
-    let div = document.getElementById('animationDiv')
-    let img = document.getElementById('logo-login')
-    let stop = JSON.parse(localStorage.getItem('stop'))
-
+    let div = document.getElementById('animationDiv');
+    let img = document.getElementById('logo-login');
+    let stop = JSON.parse(localStorage.getItem('stop'));
 
     if (stop) {
-        div.classList.remove('addAnimDiv')
-        img.classList.remove('animation')
+        // Animation wurde bereits abgespielt, daher entferne die Klassen
+        div.classList.remove('addAnimDiv');
+        img.classList.remove('animation');
 
-        div.classList.add('anim_div')
-        div.classList.remove('startParDiv')
-        img.classList.remove('startParImg')
-        img.classList.add('join_image')
+       
+        img.classList.add('startParImg');
+        div.classList.add('anim_div');
+       
+        img.classList.add('animation');
+        div.classList.add('startParDiv');
+        img.classList.remove('join_image');
+        
+        
+        // Entferne den Eintrag aus dem Local Storage, um die Animation erneut abzuspielen
+        localStorage.removeItem('stop');
+    }
+     else {
+        // Animation wurde noch nicht abgespielt, füge Klassen hinzu
+        div.classList.add('startParDiv');
+        img.classList.add('startParImg');
     }
 
-    setTimeout(() => {
-        div.classList.remove('startParDiv')
-        div.classList.add('anim_div')
-        img.classList.remove('startParImg')
-        img.classList.add('join_image')
+    // Speichere im Local Storage, dass die Animation abgespielt wurde
+    localStorage.setItem('stop', JSON.stringify(true));
 
-    }, 2000)
+    // Füge Timeout hinzu, um die Klassen nach einer gewissen Zeit zu entfernen
     setTimeout(() => {
-    }, 3000)
-
+        div.classList.remove('startParDiv');
+        div.classList.add('anim_div');
+        img.classList.remove('startParImg');
+        img.classList.add('join_image'); 
+    }, 2000);
 }
-
-
-// let dataLocal = JSON.parse(localStorage.getItem('datareg'))
-// if (dataLocal) {
-//     dataUsers = dataLocal
-// }
-// console.log(dataUsers);
-
 
 async function registerItem(key, value) {
     const payload = { key, value, token: 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
@@ -71,7 +78,7 @@ async function getUsers(params) {
 function activUser(arr) {
     registerItem('activeUser', [arr]);
 }
-
+  
 
 let form_log = document.getElementById('form_log');
 let checkBox = document.getElementById('checkBox');

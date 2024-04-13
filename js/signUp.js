@@ -4,7 +4,13 @@ const trasparenterDiv = document.querySelector('.trasparenter_div');
 const responsiveInfo = document.getElementById('responsiveInfo')
 check.onchange = () => check.value === 'no' ? check.value = 'yes' : check.value = 'no';
 signUp.onsubmit = onsubmitFor
-   
+let stop = JSON.parse(localStorage.getItem('stop'))  
+  
+
+
+
+
+
 async function setItem(key, value) {
     const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
@@ -19,7 +25,8 @@ async function getItem(key) {
             return JSON.parse(res.data.value);
         } throw `Could not find data with key "${key}".`;
     });
-}
+}  
+
 
 
 let dataUsers = []
@@ -33,8 +40,10 @@ async function getUsers(params) {
     getUsers()
    
      
-   
-      
+     
+     function backLogin() {
+        localStorage.removeItem('stop')
+     } 
 
 
 function addtoLocal(arr, key) {
