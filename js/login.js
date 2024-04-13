@@ -120,13 +120,13 @@ function passwordBlock() {
         inputImage.src = '../assets/img/anmeldung Image/lock.png';
     }
 }
-
+     
 
 function validateCheckbox() {
     checkBox.addEventListener('change', showUserdata);
     form_log.onsubmit = validLogin;
 }
-
+  
 
 function validLogin(e) {
     e.preventDefault();
@@ -144,8 +144,10 @@ function validLogin(e) {
         } else {
             status = 'Email not found';
         }
-        if (status === 'ok') {
+        if (status === 'ok') { 
+           localStorage.clear()
             activUser(foundUser);
+            
             window.location.href = "../files/start.html";
         } else if (status === 'Error Password' || status === 'Email not found') {
             checkBox.checked = false;
@@ -187,7 +189,7 @@ function emptyInputerrorMessage() {
     let passwordInput = document.getElementById('passwordLogIn');
     let inputdiv = document.getElementById('div');
     let passworddiv = document.getElementById('passworEmptyInput');
-
+     
     if (input.value === '' && passwordInput.value === '') {
         inputdiv.innerText = 'Please enter email';
         passworddiv.innerText = 'Please enter password';
