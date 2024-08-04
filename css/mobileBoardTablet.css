@@ -1,0 +1,244 @@
+@media(max-width: 1505px) { 
+    .main_div {
+        width: 100%;
+    }
+
+    .card_mainContainer {
+        width: 100%;
+        gap: 16px;
+    }
+
+    .Card_NotasksTodo {
+        width: 220px;
+    }
+
+    .board_div {
+        margin-top: 8px;
+        width: 233px;
+    }
+
+    .info_Div {
+        width: 100%;
+        margin-right: 32px;
+    }
+
+    .mobile-done-boardcard {
+        margin-right: 16px;
+    }
+
+    .mobile-search-board {
+        margin-right: 32px;
+    }
+}
+
+@media(max-width: 1360px) {
+    .mobile-board-header h2 {
+        margin-left: 16px;
+    }
+
+    .main_div {
+        width: 100%;
+    }
+
+    .info_Div {
+        width: 100%;
+    }
+
+    .board-window {
+        margin-right: 32px;
+        margin-bottom: unset;
+        margin-top: 160px;
+        position: fixed;
+        height: calc(100% - 208px);
+        z-index: -2;
+    }
+
+    .info_Div h1 {
+        font-size: 47px;
+        margin-left: 16px;
+    }
+
+    .card_mainContainer {
+        width: 100%;
+        padding-left: 32px;
+    }
+
+    .mobile-done-boardcard {
+        margin-right: 32px;
+    }
+
+    .silhouette {
+        width: 160px;
+        height: 180px; 
+    }
+}
+
+@media(max-width: 1200px) {     
+    .card_mainContainer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 22px;
+        overflow-x: scroll;
+    }
+
+    .card_Div {
+        display: flex;
+        flex-direction: row;
+        min-height: 180px;
+        max-height: fit-content;
+        width: 95%;
+        gap: 25px;
+        padding-bottom: unset;
+    }
+
+    .Card_NotasksTodo {
+        width: 100%;
+    }
+
+    .board_div {
+        width: 100%;
+        margin-left: 4px;
+    }
+
+    .adding_Button {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        font-size: xxx-large;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px;
+        font: icon;
+        margin-right: 16px;
+    }
+
+    h3 {
+        font-size: 27px;
+    }
+
+    .add-task-btn {
+        display: none;
+    }
+
+    .input-searchfield {
+        width: 100%;
+        margin-left: 32px;
+        margin-right: 16px;
+    }
+
+    .mobile-search-board {
+        width: 100%;
+    }
+
+    .info_Div {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .mobile-board-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    .mobile-add-task-board {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: 2px solid rgba(42, 54, 71, 1);
+        background-color: rgba(42, 54, 71, 1);
+        font: icon;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        font-size: 37px;
+        font-weight: 400;
+        margin-right: 32px;
+    }
+
+    .mobile-mgr-boardcard {
+        padding-right: 32px;
+    }
+
+    .popup-addtask-form {
+        width: unset;
+    }
+
+    .board-popup {
+        width: 100%;
+        height: 100%;
+        border-radius: unset;
+    }
+
+    .no-results {
+        left: 37px;
+    }
+}
+
+@media(max-width: 1128px) {
+    .popup-box {
+        width: 100%;
+        height: calc(100% - 98px);
+        padding-left: 16px;
+        padding-right: unset;
+        align-items: center;
+        margin-top: 32px;
+    }
+
+    .popup-addtask-main {
+        width: 100%;
+        height: 69vh;
+        margin-top: unset;
+        overflow-y: scroll;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .close-popup {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        left: unset;
+    }
+
+    .popup-addtask-form {
+        position: fixed;
+        z-index: 2;
+        right: 0;
+        bottom: 16px;
+        left: 0;
+        width: 100%;
+        justify-content: space-evenly;
+        gap: 4px;
+    }
+
+    .mobile-board-popup-add-task {
+        height: calc(100% - 96px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .h2-addtask-board {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: unset;
+    }
+
+    .board-add-task-window {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media(max-width: 860px) {
+
+}

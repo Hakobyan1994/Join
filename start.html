@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Kanban Project Management Tool</title>
+    <script src="../js/includeHTML.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/addTaskMain.js"></script>
+    <script src="../js/addTask.js"></script>
+    <script src="../js/addTaskTemplates.js"></script>
+    <script src="../js/boardTemplates.js"></script>
+    <script src="../js/summaryTemplates.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/contactSlider.js"></script>
+    <script src="../js/contactsTemplates.js"></script>
+    <script src="../js/contactHelpFunctions.js"></script>
+    <script src="../js/contactsCheckInputs.js"></script>
+    <script src="../js/boardTemplates.js"></script>
+    <script src="../js/help.js"></script>
+    <script src="../js/privacyPolicy.js"></script>
+    <script src="../js/legalNotice.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/addTaskSave.js"></script>
+    <script src="../js/boardMain.js"></script>
+    <script src="../js/boardExtras.js"></script>
+    <script src="../js/drag&drop.js"></script>
+    <script src="../js/zIndex.js"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/summary.css">
+    <link rel="stylesheet" href="../css/summaryMain.css">
+    <link rel="stylesheet" href="../css/menubar.css">
+    <link rel="stylesheet" href="../css/addTask.css">
+    <link rel="stylesheet" href="../css/addTaskMain.css">
+    <link rel="stylesheet" href="../css/boardMain.css">
+    <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/addContacts.css">
+    <link rel="stylesheet" href="../css/contactInfo.css">
+    <link rel="stylesheet" href="../css/contactSliders.css">
+    <link rel="stylesheet" href="../css/mobileContacts.css">
+    <link rel="stylesheet" href="../css/mobileContactsIphone.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/help.css">
+    <link rel="stylesheet" href="../css/privacyPolicy.css">
+    <link rel="stylesheet" href="../css/legalNotice.css">
+    <link rel="stylesheet" href="../css/mobileMenubar.css">
+    <link rel="stylesheet" href="../css/mobileAddTaskHandy.css">
+    <link rel="stylesheet" href="../css/mobileAddTaskTablet.css">
+    <link rel="stylesheet" href="../css/mobileBoardHandy.css">
+    <link rel="stylesheet" href="../css/mobileBoardTablet.css">
+    <link rel="stylesheet" href="../css/mobileSummary.css">
+</head>
+
+<body onload="init()">
+    <div w3-include-html="../templates/menubar.html" class="menu-header"></div>
+    <div class="render-page" id="render-summary"></div>
+    <div class="render-page" id="render-add-task"></div>
+    <div class="render-page" id="render-board"></div>
+    <div class="render-page render-page-contacts" id="render-contacts"></div>
+    <div class="hlp" id="render-privacy-policy"></div>
+    <div class="hlp" id="render-legal-notice"></div>
+    <div class="hlp" id="render-help"></div>
+
+    <script src="../js/summary.js"></script>
+    <script src="../js/board.js"></script>
+    <div id="transDivforResponsive" class="transGreetingDiv">
+        <span id="greetResponsive" class="greetResponsive">Good Morning,</span>
+        <span id="namesGreetresp" class="nameGreetResponsive"></span>
+    </div>
+
+</body>
+
+</html>

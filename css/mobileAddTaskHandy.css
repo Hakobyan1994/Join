@@ -1,0 +1,255 @@
+@media(max-width: 580px) {
+    .main-box {
+        width: 100%;
+        align-items: center;
+    }
+
+    .render-page {
+        width: 100vw;
+    }
+
+    .main-window {
+        margin-left: 0;
+        margin-top: 112px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .mobile-view {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputfield {
+        width: 320px;
+    }
+
+    .prio-btn {
+        width: 360px;
+    }
+
+    .prio-btn button {
+        font-size: 16px;
+    }
+
+    .prio img {
+        width: 16px;
+    }
+    
+    .dropdown-icon {
+        left: 322px;
+    }
+
+    .add-icon {
+        left: 322px
+    }
+
+    .clear-check-icons {
+        bottom: 18px;
+        left: 152px;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        position: relative;
+        left: 196px;
+        opacity: 1;
+        cursor: pointer;
+    }
+    
+    .subtasks {
+        width: 335px;
+        padding-right: 16px;
+        height: unset;
+    }
+
+    .subtask-input {
+        width: 360px;
+    }
+    
+    .each-subtask {
+        width: 102%;
+        padding-left: 2px;
+    }
+
+    .category-list {
+        width: 358px;
+    }
+
+    .form-addtask {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: unset;
+    }
+
+    .assigned-list {
+        width: 360px;
+    }
+
+    .assigned-button {
+        width: 352px;
+    }
+
+    .clear-btn {
+        display: none;
+    }
+
+    .form-bottom-left {
+        padding-top: unset;
+    }
+
+    .popup-a-to-b {
+        position: fixed;
+    }
+
+    .create-task {
+        width: 140px;
+        height: 64px;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .form-bottom-left p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 390px) {
+    h2 {
+        font-size: 40px;
+    }
+
+    .mobile-view {
+        justify-content: flex-start;
+    }
+
+    .inputfield {
+        width: 260px;
+    }
+
+    .inputfield::placeholder {
+        font-size: 14px;
+    }
+
+    .prio-btn {
+        width: 300px;
+    }
+
+    .prio-btn button {
+        font-size: 13px;
+        padding: 10px 8px;
+        gap: 4px;
+    }
+
+    .prio img {
+        width: 14px;
+    }
+
+    .dropdown-icon {
+        left: 272px;
+    }
+
+    .add-icon {
+        left: 272px
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        position: relative;
+        left: 136px;
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .subtasks {
+        width: 93%;
+        /* padding-right: 16px; */
+    }
+
+    .category-list {
+        width: 298px;
+    }
+
+    .category-list::placeholder {
+        font-size: 14px;
+    }
+
+    .assigned-list {
+        width: 98%;
+    }
+
+    .assigned-button {
+        width: 292px;
+    }
+
+    .create-task {
+        width: 137px;
+        height: 64px;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .form-bottom {
+        width: calc(100% - 32px);
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 12px;
+    }
+
+    .form-bottom-left p {
+        font-size: 14px;
+    }
+
+    .form-bottom-left {
+        font-size: 11px;
+    }
+
+    label {
+        font-size: 14px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .subtask-input {
+        width: 303px;
+        font-size: 14px;
+    }
+
+    .clear-check-icons {
+        left: 124px;
+    }
+
+    .subtasks {
+        width: 90%;
+    }
+
+    .category-list-div {
+        font-size: 14px;
+    }
+
+    .subtasks li input{
+        font-size: 14px;
+    }
+
+    input[type="date" i] {
+        font-size: 14px;
+    }
+
+    .assigned-list div {
+        font-size: 14px;
+    }
+
+    .assigned-contact-list-icon {
+        height: 24px;
+        width: 24px;
+    }
+
+    .checkbox-none-selected {
+        width: 16px;
+    }
+
+    .checkbox-selected {
+        width: 16px;
+    }
+}

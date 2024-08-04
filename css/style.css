@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(../assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+:root {
+    --font: #2a3647;
+    --red: rgba(255, 129, 144, 1);
+    --main-window: rgba(225,229,236,0.25);
+    --line: rgba(209, 209, 209, 1);
+    --nav: rgba(42,54,71, 1);
+    --menubar: rgba(205,205,205);
+    --lightblue: #29abe2;
+    --darkblue: rgba(42,54,71);
+}
+
+.red {
+    color: rgba(255, 129, 144, 1);
+}
+
+.lightblue {
+    color: rgba(41,171,226, 1);
+}
+
+.darkblue {
+    color: rgba(42, 54, 71, 1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    margin: 0;
+    height: 10px;
+    width: 100vw;
+    background-color: rgba(246, 247, 248, 1);
+    overflow-x: hidden;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 61px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; 
+    margin: 0;
+    padding: 0;
+    padding-bottom: 16px;
+}
+
+h3 {
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 16px;
+}
+
+h4 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.d-none {
+    display: none!important;
+}
+
+input {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+input::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.main-window {
+    width: calc(100% - 330px);
+    margin-top: 144px;
+    margin-left: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: scroll;
+    scrollbar-width: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.render-page-contacts {
+    position: relative;
+    z-index: -8;
+}

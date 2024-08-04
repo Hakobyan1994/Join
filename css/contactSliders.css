@@ -1,0 +1,254 @@
+/* slide in contact info */
+
+.slide-in {
+    display: block;
+    z-index: 2;
+    animation: slideInFromRight 0.5s forwards;
+}
+
+.slide-out {
+    display: block;
+    animation: slideOutToRight 0.5s forwards;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* slide in add and edit contact mask */
+
+.slide-in-mask {
+    display: block;
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: slideInFromRightMask 0.5s forwards;
+}
+
+.slide-out-mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: slideOutToRightMask 0.5s forwards;
+}
+
+@keyframes slideInFromRightMask {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightMask {
+    from {
+        transform: translateX(50%);
+    }
+
+    to {
+        transform: translateX(700%);
+    }
+}
+
+/* slide in mobile version */
+
+.slide-in-mobile {
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: slideInFromBottom 0.5s forwards;
+}
+
+.slide-out-mobile {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: slideOutToBottom 0.5s forwards;
+}
+
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+/* slide in contact info mobile */
+
+.slide-in-mobile-info {
+    display: block;
+    /* animation: slideInFromRightSide 0.5s forwards; */
+}
+
+.slide-out-mobile-info {
+    display: block;
+    /* animation: slideOutToRightSide 0.5s forwards; */
+}
+
+@keyframes slideInFromRightSide {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightSide {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+/* slide in success btn */
+
+.slide-in-success-btn {
+    display: block;
+    animation: slideInFromRightSuccess 0.5s forwards;
+}
+
+.slide-out-success-btn {
+    animation: slideOutToRightSuccess 0.5s forwards;
+}
+
+@keyframes slideInFromRightSuccess {
+    from {
+        transform: translateX(550%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRightSuccess {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(550%);
+    }
+}
+
+.slide-in-success-btn-mobile {
+    display: block;
+    position: absolute;
+    top: 600px;
+    bottom: 0;
+    left: 19px;
+    right: 0;
+    animation: slideInFromBottomSuccess 0.5s forwards;
+}
+
+.slide-out-success-btn-mobile {
+    animation: slideOutToBottomSuccess 0.5s forwards;
+}
+
+@keyframes slideInFromBottomSuccess {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottomSuccess {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+/* slide in dark bgr */
+
+.dark-bgr {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    /* animation: darkenBackground 1s forwards; */
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.hide-dark-bgr {
+    animation: lightenBackground 1s forwards;
+}
+
+@keyframes darkenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes lightenBackground {
+    from {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}

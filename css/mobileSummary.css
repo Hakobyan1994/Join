@@ -1,0 +1,302 @@
+@media(max-width: 1360px) {
+    .greeting {
+        display: none;
+    }
+
+    .greetingName {
+        display: none;
+    }
+
+    .profil_name {
+        display: none;
+    }
+}
+
+@media(max-width: 860px) {
+    .mobile-main-summary {
+        overflow: hidden;
+    }
+
+    .main_checkingDiv {
+        position: relative;
+        top: 360px;
+        left: 326px;
+    }
+
+    .summary-mobile {
+        position: relative;
+        bottom: 300px;
+        right: 233px;
+    }
+
+    .toDo_mainDiv {
+        height: 30px;
+        width: 140px;
+        border-radius: 20px;
+    }
+
+    .To_Done_mainDiv {
+        gap: 18px;
+    }
+
+    .info_titleDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        right: 90px;
+        padding-left: 28px;
+    }
+
+    .summary-headline-mobile {
+        margin: 0;
+        font-size: 44px !important;
+    }
+
+    .summary-span-mobile {
+        position: relative !important;
+        left: 5px !important;
+        bottom: 15px !important;
+        font-weight: 300 !important;
+        font-size: 18px !important;
+    }
+
+    .vector {
+        position: relative;
+        top: 32px;
+        right: 51px;
+        width: 80px;
+        border: 1.5px solid #29ABE2;
+    }
+
+    .image_Todo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .editImage {
+        height: 22px;
+    }
+
+    .editImageCheck {
+        height: 18px;
+    }
+
+    .toDo_num {
+        font-size: 44px;
+        line-height: 50px;
+    }
+
+    .toDo_title {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .mainTime_UrgentDiv {
+        width: 250px;
+        height: 60px;
+        position: relative;
+        bottom: 60px;
+        border-radius: 20px;
+    }
+
+    .urgentImage_div {
+        position: relative;
+        top: 14px;
+    }
+
+    .urgentImage {
+        width: 40px;
+        height: 40px;
+    }
+
+    .urgent_Number {
+        font-size: 44px;
+        line-height: 0;
+        position: relative;
+        top: 10px;
+    }
+
+    .date_title {
+        font-weight: 400;
+        font-size: 14px;
+        width: 130px;
+        line-height: 0;
+    }
+
+    .Datespan {
+        font-size: 16px;
+    }
+
+    .urgentVector {
+        height: 74px;
+        border: 1px solid #D1D1D1;
+    }
+
+    .urgentt_div {
+        position: relative;
+        right: 16px;
+    }
+
+    .toDo_Title_Urgent {
+        font-size: 14px;
+        line-height: 20px;
+        color: black;
+        position: relative;
+        top: 19px;
+    }
+
+    .Date_box {
+        position: relative;
+        left: 18px;
+        bottom: 6px;
+    }
+
+    .tasksmain_Board {
+        position: relative;
+        bottom: 70px;
+    }
+
+    .board_Div {
+        height: 105px;
+        width: 105px;
+        border-radius: 20px;
+    }
+
+    .boardNumber {
+        font-size: 44px;
+        line-height: 0;
+    }
+
+    .board_title {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        position: relative;
+        top: 25px;
+    }
+
+    .urgent_Box {
+        gap: 8px;
+        position: relative;
+        left: -18px;
+    }
+
+    .mainTime_UrgentDiv {
+        justify-content: center;
+    }
+}
+
+@media(max-width:500px) {
+    .transGreetingDiv {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(205, 205, 205);
+        opacity: 8;
+        z-index: 0;
+    }
+
+    .greetResponsive {
+        color: #2A3647;
+        font-weight: 400;
+        font-size: 36px;
+        display: none;
+    }
+
+    .nameGreetResponsive {
+        font-weight: 700;
+        line-height: 57px;
+        font-size: 46px;
+    }
+}
+
+@media (max-width: 450px) {
+    .info_titleDiv {
+        padding-left: 80px;
+    }
+
+    .To_Done_mainDiv {
+        width: 300px;
+    }
+
+    .mainTime_UrgentDiv {
+        width: 178px;
+    }
+
+    .tasksmain_Board {
+        width: 300px;
+    }
+
+    .summary-mobile {
+        right: 210px;
+    }
+
+    .urgent_Box {
+        left: unset;
+    }
+
+    .Date_box {
+        left: 8px;
+    }
+
+    .summary-headline-mobile {
+        font-size: 40px;
+    }
+
+    .toDo_num {
+        font-size: 36px;
+    }
+
+    .done_numberDiv {
+        font-size: 36px;
+    }
+
+    .urgent_Number {
+        font-size: 36px;
+    }
+
+    .boardNumber {
+        font-size: 36px;
+    }
+}
+
+@media(max-width: 375px) {
+    .info_titleDiv {
+        padding-left: 44px;
+        line-height: 12px;
+    }
+
+    .summary-headline-mobile {
+        font-size: 36px !important;
+    }
+
+    .vector {
+        position: relative;
+        top: 12px;
+        right: 35px;
+    }
+
+    .summary-span-mobile {
+        position: relative !important;
+        left: -10px !important;
+        bottom: 15px !important;
+        font-weight: 300 !important;
+        font-size: 12px !important;
+    }
+
+    .summary-mobile {
+        position: relative;
+        bottom: 350px;
+    }
+
+    h2 {
+        padding-bottom: 4px;
+    }
+}

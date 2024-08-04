@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: contactsTemplates.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: contactsTemplates.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Generates HTML markup for the main contacts section.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
+function generateHtmlMainContacts() {
+    return /*html*/`
+        &lt;div id="mainContent" class="main-content">
+            &lt;div class="content">
+                &lt;div class="contacts-main">
+                    &lt;div id="addContactBtn" class="contacts">
+                        &lt;div id="addedContactsCon" class="added-contacts">
+
+                            &lt;div class="contact-con-btn">
+                                &lt;div id="addBtn" class="add-contact-btn-con">&lt;/div>
+
+                                &lt;div id="allContacts" class="all-contacts">&lt;/div>
+                            &lt;/div>
+
+                            &lt;div id="darkBgr" class="dark-bgr d-none">&lt;/div>
+
+                            &lt;div id="addMask" class="d-none">&lt;/div>
+
+                            &lt;div id="editMask" class="d-none">&lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div id="contactOverlay">&lt;/div>
+
+                    &lt;div id="successCon">&lt;/div>
+
+                    &lt;div id="headline" class="headline">
+                            Contacts
+                            &lt;div class="vertical-line">
+                                &lt;img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
+                            &lt;/div>
+                            &lt;div class="team-headline">
+                                Better with a team
+                            &lt;/div>
+                        &lt;/div>
+
+                    &lt;div id="headlineMobile" class="headline">
+                            Contacts
+                            &lt;div class="vertical-line">
+                                &lt;img class="line-contacts" src="../assets/img/icons/Vector 5 (1).svg" alt="">
+                            &lt;/div>
+                            &lt;div class="team-headline">
+                                Better with a team
+                            &lt;/div>
+                        &lt;/div>
+
+                    &lt;div onclick="closeMobileMenu()" id="contactInfoConMobile" class="contact-info-con d-none">
+
+                        &lt;img onclick="hideMobileContactInfo()" class="back-arrow-mobile" src="../assets/img/icons/arrow_back_btn.svg">
+
+                        &lt;div id="contactInfoSlider" class="contact-info-slider">&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for the mobile add contact button.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
+function generateAddBtnMobile() {
+    return /*html*/`
+        &lt;img id="addContactBtnMobile" onclick="showAddContactOverlay()" class="add-contact-btn-mobile" src="../assets/img/icons/add_contact_mobile.svg" alt="add-contact-mobile">`;
+}
+
+/**
+ * Generates HTML markup for the add contact button.
+ * 
+ * @returns {string} The generated HTML markup.
+ */
+function generateAddBtn() {
+    return /*html*/`
+        &lt;button type="button" class="add-contact-btn" onclick="showAddContactOverlay()">
+            Add new contact 
+            &lt;img src="/assets/img/icons/person_add.svg" alt="">
+        &lt;/button>`;
+}
+
+/**
+ * Generates HTML markup for a contact.
+ * 
+ * @param {number} i - The index of the contact.
+ * @param {object} contact - The contact object containing name and email.
+ * @param {string} imageIdSlider - The id of the contact image element.
+ * @returns {string} The generated HTML markup for the contact.
+ */
+function generateContact(i, contact, imageIdSlider) {
+    return /*html*/`
+    &lt;div id="contactHighlighter" class="focus-main" >
+        &lt;div onclick="showContactInfoSlider(${i})" class="contact-con-pos">
+            &lt;div tabindex="0" class="contact-con"  onmouseover="addHighlight(this)" onmouseout="removeHighlight(this)">
+                &lt;img id="${imageIdSlider}" class="user-img-contact-list" src="../assets/img/icons/Ellipse 5.svg">
+                &lt;div class="contact-focus-effect">
+                    &lt;div class="contact-list-name">${contact.name}&lt;/div>
+                    &lt;div class="contact-list-email">${contact.email}&lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="scroll-con">&lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for a success button slider.
+ * 
+ * @returns {string} The generated HTML markup for the success button slider.
+ */
+function generateSuccessBtnSlider() {
+    return /*html*/`
+        &lt;button class="success-btn">
+            Contact successfully created
+        &lt;/button>`;
+}
+
+/**
+ * Generates HTML markup for the contact information slider.
+ * 
+ * @param {number} i - The index of the contact.
+ * @param {string} contactName - The name of the contact.
+ * @param {string} contactEmail - The email of the contact.
+ * @param {string} contactPhone - The phone number of the contact.
+ * @param {string} imageId - The id of the contact image element.
+ * @returns {string} The generated HTML markup for the contact information slider.
+ */
+function generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageId) {
+    return /*html*/`
+        &lt;div id="contactSlider" class="contact-info-slider">
+            &lt;div class="slider-main-content">
+                &lt;div class="slider-content-top">
+                    &lt;img id="${imageId}" class="slider-contact-img" src="../assets/img/icons/Ellipse 5.svg" alt="">
+                    &lt;div class="contact-name">
+                        &lt;div class="name">${contactName}&lt;/div>
+                        &lt;div class="edit-delete-btn-con">
+                            &lt;div id="editBtnMobile" onclick="showEditContactOverlay(${i})" class="edit-delete">
+                                &lt;img src="../assets/img/icons/edit.svg" alt="">
+                                    Edit
+                            &lt;/div>
+                            &lt;div id="deleteBtnMobile" onclick="deleteContact(${i})" class="edit-delete">
+                                &lt;img src="../assets/img/icons/delete.svg" alt="">
+                                    Delete
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div class="slider-content-mid">
+                    Contact Information
+                &lt;/div>
+                &lt;div class="slider-content-bottom">
+                    &lt;div class="email-phone-con-main">
+                        &lt;div class="email-phone-con-top">&lt;b>Email&lt;/b>&lt;/div>
+                        &lt;div class="email-con-bottom">${contactEmail}&lt;/div>
+                    &lt;/div>
+                    &lt;div class="email-phone-con-main">
+                        &lt;div class="email-phone-con-top">&lt;b>Phone&lt;/b>&lt;/div>
+                        &lt;div class="phone-con-bottom">${contactPhone}&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+        
+        &lt;img id="openMobileMenuBtn" onclick="openMobileMenu(event)" class="contact-edit-btn-mobile" src="../assets/img/icons/add_contact_menu_mobile.svg">
+        &lt;div id="slideInMenuMobile" class="slide-in-menu-mobile d-none">
+            &lt;div class="mobile-menu-btns-main">
+                &lt;div onclick="showEditContactOverlay(${i})" class="mobile-menu-btns">&lt;img class="mobile-edit-img" src="../assets/img/icons/edit.svg" alt="">&lt;div class="edit-txt">Edit&lt;/div>&lt;/div>
+                &lt;div onclick="deleteContact(${i})" class="mobile-menu-btns">&lt;img class="mobile-delete-img" src="../assets/img/icons/delete.svg" alt="">Delete&lt;/div>
+            &lt;/div>
+        &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for a letter container.
+ * 
+ * @param {string} currentLetter - The current letter to be displayed in the container.
+ * @returns {string} The generated HTML markup for the letter container.
+ */
+function generateLetterCon(currentLetter) {
+    return /*html*/`
+        &lt;div class="letter-con">
+            ${currentLetter}
+        &lt;/div>`;
+}
+
+/**
+ * Generates SVG markup for a contact image with specified initials and background color.
+ * 
+ * @param {string} initials - The initials to be displayed on the contact image.
+ * @param {string} color - The background color of the contact image.
+ * @returns {string} The SVG markup for the contact image.
+ */
+function generateContactImage(initials, color) {
+    return /*html*/`
+        &lt;svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            &lt;rect width="100%" height="100%" fill="${color}"/>
+            &lt;text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="40">${initials}&lt;/text>
+        &lt;/svg>`;
+}
+
+/**
+ * Generates HTML markup for a separator line between contacts.
+ * 
+ * @returns {string} The HTML markup for the separator line.
+ */
+function generateSeparator() {
+    return /*html*/`
+        &lt;div class="contact-line">
+            &lt;img class="contact-line-color" src="../assets/img/icons/Vector 10.svg" alt="">
+        &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for the add contact overlay.
+ * 
+ * @returns {string} The HTML markup for the add contact overlay.
+ */
+function generateAddContactOverlay() {
+    return /*html*/`
+        &lt;div class="set-overlay-pos">
+            &lt;div class="add-contact-mask" onclick="dontCloseCard(event)">
+            &lt;div class="add-contact-main">
+                &lt;img id="closeImg" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeAddContactSlider()">
+                &lt;div class="set-position">
+                    &lt;img class="join-img" src="../assets/img/icons/Capa 2.svg" alt="join-icon">
+                    &lt;div class="add-contact-headline">
+                        Add contact
+                    &lt;/div>
+                    &lt;span class="add-contact-text">
+                        Tasks are better with a team!
+                    &lt;/span>
+                    &lt;img class="blue-underline" src="../assets/img/icons/Vector 5.svg"
+                        alt="blue-underline">
+                &lt;/div>
+            &lt;/div>
+
+            &lt;div class="contact-set">
+                &lt;div class="add-contact-content" class="set-position">
+                    &lt;div>
+                        &lt;div onclick="closeAddContactSlider()" class="close-img-con">
+                            &lt;img id="closeImg" class="close-img" src="../assets/img/icons/Close.svg" alt="">
+                        &lt;/div>
+                        &lt;div onclick="closeAddContactSlider()" class="close-img-con-mobile" style="display: none">
+                        &lt;/div>
+
+                        &lt;div class="add-contact-user-img">
+                            &lt;div class="person-con">
+                                &lt;img class="person-img-bgr" src="../assets/img/icons/Group 9.svg"
+                                    alt="">
+                                &lt;img class="person-img-add-contacts" src="../assets/img/icons/contact_person_white.svg" alt="">
+                            &lt;/div>
+
+                            &lt;form onsubmit="addToContacts()" class="add-contact-data">
+                                &lt;div class="input-con-main">
+                                    &lt;input id="name" name="name" class="input-con"
+                                        placeholder="Name" type="text" maxlength="20" required>
+                                    &lt;img class="input-svg-pos" src="../assets/img/icons/person.svg" alt="">
+                                    &lt;div id="nameAddErrorMessage" class="error-message d-none">&lt;/div>
+                                &lt;/div>
+                                &lt;div class="input-con-main">
+                                    &lt;input id="emailContacts" name="email" class="input-con"
+                                        placeholder="Email" type="email" required>
+                                    &lt;img class="input-svg-pos" src="../assets/img/icons/mail.svg" alt="">
+                                    &lt;div id="emailAddErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;div id="emailAlreadyExists" class="error-message d-none">&lt;/div>
+                                &lt;/div>
+                                &lt;div class="input-con-main">
+                                    &lt;input id="phone" name="phone" class="input-con"
+                                        placeholder="Phone" type="text" onkeypress="return onlyNumbers(event)" required>
+                                    &lt;img class="input-svg-pos" src="../assets/img/icons/call.svg" alt="">
+                                    &lt;div id="phoneAddErrorMessage" class="error-message d-none">&lt;/div>
+                                &lt;/div>
+
+                                &lt;div class="add-contact-btns">
+                                    &lt;button id="cancelBtn" onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
+                                        &lt;div class="cancel-txt-fix">Cancel&lt;/div>&lt;img id="cancelBtnImg" class="cancel-btn-img" src="../assets/img/icons/close-black1.svg" alt="Close">
+                                    &lt;/button>
+
+                                    &lt;button type="button" onclick="addToContacts()" class="create-contact-btn">
+                                        Create contact &lt;img src="../assets/img/icons/check1.svg"
+                                            alt="crerate contact">
+                                    &lt;/button>
+                                &lt;/div>
+                            &lt;/form>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>`;
+}
+
+/**
+ * Generates HTML markup for the edit contact overlay.
+ * 
+ * @param {number} i - The index of the contact to be edited.
+ * @returns {string} The HTML markup for the edit contact overlay.
+ */
+function generateEditMaskOverlay(i) {
+    return /*html*/`
+        &lt;div class="set-overlay-pos">
+            &lt;div class="add-contact-mask" onclick="dontCloseCard(event)">
+                &lt;div class="add-contact-main">
+                &lt;img id="closeImgEdit" class="close-img-mobile" src="../assets/img/icons/close_white.svg" alt="" onclick="closeEditContactSlider()">
+                    &lt;div class="set-position">
+                        &lt;img class="join-img" src="../assets/img/icons/Capa 2.svg" alt="join-icon">
+                        &lt;div class="add-contact-headline">
+                            Edit contact
+                        &lt;/div>
+                        &lt;img class="blue-underline" src="../assets/img/icons/Vector 5.svg" alt="blue-underline">
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;div class="contact-set-edit">
+                    &lt;div class="add-contact-content set-position">
+                        &lt;div>
+                            &lt;div onclick="closeEditContactSlider()" class="close-img-con-edit">
+                                &lt;img class="close-img" src="../assets/img/icons/Close.svg" alt="">
+                            &lt;/div>
+
+                            &lt;div class="add-contact-user-img">
+                                &lt;div class="person-con-edit">
+                                    &lt;img id="contactImageEdit" class="person-img">
+                                &lt;/div>
+
+                                &lt;form onsubmit="addToContacts()" class="edit-contact-data">
+                                    &lt;div class="input-con-main">
+                                        &lt;input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="20" required>
+                                        &lt;img class="input-svg-pos-edit" src="../assets/img/icons/person.svg" alt="">
+                                        &lt;div id="nameErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;/div>
+                                    &lt;div class="input-con-main">
+                                        &lt;input id="emailEdit" name="email" class="input-con-edit" placeholder="Email" type="email" required>
+                                        &lt;img class="input-svg-pos-edit" src="../assets/img/icons/mail.svg" alt="">
+                                        &lt;div id="emailErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;/div>
+                                    &lt;div class="input-con-main">
+                                        &lt;input id="phoneEdit" name="phone" class="input-con-edit" placeholder="Phone" onkeypress="return onlyNumbers(event)" type="text" required>
+                                        &lt;img class="input-svg-pos-edit" src="../assets/img/icons/call.svg" alt="">
+                                        &lt;div id="phoneErrorMessage" class="error-message d-none">&lt;/div>
+                                    &lt;/div>
+
+                                    &lt;div class="add-contact-btns">
+                                        &lt;button type="button" class="cancel-btn-edit" onclick="deleteContact(${i})">Delete&lt;/button>
+                                        &lt;button type="button" onclick="saveContact(${i})" class="create-contact-btn">Save &lt;img class="check-svg" src="../assets/img/icons/check1.svg" alt="">&lt;/button>
+                                    &lt;/div>
+                                &lt;/form>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>`;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualDate">actualDate</a></li><li><a href="global.html#addContactBtnHTML">addContactBtnHTML</a></li><li><a href="global.html#addContactEmailCheck">addContactEmailCheck</a></li><li><a href="global.html#addContactNameCheck">addContactNameCheck</a></li><li><a href="global.html#addContactPhoneCheck">addContactPhoneCheck</a></li><li><a href="global.html#addContactToArray">addContactToArray</a></li><li><a href="global.html#addDetectedContacts">addDetectedContacts</a></li><li><a href="global.html#addEventFunctions">addEventFunctions</a></li><li><a href="global.html#addHighlight">addHighlight</a></li><li><a href="global.html#addInitialsToContactImage">addInitialsToContactImage</a></li><li><a href="global.html#addRandomColorToImg">addRandomColorToImg</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addSubtaskToCheckoffs">addSubtaskToCheckoffs</a></li><li><a href="global.html#addToContacts">addToContacts</a></li><li><a href="global.html#addToContactsCheckValues">addToContactsCheckValues</a></li><li><a href="global.html#addToContactsOnSuccess">addToContactsOnSuccess</a></li><li><a href="global.html#addZindex">addZindex</a></li><li><a href="global.html#addZindex13">addZindex13</a></li><li><a href="global.html#addZindexContacts">addZindexContacts</a></li><li><a href="global.html#addedContactSuccessfully">addedContactSuccessfully</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#applyRandomColorToImage">applyRandomColorToImage</a></li><li><a href="global.html#calculatePercentageForProgressBar">calculatePercentageForProgressBar</a></li><li><a href="global.html#cancelButton">cancelButton</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#changeImage">changeImage</a></li><li><a href="global.html#checkButtonImgChange">checkButtonImgChange</a></li><li><a href="global.html#checkCategoryButton">checkCategoryButton</a></li><li><a href="global.html#checkElementsOfCloseIt">checkElementsOfCloseIt</a></li><li><a href="global.html#checkExistingEmail">checkExistingEmail</a></li><li><a href="global.html#checkInputs">checkInputs</a></li><li><a href="global.html#checkInputsHELP">checkInputsHELP</a></li><li><a href="global.html#checkOffSubtask">checkOffSubtask</a></li><li><a href="global.html#checkResize">checkResize</a></li><li><a href="global.html#checkSelectedSubtasks">checkSelectedSubtasks</a></li><li><a href="global.html#checks">checks</a></li><li><a href="global.html#clearBoardContents">clearBoardContents</a></li><li><a href="global.html#clearButtonImgChange">clearButtonImgChange</a></li><li><a href="global.html#clearFields">clearFields</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#clearInputs">clearInputs</a></li><li><a href="global.html#clearSubtaskInputField">clearSubtaskInputField</a></li><li><a href="global.html#closeAddContactSlider">closeAddContactSlider</a></li><li><a href="global.html#closeAddContactSliderHELP">closeAddContactSliderHELP</a></li><li><a href="global.html#closeEditContactSlider">closeEditContactSlider</a></li><li><a href="global.html#closeEditContactSliderHELP">closeEditContactSliderHELP</a></li><li><a href="global.html#closeEditPopup">closeEditPopup</a></li><li><a href="global.html#closeInfoList">closeInfoList</a></li><li><a href="global.html#closeList">closeList</a></li><li><a href="global.html#closeMobileMenu">closeMobileMenu</a></li><li><a href="global.html#closePopupAddTask">closePopupAddTask</a></li><li><a href="global.html#closePopupAddTaskDiv">closePopupAddTaskDiv</a></li><li><a href="global.html#closePopupEdit">closePopupEdit</a></li><li><a href="global.html#countTaskValues">countTaskValues</a></li><li><a href="global.html#createEditableSubtaskElement">createEditableSubtaskElement</a></li><li><a href="global.html#createNewTask">createNewTask</a></li><li><a href="global.html#createSilhouette">createSilhouette</a></li><li><a href="global.html#createSubtasksToAddTaskPopup">createSubtasksToAddTaskPopup</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#createUserButtons">createUserButtons</a></li><li><a href="global.html#createUserToAssigned">createUserToAssigned</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#defineUpcomingDeadline">defineUpcomingDeadline</a></li><li><a href="global.html#deformatDate">deformatDate</a></li><li><a href="global.html#deleteAllSilhouettes">deleteAllSilhouettes</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteContactHELP">deleteContactHELP</a></li><li><a href="global.html#deleteDeletedContact">deleteDeletedContact</a></li><li><a href="global.html#deleteNotDetectedContacts">deleteNotDetectedContacts</a></li><li><a href="global.html#deleteOldUrgent">deleteOldUrgent</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#displayContactImage">displayContactImage</a></li><li><a href="global.html#displayEditPopup">displayEditPopup</a></li><li><a href="global.html#displayEditableContent">displayEditableContent</a></li><li><a href="global.html#displayGreeting">displayGreeting</a></li><li><a href="global.html#dontCloseCard">dontCloseCard</a></li><li><a href="global.html#dragStart">dragStart</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyPages">emptyPages</a></li><li><a href="global.html#emptyProgressBar">emptyProgressBar</a></li><li><a href="global.html#enterOnSubtask">enterOnSubtask</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatInitials">formatInitials</a></li><li><a href="global.html#generateAddBtn">generateAddBtn</a></li><li><a href="global.html#generateAddBtnMobile">generateAddBtnMobile</a></li><li><a href="global.html#generateAddContactOverlay">generateAddContactOverlay</a></li><li><a href="global.html#generateAssignedButton">generateAssignedButton</a></li><li><a href="global.html#generateBoardCard">generateBoardCard</a></li><li><a href="global.html#generateContact">generateContact</a></li><li><a href="global.html#generateContactImage">generateContactImage</a></li><li><a href="global.html#generateContactInfoSlider">generateContactInfoSlider</a></li><li><a href="global.html#generateEditMaskOverlay">generateEditMaskOverlay</a></li><li><a href="global.html#generateEditableAddtask">generateEditableAddtask</a></li><li><a href="global.html#generateHtmlAddTaskForm">generateHtmlAddTaskForm</a></li><li><a href="global.html#generateHtmlAssigned">generateHtmlAssigned</a></li><li><a href="global.html#generateHtmlAssignedList">generateHtmlAssignedList</a></li><li><a href="global.html#generateHtmlCategory">generateHtmlCategory</a></li><li><a href="global.html#generateHtmlDate">generateHtmlDate</a></li><li><a href="global.html#generateHtmlDescription">generateHtmlDescription</a></li><li><a href="global.html#generateHtmlFormSection">generateHtmlFormSection</a></li><li><a href="global.html#generateHtmlMainAddTask">generateHtmlMainAddTask</a></li><li><a href="global.html#generateHtmlMainBoard">generateHtmlMainBoard</a></li><li><a href="global.html#generateHtmlMainContacts">generateHtmlMainContacts</a></li><li><a href="global.html#generateHtmlMainHelp">generateHtmlMainHelp</a></li><li><a href="global.html#generateHtmlMainLegal">generateHtmlMainLegal</a></li><li><a href="global.html#generateHtmlMainPrivacy">generateHtmlMainPrivacy</a></li><li><a href="global.html#generateHtmlPrio">generateHtmlPrio</a></li><li><a href="global.html#generateHtmlSubtasks">generateHtmlSubtasks</a></li><li><a href="global.html#generateHtmlSummary">generateHtmlSummary</a></li><li><a href="global.html#generateHtmlTitle">generateHtmlTitle</a></li><li><a href="global.html#generateLetterCon">generateLetterCon</a></li><li><a href="global.html#generateProgressDetails">generateProgressDetails</a></li><li><a href="global.html#generateRenderAddTask">generateRenderAddTask</a></li><li><a href="global.html#generateSeparator">generateSeparator</a></li><li><a href="global.html#generateSubtaskElement">generateSubtaskElement</a></li><li><a href="global.html#generateSuccessBtnSlider">generateSuccessBtnSlider</a></li><li><a href="global.html#getActiveUser">getActiveUser</a></li><li><a href="global.html#getCurrentDate">getCurrentDate</a></li><li><a href="global.html#getGreeting">getGreeting</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInputElements">getInputElements</a></li><li><a href="global.html#getItem">getItem</a></li><li><a href="global.html#getPrio">getPrio</a></li><li><a href="global.html#getPriority">getPriority</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#getRandomColorHELP">getRandomColorHELP</a></li><li><a href="global.html#getSubtasks">getSubtasks</a></li><li><a href="global.html#getUrgentDate">getUrgentDate</a></li><li><a href="global.html#getValue">getValue</a></li><li><a href="global.html#goBack">goBack</a></li><li><a href="global.html#greaterThanFour">greaterThanFour</a></li><li><a href="global.html#greetingNameToUpperCaser">greetingNameToUpperCaser</a></li><li><a href="global.html#handleBlur">handleBlur</a></li><li><a href="global.html#handleBlurEvent">handleBlurEvent</a></li><li><a href="global.html#handleBlurredInput">handleBlurredInput</a></li><li><a href="global.html#handleFocus">handleFocus</a></li><li><a href="global.html#handleFocusedInput">handleFocusedInput</a></li><li><a href="global.html#handleInput">handleInput</a></li><li><a href="global.html#handleInvalidForm">handleInvalidForm</a></li><li><a href="global.html#handleInvalidInput">handleInvalidInput</a></li><li><a href="global.html#handleValidInput">handleValidInput</a></li><li><a href="global.html#hideAddContactSlider">hideAddContactSlider</a></li><li><a href="global.html#hideAssignedList">hideAssignedList</a></li><li><a href="global.html#hideMobileContactInfo">hideMobileContactInfo</a></li><li><a href="global.html#hideNoCards">hideNoCards</a></li><li><a href="global.html#hideNoResultsMessage">hideNoResultsMessage</a></li><li><a href="global.html#hidePopup">hidePopup</a></li><li><a href="global.html#highlightCheckOffSubtask">highlightCheckOffSubtask</a></li><li><a href="global.html#highlightProgressbar">highlightProgressbar</a></li><li><a href="global.html#highlightSelectedPage">highlightSelectedPage</a></li><li><a href="global.html#ifToShowSilhouette">ifToShowSilhouette</a></li><li><a href="global.html#ifTotalEmpty">ifTotalEmpty</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLogin">initLogin</a></li><li><a href="global.html#initializeElements">initializeElements</a></li><li><a href="global.html#inputfieldFocus">inputfieldFocus</a></li><li><a href="global.html#isValidEmail">isValidEmail</a></li><li><a href="global.html#isValidInput">isValidInput</a></li><li><a href="global.html#loadContactInfo">loadContactInfo</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadToDo">loadToDo</a></li><li><a href="global.html#logoutUser">logoutUser</a></li><li><a href="global.html#makeListItemEditable">makeListItemEditable</a></li><li><a href="global.html#minDate">minDate</a></li><li><a href="global.html#onTouchEnd">onTouchEnd</a></li><li><a href="global.html#onTouchMove">onTouchMove</a></li><li><a href="global.html#onTouchStart">onTouchStart</a></li><li><a href="global.html#onlyNumbers">onlyNumbers</a></li><li><a href="global.html#openBoard">openBoard</a></li><li><a href="global.html#openMobileMenu">openMobileMenu</a></li><li><a href="global.html#openPopupAddTask">openPopupAddTask</a></li><li><a href="global.html#openPopupAddTaskDiv">openPopupAddTaskDiv</a></li><li><a href="global.html#preventEventPropagation">preventEventPropagation</a></li><li><a href="global.html#pushCategorytoInput">pushCategorytoInput</a></li><li><a href="global.html#pushEditedSubtask">pushEditedSubtask</a></li><li><a href="global.html#pushPrio">pushPrio</a></li><li><a href="global.html#pushSelectedSubtask">pushSelectedSubtask</a></li><li><a href="global.html#pushSubtask">pushSubtask</a></li><li><a href="global.html#pushToTodoBoard">pushToTodoBoard</a></li><li><a href="global.html#pushUser">pushUser</a></li><li><a href="global.html#pushValueToEdit">pushValueToEdit</a></li><li><a href="global.html#putValues">putValues</a></li><li><a href="global.html#refreshInfoSliderOnScreenSize">refreshInfoSliderOnScreenSize</a></li><li><a href="global.html#refreshMobileView">refreshMobileView</a></li><li><a href="global.html#refreshMobileViewIphone">refreshMobileViewIphone</a></li><li><a href="global.html#refreshMobileViewIphoneAndIfVisible">refreshMobileViewIphoneAndIfVisible</a></li><li><a href="global.html#reloadTasks">reloadTasks</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#removeSubtaskFromCheckoffs">removeSubtaskFromCheckoffs</a></li><li><a href="global.html#removeZindex">removeZindex</a></li><li><a href="global.html#removeZindex13">removeZindex13</a></li><li><a href="global.html#removeZindexContacts">removeZindexContacts</a></li><li><a href="global.html#renderAddTask">renderAddTask</a></li><li><a href="global.html#renderAddTaskMain">renderAddTaskMain</a></li><li><a href="global.html#renderAssignedList">renderAssignedList</a></li><li><a href="global.html#renderBoardMain">renderBoardMain</a></li><li><a href="global.html#renderCategoryList">renderCategoryList</a></li><li><a href="global.html#renderContactImgInitials">renderContactImgInitials</a></li><li><a href="global.html#renderContactInfo">renderContactInfo</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsMain">renderContactsMain</a></li><li><a href="global.html#renderHPLMain">renderHPLMain</a></li><li><a href="global.html#renderPage">renderPage</a></li><li><a href="global.html#renderSummaryMain">renderSummaryMain</a></li><li><a href="global.html#resetAllSelectedContacts">resetAllSelectedContacts</a></li><li><a href="global.html#resetFieldValues">resetFieldValues</a></li><li><a href="global.html#resetGlobalVariables">resetGlobalVariables</a></li><li><a href="global.html#resetHlp">resetHlp</a></li><li><a href="global.html#resetMainPages">resetMainPages</a></li><li><a href="global.html#resetPrioritySelection">resetPrioritySelection</a></li><li><a href="global.html#resetStyle">resetStyle</a></li><li><a href="global.html#resizeHandler">resizeHandler</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveContactCheckValues">saveContactCheckValues</a></li><li><a href="global.html#saveContactEmailCheck">saveContactEmailCheck</a></li><li><a href="global.html#saveContactHelp">saveContactHelp</a></li><li><a href="global.html#saveContactNameCheck">saveContactNameCheck</a></li><li><a href="global.html#saveContactPhoneCheck">saveContactPhoneCheck</a></li><li><a href="global.html#saveEditedTask">saveEditedTask</a></li><li><a href="global.html#saveTasks">saveTasks</a></li><li><a href="global.html#searchAssignedList">searchAssignedList</a></li><li><a href="global.html#searchFunction">searchFunction</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#selectAssignedContacts">selectAssignedContacts</a></li><li><a href="global.html#selectBehaviorAssignedContacts">selectBehaviorAssignedContacts</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#setItem">setItem</a></li><li><a href="global.html#setPositionOfTouchedElement">setPositionOfTouchedElement</a></li><li><a href="global.html#setTimeoutSuccesDiv">setTimeoutSuccesDiv</a></li><li><a href="global.html#setupSubtaskInputFocus">setupSubtaskInputFocus</a></li><li><a href="global.html#showAddContactOverlay">showAddContactOverlay</a></li><li><a href="global.html#showAddContactOverlayHELP">showAddContactOverlayHELP</a></li><li><a href="global.html#showAddContactSlider">showAddContactSlider</a></li><li><a href="global.html#showContactInfoSlider">showContactInfoSlider</a></li><li><a href="global.html#showContactInfoSliderHELP">showContactInfoSliderHELP</a></li><li><a href="global.html#showEditContactOverlay">showEditContactOverlay</a></li><li><a href="global.html#showEditContactOverlayHELP">showEditContactOverlayHELP</a></li><li><a href="global.html#showHeaderIni">showHeaderIni</a></li><li><a href="global.html#showNoCards">showNoCards</a></li><li><a href="global.html#showNoResultsMessage">showNoResultsMessage</a></li><li><a href="global.html#showSilhouette">showSilhouette</a></li><li><a href="global.html#smallerThanFour">smallerThanFour</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#splitNameAndCapitalize">splitNameAndCapitalize</a></li><li><a href="global.html#styleCategoryList">styleCategoryList</a></li><li><a href="global.html#styleHelp">styleHelp</a></li><li><a href="global.html#styleIf">styleIf</a></li><li><a href="global.html#styleLegal">styleLegal</a></li><li><a href="global.html#stylePrivacy">stylePrivacy</a></li><li><a href="global.html#stylingPrioButtons">stylingPrioButtons</a></li><li><a href="global.html#timeoutEditSlider">timeoutEditSlider</a></li><li><a href="global.html#toggleAssignedlist">toggleAssignedlist</a></li><li><a href="global.html#totalSubtask">totalSubtask</a></li><li><a href="global.html#updateBoard">updateBoard</a></li><li><a href="global.html#updateBoardCard">updateBoardCard</a></li><li><a href="global.html#updateCheckoffs">updateCheckoffs</a></li><li><a href="global.html#updateContactInfoSlider">updateContactInfoSlider</a></li><li><a href="global.html#updateContactList">updateContactList</a></li><li><a href="global.html#updateDisplay">updateDisplay</a></li><li><a href="global.html#updateFields">updateFields</a></li><li><a href="global.html#updateProgressBar">updateProgressBar</a></li><li><a href="global.html#updateSelectedSubtasksCount">updateSelectedSubtasksCount</a></li><li><a href="global.html#updateSubtaskList">updateSubtaskList</a></li><li><a href="global.html#updateSubtasklist">updateSubtasklist</a></li><li><a href="global.html#updateSubtasks">updateSubtasks</a></li><li><a href="global.html#updateTaskList">updateTaskList</a></li><li><a href="global.html#validateForm">validateForm</a></li><li><a href="global.html#validateUpcomingDeadline">validateUpcomingDeadline</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 05 2024 00:04:02 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

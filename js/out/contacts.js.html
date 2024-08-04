@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: contacts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: contacts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let contacts = [];
+let contactIdCounter = 0;
+let initials;
+let initialsColor = 'white';
+let contactInfoSliderVisible = false;
+let loggedInUser = [];
+
+/**
+ * This function clears the existing content in the 'render-contacts' element, generates HTML for the main contacts, 
+ * waits for the contacts to load asynchronously, and finally renders the contacts onto the page.
+ * 
+ */
+async function renderContactsMain() {
+    let content = document.getElementById('render-contacts');
+    content.innerHTML = '';
+    content.innerHTML = generateHtmlMainContacts();
+    await loadContacts();
+    renderContacts();
+}
+
+/**
+ * Renders the contacts into the contact page, arranging them alphabetically by their initials.
+ * This function also adds an 'Add' button and handles the resizing of contact elements.
+ * 
+ */
+function renderContacts() {
+    let addBtn = document.getElementById('addBtn');
+    let contactsContainer = document.getElementById('allContacts');
+    addContactBtnHTML(addBtn, contactsContainer);
+    const predefinedOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+    sortContacts(predefinedOrder);
+
+    let lastLetter = '';
+
+    for (let i = 0; i &lt; contacts.length; i++) {
+        let contact = contacts[i];
+        lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
+    }
+resizeHandler();
+}
+
+/**
+ * This function sorts the contacts by their initials.
+ * 
+ * @param {string} predefinedOrder - These are the letters used to assign and sort the initials of the names.
+ */
+function sortContacts(predefinedOrder) {
+ contacts.sort((a, b) => {
+        const nameA = a.name || '';
+        const nameB = b.name || '';
+        const indexA = predefinedOrder.indexOf(nameA.charAt(0).toUpperCase());
+        const indexB = predefinedOrder.indexOf(nameB.charAt(0).toUpperCase());
+
+        if (indexA === -1) {
+            return 1;
+        }
+        if (indexB === -1) {
+            return -1;
+        }
+        return indexA - indexB;
+    });
+}
+
+/**
+ * Handles the resizing of elements on the page based on the current window size.
+ * 
+ */
+function resizeHandler() {
+    let headline = document.getElementById('headline');
+    let headlineMobile = document.getElementById('headlineMobile');
+    let contactInfoSlider = document.getElementById('contactInfoSlider');
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let isMobileView = window.innerWidth &lt; 1360;
+    let isMobileViewIphone = window.innerWidth &lt; 860;
+    let contactInfoSliderVisible = contactInfoSlider.classList.contains('show');
+
+    refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible);
+}
+
+/**
+ * Checks for the presence of a specific HTML element ('addedContactsCon') and adds or removes
+ * an event listener for window resize accordingly.
+ * 
+ */
+function checkResize() {
+    let div = document.getElementById('addedContactsCon');
+
+    if (div) {
+        window.addEventListener('resize', resizeHandler);
+    } else {
+        window.removeEventListener('resize', resizeHandler);
+    }
+}
+
+/**
+ * Generates HTML content for the add contact button and inserts it into the specified button element.
+ * Additionally, generates HTML content for the mobile version of the add contact button and inserts it
+ * into the specified container element.
+ *
+ * @param {HTMLElement} addBtn - The HTML button element where the add contact button content will be inserted.
+ * @param {HTMLElement} contactsContainer - The HTML element where the mobile version of the add contact button content will be inserted.
+ */
+function addContactBtnHTML(addBtn, contactsContainer) {
+    addBtn.innerHTML = generateAddBtn();
+    contactsContainer.innerHTML = generateAddBtnMobile();
+}
+
+/**
+ * Renders the contact's image and initials into the contacts container, along with separators based on the initial letter of the contact's name.
+ *
+ * @param {string} lastLetter - The last letter processed during rendering to determine if a new separator is needed.
+ * @param {object} contact - The contact object containing information like name and image.
+ * @param {number} i - The index of the contact being rendered.
+ * @param {HTMLElement} contactsContainer - The HTML element where the contacts are rendered.
+ * @returns {string} The first letter of the current contact's name.
+ */
+function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
+    if (contact.name &amp;&amp; contact.name.length > 0) {
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+
+        if (firstLetter !== lastLetter) {
+            contactsContainer.innerHTML += generateLetterCon(firstLetter) + generateSeparator();
+        }
+
+        const imageId = `contactImage${i}`;
+        const contactHtml = generateContact(i, contact, imageId);
+        contactsContainer.innerHTML += contactHtml;
+
+        addInitialsToContactImage(contact, imageId);
+        return firstLetter;
+    }
+    return lastLetter;
+}
+
+/**
+ * Adds initials to the contact's image and sets the image source using UI Avatars API.
+ *
+ * @param {object} contact - The contact object containing information like name and initials.
+ * @param {string} imageId - The ID of the image element to which the initials will be added.
+ */
+function addInitialsToContactImage(contact, imageId) {
+    if (contact &amp;&amp; contact.name) {
+        const nameParts = contact.name.trim().split(' ');
+        initials = '';
+
+        for (let i = 0; i &lt; nameParts.length; i++) {
+            initials += nameParts[i].charAt(0).toUpperCase();
+        }
+
+        const imageElement = document.getElementById(imageId);
+        imageElement.alt = initials;
+        imageElement.src = `https://ui-avatars.com/api/?name=${contact.initials}&amp;background=random&amp;color=ffffff`;
+        applyRandomColorToImage(imageElement, initials);
+    }
+}
+
+/**
+ * Displays the contact image for the specified index by setting its source and styling.
+ *
+ * @param {number} i - The index of the contact in the contacts array.
+ */
+function displayContactImage(i) {
+    let contact = contacts[i];
+    let contactImage = document.getElementById('contactImageEdit');
+
+    if (contactImage) {
+        contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&amp;background=random&amp;color=ffffff`;
+        contactImage.style.width = '100px';
+        contactImage.style.height = '100px';
+        contactImage.style.backgroundColor = 'transparent';
+        contactImage.alt = contact.initials;
+    }
+}
+
+/**
+ * Generates a random color hex code based on the provided seed.
+ *
+ * @param {string} seed - The seed used to generate the random color.
+ * @returns {string} A random color hex code.
+ */
+function getRandomColor(seed) {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+
+    getRandomColorHELP(seed, letters, color);
+    return color;
+}
+
+/**
+ * Helper function to generate a random color hex code based on the provided seed or using a default random generation method.
+ *
+ * @param {string} seed - The seed used to generate the random color. If not provided, a random color will be generated.
+ * @param {string} letters - The string containing hexadecimal characters used for color generation.
+ * @param {string} color - The initial color value.
+ */
+function getRandomColorHELP(seed, letters, color) {
+    if (seed &amp;&amp; seed.length > 0) {
+        for (let i = 0; i &lt; 6; i++) {
+            const charIndex = (seed.charCodeAt(i % seed.length) + i) % 16;
+            color += letters[charIndex];
+        }
+    } else {
+        for (let i = 0; i &lt; 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+    }
+}
+
+/**
+ * Applies a random background color to the specified image element based on the provided seed.
+ *
+ * @param {HTMLElement} imageElement - The image element to which the random background color will be applied.
+ * @param {string} seed - The seed used to generate the random background color.
+ */
+function applyRandomColorToImage(imageElement, seed) {
+    const randomColor = getRandomColor(seed);
+    imageElement.style.backgroundColor = randomColor;
+}
+
+/**
+ * Adds a new contact to the contacts array upon successful addition, clears input fields, closes the add contact slider,
+ * updates the contacts in the local storage, reloads the contacts, and renders them on the page.
+ *
+ * @param {HTMLElement} nameInput - The input field for the contact's name.
+ * @param {HTMLElement} emailInput - The input field for the contact's email.
+ * @param {HTMLElement} phoneInput - The input field for the contact's phone number.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} formattedName - The formatted name of the contact.
+ * @param {string} initials - The initials of the contact.
+ */
+async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, email, phone, formattedName, initials) {
+    addContactToArray(formattedName, email, phone, initials);
+    clearInputs(nameInput, emailInput, phoneInput);
+    closeAddContactSlider();
+    await setItem('contacts', JSON.stringify(contacts));
+    await loadContacts();
+    renderContacts();
+    addedContactSuccessfully();
+}
+
+/**
+ * Displays a success message upon successfully adding a contact, showing a success button slider.
+ * 
+ */
+function addedContactSuccessfully() {
+    let success = document.getElementById('successCon');
+    success.innerHTML = generateSuccessBtnSlider();
+    success.classList.remove('slide-out-success-btn');
+    success.classList.add('slide-in-success-btn');
+    setTimeoutSuccesDiv(success);
+}
+
+/**
+ * Sets a timeout to remove the success message by sliding it out and hiding it after a certain duration.
+ * 
+ * @param {HTMLElement} success - The success message container element.
+ */
+function setTimeoutSuccesDiv(success) {
+    setTimeout(() => {
+        success.classList.remove('slide-in-success-btn');
+        success.classList.add('slide-out-success-btn');
+
+        setTimeout(() => {
+            success.classList.add('d-none');
+        }, 500);
+    }, 1500);
+}
+
+/**
+ * Splits a name into parts, capitalizes the first letter of each part, and returns the formatted name.
+ * 
+ * @param {string} inputName - The name to be formatted.
+ * @returns {string} The formatted name with each part capitalized.
+ */
+function splitNameAndCapitalize(inputName) {
+    const nameParts = inputName.trim().split(' ');
+    const formattedNameParts = [];
+
+    for (let i = 0; i &lt; nameParts.length; i++) {
+        const part = nameParts[i];
+        const formattedPart = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+        formattedNameParts.push(formattedPart);
+    }
+    return formattedNameParts.join(' ');
+}
+
+/**
+ * Formats the initials of a name by taking the first letter of each part and capitalizing it.
+ * 
+ * @param {string} inputName - The name to extract initials from.
+ * @returns {string} The formatted initials.
+ */
+function formatInitials(inputName) {
+    let nameParts = inputName.trim().split(' ');
+    let initials = '';
+
+    for (let i = 0; i &lt; nameParts.length; i++) {
+        initials += nameParts[i].charAt(0).toUpperCase();
+    }
+    return initials;
+}
+
+/**
+ * Adds a new contact object to the contacts array.
+ * 
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} initials - The initials of the contact.
+ */
+function addContactToArray(name, email, phone, initials) {
+    let randomColor = getRandomColor(initials);
+    let contactImg = generateContactImage(initials, randomColor);
+    let contact = {
+        'id': contactIdCounter++,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'initials': initials,
+        'initialsColor': initialsColor,
+        'contactImg': contactImg,
+        'color': randomColor
+    };
+    contacts.push(contact);
+}
+
+/**
+ * Loads contacts data from storage and assigns it to the contacts array.
+ * 
+ * @returns {Promise&lt;void>} - A promise that resolves when contacts data is successfully loaded.
+ */
+async function loadContacts() {
+    try {
+        contacts = JSON.parse(await getItem('contacts'));
+    } catch (e) {
+        console.error('Error in loadContacts:', e);
+    }
+}
+
+/**
+ * Loads contact information for the specified contact index and populates the corresponding input fields.
+ * 
+ * @param {number} i - The index of the contact in the contacts array.
+ */
+function loadContactInfo(i) {
+    let contact = contacts[i];
+    let nameEdit = document.getElementById('nameEdit');
+    let emailEdit = document.getElementById('emailEdit');
+    let phoneEdit = document.getElementById('phoneEdit');
+    nameEdit.value = contact.name;
+    emailEdit.value = contact.email;
+    phoneEdit.value = contact.phone;
+}
+
+/**
+ * Deletes the contact at the specified index and updates the contact list.
+ * 
+ * @param {number} i - The index of the contact to be deleted.
+ */
+async function deleteContact(i) {
+    let contactInfoConMobile = document.getElementById('contactInfoConMobile');
+    let headlineMobile = document.getElementById('headlineMobile');
+    let contactSlider = document.getElementById('contactSlider');
+    deleteContactHELP(contactInfoConMobile, headlineMobile, i);
+    deleteDeletedContact(i);
+    contacts.splice(i, 1);
+    contactSlider.innerHTML = '';
+    closeEditContactSlider();
+    await setItem('contacts', JSON.stringify(contacts));
+    await setItem('tasks', JSON.stringify(tasks));
+    renderContacts();
+}
+
+/**
+ * Removes the deleted contact from the assigned tasks.
+ * 
+ * @param {number} i - The index of the contact that was deleted.
+ */
+function deleteDeletedContact(i) {
+    let contactName = contacts[i].name;
+    let filter = contactName.trim().toUpperCase();
+    for (let j = 0; j &lt; tasks.length; j++) {
+        const name = tasks[j].assigned;
+        for (let k = 0; k &lt; name.length; k++) {
+            const assignedContact = name[k];
+            let tasksName = assignedContact.trim().toUpperCase();
+            if (!tasksName.indexOf(filter) > -1) {
+                tasks[j].assigned.splice(k, 1);
+                tasks[j].letter.splice(k, 1);
+            }
+        }
+    }
+}
+
+/**
+ * Hides or shows the contact information container and headline on mobile devices based on window width.
+ * 
+ * @param {HTMLElement} contactInfoConMobile - The container for contact information on mobile devices.
+ * @param {HTMLElement} headlineMobile - The headline for contacts on mobile devices.
+ * @param {number} i - The index of the contact being deleted.
+ */
+function deleteContactHELP(contactInfoConMobile, headlineMobile, i) {
+    if (window.innerWidth &lt; 860) {
+        contactInfoConMobile.classList.add('d-none');
+        headlineMobile.classList.add('d-none');
+    } else {
+        contactInfoConMobile.classList.remove('d-none');
+        headlineMobile.classList.remove('d-none');
+    }
+}
+
+/**
+ * Renders contact information for a given contact index into the contact information slider.
+ * 
+ * @param {number} i - The index of the contact to render information for.
+ * @param {HTMLElement} contactInfoSlider - The container for contact information slider.
+ */
+function renderContactInfo(i, contactInfoSlider) {
+    let contact = contacts[i];
+    let contactName = contact.name;
+    let contactEmail = contact.email;
+    let contactPhone = contact.phone;
+    let imageIdSlider = `contactImageSlider`;
+    let imageElement = document.getElementById(imageIdSlider);
+    contactInfoSlider.innerHTML = generateContactInfoSlider(i, contactName, contactEmail, contactPhone, imageIdSlider);
+    addInitialsToContactImage(contact, imageIdSlider);
+    addRandomColorToImg(imageElement, contact);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualDate">actualDate</a></li><li><a href="global.html#addContactBtnHTML">addContactBtnHTML</a></li><li><a href="global.html#addContactEmailCheck">addContactEmailCheck</a></li><li><a href="global.html#addContactNameCheck">addContactNameCheck</a></li><li><a href="global.html#addContactPhoneCheck">addContactPhoneCheck</a></li><li><a href="global.html#addContactToArray">addContactToArray</a></li><li><a href="global.html#addDetectedContacts">addDetectedContacts</a></li><li><a href="global.html#addEventFunctions">addEventFunctions</a></li><li><a href="global.html#addHighlight">addHighlight</a></li><li><a href="global.html#addInitialsToContactImage">addInitialsToContactImage</a></li><li><a href="global.html#addRandomColorToImg">addRandomColorToImg</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addSubtaskToCheckoffs">addSubtaskToCheckoffs</a></li><li><a href="global.html#addToContacts">addToContacts</a></li><li><a href="global.html#addToContactsCheckValues">addToContactsCheckValues</a></li><li><a href="global.html#addToContactsOnSuccess">addToContactsOnSuccess</a></li><li><a href="global.html#addZindex">addZindex</a></li><li><a href="global.html#addZindex13">addZindex13</a></li><li><a href="global.html#addZindexContacts">addZindexContacts</a></li><li><a href="global.html#addedContactSuccessfully">addedContactSuccessfully</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#applyRandomColorToImage">applyRandomColorToImage</a></li><li><a href="global.html#calculatePercentageForProgressBar">calculatePercentageForProgressBar</a></li><li><a href="global.html#cancelButton">cancelButton</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#changeImage">changeImage</a></li><li><a href="global.html#checkButtonImgChange">checkButtonImgChange</a></li><li><a href="global.html#checkCategoryButton">checkCategoryButton</a></li><li><a href="global.html#checkElementsOfCloseIt">checkElementsOfCloseIt</a></li><li><a href="global.html#checkExistingEmail">checkExistingEmail</a></li><li><a href="global.html#checkInputs">checkInputs</a></li><li><a href="global.html#checkInputsHELP">checkInputsHELP</a></li><li><a href="global.html#checkOffSubtask">checkOffSubtask</a></li><li><a href="global.html#checkResize">checkResize</a></li><li><a href="global.html#checkSelectedSubtasks">checkSelectedSubtasks</a></li><li><a href="global.html#checks">checks</a></li><li><a href="global.html#clearBoardContents">clearBoardContents</a></li><li><a href="global.html#clearButtonImgChange">clearButtonImgChange</a></li><li><a href="global.html#clearFields">clearFields</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#clearInputs">clearInputs</a></li><li><a href="global.html#clearSubtaskInputField">clearSubtaskInputField</a></li><li><a href="global.html#closeAddContactSlider">closeAddContactSlider</a></li><li><a href="global.html#closeAddContactSliderHELP">closeAddContactSliderHELP</a></li><li><a href="global.html#closeEditContactSlider">closeEditContactSlider</a></li><li><a href="global.html#closeEditContactSliderHELP">closeEditContactSliderHELP</a></li><li><a href="global.html#closeEditPopup">closeEditPopup</a></li><li><a href="global.html#closeInfoList">closeInfoList</a></li><li><a href="global.html#closeList">closeList</a></li><li><a href="global.html#closeMobileMenu">closeMobileMenu</a></li><li><a href="global.html#closePopupAddTask">closePopupAddTask</a></li><li><a href="global.html#closePopupAddTaskDiv">closePopupAddTaskDiv</a></li><li><a href="global.html#closePopupEdit">closePopupEdit</a></li><li><a href="global.html#countTaskValues">countTaskValues</a></li><li><a href="global.html#createEditableSubtaskElement">createEditableSubtaskElement</a></li><li><a href="global.html#createNewTask">createNewTask</a></li><li><a href="global.html#createSilhouette">createSilhouette</a></li><li><a href="global.html#createSubtasksToAddTaskPopup">createSubtasksToAddTaskPopup</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#createUserButtons">createUserButtons</a></li><li><a href="global.html#createUserToAssigned">createUserToAssigned</a></li><li><a href="global.html#currentDraggedElement">currentDraggedElement</a></li><li><a href="global.html#defineUpcomingDeadline">defineUpcomingDeadline</a></li><li><a href="global.html#deformatDate">deformatDate</a></li><li><a href="global.html#deleteAllSilhouettes">deleteAllSilhouettes</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteContactHELP">deleteContactHELP</a></li><li><a href="global.html#deleteDeletedContact">deleteDeletedContact</a></li><li><a href="global.html#deleteNotDetectedContacts">deleteNotDetectedContacts</a></li><li><a href="global.html#deleteOldUrgent">deleteOldUrgent</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#displayContactImage">displayContactImage</a></li><li><a href="global.html#displayEditPopup">displayEditPopup</a></li><li><a href="global.html#displayEditableContent">displayEditableContent</a></li><li><a href="global.html#displayGreeting">displayGreeting</a></li><li><a href="global.html#dontCloseCard">dontCloseCard</a></li><li><a href="global.html#dragStart">dragStart</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#emptyPages">emptyPages</a></li><li><a href="global.html#emptyProgressBar">emptyProgressBar</a></li><li><a href="global.html#enterOnSubtask">enterOnSubtask</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatInitials">formatInitials</a></li><li><a href="global.html#generateAddBtn">generateAddBtn</a></li><li><a href="global.html#generateAddBtnMobile">generateAddBtnMobile</a></li><li><a href="global.html#generateAddContactOverlay">generateAddContactOverlay</a></li><li><a href="global.html#generateAssignedButton">generateAssignedButton</a></li><li><a href="global.html#generateBoardCard">generateBoardCard</a></li><li><a href="global.html#generateContact">generateContact</a></li><li><a href="global.html#generateContactImage">generateContactImage</a></li><li><a href="global.html#generateContactInfoSlider">generateContactInfoSlider</a></li><li><a href="global.html#generateEditMaskOverlay">generateEditMaskOverlay</a></li><li><a href="global.html#generateEditableAddtask">generateEditableAddtask</a></li><li><a href="global.html#generateHtmlAddTaskForm">generateHtmlAddTaskForm</a></li><li><a href="global.html#generateHtmlAssigned">generateHtmlAssigned</a></li><li><a href="global.html#generateHtmlAssignedList">generateHtmlAssignedList</a></li><li><a href="global.html#generateHtmlCategory">generateHtmlCategory</a></li><li><a href="global.html#generateHtmlDate">generateHtmlDate</a></li><li><a href="global.html#generateHtmlDescription">generateHtmlDescription</a></li><li><a href="global.html#generateHtmlFormSection">generateHtmlFormSection</a></li><li><a href="global.html#generateHtmlMainAddTask">generateHtmlMainAddTask</a></li><li><a href="global.html#generateHtmlMainBoard">generateHtmlMainBoard</a></li><li><a href="global.html#generateHtmlMainContacts">generateHtmlMainContacts</a></li><li><a href="global.html#generateHtmlMainHelp">generateHtmlMainHelp</a></li><li><a href="global.html#generateHtmlMainLegal">generateHtmlMainLegal</a></li><li><a href="global.html#generateHtmlMainPrivacy">generateHtmlMainPrivacy</a></li><li><a href="global.html#generateHtmlPrio">generateHtmlPrio</a></li><li><a href="global.html#generateHtmlSubtasks">generateHtmlSubtasks</a></li><li><a href="global.html#generateHtmlSummary">generateHtmlSummary</a></li><li><a href="global.html#generateHtmlTitle">generateHtmlTitle</a></li><li><a href="global.html#generateLetterCon">generateLetterCon</a></li><li><a href="global.html#generateProgressDetails">generateProgressDetails</a></li><li><a href="global.html#generateRenderAddTask">generateRenderAddTask</a></li><li><a href="global.html#generateSeparator">generateSeparator</a></li><li><a href="global.html#generateSubtaskElement">generateSubtaskElement</a></li><li><a href="global.html#generateSuccessBtnSlider">generateSuccessBtnSlider</a></li><li><a href="global.html#getActiveUser">getActiveUser</a></li><li><a href="global.html#getCurrentDate">getCurrentDate</a></li><li><a href="global.html#getGreeting">getGreeting</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInputElements">getInputElements</a></li><li><a href="global.html#getItem">getItem</a></li><li><a href="global.html#getPrio">getPrio</a></li><li><a href="global.html#getPriority">getPriority</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#getRandomColorHELP">getRandomColorHELP</a></li><li><a href="global.html#getSubtasks">getSubtasks</a></li><li><a href="global.html#getUrgentDate">getUrgentDate</a></li><li><a href="global.html#getValue">getValue</a></li><li><a href="global.html#goBack">goBack</a></li><li><a href="global.html#greaterThanFour">greaterThanFour</a></li><li><a href="global.html#greetingNameToUpperCaser">greetingNameToUpperCaser</a></li><li><a href="global.html#handleBlur">handleBlur</a></li><li><a href="global.html#handleBlurEvent">handleBlurEvent</a></li><li><a href="global.html#handleBlurredInput">handleBlurredInput</a></li><li><a href="global.html#handleFocus">handleFocus</a></li><li><a href="global.html#handleFocusedInput">handleFocusedInput</a></li><li><a href="global.html#handleInput">handleInput</a></li><li><a href="global.html#handleInvalidForm">handleInvalidForm</a></li><li><a href="global.html#handleInvalidInput">handleInvalidInput</a></li><li><a href="global.html#handleValidInput">handleValidInput</a></li><li><a href="global.html#hideAddContactSlider">hideAddContactSlider</a></li><li><a href="global.html#hideAssignedList">hideAssignedList</a></li><li><a href="global.html#hideMobileContactInfo">hideMobileContactInfo</a></li><li><a href="global.html#hideNoCards">hideNoCards</a></li><li><a href="global.html#hideNoResultsMessage">hideNoResultsMessage</a></li><li><a href="global.html#hidePopup">hidePopup</a></li><li><a href="global.html#highlightCheckOffSubtask">highlightCheckOffSubtask</a></li><li><a href="global.html#highlightProgressbar">highlightProgressbar</a></li><li><a href="global.html#highlightSelectedPage">highlightSelectedPage</a></li><li><a href="global.html#ifToShowSilhouette">ifToShowSilhouette</a></li><li><a href="global.html#ifTotalEmpty">ifTotalEmpty</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLogin">initLogin</a></li><li><a href="global.html#initializeElements">initializeElements</a></li><li><a href="global.html#inputfieldFocus">inputfieldFocus</a></li><li><a href="global.html#isValidEmail">isValidEmail</a></li><li><a href="global.html#isValidInput">isValidInput</a></li><li><a href="global.html#loadContactInfo">loadContactInfo</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadToDo">loadToDo</a></li><li><a href="global.html#logoutUser">logoutUser</a></li><li><a href="global.html#makeListItemEditable">makeListItemEditable</a></li><li><a href="global.html#minDate">minDate</a></li><li><a href="global.html#onTouchEnd">onTouchEnd</a></li><li><a href="global.html#onTouchMove">onTouchMove</a></li><li><a href="global.html#onTouchStart">onTouchStart</a></li><li><a href="global.html#onlyNumbers">onlyNumbers</a></li><li><a href="global.html#openBoard">openBoard</a></li><li><a href="global.html#openMobileMenu">openMobileMenu</a></li><li><a href="global.html#openPopupAddTask">openPopupAddTask</a></li><li><a href="global.html#openPopupAddTaskDiv">openPopupAddTaskDiv</a></li><li><a href="global.html#preventEventPropagation">preventEventPropagation</a></li><li><a href="global.html#pushCategorytoInput">pushCategorytoInput</a></li><li><a href="global.html#pushEditedSubtask">pushEditedSubtask</a></li><li><a href="global.html#pushPrio">pushPrio</a></li><li><a href="global.html#pushSelectedSubtask">pushSelectedSubtask</a></li><li><a href="global.html#pushSubtask">pushSubtask</a></li><li><a href="global.html#pushToTodoBoard">pushToTodoBoard</a></li><li><a href="global.html#pushUser">pushUser</a></li><li><a href="global.html#pushValueToEdit">pushValueToEdit</a></li><li><a href="global.html#putValues">putValues</a></li><li><a href="global.html#refreshInfoSliderOnScreenSize">refreshInfoSliderOnScreenSize</a></li><li><a href="global.html#refreshMobileView">refreshMobileView</a></li><li><a href="global.html#refreshMobileViewIphone">refreshMobileViewIphone</a></li><li><a href="global.html#refreshMobileViewIphoneAndIfVisible">refreshMobileViewIphoneAndIfVisible</a></li><li><a href="global.html#reloadTasks">reloadTasks</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#removeSubtaskFromCheckoffs">removeSubtaskFromCheckoffs</a></li><li><a href="global.html#removeZindex">removeZindex</a></li><li><a href="global.html#removeZindex13">removeZindex13</a></li><li><a href="global.html#removeZindexContacts">removeZindexContacts</a></li><li><a href="global.html#renderAddTask">renderAddTask</a></li><li><a href="global.html#renderAddTaskMain">renderAddTaskMain</a></li><li><a href="global.html#renderAssignedList">renderAssignedList</a></li><li><a href="global.html#renderBoardMain">renderBoardMain</a></li><li><a href="global.html#renderCategoryList">renderCategoryList</a></li><li><a href="global.html#renderContactImgInitials">renderContactImgInitials</a></li><li><a href="global.html#renderContactInfo">renderContactInfo</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsMain">renderContactsMain</a></li><li><a href="global.html#renderHPLMain">renderHPLMain</a></li><li><a href="global.html#renderPage">renderPage</a></li><li><a href="global.html#renderSummaryMain">renderSummaryMain</a></li><li><a href="global.html#resetAllSelectedContacts">resetAllSelectedContacts</a></li><li><a href="global.html#resetFieldValues">resetFieldValues</a></li><li><a href="global.html#resetGlobalVariables">resetGlobalVariables</a></li><li><a href="global.html#resetHlp">resetHlp</a></li><li><a href="global.html#resetMainPages">resetMainPages</a></li><li><a href="global.html#resetPrioritySelection">resetPrioritySelection</a></li><li><a href="global.html#resetStyle">resetStyle</a></li><li><a href="global.html#resizeHandler">resizeHandler</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveContactCheckValues">saveContactCheckValues</a></li><li><a href="global.html#saveContactEmailCheck">saveContactEmailCheck</a></li><li><a href="global.html#saveContactHelp">saveContactHelp</a></li><li><a href="global.html#saveContactNameCheck">saveContactNameCheck</a></li><li><a href="global.html#saveContactPhoneCheck">saveContactPhoneCheck</a></li><li><a href="global.html#saveEditedTask">saveEditedTask</a></li><li><a href="global.html#saveTasks">saveTasks</a></li><li><a href="global.html#searchAssignedList">searchAssignedList</a></li><li><a href="global.html#searchFunction">searchFunction</a></li><li><a href="global.html#searchTasks">searchTasks</a></li><li><a href="global.html#selectAssignedContacts">selectAssignedContacts</a></li><li><a href="global.html#selectBehaviorAssignedContacts">selectBehaviorAssignedContacts</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#setItem">setItem</a></li><li><a href="global.html#setPositionOfTouchedElement">setPositionOfTouchedElement</a></li><li><a href="global.html#setTimeoutSuccesDiv">setTimeoutSuccesDiv</a></li><li><a href="global.html#setupSubtaskInputFocus">setupSubtaskInputFocus</a></li><li><a href="global.html#showAddContactOverlay">showAddContactOverlay</a></li><li><a href="global.html#showAddContactOverlayHELP">showAddContactOverlayHELP</a></li><li><a href="global.html#showAddContactSlider">showAddContactSlider</a></li><li><a href="global.html#showContactInfoSlider">showContactInfoSlider</a></li><li><a href="global.html#showContactInfoSliderHELP">showContactInfoSliderHELP</a></li><li><a href="global.html#showEditContactOverlay">showEditContactOverlay</a></li><li><a href="global.html#showEditContactOverlayHELP">showEditContactOverlayHELP</a></li><li><a href="global.html#showHeaderIni">showHeaderIni</a></li><li><a href="global.html#showNoCards">showNoCards</a></li><li><a href="global.html#showNoResultsMessage">showNoResultsMessage</a></li><li><a href="global.html#showSilhouette">showSilhouette</a></li><li><a href="global.html#smallerThanFour">smallerThanFour</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#splitNameAndCapitalize">splitNameAndCapitalize</a></li><li><a href="global.html#styleCategoryList">styleCategoryList</a></li><li><a href="global.html#styleHelp">styleHelp</a></li><li><a href="global.html#styleIf">styleIf</a></li><li><a href="global.html#styleLegal">styleLegal</a></li><li><a href="global.html#stylePrivacy">stylePrivacy</a></li><li><a href="global.html#stylingPrioButtons">stylingPrioButtons</a></li><li><a href="global.html#timeoutEditSlider">timeoutEditSlider</a></li><li><a href="global.html#toggleAssignedlist">toggleAssignedlist</a></li><li><a href="global.html#totalSubtask">totalSubtask</a></li><li><a href="global.html#updateBoard">updateBoard</a></li><li><a href="global.html#updateBoardCard">updateBoardCard</a></li><li><a href="global.html#updateCheckoffs">updateCheckoffs</a></li><li><a href="global.html#updateContactInfoSlider">updateContactInfoSlider</a></li><li><a href="global.html#updateContactList">updateContactList</a></li><li><a href="global.html#updateDisplay">updateDisplay</a></li><li><a href="global.html#updateFields">updateFields</a></li><li><a href="global.html#updateProgressBar">updateProgressBar</a></li><li><a href="global.html#updateSelectedSubtasksCount">updateSelectedSubtasksCount</a></li><li><a href="global.html#updateSubtaskList">updateSubtaskList</a></li><li><a href="global.html#updateSubtasklist">updateSubtasklist</a></li><li><a href="global.html#updateSubtasks">updateSubtasks</a></li><li><a href="global.html#updateTaskList">updateTaskList</a></li><li><a href="global.html#validateForm">validateForm</a></li><li><a href="global.html#validateUpcomingDeadline">validateUpcomingDeadline</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 05 2024 00:04:02 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

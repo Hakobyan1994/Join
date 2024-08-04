@@ -1,0 +1,241 @@
+nav {
+    z-index: auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 232px;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 64px 0px;
+}
+
+.menubar-text {
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: 120%;
+    cursor: default;
+}
+
+.logo {
+    width: 100.034px;
+    height: 121.966px;
+    flex-shrink: 0;
+}
+
+.menubar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.menubar a {
+    text-decoration: none;
+    color: #CDCDCD;
+    cursor: pointer;
+    display: flex;
+    height: 46px;
+    padding: 8px 56px;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    flex-shrink: 0;
+    width: 51%;
+}
+
+.menubar a:hover {
+    background-color: rgb(42, 61, 89);
+    width: 51%;
+    transition: 10ms;
+}
+
+.mobile-body {
+    display: none;
+}
+
+.selected-color {
+    background-color: rgb(9,25,49)!important;
+}
+
+.selected-color:hover {
+    background-color: rgb(9,25,49)!important;
+    width: 51%;
+    transition: 10ms;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.legalbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    padding: 0;
+}
+
+.legalbox a {
+    text-decoration: none;
+    color: rgb(205, 205, 205);
+    cursor: pointer;
+}
+
+.legalbox a:hover {
+    color: var(--lightblue);
+    transition: 125ms ease-in-out;
+}
+
+header {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 96px;
+    display: flex;
+    padding: 0px 40px 0px 348px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+header p {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.header-right {
+    position: fixed;
+    right: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.help-icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+
+.help-icon:hover {
+    display: block;
+    transform: scale(1.25);
+}
+
+.profile-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid var(--darkblue, rgb(42, 61, 89));
+    width: 56px;
+    height: 56px;
+    text-decoration: none;
+    color: rgb(41, 171, 226);
+    flex-shrink: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.profile-icon:hover {
+    background-color: rgb(225, 229, 236);
+    transition: 125ms ease-in-out;
+}
+
+.block {
+    display: block;
+}
+
+.clickInfoDiv {
+    z-index: 4;
+    display: none;
+    width: 150px;
+    height: 158px;
+    background-color: #2A3647;
+    position: absolute;
+    top: 100px;
+    right: 25px;
+    padding: 0px;
+    border-radius: 20px 0px 20px 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
+} 
+
+.clickInfoDiv ul {
+    padding-inline-start: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;   
+}   
+     
+.clickInfoDiv ul li {
+    display: flex;
+    text-decoration-line: none;
+    list-style: none;
+    padding:8px 0px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #CDCDCD;
+}   
+
+.clickInfoDiv ul li a{
+    color: #CDCDCD ;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+}
+
+.clickInfoDiv a {
+    margin-left: 16px;
+}
+   
+.clickInfoDiv ul li:hover{
+    width: 100%; 
+    background-color: #2f4057;
+}
+
+.mobile-logo {
+    display: none;
+}
+
+.mobile-navbar {
+    display: block;
+}
+
+.bg-blue {
+    background-color: rgb(9, 25, 49);
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.bg-blue:hover {
+    color: rgb(205, 205, 205)!important;
+}
