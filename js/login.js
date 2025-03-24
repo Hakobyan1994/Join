@@ -16,7 +16,6 @@ function logoAnimation() {
     let stop = JSON.parse(localStorage.getItem('stop'));
 
     if (stop) {
-        // Animation wurde bereits abgespielt, daher entferne die Klassen
         div.classList.remove('addAnimDiv');
         img.classList.remove('animation');
 
@@ -29,19 +28,13 @@ function logoAnimation() {
         img.classList.remove('join_image');
         
         
-        // Entferne den Eintrag aus dem Local Storage, um die Animation erneut abzuspielen
         localStorage.removeItem('stop');
     }
      else {
-        // Animation wurde noch nicht abgespielt, füge Klassen hinzu
         div.classList.add('startParDiv');
         img.classList.add('startParImg');
     }
-
-    // Speichere im Local Storage, dass die Animation abgespielt wurde
     localStorage.setItem('stop', JSON.stringify(true));
-
-    // Füge Timeout hinzu, um die Klassen nach einer gewissen Zeit zu entfernen
     setTimeout(() => {
         div.classList.remove('startParDiv');
         div.classList.add('anim_div');
