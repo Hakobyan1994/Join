@@ -118,37 +118,41 @@ async function openPopupAddTask(boardcard) {
  * @param {number} i - The index of the task to open the popup for.
  */
 async function openPopupAddTaskDiv(i) {
-    await loadTasks();
+    await loadTaskss();
+    await loadContacts();
+    // await loadTasks();
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
     div.style.display = 'flex';
     content.classList.remove('slide-out');
     content.classList.add('slide-in');
     let taskValue = tasks[i];
+    console.log(taskValue)
     content.innerHTML = /*html*/`
         <img class="close-a-board" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
         `;
     content.innerHTML += /*html*/`
         <div class="popup-text">
-            <div class="user-popup-btn c1" id="category-bg-change-${i}">${taskValue.category}</div>
-            <h2 class="popup-title">${taskValue.title}</h2>
-            <div class="overflow">${taskValue.description}</div>
+            <div class="user-popup-btn c1" id="category-bg-change-${i}">${taskValue?.category}</div>
+            <h2 class="popup-title">${taskValue?.title}</h2>
+            <div class="overflow">${taskValue?.description}</div>
             <div class="popup-div-assign-date-title">
                 <div>
                     <div class="popup-date">Due Date:</div>
                     <div>Priority:</div>
                 </div>
                 <div class="popup-div-assign-date-title-content">
-                    <div class="popup-date">${taskValue.date}</div>
+                    <div class="popup-date">${taskValue?.date}</div>
                     <div class="popup-prio-section">
-                        <div>${taskValue.priority.charAt(0).toUpperCase() + taskValue.priority.slice(1).toLowerCase()}</div>
-                        <img src="../assets/img/icons/prio-${taskValue.priority}.svg" alt="Prio" class="popup-prio-icon">
+                        <div>${taskValue?.prio.charAt(0).toUpperCase() + taskValue?.prio.slice(1).toLowerCase()}</div>
+                        <img src="../assets/img/icons/prio-${taskValue?.prio}.svg" alt="Prio" class="popup-prio-icon">
                     </div>
                 </div>
             </div>
             <div>
                 <div class="popup-assigned-div">Assigned To:</div>
                 <div class="popup-assigned" id="popup-user-${i}">
+                  
                 </div>
             </div>
             <div>
@@ -189,10 +193,10 @@ function generateBoardCard(task, i) {
     return /*html*/`
         <div onclick="openPopupAddTaskDiv(${i})" class="progress_card" id="board-to-do-section-${i}" arraypos="${i}" draggable="true" ondragstart="dragStart(event)" ondrop="return false;" ontouchstart="onTouchStart(event)">           
             <div  class="progress_infocard">
-                <button class="c1" id="category-bg-change-${i}">${task.category}</button>
+                <button class="c1" id="category-bg-change-${i}">${task?.category}</button>
                 <div class="cooking_title_div">
-                    <h1>${task.title}</h1>
-                    <span class="recipe_span">${task.description}</span>
+                    <h1>${task?.title}</h1>
+                    <span class="recipe_span">${task?.description}</span>
                 </div>
             </div>
             <div class="progress_image_Div" id="progress-bar-div-${i}" >
@@ -204,7 +208,7 @@ function generateBoardCard(task, i) {
             ${generateProgressDetails(i)}
             <div class="Members_Div">
                 <div id="user-board-${i}"></div>
-                <img src="../assets/img/icons/prio-${task.priority}.svg" alt="" class="board-prio-icons">
+                <img src="../assets/img/icons/prio-${task?.prio}.svg" alt="" class="board-prio-icons">
             </div>
         </div> 
     `;
@@ -259,12 +263,18 @@ function generateEditableAddtask(i) {
  */
 function getSubtasks() {
     let list = document.getElementById('subtasks');
+    let taskValue = tasks[i];
+    console.log(taskValue)
     list.innerHTML = '';
-    for (let i = 0; i < subtasks.length; i++) {
-        const text = subtasks[i];
+    if (!Array.isArray(taskValue.subtasks) || taskValue.subtasks.length === 0) {
+        return;
+    }
+    for (const subtask of taskValue.subtasks) {
+        console.log(subtask)
+        // const text = subtask;
         list.innerHTML += /*html*/`
         <li class="each-subtask" id="each-subtask${i}">
-            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${text}</div>
+            <div class="each-subtask-p" id="subtask${i}"><p class="subtask-p"></p>${subtask}</div>
             <div class="subtask-right">
                 <img src="../assets/img/icons/edit.svg" alt="Edit" onclick="editSubtask(${i})">
                 <p class="separator"></p>
@@ -281,17 +291,20 @@ function getSubtasks() {
  * 
  * @param {number} i - The index of the task.
  */
+// let useryyy
 function createUserToAssigned(i) {
     let div = document.getElementById(`popup-user-${i}`);
     let taskValue = tasks[i];
-    for (let k = 0; k < taskValue.letter.length; k++) {
-        let letters = taskValue.letter[k];
-        let user = taskValue.assigned[k];
+    if (!Array.isArray(taskValue.assignedTo) || taskValue.assignedTo.length === 0) {
+        return;
+    }
+    for(const user of taskValue.assignedTo){
+        const name = user.name || "";
         div.innerHTML += /*html*/`
-            <div class="each-user-section">
-                <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
-                <div>${user}</div>  
-            </div>
-        `;
+        <div class="each-user-section">
+            <img src="https://ui-avatars.com/api/?name=${name}&background=random&color=fff" alt="Initials" class="assigned-contact-list-icon">
+            <div>${name}</div>  
+        </div>
+    `;
     }
 }

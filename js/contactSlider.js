@@ -14,6 +14,7 @@ function showAddContactOverlay() {
     darkBgr.classList.remove('hide-dark-bgr');
     showAddContactSlider();
     showAddContactOverlayHELP(addMask, contactInfoConMobile, isMobileView, navbar, header);
+    console.log(contacts)
 }
 
 /**

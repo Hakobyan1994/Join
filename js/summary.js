@@ -1,11 +1,11 @@
 let nameActiveUser = [];
  
 let arrayUrgent = [
-  {
-    priority: [],
-    date: []
-  }
-];
+  // {
+  //   priority: [],
+  //   date: []
+  // }
+]; 
 
 
 let asguest = JSON.parse(localStorage.getItem('guestLogin'));
@@ -20,10 +20,6 @@ async function nameItem(key) {
   });
 }
   
-
-
-
-
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
@@ -77,42 +73,22 @@ function getGreetingText() {
   }
 }
 
-
-// let guestsUsing = JSON.parse(localStorage.getItem('guestsUser'))
-
-/*
-const currentDate = new Date();
-
-
-function dateUpdate() {
-  let montUndDay = document.getElementById('date');
-
-  // Monatsnamen extrahieren
-  const monthName = currentDate.toLocaleString('default', { month: 'long' });
-
-  montUndDay.innerText += `${currentDate.getDate()}, ${monthName} ${currentDate.getFullYear()}`;
-}
-
-  function timer() {
-    setTimeout(() => {
-  }, "100");
-}
-*/
-
-
 async function renderSummaryMain() {
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
   content.innerHTML = generateHtmlSummary();
-  await loadTasks();
+  // await loadTaskss();
+  await getAllCards()
+  await loadTaskss();
+  await loadContacts();
   await getValue(content);
   displayGreeting();
   checkButtonImgChange();
 }
 
 
-async function getValue(content) {
-  await loadTasks();
+async function getValue(content) {  
+  await getAllCards()
   const { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total } = countTaskValues(tasks);
   putValues(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
   ifTotalEmpty(total, content);
@@ -123,7 +99,7 @@ function countTaskValues(tasks) {
   let valueTodo = 0, valueProgress = 0, valueFeedback = 0, valueDone = 0, valueUrgent = 0, total = 0;
   for (let i = 0; i < tasks.length; i++) {
     const state = tasks[i].status;
-    const priority = tasks[i].priority;
+    const priority = tasks[i].prio;
     if (state === 'board-to-do') {
       valueTodo++;
     }
@@ -167,30 +143,17 @@ function ifTotalEmpty(total, content) {
 }
 
 
-function getUrgentDate() {
+ function getUrgentDate() {
   arrayUrgent = [];
-
   for (let j = 0; j < tasks.length; j++) {
-    const array = tasks[j].priority;
+    const array = tasks[j].prio;
     const date = tasks[j].date;
     if (array === 'urgent') {
       arrayUrgent.push(date);
+      console.log(arrayUrgent)
     }
-  }
-  deleteOldUrgent();
+  } 
   validateUpcomingDeadline();
-}
-
-
-function deleteOldUrgent() {
-  let dateArray = arrayUrgent.map(urgentString => {
-    let [day, month, year] = urgentString.split('/').map(Number);
-    return new Date(year, month - 1, day);
-  });
-  let earliestDate = new Date(Math.min(...dateArray));
-  if (earliestDate < new Date()) {
-    arrayUrgent.splice(earliestDate);
-  }
 }
 
 
@@ -203,26 +166,41 @@ function actualDate() {
 actualDate()
 
 
-function validateUpcomingDeadline() {
+ function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('urgentDate');
-
   if (arrayUrgent.length === 0) {
     dateDiv.innerHTML = '-';
-  } else if (arrayUrgent.length > -1) {
-    dateDiv.innerHTML = defineUpcomingDeadline();
+  } else {
+    const upcomingDate = getNextUrgentDate();
+    dateDiv.innerHTML = upcomingDate;
   }
 }
+ 
+
+function getNextUrgentDate() {
+  arrayUrgent.sort((a, b) => new Date(a) - new Date(b));
+  const nextDate = new Date(arrayUrgent[arrayUrgent.length-1]);
+  nextDate.setDate(nextDate.getDate() - 1);
+  const day = String(nextDate.getDate()).padStart(2, '0');
+  const month = String(nextDate.getMonth() + 1).padStart(2, '0'); // +1 weil Monate 0-11 sind
+  const year = nextDate.getFullYear();
+  return `${day}.${month}.${year}`;
+}
+
+
 
 
 function defineUpcomingDeadline() {
   let dateArray = arrayUrgent.map(urgentString => {
-    let [day, month, year] = urgentString.split('/').map(Number);
+    let [day, month, year] = urgentString.split('-').map(Number);
     return new Date(year, month - 1, day);
   });
+  console.log('Date Array:', dateArray);
   let earliestDate = new Date(Math.min(...dateArray));
-  let formattedDate = earliestDate.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
+  console.log(earliestDate)
+  let formattedDate = earliestDate.toLocaleDateString('de-DE', { // 🇩🇪 deutsches Format
+    day: '2-digit',
+    month: '2-digit',
     year: 'numeric'
   });
   return formattedDate;
@@ -237,15 +215,19 @@ async function displayGreeting() {
   greetingTimeCon.textContent = greetingData.time;
   if(asguest){
     let textGreeting = greetingTimeCon.innerText;
-    let replaceText = textGreeting.replace(/,/g, ''); // Corrected the usage of replace() function
+    let replaceText = textGreeting.replace(/,/g, '');
     greetingTimeCon.style.marginTop = '37px'
-    greetingTimeCon.innerText = replaceText;
-    greetingNameCon.style.display = 'none';
+    greetingTimeCon.innerText = replaceText ;  
+    greetingNameCon.innerText='Guest'
     shortName.innerHTML = 'G';
    } else {
-    showHeaderIni();
     greetingNameCon.style.display = 'block';
-    greetingNameCon.textContent = greetingData.name;
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    shortName.innerText=currentUser.username.charAt(0).toUpperCase()
+    if (currentUser && currentUser.username) {
+      const formattedname = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1).toLowerCase();
+    greetingNameCon.innerText=formattedname
+   }
    }
 
 }
@@ -255,7 +237,6 @@ async function getGreeting() {
   const now = new Date();
   const hour = now.getHours();
   let greetingTime = '';
-
   if (hour >= 5 && hour < 12) {
     greetingTime = `Good morning,`;
   } else if (hour >= 12 && hour < 18) {
@@ -287,13 +268,13 @@ async function getActiveUser() {
 }
 
 
-async function showHeaderIni() {
-  await getActiveUser();
-  let div = document.getElementById('shortName');
-  let name = nameActiveUser[0];
-  let initials = getInitials(name);
-  div.textContent = initials;
-}
+// async function showHeaderIni() {
+//   await getActiveUser();
+//   // let div = document.getElementById('shortName');
+//   // let name = nameActiveUser[0];
+//   let initials = getInitials(name);
+//   div.textContent = initials;
+// }
 
 
 function getInitials(name) {

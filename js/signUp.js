@@ -49,6 +49,8 @@ async function getUsers(params) {
 function addtoLocal(arr, key) {
     setItem('dataUsers', dataUsers)
 }
+
+
 async function onsubmitFor(e) {
     e.preventDefault();
     let name = e.target[0].value;
@@ -56,18 +58,67 @@ async function onsubmitFor(e) {
     let password = e.target[2].value;
     let confirmPassword = e.target[3].value;
     let checkBox = e.target[4].checked;
-    if (name && email && password && confirmPassword && checkBox) {
-        let userData = { name, email, password, confirmPassword };
-        addtoLocal(dataUsers, 'dataUsers');
-        validForm({ name, email, password, confirmPassword }, e)
-    } else {
-        checkSignUpInputs();
-        if (!checkBox) {
-            document.getElementById('errorPassword').innerText = 'Please accept the privacy policy';
-        } else {
-            check.value = 'yes';
-            document.getElementById('errorPassword').innerText = '';
+    const checkEmailregex = /^[^\s@]+@[^\s@]+\.(de|com)$/;
+    checkSignUpInputs() 
+    if (!checkEmailregex.test(email)) {
+        showError('Please enter a valid email ending with .de or .com');
+        return;
+    }
+
+    if (!checkBox) {
+        document.getElementById('errorPassword').innerText = 'Please accept the privacy policy';
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        document.getElementById('errorPasswordSecond').innerText = 'The Password is not correct';
+        return;
+    }
+
+    const checkEmailResponse = await fetch(`http://127.0.0.1:8000/user_auth/check_email/?email=${encodeURIComponent(email)}`);
+    const checkEmailData = await checkEmailResponse.json();
+
+    if (checkEmailData.exists) {
+        showError('The email is already registered');
+        return;
+    }
+
+    const response = await fetch('http://127.0.0.1:8000/user_auth/registration/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username: name,
+            email: email,
+            password: password,
+            repeated_password: confirmPassword,
+            privacy_policy: true
+        })
+    });
+    const data = await response.json();
+    if (response.ok) {
+        // dataUsers.push({ name, email, password, id: new Date().getTime() });
+        // addtoLocal(dataUsers, 'dataUsers');
+    if (window.innerWidth <= 500) {
+            responsiveInfo.classList.add('active');
+            setTimeout(() => {
+                responsiveInfo.classList.remove('active');
+                window.location.href = '../index.html';
+            }, 2000);
         }
+    else if(window.innerWidth>500){
+        trasparenterDiv.style.display = 'flex';
+                  setTimeout(() => {
+                trasparenterDiv.style.display = 'none';
+                window.location.href = '../index.html';
+                console.log('es ste em')
+            }, 2000);
+        window.location.href = '../index.html';
+    }
+    } else {
+        console.error('Backend-Fehler:', data);
+        showError(data.error || 'Fehler bei der Registrierung');
     }
 }
 
@@ -105,9 +156,11 @@ function validForm({ name, email, password, confirmPassword }, e) {
         showError('Please enter a valid email ending with .de or .com');
     }
 }
+
 function showError(message) {
     document.getElementById('errorEmailend').innerText = message;
 }
+
 let backPicture = document.querySelector('.backLogin_picture')
 backPicture.onclick = backToRegister;
 function backToRegister() {

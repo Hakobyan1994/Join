@@ -23,6 +23,7 @@ function searchTasks() {
  * @param {Object} searchResult - Object to store the search result.
  */
 function searchFunction(filter, searchResult) {
+    console.log(tasks)
     for (let i = 0; i < tasks.length; i++) {
         let todo = document.getElementById(`board-to-do-section-${i}`);
         let array = tasks[i];
@@ -102,12 +103,15 @@ function cancelButton() {
  * @param {number} i - The index of the task to delete.
  */
 async function deleteTask(i) {
-    await loadTasks();
+    const url=`http://127.0.0.1:8000/join_app/create_tasks/${tasks[i].id}`
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
     tasks.splice(i, 1);
-
-    await setItem('tasks', JSON.stringify(tasks));
     closePopupAddTaskDiv(i);
-    await loadToDo();
 }
 
 
@@ -188,20 +192,82 @@ async function closePopupEdit(i) {
  * Saves the edited task after validation and updates the task list.
  * 
  * @param {number} i - The index of the task being edited.
- */
+ */ 
+ async function getallTasksValue(){
+    const url='http://127.0.0.1:8000/join_app/create_tasks/'
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (response.ok) {
+            // console.log('📦 Kontakte aus DB:', data);
+            tasks=data
+            await loadToDo();
+            console.log(tasks)
+        } else {
+            console.error('❌ Fehler beim Abrufen:', data);
+        }
+    } catch (error) {
+        console.error('❌ Netzwerkfehler:', error);
+    }
+ }
+   
+
+
+
 async function saveEditedTask(i) {
-    await loadTasks();
+    console.log(i)
+
+
+    // await loadTasks();
+    await getallTasksValue()
+
+   
+    const task = tasks[i];
+    // selectedUserId = task.assignedTo?.map(user => user.id); 
     checkCategoryButton();
     let isValid = validateForm();
-    if (isValid) {
-        let newTask = createNewTask(i);
-        updateTaskList(newTask, i);
-        await saveTasks();
-        closeEditPopup();
-        await updateProgressBar(i);
-    } else {
-        handleInvalidForm();
+    let date = document.getElementById('date');
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let priority = pushPrio();
+
+    // 🛠 Fallback für bereits gesetzte Kontakte
+   
+
+    const url = `http://127.0.0.1:8000/join_app/create_tasks/${task.id}`;
+    selectedUserId = selectedUserId.filter(id => Number.isInteger(id) && id > 0);
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            title: title.value,
+            description: description.value,
+            assignedTo_ids: selectedUserId,
+            date: date.value,
+            prio: priority,
+            category: task.category,
+            subtasks: subtasks || [],
+            checkoffs: checkoffs || [],
+            status: task.status
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Fehler beim PUT:", response.status, errorText);
+        return;
     }
+
+    const data = await response.json();
+    tasks[i] = data; // ✅ Update nur diesen Task
+   
+
+    console.log("✅ Erfolgreich aktualisiert:", data);
+    closeEditPopup();
+    await getallTasksValue();
     await reloadTasks();
 }
 
@@ -234,24 +300,26 @@ function validateForm() {
  * @param {number} i - The index of the task being edited.
  * @returns {Object} - Returns the new task object.
  */
-function createNewTask(i) {
+function createNewTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
     let priority = pushPrio();
     let dateValue = date.value;
     let formatedDate = formatDate(dateValue);
+    console.log(users)
+    // console.log(tasks[i].id)
     let newTask = {
         title: title.value,
         description: description.value,
-        assigned: users,
-        letter: iniimg,
-        date: formatedDate,
-        priority: priority,
-        category: categoryArray[0],
-        subtask: subtasks,
+        // assignedTo_ids: users,
+        // letter: iniimg,
+        date: dateValue,
+        prio: priority,
+        // category: categoryArray[0],
+        subtasks: subtasks,
         checkoffs: checkoffs,
-        status: tasks[i].status
+        status: (tasks[i] && tasks[i].status) ? tasks[i].status : "board-to-do"
     };
     return newTask;
 }
@@ -263,18 +331,20 @@ function createNewTask(i) {
  * @param {Object} newTask - The new task object.
  * @param {number} i - The index of the task being edited.
  */
-function updateTaskList(newTask, i) {
+ async function updateTaskList(newTask, i) {
+   
     tasks.push(newTask);
-    tasks.splice(i, 1);
+    console.log(tasks)
+    // tasks.splice(i, 1);
 }
 
 
 /**
  * Saves the tasks array to the local storage.
  */
-async function saveTasks() {
-    await setItem('tasks', JSON.stringify(tasks));
-}
+// async function saveTasks() {
+//     await setItem('tasks', JSON.stringify(tasks));
+// }
 
 
 /**

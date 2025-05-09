@@ -40,7 +40,7 @@ async function init() {
     includeHTML();
     renderSummaryMain();
     await loadContacts();
-    await loadTasks();
+    await loadTaskss();
     closeInfoList();
 }
 
@@ -69,7 +69,8 @@ function goBack() {
 /**
  * Loads tasks asynchronously.
  */
-async function loadTasks() {
+
+async function loadTasks() { 
     try {
         tasks = JSON.parse(await getItem('tasks')) || [];
         if (!Array.isArray(tasks)) {
@@ -103,7 +104,7 @@ function renderPage(selectedBar, page) {
 }
 
 
-function selectPage(page) {
+ function selectPage(page) {
     if (page === 'render-summary') {
         renderSummaryMain();
     }

@@ -6,16 +6,32 @@ let array = [];
  * Loads tasks into the respective boards (To Do, In Progress, Awaiting Feedback, Done) based on their status,
  * and updates the display accordingly.
  */
-async function loadToDo() {              
-    await loadTasks();
+async function loadToDo() {  
+    await   getAllCards();
+    
     const [todo, progress, feedback, done] = initializeElements();
     clearBoardContents(todo, progress, feedback, done);
 
     const { hasToDo, hasProgress, hasFeedback, hasDone } = await populateBoards(todo, progress, feedback, done);
     updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, hasFeedback, hasDone);
 }
-
-
+  
+  async function getAllCards(){
+    const url='http://127.0.0.1:8000/join_app/create_tasks/'
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (response.ok) {
+            tasks=data
+        } else {
+            console.error(' Fehler beim Abrufen:', data);
+        }
+    } catch (error) {
+        console.error('Netzwerkfehler:', error);
+    }
+  }
+  
 /**
  * Initializes the board elements by retrieving them from the DOM.
  * 
@@ -47,13 +63,12 @@ function clearBoardContents(todo, progress, feedback, done) {
 
 
 async function populateBoards(todo, progress, feedback, done) {
+    await getAllCards()
     const flags = { hasToDo: false, hasProgress: false, hasFeedback: false, hasDone: false };
-
     for (let i = 0; i < tasks.length; i++) {
         const taskValue = tasks[i];
         await updateBoard(taskValue, i, todo, progress, feedback, done, flags);
     }
-
     return flags;
 }
 
@@ -70,23 +85,41 @@ async function populateBoards(todo, progress, feedback, done) {
 async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) {
     switch (taskValue.status) {
         case 'board-to-do':
+            await updateTaskStatusInDB(taskValue)
             todo.innerHTML += generateBoardCard(taskValue, i);
             flags.hasToDo = true;
+            checkNoCards();
             break;
         case 'board-in-progress':
             progress.innerHTML += generateBoardCard(taskValue, i);
             flags.hasProgress = true;
             break;
         case 'board-await-feedback':
+            await updateTaskStatusInDB(taskValue)
             feedback.innerHTML += generateBoardCard(taskValue, i);
             flags.hasFeedback = true;
             break;
         case 'board-done':
+            await updateTaskStatusInDB(taskValue)
             done.innerHTML += generateBoardCard(taskValue, i);
             flags.hasDone = true;
             break;
     }
-    updateBoardCard(taskValue, i);
+    // await updateTaskStatusInDB(taskValue)
+    await  updateBoardCard(taskValue, i);
+}  
+
+
+async function updateTaskStatusInDB(task) {
+    console.log(task)
+    const url = `http://127.0.0.1:8000/join_app/create_tasks/${task.id}`;
+    await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: task.status })
+    }); 
 }
 
 
@@ -215,9 +248,28 @@ async function saveTasks() {
 * Handles the editing of a task.
 *
 * @param {number} i - The index of the task to be edited.
-*/
+*/ 
+
+
+
+async function loadActuallyContacts(){
+      const url = 'http://127.0.0.1:8000/join_app/create_contacts/';
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+            contacts = data
+            console.log(contacts)
+        } else {
+            console.error('❌ Fehler beim Abrufen:', data);
+        }
+    } catch (error) {
+        console.error('❌ Netzwerkfehler:', error);
+    }
+}
+
 async function editTask(i) {
-    await loadTasks();
+    await loadActuallyContacts();
     categoryArray = [];
     users = [];
     iniimg = [];
@@ -286,7 +338,7 @@ function displayEditableContent(i) {
  * @param {number} i - The index of the task to be edited.
  */
 async function pushValueToEdit(i) {
-    await loadTasks();
+     await getAllCards();
     array = tasks[i];
     updateFields(array);
     updateContactList(array);
@@ -309,7 +361,7 @@ function updateFields(array) {
     title.value = array.title;
     description.value = array.description;
     date.value = dateValue;
-    let priority = array.priority;
+    let priority = array.prio;
     getPriority(priority);
 }
 
@@ -319,19 +371,19 @@ function updateFields(array) {
  * 
  * @param {Object} array - The task object containing the assigned contacts.
  */
-function updateContactList(array) {
+ function updateContactList(array) {
     renderAssignedList();
-    for (let i = 0; i < array.assigned.length; i++) {
-        let selectedContacts = array.assigned[i];
+     getallTasksValue();
+    for (let i = 0; i < array.assignedTo.length; i++) {
+        let selectedContacts = array.assignedTo[i];
         for (let k = 0; k < contacts.length; k++) {
             let contact = document.getElementById(`contact-name-${k}`);
-            if(selectedContacts.toUpperCase() === contact.textContent.toUpperCase()) {
+            if(selectedContacts.name.toUpperCase() === contact.textContent.toUpperCase()) {
                 selectAssignedContacts(k);
             } 
         }
     }
 }
-
 
 /**
  * Updates the subtasks in the edit form with the task's subtasks.
@@ -339,7 +391,7 @@ function updateContactList(array) {
  * @param {Object} array - The task object containing the subtasks.
  */
 function updateSubtasks(array) {
-    let subtasksArray = array.subtask;
+    let subtasksArray = array.subtasks;
     let checkoffsArray = array.checkoffs;
     subtasks.push(subtasksArray);
     checkoffs.push(checkoffsArray)
@@ -351,5 +403,5 @@ function updateSubtasks(array) {
     for (let k = 0; k < checkoffsArray.length; k++) {
         checkoffs.push(checkoffsArray[k]);
     }
-    getSubtasks();
+    // getSubtasks();
 }

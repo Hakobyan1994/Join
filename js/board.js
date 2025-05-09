@@ -9,12 +9,13 @@ async function renderBoardMain() {
     let content = document.getElementById('render-board');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainBoard();
-    emptyPages();
-    loadToDo();
+    emptyPages();   
+    await loadToDo();
     await loadContacts();
-    await loadTasks();
+    await loadTaskss(); 
+    checkNoCards()
 }
-
+   
 
 /**
  * Empties any open pages.
@@ -68,14 +69,14 @@ function createUserButtons(task, i) {
     let iconmember = document.getElementById(`user-board-${i}`);
     let letters = task.letter;
     let maxIcons = 4;
-    let remainingIcons = letters.length - maxIcons;
-    if (iconmember) {
-        if(remainingIcons > 0) {
-            greaterThanFour(letters, iconmember, maxIcons, remainingIcons);
-        } else if (remainingIcons <= 0) {
-            smallerThanFour(letters, iconmember);
-        }
-    }
+    // let remainingIcons = letters.length - maxIcons;
+    // if (iconmember) {
+    //     if(remainingIcons > 0) {
+    //         greaterThanFour(letters, iconmember, maxIcons, remainingIcons);
+    //     } else if (remainingIcons <= 0) {
+    //         smallerThanFour(letters, iconmember);
+    //     }
+    // }
 }
 
 
@@ -124,8 +125,10 @@ function smallerThanFour(letters, iconmember) {
 function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
     let taskValue = tasks[i];
-    for (let k = 0; k < taskValue.subtask.length; k++) {
-        let subtasks = taskValue.subtask[k];
+    
+    if (!taskValue.subtasks || taskValue.subtasks.length === 0) return;
+    for (let k = 0; k < taskValue.subtasks.length; k++) {
+        let subtasks = taskValue.subtasks[k];
         div.innerHTML += /*html*/`
             <div class="each-subtask-section">
                 <div>
@@ -137,6 +140,7 @@ function createSubtasksToAddTaskPopup(i) {
     }
     checkSelectedSubtasks(i);
 }
+   
 
 
 /**
@@ -146,17 +150,19 @@ function createSubtasksToAddTaskPopup(i) {
  */
 function checkSelectedSubtasks(i) {
     let taskValue = tasks[i];
-    for (let k = 0; k < taskValue.subtask.length; k++) {
+    if (!taskValue.subtasks) return;
+    for (let k = 0; k < taskValue.subtasks.length; k++) {
         let img = document.getElementById(`select-subtask-board-${k}`);
         let subtask = document.getElementById(`each-subtasks-${k}`);
-        if (taskValue.checkoffs.includes(k.toString())) {
+        if (Array.isArray(taskValue.checkoffs) && taskValue.checkoffs.includes(k.toString())) {
             img.src = '../assets/img/icons/selected.svg';
             subtask.setAttribute('value', 'selected');
         } else {
             img.src = '../assets/img/icons/none-selected.svg';
             subtask.setAttribute('value', 'not-selected');
         }
-    }
+    } 
+
 }
 
 

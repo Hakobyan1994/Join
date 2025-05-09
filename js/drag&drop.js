@@ -10,21 +10,23 @@ let offsetX;
 let offsetY;
 let touchedElement;
 
-
 /**
  * Handles the drag start event.
  * 
  * @param {Event} ev - The drag start event.
  */
-function dragStart(ev) {
+  function dragStart(ev) {
     deleteAllSilhouettes();
-    currentDraggedElement = ev.currentTarget.getAttribute('id');
-    arrayPosition = currentDraggedElement.replace(/\D/g, "");
+    const id = ev.currentTarget.getAttribute('id');
+    currentDraggedElement = id;
+    arrayPosition = parseInt(id.replace(/\D/g, ""), 10);
+    if (!tasks || !tasks[arrayPosition]) {
+        return;
+    }
     currentStatus = tasks[arrayPosition].status;
     currentOnHover = currentStatus;
     onHover = currentStatus;
 }
-
 
 /**
  * Allows dropping of elements.
@@ -38,19 +40,78 @@ function allowDrop(ev) {
         hideNoCards(onHover);
         showSilhouette(onHover);
     }
-}
+}   
 
+   function checkNoCards() {
+    const boardIds = ['board-to-do', 'board-in-progress', 'board-await-feedback', 'board-done'];
+    boardIds.forEach(id => {
+        const board = document.getElementById(id);
+        const noCardMsg = board.querySelector('.Card_NotasksTodo');
+        const cards = board.querySelectorAll('.progress_card');
+        if (cards.length === 0) {
+            if (noCardMsg) {
+                noCardMsg.classList.remove('hidden');
+            }
+        } else {
+            if (noCardMsg) {
+                noCardMsg.classList.add('hidden');
+            }
+        }
+    });
+}  
 
 /**
  * Handles the drop event.
  * 
  * @param {Event} ev - The drop event.
- */
+ */  
+
+
+
 async function drop(ev) {
+    ev.preventDefault();
     let targetId = ev.currentTarget.getAttribute('id');
-    tasks[arrayPosition].status = targetId;
-    await saveTasks();
-    loadToDo();
+    let sourceId = currentStatus;
+    if (tasks[arrayPosition]) {
+        tasks[arrayPosition].status = targetId;
+        await updateTaskStatusInDB(tasks[arrayPosition]);
+        const cardElement = document.getElementById(currentDraggedElement);
+        const newColumn = document.getElementById(targetId);
+        newColumn.insertBefore(cardElement, newColumn.firstChild);
+        deleteAllSilhouettes();
+        requestAnimationFrame(() => {
+            checkSingleColumn(sourceId); 
+            checkSingleColumn(targetId);
+        });
+            // await renderBoardMain();
+    } else { 
+        console.error("Task an dieser Position existiert nicht:", arrayPosition);
+    }
+}   
+
+async function checkSingleColumn(id) {
+    const board = document.getElementById(id);
+    const noCardMsg = board.querySelector('.Card_NotasksTodo');
+    const cards = board.querySelectorAll(`#${id} .progress_card`);
+    if (cards.length === 0) { 
+        if (noCardMsg) noCardMsg.style.display = 'flex';
+        console.log(`✅ ${id} ist leer`);
+        await loadToDo()
+    } else {
+        if (noCardMsg) noCardMsg.style.display = 'none';
+    }
+}
+
+
+       
+function renderAddTaskForPopup() {
+    e.preventDefault();
+}
+
+async function loadTaskss() {
+    const response = await fetch('http://127.0.0.1:8000/join_app/create_tasks/');
+    data = await response.json();
+    tasks=data
 }
 
 
@@ -69,6 +130,8 @@ function showSilhouette(id) {
     } else if (div && currentOnHover !== onHover) {
         deleteAllSilhouettes();
         showNoCards();
+        checkNoCards();
+        
     }
 }
 
@@ -137,7 +200,6 @@ function onTouchMove(ev) {
     }
 }
 
-
 /**
  * Sets the position of the touched element.
  * 
@@ -171,12 +233,16 @@ async function onTouchEnd(ev) {
     let progressCard = document.querySelector('.progress_card');
     if(progressCard) {
         tasks[arrayPosition].status = onHover;
-        await saveTasks();
         await loadToDo();
+        setTimeout(() => {
+            showNoCards() 
+        }, 1);
+        showNoCards();
         offsetX = null;
         offsetY = null;
-    }
-}
+    } 
+}   
+
 
 
 /**
@@ -190,7 +256,6 @@ function hideNoCards(id) {
         element.style.display = 'none';
     })
 }
-
 
 /**
  * Shows 'no cards' message for elements with class 'Card_NotasksTodo'.

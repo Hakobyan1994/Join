@@ -1,22 +1,39 @@
+let selectedUserId=[];
+
+
 /**
  * Pushes selected or deselected user to the user list.
  * 
  * @param {number} i - The index of the selected or deselected contact.
  */
-function pushUser(i) {                                                              // push all contacts 
-    let assignedContact = document.getElementById(`assigned-contacts-${i}`);
-    let approved = assignedContact.classList.contains('select-contact-blue');
-    let selectedUser = contacts[i].name;
-    let img = contacts[i].initials;
-    let index = users.indexOf(selectedUser);
+async function pushUser(i) {  
+    // await renderContacts()
+    console.log(contacts)
+    const contactId = contacts[i].id;
+    console.log(contactId)
+    const selectedUser = contacts[i].name;
+    const approved = document.getElementById(`assigned-contacts-${i}`).classList.contains('select-contact-blue');
+
     if (approved) {
-        addDetectedContacts(index, selectedUser, img);
+        if (!selectedUserId.includes(contactId) && !selectedUserId.includes(contactId)) {
+            selectedUserId.push(contactId);
+        }
     } else {
-        deleteNotDetectedContacts(index);
+        selectedUserId = selectedUserId.filter(id => id !== contactId);
     }
+        console.log(selectedUserId)
+    
+
+    // let img = contacts[i].initials;
+    // let index = users.indexOf(selectedUser);
+    // if (approved) {
+    //     addDetectedContacts(index, selectedUser, img);
+    // } else {
+    //     deleteNotDetectedContacts(index);
+    // }
     generateAssignedButton();
 }
-
+ 
 
 /**
  * Adds the selected user to the user list if not already present.
@@ -29,7 +46,7 @@ function addDetectedContacts(index, selectedUser, img) {
     if (index === -1) {
         users.push(selectedUser);
         iniimg.push(img);
-    }
+    } 
 }
 
 
@@ -113,20 +130,58 @@ function clearInput(content) {
  * @returns {Promise<Array>} - A promise that resolves to the updated tasks array.
  */
 async function createTask(boardcard) {
+    console.log(boardcard)
+    let priority = pushPrio();
     let { title, requiredTitle, requiredDate, requiredCategory, description, date, category } = getInputElements();
+    console.log(title.value)
+
     let dateValue = date.value;
-    let formatedDate = formatDate(dateValue);
+    console.log(dateValue)
     if (isValidInput(title.value, dateValue, category.value)) {
-        await handleValidInput(boardcard, description, formatedDate);
-    } else {
+        // await handleValidInput(boardcard, description, formatedDate);
+        const url='http://127.0.0.1:8000/join_app/create_tasks/'
+        const response=await fetch(url,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                title:title.value,
+                description:description.value,
+                assignedTo_ids: selectedUserId ? selectedUserId : [],
+                date:dateValue,
+                prio:priority,
+                category:category.value,
+                subtasks: subtasks || [],
+                status:boardcard,
+                checkoffs:[]
+            })
+        })
+        if(response.ok){
+            const data = await response.json();
+            tasks=data
+            // await loadToDo()
+        } 
+
+        // await getAll()
+        closePopupAddTask()
+        await renderBoardMain() 
+    }     
+    // } 
+     else {
         handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category);
     }
-    if (document.getElementById('popup-add-task')) {
-        loadToDo();
-        let content = document.getElementById('popup-add-task-content');
-    }
-    return tasks;
-}
+    // if (document.getElementById('popup-add-task')) {
+    //     // await getAll()
+    //     // loadToDo();
+    //     let content = document.getElementById('popup-add-task-content');
+    // }
+    // return tasks;
+}  
+
+
+
+
 
 
 /**
@@ -168,11 +223,13 @@ function isValidInput(titleValue, dateValue, categoryValue) {
  * @param {string} formatedDate - The formatted date string.
  */
 async function handleValidInput(boardcard, description, formatedDate) {
+    // await getAll()
     await loadTasks();
-    pushToTodoBoard(boardcard, description, formatedDate);
-    await setItem('tasks', JSON.stringify(tasks));
+    // pushToTodoBoard(boardcard, description, formatedDate);
+    // await setItem('tasks', JSON.stringify(tasks));
     clearFields();
     openBoard();
+   
 }
 
 
@@ -203,21 +260,22 @@ function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date,
  * @param {HTMLElement} description - The description input element.
  * @param {string} formatedDate - The formatted date string.
  */
-function pushToTodoBoard(boardcard, description, formatedDate) {
-    let { title, category } = getInputElements();
-    let priority = pushPrio();
-    let newTask = {
-        title: title.value,
-        description: description.value,
-        assigned: users,
-        letter: iniimg,
-        date: formatedDate,
-        priority: priority,
-        category: category.value,
-        subtask: subtasks,
-        checkoffs: [],
-        status: boardcard
-    };
-    tasks.push(newTask);
-}
+// function pushToTodoBoard(boardcard, description, formatedDate) {
+//     let { title, category } = getInputElements();
+//     let priority = pushPrio();
+//     let newTask = {
+//         title: title.value,
+//         description: description.value,
+//         assigned: users,
+//         letter: iniimg,
+//         date: formatedDate,
+//         priority: priority,
+//         category: category.value,
+//         subtask: subtasks,
+//         checkoffs: [],
+//         status: boardcard
+//     };
+//     tasks.push(newTask);
+//     console.log(tasks)
+// }
 

@@ -267,7 +267,7 @@ function generateAddContactOverlay() {
                                 <img class="person-img-add-contacts" src="../assets/img/icons/contact_person_white.svg" alt="">
                             </div>
 
-                            <form onsubmit="addToContacts()" class="add-contact-data">
+                            <form onsubmit=" return addToContacts(event)"  class="add-contact-data">
                                 <div class="input-con-main">
                                     <input id="name" name="name" class="input-con"
                                         placeholder="Name" type="text" maxlength="20" required>
@@ -291,9 +291,9 @@ function generateAddContactOverlay() {
                                 <div class="add-contact-btns">
                                     <button id="cancelBtn" onmouseover="changeImage(true)" onmouseout="changeImage(false)" type="button" class="cancel-btn" onclick="closeAddContactSlider()">
                                         <div class="cancel-txt-fix">Cancel</div><img id="cancelBtnImg" class="cancel-btn-img" src="../assets/img/icons/close-black1.svg" alt="Close">
-                                    </button>
+                                    </button>  
 
-                                    <button type="button" onclick="addToContacts()" class="create-contact-btn">
+                                    <button type="button" onclick="addToContacts(event)"     class="create-contact-btn">
                                         Create contact <img src="../assets/img/icons/check1.svg"
                                             alt="crerate contact">
                                     </button>
@@ -340,7 +340,7 @@ function generateEditMaskOverlay(i) {
                                     <img id="contactImageEdit" class="person-img">
                                 </div>
 
-                                <form onsubmit="addToContacts()" class="edit-contact-data">
+                                <form onsubmit="addToContacts(event)" class="edit-contact-data">
                                     <div class="input-con-main">
                                         <input id="nameEdit" name="name" class="input-con-edit" placeholder="Name" type="text" maxlength="20" required>
                                         <img class="input-svg-pos-edit" src="../assets/img/icons/person.svg" alt="">

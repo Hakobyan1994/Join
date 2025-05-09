@@ -1,8 +1,16 @@
 /**
  * Adds a new contact to the contacts list based on the input values.
  * 
- */
-function addToContacts() {
+ */  
+
+// document.getElementById('contactForm').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     addToContacts(event);
+//   });
+
+async function addToContacts(event) {
+   
+    event.preventDefault()
     let nameInput = document.getElementById('name');
     let emailInput = document.getElementById('emailContacts');
     let phoneInput = document.getElementById('phone');
@@ -12,9 +20,30 @@ function addToContacts() {
     let nameAddContactError = document.getElementById('nameAddErrorMessage');
     let emailAddContactError = document.getElementById('emailAddErrorMessage');
     let phoneAddContactError = document.getElementById('phoneAddErrorMessage');
+    await addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput);
+    const url='http://127.0.0.1:8000/join_app/create_contacts/'
+    const response=await fetch(url,{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body:JSON.stringify({
+            name:name,
+            email:email,
+            phone:phone
+        })
+    })
+    if(response.ok){
+        const data = await response.json();
+        console.log(data)
+        renderContactsMain(); 
+    }    
+    // window.location.href = "../files/start.html/render-contacts";
+   
+    return false; 
+} 
 
-    addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput);
-}
+
 
 /**
  * Checks the input values for adding a new contact, displays error messages if necessary, and proceeds with adding the contact if all values are valid.
@@ -153,7 +182,7 @@ function checkExistingEmail(email) {
  * 
  * @param {number} i - The index of the contact to be edited.
  */
-function saveContact(i) {
+async function saveContact(i) { 
     let contact = contacts[i];
     let contactName = document.getElementById('nameEdit').value.trim();
     let contactEmail = document.getElementById('emailEdit').value.trim();
@@ -164,7 +193,34 @@ function saveContact(i) {
     contact.name = contactName;
     contact.email = contactEmail;
     contact.phone = contactPhone;
-    saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i);
+   saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i);
+   const url = `http://127.0.0.1:8000/join_app/create_contacts/${contact.id}`; 
+   try {
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: contactName,
+            email: contactEmail,
+            phone: contactPhone
+        })
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        await loadContacts();
+        renderContactsMain();
+        console.log('Kontakt aktualisiert:', data);
+        // Hier kannst du zusätzlich noch eine Erfolgsmeldung anzeigen oder die UI updaten.
+    } else {
+        console.error('Fehler beim Aktualisieren:', data);
+    }
+} catch (error) {
+    console.error('Netzwerkfehler:', error);
+} 
+
 }
 
 /**
@@ -245,8 +301,10 @@ function saveContactEmailCheck(contactEmail, emailEditContactError) {
  * @param {number} i - The index of the edited contact in the contacts array.
  * @param {Array} contacts - The array containing the contacts.
  */
+
+
 async function saveContactHelp(i, contacts) {
-    await setItem('contacts', JSON.stringify(contacts));
+    // await setItem('contacts', JSON.stringify(contacts));
     renderContacts();
     closeEditContactSlider();
     showContactInfoSlider(i);

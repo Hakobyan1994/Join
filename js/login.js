@@ -128,33 +128,39 @@ function validateCheckbox() {
 }
   
 
-function validLogin(e) {
+async function validLogin(e) {
     e.preventDefault();
     let email = e.target[0].value;
     let password = e.target[1].value;
-    let status = 'no';
     if (email && password) {
-        let foundUser = dataUser.find((user) => user.email.includes(email));
-        if (foundUser) {
-            if (foundUser.password === password) {
-                status = 'ok';
+        try {
+            const response = await fetch('http://127.0.0.1:8000/user_auth/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: email,  // Django erwartet "username", auch wenn's eine Email ist
+                    password: password
+                })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('currentUser', JSON.stringify({
+                    username: data.username,
+                    email: data.email
+                }));
+                window.location.href = "../files/start.html";
             } else {
-                status = 'Error Password';
+                document.getElementById('emailLogIn').style.border = `1px solid red`;
+                document.getElementById('passwordLogIn').style.border = `1px solid red`;
+                document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
+                document.getElementById('imageInput').classList.add('passwordImageError');
             }
-        } else {
-            status = 'Email not found';
-        }
-        if (status === 'ok') { 
-           localStorage.clear()
-            activUser(foundUser);
-            
-            window.location.href = "../files/start.html";
-        } else if (status === 'Error Password' || status === 'Email not found') {
-            checkBox.checked = false;
-            document.getElementById('emailLogIn').style.border = `1px solid red`;
-            document.getElementById('passwordLogIn').style.border = `1px solid red`;
-            document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
-            document.getElementById('imageInput').classList.add('passwordImageError');
+
+        } catch (error) {
+            showError('Serverfehler beim Login');
         }
     }
 }

@@ -17,8 +17,9 @@ async function renderContactsMain() {
     let content = document.getElementById('render-contacts');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainContacts();
-    await loadContacts();
-    renderContacts();
+    // await loadContacts();
+    await renderContacts();
+    
 }
 
 /**
@@ -26,7 +27,19 @@ async function renderContactsMain() {
  * This function also adds an 'Add' button and handles the resizing of contact elements.
  * 
  */
-function renderContacts() {
+async function renderContacts() {
+    const url = 'http://127.0.0.1:8000/join_app/create_contacts/';
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            contacts = data
+        } else {
+            console.error(' Fehler beim Abrufen:', data);
+        }
+    } catch (error) {
+        console.error(' Netzwerkfehler:', error);
+    }
     let addBtn = document.getElementById('addBtn');
     let contactsContainer = document.getElementById('allContacts');
     addContactBtnHTML(addBtn, contactsContainer);
@@ -77,7 +90,6 @@ function resizeHandler() {
     let isMobileView = window.innerWidth < 1360;
     let isMobileViewIphone = window.innerWidth < 860;
     let contactInfoSliderVisible = contactInfoSlider.classList.contains('show');
-
     refreshInfoSliderOnScreenSize(headline, headlineMobile, contactInfoSlider, contactInfoConMobile, isMobileView, isMobileViewIphone, contactInfoSliderVisible);
 }
 
@@ -106,7 +118,6 @@ function addContactBtnHTML(addBtn, contactsContainer) {
 function renderContactImgInitials(lastLetter, contact, i, contactsContainer) {
     if (contact.name && contact.name.length > 0) {
         const firstLetter = contact.name.charAt(0).toUpperCase();
-
         if (firstLetter !== lastLetter) {
             contactsContainer.innerHTML += generateLetterCon(firstLetter) + generateSeparator();
         }
@@ -136,7 +147,8 @@ function addInitialsToContactImage(contact, imageId) {
 
         const imageElement = document.getElementById(imageId);
         imageElement.alt = initials;
-        imageElement.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
+        imageElement.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=ffffff`;
+
         applyRandomColorToImage(imageElement, initials);
     }
 }
@@ -151,7 +163,7 @@ function displayContactImage(i) {
     let contactImage = document.getElementById('contactImageEdit');
 
     if (contactImage) {
-        contactImage.src = `https://ui-avatars.com/api/?name=${contact.initials}&background=random&color=ffffff`;
+        contactImage.src = `https://ui-avatars.com/api/?name=${initials}&background=random&color=ffffff`;
         contactImage.style.width = '100px';
         contactImage.style.height = '100px';
         contactImage.style.backgroundColor = 'transparent';
@@ -221,9 +233,9 @@ async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, e
     addContactToArray(formattedName, email, phone, initials);
     clearInputs(nameInput, emailInput, phoneInput);
     closeAddContactSlider();
-    await setItem('contacts', JSON.stringify(contacts));
+    // await setItem('contacts', JSON.stringify(contacts));
     await loadContacts();
-    renderContacts();
+    await renderContacts();
     showSuccessMessage();
 }
 
@@ -331,30 +343,55 @@ async function deleteContact(i) {
     let headlineMobile = document.getElementById('headlineMobile');
     let contactSlider = document.getElementById('contactSlider');
     deleteContactHELP(contactInfoConMobile, headlineMobile, i);
-    deleteDeletedContact(i);
-    contacts.splice(i, 1);
-    contactSlider.innerHTML = '';
-    closeEditContactSlider();
-    await setItem('contacts', JSON.stringify(contacts));
-    await setItem('tasks', JSON.stringify(tasks));
-    renderContacts();
-}
+    // contactSlider.innerHTML = '';
+    // closeEditContactSlider();
+    // await setItem('contacts', JSON.stringify(contacts));
+    // await setItem('tasks', JSON.stringify(tasks));  
+    const url = `http://127.0.0.1:8000/join_app/create_contacts/${contacts[i].id}`
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })  
+    if (response.ok) {
+        // Nur falls Response-Body vorhanden:
+        // const data = await response.json();
+             
+        contacts.splice(i, 1); // Aus Liste entfernen
+        renderContactsMain(); // Seite bleibt und aktualisiert nur den Bereich
+    }
+
+    
+    // const data = await response.json();
+    // contacts[i]=data
+    // console.log(data)
+    // deleteDeletedContact(i);
+    // contacts.splice(i, 1);
+    // await  renderContacts();
+    // renderContactsMain()
+    
+}   
+
+    
+
+   
 
 /**
  * Removes the deleted contact from the assigned tasks.
  * 
  * @param {number} i - The index of the contact that was deleted.
  */
-function deleteDeletedContact(i) {
+function deleteDeletedContact(i) { 
     let contactName = contacts[i].name;
     let filter = contactName.trim().toUpperCase();
     for (let j = 0; j < tasks.length; j++) {
-        const name = tasks[j].assigned;
+        const name = tasks[j].assignedTo;
         for (let k = 0; k < name.length; k++) {
             const assignedContact = name[k];
             let tasksName = assignedContact.trim().toUpperCase();
             if (!tasksName.indexOf(filter) > -1) {
-                tasks[j].assigned.splice(k, 1);
+                tasks[j].assignedTo.splice(k, 1);
                 tasks[j].letter.splice(k, 1);
             }
         }

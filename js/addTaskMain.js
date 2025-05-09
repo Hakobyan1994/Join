@@ -8,7 +8,7 @@ let iniimg = [];
 /**
  * Renders the assigned list by updating the elements
  */
-function renderAssignedList() {                             
+async function renderAssignedList() {                             
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     let input = document.getElementById('assigned');
@@ -46,9 +46,9 @@ function toggleAssignedlist() {
 /**
  * Resets all selected contacts by clearing their selection status.
  */
-function resetAllSelectedContacts() {
+ function resetAllSelectedContacts() {
     let list = document.getElementById('assigned-list');
-    renderContactList(list);
+   renderContactList(list);
     for (let i = 0; i < contacts.length; i++) {
         let assignedContact = document.getElementById(`assigned-contacts-${i}`);
         if (assignedContact.classList.contains === 'white') {
@@ -64,10 +64,17 @@ function resetAllSelectedContacts() {
  * 
  * @param {HTMLElement} list - The element representing the assigned list.
  */
-function renderContactList(list) {
+async function renderContactList(list) {
     for (let i = 0; i < contacts.length; i++) {
         let name = contacts[i].name;
-        let img = contacts[i].initials;
+        let img=""
+        let checkNameLength=name.trim().split(" ")
+        if(checkNameLength.length===1){
+            img=checkNameLength[0].charAt(0).toUpperCase();
+        }else{
+            img=checkNameLength[0].charAt(0).toUpperCase() + checkNameLength[1].charAt(0).toUpperCase()
+        }
+        // let img = contacts[i].name;
         let userIndex = users.indexOf(name);
         let isSelected = userIndex !== -1;
         list.innerHTML += generateHtmlAssignedList(name, img, isSelected, i);
@@ -155,6 +162,7 @@ function pushCategorytoInput() {
  *
  * @param {number} i - The index of the assigned contact.
  */
+
 function selectAssignedContacts(i) {
     document.getElementById('assigned-button').classList.add('d-none');
     let contact = document.getElementById(`assigned-contacts-${i}`);
