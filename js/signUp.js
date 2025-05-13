@@ -7,15 +7,10 @@ signUp.onsubmit = onsubmitFor
 let stop = JSON.parse(localStorage.getItem('stop'))  
   
 
-
-
-
-
 async function setItem(key, value) {
     const payload = { key, value, token:'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ' };
     return fetch('https://remote-storage.developerakademie.org/item', { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json())
-
 }
 
 async function getItem(key) {
@@ -27,20 +22,15 @@ async function getItem(key) {
     });
 }  
 
-
-
 let dataUsers = []
 async function getUsers(params) {
     let res = await getItem('dataUsers')
     if (res[0] !== null) {
         dataUsers = res
-      
     }
 }
     getUsers()
    
-     
-     
      function backLogin() {
         localStorage.removeItem('stop')
      } 
@@ -81,8 +71,7 @@ async function onsubmitFor(e) {
     if (checkEmailData.exists) {
         showError('The email is already registered');
         return;
-    }
-
+    } 
     const response = await fetch('http://127.0.0.1:8000/user_auth/registration/', {
         method: 'POST',
         headers: {
@@ -112,12 +101,10 @@ async function onsubmitFor(e) {
                   setTimeout(() => {
                 trasparenterDiv.style.display = 'none';
                 window.location.href = '../index.html';
-                console.log('es ste em')
             }, 2000);
         window.location.href = '../index.html';
     }
     } else {
-        console.error('Backend-Fehler:', data);
         showError(data.error || 'Fehler bei der Registrierung');
     }
 }
@@ -211,8 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 });  
 
-
-
 function checkSignUpInputs() {
     let name = document.getElementById('nameInput').value;
     let email = document.getElementById('emailInput').value;
@@ -228,7 +213,6 @@ function checkSignUpInputs() {
     let emailSignUpError = document.getElementById('inputErrorSignUpEmail');
     let password1SignUpError = document.getElementById('inputErrorSignUpPassword1');
     let password2SignUpError = document.getElementById('inputErrorSignUpPassword2');
-
     checkSignUpHelp(name, email, password1, password2, nameSignUpError, emailSignUpError, password1SignUpError, password2SignUpError, nameInputCon, emailInputCon, passwordInputCon, passwordConfimInputCon);
 }
 

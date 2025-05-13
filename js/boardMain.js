@@ -111,7 +111,6 @@ async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) 
 
 
 async function updateTaskStatusInDB(task) {
-    console.log(task)
     const url = `http://127.0.0.1:8000/join_app/create_tasks/${task.id}`;
     await fetch(url, {
         method: 'PATCH',
@@ -259,12 +258,11 @@ async function loadActuallyContacts(){
         const data = await response.json();
         if (response.ok) {
             contacts = data
-            console.log(contacts)
         } else {
-            console.error('❌ Fehler beim Abrufen:', data);
+            console.error(' Fehler beim Abrufen:', data);
         }
     } catch (error) {
-        console.error('❌ Netzwerkfehler:', error);
+        console.error(' Netzwerkfehler:', error);
     }
 }
 

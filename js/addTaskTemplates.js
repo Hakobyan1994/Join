@@ -6,7 +6,7 @@ async function renderAddTaskMain() {
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainAddTask();
     renderAddTask();
-    await loadContacts();
+    await getAllContacts();
     resetGlobalVariables();
 }
 
@@ -230,11 +230,13 @@ function generateHtmlSubtasks() {
  */
 function generateHtmlFormSection(boardcard) {
     return /*html*/`
-        <div class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
+        <div id="information-text" class="form-bottom-left"><p><p class="red">*</p>This field is required</p></div>
+         
         <div class="form-bottom-right">
             <button class="clear-btn" id="clear-button" onclick="clearFields()">Clear<img src="../assets/img/icons/close-black1.svg" alt="Clear" id="clear-button-img"></button>
             <button class="create-task" onclick="createTask('${boardcard}')">Create Task<img src="../assets/img/icons/check1.svg" alt="Create Task"></button>
-        </div> 
+        </div>
+        <div style="display:none" id="isTaskCreated"></div> 
     `;
 }
 

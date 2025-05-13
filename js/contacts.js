@@ -18,16 +18,12 @@ async function renderContactsMain() {
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainContacts();
     // await loadContacts();
-    await renderContacts();
-    
+    if (authToken !== null ||  asguest !== null) {
+        await renderContacts();
+    }
 }
-
-/**
- * Renders the contacts into the contact page, arranging them alphabetically by their initials.
- * This function also adds an 'Add' button and handles the resizing of contact elements.
- * 
- */
-async function renderContacts() {
+   
+  async function getAllContacts(){
     const url = 'http://127.0.0.1:8000/join_app/create_contacts/';
     try {
         const response = await fetch(url);
@@ -39,16 +35,23 @@ async function renderContacts() {
         }
     } catch (error) {
         console.error(' Netzwerkfehler:', error);
-    }
+    } 
+  }
+
+
+/**
+ * Renders the contacts into the contact page, arranging them alphabetically by their initials.
+ * This function also adds an 'Add' button and handles the resizing of contact elements.
+ * 
+ */
+async function renderContacts() {
+    await getAllContacts();
     let addBtn = document.getElementById('addBtn');
     let contactsContainer = document.getElementById('allContacts');
     addContactBtnHTML(addBtn, contactsContainer);
     const predefinedOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
     sortContacts(predefinedOrder);
-
     let lastLetter = '';
-
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
         lastLetter = renderContactImgInitials(lastLetter, contact, i, contactsContainer);
@@ -67,7 +70,6 @@ function sortContacts(predefinedOrder) {
         const nameB = b.name || '';
         const indexA = predefinedOrder.indexOf(nameA.charAt(0).toUpperCase());
         const indexB = predefinedOrder.indexOf(nameB.charAt(0).toUpperCase());
-
         if (indexA === -1) {
             return 1;
         }
@@ -234,7 +236,7 @@ async function addToContactsOnSuccess(nameInput, emailInput, phoneInput, name, e
     clearInputs(nameInput, emailInput, phoneInput);
     closeAddContactSlider();
     // await setItem('contacts', JSON.stringify(contacts));
-    await loadContacts();
+    await getAllContacts();
     await renderContacts();
     showSuccessMessage();
 }
@@ -353,16 +355,13 @@ async function deleteContact(i) {
         headers: {
             'Content-Type': 'application/json',
         },
-    })  
+    })
     if (response.ok) {
-        // Nur falls Response-Body vorhanden:
-        // const data = await response.json();
-             
         contacts.splice(i, 1); // Aus Liste entfernen
         renderContactsMain(); // Seite bleibt und aktualisiert nur den Bereich
     }
 
-    
+
     // const data = await response.json();
     // contacts[i]=data
     // console.log(data)
@@ -370,19 +369,19 @@ async function deleteContact(i) {
     // contacts.splice(i, 1);
     // await  renderContacts();
     // renderContactsMain()
-    
-}   
 
-    
+}
 
-   
+
+
+
 
 /**
  * Removes the deleted contact from the assigned tasks.
  * 
  * @param {number} i - The index of the contact that was deleted.
  */
-function deleteDeletedContact(i) { 
+function deleteDeletedContact(i) {
     let contactName = contacts[i].name;
     let filter = contactName.trim().toUpperCase();
     for (let j = 0; j < tasks.length; j++) {

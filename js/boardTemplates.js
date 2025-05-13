@@ -26,14 +26,18 @@ function generateHtmlMainBoard() {
 
                     <form class="mobile-search-board">
                         <div class="no-results" id="no-results">No results found</div>
+                        <div id="logged-info" style="color:red; display:none; font-size:12px" >you should be logged in</div>
                         <div class="input_button_Div">
                             <input class="input-searchfield" type="text" placeholder="Find Task" id="input-search-task" onkeyup="searchTasks()">
-                            <button class="add-task-btn" onclick="openPopupAddTask('board-to-do'); return false">
+                            <button   id="add" class="add-task-btn"  onclick="openPopupAddTask('board-to-do'); return false">
                                 <img src="../assets/img/icons/addi.png" alt="">
-                                Add Task
+                                Add Task 
                             </button>
+                                 
                         </div>
+                        
                     </form>
+                   
                 </div>
                 <div class="adding_div">
                 </div>
@@ -78,15 +82,20 @@ function generateHtmlMainBoard() {
  * @param {string} boardcard - The type of board card to open the popup for.
  */
 async function openPopupAddTask(boardcard) {
-    let popup = document.getElementById('popup-add-task');
-    let content = document.getElementById('popup-add-task-content');
-    users = [];
-    iniimg = [];
-    subtasks = [];
-    popup.style.display = 'flex';
-    content.classList.remove('slide-out');
-    content.classList.add('slide-in');
-    content.innerHTML = /*html*/`
+    if (authToken===null && asguest===null) {
+        let loginInfo = document.getElementById('logged-info')
+        loginInfo.style.display = 'flex'
+        return
+    } 
+        let popup = document.getElementById('popup-add-task');
+        let content = document.getElementById('popup-add-task-content');
+        users = [];
+        iniimg = [];
+        subtasks = [];
+        popup.style.display = 'flex';
+        content.classList.remove('slide-out');
+        content.classList.add('slide-in');
+        content.innerHTML = /*html*/`
         <img class="close-popup" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTask(); return false">
         <div class="popup-box">
             <div class="mobile-board-popup-add-task">
@@ -102,13 +111,14 @@ async function openPopupAddTask(boardcard) {
             </div>  
         </div> 
     `;
-    let assignedButton = document.getElementById('assigned-button');
-    assignedButton.classList.add('assigned-button-b-pos');
-    addEventFunctions();
-    cancelButton();
-    document.getElementById('date').min = minDate();
-    document.getElementById('date').value = minDate();
-    clearButtonImgChange();
+        let assignedButton = document.getElementById('assigned-button');
+        assignedButton.classList.add('assigned-button-b-pos');
+        addEventFunctions();
+        cancelButton();
+        document.getElementById('date').min = minDate();
+        document.getElementById('date').value = minDate();
+        clearButtonImgChange();
+    
 }
 
 
@@ -119,7 +129,9 @@ async function openPopupAddTask(boardcard) {
  */
 async function openPopupAddTaskDiv(i) {
     await loadTaskss();
-    await loadContacts();
+    await getAllContacts();
+    
+    
     // await loadTasks();
     let div = document.getElementById('popup-add-task-div');
     let content = document.getElementById('popup-add-task-content-div');
@@ -127,7 +139,6 @@ async function openPopupAddTaskDiv(i) {
     content.classList.remove('slide-out');
     content.classList.add('slide-in');
     let taskValue = tasks[i];
-    console.log(taskValue)
     content.innerHTML = /*html*/`
         <img class="close-a-board" src="../assets/img/icons/Close.svg" alt="" onclick="closePopupAddTaskDiv(${i}); return false">
         `;
@@ -298,7 +309,7 @@ function createUserToAssigned(i) {
     if (!Array.isArray(taskValue.assignedTo) || taskValue.assignedTo.length === 0) {
         return;
     }
-    for(const user of taskValue.assignedTo){
+    for (const user of taskValue.assignedTo) {
         const name = user.name || "";
         div.innerHTML += /*html*/`
         <div class="each-user-section">

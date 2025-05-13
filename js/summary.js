@@ -1,11 +1,13 @@
 let nameActiveUser = [];
- 
 let arrayUrgent = [
   // {
   //   priority: [],
   //   date: []
   // }
-]; 
+];
+let authToken = localStorage.getItem('authToken')
+
+
 
 
 let asguest = JSON.parse(localStorage.getItem('guestLogin'));
@@ -19,7 +21,7 @@ async function nameItem(key) {
     } throw `Could not find data with key "${key}".`;
   });
 }
-  
+
 async function user(params) {
   const responsiveExecuted = JSON.parse(localStorage.getItem('responsive'));
   const user = await nameItem('activeUser');
@@ -28,7 +30,7 @@ async function user(params) {
     if (!responsiveExecuted && user && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp');
       let greetResponsive = document.getElementById('greetResponsive');
-      greetResponsive.innerText = getGreetingText() + ',' 
+      greetResponsive.innerText = getGreetingText() + ','
       let transDiv = document.getElementById('transDivforResponsive');
       transDiv.style.display = 'flex';
       greetResponsive.style.display = 'flex';
@@ -39,7 +41,7 @@ async function user(params) {
         setTimeforResponsive(transDiv, greetResponsive);
       }, 3000);
     }
-   
+
 
     if (asguest && window.innerWidth <= 500) {
       let namesOfgreet = document.getElementById('namesGreetresp')
@@ -77,17 +79,16 @@ async function renderSummaryMain() {
   let content = document.getElementById('render-summary');
   content.innerHTML = '';
   content.innerHTML = generateHtmlSummary();
-  // await loadTaskss();
   await getAllCards()
   await loadTaskss();
-  await loadContacts();
+  await getAllContacts();
   await getValue(content);
   displayGreeting();
   checkButtonImgChange();
 }
 
 
-async function getValue(content) {  
+async function getValue(content) {
   await getAllCards()
   const { valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent, total } = countTaskValues(tasks);
   putValues(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent);
@@ -121,29 +122,41 @@ function countTaskValues(tasks) {
 }
 
 
-function putValues(valueTodo, valueProgress, valueFeedback, valueDone,valueUrgent) {
-  if(document.getElementById('value-todoarray')) {
+function putValues(valueTodo, valueProgress, valueFeedback, valueDone, valueUrgent) {
+
+  if (document.getElementById('value-todoarray') && (authToken !== null || asguest !== null)) {
     document.getElementById('value-todoarray').innerHTML = valueTodo;
     document.getElementById('value-progressarray').innerHTML = valueProgress;
     document.getElementById('value-feedbackarray').innerHTML = valueFeedback;
     document.getElementById('value-donearray').innerHTML = valueDone;
     document.getElementById('value-urgent').innerHTML = valueUrgent;
+  } else {
+    document.getElementById('value-todoarray').innerHTML = '0';
+    document.getElementById('value-progressarray').innerHTML = '0';
+    document.getElementById('value-feedbackarray').innerHTML = '0';
+    document.getElementById('value-donearray').innerHTML = '0';
+    document.getElementById('value-urgent').innerHTML = '';
   }
 }
+
+
+
 
 
 function ifTotalEmpty(total, content) {
-  if(content) {
-    if (total) {
-      document.getElementById('value-total').innerHTML = `${total}`;
-    } else if (total === 0) {
-      document.getElementById('value-total').innerHTML = '0';
+  const isLoggedIn = authToken !== null || asguest !== null;
+  const valueElement = document.getElementById('value-total');
+  if (isLoggedIn) {
+    if (content && total != null) {
+      valueElement.innerHTML = `${total}`;
     }
+  } else {
+    valueElement.innerHTML = '0';
   }
 }
 
 
- function getUrgentDate() {
+function getUrgentDate() {
   arrayUrgent = [];
   for (let j = 0; j < tasks.length; j++) {
     const array = tasks[j].prio;
@@ -152,7 +165,7 @@ function ifTotalEmpty(total, content) {
       arrayUrgent.push(date);
       console.log(arrayUrgent)
     }
-  } 
+  }
   validateUpcomingDeadline();
 }
 
@@ -166,7 +179,7 @@ function actualDate() {
 actualDate()
 
 
- function validateUpcomingDeadline() {
+function validateUpcomingDeadline() {
   let dateDiv = document.getElementById('urgentDate');
   if (arrayUrgent.length === 0) {
     dateDiv.innerHTML = '-';
@@ -175,11 +188,11 @@ actualDate()
     dateDiv.innerHTML = upcomingDate;
   }
 }
- 
+
 
 function getNextUrgentDate() {
   arrayUrgent.sort((a, b) => new Date(a) - new Date(b));
-  const nextDate = new Date(arrayUrgent[arrayUrgent.length-1]);
+  const nextDate = new Date(arrayUrgent[arrayUrgent.length - 1]);
   nextDate.setDate(nextDate.getDate() - 1);
   const day = String(nextDate.getDate()).padStart(2, '0');
   const month = String(nextDate.getMonth() + 1).padStart(2, '0'); // +1 weil Monate 0-11 sind
@@ -213,22 +226,22 @@ async function displayGreeting() {
   let shortName = document.getElementById('shortName');
   let greetingData = await getGreeting();
   greetingTimeCon.textContent = greetingData.time;
-  if(asguest){
+  if (asguest) {
     let textGreeting = greetingTimeCon.innerText;
     let replaceText = textGreeting.replace(/,/g, '');
     greetingTimeCon.style.marginTop = '37px'
-    greetingTimeCon.innerText = replaceText ;  
-    greetingNameCon.innerText='Guest'
+    greetingTimeCon.innerText = replaceText;
+    greetingNameCon.innerText = 'Guest'
     shortName.innerHTML = 'G';
-   } else {
+  } else {
     greetingNameCon.style.display = 'block';
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    shortName.innerText=currentUser.username.charAt(0).toUpperCase()
+    shortName.innerText = currentUser.username.charAt(0).toUpperCase()
     if (currentUser && currentUser.username) {
       const formattedname = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1).toLowerCase();
-    greetingNameCon.innerText=formattedname
-   }
-   }
+      greetingNameCon.innerText = formattedname
+    }
+  }
 
 }
 
@@ -246,7 +259,7 @@ async function getGreeting() {
   }
   await getActiveUser();
   const capitalizedFullName = greetingNameToUpperCaser(nameActiveUser[0]);
-  return {time: greetingTime, name: capitalizedFullName};
+  return { time: greetingTime, name: capitalizedFullName };
 }
 
 
@@ -288,11 +301,11 @@ function checkButtonImgChange() {                                       //change
   let img = document.getElementById('check-button');
   let checkButton = document.getElementById('check-button-div');
   if (checkButton) {
-      checkButton.addEventListener('mouseover', function () {
-          img.src = '../assets/img/icons/check-button-blue.svg';
-      });
-      checkButton.addEventListener('mouseout', function () {
-          img.src = '../assets/img/icons/check-button-white.svg';
-      });
+    checkButton.addEventListener('mouseover', function () {
+      img.src = '../assets/img/icons/check-button-blue.svg';
+    });
+    checkButton.addEventListener('mouseout', function () {
+      img.src = '../assets/img/icons/check-button-white.svg';
+    });
   }
 }

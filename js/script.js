@@ -1,7 +1,6 @@
 const STORAGE_TOKEN = 'MKWYMW3ZCIEWUYO2I64SK34MDCA45OO3E4G0MNQJ';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
-
 /**
  * Sets an item in the remote storage.
  * 
@@ -39,7 +38,7 @@ async function getItem(key) {
 async function init() {
     includeHTML();
     renderSummaryMain();
-    await loadContacts();
+    await getAllContacts();
     await loadTaskss();
     closeInfoList();
 }
@@ -115,7 +114,6 @@ function renderPage(selectedBar, page) {
         renderContactsMain();
     }
     if (page === 'render-board') {
-        loadTasks();
         renderBoardMain();
     }
 }
@@ -355,11 +353,18 @@ function checkElementsOfCloseIt(list, eIdElement, assignedButton, dropdown, even
  * Logs out the user and redirects to the login page.
  */
 function logoutUser() {
-    localStorage.clear();
+    removeLocalItems();
     window.location.href = '../index.html';
     document.getElementById('shortName').innerHTML = '';
     nameActiveUser = [];
-}
+    checkout=false;
+}  
+
+ function removeLocalItems(){
+    localStorage.removeItem('stop');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('authToken');
+ }
 
 
 // function notSupported() {

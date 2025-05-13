@@ -7,13 +7,11 @@ let selectedUserId=[];
  * @param {number} i - The index of the selected or deselected contact.
  */
 async function pushUser(i) {  
-    // await renderContacts()
-    console.log(contacts)
+    // await renderContacts() 
+    await getAllContacts();
     const contactId = contacts[i].id;
-    console.log(contactId)
     const selectedUser = contacts[i].name;
     const approved = document.getElementById(`assigned-contacts-${i}`).classList.contains('select-contact-blue');
-
     if (approved) {
         if (!selectedUserId.includes(contactId) && !selectedUserId.includes(contactId)) {
             selectedUserId.push(contactId);
@@ -21,9 +19,6 @@ async function pushUser(i) {
     } else {
         selectedUserId = selectedUserId.filter(id => id !== contactId);
     }
-        console.log(selectedUserId)
-    
-
     // let img = contacts[i].initials;
     // let index = users.indexOf(selectedUser);
     // if (approved) {
@@ -131,12 +126,12 @@ function clearInput(content) {
  */
 async function createTask(boardcard) {
     console.log(boardcard)
+        
+
+    checkUserstatus();
     let priority = pushPrio();
     let { title, requiredTitle, requiredDate, requiredCategory, description, date, category } = getInputElements();
-    console.log(title.value)
-
     let dateValue = date.value;
-    console.log(dateValue)
     if (isValidInput(title.value, dateValue, category.value)) {
         // await handleValidInput(boardcard, description, formatedDate);
         const url='http://127.0.0.1:8000/join_app/create_tasks/'
@@ -156,18 +151,17 @@ async function createTask(boardcard) {
                 status:boardcard,
                 checkoffs:[]
             })
-        })
+        }) 
         if(response.ok){
             const data = await response.json();
             tasks=data
-            // await loadToDo()
-        } 
-
-        // await getAll()
-        closePopupAddTask()
-        await renderBoardMain() 
+        }  
+        if(boardcard ==='board-to-do'){
+            isTaskCreatedInfo()
+        }
+        closePopupAddTask();
+        await renderBoardMain(); 
     }     
-    // } 
      else {
         handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category);
     }
@@ -177,12 +171,33 @@ async function createTask(boardcard) {
     //     let content = document.getElementById('popup-add-task-content');
     // }
     // return tasks;
-}  
+}   
 
 
 
+ function isTaskCreatedInfo(){
+     let isTaskCreated=document.getElementById('isTaskCreated');
+     isTaskCreated.innerText='Task was successfully completed';
+     isTaskCreated.style.display='flex';
+     setTimeout(() => {
+        isTaskCreated.style.display='none';
+     }, 2000);
+ }
 
 
+ function checkUserstatus(){
+    if(authToken===null && asguest===null){
+        const color='red';
+        const fontSize='16px'
+        const infoTextChange=document.getElementById('information-text');
+        infoTextChange.innerText='you should be logged in'  
+        infoTextChange.style.color=color;
+        infoTextChange.style.fontSize=fontSize;
+        return           
+    }
+ }
+
+ 
 
 /**
  * Retrieves input elements from the DOM.

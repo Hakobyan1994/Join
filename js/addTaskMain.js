@@ -8,12 +8,12 @@ let iniimg = [];
 /**
  * Renders the assigned list by updating the elements
  */
-async function renderAssignedList() {                             
+async function renderAssignedList() {
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     let input = document.getElementById('assigned');
     list.classList.remove('d-none');
-    if(!list.classList.contains('d-none')) {
+    if (!list.classList.contains('d-none')) {
         assignedButton.classList.add('d-none');
         input.placeholder = '';
     } else {
@@ -33,10 +33,11 @@ function toggleAssignedlist() {
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     list.classList.toggle('d-none');
-    if(!list.classList.contains('d-none')) {
+    if (!list.classList.contains('d-none')) {
         assignedButton.classList.add('d-none');
         input.placeholder = '';
-    } else {
+    }
+    else {
         assignedButton.classList.remove('d-none');
         input.placeholder = 'Select contacts to assign';
     }
@@ -46,15 +47,15 @@ function toggleAssignedlist() {
 /**
  * Resets all selected contacts by clearing their selection status.
  */
- function resetAllSelectedContacts() {
+function resetAllSelectedContacts() {
     let list = document.getElementById('assigned-list');
-   renderContactList(list);
+    renderContactList(list);
     for (let i = 0; i < contacts.length; i++) {
         let assignedContact = document.getElementById(`assigned-contacts-${i}`);
         if (assignedContact.classList.contains === 'white') {
             assignedContact.classList.remove('select-contact-blue');
             assignedContact.classList.remove('white');
-        }        
+        }
     }
 }
 
@@ -67,12 +68,12 @@ function toggleAssignedlist() {
 async function renderContactList(list) {
     for (let i = 0; i < contacts.length; i++) {
         let name = contacts[i].name;
-        let img=""
-        let checkNameLength=name.trim().split(" ")
-        if(checkNameLength.length===1){
-            img=checkNameLength[0].charAt(0).toUpperCase();
-        }else{
-            img=checkNameLength[0].charAt(0).toUpperCase() + checkNameLength[1].charAt(0).toUpperCase()
+        let img = "";
+        let checkNameLength = name.trim().split(" ");
+        if (checkNameLength.length === 1) {
+            img = checkNameLength[0].charAt(0).toUpperCase();
+        } else {
+            img = checkNameLength[0].charAt(0).toUpperCase() + checkNameLength[1].charAt(0).toUpperCase()
         }
         // let img = contacts[i].name;
         let userIndex = users.indexOf(name);
@@ -85,7 +86,8 @@ async function renderContactList(list) {
 /**
  * Searches the assigned list for contacts matching the input value.
  */
-function searchAssignedList() {                 
+function searchAssignedList() {
+    console.log('hallo contacts')
     let input = document.getElementById('assigned');
     let filter = input.value.toUpperCase();
     for (let i = 0; i < contacts.length; i++) {

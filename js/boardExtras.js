@@ -23,7 +23,6 @@ function searchTasks() {
  * @param {Object} searchResult - Object to store the search result.
  */
 function searchFunction(filter, searchResult) {
-    console.log(tasks)
     for (let i = 0; i < tasks.length; i++) {
         let todo = document.getElementById(`board-to-do-section-${i}`);
         let array = tasks[i];
@@ -203,12 +202,11 @@ async function closePopupEdit(i) {
             // console.log('📦 Kontakte aus DB:', data);
             tasks=data
             await loadToDo();
-            console.log(tasks)
         } else {
-            console.error('❌ Fehler beim Abrufen:', data);
+            console.error('Fehler beim Abrufen:', data);
         }
     } catch (error) {
-        console.error('❌ Netzwerkfehler:', error);
+        console.error('Netzwerkfehler:', error);
     }
  }
    
@@ -216,7 +214,6 @@ async function closePopupEdit(i) {
 
 
 async function saveEditedTask(i) {
-    console.log(i)
 
 
     // await loadTasks();
@@ -260,12 +257,8 @@ async function saveEditedTask(i) {
         console.error("Fehler beim PUT:", response.status, errorText);
         return;
     }
-
     const data = await response.json();
     tasks[i] = data; // ✅ Update nur diesen Task
-   
-
-    console.log("✅ Erfolgreich aktualisiert:", data);
     closeEditPopup();
     await getallTasksValue();
     await reloadTasks();

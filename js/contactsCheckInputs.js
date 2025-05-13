@@ -207,20 +207,16 @@ async function saveContact(i) {
             phone: contactPhone
         })
     });
-
     if (response.ok) {
         const data = await response.json();
-        await loadContacts();
+        await getAllContacts();
         renderContactsMain();
-        console.log('Kontakt aktualisiert:', data);
-        // Hier kannst du zusätzlich noch eine Erfolgsmeldung anzeigen oder die UI updaten.
     } else {
         console.error('Fehler beim Aktualisieren:', data);
-    }
+     }
 } catch (error) {
     console.error('Netzwerkfehler:', error);
 } 
-
 }
 
 /**

@@ -111,7 +111,7 @@ function renderAddTaskForPopup() {
 async function loadTaskss() {
     const response = await fetch('http://127.0.0.1:8000/join_app/create_tasks/');
     data = await response.json();
-    tasks=data
+    tasks=data;
 }
 
 
@@ -131,7 +131,6 @@ function showSilhouette(id) {
         deleteAllSilhouettes();
         showNoCards();
         checkNoCards();
-        
     }
 }
 

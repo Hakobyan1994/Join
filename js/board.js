@@ -2,6 +2,17 @@ let dataTask = [];
 let categoryArray = [];
 
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     if (!authToken) {
+//       console.log('authToken nicht da');
+//       
+//       if (btn) {
+//         btn.disabled = true;
+//         btn.title = 'Du musst eingeloggt sein';
+//       }
+//     }
+//   });
+
 /**
  * Renders the main board interface.
  */
@@ -9,13 +20,17 @@ async function renderBoardMain() {
     let content = document.getElementById('render-board');
     content.innerHTML = '';
     content.innerHTML = generateHtmlMainBoard();
-    emptyPages();   
-    await loadToDo();
-    await loadContacts();
-    await loadTaskss(); 
-    checkNoCards()
+    emptyPages();
+    if (authToken!==null || asguest!==null) {
+        await loadToDo();
+        // await getAllContacts()
+        // await loadContacts();
+        await getAllContacts();
+        await loadTaskss();
+        checkNoCards();
+    }
 }
-   
+
 
 /**
  * Empties any open pages.
@@ -33,9 +48,11 @@ function emptyPages() {
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
+    if(popup){   
     popup.style.display = 'none';
     content.classList.remove('slide-in');
     content.classList.add('slide-out');
+}
 }
 
 
@@ -54,7 +71,7 @@ function checkCategoryButton() {
             id.classList.add('technical-button');
         } else if (id.textContent === 'User Story') {
             id.classList.add('user-story-button');
-        }   
+        }
     })
 }
 
@@ -125,7 +142,7 @@ function smallerThanFour(letters, iconmember) {
 function createSubtasksToAddTaskPopup(i) {
     let div = document.getElementById(`popup-subtasks-${i}`);
     let taskValue = tasks[i];
-    
+
     if (!taskValue.subtasks || taskValue.subtasks.length === 0) return;
     for (let k = 0; k < taskValue.subtasks.length; k++) {
         let subtasks = taskValue.subtasks[k];
@@ -140,7 +157,7 @@ function createSubtasksToAddTaskPopup(i) {
     }
     checkSelectedSubtasks(i);
 }
-   
+
 
 
 /**
@@ -161,8 +178,7 @@ function checkSelectedSubtasks(i) {
             img.src = '../assets/img/icons/none-selected.svg';
             subtask.setAttribute('value', 'not-selected');
         }
-    } 
-
+    }
 }
 
 
@@ -303,8 +319,8 @@ function updateSelectedSubtasksCount(i) {
 async function highlightProgressbar(i) {
     let text = document.getElementById(`amount-subtasks-${i}`);
     let bar = document.getElementById(`progress-bar-${i}`);
-    if(bar) {
-        if(updateSelectedSubtasksCount(i) === totalSubtask(i)) {
+    if (bar) {
+        if (updateSelectedSubtasksCount(i) === totalSubtask(i)) {
             text.style.fontWeight = '600';
             bar.style.backgroundColor = 'rgba(0, 89, 243, 1)';
         } else {
@@ -322,7 +338,7 @@ async function highlightProgressbar(i) {
  */
 async function emptyProgressBar(i) {
     let progressbar = document.getElementById(`progress-bar-div-${i}`);
-    if(progressbar) {
+    if (progressbar) {
         if (totalSubtask(i) === 0) {
             progressbar.style.display = 'none';
         } else {

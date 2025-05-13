@@ -1,12 +1,14 @@
+
 let userGuests = [
     {
         name: '',
         greet: 'Good Morning'
     }
 ];
-let dataUser = [];
+// let dataUser = [];
+// console.log(dataUser)
 getUsers();
-  
+
 
 
 
@@ -70,31 +72,54 @@ async function getUsers(params) {
 
 function activUser(arr) {
     registerItem('activeUser', [arr]);
-}
+}  
+
+
   
 
 let form_log = document.getElementById('form_log');
 let checkBox = document.getElementById('checkBox');
 let emailInput = document.getElementById('emailLogIn');
 let passwordInput = document.getElementById('passwordLogIn');
+ 
+  
+window.addEventListener('DOMContentLoaded', () => {
+    const savedEmail = localStorage.getItem('rememberEmail');
+    const savedPassword = localStorage.getItem('rememberPassword');
+    const secretKey = 'BossSecretKey123';
+    if (!emailInput || !passwordInput || !checkBox) return;
+    if (savedEmail && savedPassword) { 
+        const decryptedPassword = CryptoJS.AES.decrypt(savedPassword, secretKey).toString(CryptoJS.enc.Utf8);
+        emailInput.value = savedEmail;
+        passwordInput.value = decryptedPassword;
+        checkBox.checked = true;
+        showPassword();
+    }
+});
+ 
 
 
 function showUserdata() {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const secretKey = 'BossSecretKey123';
     if (checkBox.checked) {
-        if (dataUser.length > 0) {
-            const user = dataUser[dataUser.length - 1];
-            emailInput.value = user.email;
-            passwordInput.value = user.password;
-            passwordInput.addEventListener('input', showPassword());
-        }
+        const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
+        localStorage.setItem('rememberEmail', email);
+        localStorage.setItem('rememberPassword', encryptedPassword);
+        passwordInput.addEventListener('input', showPassword);
     } else {
-        emailInput.value = '';
-        passwordInput.value = '';
+        removeStorageItems();
         passwordInput.addEventListener('input', passwordBlock())
     }
-}
+} 
 
+ function removeStorageItems(){
+        localStorage.removeItem('rememberEmail');
+        localStorage.removeItem('rememberPassword');
+ }  
 
+ 
 function showPassword() {
     const inputImage = document.getElementById('imageInput')
     if (passwordInput.value !== '') {
@@ -121,7 +146,6 @@ function passwordBlock() {
     }
 }
      
-
 function validateCheckbox() {
     checkBox.addEventListener('change', showUserdata);
     form_log.onsubmit = validLogin;
@@ -140,7 +164,7 @@ async function validLogin(e) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: email,  // Django erwartet "username", auch wenn's eine Email ist
+                    username: email,
                     password: password
                 })
             });
@@ -151,6 +175,7 @@ async function validLogin(e) {
                     username: data.username,
                     email: data.email
                 }));
+                checkout=true;
                 window.location.href = "../files/start.html";
             } else {
                 document.getElementById('emailLogIn').style.border = `1px solid red`;
@@ -158,7 +183,6 @@ async function validLogin(e) {
                 document.querySelector('#errorMessage').innerText = 'The password or Email is not correct';
                 document.getElementById('imageInput').classList.add('passwordImageError');
             }
-
         } catch (error) {
             showError('Serverfehler beim Login');
         }
