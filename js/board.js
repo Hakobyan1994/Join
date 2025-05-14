@@ -191,9 +191,7 @@ function checkSelectedSubtasks(i) {
 async function checkOffSubtask(i, k) {
     let img = document.getElementById(`select-subtask-board-${k}`);
     let subtask = document.getElementById(`each-subtasks-${k}`);
-
     highlightCheckOffSubtask(i, k, img, subtask);
-
     await loadTasks();
     pushSelectedSubtask(i, k);
     updateSelectedSubtasksCount(i);

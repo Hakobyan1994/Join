@@ -272,7 +272,8 @@ function generateEditableAddtask(i) {
  * @param {string} text - The text content of the subtask item.
  * @returns {string} The HTML content for the subtask item.
  */
-function getSubtasks() {
+async function getSubtasks(i) { 
+    // await loadTaskss();
     let list = document.getElementById('subtasks');
     let taskValue = tasks[i];
     console.log(taskValue)

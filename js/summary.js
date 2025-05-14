@@ -236,13 +236,13 @@ async function displayGreeting() {
   } else {
     greetingNameCon.style.display = 'block';
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    shortName.innerText = currentUser.username.charAt(0).toUpperCase()
-    if (currentUser && currentUser.username) {
+    if(currentUser){
+      shortName.innerText = currentUser.username.charAt(0).toUpperCase();
+    } if (currentUser && currentUser.username) {
       const formattedname = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1).toLowerCase();
       greetingNameCon.innerText = formattedname
     }
   }
-
 }
 
 

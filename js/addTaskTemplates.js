@@ -275,19 +275,26 @@ function renderCategoryList() {
     `;
 }
 
-
 /**
  * Generates the HTML for the assigned button.
  */
 function generateAssignedButton() {
     let div = document.getElementById('assigned-button');
     div.innerHTML = '';
-    for (let p = 0; p < users.length; p++) {
-        const letters = iniimg[p];
+    for (let p = 0; p < selectedNamesFormat.length; p++) {
+        let formatedValue='';    
+        const names=selectedNamesFormat[p]
+        const spliteNames=names.trim().split(" ");
+        if(spliteNames.length===1){
+            formatedValue=spliteNames[0].charAt(0).toUpperCase();
+        }else {
+            formatedValue=spliteNames[0].charAt(0).toUpperCase()+ spliteNames[1].charAt(0).toUpperCase()
+        }
+        // const letters = iniimg[p];
         div.innerHTML += /*html*/`
-            <img src="https://ui-avatars.com/api/?name=${letters}&background=random&color=fff" alt="Initials ${letters}" class="assigned-contact-list-icon">  
-        `;
-    }
+            <img src="https://ui-avatars.com/api/?name=${formatedValue}&background=random&color=fff" alt="Initials ${formatedValue}" class="assigned-contact-list-icon">  
+        `; 
+    } 
 }
 
 

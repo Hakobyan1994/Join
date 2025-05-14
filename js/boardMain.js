@@ -173,18 +173,21 @@ function updateDisplay(todo, progress, feedback, done, hasToDo, hasProgress, has
  * @param {number} k - The index of the subtask in the task's subtask array.
  */
 async function pushSelectedSubtask(i, k) {
-    await loadTasks();
-
+    // await loadTasks();
+    await loadTaskss()
     let subtask = document.getElementById(`each-subtasks-${k}`);
     let task = tasks[i];
-
     if (subtask && task) {
         const value = subtask.getAttribute('value');
-
         updateCheckoffs(task, k, value);
-        await saveTasks();
+        await fetch(`http://127.0.0.1:8000/join_app/create_tasks/${task.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ checkoffs: task.checkoffs }),
+        });
     }
-}
+    }
+
 
 
 /**
@@ -199,7 +202,6 @@ function updateCheckoffs(task, k, value) {
     if (!Array.isArray(task.checkoffs)) {
         task.checkoffs = [];
     }
-
     if (value === 'selected') {
         addSubtaskToCheckoffs(task, k);
     } else {
@@ -275,6 +277,7 @@ async function editTask(i) {
     displayEditPopup();
     displayEditableContent(i);
     addEventFunctions();
+    await getSubtasks(i);
 }
 
 
@@ -390,6 +393,7 @@ function updateFields(array) {
  */
 function updateSubtasks(array) {
     let subtasksArray = array.subtasks;
+    console.log(subtasksArray)
     let checkoffsArray = array.checkoffs;
     subtasks.push(subtasksArray);
     checkoffs.push(checkoffsArray)

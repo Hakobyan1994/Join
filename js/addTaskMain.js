@@ -87,7 +87,6 @@ async function renderContactList(list) {
  * Searches the assigned list for contacts matching the input value.
  */
 function searchAssignedList() {
-    console.log('hallo contacts')
     let input = document.getElementById('assigned');
     let filter = input.value.toUpperCase();
     for (let i = 0; i < contacts.length; i++) {

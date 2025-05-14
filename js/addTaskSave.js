@@ -1,5 +1,5 @@
 let selectedUserId=[];
-
+let selectedNamesFormat=[]
 
 /**
  * Pushes selected or deselected user to the user list.
@@ -7,28 +7,27 @@ let selectedUserId=[];
  * @param {number} i - The index of the selected or deselected contact.
  */
 async function pushUser(i) {  
-    // await renderContacts() 
     await getAllContacts();
     const contactId = contacts[i].id;
     const selectedUser = contacts[i].name;
+    let img = contacts[i].initials;
+    let index = users.indexOf(selectedUser);
     const approved = document.getElementById(`assigned-contacts-${i}`).classList.contains('select-contact-blue');
-    if (approved) {
+    if (approved) { 
+        if(!selectedNamesFormat.includes(selectedUser)){
+            selectedNamesFormat.push(selectedUser)
+        }
         if (!selectedUserId.includes(contactId) && !selectedUserId.includes(contactId)) {
             selectedUserId.push(contactId);
+            addDetectedContacts(index, selectedUser, img);
         }
     } else {
         selectedUserId = selectedUserId.filter(id => id !== contactId);
+        selectedNamesFormat=selectedNamesFormat.filter(name=>name!==selectedUser)
+        deleteNotDetectedContacts(index);
     }
-    // let img = contacts[i].initials;
-    // let index = users.indexOf(selectedUser);
-    // if (approved) {
-    //     addDetectedContacts(index, selectedUser, img);
-    // } else {
-    //     deleteNotDetectedContacts(index);
-    // }
     generateAssignedButton();
 }
- 
 
 /**
  * Adds the selected user to the user list if not already present.
@@ -44,7 +43,6 @@ function addDetectedContacts(index, selectedUser, img) {
     } 
 }
 
-
 /**
  * Deletes the deselected user from the user list.
  * 
@@ -56,7 +54,6 @@ function deleteNotDetectedContacts(index) {
         iniimg.splice(index, 1);
     }
 }
-
 
 /**
  * Pushes the selected priority.
@@ -165,12 +162,6 @@ async function createTask(boardcard) {
      else {
         handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category);
     }
-    // if (document.getElementById('popup-add-task')) {
-    //     // await getAll()
-    //     // loadToDo();
-    //     let content = document.getElementById('popup-add-task-content');
-    // }
-    // return tasks;
 }   
 
 
@@ -197,7 +188,6 @@ async function createTask(boardcard) {
     }
  }
 
- 
 
 /**
  * Retrieves input elements from the DOM.
@@ -275,22 +265,3 @@ function handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date,
  * @param {HTMLElement} description - The description input element.
  * @param {string} formatedDate - The formatted date string.
  */
-// function pushToTodoBoard(boardcard, description, formatedDate) {
-//     let { title, category } = getInputElements();
-//     let priority = pushPrio();
-//     let newTask = {
-//         title: title.value,
-//         description: description.value,
-//         assigned: users,
-//         letter: iniimg,
-//         date: formatedDate,
-//         priority: priority,
-//         category: category.value,
-//         subtask: subtasks,
-//         checkoffs: [],
-//         status: boardcard
-//     };
-//     tasks.push(newTask);
-//     console.log(tasks)
-// }
-
