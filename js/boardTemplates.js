@@ -82,6 +82,7 @@ function generateHtmlMainBoard() {
  * @param {string} boardcard - The type of board card to open the popup for.
  */
 async function openPopupAddTask(boardcard) {
+    await getAllContacts();
     if (authToken===null && asguest===null) {
         let loginInfo = document.getElementById('logged-info')
         loginInfo.style.display = 'flex'

@@ -30,9 +30,9 @@ async function getUsers(params) {
     }
 }
     getUsers()
-   
+
      function backLogin() {
-        localStorage.removeItem('stop')
+        localStorage.removeItem('stop');
      } 
 
 
@@ -49,7 +49,7 @@ async function onsubmitFor(e) {
     let confirmPassword = e.target[3].value;
     let checkBox = e.target[4].checked;
     const checkEmailregex = /^[^\s@]+@[^\s@]+\.(de|com)$/;
-    checkSignUpInputs() 
+    checkSignUpInputs();
     if (!checkEmailregex.test(email)) {
         showError('Please enter a valid email ending with .de or .com');
         return;

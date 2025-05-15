@@ -9,6 +9,8 @@ let iniimg = [];
  * Renders the assigned list by updating the elements
  */
 async function renderAssignedList() {
+
+     await getAllContacts();
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
     let input = document.getElementById('assigned');
@@ -28,7 +30,9 @@ async function renderAssignedList() {
 /**
  * Toggles the visibility of the assigned list and updates UI elements accordingly.
  */
-function toggleAssignedlist() {
+async function toggleAssignedlist() {
+
+   console.log('hasssss')
     let input = document.getElementById('assigned');
     let list = document.getElementById('assigned-list');
     let assignedButton = document.getElementById('assigned-button');
@@ -36,11 +40,14 @@ function toggleAssignedlist() {
     if (!list.classList.contains('d-none')) {
         assignedButton.classList.add('d-none');
         input.placeholder = '';
+        list.innerHTML = '';
+         await getAllContacts();
+        resetAllSelectedContacts();
     }
     else {
         assignedButton.classList.remove('d-none');
         input.placeholder = 'Select contacts to assign';
-    }
+    } 
 }
 
 
@@ -56,7 +63,7 @@ function resetAllSelectedContacts() {
             assignedContact.classList.remove('select-contact-blue');
             assignedContact.classList.remove('white');
         }
-    }
+    } 
 }
 
 

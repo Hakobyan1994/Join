@@ -1,18 +1,5 @@
 let dataTask = [];
 let categoryArray = [];
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     if (!authToken) {
-//       console.log('authToken nicht da');
-//       
-//       if (btn) {
-//         btn.disabled = true;
-//         btn.title = 'Du musst eingeloggt sein';
-//       }
-//     }
-//   });
-
 /**
  * Renders the main board interface.
  */
@@ -48,6 +35,7 @@ function emptyPages() {
 function closePopupAddTask() {
     let popup = document.getElementById('popup-add-task');
     let content = document.getElementById('popup-add-task-content');
+    
     if(popup){   
     popup.style.display = 'none';
     content.classList.remove('slide-in');
@@ -343,4 +331,4 @@ async function emptyProgressBar(i) {
             progressbar.style.display = 'flex';
         }
     }
-}
+}    

@@ -1,20 +1,20 @@
-let selectedUserId=[];
-let selectedNamesFormat=[]
+let selectedUserId = [];
+let selectedNamesFormat = []
 
 /**
  * Pushes selected or deselected user to the user list.
  * 
  * @param {number} i - The index of the selected or deselected contact.
  */
-async function pushUser(i) {  
+async function pushUser(i) {
     await getAllContacts();
     const contactId = contacts[i].id;
     const selectedUser = contacts[i].name;
     let img = contacts[i].initials;
     let index = users.indexOf(selectedUser);
     const approved = document.getElementById(`assigned-contacts-${i}`).classList.contains('select-contact-blue');
-    if (approved) { 
-        if(!selectedNamesFormat.includes(selectedUser)){
+    if (approved) {
+        if (!selectedNamesFormat.includes(selectedUser)) {
             selectedNamesFormat.push(selectedUser)
         }
         if (!selectedUserId.includes(contactId) && !selectedUserId.includes(contactId)) {
@@ -23,7 +23,7 @@ async function pushUser(i) {
         }
     } else {
         selectedUserId = selectedUserId.filter(id => id !== contactId);
-        selectedNamesFormat=selectedNamesFormat.filter(name=>name!==selectedUser)
+        selectedNamesFormat = selectedNamesFormat.filter(name => name !== selectedUser)
         deleteNotDetectedContacts(index);
     }
     generateAssignedButton();
@@ -40,7 +40,7 @@ function addDetectedContacts(index, selectedUser, img) {
     if (index === -1) {
         users.push(selectedUser);
         iniimg.push(img);
-    } 
+    }
 }
 
 /**
@@ -64,7 +64,6 @@ function pushPrio() {
     let prios = document.getElementById('prio');
     let prioButtons = prios.querySelectorAll('button');
     let selectedPriority = null;
-
     prioButtons.forEach(function (button) {
         if (!button.classList.contains('prio-notselected')) {
             selectedPriority = button.value;
@@ -122,71 +121,59 @@ function clearInput(content) {
  * @returns {Promise<Array>} - A promise that resolves to the updated tasks array.
  */
 async function createTask(boardcard) {
-    console.log(boardcard)
-        
-
     checkUserstatus();
     let priority = pushPrio();
     let { title, requiredTitle, requiredDate, requiredCategory, description, date, category } = getInputElements();
     let dateValue = date.value;
     if (isValidInput(title.value, dateValue, category.value)) {
         // await handleValidInput(boardcard, description, formatedDate);
-        const url='http://127.0.0.1:8000/join_app/create_tasks/'
-        const response=await fetch(url,{
-            method:'POST',
+        const url = 'http://127.0.0.1:8000/join_app/create_tasks/'
+        const response = await fetch(url, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify({
-                title:title.value,
-                description:description.value,
+            body: JSON.stringify({
+                title: title.value,
+                description: description.value,
                 assignedTo_ids: selectedUserId ? selectedUserId : [],
-                date:dateValue,
-                prio:priority,
-                category:category.value,
+                date: dateValue,
+                prio: priority,
+                category: category.value,
                 subtasks: subtasks || [],
-                status:boardcard,
-                checkoffs:[]
+                status: boardcard,
+                checkoffs: []
             })
-        }) 
-        if(response.ok){
+        })
+        if (response.ok) {
             const data = await response.json();
-            tasks=data
-        }  
-        if(boardcard ==='board-to-do'){
-            isTaskCreatedInfo()
+            tasks = data
         }
+        if (boardcard === 'board-to-do') {
+            document.getElementById('board-page').click()
+            closePopupAddTask();
+            return
+        } 
         closePopupAddTask();
-        await renderBoardMain(); 
-    }     
-     else {
+        await renderBoardMain();
+    }
+    else {
         handleInvalidInput(requiredTitle, requiredDate, requiredCategory, date, title, category);
     }
-}   
+}
 
 
-
- function isTaskCreatedInfo(){
-     let isTaskCreated=document.getElementById('isTaskCreated');
-     isTaskCreated.innerText='Task was successfully completed';
-     isTaskCreated.style.display='flex';
-     setTimeout(() => {
-        isTaskCreated.style.display='none';
-     }, 2000);
- }
-
-
- function checkUserstatus(){
-    if(authToken===null && asguest===null){
-        const color='red';
-        const fontSize='16px'
-        const infoTextChange=document.getElementById('information-text');
-        infoTextChange.innerText='you should be logged in'  
-        infoTextChange.style.color=color;
-        infoTextChange.style.fontSize=fontSize;
-        return           
+function checkUserstatus() {
+    if (authToken === null && asguest === null) {
+        const color = 'red';
+        const fontSize = '16px'
+        const infoTextChange = document.getElementById('information-text');
+        infoTextChange.innerText = 'you should be logged in'
+        infoTextChange.style.color = color;
+        infoTextChange.style.fontSize = fontSize;
+        return
     }
- }
+}
 
 
 /**
@@ -234,7 +221,7 @@ async function handleValidInput(boardcard, description, formatedDate) {
     // await setItem('tasks', JSON.stringify(tasks));
     clearFields();
     openBoard();
-   
+
 }
 
 

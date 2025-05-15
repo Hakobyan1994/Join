@@ -250,13 +250,10 @@ function openBoard() {
     let board = document.getElementById('popup-a-to-b-board');
     if(addTask) {
         addTask.classList.remove('d-none');
-        console.log('ayo')
     } else if(board) {
         board.classList.remove('d-none');
-        console.log('ayo')
     }
     setTimeout(() => {
         renderPage('board-page', 'render-board');
-        console.log('sakura')
     }, "1500");
 }
