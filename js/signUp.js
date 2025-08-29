@@ -65,14 +65,14 @@ async function onsubmitFor(e) {
         return;
     }
 
-    const checkEmailResponse = await fetch(`http://127.0.0.1:8000/user_auth/check_email/?email=${encodeURIComponent(email)}`);
+    const checkEmailResponse = await fetch(`https://api.my-join-app.com/user_auth/check_email/?email=${encodeURIComponent(email)}`);
     const checkEmailData = await checkEmailResponse.json();
 
     if (checkEmailData.exists) {
         showError('The email is already registered');
         return;
     } 
-    const response = await fetch('http://127.0.0.1:8000/user_auth/registration/', {
+    const response = await fetch('https://api.my-join-app.com/user_auth/registration/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

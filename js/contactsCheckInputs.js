@@ -21,7 +21,7 @@ async function addToContacts(event) {
     let emailAddContactError = document.getElementById('emailAddErrorMessage');
     let phoneAddContactError = document.getElementById('phoneAddErrorMessage');
     await addToContactsCheckValues(nameAddContactError, emailAddContactError, phoneAddContactError, name, email, phone, nameInput, emailInput, phoneInput);
-    const url='http://127.0.0.1:8000/join_app/create_contacts/'
+    const url='https://api.my-join-app.com/join_app/create_contacts/'
     const response=await fetch(url,{
         method:'POST',
         headers: {
@@ -194,7 +194,7 @@ async function saveContact(i) {
     contact.email = contactEmail;
     contact.phone = contactPhone;
    saveContactCheckValues(nameEditContactError, emailEditContactError, phoneEditContactError, contactName, contactEmail, contactPhone, i);
-   const url = `http://127.0.0.1:8000/join_app/create_contacts/${contact.id}`; 
+   const url = `https://api.my-join-app.com/join_app/create_contacts/${contact.id}`; 
    try {
     const response = await fetch(url, {
         method: 'PUT',

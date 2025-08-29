@@ -127,7 +127,7 @@ async function createTask(boardcard) {
     let dateValue = date.value;
     if (isValidInput(title.value, dateValue, category.value)) {
         // await handleValidInput(boardcard, description, formatedDate);
-        const url = 'http://127.0.0.1:8000/join_app/create_tasks/'
+        const url = 'https://api.my-join-app.com/join_app/create_tasks/'
         const response = await fetch(url, {
             method: 'POST',
             headers: {

@@ -95,7 +95,6 @@ async function checkSingleColumn(id) {
     const cards = board.querySelectorAll(`#${id} .progress_card`);
     if (cards.length === 0) { 
         if (noCardMsg) noCardMsg.style.display = 'flex';
-        console.log(`✅ ${id} ist leer`);
         await loadToDo()
     } else {
         if (noCardMsg) noCardMsg.style.display = 'none';
@@ -109,7 +108,7 @@ function renderAddTaskForPopup() {
 }
 
 async function loadTaskss() {
-    const response = await fetch('http://127.0.0.1:8000/join_app/create_tasks/');
+    const response = await fetch('https://api.my-join-app.com/join_app/create_tasks/');
     data = await response.json();
     tasks=data;
 }

@@ -159,7 +159,7 @@ async function validLogin(e) {
     let password = e.target[1].value;
     if (email && password) {
         try {
-            const response = await fetch('http://127.0.0.1:8000/user_auth/login/', {
+            const response = await fetch('https://api.my-join-app.com/user_auth/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

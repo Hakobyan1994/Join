@@ -17,7 +17,7 @@ async function loadToDo() {
 }
   
   async function getAllCards(){
-    const url='http://127.0.0.1:8000/join_app/create_tasks/'
+    const url='https://api.my-join-app.com/join_app/create_tasks/'
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -111,7 +111,7 @@ async function updateBoard(taskValue, i, todo, progress, feedback, done, flags) 
 
 
 async function updateTaskStatusInDB(task) {
-    const url = `http://127.0.0.1:8000/join_app/create_tasks/${task.id}`;
+    const url = `https://api.my-join-app.com/join_app/create_tasks/${task.id}`;
     await fetch(url, {
         method: 'PATCH',
         headers: {
@@ -180,7 +180,7 @@ async function pushSelectedSubtask(i, k) {
     if (subtask && task) {
         const value = subtask.getAttribute('value');
         updateCheckoffs(task, k, value);
-        await fetch(`http://127.0.0.1:8000/join_app/create_tasks/${task.id}`, {
+        await fetch(`https://api.my-join-app.com/join_app/create_tasks/${task.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ checkoffs: task.checkoffs }),
@@ -254,7 +254,7 @@ async function saveTasks() {
 
 
 async function loadActuallyContacts(){
-      const url = 'http://127.0.0.1:8000/join_app/create_contacts/';
+      const url = 'https://api.my-join-app.com/join_app/create_contacts/';
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -372,14 +372,14 @@ function updateFields(array) {
  * 
  * @param {Object} array - The task object containing the assigned contacts.
  */
- function updateContactList(array) {
+function updateContactList(array) {
     renderAssignedList();
-     getallTasksValue();
+    getallTasksValue();
     for (let i = 0; i < array.assignedTo.length; i++) {
         let selectedContacts = array.assignedTo[i];
         for (let k = 0; k < contacts.length; k++) {
             let contact = document.getElementById(`contact-name-${k}`);
-            if(selectedContacts.name.toUpperCase() === contact.textContent.toUpperCase()) {
+            if(contact && selectedContacts.name.toUpperCase() === contact.textContent.toUpperCase()) {
                 selectAssignedContacts(k);
             } 
         }

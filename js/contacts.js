@@ -24,7 +24,7 @@ async function renderContactsMain() {
 }
    
   async function getAllContacts(){
-    const url = 'http://127.0.0.1:8000/join_app/create_contacts/';
+    const url = 'https://api.my-join-app.com/join_app/create_contacts/';
     try {
         const response = await fetch(url);
         if (response.ok) {
@@ -349,7 +349,7 @@ async function deleteContact(i) {
     // closeEditContactSlider();
     // await setItem('contacts', JSON.stringify(contacts));
     // await setItem('tasks', JSON.stringify(tasks));  
-    const url = `http://127.0.0.1:8000/join_app/create_contacts/${contacts[i].id}`
+    const url = `https://api.my-join-app.com/join_app/create_contacts/${contacts[i].id}`
     const response = await fetch(url, {
         method: 'DELETE',
         headers: {

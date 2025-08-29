@@ -102,7 +102,7 @@ function cancelButton() {
  * @param {number} i - The index of the task to delete.
  */
 async function deleteTask(i) {
-    const url=`http://127.0.0.1:8000/join_app/create_tasks/${tasks[i].id}`
+    const url=`https://api.my-join-app.com/join_app/create_tasks/${tasks[i].id}`
     const response = await fetch(url, {
         method: 'DELETE',
         headers: {
@@ -193,7 +193,7 @@ async function closePopupEdit(i) {
  * @param {number} i - The index of the task being edited.
  */ 
  async function getallTasksValue(){
-    const url='http://127.0.0.1:8000/join_app/create_tasks/'
+    const url='https://api.my-join-app.com/join_app/create_tasks/'
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -232,7 +232,7 @@ async function saveEditedTask(i) {
     // 🛠 Fallback für bereits gesetzte Kontakte
    
 
-    const url = `http://127.0.0.1:8000/join_app/create_tasks/${task.id}`;
+    const url = `https://api.my-join-app.com/join_app/create_tasks/${task.id}`;
     selectedUserId = selectedUserId.filter(id => Number.isInteger(id) && id > 0);
     const response = await fetch(url, {
         method: 'PUT',
